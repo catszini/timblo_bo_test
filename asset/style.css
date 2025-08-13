@@ -148,6 +148,13 @@ body {
     margin-right: 12px;
 }
 
+/* 로고 스플래시(루트 index.html) 반응형 최적화 */
+@media (max-width: 480px) {
+    body > picture img {
+        max-width: 80% !important;
+    }
+}
+
 /* 서브메뉴 스타일링 */
 /* 서브메뉴 기본 접힘 */
 .submenu {
