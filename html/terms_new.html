@@ -23,13 +23,26 @@
     .terms-new-page .form-input,
     .terms-new-page .form-select {
       width: 100%;
-      padding: 10px 12px;
+      padding: 10px 36px 10px 12px;
       border: 1px solid #E5E5E5;
       border-radius: 4px;
       font-size: 14px;
       background: #fff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
+
+    /* 시간 선택 셀렉트 박스 화살표 아이콘 적용 (다른 셀렉트와 동일) */
+    .terms-new-page .form-select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url('../asset/select-arrow.svg');
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+      background-size: 16px 16px;
+      cursor: pointer;
+    }
+
     /* 약관 실행일(날짜/시간) 입력 폰트 통일 */
     .terms-new-page input[type="date"] {
       font-family: inherit;
