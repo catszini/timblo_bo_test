@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>다운로드 이력</title>
+  <link rel="stylesheet" href="../asset/style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>시스템</h3>
+        <ul>
+          <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
+          <li><a href="terms.html"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <h3>워크스페이스</h3>
+        <ul>
+          <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li>
+            <a href="#" class="active"><img src="../asset/history.svg" alt="">이력 관리</a>
+            <ul class="submenu">
+              <li><a href="login_history.html">사용자 접속 이력</a></li>
+              <li><a class="active" href="download_history.html">다운로드 이력</a></li>
+            </ul>
+          </li>
+          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
+          <li><a href="#"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li>
+            <a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a>
+            <ul class="submenu">
+              <li><a href="index.html">회의록 템플릿 관리</a></li>
+              <li><a href="calendar.html">캘린더 프롬프트 관리</a></li>
+              <li><a href="summary.html">요약번역 관리</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"><img src="../asset/stats.svg" alt="">통계</a>
+            <ul class="submenu">
+              <li><a href="stats_usage.html">사용량 통계</a></li>
+              <li><a href="stats_user.html">사용자별 통계</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 콘텐츠 영역 -->
+    <div class="content">
+      <div class="content-header">
+        <div class="breadcrumb">워크스페이스 > 이력 관리 > 다운로드 이력</div>
+      </div>
+
+      <div class="content-body">
+        <!-- 검색 영역 -->
+        <div class="search-section">
+          <div class="common-topbar">
+            <div class="tb-left">
+              <div class="date-range-wrap">
+                <span class="calendar-icon">📅</span>
+                <input type="text" id="dh-range" class="date-range" placeholder="날짜 범위를 선택하세요" readonly />
+                <div class="range-panel" id="dh-panel">
+                  <div class="calendar-range">
+                    <div class="calendar" id="dh-cal-start"></div>
+                    <div class="calendar" id="dh-cal-end"></div>
+                  </div>
+                  <div
+                    style="margin-top:8px; font-size:12px; color:#666; display:flex; align-items:center; justify-content:space-between;">
+                    <span id="dh-picked">-</span>
+                    <div class="range-actions">
+                      <button class="btn-outline" id="dh-cancel">취소</button>
+                      <button class="btn-submit" id="dh-apply">적용</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <select class="condition-select">
+                <option>전체</option>
+              </select>
+              <select class="condition-select">
+                <option>전체</option>
+              </select>
+              <select class="condition-select">
+                <option>전체</option>
+              </select>
+              <div class="combo-search" style="width: 520px;">
+                <div class="combo-field">
+                  <select class="combo-select">
+                    <option>전체</option>
+                    <option>회의록명</option>
+                    <option>이메일</option>
+                  </select>
+                  <div class="divider"></div>
+                  <div class="combo-input-wrap">
+                    <span class="mag-icon">🔍</span>
+                    <input type="text" class="combo-input" placeholder="검색어를 입력해주세요." />
+                  </div>
+                  <button class="append-btn">조회</button>
+                </div>
+              </div>
+            </div>
+            <div class="tb-right" style="width:100%;">
+              <div class="right-tail">
+                <div class="total-count">총 10건</div>
+                <select class="condition-select">
+                  <option>10개씩 보기</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 테이블 -->
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>회의록명</th>
+                <th>파일명</th>
+                <th>다운로드 시간</th>
+                <th>용량</th>
+                <th>디바이스</th>
+                <th>이름</th>
+                <th>이메일</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>음성 파일</td>
+                <td>프로젝트 킥오프 회의록</td>
+                <td>kickoff_recording.mp3</td>
+                <td>25-08-10 09:12:45</td>
+                <td>12.4 MB</td>
+                <td>PC</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-blue">김</div><span>김민수</span>
+                  </div>
+                </td>
+                <td>minsu.kim@example.com</td>
+              </tr>
+              <tr>
+                <td>텍스트 파일</td>
+                <td>주간 업무 보고 회의</td>
+                <td>weekly_report.pdf</td>
+                <td>25-08-10 08:01:10</td>
+                <td>0.8 MB</td>
+                <td>Mobile</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-green">이</div><span>이서연</span>
+                  </div>
+                </td>
+                <td>seoyeon.lee@example.com</td>
+              </tr>
+              <tr>
+                <td>음성 파일</td>
+                <td>세일즈 전략 논의</td>
+                <td>sales_strategy.wav</td>
+                <td>25-08-09 18:47:33</td>
+                <td>34.1 MB</td>
+                <td>PC</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-orange">박</div><span>박지훈</span>
+                  </div>
+                </td>
+                <td>jihoon.park@example.com</td>
+              </tr>
+              <tr>
+                <td>텍스트 파일</td>
+                <td>디자인 리뷰 미팅</td>
+                <td>design_review_notes.docx</td>
+                <td>25-08-09 14:22:09</td>
+                <td>0.3 MB</td>
+                <td>PC</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-purple">최</div><span>최은지</span>
+                  </div>
+                </td>
+                <td>eunji.choi@example.com</td>
+              </tr>
+              <tr>
+                <td>음성 파일</td>
+                <td>고객 인터뷰 녹취</td>
+                <td>customer_interview_01.m4a</td>
+                <td>25-08-09 10:05:54</td>
+                <td>18.7 MB</td>
+                <td>Mobile</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-pink">정</div><span>정가영</span>
+                  </div>
+                </td>
+                <td>kayoung.jung@example.com</td>
+              </tr>
+              <tr>
+                <td>텍스트 파일</td>
+                <td>운영 이슈 정리</td>
+                <td>ops_issues_summary.txt</td>
+                <td>25-08-08 21:31:02</td>
+                <td>0.05 MB</td>
+                <td>PC</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-indigo">한</div><span>한유진</span>
+                  </div>
+                </td>
+                <td>yujin.han@example.com</td>
+              </tr>
+              <tr>
+                <td>음성 파일</td>
+                <td>제품 로드맵 발표</td>
+                <td>product_roadmap_2025.mp3</td>
+                <td>25-08-08 19:18:20</td>
+                <td>27.6 MB</td>
+                <td>PC</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-teal">오</div><span>오지현</span>
+                  </div>
+                </td>
+                <td>jihyun.oh@example.com</td>
+              </tr>
+              <tr>
+                <td>텍스트 파일</td>
+                <td>분기 실적 발표 자료</td>
+                <td>q2_results_slides.pptx</td>
+                <td>25-08-08 11:40:58</td>
+                <td>4.2 MB</td>
+                <td>PC</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-amber">윤</div><span>윤다빈</span>
+                  </div>
+                </td>
+                <td>dabin.yoon@example.com</td>
+              </tr>
+              <tr>
+                <td>음성 파일</td>
+                <td>마케팅 캠페인 회의</td>
+                <td>marketing_meeting.mp3</td>
+                <td>25-08-08 09:07:41</td>
+                <td>16.3 MB</td>
+                <td>Mobile</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-green">장</div><span>장수현</span>
+                  </div>
+                </td>
+                <td>soohyun.jang@example.com</td>
+              </tr>
+              <tr>
+                <td>텍스트 파일</td>
+                <td>기술 검토 메모</td>
+                <td>tech_review_memo.pdf</td>
+                <td>25-08-07 22:55:16</td>
+                <td>0.6 MB</td>
+                <td>PC</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-blue">노</div><span>노재현</span>
+                  </div>
+                </td>
+                <td>jaehyun.no@example.com</td>
+              </tr>
+              <tr>
+                <td>음성 파일</td>
+                <td>내부 교육 세션</td>
+                <td>internal_training.m4a</td>
+                <td>25-08-07 20:03:29</td>
+                <td>22.1 MB</td>
+                <td>PC</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-purple">문</div><span>문가람</span>
+                  </div>
+                </td>
+                <td>garam.moon@example.com</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 페이징 -->
+        <div class="pagination">
+          <button class="page-btn" disabled>이전</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">다음</button>
+          <span class="page-info">1 / 3</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // 두 개 달력 범위 선택 (다운로드 이력)
+    (function () {
+      const wrap = document.querySelector('.date-range-wrap');
+      if (!wrap) return;
+      const input = document.getElementById('dh-range');
+      const panel = document.getElementById('dh-panel');
+      const calStart = document.getElementById('dh-cal-start');
+      const calEnd = document.getElementById('dh-cal-end');
+      const picked = document.getElementById('dh-picked');
+      const apply = document.getElementById('dh-apply');
+      const cancel = document.getElementById('dh-cancel');
+      let startDate = null, endDate = null, viewStart = new Date(), viewEnd = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);
+      function fmt(d) { return d.toISOString().slice(0, 10); }
+      function renderCalendar(targetEl, view, isStart) {
+        const y = view.getFullYear(), m = view.getMonth();
+        const first = new Date(y, m, 1), last = new Date(y, m + 1, 0); const startIdx = (first.getDay() + 6) % 7; let h = '';
+        h += '<div class="cal-header">'
+          + `<div style="justify-self:start;"><button class="cal-prev dh-prev" data-side="${isStart ? 'start' : 'end'}">‹</button></div>`
+          + '<div class="cal-month">' + y + '-' + String(m + 1).padStart(2, '0') + '</div>'
+          + `<div style="justify-self:end;text-align:right;"><button class="cal-next dh-next" data-side="${isStart ? 'start' : 'end'}">›</button></div>`
+          + '</div>';
+        h += '<div class="cal-grid">';['월', '화', '수', '목', '금', '토', '일'].forEach(w => h += '<div class="cal-weekday">' + w + '</div>');
+        for (let i = 0; i < startIdx; i++) h += '<div class="cal-day disabled"></div>';
+        for (let d = 1; d <= last.getDate(); d++) {
+          const cur = new Date(y, m, d);
+          const inRange = startDate && endDate && cur >= startDate && cur <= endDate;
+          const sel = (startDate && fmt(cur) === fmt(startDate)) || (endDate && fmt(cur) === fmt(endDate));
+          h += '<div class="cal-day' + (inRange ? ' in-range' : '') + (sel ? ' selected' : '') + '" data-day="' + fmt(cur) + '">' + d + '</div>';
+        }
+        h += '</div>'; targetEl.innerHTML = h;
+        targetEl.querySelector('.dh-prev').onclick = () => { if (isStart) viewStart.setMonth(viewStart.getMonth() - 1); else viewEnd.setMonth(viewEnd.getMonth() - 1); sync(); };
+        targetEl.querySelector('.dh-next').onclick = () => { if (isStart) viewStart.setMonth(viewStart.getMonth() + 1); else viewEnd.setMonth(viewEnd.getMonth() + 1); sync(); };
+        targetEl.querySelectorAll('.cal-day[data-day]').forEach(el => {
+          el.onclick = () => {
+            const d = new Date(el.dataset.day);
+            if (!startDate || (startDate && endDate)) { startDate = d; endDate = null; }
+            else if (d < startDate) { endDate = startDate; startDate = d; }
+            else { endDate = d; }
+            picked.textContent = (startDate ? fmt(startDate) : '-') + ' ~ ' + (endDate ? fmt(endDate) : '-');
+            sync();
+          };
+        });
+      }
+      function sync() { renderCalendar(calStart, viewStart, true); renderCalendar(calEnd, viewEnd, false); }
+      sync();
+      input.addEventListener('click', () => { panel.style.display = panel.style.display === 'block' ? 'none' : 'block'; });
+      cancel.addEventListener('click', () => { panel.style.display = 'none'; });
+      apply.addEventListener('click', () => { if (startDate && endDate) input.value = `${fmt(startDate)} ~ ${fmt(endDate)}`; panel.style.display = 'none'; });
+      document.addEventListener('click', (e) => { if (!wrap.contains(e.target) && panel.style.display === 'block') panel.style.display = 'none'; });
+    })();
+  </script>
+  <script src="../asset/menu.js"></script>
+</body>
+
+</html>

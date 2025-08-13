@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>통계 - 사용량 통계</title>
+  <link rel="stylesheet" href="../asset/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>시스템</h3>
+        <ul>
+          <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
+          <li><a href="terms.html"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <h3>워크스페이스</h3>
+        <ul>
+          <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li>
+            <a href="#"><img src="../asset/history.svg" alt="">이력 관리</a>
+            <ul class="submenu">
+              <li><a href="login_history.html">사용자 접속 이력</a></li>
+              <li><a href="download_history.html">다운로드 이력</a></li>
+            </ul>
+          </li>
+          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
+          <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li>
+            <a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a>
+            <ul class="submenu">
+              <li><a href="index.html">회의록 템플릿 관리</a></li>
+              <li><a href="calendar.html">캘린더 프롬프트 관리</a></li>
+              <li><a href="summary.html">요약번역 관리</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="active"><img src="../asset/stats.svg" alt="">통계</a>
+            <ul class="submenu">
+              <li><a class="active" href="stats_usage.html">사용량 통계</a></li>
+              <li><a href="stats_user.html">사용자별 통계</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="content-header">
+        <div class="breadcrumb">통계 > 사용량 통계</div>
+      </div>
+
+      <div class="content-body">
+        <div class="search-section">
+          <div class="common-topbar">
+            <div class="tb-left" style="flex-direction: column; align-items:flex-start; gap:8px;">
+              <div class="stats-head" style="display:flex; align-items:center; gap:12px;">
+                <div class="stats-title" style="font-weight:600; font-size:16px; color:#111;">전체 AI 사용량</div>
+                <div class="stats-tabs"
+                  style="display:inline-flex; gap:4px; background:#F3F4F6; border-radius:8px; padding:2px;">
+                  <button class="tab active"
+                    style="border:none; background:#fff; color:#1F6BFF; padding:6px 12px; border-radius:6px; font-weight:600;">월간</button>
+                  <button class="tab"
+                    style="border:none; background:transparent; color:#4D5256; padding:6px 12px; border-radius:6px;">연간</button>
+                </div>
+              </div>
+              <div class="period-row" style="display:flex; gap:8px; align-items:center;">
+                <span style="color:#4D5256; font-size:14px;">기간</span>
+                <select class="condition-select" id="su2-y1">
+                  <option selected>2024년</option>
+                  <option>2025년</option>
+                </select>
+                <select class="condition-select" id="su2-m1">
+                  <option>1월</option>
+                  <option>2월</option>
+                  <option>3월</option>
+                  <option>4월</option>
+                  <option>5월</option>
+                  <option>6월</option>
+                  <option>7월</option>
+                  <option selected>8월</option>
+                  <option>9월</option>
+                  <option>10월</option>
+                  <option>11월</option>
+                  <option>12월</option>
+                </select>
+                <span style="margin:0 6px; color:#9AA0A6;">~</span>
+                <select class="condition-select" id="su2-y2">
+                  <option>2024년</option>
+                  <option selected>2025년</option>
+                </select>
+                <select class="condition-select" id="su2-m2">
+                  <option>1월</option>
+                  <option>2월</option>
+                  <option>3월</option>
+                  <option>4월</option>
+                  <option>5월</option>
+                  <option>6월</option>
+                  <option>7월</option>
+                  <option selected>8월</option>
+                  <option>9월</option>
+                  <option>10월</option>
+                  <option>11월</option>
+                  <option>12월</option>
+                </select>
+                <button class="btn-query" id="su2-run">조회</button>
+              </div>
+              <div id="su2-result-text" style="font-size:14px; color:#4D5256; margin-top:4px;">2024년 08월 ~ 2025년 08월 통계
+                결과</div>
+            </div>
+            <div class="tb-right"></div>
+          </div>
+        </div>
+
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>월</th>
+                <th>STT 요청 건</th>
+                <th>STT 요청 시간</th>
+                <th>STT 성공 건</th>
+                <th>STT 성공 시간</th>
+                <th>STT 실패 건</th>
+                <th>STT 실패 시간</th>
+                <th>LLM 요청 건</th>
+                <th>LLM 요청 Token</th>
+                <th>LLM 성공 건</th>
+                <th>LLM 실패 건</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2025.08</td>
+                <td>64</td>
+                <td>71:35:37</td>
+                <td>42</td>
+                <td>53:55:12</td>
+                <td style="color:#EF4444;">22</td>
+                <td>17:40:25</td>
+                <td>65</td>
+                <td>3,748,408</td>
+                <td>65</td>
+                <td style="color:#EF4444;">0</td>
+              </tr>
+              <tr>
+                <td>2025.07</td>
+                <td>113</td>
+                <td>57:44:54</td>
+                <td>85</td>
+                <td>53:53:14</td>
+                <td style="color:#EF4444;">28</td>
+                <td>03:51:40</td>
+                <td>89</td>
+                <td>4,075,449</td>
+                <td>89</td>
+                <td style="color:#EF4444;">0</td>
+              </tr>
+              <tr>
+                <td>2025.06</td>
+                <td>111</td>
+                <td>45:33:14</td>
+                <td>91</td>
+                <td>35:56:36</td>
+                <td style="color:#EF4444;">20</td>
+                <td>09:36:38</td>
+                <td>105</td>
+                <td>3,270,909</td>
+                <td>105</td>
+                <td style="color:#EF4444;">0</td>
+              </tr>
+              <tr>
+                <td>2025.05</td>
+                <td>107</td>
+                <td>68:29:07</td>
+                <td>102</td>
+                <td>66:31:17</td>
+                <td style="color:#EF4444;">5</td>
+                <td>01:57:49</td>
+                <td>105</td>
+                <td>5,932,629</td>
+                <td>105</td>
+                <td style="color:#EF4444;">0</td>
+              </tr>
+              <tr>
+                <td>2025.04</td>
+                <td>288</td>
+                <td>113:45:05</td>
+                <td>242</td>
+                <td>110:17:14</td>
+                <td style="color:#EF4444;">46</td>
+                <td>03:27:51</td>
+                <td>263</td>
+                <td>9,764,137</td>
+                <td>263</td>
+                <td style="color:#EF4444;">0</td>
+              </tr>
+              <tr>
+                <td>2025.03</td>
+                <td>540</td>
+                <td>383:08:32</td>
+                <td>516</td>
+                <td>372:05:41</td>
+                <td style="color:#EF4444;">23</td>
+                <td>09:27:36</td>
+                <td>595</td>
+                <td>26,773,983</td>
+                <td>595</td>
+                <td style="color:#EF4444;">0</td>
+              </tr>
+              <tr>
+                <td>2025.02</td>
+                <td>434</td>
+                <td>209:00:18</td>
+                <td>410</td>
+                <td>198:01:10</td>
+                <td style="color:#EF4444;">17</td>
+                <td>05:02:58</td>
+                <td>437</td>
+                <td>16,477,591</td>
+                <td>437</td>
+                <td style="color:#EF4444;">0</td>
+              </tr>
+              <tr>
+                <td>2025.01</td>
+                <td>109</td>
+                <td>66:24:43</td>
+                <td>102</td>
+                <td>66:22:36</td>
+                <td style="color:#EF4444;">7</td>
+                <td>00:02:07</td>
+                <td>36</td>
+                <td>2,438,259</td>
+                <td>36</td>
+                <td style="color:#EF4444;">0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination" style="justify-content: center; margin-top: 16px;">
+          <button class="page-btn" disabled>‹</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">›</button>
+          <span class="page-info">1 of 2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 사용량 통계 상단 공통영역 동작: 기간 셀렉트 → 텍스트 갱신
+    (function () {
+      const y1 = document.getElementById('su2-y1');
+      const m1 = document.getElementById('su2-m1');
+      const y2 = document.getElementById('su2-y2');
+      const m2 = document.getElementById('su2-m2');
+      const run = document.getElementById('su2-run');
+      const resultText = document.getElementById('su2-result-text');
+      if (!y1 || !m1 || !y2 || !m2 || !run || !resultText) return;
+      function text() { return `${y1.value} ${m1.value} ~ ${y2.value} ${m2.value} 통계 결과`; }
+      function normalize() {
+        // 연-월 비교하여 시작이 더 크면 스왑
+        const sYear = parseInt(y1.value);
+        const sMonth = parseInt(m1.value);
+        const eYear = parseInt(y2.value);
+        const eMonth = parseInt(m2.value);
+        if (sYear > eYear || (sYear === eYear && sMonth > eMonth)) {
+          const ty = y1.value, tm = m1.value; y1.value = y2.value; m1.value = m2.value; y2.value = ty; m2.value = tm;
+        }
+      }
+      run.addEventListener('click', () => { normalize(); resultText.textContent = text(); });
+    })();
+  </script>
+
+  <script src="../asset/menu.js"></script>
+</body>
+
+</html>

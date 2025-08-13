@@ -1,0 +1,89 @@
+<!-- 모달 배경 -->
+<div class="modal-overlay" style="display: none;">
+  <!-- 모달 컨테이너 -->
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2>템플릿 생성하기</h2>
+      <p class="modal-subtitle">탬플릿 파일을 업로드해주세요</p>
+    </div>
+
+    <div class="modal-content">
+      <div class="form-group">
+        <label>템플릿팩 업로드하기</label>
+        <div class="upload-box">
+          <div class="upload-info">
+            템플릿팩 파일을 업로드하면<br>
+            미리보기가 생성됩니다.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>ID</label>
+        <input type="text" placeholder="000-000-00" class="form-input">
+      </div>
+
+      <div class="form-group">
+        <label>버전정보</label>
+        <div class="version-inputs">
+          <input type="text" placeholder="V0.0.0" class="form-input">
+          <input type="text" placeholder="( ) 용성" class="form-input">
+          <input type="text" placeholder="( ) 텍스트" class="form-input">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>카테고리</label>
+        <select class="form-select">
+          <option>일반 회의</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <div class="switch-group">
+          <label>공통 영역 노출 여부</label>
+          <div class="switches">
+            <label class="switch-label">
+              <span>핵심요약</span>
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+            </label>
+            <label class="switch-label">
+              <span>참석자</span>
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+            </label>
+            <label class="switch-label">
+              <span>키워드</span>
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>템플릿명</label>
+        <input type="text" placeholder="템플릿 이름을 입력하세요" class="form-input">
+        <div class="input-counter">8/10자</div>
+      </div>
+
+      <div class="form-group">
+        <label>템플릿 설명</label>
+        <textarea placeholder="사용자에게 템플릿을 소개할 수 있는 설명을 입력하세요" class="form-textarea"></textarea>
+        <div class="input-counter">56/100자</div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-cancel">취소</button>
+        <button class="btn-submit">저장</button>
+      </div>
+    </div>
+  </div>
+</div>

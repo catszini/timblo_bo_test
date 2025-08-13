@@ -1,0 +1,1126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 초기 로드 시 메뉴 깜빡임 방지: JS가 준비되기 전까지 사이드바 비가시화(공간 유지) */
+html:not(.menu-ready) .sidebar { visibility: hidden; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f5f6f8;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 사이드바 스타일링 */
+.sidebar {
+    width: 280px;
+    background-color: #fff;
+    border-right: 1px solid #e1e1e1;
+    padding: 20px;
+}
+
+.logo {
+    padding: 24px 0; /* 상하 24px, 좌우 0 */
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #4B88F0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #292A2B;
+}
+
+.logo-url {
+    font-size: 14px;
+    color: #666;
+}
+
+/* 로그아웃 버튼 (사이드바 상단 우측) */
+.logout-btn {
+    margin-left: auto;
+    width: 32px;
+    height: 32px;
+    border: none; /* 원형 선 제거 */
+    border-radius: 50%;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: #F8F9FA;
+}
+
+.logout-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.menu-section {
+    margin-bottom: 30px;
+    padding-top: 24px;
+}
+
+.menu-section h3 {
+    padding: 0;
+    font-size: 16px;
+    color: #292A2B;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.menu-section ul {
+    list-style: none;
+}
+
+.menu-section li a {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.menu-section li a:hover {
+    background-color: #f5f6f8;
+}
+
+.menu-section li a {
+    background-color: transparent;
+    color: #333;
+}
+
+.menu-section li a.active {
+    background-color: #f0f7ff;
+    color: #0066ff;
+    font-weight: 600;
+}
+
+.menu-section li a.active img {
+    filter: invert(31%) sepia(98%) saturate(4076%) hue-rotate(211deg) brightness(102%) contrast(107%);
+}
+
+.submenu li a.active {
+    background: none;
+    color: #0066ff;
+    font-weight: 600;
+}
+
+.submenu li a:hover {
+    background: none;
+}
+
+.menu-section li a img {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+}
+
+/* 서브메뉴 스타일링 */
+/* 서브메뉴 기본 접힘 */
+.submenu {
+    list-style: none;
+    margin-left: 32px;
+    display: none;
+}
+
+/* 클릭(open 클래스) 또는 활성(현재 페이지)에서만 펼침 */
+.menu-section li.open > .submenu {
+    display: block;
+}
+
+/* 2뎁스 화살표 아이콘 (제공 SVG) */
+.menu-section li:has(> .submenu) > a {
+    position: relative;
+    padding-right: 32px; /* 화살표 영역 확보 */
+}
+.menu-section li:has(> .submenu) > a::after {
+    content: "";
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translateY(-50%) rotate(0deg);
+    transition: transform .2s ease;
+    background: center / 20px 20px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cpath d='M19 9.00012L12 15.0001L5 9.00012' stroke='%231C274C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* 펼쳐진 상태에서 화살표 위로 회전 */
+.menu-section li.open > a::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* 활성화된 경우(현재 페이지)에도 항상 펼쳐짐 유지 */
+.menu-section li:has(> a.active) > .submenu,
+.menu-section li:has(> .submenu a.active) > .submenu {
+    display: block;
+}
+
+/* 활성화된 경우 화살표도 위로 회전 고정 */
+.menu-section li:has(> a.active) > a::after,
+.menu-section li:has(> .submenu a.active) > a::after {
+    transform: translateY(-50%) rotate(180deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cpath d='M19 9.00012L12 15.0001L5 9.00012' stroke='%230066FF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.submenu li a {
+    font-size: 13px;
+    padding: 8px 12px;
+}
+
+/* 콘텐츠 영역 스타일링 */
+.content {
+    flex: 1;
+    padding: 30px;
+    background-color: #ffffff;
+}
+
+.content-header {
+    margin-bottom: 20px;
+}
+
+.breadcrumb {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    color: #292A2B;
+}
+
+.search-section {
+    margin-bottom: 20px;
+}
+
+/* 공통 상단 검색/필터 바 */
+.common-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+.common-topbar .tb-left,
+.common-topbar .tb-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.common-topbar .tb-right .right-tail {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.btn-query {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 8px;
+    background: #1677FF;
+    border: 1px solid #1677FF;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    box-shadow: 0 1px 2px rgba(16,24,40,0.05);
+    cursor: pointer;
+}
+.btn-query:hover { background:#2B85FF; border-color:#2B85FF; }
+.btn-query:active { background:#0F6BFF; border-color:#0F6BFF; }
+
+/* 셀렉트+인풋 결합형 검색 컴포넌트 */
+.combo-search { display:flex; align-items:center; gap:8px; }
+.combo-search .combo-field {
+    display:flex; align-items:center; height:36px;
+    border:1px solid #ddd; border-radius:8px; background:#fff; overflow:hidden;
+    width:100%;
+}
+.combo-search .combo-select {
+    height:100%; border:none; outline:none; cursor:pointer; background:#fff;
+    padding:0 32px 0 12px; font-size:14px; appearance:none; -webkit-appearance:none; -moz-appearance:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cpath d='M19 9.00012L12 15.0001L5 9.00012' stroke='%231C274C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 8px center; background-size:16px 16px;
+}
+.combo-search .divider { width:1px; height:20px; background:#E5E5E5; }
+.combo-search .combo-input-wrap { position:relative; height:100%; display:flex; align-items:center; flex: 1 1 auto; min-width: 260px; }
+.combo-search .combo-input {
+    border:none; outline:none; height:100%; padding:0 12px 0 32px; font-size:14px; min-width:260px; width:100%; background:#fff;
+}
+.combo-search .combo-input::placeholder { color:#9AA0A6; }
+.combo-search .mag-icon { position:absolute; left:10px; pointer-events:none; text-indent:-9999px; width:16px; height:16px; background: center/16px 16px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M7.91699 0.75C11.8749 0.750176 15.083 3.95906 15.083 7.91699C15.0828 11.8748 11.8748 15.0828 7.91699 15.083C3.95906 15.083 0.750176 11.8749 0.75 7.91699C0.75 3.95895 3.95895 0.75 7.91699 0.75Z' stroke='%234D5256' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M16.6667 16.6667L15 15' stroke='%234D5256' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.combo-search .append-btn{
+    height:100%; border:none; border-left:1px solid transparent;
+    padding:0 16px; background:#1677FF; color:#fff; font-weight:600; font-size:14px; cursor:pointer;
+    display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; flex:0 0 auto; min-width:64px;
+}
+.combo-search .append-btn:hover{ background:#2B85FF; }
+.combo-search .append-btn:active{ background:#0F6BFF; }
+
+/* 사용자 관리 페이지 검색 영역 */
+.user-page .search-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-group {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+}
+
+.left-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.right-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.new-button {
+    padding: 8px 20px;
+    background-color: #0066ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.condition-select {
+    padding: 8px 36px 8px 12px; /* 오른쪽 여백 확보 */
+    border: 1px solid #ddd; /* 기준 색상 */
+    border-radius: 4px;
+    background-color: white;
+    min-width: 120px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M19 9.00012L12 15.0001L5 9.00012' stroke='%231C274C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px 16px;
+    cursor: pointer;
+}
+
+/* 단일 입력 날짜 범위 피커 */
+.date-range-wrap {
+    position: relative;
+}
+
+.date-range {
+    padding: 8px 12px;
+    border: 1px solid #ddd; /* 셀렉트와 동일 색상으로 통일 */
+    border-radius: 4px;
+    background: #fff;
+    min-width: 220px;
+    cursor: pointer;
+}
+
+/* 달력 아이콘 표시용 */
+.date-range-wrap .calendar-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    background: center/18px 18px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6.75 3V5.25M17.25 3V5.25M3 18.75V7.5C3 6.90326 3.23705 6.33097 3.65901 5.90901C4.08097 5.48705 4.65326 5.25 5.25 5.25H18.75C19.3467 5.25 19.919 5.48705 20.341 5.90901C20.7629 6.33097 21 6.90326 21 7.5V18.75M3 18.75C3 19.3467 3.23705 19.919 3.65901 20.341C4.08097 20.7629 4.65326 21 5.25 21H18.75C19.3467 21 19.919 20.7629 20.341 20.341C20.7629 19.919 21 19.3467 21 18.75M3 18.75V11.25C3 10.6533 3.23705 10.081 3.65901 9.65901C4.08097 9.23705 4.65326 9 5.25 9H18.75C19.3467 9 19.919 9.23705 20.341 9.65901C20.7629 10.081 21 10.6533 21 11.25V18.75' stroke='%23292A2B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    text-indent: -9999px;
+    pointer-events: none;
+}
+.date-range-wrap .date-range { padding-left: 32px; }
+
+.range-panel {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background: #fff;
+    border: 1px solid #E5E5E5;
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    padding: 12px;
+    display: none;
+    z-index: 1500;
+    min-width: 600px;
+}
+
+.range-panel .condition-select {
+    min-width: 150px;
+}
+
+.range-panel .range-actions {
+    display: inline-flex;
+    gap: 8px;
+    margin-left: 8px;
+}
+
+/* 날짜 범위 버튼 – 미니 프라이머리/아웃라인 */
+.range-actions .btn-outline,
+.range-actions .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    box-shadow: 0 1px 2px rgba(16,24,40,0.05);
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+.range-actions .btn-outline,
+.range-actions .btn-cancel {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    color: #111827;
+}
+.range-actions .btn-outline:hover,
+.range-actions .btn-cancel:hover {
+    background: #F9FAFB;
+}
+.range-actions .btn-submit {
+    background: #1677FF; /* 더 선명한 블루 */
+    border: 1px solid #1677FF;
+    color: #FFFFFF;
+}
+.range-actions .btn-submit:hover {
+    background: #2B85FF;
+    border-color: #2B85FF;
+}
+.range-actions .btn-submit:active {
+    background: #0F6BFF;
+    border-color: #0F6BFF;
+}
+
+/* 달력 UI */
+.calendar-range { display: flex; gap: 12px; align-items: flex-start; }
+.calendar { width: 280px; }
+.cal-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.cal-nav { display: none; }
+.cal-prev, .cal-next, .cal-nav button {
+    border: 1px solid #E5E5E5;
+    background: #fff;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+.cal-month {
+    font-weight: 600;
+    color: #292A2B;
+    text-align: center;
+}
+
+/* 양쪽 끝 버튼만 보이도록 중앙 버튼 숨김 */
+.calendar-range .calendar:first-child .cal-next { display: none; }
+.calendar-range .calendar:last-child .cal-prev { display: none; }
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+.cal-weekday {
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+.cal-day {
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+}
+.cal-day:hover { background: #F5F7FA; }
+.cal-day.disabled { color: #C8CED3; cursor: default; }
+.cal-day.selected { background: #0066FF; color: #fff; }
+.cal-day.in-range { background: #E8F1FF; }
+
+/* 중복 제거: .right-group 여백 규칙 제거 (페이지별로 지정) */
+
+/* 중복 제거: 전역 검색 인풋 구형 정의 제거 (최신 정의는 하단 632라인 근처) */
+
+/* 조회 버튼을 아이콘-only, 셀렉트와 높이/스타일 정렬 */
+.search-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background-color: #0066FF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.search-button svg { width: 20px; height: 20px; }
+
+/* 인풋/셀렉트 박스 내부에 아이콘 버튼 삽입용 래퍼 */
+.search-control { position: relative; display: inline-block; }
+.search-control .search-input,
+.search-control .condition-select { padding-right: 40px; }
+.search-control .search-button {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    background: center/16px 16px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M7.91699 0.75C11.8749 0.750176 15.083 3.95906 15.083 7.91699C15.0828 11.8748 11.8748 15.0828 7.91699 15.083C3.95906 15.083 0.750176 11.8749 0.75 7.91699C0.75 3.95895 3.95895 0.75 7.91699 0.75Z' stroke='%234D5256' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M16.6667 16.6667L15 15' stroke='%234D5256' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    border: none;
+    border-radius: 4px;
+}
+.search-control .search-button svg { display: none; }
+
+/* 왼쪽에 돋보기 아이콘이 들어가는 단일 입력형 */
+.search-control.icon-left { position: relative; display:inline-block; flex: 0 0 auto; height:36px; }
+.search-control.icon-left .mag-icon{
+    position:absolute; left:12px; top:50%; transform:translateY(-50%);
+    width:16px; height:16px;
+    background: center/16px 16px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M7.91699 0.75C11.8749 0.750176 15.083 3.95906 15.083 7.91699C15.0828 11.8748 11.8748 15.0828 7.91699 15.083C3.95906 15.083 0.750176 11.8749 0.75 7.91699C0.75 3.95895 3.95895 0.75 7.91699 0.75Z' stroke='%234D5256' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M16.6667 16.6667L15 15' stroke='%234D5256' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    pointer-events:none;
+}
+.search-control.icon-left .search-input{ padding: 0 12px 0 36px; height:36px; line-height:36px; border-radius:8px; }
+
+.table-container {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+/* 일반 페이지 권한 테이블 여백/폭 약간 축소 */
+.general-page .perm-table-narrow table th,
+.general-page .perm-table-narrow table td {
+    padding: 10px 12px;
+}
+.general-page .perm-table-narrow table th:first-child,
+.general-page .perm-table-narrow table td:first-child {
+    width: 100px;
+}
+/* 첫 번째 열(구분) 텍스트 가운데 정렬 */
+.general-page .perm-table-narrow table td:first-child {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* 일반 페이지 권한 테이블 가로 폭 축소 및 내부 랩 처리 */
+.general-page .perm-table-narrow {
+    width: 100%;
+    max-width: 900px; /* 전체 폭보다 좁게 */
+}
+.general-page .perm-table-narrow table {
+    width: 100%;
+    table-layout: fixed; /* 좁은 폭에서도 균등하게 */
+}
+.general-page .perm-table-narrow table,
+.general-page .perm-table-narrow table th,
+.general-page .perm-table-narrow table td {
+    border: 1px solid #E5E5E5; /* 셀 사이사이 외곽선 */
+}
+.general-page .perm-table-narrow table th {
+    text-align: center; /* 헤더 텍스트 가운데 정렬 */
+}
+.general-page .perm-table-narrow .toggle-group {
+    flex-wrap: wrap; /* 좁아지면 다음 줄로 */
+    gap: 16px;      /* 가로 간격 소폭 축소 */
+    justify-content: center; /* 셀 중앙 정렬 */
+    width: 100%;
+}
+.general-page .perm-table-narrow .toggle-item {
+    min-width: 160px; /* 줄바꿈 단위 확보 */
+}
+.general-page .perm-table-narrow .toggle-item { justify-content: center; }
+
+/* 공통 빈 상태 표시 */
+.empty-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    padding: 80px 0;
+    color: #9AA0A6;
+}
+
+.empty-state .icon {
+    width: 40px;
+    height: 40px;
+    opacity: 0.6;
+}
+
+.user-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 중복 제거: .user-initial 기본 크기 정의는 하단(28px)만 사용 */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+/* 테이블 마지막 열(삭제 열) 가운데 정렬 */
+.table-container table th:last-child,
+.table-container table td:last-child {
+    text-align: center;
+}
+.table-container table td:last-child {
+    vertical-align: middle;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: 500;
+    color: #333;
+}
+
+/* 토글 스위치 스타일 */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #0066ff;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-btn img {
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+/* 테이블용 채움형 삭제 버튼 (회의록/사전 관리용) */
+.delete-btn--filled {
+    background-color: #FF4444;
+    border: 1px solid #FF4444;
+    border-radius: 4px;
+}
+.delete-btn--filled:hover {
+    background-color: #E03E2F;
+    border-color: #E03E2F;
+}
+.delete-btn--filled img {
+    filter: brightness(0) invert(1);
+}
+
+/* 사용자 관리 페이지 스타일 */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-initial {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* 이니셜 아이콘 색상 변형 */
+.user-initial.color-blue {
+    background-color: #E8F3FF;
+    color: #0066FF;
+}
+
+.user-initial.color-purple {
+    background-color: #F3E8FF;
+    color: #6B00FF;
+}
+
+.user-initial.color-green {
+    background-color: #E8FFF3;
+    color: #00B674;
+}
+
+.user-initial.color-orange {
+    background-color: #FFF0E8;
+    color: #FF6B00;
+}
+
+.user-initial.color-pink {
+    background-color: #FFE8F3;
+    color: #FF0066;
+}
+
+/* 누락된 사용자 이니셜 색상 보완 */
+.user-initial.color-red {
+    background-color: #FEE2E2; /* 연한 레드 배경 */
+    color: #EF4444;           /* 붉은 텍스트 */
+}
+
+.user-initial.color-gray {
+    background-color: #F3F4F6; /* 연한 그레이 배경 */
+    color: #374151;            /* 진한 그레이 텍스트 */
+}
+
+.user-initial.color-brown {
+    background-color: #FFF2E5;
+    color: #A0522D;
+}
+
+.user-initial.color-teal {
+    background-color: #E6FFFA;
+    color: #14B8A6;
+}
+
+/* 누락된 사용자 이니셜 색상 */
+.user-initial.color-rose {
+    background-color: #FCE7F3;
+    color: #E11D48;
+}
+.user-initial.color-emerald {
+    background-color: #ECFDF5;
+    color: #10B981;
+}
+.user-initial.color-slate {
+    background-color: #F1F5F9;
+    color: #334155;
+}
+
+/* 추가: indigo, amber (user-initial 전용) */
+.user-initial.color-indigo {
+    background-color: #EDE9FE; /* 연한 남보라 */
+    color: #6366F1;            /* 인디고 텍스트 */
+}
+.user-initial.color-amber {
+    background-color: #FEF3C7; /* 연한 호박색 */
+    color: #D97706;            /* 앰버 텍스트 */
+}
+
+.btn-reset {
+    padding: 6px 12px;
+    background-color: #F8F9FA;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    color: #666;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btn-reset:hover {
+    background-color: #E5E5E5;
+}
+
+.btn-status {
+    padding: 6px 12px;
+    background-color: #F0F7FF;
+    border: none;
+    border-radius: 4px;
+    color: #0066FF;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* 상태 배지 (테이블용) */
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px; /* 배지 크기 확대 */
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+    min-height: 26px; /* 높이 보장 */
+}
+.status-pill.draft { /* 초안 */
+    background: #FFD84D; /* 밝은 노랑 */
+    color: #292A2B;
+}
+.status-pill.archived { /* 보관됨 */
+    background: #E5E7EB; /* 연그레이 */
+    color: #4B5563;
+}
+
+.search-input {
+    width: 240px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+/* 중복 제거: min-width는 상단 .condition-select에 존재 */
+
+/* 콘텐츠 타이틀 스타일 */
+.content-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.content-title h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #292A2B;
+}
+
+.total-count {
+    font-size: 14px;
+    color: #666;
+}
+
+/* 워크스페이스 관리 전용 스타일 */
+.workspace-page .search-input {
+    width: 400px;
+    padding: 10px 12px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+.workspace-page .search-btn {
+    padding: 10px 24px;
+    background-color: #0066FF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 16px;
+}
+
+.workspace-page .left-group {
+    display: flex;
+    align-items: center;
+}
+
+.workspace-page .right-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.workspace-page .delete-btn {
+    padding: 8px 16px;
+    background-color: white;
+    color: #FF4444;
+    border: 1px solid #FF4444;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.edit-btn {
+    padding: 8px 16px;
+    background-color: white;
+    color: #666;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #F8F9FA;
+}
+
+.workspace-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.workspace-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+}
+
+/* 워크스페이스 아이콘 색상 (네모) */
+.workspace-icon.color-teal { background-color: #14B8A6; }
+.workspace-icon.color-indigo { background-color: #6366F1; }
+.workspace-icon.color-rose { background-color: #F43F5E; }
+.workspace-icon.color-amber { background-color: #F59E0B; }
+.workspace-icon.color-emerald { background-color: #10B981; }
+.workspace-icon.color-violet { background-color: #8B5CF6; }
+.workspace-icon.color-cyan { background-color: #06B6D4; }
+.workspace-icon.color-lime { background-color: #84CC16; }
+.workspace-icon.color-fuchsia { background-color: #D946EF; }
+.workspace-icon.color-slate { background-color: #64748B; }
+
+.count-spinner {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+}
+
+.count-input {
+    width: 100%;
+    height: 30px;
+    padding: 0 20px 0 8px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    font-size: 15px;
+    text-align: center;
+    -moz-appearance: textfield;
+    box-sizing: border-box;
+}
+
+.count-input::-webkit-outer-spin-button,
+.count-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.count-input:focus {
+    outline: none;
+    border-color: #0066FF;
+}
+
+.spinner-buttons {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.spinner-btn {
+    width: 12px;
+    height: 12px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner-btn img {
+    width: 10px;
+    height: 10px;
+}
+
+.spinner-btn:hover img {
+    opacity: 0.7;
+}
+
+.select-all {
+    width: 16px;
+    height: 16px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.page-btn {
+    padding: 8px 12px;
+    border: 1px solid #E5E5E5;
+    background: white;
+    color: #666;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.page-btn.active {
+    background: #0066FF;
+    color: white;
+    border-color: #0066FF;
+}
+
+.page-btn:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.page-info {
+    margin-left: 16px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* 테이블 정렬 가능한 헤더 및 아이콘 */
+th.sortable { cursor: pointer; user-select: none; }
+th .sort-icon {
+    display: inline-block;
+    width: 16px; height: 16px;
+    vertical-align: middle;
+    margin-left: 4px;
+    background: center/16px 16px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cpath d='M12.3704 15.8353L18.8001 9.20479C19.2013 8.79106 18.9581 8.00012 18.4297 8.00012H5.5703C5.04189 8.00012 4.79869 8.79106 5.1999 9.20479L11.6296 15.8353C11.8427 16.0551 12.1573 16.0551 12.3704 15.8353Z' fill='%231C274C'/%3E%3C/svg%3E");
+    transform: rotate(0deg);
+    transition: transform .15s ease;
+}
+th.sortable.asc .sort-icon { transform: rotate(180deg); }
+th.sortable.desc .sort-icon { transform: rotate(0deg); }
+
+/* 워크스페이스 페이지 전용 스타일 */
+.workspace-page .search-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.workspace-page .search-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* 워크스페이스 생성 모달 스타일 */
+.workspace-modal {
+    width: 500px !important;
+}
+
+.workspace-preview {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.workspace-icon-preview {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: white;
+    margin: 0 auto;
+}
+
+/* 워크스페이스 프리뷰 아이콘 색상 */
+.workspace-icon-preview.color-teal { background-color: #14B8A6; }
+.workspace-icon-preview.color-indigo { background-color: #6366F1; }
+.workspace-icon-preview.color-rose { background-color: #F43F5E; }
+.workspace-icon-preview.color-amber { background-color: #F59E0B; }
+.workspace-icon-preview.color-emerald { background-color: #10B981; }
+.workspace-icon-preview.color-violet { background-color: #8B5CF6; }
+.workspace-icon-preview.color-cyan { background-color: #06B6D4; }
+.workspace-icon-preview.color-lime { background-color: #84CC16; }
+.workspace-icon-preview.color-fuchsia { background-color: #D946EF; }
+.workspace-icon-preview.color-slate { background-color: #64748B; }
+
+.form-note {
+    font-size: 12px;
+    color: #FF4444;
+    margin-top: 4px;
+}

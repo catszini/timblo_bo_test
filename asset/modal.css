@@ -1,0 +1,643 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-container {
+    background: white;
+    border-radius: 8px;
+    /* 전역 크기 해제: 각 페이지 전용 클래스로 제어 */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-split {
+    display: flex;
+    gap: 40px;
+}
+
+.modal-left {
+    width: 615px;
+    flex-shrink: 0;
+}
+
+.modal-right {
+    flex: 1;
+    border-left: 1px solid #E5E5E5;
+    padding-left: 40px;
+    max-width: 480px;
+}
+
+/* 회의록 템플릿 관리 - 템플릿 생성 모달 전용 크기 */
+.template-modal {
+    width: 1200px !important;
+    height: 900px !important;
+}
+
+.upload-box {
+    height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F8F9FA;
+    border: 2px dashed #E5E5E5;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.template-preview {
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 20px;
+    overflow-y: auto;
+    cursor: default;
+}
+
+/* 템플릿 생성 모달의 미리보기 텍스트를 가로/세로 중앙 정렬 */
+.template-modal .template-preview {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.preview-content {
+    width: 100%;
+    max-width: 100%;
+}
+
+.preview-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #292A2B;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #0066FF;
+    padding-bottom: 8px;
+}
+
+.preview-content h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #292A2B;
+    margin: 20px 0 12px 0;
+}
+
+.patient-info {
+    background: #F0F7FF;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.preview-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+
+.preview-table th,
+.preview-table td {
+    border: 1px solid #E5E5E5;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.preview-table th {
+    background-color: #F8F9FA;
+    font-weight: 600;
+    color: #292A2B;
+}
+
+.preview-table td:first-child {
+    width: 120px;
+    font-weight: 500;
+    background-color: #FAFBFC;
+}
+
+.preview-table tbody tr:nth-child(even) {
+    background-color: #FAFBFC;
+}
+
+.upload-box:hover {
+    border-color: #0066FF;
+    background-color: #F0F7FF;
+}
+
+.upload-info {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.modal-header {
+    padding: 24px;
+    border-bottom: 1px solid #E5E5E5;
+    flex-shrink: 0;
+}
+
+.modal-header .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.modal-header .header-text {
+    flex: 1;
+}
+
+.modal-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #292A2B;
+    margin-bottom: 8px;
+}
+
+.modal-subtitle {
+    font-size: 14px;
+    color: #666;
+}
+
+.modal-header .btn-close {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.modal-header .btn-close:hover {
+    background-color: #F8F9FA;
+}
+
+.modal-header .btn-close img {
+    width: 20px;
+    height: 20px;
+}
+
+.modal-header .btn-close svg {
+    width: 20px;
+    height: 20px;
+}
+
+.modal-content {
+    padding: 24px;
+    flex: 1;
+    overflow: hidden;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.upload-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+/* 업로드 섹션 타이틀을 다른 필드 타이틀과 동일 크기로 */
+.upload-header label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #292A2B;
+}
+
+.btn-file-select {
+    padding: 8px 16px;
+    background-color: #F8F9FA;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-file-select:hover {
+    background-color: #E5E5E5;
+}
+
+.version-group {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.version-input {
+    flex: 0 0 275px;
+}
+
+.version-checkboxes {
+    display: flex;
+    gap: 16px;
+}
+
+/* 버전 체크박스: 체크박스와 라벨 텍스트 간격 보정 */
+.version-checkboxes .checkbox-label span {
+    margin-left: 6px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.switch-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.switches {
+    display: flex;
+    gap: 24px;
+    justify-content: flex-start;
+    padding-left: 0;
+}
+
+.switch-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 120px;
+    font-size: 14px;
+    color: #666;
+}
+
+.switch-text {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #292A2B;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd; /* 셀렉트와 동일 색상으로 통일 */
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.edit-wrapper {
+    position: relative;
+}
+
+.btn-edit {
+    padding: 4px 12px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    background: white;
+    color: #666;
+    font-size: 13px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.category-select-group {
+    width: 100%;
+}
+
+.form-select {
+    width: 100%;
+    padding: 10px 36px 10px 12px;
+    border: 1px solid #ddd; /* 기준 색상 */
+    border-radius: 4px;
+    font-size: 14px;
+    background-image: url('../asset/select-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    appearance: none;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    background: white;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 200px;
+    display: none;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    padding: 4px 0;
+    margin: 0;
+}
+
+.dropdown-item {
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+.dropdown-item:hover {
+    background-color: #F8F9FA;
+}
+
+.item-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.btn-icon {
+    padding: 4px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon:hover {
+    background-color: #E5E5E5;
+    border-radius: 4px;
+}
+
+.dropdown-item.new-category {
+    color: #0066FF;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #E5E5E5;
+    margin: 4px 0;
+}
+
+/* 새 카테고리 생성 모달 */
+.category-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.category-modal {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    width: 400px;
+}
+
+.category-modal h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #292A2B;
+    margin-bottom: 16px;
+}
+
+.category-modal-content {
+    margin-bottom: 24px;
+}
+
+.category-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.version-inputs {
+    display: flex;
+    gap: 12px;
+}
+
+.version-inputs .form-input {
+    flex: 1;
+}
+
+.form-textarea {
+    width: 100%;
+    height: 120px;
+    padding: 12px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    resize: none;
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.input-counter {
+    text-align: right;
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid #E5E5E5;
+    flex-shrink: 0;
+}
+
+.btn-cancel {
+    padding: 8px 24px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    background: white;
+    color: #292A2B;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.btn-submit {
+    padding: 8px 24px;
+    border: none;
+    border-radius: 4px;
+    background: #0066FF;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: auto;
+}
+
+/* 사용자 관리 - 비밀번호 초기화 모달 */
+.reset-modal {
+    width: 420px !important;
+}
+
+.reset-modal .modal-content {
+    padding: 20px;
+}
+
+.reset-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #292A2B;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.reset-subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.reset-info {
+    background: #F8FAFC;
+    border: none; /* 외곽선 제거 */
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.reset-error {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #FFF5F5;
+    border: 1px solid #FFCCCC;
+    color: #E03E2F;
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+.reset-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+/* 비밀번호 초기화 모달 버튼 커서 표시 강화 */
+.reset-actions button {
+    cursor: pointer;
+}
+
+/* 비밀번호 초기화 모달 버튼 둥글기 일치 (더 둥근 값으로 설정) */
+.reset-modal .btn-submit {
+    border-radius: 6px;
+}
+.reset-modal .btn-outline {
+    border-radius: 6px;
+}
+
+.btn-outline {
+    padding: 8px 24px;
+    border: 1px solid #E5E5E5;
+    border-radius: 6px;
+    background: #fff;
+    color: #292A2B;
+}
+
+/* 초기화 모달 하단 버튼을 가용 영역 내에서 반반씩 배치 */
+.reset-actions .btn-outline,
+.reset-actions .btn-submit {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+/* 초기화 모달 버튼 높이 보강 */
+.reset-modal .btn-outline,
+.reset-modal .btn-submit {
+    padding: 12px 24px; /* 높이 증가 */
+    font-size: 15px;
+}
+
+.btn-delete {
+    padding: 8px 24px;
+    border: 1px solid #FF4444;
+    border-radius: 4px;
+    background: white;
+    color: #FF4444;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 8px;
+}
+
+.btn-delete:hover {
+    background: #FFF5F5;
+}
+
+.btn-delete img {
+    width: 16px;
+    height: 16px;
+}
+
+/* 프롬프트 관리 - 프롬프트 등록 모달 */
+.prompt-modal {
+    width: 600px !important;
+    max-height: 80vh;
+}
+
+/* 워크스페이스 생성 모달 전용 크기 */
+.workspace-modal {
+    width: 500px !important;
+    max-height: 560px !important;
+}
+
+/* 버전 정보 셀렉트 박스 폭 축소 (템플릿 모달/상세 전용) */
+.template-modal .version-group .version-input,
+.template-detail-page .version-group .version-input {
+    flex: 0 0 180px;
+}

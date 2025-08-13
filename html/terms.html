@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이용약관 관리</title>
+  <link rel="stylesheet" href="../asset/style.css" />
+  <link rel="stylesheet" href="../asset/modal.css" />
+</head>
+
+<body>
+  <div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>시스템</h3>
+        <ul>
+          <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
+          <li><a href="terms.html" class="active"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <h3>워크스페이스</h3>
+        <ul>
+          <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li>
+            <a href="#"><img src="../asset/history.svg" alt="">이력 관리</a>
+            <ul class="submenu">
+              <li><a href="login_history.html">사용자 접속 이력</a></li>
+              <li><a href="download_history.html">다운로드 이력</a></li>
+            </ul>
+          </li>
+          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
+          <li><a href="#"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li>
+            <a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a>
+            <ul class="submenu">
+              <li><a href="index.html">회의록 템플릿 관리</a></li>
+              <li><a href="calendar.html">캘린더 프롬프트 관리</a></li>
+              <li><a href="summary.html">요약번역 관리</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"><img src="../asset/stats.svg" alt="">통계</a>
+            <ul class="submenu">
+              <li><a href="stats_usage.html">사용량 통계</a></li>
+              <li><a href="stats_user.html">사용자별 통계</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 콘텐츠 영역 -->
+    <div class="content">
+      <div class="content-header">
+        <div class="breadcrumb">시스템 > 이용약관 관리</div>
+      </div>
+
+      <div class="content-body">
+        <!-- 검색 영역 (이미지 구조 기반) -->
+        <div class="search-section">
+          <div class="common-topbar">
+            <div class="tb-left">
+              <div class="date-range-wrap">
+                <span class="calendar-icon">📅</span>
+                <input type="text" id="tm-range" class="date-range" placeholder="날짜 범위를 선택하세요" readonly />
+                <div class="range-panel" id="tm-panel">
+                  <div class="calendar-range">
+                    <div class="calendar" id="tm-cal-start"></div>
+                    <div class="calendar" id="tm-cal-end"></div>
+                  </div>
+                  <div
+                    style="margin-top:8px; font-size:12px; color:#666; display:flex; align-items:center; justify-content:space-between;">
+                    <span id="tm-picked">-</span>
+                    <div class="range-actions">
+                      <button class="btn-outline" id="tm-cancel">취소</button>
+                      <button class="btn-submit" id="tm-apply">적용</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <select class="condition-select">
+                <option>전체</option>
+              </select>
+              <select class="condition-select">
+                <option>전체</option>
+              </select>
+              <select class="condition-select">
+                <option>전체</option>
+              </select>
+              <div class="combo-search" style="width: 520px;">
+                <div class="combo-field">
+                  <select class="combo-select">
+                    <option>전체</option>
+                    <option>제목</option>
+                    <option>작성자</option>
+                  </select>
+                  <div class="divider"></div>
+                  <div class="combo-input-wrap">
+                    <span class="mag-icon">🔍</span>
+                    <input type="text" class="combo-input" placeholder="검색어를 입력해주세요." />
+                  </div>
+                  <button class="append-btn">조회</button>
+                </div>
+              </div>
+            </div>
+            <div class="tb-right" style="width:100%;">
+              <div class="right-tail">
+                <div class="total-count">총 10건</div>
+                <select class="condition-select">
+                  <option>10개씩 보기</option>
+                  <option>20개씩 보기</option>
+                  <option>50개씩 보기</option>
+                </select>
+              </div>
+              <a class="new-button" href="terms_new.html"
+                style="display:inline-block; text-decoration:none; padding: 8px 20px; font-size: 14px;">신규 등록</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 테이블 영역 -->
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>제목</th>
+                <th>생성일</th>
+                <th>생성자</th>
+                <th>약관 실행일</th>
+                <th>최종 수정일</th>
+                <th>수정자</th>
+                <th>사용 여부</th>
+                <th>삭제</th>
+              </tr>
+            </thead>
+          </table>
+          <div class="empty-state">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 3h10l3 4v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7l3-4z" stroke="#B0B7C3" stroke-width="1.2"
+                fill="none" />
+              <path d="M8 11h8M8 15h5" stroke="#B0B7C3" stroke-width="1.2" stroke-linecap="round" />
+            </svg>
+            <div>데이터가 존재하지 않습니다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../asset/menu.js"></script>
+</body>
+
+</html>

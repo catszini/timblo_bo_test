@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>회의록 관리</title>
+  <link rel="stylesheet" href="../asset/style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>시스템</h3>
+        <ul>
+          <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
+          <li><a href="terms.html"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <h3>워크스페이스</h3>
+        <ul>
+          <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li>
+            <a href="#"><img src="../asset/history.svg" alt="">이력 관리</a>
+            <ul class="submenu">
+              <li><a href="login_history.html">사용자 접속 이력</a></li>
+              <li><a href="download_history.html">다운로드 이력</a></li>
+            </ul>
+          </li>
+          <li><a href="meeting.html" class="active"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
+          <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li>
+            <a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a>
+            <ul class="submenu">
+              <li><a href="index.html">회의록 템플릿 관리</a></li>
+              <li><a href="calendar.html">캘린더 프롬프트 관리</a></li>
+              <li><a href="summary.html">요약번역 관리</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"><img src="../asset/stats.svg" alt="">통계</a>
+            <ul class="submenu">
+              <li><a href="stats_usage.html">사용량 통계</a></li>
+              <li><a href="stats_user.html">사용자별 통계</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 콘텐츠 영역 -->
+    <div class="content">
+      <div class="content-header">
+        <div class="breadcrumb">워크스페이스 > 회의록 관리</div>
+      </div>
+
+      <div class="content-body">
+        <!-- 검색 영역 -->
+        <div class="search-section">
+          <div class="common-topbar">
+            <div class="tb-left">
+              <div class="date-range-wrap">
+                <span class="calendar-icon">📅</span>
+                <input type="text" id="mt-range" class="date-range" placeholder="날짜 범위를 선택하세요" readonly />
+                <div class="range-panel" id="mt-panel">
+                  <div class="calendar-range">
+                    <div class="calendar" id="mt-cal-start"></div>
+                    <div class="calendar" id="mt-cal-end"></div>
+                  </div>
+                  <div
+                    style="margin-top:8px; font-size:12px; color:#666; display:flex; align-items:center; justify-content:space-between;">
+                    <span id="mt-picked">-</span>
+                    <div class="range-actions">
+                      <button class="btn-outline" id="mt-cancel">취소</button>
+                      <button class="btn-submit" id="mt-apply">적용</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <select class="condition-select">
+                <option>전체</option>
+              </select>
+              <select class="condition-select">
+                <option>전체</option>
+              </select>
+              <select class="condition-select">
+                <option>전체</option>
+              </select>
+              <div class="combo-search">
+                <div class="combo-field">
+                  <select class="combo-select">
+                    <option>전체</option>
+                    <option>제목</option>
+                    <option>작성자</option>
+                  </select>
+                  <div class="divider"></div>
+                  <div class="combo-input-wrap">
+                    <span class="mag-icon">🔍</span>
+                    <input type="text" class="combo-input" placeholder="검색어를 입력해주세요." />
+                  </div>
+                  <button class="append-btn">조회</button>
+                </div>
+              </div>
+            </div>
+            <div class="tb-right">
+              <div class="total-count">총 31개</div>
+              <select class="condition-select">
+                <option>10개씩 보기</option>
+                <option>20개씩 보기</option>
+                <option>50개씩 보기</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- 테이블 -->
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>종류</th>
+                <th>회의록명</th>
+                <th>최종 수정일</th>
+                <th>수정자</th>
+                <th>회의 시간</th>
+                <th>소요 시간</th>
+                <th>참석자</th>
+                <th>공유</th>
+                <th>삭제</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>음성</td>
+                <td>웨어러블 디바이스 및 음성 인식 기술 개발 회의</td>
+                <td>25-08-08 13:52:48</td>
+                <td>이상우</td>
+                <td>25-08-08 13:48:39</td>
+                <td>0:51:22</td>
+                <td>2명</td>
+                <td>0명</td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>녹음</td>
+                <td>A.Biz_m_rec_20250808_125749.flac</td>
+                <td>25-08-08 12:58:03</td>
+                <td>june</td>
+                <td>25-08-08 12:57:49</td>
+                <td>0:00:06</td>
+                <td>0명</td>
+                <td>0명</td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>녹음</td>
+                <td>A.Biz_m_rec_20250808_125041.flac</td>
+                <td>25-08-08 12:51:02</td>
+                <td>june</td>
+                <td>25-08-08 12:50:41</td>
+                <td>0:00:08</td>
+                <td>0명</td>
+                <td>0명</td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>음성</td>
+                <td>PCP AI 런칭 및 클라우드 네이티브 시스템 도입 논의</td>
+                <td>25-08-08 12:00:55</td>
+                <td>이상우</td>
+                <td>25-08-08 11:55:51</td>
+                <td>1:01:08</td>
+                <td>2명</td>
+                <td>0명</td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>녹음</td>
+                <td>회의 내용 없음</td>
+                <td>25-08-08 11:13:26</td>
+                <td>ㄱㅇㅎ</td>
+                <td>25-08-08 11:12:09</td>
+                <td>0:00:50</td>
+                <td>1명</td>
+                <td>0명</td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>녹음</td>
+                <td>A.Biz_w_rec_20250808_110113.flac</td>
+                <td>25-08-08 11:01:54</td>
+                <td>ㄱㅇㅎ</td>
+                <td>25-08-08 11:01:13</td>
+                <td>0:00:09</td>
+                <td>0명</td>
+                <td>0명</td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>녹음</td>
+                <td>BO 화면 및 AI 외화 템플릿 관리 회의</td>
+                <td>25-08-07 15:53:47</td>
+                <td>박한주</td>
+                <td>25-08-07 14:04:41</td>
+                <td>1:34:53</td>
+                <td>7명</td>
+                <td>0명</td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>음성</td>
+                <td>스포츠 윤리센터 심의 및 인권침해 사건 처리 논의</td>
+                <td>25-08-08 14:57:24</td>
+                <td>ㄱㅇㅎ</td>
+                <td>25-08-07 11:00:00</td>
+                <td>2:30:49</td>
+                <td>8명</td>
+                <td>0명</td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>음성</td>
+                <td>56percent.flac</td>
+                <td>25-08-08 10:30:58</td>
+                <td>이상우</td>
+                <td>25-08-07 10:30:31</td>
+                <td>1:00:40</td>
+                <td>0명</td>
+                <td>0명</td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>음성</td>
+                <td>56percent.flac</td>
+                <td>25-08-08 10:30:58</td>
+                <td>이상우</td>
+                <td>25-08-07 10:29:30</td>
+                <td>1:00:40</td>
+                <td>0명</td>
+                <td>0명</td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 페이징 -->
+        <div class="pagination">
+          <button class="page-btn" disabled>이전</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">다음</button>
+          <span class="page-info">1 / 4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // 회의록 관리 날짜 범위 피커 (접속 이력과 동일 로직, ID 분리)
+    (function () {
+      const wrap = document.querySelector('.date-range-wrap');
+      if (!wrap) return;
+      const input = document.getElementById('mt-range');
+      const panel = document.getElementById('mt-panel');
+      const calStart = document.getElementById('mt-cal-start');
+      const calEnd = document.getElementById('mt-cal-end');
+      const pickedEl = document.getElementById('mt-picked');
+      const apply = document.getElementById('mt-apply');
+      const cancel = document.getElementById('mt-cancel');
+      let startDate = null, endDate = null, viewStart = new Date(), viewEnd = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);
+      function fmt(d) { return d.toISOString().slice(0, 10); }
+      function renderCalendar(targetEl, view, isStart) {
+        const y = view.getFullYear(), m = view.getMonth();
+        const first = new Date(y, m, 1), last = new Date(y, m + 1, 0);
+        const startIdx = (first.getDay() + 6) % 7;
+        let h = '';
+        h += '<div class="cal-header">'
+          + `<div style="justify-self:start;"><button class="cal-prev mt-prev" data-side="${isStart ? 'start' : 'end'}">‹</button></div>`
+          + '<div class="cal-month">' + y + '-' + String(m + 1).padStart(2, '0') + '</div>'
+          + `<div style=\"justify-self:end; text-align:right;\"><button class=\"cal-next mt-next\" data-side=\"${isStart ? 'start' : 'end'}\">›</button></div>`
+          + '</div>';
+        h += '<div class="cal-grid">';
+        ['월', '화', '수', '목', '금', '토', '일'].forEach(w => h += '<div class="cal-weekday">' + w + '</div>');
+        for (let i = 0; i < startIdx; i++) h += '<div class="cal-day disabled"></div>';
+        for (let d = 1; d <= last.getDate(); d++) {
+          const cur = new Date(y, m, d);
+          const inRange = startDate && endDate && cur >= startDate && cur <= endDate;
+          const sel = (startDate && fmt(cur) === fmt(startDate)) || (endDate && fmt(cur) === fmt(endDate));
+          h += '<div class="cal-day' + (inRange ? ' in-range' : '') + (sel ? ' selected' : '') + '" data-day="' + fmt(cur) + '">' + d + '</div>';
+        }
+        h += '</div>';
+        targetEl.innerHTML = h;
+        targetEl.querySelector('.mt-prev').onclick = () => { if (isStart) viewStart.setMonth(viewStart.getMonth() - 1); else viewEnd.setMonth(viewEnd.getMonth() - 1); syncViews(); };
+        targetEl.querySelector('.mt-next').onclick = () => { if (isStart) viewStart.setMonth(viewStart.getMonth() + 1); else viewEnd.setMonth(viewEnd.getMonth() + 1); syncViews(); };
+        targetEl.querySelectorAll('.cal-day[data-day]').forEach(el => {
+          el.onclick = () => {
+            const d = new Date(el.dataset.day);
+            if (!startDate || (startDate && endDate)) { startDate = d; endDate = null; }
+            else if (d < startDate) { endDate = startDate; startDate = d; }
+            else { endDate = d; }
+            pickedEl.textContent = (startDate ? fmt(startDate) : '-') + ' ~ ' + (endDate ? fmt(endDate) : '-');
+            syncViews();
+          };
+        });
+      }
+      function syncViews() {
+        renderCalendar(calStart, viewStart, true);
+        renderCalendar(calEnd, viewEnd, false);
+      }
+      syncViews();
+      input.addEventListener('click', () => { panel.style.display = panel.style.display === 'block' ? 'none' : 'block'; });
+      cancel.addEventListener('click', () => { panel.style.display = 'none'; });
+      apply.addEventListener('click', () => { if (startDate && endDate) input.value = `${fmt(startDate)} ~ ${fmt(endDate)}`; panel.style.display = 'none'; });
+      document.addEventListener('click', (e) => { if (!wrap.contains(e.target) && panel.style.display === 'block') { panel.style.display = 'none'; } });
+    })();
+  </script>
+  <script src="../asset/menu.js"></script>
+</body>
+
+</html>

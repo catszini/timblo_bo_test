@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>약관 등록</title>
+  <link rel="stylesheet" href="../asset/style.css" />
+  <style>
+    .terms-new-page .form-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px 24px;
+    }
+
+    .terms-new-page .form-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #292A2B;
+      padding-top: 10px;
+    }
+
+    .terms-new-page .form-input,
+    .terms-new-page .form-select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #E5E5E5;
+      border-radius: 4px;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .terms-new-page .inline {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .terms-new-page .editor {
+      border: 1px solid #E5E5E5;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .terms-new-page .editor-toolbar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 12px;
+      border-bottom: 1px solid #E5E5E5;
+      background: #F8FAFC;
+    }
+
+    .terms-new-page .editor-area {
+      min-height: 420px;
+      padding: 12px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .terms-new-page .switch {
+      margin-left: 8px;
+    }
+
+    .terms-new-page .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .terms-new-page .btn {
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      border: 1px solid #E5E5E5;
+      background: #fff;
+    }
+
+    .terms-new-page .btn.primary {
+      background: #0066FF;
+      color: #fff;
+      border: none;
+    }
+  </style>
+</head>
+
+<body class="terms-new-page">
+  <div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>시스템</h3>
+        <ul>
+          <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
+          <li><a href="terms.html" class="active"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <h3>워크스페이스</h3>
+        <ul>
+          <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li>
+            <a href="#"><img src="../asset/history.svg" alt="">이력 관리</a>
+            <ul class="submenu">
+              <li><a href="login_history.html">사용자 접속 이력</a></li>
+              <li><a href="download_history.html">다운로드 이력</a></li>
+            </ul>
+          </li>
+          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
+          <li><a href="#"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li>
+            <a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a>
+            <ul class="submenu">
+              <li><a href="index.html">회의록 템플릿 관리</a></li>
+              <li><a href="calendar.html">캘린더 프롬프트 관리</a></li>
+              <li><a href="summary.html">요약번역 관리</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"><img src="../asset/stats.svg" alt="">통계</a>
+            <ul class="submenu">
+              <li><a href="#">사용량 통계</a></li>
+              <li><a href="stats_user.html">사용자별 통계</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 콘텐츠 영역 -->
+    <div class="content">
+      <div class="content-header">
+        <div class="breadcrumb">시스템 > 이용약관 관리 > 약관 등록</div>
+      </div>
+
+      <div class="content-body">
+        <div class="form-grid">
+          <div class="form-label">구분</div>
+          <div>
+            <select class="form-select">
+              <option>선택</option>
+            </select>
+          </div>
+
+          <div class="form-label">약관명</div>
+          <div>
+            <input type="text" class="form-input" placeholder="약관명을 입력하세요." />
+          </div>
+
+          <div class="form-label">약관 실행일</div>
+          <div class="inline">
+            <input type="date" class="form-input" style="width: 220px;" />
+            <select class="form-select" style="width: 120px;">
+              <option>0시</option>
+            </select>
+            <select class="form-select" style="width: 120px;">
+              <option>0분</option>
+            </select>
+            <div class="inline" style="margin-left:auto; gap:8px;">
+              <span>사용 여부</span>
+              <label class="switch">
+                <input type="checkbox" />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-label">약관 내용</div>
+          <div>
+            <div class="editor">
+              <div class="editor-toolbar">
+                <span>↺</span><span>↻</span>
+                <select class="form-select" style="width: 120px;">
+                  <option>Serif</option>
+                </select>
+                <select class="form-select" style="width: 120px;">
+                  <option>Normal</option>
+                </select>
+                <span>B</span><span>I</span><span>U</span><span>A</span>
+              </div>
+              <div class="editor-area" contenteditable="true">약관 내용을 입력하세요.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn">취소</button>
+          <button class="btn primary">생성</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../asset/menu.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>사전 관리</title>
+  <link rel="stylesheet" href="../asset/style.css" />
+  <link rel="stylesheet" href="../asset/modal.css" />
+</head>
+
+<body>
+  <div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>시스템</h3>
+        <ul>
+          <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
+          <li><a href="terms.html"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <h3>워크스페이스</h3>
+        <ul>
+          <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li>
+            <a href="#"><img src="../asset/history.svg" alt="">이력 관리</a>
+            <ul class="submenu">
+              <li><a href="login_history.html">사용자 접속 이력</a></li>
+              <li><a href="download_history.html">다운로드 이력</a></li>
+            </ul>
+          </li>
+          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
+          <li><a href="dictionary.html" class="active"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li>
+            <a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a>
+            <ul class="submenu">
+              <li><a href="index.html">회의록 템플릿 관리</a></li>
+              <li><a href="calendar.html">캘린더 프롬프트 관리</a></li>
+              <li><a href="summary.html">요약번역 관리</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"><img src="../asset/stats.svg" alt="">통계</a>
+            <ul class="submenu">
+              <li><a href="stats_usage.html">사용량 통계</a></li>
+              <li><a href="stats_user.html">사용자별 통계</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 콘텐츠 영역 -->
+    <div class="content">
+      <div class="content-header">
+        <div class="breadcrumb">워크스페이스 > 사전 관리</div>
+      </div>
+
+      <div class="content-body">
+        <!-- 검색 영역 (변경 전/후 단어 + 사용자 검색 + 조회) -->
+        <div class="search-section">
+          <div class="common-topbar">
+            <div class="tb-left">
+              <div class="search-control icon-left" style="width: 260px;">
+                <span class="mag-icon"></span>
+                <input type="text" class="search-input" placeholder="변경 전 단어" style="width:100%;" />
+              </div>
+              <div class="search-control icon-left" style="width: 260px;">
+                <span class="mag-icon"></span>
+                <input type="text" class="search-input" placeholder="변경 후 단어" style="width:100%;" />
+              </div>
+              <div class="search-control icon-left" style="width: 220px;">
+                <span class="mag-icon"></span>
+                <input type="text" class="search-input" placeholder="사용자" style="width:100%;" />
+              </div>
+              <button class="btn-query">조회</button>
+            </div>
+            <div class="tb-right">
+              <div class="total-count">총 30개</div>
+              <select class="condition-select">
+                <option>10개씩 보기</option>
+                <option>20개씩 보기</option>
+                <option>50개씩 보기</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- 테이블 영역 -->
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>변경 전 단어</th>
+                <th>변경 후 단어</th>
+                <th>생성일</th>
+                <th>최종 수정일</th>
+                <th>사용자</th>
+                <th>사용 여부</th>
+                <th>삭제</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>AI</td>
+                <td>인공지능</td>
+                <td>25-08-10 09:15:21</td>
+                <td>25-08-10 09:20:05</td>
+                <td>김하늘</td>
+                <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>MTG</td>
+                <td>미팅</td>
+                <td>25-08-10 08:42:10</td>
+                <td>25-08-10 08:42:10</td>
+                <td>박서준</td>
+                <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>KR</td>
+                <td>대한민국</td>
+                <td>25-08-09 18:11:33</td>
+                <td>25-08-09 19:05:40</td>
+                <td>이수지</td>
+                <td><label class="switch"><input type="checkbox"><span class="slider"></span></label></td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>Mgr</td>
+                <td>매니저</td>
+                <td>25-08-09 14:03:27</td>
+                <td>25-08-09 14:10:12</td>
+                <td>정윤호</td>
+                <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>ETA</td>
+                <td>도착예정시간</td>
+                <td>25-08-09 10:55:06</td>
+                <td>25-08-09 10:55:06</td>
+                <td>한지원</td>
+                <td><label class="switch"><input type="checkbox"><span class="slider"></span></label></td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>ASAP</td>
+                <td>가능한 빨리</td>
+                <td>25-08-08 20:21:58</td>
+                <td>25-08-08 20:30:02</td>
+                <td>오세린</td>
+                <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>FYI</td>
+                <td>참고</td>
+                <td>25-08-08 18:12:17</td>
+                <td>25-08-08 18:12:17</td>
+                <td>문가람</td>
+                <td><label class="switch"><input type="checkbox"><span class="slider"></span></label></td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>dept</td>
+                <td>부서</td>
+                <td>25-08-08 11:03:42</td>
+                <td>25-08-08 11:05:10</td>
+                <td>최다연</td>
+                <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>spec</td>
+                <td>명세</td>
+                <td>25-08-07 22:49:09</td>
+                <td>25-08-07 22:49:09</td>
+                <td>박진서</td>
+                <td><label class="switch"><input type="checkbox"><span class="slider"></span></label></td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+              <tr>
+                <td>req</td>
+                <td>요구사항</td>
+                <td>25-08-07 09:32:55</td>
+                <td>25-08-07 10:01:14</td>
+                <td>이도현</td>
+                <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
+                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 페이징 -->
+        <div class="pagination">
+          <button class="page-btn" disabled>이전</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">다음</button>
+          <span class="page-info">1 / 3</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../asset/menu.js"></script>
+</body>
+
+</html>

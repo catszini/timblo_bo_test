@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 회의록 관리자</title>
+  <link rel="stylesheet" href="../asset/style.css">
+  <link rel="stylesheet" href="../asset/modal.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- 왼쪽 메뉴바 -->
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>시스템</h3>
+        <ul>
+          <li><a href="workspace.html" class="active"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
+          <li><a href="terms.html"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <h3>워크스페이스</h3>
+        <ul>
+          <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li>
+            <a href="#"><img src="../asset/history.svg" alt="">이력 관리</a>
+            <ul class="submenu">
+              <li><a href="login_history.html">사용자 접속 이력</a></li>
+              <li><a href="download_history.html">다운로드 이력</a></li>
+            </ul>
+          </li>
+          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
+          <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li>
+            <a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a>
+            <ul class="submenu">
+              <li><a href="index.html">회의록 템플릿 관리</a></li>
+              <li><a href="calendar.html">캘린더 프롬프트 관리</a></li>
+              <li><a href="summary.html">요약번역 관리</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"><img src="../asset/stats.svg" alt="">통계</a>
+            <ul class="submenu">
+              <li><a href="#">사용량 통계</a></li>
+              <li><a href="stats_user.html">사용자별 통계</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 오른쪽 콘텐츠 영역 -->
+    <div class="content workspace-page">
+      <div class="content-header">
+        <div class="breadcrumb">
+          시스템 > 워크스페이스 관리
+        </div>
+      </div>
+      <div class="content-body">
+        <div class="search-section">
+          <div class="common-topbar">
+            <div class="tb-left">
+              <div class="combo-search" style="width: 420px;">
+                <div class="combo-field">
+                  <select class="combo-select">
+                    <option>전체</option>
+                    <option>이름</option>
+                    <option>도메인</option>
+                    <option>소유자</option>
+                  </select>
+                  <div class="divider"></div>
+                  <div class="combo-input-wrap">
+                    <span class="mag-icon">🔍</span>
+                    <input type="text" class="combo-input" placeholder="이름, 도메인, 소유자를 입력해주세요" />
+                  </div>
+                  <button class="append-btn">조회</button>
+                </div>
+              </div>
+            </div>
+            <div class="tb-right">
+              <span class="total-count">총 28개</span>
+              <button class="delete-btn">삭제</button>
+              <button class="edit-btn">수정</button>
+              <button class="new-button">생성</button>
+            </div>
+          </div>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th><input type="checkbox" class="select-all"></th>
+                <th>이름</th>
+                <th>도메인</th>
+                <th>생성자</th>
+                <th>구성원</th>
+                <th>소유자</th>
+                <th>게스트</th>
+                <th>생성일</th>
+                <th class="sortable" data-sort-key="enabled">사용 여부 <span class="sort-icon" aria-hidden="true"></span>
+                </th>
+                <th>비활성일</th>
+                <th>비고</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-teal">P</div>
+                    <span>posco</span>
+                  </div>
+                </td>
+                <td>posco.com</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-purple">포</div>
+                    <span>포스코1</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="120" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="4" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="40" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>2025-06-15</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-indigo">E</div>
+                    <span>ecstel</span>
+                  </div>
+                </td>
+                <td>ecstel.co.kr</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-orange">박</div>
+                    <span>박홍수</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="120" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="4" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="40" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>2025-05-31</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-rose">M</div>
+                    <span>mkcg</span>
+                  </div>
+                </td>
+                <td>mkcg.co.kr</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-green">M</div>
+                    <span>Meyer</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="120" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="4" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="40" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>2025-04-21</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-amber">T</div>
+                    <span>timbel</span>
+                  </div>
+                </td>
+                <td>timbel.net45</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-pink">j</div>
+                    <span>jwpark12</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="120" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="4" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="40" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>2025-03-31</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-emerald">D</div>
+                    <span>daum</span>
+                  </div>
+                </td>
+                <td>daum.net</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-red">소</div>
+                    <span>소프트기어</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="120" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="4" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="1" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>2025-03-28</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-violet">T</div>
+                    <span>tinno</span>
+                  </div>
+                </td>
+                <td>tinno.co.kr</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-gray">t</div>
+                    <span>tn</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="120" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="4" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="1" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>2025-03-28</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-cyan">H</div>
+                    <span>hanmail</span>
+                  </div>
+                </td>
+                <td>hanmail.net</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-brown">마</div>
+                    <span>마루치</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="120" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="4" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="1" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>2025-03-20</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-lime">U</div>
+                    <span>ultari</span>
+                  </div>
+                </td>
+                <td>ultari.co.kr</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-teal">울</div>
+                    <span>울타리 게...</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="120" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="4" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="40" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>2025-03-11</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-fuchsia">I</div>
+                    <span>iotspace</span>
+                  </div>
+                </td>
+                <td>iotspace.co.kr</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-orange">E</div>
+                    <span>Ed</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="120" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="4" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="40" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>2025-03-06</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-slate">E</div>
+                    <span>example</span>
+                  </div>
+                </td>
+                <td>example.com</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-orange">조</div>
+                    <span>조동혁</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="551" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="4" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="1" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>2025-03-04</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>-</td>
+                <td>testWorkspace</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <div class="pagination">
+          <button class="page-btn prev" disabled>‹</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn next">›</button>
+          <button class="page-btn last">»</button>
+          <span class="page-info">1 of 3</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 워크스페이스 생성 모달 -->
+  <div class="modal-overlay" style="display: none;">
+    <div class="modal-container workspace-modal">
+      <div class="modal-header">
+        <div class="header-content">
+          <h2>워크스페이스 생성</h2>
+          <button class="btn-close" id="workspace-modal-close">
+            <img src="../asset/close-icon.svg" alt="닫기">
+          </button>
+        </div>
+      </div>
+      <div class="modal-content">
+        <div class="workspace-preview">
+          <div class="workspace-icon-preview" id="workspace-icon-preview">W</div>
+        </div>
+
+        <div class="form-group">
+          <label>이름</label>
+          <input type="text" class="form-input" placeholder="워크스페이스 이름을 입력하세요">
+        </div>
+
+        <div class="form-group">
+          <label>도메인</label>
+          <input type="text" class="form-input" placeholder="도메인을 입력하세요">
+          <div class="form-note">필수 입력 항목입니다.</div>
+        </div>
+
+        <div class="form-group">
+          <label>비고</label>
+          <textarea class="form-textarea" placeholder="비고를 입력하세요"></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-cancel">취소</button>
+          <button class="btn-submit">생성</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 워크스페이스 아이콘 색상 배열
+      const workspaceColors = [
+        'color-teal', 'color-indigo', 'color-rose', 'color-amber',
+        'color-emerald', 'color-violet', 'color-cyan', 'color-lime',
+        'color-fuchsia', 'color-slate'
+      ];
+
+      // 랜덤 색상 선택 및 아이콘 설정
+      function setRandomWorkspaceIcon() {
+        const iconPreview = document.getElementById('workspace-icon-preview');
+        const randomColor = workspaceColors[Math.floor(Math.random() * workspaceColors.length)];
+        iconPreview.className = `workspace-icon-preview ${randomColor}`;
+      }
+
+      // 생성 버튼 클릭 시 모달 표시
+      document.querySelector('.new-button').addEventListener('click', () => {
+        setRandomWorkspaceIcon();
+        document.querySelector('.modal-overlay').style.display = 'flex';
+      });
+
+      // 모달 닫기 기능
+      document.querySelector('#workspace-modal-close').addEventListener('click', () => {
+        document.querySelector('.modal-overlay').style.display = 'none';
+      });
+
+      document.querySelector('.modal-overlay .btn-cancel').addEventListener('click', () => {
+        document.querySelector('.modal-overlay').style.display = 'none';
+      });
+
+      document.querySelector('.modal-overlay .btn-submit').addEventListener('click', () => {
+        document.querySelector('.modal-overlay').style.display = 'none';
+      });
+
+      // 모달 외부 클릭 시 닫기
+      document.querySelector('.modal-overlay').addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) {
+          document.querySelector('.modal-overlay').style.display = 'none';
+        }
+      });
+
+      // 스피너 버튼 기능
+      document.querySelectorAll('.spinner-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const input = btn.closest('.count-spinner').querySelector('.count-input');
+          const isUp = btn.classList.contains('spinner-up');
+          const currentValue = parseInt(input.value) || 0;
+
+          if (isUp) {
+            input.value = currentValue + 1;
+          } else {
+            input.value = Math.max(0, currentValue - 1);
+          }
+        });
+      });
+
+      // 사용 여부 정렬 (체크 여부 기준)
+      const table = document.querySelector('.table-container table');
+      const tbody = table && table.querySelector('tbody');
+      const enabledHeader = table && table.querySelector('th[data-sort-key="enabled"]');
+      let enabledSortAsc = true;
+      if (enabledHeader && tbody) {
+        // 초기 아이콘 방향 설정
+        enabledHeader.classList.toggle('asc', enabledSortAsc);
+        enabledHeader.classList.toggle('desc', !enabledSortAsc);
+        enabledHeader.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const rows = Array.from(tbody.querySelectorAll('tr'));
+          rows.sort((a, b) => {
+            const aChecked = !!a.querySelector('td:nth-child(9) input[type="checkbox"]:checked');
+            const bChecked = !!b.querySelector('td:nth-child(9) input[type="checkbox"]:checked');
+            const diff = (aChecked === bChecked) ? 0 : (aChecked ? -1 : 1);
+            return enabledSortAsc ? diff : -diff;
+          });
+          rows.forEach(r => tbody.appendChild(r));
+          enabledSortAsc = !enabledSortAsc;
+          enabledHeader.classList.toggle('asc', enabledSortAsc);
+          enabledHeader.classList.toggle('desc', !enabledSortAsc);
+        });
+      }
+    });
+  </script>
+  <script src="../asset/menu.js"></script>
+</body>
+
+</html>

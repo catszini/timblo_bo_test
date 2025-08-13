@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>워크스페이스 일반</title>
+  <link rel="stylesheet" href="../asset/style.css" />
+  <style>
+    .general-page .card {
+      background: #F7FAFD;
+      border: 1px solid #E5EAF0;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .general-page .section {
+      margin-bottom: 24px;
+    }
+
+    .general-page .row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .general-page .logo-box {
+      width: 260px;
+      height: 120px;
+      background: #fff;
+      border: 1px solid #E5E5E5;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .general-page .hint {
+      color: #666;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    .general-page .btn {
+      padding: 8px 16px;
+      border-radius: 4px;
+      border: 1px solid #E5E5E5;
+      background: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .general-page .btn.primary {
+      background: #0066FF;
+      color: #fff;
+      border: none;
+    }
+
+    .general-page .btn.danger {
+      border-color: #FF4444;
+      color: #FF4444;
+      background: #fff;
+    }
+
+    .general-page .name-row {
+      display: flex;
+      gap: 12px;
+      max-width: 520px;
+      margin-top: 16px;
+      /* 제목과 인풋 사이 간격 확대 */
+    }
+
+    .general-page .form-input {
+      flex: 1;
+      padding: 10px 12px;
+      border: 1px solid #E5E5E5;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .general-page .toggle-group {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .general-page .toggle-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #333;
+      font-size: 14px;
+    }
+
+    .general-page .table-container {
+      margin-top: 16px;
+    }
+
+    /* 회의 데이터 자동삭제 전용 */
+    .general-page .auto-delete-desc {
+      margin-top: 8px;
+      color: #4D5256;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .general-page .inline-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .general-page .count-input.small {
+      width: 60px;
+    }
+
+    .general-page .condition-select.small {
+      min-width: 84px;
+    }
+
+    .general-page .custom-retention {
+      display: none;
+    }
+
+    /* 회의 데이터 자동삭제 카드 배경/외곽선/여백 제거 */
+    .general-page .auto-delete-card {
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+
+    .general-page .auto-delete-card .table-container {
+      margin-top: 8px;
+      box-shadow: none;
+      border: none;
+      background: transparent;
+    }
+
+    /* 로고 이미지 카드 배경/외곽선/여백 제거 */
+    .general-page .logo-card {
+      background: #F7FAFD;
+      border: 1px solid #E5EAF0;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .general-page .logo-card .logo-box {
+      background: #FFFFFF;
+      border: 1px solid #E5E5E5;
+    }
+
+    .general-page .logo-card .row {
+      margin-top: 12px;
+    }
+
+    .general-page .unit-text {
+      font-size: 14px;
+      color: #4D5256;
+    }
+
+    /* 섹션 타이틀 위 여백 확대 */
+    .general-page .ws-title,
+    .general-page .perm-title,
+    .general-page .auto-del-title {
+      margin-top: 30px;
+      display: block;
+    }
+
+    /* 워크스페이스 이름 카드 경량화 */
+    .general-page .name-card {
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body class="general-page">
+  <div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>시스템</h3>
+        <ul>
+          <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
+          <li><a href="terms.html"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <h3>워크스페이스</h3>
+        <ul>
+          <li><a href="general.html" class="active"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li>
+            <a href="#"><img src="../asset/history.svg" alt="">이력 관리</a>
+            <ul class="submenu">
+              <li><a href="login_history.html">사용자 접속 이력</a></li>
+              <li><a href="download_history.html">다운로드 이력</a></li>
+            </ul>
+          </li>
+          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
+          <li><a href="#"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li>
+            <a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a>
+            <ul class="submenu">
+              <li><a href="index.html">회의록 템플릿 관리</a></li>
+              <li><a href="calendar.html">캘린더 프롬프트 관리</a></li>
+              <li><a href="summary.html">요약번역 관리</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"><img src="../asset/stats.svg" alt="">통계</a>
+            <ul class="submenu">
+              <li><a href="stats_usage.html">사용량 통계</a></li>
+              <li><a href="stats_user.html">사용자별 통계</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 콘텐츠 -->
+    <div class="content">
+      <div class="content-header">
+        <div class="breadcrumb">워크스페이스 > 일반</div>
+      </div>
+
+      <div class="content-body">
+        <div class="card section logo-card">
+          <div><strong>로고 이미지</strong></div>
+          <div class="row">
+            <div class="logo-box">로고 미리보기</div>
+            <div>
+              <div class="hint">권장 이미지 크기: 168 x 48 픽셀</div>
+              <div class="hint">권장 파일 형식: PNG</div>
+              <div class="row" style="margin-top:12px;">
+                <button class="btn primary">이미지 등록</button>
+                <button class="btn danger">삭제</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card section name-card">
+          <div class="ws-title"><strong>워크스페이스 이름</strong></div>
+          <div class="name-row">
+            <input type="text" class="form-input" placeholder="이름을 입력해주세요" />
+            <button class="btn">수정</button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="perm-title" style="font-weight:600; margin-bottom:8px;">권한</div>
+          <div class="table-container perm-table-narrow">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:120px;">구분</th>
+                  <th>다운로드 권한</th>
+                  <th>사용 권한</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>웹</td>
+                  <td>
+                    <div class="toggle-group">
+                      <div class="toggle-item">문서 파일
+                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                      </div>
+                      <div class="toggle-item">영상/음성 파일
+                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="toggle-group">
+                      <div class="toggle-item">템플릿
+                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                      </div>
+                      <div class="toggle-item">재요약
+                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card section auto-delete-card">
+          <div class="auto-del-title"><strong>회의 데이터 자동삭제</strong></div>
+          <div class="auto-delete-desc">
+            설정한 기간이 지난 회의록 데이터를 유형별로 자동 삭제하여 보안을 강화하고 리소스를 관리합니다.
+            삭제된 데이터는 복구할 수 없으니 신중하게 설정하세요.
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:40%;">데이터 유형</th>
+                  <th style="width:40%;">보존 기간</th>
+                  <th style="width:20%;">자동 삭제 정책 사용</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="retention-row">
+                  <td>음성/영상 원본 파일</td>
+                  <td>
+                    <div class="inline-group">
+                      <select class="condition-select retention-select">
+                        <option>영구 보관</option>
+                        <option>90일 후</option>
+                        <option>180일 후</option>
+                        <option>1년 후</option>
+                        <option>3년 후</option>
+                        <option>직접 입력</option>
+                      </select>
+                      <span class="custom-retention">
+                        <div class="count-spinner">
+                          <input type="number" class="count-input" value="30" min="0">
+                          <div class="spinner-buttons">
+                            <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                            <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg"
+                                alt="감소"></button>
+                          </div>
+                        </div>
+                        <span class="unit-text">일 후</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                  </td>
+                </tr>
+                <tr class="retention-row">
+                  <td>음성 기록 파일</td>
+                  <td>
+                    <div class="inline-group">
+                      <select class="condition-select retention-select">
+                        <option>영구 보관</option>
+                        <option>90일 후</option>
+                        <option>180일 후</option>
+                        <option>1년 후</option>
+                        <option>3년 후</option>
+                        <option selected>직접 입력</option>
+                      </select>
+                      <span class="custom-retention" style="display:inline-flex; gap:6px; align-items:center;">
+                        <div class="count-spinner">
+                          <input type="number" class="count-input" value="5" min="0">
+                          <div class="spinner-buttons">
+                            <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                            <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg"
+                                alt="감소"></button>
+                          </div>
+                        </div>
+                        <span class="unit-text">일 후</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                  </td>
+                </tr>
+                <tr class="retention-row">
+                  <td>AI 요약</td>
+                  <td>
+                    <div class="inline-group">
+                      <select class="condition-select retention-select">
+                        <option>영구 보관</option>
+                        <option>90일 후</option>
+                        <option>180일 후</option>
+                        <option>1년 후</option>
+                        <option>3년 후</option>
+                        <option>직접 입력</option>
+                      </select>
+                      <span class="custom-retention">
+                        <div class="count-spinner">
+                          <input type="number" class="count-input" value="30" min="0">
+                          <div class="spinner-buttons">
+                            <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                            <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg"
+                                alt="감소"></button>
+                          </div>
+                        </div>
+                        <span class="unit-text">일 후</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../asset/menu.js"></script>
+  <script>
+    // 보존 기간: '직접 입력' 선택 시 커스텀 입력 영역 표시
+    document.addEventListener('DOMContentLoaded', function () {
+      // count-spinner 동작
+      document.querySelectorAll('.spinner-btn').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          const input = btn.closest('.count-spinner')?.querySelector('.count-input');
+          if (!input) return;
+          const isUp = btn.classList.contains('spinner-up');
+          const cur = parseInt(input.value) || 0;
+          input.value = isUp ? cur + 1 : Math.max(0, cur - 1);
+        });
+      });
+
+      document.querySelectorAll('.retention-row .retention-select').forEach(function (sel) {
+        const custom = sel.closest('.inline-group')?.querySelector('.custom-retention');
+        const sync = () => {
+          const isCustom = sel.value.includes('직접 입력');
+          if (custom) custom.style.display = isCustom ? 'inline-flex' : 'none';
+        };
+        sel.addEventListener('change', sync);
+        sync();
+      });
+    });
+  </script>
+</body>
+
+</html>

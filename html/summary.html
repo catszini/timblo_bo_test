@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 회의록 관리자</title>
+  <link rel="stylesheet" href="../asset/style.css">
+  <link rel="stylesheet" href="../asset/modal.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- 왼쪽 메뉴바 -->
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>시스템</h3>
+        <ul>
+          <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
+          <li><a href="terms.html"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <h3>워크스페이스</h3>
+        <ul>
+          <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li>
+            <a href="#"><img src="../asset/history.svg" alt="">이력 관리</a>
+            <ul class="submenu">
+              <li><a href="login_history.html">사용자 접속 이력</a></li>
+              <li><a href="download_history.html">다운로드 이력</a></li>
+            </ul>
+          </li>
+          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
+          <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li>
+            <a href="prompt.html" class="active"><img src="../asset/history.svg" alt="">프롬프트 관리</a>
+            <ul class="submenu">
+              <li><a href="index.html">회의록 템플릿 관리</a></li>
+              <li><a href="calendar.html">캘린더 프롬프트 관리</a></li>
+              <li><a href="summary.html" style="color: #0066ff;">요약번역 관리</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"><img src="../asset/stats.svg" alt="">통계</a>
+            <ul class="submenu">
+              <li><a href="stats_usage.html">사용량 통계</a></li>
+              <li><a href="stats_user.html">사용자별 통계</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 오른쪽 콘텐츠 영역 -->
+    <div class="content">
+      <div class="content-header">
+        <div class="breadcrumb">
+          워크스페이스 > 프롬프트관리 > 요약번역 관리
+        </div>
+      </div>
+      <div class="content-body">
+        <div class="search-section">
+          <div class="search-group">
+            <div class="right-group">
+              <button class="new-button">신규 등록</button>
+            </div>
+          </div>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th class="sortable" data-sort-key="enabled">사용여부 <span class="sort-icon" aria-hidden="true"></span>
+                </th>
+                <th>카테고리</th>
+                <th>항목</th>
+                <th>최근수정일</th>
+                <th>수정자</th>
+                <th>버전</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>TRN-001-SK</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>회의록</td>
+                <td>핵심 요약</td>
+                <td>2024-02-28 14:30</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-blue">김</div>
+                    <span>김철수</span>
+                  </div>
+                </td>
+                <td>v1.2</td>
+              </tr>
+              <tr>
+                <td>TRN-002-SK</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>회의록</td>
+                <td>영어 번역</td>
+                <td>2024-02-27 11:20</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-purple">이</div>
+                    <span>이영희</span>
+                  </div>
+                </td>
+                <td>v2.0</td>
+              </tr>
+              <tr>
+                <td>TRN-003-SK</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>일정</td>
+                <td>일정 요약</td>
+                <td>2024-02-26 09:15</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-green">박</div>
+                    <span>박지민</span>
+                  </div>
+                </td>
+                <td>v1.0</td>
+              </tr>
+              <tr>
+                <td>TRN-004-SK</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>일정</td>
+                <td>중국어 번역</td>
+                <td>2024-02-25 16:45</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-orange">최</div>
+                    <span>최동훈</span>
+                  </div>
+                </td>
+                <td>v1.5</td>
+              </tr>
+              <tr>
+                <td>TRN-005-SK</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>회의록</td>
+                <td>주요 안건</td>
+                <td>2024-02-24 13:10</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-pink">정</div>
+                    <span>정미경</span>
+                  </div>
+                </td>
+                <td>v2.1</td>
+              </tr>
+              <tr>
+                <td>TRN-006-SK</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>회의록</td>
+                <td>일본어 번역</td>
+                <td>2024-02-23 10:30</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-blue">강</div>
+                    <span>강민수</span>
+                  </div>
+                </td>
+                <td>v1.3</td>
+              </tr>
+              <tr>
+                <td>TRN-007-SK</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>일정</td>
+                <td>참석자 정보</td>
+                <td>2024-02-22 15:20</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-purple">윤</div>
+                    <span>윤서연</span>
+                  </div>
+                </td>
+                <td>v1.1</td>
+              </tr>
+              <tr>
+                <td>TRN-008-SK</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>일정</td>
+                <td>베트남어 번역</td>
+                <td>2024-02-21 09:45</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-green">조</div>
+                    <span>조현우</span>
+                  </div>
+                </td>
+                <td>v2.2</td>
+              </tr>
+              <tr>
+                <td>TRN-009-SK</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>회의록</td>
+                <td>결과 요약</td>
+                <td>2024-02-20 16:15</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-orange">한</div>
+                    <span>한지원</span>
+                  </div>
+                </td>
+                <td>v1.4</td>
+              </tr>
+              <tr>
+                <td>TRN-010-SK</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>회의록</td>
+                <td>스페인어 번역</td>
+                <td>2024-02-19 11:00</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-pink">임</div>
+                    <span>임수진</span>
+                  </div>
+                </td>
+                <td>v1.0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script src="../asset/menu.js"></script>
+  <script>
+    // 요약번역 관리 - 사용여부 정렬 (체크 여부 기준)
+    (function () {
+      const table = document.querySelector('.table-container table');
+      const tbody = table && table.querySelector('tbody');
+      const header = table && table.querySelector('th[data-sort-key="enabled"]');
+      let asc = true;
+      if (!table || !tbody || !header) return;
+      header.classList.toggle('asc', asc);
+      header.classList.toggle('desc', !asc);
+      header.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        rows.sort((a, b) => {
+          const aChecked = !!a.querySelector('td:nth-child(2) input[type="checkbox"]:checked');
+          const bChecked = !!b.querySelector('td:nth-child(2) input[type="checkbox"]:checked');
+          const diff = (aChecked === bChecked) ? 0 : (aChecked ? -1 : 1);
+          return asc ? diff : -diff;
+        });
+        rows.forEach(r => tbody.appendChild(r));
+        asc = !asc;
+        header.classList.toggle('asc', asc);
+        header.classList.toggle('desc', !asc);
+      });
+    })();
+  </script>
+</body>
+
+</html>

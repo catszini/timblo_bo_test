@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>템플릿 상세</title>
+  <link rel="stylesheet" href="../asset/style.css" />
+  <link rel="stylesheet" href="../asset/modal.css" />
+  <style>
+    /* 디테일 전용: 전역 너비/높이 값 무효화 */
+    .template-detail-page .modal-container {
+      width: auto !important;
+      max-width: none !important;
+      height: auto !important;
+      max-height: none !important;
+    }
+
+    .template-detail-page .modal-left {
+      width: auto !important;
+      flex: 1 1 0 !important;
+    }
+
+    .template-detail-page .modal-right {
+      max-width: none !important;
+      flex: 1 1 0 !important;
+    }
+  </style>
+</head>
+
+<body class="template-detail-page">
+  <div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+      </div>
+
+      <div class="menu-section">
+        <h3>시스템</h3>
+        <ul>
+          <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
+          <li><a href="terms.html"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <h3>워크스페이스</h3>
+        <ul>
+          <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li>
+            <a href="#"><img src="../asset/history.svg" alt="">이력 관리</a>
+            <ul class="submenu">
+              <li><a href="#">사용자 접속 이력</a></li>
+              <li><a href="#">다운로드 이력</a></li>
+            </ul>
+          </li>
+          <li><a href="#"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="#"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li>
+            <a href="prompt.html" class="active"><img src="../asset/history.svg" alt="">프롬프트 관리</a>
+            <ul class="submenu">
+              <li><a href="index.html" style="color:#0066ff;">회의록 템플릿 관리</a></li>
+              <li><a href="calendar.html">캘린더 프롬프트 관리</a></li>
+              <li><a href="summary.html">요약번역 관리</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"><img src="../asset/stats.svg" alt="">통계</a>
+            <ul class="submenu">
+              <li><a href="#">사용량 통계</a></li>
+              <li><a href="stats_user.html">사용자별 통계</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 콘텐츠 영역 -->
+    <div class="content">
+      <div class="content-header">
+        <div class="breadcrumb">워크스페이스 > 프롬프트관리 > 회의록 템플릿 관리</div>
+      </div>
+
+      <div class="content-body">
+        <div class="modal-container">
+          <div class="modal-content">
+            <div class="modal-split">
+              <!-- 왼쪽: 프리뷰 -->
+              <div class="modal-left">
+                <div class="form-group">
+                  <div class="upload-header">
+                    <label>템플릿팩 업로드하기</label>
+                    <button type="button" class="btn-file-select">파일 선택</button>
+                  </div>
+                  <div class="upload-box template-preview">
+                    <div class="preview-content">
+                      <!-- index.html에 쓰인 의료 미리보기 동일 유지 -->
+                      <h3>🩺 외래 진료 기록 (간호사 작성)</h3>
+                      <div class="patient-info">
+                        <strong>환자명:</strong> 김○○ &nbsp;&nbsp; <strong>성별/나이:</strong> F / 52세 &nbsp;&nbsp;
+                        <strong>차트번호:</strong> 2025-001234<br>
+                        <strong>진료과:</strong> 내과 &nbsp;&nbsp; <strong>담당의:</strong> 홍길동 &nbsp;&nbsp;
+                        <strong>방문일시:</strong> 2025-08-08 10:30
+                      </div>
+                      <h4>📄 기존 진료 이력</h4>
+                      <table class="preview-table">
+                        <thead>
+                          <tr>
+                            <th>날짜</th>
+                            <th>진단명</th>
+                            <th>처방 내용</th>
+                            <th>비고</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>2025-06-12</td>
+                            <td>급성 기관지염</td>
+                            <td>항생제(Amoxicillin), 진해거담제</td>
+                            <td>7일 복용</td>
+                          </tr>
+                          <tr>
+                            <td>2025-03-04</td>
+                            <td>고혈압</td>
+                            <td>Amlodipine 5mg</td>
+                            <td>복용 중</td>
+                          </tr>
+                          <tr>
+                            <td>2024-12-10</td>
+                            <td>건강검진</td>
+                            <td>이상소견 없음</td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <h4>👩‍⚕️ 현재 상태</h4>
+                      <table class="preview-table">
+                        <tbody>
+                          <tr>
+                            <td><strong>주호소(Chief Complaint)</strong></td>
+                            <td>3일 전부터 기침·가래 심해짐, 미열 동반</td>
+                          </tr>
+                          <tr>
+                            <td><strong>V/S (활력징후)</strong></td>
+                            <td>BP 128/82 mmHg, PR 78 bpm, BT 37.8°C, RR 20/min</td>
+                          </tr>
+                          <tr>
+                            <td><strong>외관</strong></td>
+                            <td>기침 지속, 호흡 약간 가빠짐</td>
+                          </tr>
+                          <tr>
+                            <td><strong>기타</strong></td>
+                            <td>과거 폐렴 병력 없음</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <h4>🗨️ 의사–환자 대화</h4>
+                      <table class="preview-table">
+                        <thead>
+                          <tr>
+                            <th>구분</th>
+                            <th>대화 내용</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><strong>의사</strong></td>
+                            <td>"언제부터 기침이 시작되었나요? 열은 있었습니까?"</td>
+                          </tr>
+                          <tr>
+                            <td><strong>환자</strong></td>
+                            <td>"3일 전부터였고, 어제 열이 좀 났어요."</td>
+                          </tr>
+                          <tr>
+                            <td><strong>의사</strong></td>
+                            <td>"가래 색은 어떤가요? 숨이 차거나 가슴이 아픈가요?"</td>
+                          </tr>
+                          <tr>
+                            <td><strong>환자</strong></td>
+                            <td>"노란색 가래고, 숨이 조금 차요."</td>
+                          </tr>
+                          <tr>
+                            <td><strong>의사</strong></td>
+                            <td>"폐렴 여부 확인 위해 흉부 X-ray 촬영하겠습니다. 결과 보고 설명드릴게요."</td>
+                          </tr>
+                          <tr>
+                            <td><strong>환자</strong></td>
+                            <td>"네, 알겠습니다."</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <h4>📅 예약·추후 계획</h4>
+                      <table class="preview-table">
+                        <tbody>
+                          <tr>
+                            <td><strong>검사</strong></td>
+                            <td>흉부 X-ray (당일)</td>
+                          </tr>
+                          <tr>
+                            <td><strong>다음 진료 예약</strong></td>
+                            <td>2025-08-15 10:00 (결과 설명 및 경과 확인)</td>
+                          </tr>
+                          <tr>
+                            <td><strong>교육·지도</strong></td>
+                            <td>충분한 수분 섭취, 휴식, 처방약 복용 방법 안내</td>
+                          </tr>
+                          <tr>
+                            <td><strong>특이사항</strong></td>
+                            <td>폐렴 의심, X-ray 결과에 따라 항생제 조정 예정</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 오른쪽: 입력 폼 영역 (index와 동일 구조) -->
+              <div class="modal-right">
+                <div class="form-group">
+                  <div class="category-header"><label>ID</label></div>
+                  <div class="form-value">DEF-001-SK</div>
+                </div>
+                <div class="form-group">
+                  <div class="category-header"><label>버전정보</label></div>
+                  <div class="version-group">
+                    <div class="form-value">V1.0.0</div>
+                    <div class="version-input">
+                      <select class="form-select">
+                        <option>V1.0.0</option>
+                        <option>V1.1.0</option>
+                        <option>V1.2.0</option>
+                        <option>V2.0.0</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="category-header">
+                    <label>카테고리</label>
+                    <div class="edit-wrapper">
+                      <button type="button" class="btn-edit">편집</button>
+                      <div class="dropdown-menu">
+                        <ul>
+                          <li class="dropdown-item"><span>일반회의</span>
+                            <div class="item-actions"><button class="btn-icon"><img src="../asset/edit-icon.svg"
+                                  alt="수정"></button><button class="btn-icon"><img src="../asset/delete-icon.svg"
+                                  alt="삭제"></button></div>
+                          </li>
+                          <li class="dropdown-item"><span>세미나</span>
+                            <div class="item-actions"><button class="btn-icon"><img src="../asset/edit-icon.svg"
+                                  alt="수정"></button><button class="btn-icon"><img src="../asset/delete-icon.svg"
+                                  alt="삭제"></button></div>
+                          </li>
+                          <li class="dropdown-item"><span>상담진료</span>
+                            <div class="item-actions"><button class="btn-icon"><img src="../asset/edit-icon.svg"
+                                  alt="수정"></button><button class="btn-icon"><img src="../asset/delete-icon.svg"
+                                  alt="삭제"></button></div>
+                          </li>
+                          <li class="dropdown-item"><span>고객</span>
+                            <div class="item-actions"><button class="btn-icon"><img src="../asset/edit-icon.svg"
+                                  alt="수정"></button><button class="btn-icon"><img src="../asset/delete-icon.svg"
+                                  alt="삭제"></button></div>
+                          </li>
+                          <li class="dropdown-divider"></li>
+                          <li class="dropdown-item new-category"><span>새 카테고리 생성</span></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="category-select-group">
+                    <select class="form-select">
+                      <option>일반회의</option>
+                      <option>세미나</option>
+                      <option>상담진료</option>
+                      <option>고객</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="category-modal-overlay" style="display:none;">
+                  <div class="category-modal">
+                    <h3>새 카테고리 생성</h3>
+                    <div class="category-modal-content"><input type="text" class="form-input"
+                        placeholder="새 카테고리 이름을 입력해주세요"></div>
+                    <div class="category-modal-footer"><button class="btn-cancel">취소</button><button
+                        class="btn-submit">저장</button></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="category-header"><label>공통 영역 노출 여부</label></div>
+                  <div class="switch-group">
+                    <div class="switches">
+                      <div class="switch-label">
+                        <div class="switch-text">핵심요약</div><label class="switch"><input type="checkbox"><span
+                            class="slider"></span></label>
+                      </div>
+                      <div class="switch-label">
+                        <div class="switch-text">참석자</div><label class="switch"><input type="checkbox"><span
+                            class="slider"></span></label>
+                      </div>
+                      <div class="switch-label">
+                        <div class="switch-text">키워드</div><label class="switch"><input type="checkbox"><span
+                            class="slider"></span></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="category-header"><label>템플릿명</label></div>
+                  <input type="text" class="form-input" placeholder="템플릿 이름을 입력하세요">
+                  <div class="input-counter">8/10자</div>
+                </div>
+                <div class="form-group">
+                  <div class="category-header"><label>템플릿 설명</label></div>
+                  <textarea class="form-textarea" placeholder="사용자에게 템플릿을 소개할 수 있는 설명을 입력하세요"></textarea>
+                  <div class="input-counter">56/100자</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 버전정보 테이블 섹션 -->
+            <div class="version-section" style="margin-top:24px;">
+              <div class="category-header" style="margin-bottom:8px;">
+                <label>버전정보</label>
+              </div>
+              <div class="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>버전</th>
+                      <th>유형</th>
+                      <th>변경사항</th>
+                      <th>등록일</th>
+                      <th>등록자</th>
+                      <th>사용</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>V1.2.0</td>
+                      <td>텍스트</td>
+                      <td>의료 용어 사전 최신 반영</td>
+                      <td>2025-07-18</td>
+                      <td>
+                        <div class="user-icon">
+                          <div class="user-initial color-blue">김</div><span>김철수</span>
+                        </div>
+                      </td>
+                      <td>
+                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>V1.1.0</td>
+                      <td>음성</td>
+                      <td>녹취 품질 개선 프롬프트 적용</td>
+                      <td>2025-06-02</td>
+                      <td>
+                        <div class="user-icon">
+                          <div class="user-initial color-green">박</div><span>박지민</span>
+                        </div>
+                      </td>
+                      <td>
+                        <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>V1.0.0</td>
+                      <td>텍스트</td>
+                      <td>초기 배포</td>
+                      <td>2025-05-10</td>
+                      <td>
+                        <div class="user-icon">
+                          <div class="user-initial color-purple">이</div><span>이영희</span>
+                        </div>
+                      </td>
+                      <td>
+                        <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="pagination">
+                <button class="page-btn" disabled>이전</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">다음</button>
+                <span class="page-info">1 / 3</span>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button class="btn-delete"><img src="../asset/trash.svg" alt="삭제">삭제</button>
+              <button class="btn-cancel" onclick="history.back()">취소</button>
+              <button class="btn-submit">저장</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 편집 드롭다운 토글 (상세 페이지 전용)
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.btn-edit')) {
+        const wrapper = e.target.closest('.edit-wrapper');
+        const menu = wrapper.querySelector('.dropdown-menu');
+        const willShow = menu.style.display !== 'block';
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
+        menu.style.display = willShow ? 'block' : 'none';
+        e.stopPropagation();
+        return;
+      }
+      if (!e.target.closest('.dropdown-menu')) {
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
+      }
+      if (e.target.closest('.new-category')) {
+        document.querySelector('.category-modal-overlay').style.display = 'flex';
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
+      }
+      if (e.target.matches('.category-modal-overlay') || e.target.matches('.category-modal .btn-cancel')) {
+        document.querySelector('.category-modal-overlay').style.display = 'none';
+      }
+    });
+  </script>
+  <script src="../asset/menu.js"></script>
+</body>
+
+</html>
