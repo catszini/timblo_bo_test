@@ -1228,13 +1228,21 @@ input:checked + .slider:before {
     text-align: center;
 }
 
-/* 이름 컬럼 내부 요소들 가운데 정렬 강화 */
+/* 멤버 관리 페이지에서만 이니셜 아이콘 숨기기 */
+.user-page.member-page .table-container .user-initial {
+    display: none;
+}
+
+/* 멤버 관리 페이지에서 user-profile 간격 조정 */
 .user-page.member-page .table-container .user-profile {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
 }
+
+
+
+
 
 .user-page.member-page .table-container input[type="checkbox"] {
     width: 16px;
