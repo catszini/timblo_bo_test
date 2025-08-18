@@ -1228,6 +1228,14 @@ input:checked + .slider:before {
     text-align: center;
 }
 
+/* 이름 컬럼 내부 요소들 가운데 정렬 강화 */
+.user-page.member-page .table-container .user-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
 .user-page.member-page .table-container input[type="checkbox"] {
     width: 16px;
     height: 16px;
