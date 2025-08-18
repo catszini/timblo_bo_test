@@ -7,41 +7,7 @@
   <title>AI 회의록 관리자</title>
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
-  <style>
-    /* 회의록 템플릿 관리 페이지 한정 테이블 hover 효과 */
-    .template-list-page .table-container table tbody tr {
-      transition: background-color 0.15s ease;
-    }
 
-    .template-list-page .table-container table tbody tr:hover {
-      background-color: #F5F9FF;
-    }
-
-    /* 정렬 가능한 헤더 커서 표시 */
-    .template-list-page th.sortable {
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .template-list-page th .sort-icon {
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      vertical-align: middle;
-      margin-left: 4px;
-      background: center/16px 16px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cpath d='M12.3704 15.8353L18.8001 9.20479C19.2013 8.79106 18.9581 8.00012 18.4297 8.00012H5.5703C5.04189 8.00012 4.79869 8.79106 5.1999 9.20479L11.6296 15.8353C11.8427 16.0551 12.1573 16.0551 12.3704 15.8353Z' fill='%231C274C'/%3E%3C/svg%3E");
-      transform: rotate(0deg);
-      transition: transform .15s ease;
-    }
-
-    .template-list-page th.sortable.asc .sort-icon {
-      transform: rotate(180deg);
-    }
-
-    .template-list-page th.sortable.desc .sort-icon {
-      transform: rotate(0deg);
-    }
-  </style>
 </head>
 
 <body class="template-list-page">
@@ -98,7 +64,7 @@
           <li>
             <a href="prompt.html" class="active"><img src="../asset/history.svg" alt="">프롬프트 관리</a>
             <ul class="submenu">
-              <li><a href="index.html" style="color: #0066ff;">회의록 템플릿 관리</a></li>
+              <li><a href="index.html" class="submenu-active-link">회의록 템플릿 관리</a></li>
               <li><a href="calendar.html">캘린더 프롬프트 관리</a></li>
               <li><a href="summary.html">요약번역 관리</a></li>
             </ul>
@@ -133,8 +99,7 @@
                     <div class="calendar" id="tpl-cal-start"></div>
                     <div class="calendar" id="tpl-cal-end"></div>
                   </div>
-                  <div
-                    style="margin-top:8px; font-size:12px; color:#666; display:flex; align-items:center; justify-content:space-between;">
+                  <div class="range-panel-info">
                     <span id="tpl-picked">-</span>
                     <div class="range-actions">
                       <button class="btn-outline" id="tpl-cancel">취소</button>
@@ -143,7 +108,7 @@
                   </div>
                 </div>
               </div>
-              <div class="combo-search" style="width: 520px;">
+              <div class="combo-search combo-search-wide">
                 <div class="combo-field">
                   <select class="combo-select">
                     <option>전체</option>
@@ -159,7 +124,7 @@
                 </div>
               </div>
             </div>
-            <div class="tb-right" style="width:100%;">
+            <div class="tb-right tb-right-full">
               <div class="right-tail">
                 <div class="total-count">총 10건</div>
                 <select class="condition-select">
@@ -409,8 +374,7 @@
                 <button type="button" class="btn-file-select">파일 선택</button>
               </div>
               <div class="upload-box template-preview">
-                <div class="preview-content"
-                  style="display:flex; align-items:center; justify-content:center; min-height:200px; color:#4D5256; font-size:14px; text-align:center;">
+                <div class="preview-content preview-content-center">
                   미리보기입니다. <br>템플릿팩 업로드 후 내용을 확인하세요.
                 </div>
               </div>
@@ -594,9 +558,9 @@
         const startIdx = (first.getDay() + 6) % 7;
         let h = '';
         h += '<div class="cal-header">'
-          + `<div style="justify-self:start;"><button class="cal-prev tpl-prev" data-side="${isStart ? 'start' : 'end'}">‹</button></div>`
+          + `<div class="cal-prev-start"><button class="cal-prev tpl-prev" data-side="${isStart ? 'start' : 'end'}">‹</button></div>`
           + '<div class="cal-month">' + y + '-' + String(m + 1).padStart(2, '0') + '</div>'
-          + `<div style=\"justify-self:end; text-align:right;\"><button class=\"cal-next tpl-next\" data-side=\"${isStart ? 'start' : 'end'}\">›</button></div>`
+          + `<div class="cal-next-end"><button class=\"cal-next tpl-next\" data-side=\"${isStart ? 'start' : 'end'}\">›</button></div>`
           + '</div>';
         h += '<div class="cal-grid">';
         ['월', '화', '수', '목', '금', '토', '일'].forEach(w => h += '<div class="cal-weekday">' + w + '</div>');

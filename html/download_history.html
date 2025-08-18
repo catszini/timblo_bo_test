@@ -172,8 +172,7 @@
                     <div class="calendar" id="dh-cal-start"></div>
                     <div class="calendar" id="dh-cal-end"></div>
                   </div>
-                  <div
-                    style="margin-top:8px; font-size:12px; color:#666; display:flex; align-items:center; justify-content:space-between;">
+                  <div class="range-panel-info">
                     <span id="dh-picked">-</span>
                     <div class="range-actions">
                       <button class="btn-outline" id="dh-cancel">취소</button>
@@ -191,7 +190,7 @@
               <select class="condition-select">
                 <option>전체</option>
               </select>
-              <div class="combo-search" style="width: 520px;">
+              <div class="combo-search combo-search-wide">
                 <div class="combo-field">
                   <select class="combo-select">
                     <option>전체</option>
@@ -207,7 +206,7 @@
                 </div>
               </div>
             </div>
-            <div class="tb-right" style="width:100%;">
+            <div class="tb-right tb-right-full">
               <div class="right-tail">
                 <div class="total-count">총 10건</div>
                 <select class="condition-select">
@@ -422,9 +421,9 @@
         const y = view.getFullYear(), m = view.getMonth();
         const first = new Date(y, m, 1), last = new Date(y, m + 1, 0); const startIdx = (first.getDay() + 6) % 7; let h = '';
         h += '<div class="cal-header">'
-          + `<div style="justify-self:start;"><button class="cal-prev dh-prev" data-side="${isStart ? 'start' : 'end'}">‹</button></div>`
+          + `<div class="cal-prev-start"><button class="cal-prev dh-prev" data-side="${isStart ? 'start' : 'end'}">‹</button></div>`
           + '<div class="cal-month">' + y + '-' + String(m + 1).padStart(2, '0') + '</div>'
-          + `<div style="justify-self:end;text-align:right;"><button class="cal-next dh-next" data-side="${isStart ? 'start' : 'end'}">›</button></div>`
+          + `<div class="cal-next-end"><button class="cal-next dh-next" data-side="${isStart ? 'start' : 'end'}">›</button></div>`
           + '</div>';
         h += '<div class="cal-grid">';['월', '화', '수', '목', '금', '토', '일'].forEach(w => h += '<div class="cal-weekday">' + w + '</div>');
         for (let i = 0; i < startIdx; i++) h += '<div class="cal-day disabled"></div>';

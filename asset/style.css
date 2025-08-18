@@ -1132,3 +1132,272 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     color: #FF4444;
     margin-top: 4px;
 }
+
+/* HTML 인라인 스타일을 위한 새로운 클래스들 */
+.range-panel-info {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.combo-search-wide {
+    width: 520px;
+}
+
+.combo-search-medium {
+    width: 480px;
+}
+
+.combo-search-small {
+    width: 420px;
+}
+
+.tb-right-full {
+    width: 100%;
+}
+
+.tb-right-full-gap {
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+}
+
+.tb-left-column {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.stats-head-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.stats-title-bold {
+    font-weight: 600;
+    font-size: 16px;
+    color: #111;
+}
+
+.period-toggle-wrap {
+    display: inline-flex;
+    gap: 4px;
+    background: #F3F4F6;
+    border-radius: 8px;
+    padding: 2px;
+}
+
+.period-toggle-active {
+    border: none;
+    background: #fff;
+    color: #1F6BFF;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.period-toggle-inactive {
+    border: none;
+    background: transparent;
+    color: #4D5256;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.period-row-flex {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.period-label {
+    color: #4D5256;
+    font-size: 14px;
+}
+
+.period-separator {
+    margin: 0 6px;
+    color: #9AA0A6;
+}
+
+.result-text {
+    font-size: 14px;
+    color: #4D5256;
+    margin-top: 4px;
+}
+
+.text-red {
+    color: #EF4444;
+}
+
+.pagination-center {
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.search-control-medium {
+    width: 260px;
+}
+
+.search-control-small {
+    width: 220px;
+}
+
+.search-input-full {
+    width: 100%;
+}
+
+.form-input-medium {
+    width: 220px;
+}
+
+.form-select-medium {
+    width: 120px;
+}
+
+.form-select-small {
+    width: 120px;
+}
+
+.inline-auto {
+    margin-left: auto;
+    gap: 8px;
+}
+
+.row-margin-top {
+    margin-top: 12px;
+}
+
+.perm-title-bold {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.th-width-120 {
+    width: 120px;
+}
+
+.th-width-40 {
+    width: 40%;
+}
+
+.th-width-20 {
+    width: 20%;
+}
+
+.custom-retention-inline {
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.submenu-active-link {
+    color: #0066ff;
+}
+
+.submenu-active-link-alt {
+    color: #0066ff;
+}
+
+.modal-overlay-hidden {
+    display: none;
+}
+
+.category-modal-hidden {
+    display: none;
+}
+
+.version-section-margin {
+    margin-top: 24px;
+}
+
+.category-header-margin {
+    margin-bottom: 8px;
+}
+
+.new-button-link {
+    display: inline-block;
+    text-decoration: none;
+    padding: 8px 20px;
+    font-size: 14px;
+}
+
+.reset-name-bold {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.reset-email-color {
+    color: #555;
+}
+
+.cal-prev-start {
+    justify-self: start;
+}
+
+.cal-next-end {
+    justify-self: end;
+    text-align: right;
+}
+
+.preview-content-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    color: #4D5256;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* 회의록 템플릿 관리 페이지 전용 스타일 */
+.template-list-page .table-container table tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.template-list-page .table-container table tbody tr:hover {
+    background-color: #F5F9FF;
+}
+
+.template-list-page th.sortable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.template-list-page th .sort-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-left: 4px;
+    background: center/16px 16px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cpath d='M12.3704 15.8353L18.8001 9.20479C19.2013 8.79106 18.9581 8.00012 18.4297 8.00012H5.5703C5.04189 8.00012 4.79869 8.79106 5.1999 9.20479L11.6296 15.8353C11.8427 16.0551 12.1573 16.0551 12.3704 15.8353Z' fill='%231C274C'/%3E%3C/svg%3E");
+    transform: rotate(0deg);
+    transition: transform .15s ease;
+}
+
+.template-list-page th.sortable.asc .sort-icon {
+    transform: rotate(180deg);
+}
+
+.template-list-page th.sortable.desc .sort-icon {
+    transform: rotate(0deg);
+}
+
+/* 로딩 페이지 스타일 */
+.loading-page {
+    margin: 0;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background: #ffffff;
+}
+
+.loading-logo {
+    max-width: 60%;
+    height: auto;
+    display: block;
+}

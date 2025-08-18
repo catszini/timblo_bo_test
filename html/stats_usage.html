@@ -85,19 +85,16 @@
       <div class="content-body">
         <div class="search-section">
           <div class="common-topbar">
-            <div class="tb-left" style="flex-direction: column; align-items:flex-start; gap:8px;">
-              <div class="stats-head" style="display:flex; align-items:center; gap:12px;">
-                <div class="stats-title" style="font-weight:600; font-size:16px; color:#111;">전체 AI 사용량</div>
-                <div class="stats-tabs"
-                  style="display:inline-flex; gap:4px; background:#F3F4F6; border-radius:8px; padding:2px;">
-                  <button class="tab active"
-                    style="border:none; background:#fff; color:#1F6BFF; padding:6px 12px; border-radius:6px; font-weight:600;">월간</button>
-                  <button class="tab"
-                    style="border:none; background:transparent; color:#4D5256; padding:6px 12px; border-radius:6px;">연간</button>
+            <div class="tb-left tb-left-column">
+              <div class="stats-head stats-head-row">
+                <div class="stats-title stats-title-bold">전체 AI 사용량</div>
+                <div class="stats-tabs period-toggle-wrap">
+                  <button class="tab active period-toggle-active">월간</button>
+                  <button class="tab period-toggle-inactive">연간</button>
                 </div>
               </div>
-              <div class="period-row" style="display:flex; gap:8px; align-items:center;">
-                <span style="color:#4D5256; font-size:14px;">기간</span>
+              <div class="period-row period-row-flex">
+                <span class="period-label">기간</span>
                 <select class="condition-select" id="su2-y1">
                   <option selected>2024년</option>
                   <option>2025년</option>
@@ -116,7 +113,7 @@
                   <option>11월</option>
                   <option>12월</option>
                 </select>
-                <span style="margin:0 6px; color:#9AA0A6;">~</span>
+                <span class="period-separator">~</span>
                 <select class="condition-select" id="su2-y2">
                   <option>2024년</option>
                   <option selected>2025년</option>
@@ -137,7 +134,7 @@
                 </select>
                 <button class="btn-query" id="su2-run">조회</button>
               </div>
-              <div id="su2-result-text" style="font-size:14px; color:#4D5256; margin-top:4px;">2024년 08월 ~ 2025년 08월 통계
+              <div id="su2-result-text" class="result-text">2024년 08월 ~ 2025년 08월 통계
                 결과</div>
             </div>
             <div class="tb-right"></div>
@@ -174,7 +171,7 @@
                 <td>65</td>
                 <td>3,748,408</td>
                 <td>65</td>
-                <td style="color:#EF4444;">0</td>
+                <td class="text-red">0</td>
               </tr>
               <tr>
                 <td>2025.07</td>
@@ -187,7 +184,7 @@
                 <td>89</td>
                 <td>4,075,449</td>
                 <td>89</td>
-                <td style="color:#EF4444;">0</td>
+                <td class="text-red">0</td>
               </tr>
               <tr>
                 <td>2025.06</td>
@@ -200,7 +197,7 @@
                 <td>105</td>
                 <td>3,270,909</td>
                 <td>105</td>
-                <td style="color:#EF4444;">0</td>
+                <td class="text-red">0</td>
               </tr>
               <tr>
                 <td>2025.05</td>
@@ -213,7 +210,7 @@
                 <td>105</td>
                 <td>5,932,629</td>
                 <td>105</td>
-                <td style="color:#EF4444;">0</td>
+                <td class="text-red">0</td>
               </tr>
               <tr>
                 <td>2025.04</td>
@@ -226,7 +223,7 @@
                 <td>263</td>
                 <td>9,764,137</td>
                 <td>263</td>
-                <td style="color:#EF4444;">0</td>
+                <td class="text-red">0</td>
               </tr>
               <tr>
                 <td>2025.03</td>
@@ -239,7 +236,7 @@
                 <td>595</td>
                 <td>26,773,983</td>
                 <td>595</td>
-                <td style="color:#EF4444;">0</td>
+                <td class="text-red">0</td>
               </tr>
               <tr>
                 <td>2025.02</td>
@@ -252,7 +249,7 @@
                 <td>437</td>
                 <td>16,477,591</td>
                 <td>437</td>
-                <td style="color:#EF4444;">0</td>
+                <td class="text-red">0</td>
               </tr>
               <tr>
                 <td>2025.01</td>
@@ -265,13 +262,13 @@
                 <td>36</td>
                 <td>2,438,259</td>
                 <td>36</td>
-                <td style="color:#EF4444;">0</td>
+                <td class="text-red">0</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div class="pagination" style="justify-content: center; margin-top: 16px;">
+        <div class="pagination pagination-center">
           <button class="page-btn" disabled>‹</button>
           <button class="page-btn active">1</button>
           <button class="page-btn">2</button>

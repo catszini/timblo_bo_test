@@ -90,7 +90,7 @@
         <div class="search-section">
           <div class="common-topbar">
             <div class="tb-left">
-              <div class="combo-search" style="width: 480px;">
+              <div class="combo-search combo-search-medium">
                 <div class="combo-field">
                   <select class="combo-select">
                     <option>전체</option>
@@ -107,7 +107,7 @@
                 </div>
               </div>
             </div>
-            <div class="tb-right" style="width:100%; gap:10px; align-items:center;">
+            <div class="tb-right tb-right-full-gap">
               <div class="right-tail">
                 <span class="total-count">총 10건</span>
                 <select class="condition-select">
@@ -279,14 +279,14 @@
   </div>
 
   <!-- 비밀번호 초기화 모달 -->
-  <div class="modal-overlay" id="reset-modal" style="display: none;">
+  <div class="modal-overlay modal-overlay-hidden" id="reset-modal">
     <div class="modal-container reset-modal">
       <div class="modal-content">
         <div class="reset-title">비밀번호 초기화</div>
         <div class="reset-subtitle">아래 사용자 계정의 비밀번호를 초기화합니다.</div>
         <div class="reset-info">
-          <div id="reset-name" style="font-weight:600; margin-bottom:4px;">홍길동</div>
-          <div id="reset-email" style="color:#555;">gildong.hong@timbel.com</div>
+          <div id="reset-name" class="reset-name-bold">홍길동</div>
+          <div id="reset-email" class="reset-email-color">gildong.hong@timbel.com</div>
         </div>
         <div class="reset-error">
           <span>
