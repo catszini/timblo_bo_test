@@ -418,11 +418,15 @@
         document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
       }
       if (e.target.closest('.new-category')) {
-        document.querySelector('.category-modal-overlay').style.display = 'flex';
-        document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
+        // 편집 모드에서만 새 카테고리 생성 모달 표시
+        const editWrapper = e.target.closest('.edit-wrapper');
+        if (editWrapper && editWrapper.querySelector('.dropdown-menu').style.display === 'block') {
+          document.querySelector('.category-modal-overlay').classList.remove('category-modal-hidden');
+          document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
+        }
       }
       if (e.target.matches('.category-modal-overlay') || e.target.matches('.category-modal .btn-cancel')) {
-        document.querySelector('.category-modal-overlay').style.display = 'none';
+        document.querySelector('.category-modal-overlay').classList.add('category-modal-hidden');
       }
     });
   </script>
