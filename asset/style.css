@@ -200,7 +200,7 @@ body {
 .menu-section li:has(> a.active) > a::after,
 .menu-section li:has(> .submenu a.active) > a::after {
     transform: translateY(-50%) rotate(180deg);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cpath d='M19 9.00012L12 15.0001L5 9.00012' stroke='%230066FF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-image: url('../asset/select-arrow.svg');
 }
 
 .submenu li a {
@@ -231,20 +231,20 @@ body {
 }
 
 /* 공통 상단 검색/필터 바 */
-.common-topbar {
+.search-section .common-topbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
     width: 100%;
 }
-.common-topbar .tb-left,
-.common-topbar .tb-right {
+.search-section .common-topbar .tb-left,
+.search-section .common-topbar .tb-right {
     display: flex;
     align-items: center;
     gap: 8px;
 }
-.common-topbar .tb-right .right-tail {
+.search-section .common-topbar .tb-right .right-tail {
     margin-left: auto;
     display: inline-flex;
     align-items: center;
@@ -270,38 +270,304 @@ body {
 .btn-query:active { background:#0F6BFF; border-color:#0F6BFF; }
 
 /* 셀렉트+인풋 결합형 검색 컴포넌트 */
-.combo-search { display:flex; align-items:center; gap:8px; }
-.combo-search .combo-field {
+.search-section .combo-search { display:flex; align-items:center; gap:8px; }
+.search-section .combo-search .combo-field {
     display:flex; align-items:center; height:36px;
     border:1px solid #ddd; border-radius:8px; background:#fff; overflow:hidden;
     width:100%;
 }
-.combo-search .combo-select {
+.search-section .combo-search .combo-select {
     height:100%; border:none; outline:none; cursor:pointer; background:#fff;
     padding:0 32px 0 12px; font-size:14px; appearance:none; -webkit-appearance:none; -moz-appearance:none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cpath d='M19 9.00012L12 15.0001L5 9.00012' stroke='%231C274C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-image: url('../asset/select-arrow.svg');
     background-repeat:no-repeat; background-position:right 8px center; background-size:16px 16px;
 }
-.combo-search .divider { width:1px; height:20px; background:#E5E5E5; }
-.combo-search .combo-input-wrap { position:relative; height:100%; display:flex; align-items:center; flex: 1 1 auto; min-width: 260px; }
-.combo-search .combo-input {
+.search-section .combo-search .divider { width:1px; height:20px; background:#E5E5E5; }
+.search-section .combo-search .combo-input-wrap { position:relative; height:100%; display:flex; align-items:center; flex: 1 1 auto; min-width: 260px; }
+.search-section .combo-search .combo-input {
     border:none; outline:none; height:100%; padding:0 12px 0 32px; font-size:14px; min-width:260px; width:100%; background:#fff;
 }
-.combo-search .combo-input::placeholder { color:#9AA0A6; }
-.combo-search .mag-icon { position:absolute; left:10px; pointer-events:none; text-indent:-9999px; width:16px; height:16px; background: center/16px 16px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M7.91699 0.75C11.8749 0.750176 15.083 3.95906 15.083 7.91699C15.0828 11.8748 11.8748 15.0828 7.91699 15.083C3.95906 15.083 0.750176 11.8749 0.75 7.91699C0.75 3.95895 3.95895 0.75 7.91699 0.75Z' stroke='%234D5256' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M16.6667 16.6667L15 15' stroke='%234D5256' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
-.combo-search .append-btn{
+.search-section .combo-search .combo-input::placeholder { color:#9AA0A6; }
+.search-section .combo-search .mag-icon { position:absolute; left:10px; pointer-events:none; text-indent:-9999px; width:16px; height:16px; }
+.search-section .combo-search .append-btn{
     height:100%; border:none; border-left:1px solid transparent;
     padding:0 16px; background:#1677FF; color:#fff; font-weight:600; font-size:14px; cursor:pointer;
     display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; flex:0 0 auto; min-width:64px;
 }
-.combo-search .append-btn:hover{ background:#2B85FF; }
-.combo-search .append-btn:active{ background:#0F6BFF; }
+.search-section .combo-search .append-btn:hover{ background:#2B85FF; }
+.search-section .combo-search .append-btn:active{ background:#0F6BFF; }
 
 /* 사용자 관리 페이지 검색 영역 */
 .user-page .search-section {
+    background: #fff;
+    padding: 24px;
+    margin-bottom: 16px;
+}
+
+/* 멤버 관리 페이지 전용 검색 영역 스타일 */
+.user-page.member-page .top-section {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.user-page.member-page .search-section {
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+}
+
+.user-page.member-page .stats-section {
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.user-page.member-page .search-section {
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+}
+
+.user-page.member-page .search-section .common-topbar {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.user-page.member-page .search-section .tb-left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
     align-items: center;
+    flex: 1;
+}
+
+.user-page.member-page .search-section .tb-right {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* 멤버 관리 페이지 전용 검색 필터 스타일 */
+.user-page.member-page .search-section .condition-select {
+    width: 100%;
+    min-width: 140px;
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    font-size: 14px;
+    background: #fff;
+    cursor: pointer;
+    appearance: none;
+    background-image: url('../asset/select-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px 16px;
+    padding-right: 32px;
+}
+
+.user-page.member-page .search-section .condition-select:focus {
+    outline: none;
+    border-color: #0066FF;
+}
+
+.user-page.member-page .search-section .combo-search {
+    width: 100%;
+}
+
+.user-page.member-page .search-section .combo-field {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    background: #fff;
+    height: 40px;
+    overflow: hidden;
+}
+
+.user-page.member-page .search-section .combo-select {
+    border: none;
+    border-right: 1px solid #E5E5E5;
+    background: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 100px;
+    height: 100%;
+    padding: 8px 12px;
+    appearance: none;
+    background-image: url('../asset/select-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px 16px;
+    padding-right: 32px;
+}
+
+.user-page.member-page .search-section .combo-input-wrap {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.user-page.member-page .search-section .combo-input {
+    border: none;
+    outline: none;
+    height: 100%;
+    padding: 0 12px;
+    font-size: 14px;
+    width: 100%;
+    background: #fff;
+}
+
+.user-page.member-page .search-section .mag-icon {
+    position: absolute;
+    left: 10px;
+    pointer-events: none;
+    width: 16px;
+    height: 16px;
+    color: #666;
+    font-size: 14px;
+}
+
+.user-page.member-page .search-section .divider {
+    width: 1px;
+    height: 20px;
+    background: #E5E5E5;
+}
+
+.member-page .search-section .combo-input-wrap {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    flex: 1;
+}
+
+.member-page .search-section .mag-icon {
+    font-size: 16px;
+    color: #6B7280;
+    margin-right: 8px;
+}
+
+.member-page .search-section .combo-input {
+    border: none;
+    outline: none;
+    padding: 8px 0;
+    font-size: 14px;
+    width: 100%;
+    min-width: 200px;
+    background: transparent;
+}
+
+.user-page.member-page .search-section .combo-input::placeholder {
+    color: #9CA3AF;
+}
+
+.user-page.member-page .search-section .date-range-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-page.member-page .search-section .date-range {
+    width: 100%;
+    min-width: 140px;
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #E5E5E5;
+    border-radius: 6px;
+    font-size: 14px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.user-page.member-page .search-section .date-range:focus {
+    outline: none;
+    border-color: #0066FF;
+}
+
+.user-page.member-page .search-section .date-separator {
+    color: #6B7280;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* 검색 필터 스타일 개선 */
+.search-section .condition-select {
+    min-width: 120px;
+    padding: 8px 12px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    font-size: 14px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.search-section .condition-select:focus {
+    outline: none;
+    border-color: #0066FF;
+}
+
+/* 콤보 검색 스타일 */
+.search-section .combo-search {
+    display: flex;
+    align-items: center;
+}
+
+.search-section .combo-field {
+    display: flex;
+    align-items: center;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.search-section .combo-select {
+    padding: 8px 12px;
+    border: none;
+    border-right: 1px solid #E5E5E5;
+    background: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 100px;
+}
+
+.search-section .divider {
+    width: 1px;
+    height: 20px;
+    background: #E5E5E5;
+}
+
+.search-section .combo-input-wrap {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+}
+
+.search-section .mag-icon {
+    font-size: 16px;
+    color: #6B7280;
+    margin-right: 8px;
+}
+
+.search-section .combo-input {
+    border: none;
+    outline: none;
+    padding: 8px 0;
+    font-size: 14px;
+    min-width: 200px;
+}
+
+.search-section .combo-input::placeholder {
+    color: #9CA3AF;
 }
 
 .search-group {
@@ -731,6 +997,370 @@ input:checked + .slider:before {
     font-weight: 500;
 }
 
+/* 멤버 관리 페이지 새로운 스타일 */
+.top-section {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.search-section {
+    flex: 2;
+    background: #fff;
+}
+
+.search-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #292A2B;
+    margin: 3px 0 20px 0;
+}
+
+.search-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.filter-row {
+    display: flex;
+    gap: 24px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 4px;
+}
+
+.user-page.member-page .filter-group label {
+    margin-bottom: 0;
+}
+
+.filter-row.filter-buttons-row {
+    justify-content: flex-start;
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+}
+
+.user-page.member-page .filter-row.filter-buttons-row {
+    margin-top: 0;
+}
+
+.filter-group.filter-buttons {
+    flex: 0 0 auto;
+    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+}
+
+.filter-group.filter-buttons .btn-submit,
+.filter-group.filter-buttons .btn-outline {
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 36px;
+}
+
+/* 멤버 관리 페이지 버튼 스타일 */
+.user-page.member-page .btn-submit {
+    padding: 12px 24px;
+    background: #0066FF;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    min-width: 100px;
+    height: 40px;
+    margin-right: 12px;
+}
+
+.user-page.member-page .btn-submit:hover {
+    background: #0052CC;
+}
+
+.user-page.member-page .btn-outline {
+    padding: 12px 24px;
+    background: #fff;
+    color: #374151;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    min-width: 100px;
+    height: 40px;
+}
+
+.user-page.member-page .btn-outline:hover {
+    background: #F9FAFB;
+    border-color: #9CA3AF;
+}
+
+.stats-section {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    padding: 24px;
+    min-width: 300px;
+}
+
+.stats-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #292A2B;
+    margin: 0 0 20px 0;
+}
+
+.stats-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.stats-row:last-child {
+    border-bottom: none;
+}
+
+.stats-divider {
+    height: 1px;
+    background: #E5E5E5;
+    margin: 0;
+}
+
+.stats-label {
+    font-size: 16px;
+    color: #292A2B;
+    font-weight: 500;
+}
+
+.stats-value {
+    font-size: 16px;
+    color: #292A2B;
+    font-weight: 500;
+}
+
+.stats-value-highlight {
+    color: #0066FF;
+    font-weight: 600;
+}
+
+.list-section {
+    background: #fff;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+/* 멤버 관리 페이지 테이블 스타일 개선 */
+.user-page.member-page .table-container {
+    margin-top: 20px;
+}
+
+.user-page.member-page .table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.user-page.member-page .table-container th {
+    background: #F8FAFC;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    color: #292A2B;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.user-page.member-page .table-container td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #F3F4F6;
+    font-size: 14px;
+    color: #374151;
+}
+
+.user-page.member-page .table-container tbody tr:hover {
+    background: #F9FAFB;
+}
+
+/* 체크박스 스타일 */
+.user-page.member-page .table-container th:first-child,
+.user-page.member-page .table-container td:first-child {
+    width: 40px;
+    text-align: center;
+}
+
+.user-page.member-page .table-container input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.list-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #292A2B;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-header .separator-bar {
+    width: 1px;
+    height: 16px;
+    background-color: #E5E5E5;
+    margin: 0 16px;
+    flex-shrink: 0;
+}
+
+.list-header .total-count {
+    font-size: 14px;
+    color: #6B7280;
+    font-weight: 500;
+}
+
+.list-controls {
+    display: flex;
+    gap: 12px;
+}
+
+.list-controls .condition-select {
+    min-width: 120px;
+    appearance: none;
+    background-image: url('../asset/select-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px 16px;
+    padding-right: 32px;
+}
+
+.status-select {
+    padding: 6px 12px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    font-size: 14px;
+    background: #fff;
+    cursor: pointer;
+    appearance: none;
+    background-image: url('../asset/select-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px 16px;
+    padding-right: 32px;
+}
+
+.status-select:focus {
+    outline: none;
+    border-color: #0066FF;
+}
+
+.list-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #E5E5E5;
+}
+
+.btn-detail {
+    padding: 6px 12px;
+    background: #0066FF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-right: 8px;
+    text-align: center;
+}
+
+.btn-detail:hover {
+    background: #0052CC;
+}
+
+.btn-edit {
+    padding: 6px 12px;
+    background: #fff;
+    color: #0066FF;
+    border: 1px solid #0066FF;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-edit:hover {
+    background: #F0F7FF;
+}
+
+/* 멤버 관리 페이지 날짜 범위 선택 스타일 */
+.user-page.member-page .date-range-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-page.member-page .date-range-wrap .calendar-icon {
+    font-size: 16px;
+    color: #6B7280;
+}
+
+.user-page.member-page .date-range-wrap .date-range {
+    padding: 8px 12px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    font-size: 14px;
+    background: #fff;
+    cursor: pointer;
+    min-width: 100px;
+}
+
+.user-page.member-page .date-range-wrap .date-range:focus {
+    outline: none;
+    border-color: #0066FF;
+}
+
+.user-page.member-page .date-range-wrap span {
+    color: #6B7280;
+    font-size: 14px;
+}
+
 /* 이니셜 아이콘 색상 변형 */
 .user-initial.color-blue {
     background-color: #E8F3FF;
@@ -810,6 +1440,10 @@ input:checked + .slider:before {
     color: #666;
     font-size: 13px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
 }
 
 .btn-reset:hover {
@@ -824,6 +1458,10 @@ input:checked + .slider:before {
     color: #0066FF;
     font-size: 13px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
 }
 
 /* 상태 배지 (테이블용) */

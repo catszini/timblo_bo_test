@@ -49,7 +49,7 @@
         <h3>워크스페이스</h3>
         <ul>
           <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
-          <li><a href="#" class="active"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li><a href="#" class="active"><img src="../asset/user.svg" alt="">멤버 관리</a></li>
           <li>
             <a href="#"><img src="../asset/history.svg" alt="">이력 관리</a>
             <ul class="submenu">
@@ -80,199 +80,240 @@
     </div>
 
     <!-- 오른쪽 콘텐츠 영역 -->
-    <div class="content user-page">
+    <div class="content user-page member-page">
       <div class="content-header">
         <div class="breadcrumb">
-          워크스페이스 > 사용자 관리
+          워크스페이스 > 멤버 관리
         </div>
       </div>
       <div class="content-body">
-        <div class="search-section">
-          <div class="common-topbar">
-            <div class="tb-left">
-              <div class="combo-search combo-search-medium">
-                <div class="combo-field">
-                  <select class="combo-select">
-                    <option>전체</option>
-                    <option>이름</option>
-                    <option>이메일</option>
-                    <option>구분</option>
+        <!-- 검색/필터와 멤버 통계를 왼쪽/오른쪽으로 배치 -->
+        <div class="top-section">
+          <!-- 왼쪽: 검색 및 필터 영역 -->
+          <div class="search-section">
+            <div class="search-header">
+              <h3>멤버 검색</h3>
+            </div>
+            <div class="search-filters">
+              <div class="filter-row">
+                <div class="filter-group">
+                  <label>멤버 그룹</label>
+                  <select class="condition-select">
+                    <option>전체보기</option>
+                    <option>SK Telecom</option>
+                    <option>KT</option>
+                    <option>LG U+</option>
                   </select>
-                  <div class="divider"></div>
-                  <div class="combo-input-wrap">
-                    <span class="mag-icon">🔍</span>
-                    <input type="text" class="combo-input" placeholder="검색어를 입력해주세요" />
+                </div>
+                <div class="filter-group">
+                  <label>멤버 정보</label>
+                  <div class="combo-search">
+                    <div class="combo-field">
+                      <select class="combo-select">
+                        <option>회원명</option>
+                        <option>이메일</option>
+                        <option>연락처</option>
+                      </select>
+                      <div class="combo-input-wrap">
+                        <span class="mag-icon">🔍</span>
+                        <input type="text" class="combo-input" placeholder="기본정보를 입력해주세요." />
+                      </div>
+                    </div>
                   </div>
-                  <button class="append-btn">조회</button>
+                </div>
+                <div class="filter-group">
+                  <label>마케팅 동의 상태</label>
+                  <select class="condition-select">
+                    <option>전체보기</option>
+                    <option>동의</option>
+                    <option>거부</option>
+                  </select>
+                </div>
+              </div>
+              <div class="filter-row">
+                <div class="filter-group">
+                  <label>가입일</label>
+                  <div class="date-range-wrap">
+                    <input type="text" class="date-range" placeholder="가입일" readonly />
+                    <span class="date-separator">~</span>
+                    <input type="text" class="date-range" placeholder="가입일" readonly />
+                  </div>
+                </div>
+              </div>
+              <div class="filter-row filter-buttons-row">
+                <div class="filter-group filter-buttons">
+                  <button class="btn-submit">검색하기</button>
+                  <button class="btn-outline">전체보기</button>
                 </div>
               </div>
             </div>
-            <div class="tb-right tb-right-full-gap">
-              <div class="right-tail">
-                <span class="total-count">총 10건</span>
-                <select class="condition-select">
-                  <option>10개씩 보기</option>
-                  <option>20개씩 보기</option>
-                  <option>30개씩 보기</option>
-                </select>
+          </div>
+
+          <!-- 오른쪽: 멤버 통계 정보 영역 -->
+          <div class="stats-section">
+            <div class="stats-header">
+              <h3>멤버 (명)</h3>
+            </div>
+            <div class="stats-list">
+              <div class="stats-row">
+                <span class="stats-label">신규가입</span>
+                <span class="stats-value">2</span>
+              </div>
+
+              <div class="stats-row">
+                <span class="stats-label">신규탈퇴</span>
+                <span class="stats-value">0</span>
+              </div>
+
+              <div class="stats-row">
+                <span class="stats-label">총멤버</span>
+                <span class="stats-value stats-value-highlight">22,996</span>
+              </div>
+
+              <div class="stats-row">
+                <span class="stats-label">관리자</span>
+                <span class="stats-value stats-value-highlight">19</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>이름</th>
-                <th>이메일</th>
-                <th>비밀번호 초기화</th>
-                <th>구분</th>
-                <th>삭제</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <div class="user-profile">
-                    <div class="user-initial color-blue">Q</div>
-                    <span>QQ</span>
-                  </div>
-                </td>
-                <td>luckytrack@timbel.net</td>
-                <td><button class="btn-reset">초기화</button></td>
-                <td>
-                  <button class="btn-status">구성원</button>
-                </td>
-                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="user-profile">
-                    <div class="user-initial color-purple">J</div>
-                    <span>june</span>
-                  </div>
-                </td>
-                <td>june@timbel.net</td>
-                <td><button class="btn-reset">초기화</button></td>
-                <td>
-                  <button class="btn-status">구성원</button>
-                </td>
-                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="user-profile">
-                    <div class="user-initial color-green">이</div>
-                    <span>이인호</span>
-                  </div>
-                </td>
-                <td>mr.lee@timbel.net</td>
-                <td><button class="btn-reset">초기화</button></td>
-                <td>
-                  <button class="btn-status">구성원</button>
-                </td>
-                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="user-profile">
-                    <div class="user-initial color-orange">김</div>
-                    <span>김혜성</span>
-                  </div>
-                </td>
-                <td>songkim1212@timbel.net</td>
-                <td><button class="btn-reset">초기화</button></td>
-                <td>
-                  <button class="btn-status">구성원</button>
-                </td>
-                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="user-profile">
-                    <div class="user-initial color-pink">T</div>
-                    <span>TimbelTest05</span>
-                  </div>
-                </td>
-                <td>ahjiu@timbel.net</td>
-                <td><button class="btn-reset">초기화</button></td>
-                <td>
-                  <button class="btn-status">구성원</button>
-                </td>
-                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="user-profile">
-                    <div class="user-initial color-blue">T</div>
-                    <span>TimbelTest04</span>
-                  </div>
-                </td>
-                <td>ksh0214@timbel.net</td>
-                <td><button class="btn-reset">초기화</button></td>
-                <td>
-                  <button class="btn-status">구성원</button>
-                </td>
-                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="user-profile">
-                    <div class="user-initial color-purple">팀</div>
-                    <span>팀벨0501</span>
-                  </div>
-                </td>
-                <td>skyeo001@timbel.net</td>
-                <td><button class="btn-reset">초기화</button></td>
-                <td>
-                  <button class="btn-status">구성원</button>
-                </td>
-                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="user-profile">
-                    <div class="user-initial color-green">h</div>
-                    <span>hyuncheol.kim</span>
-                  </div>
-                </td>
-                <td>hyuncheol.kim@timbel.net</td>
-                <td><button class="btn-reset">초기화</button></td>
-                <td>
-                  <button class="btn-status">구성원</button>
-                </td>
-                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="user-profile">
-                    <div class="user-initial color-orange">t</div>
-                    <span>taehee.timbel</span>
-                  </div>
-                </td>
-                <td>taehee@timbel.net</td>
-                <td><button class="btn-reset">초기화</button></td>
-                <td>
-                  <button class="btn-status">구성원</button>
-                </td>
-                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="user-profile">
-                    <div class="user-initial color-pink">차</div>
-                    <span>차정훈</span>
-                  </div>
-                </td>
-                <td>nocarrot83@timbel.net</td>
-                <td><button class="btn-reset">초기화</button></td>
-                <td>
-                  <button class="btn-status">구성원</button>
-                </td>
-                <td><button class="delete-btn delete-btn--filled"><img src="../asset/trash.svg" alt="삭제"></button></td>
-              </tr>
-            </tbody>
-          </table>
+
+        <!-- 멤버 리스트 테이블 영역 -->
+        <div class="list-section">
+          <div class="list-header">
+            <h3>멤버 리스트 <span class="separator-bar"></span><span class="total-count">Total 23,039</span></h3>
+            <div class="list-controls">
+              <select class="condition-select">
+                <option>10개씩 정렬</option>
+                <option>20개씩 정렬</option>
+                <option>50개씩 정렬</option>
+              </select>
+              <select class="condition-select">
+                <option>최신순</option>
+                <option>오래된순</option>
+                <option>이름순</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th><input type="checkbox" /></th>
+                  <th>번호</th>
+                  <th>멤버 그룹</th>
+                  <th>상태</th>
+                  <th>이름</th>
+                  <th>아이디</th>
+                  <th>연락처</th>
+                  <th>관리</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>23039</td>
+                  <td>
+                    <select class="status-select">
+                      <option>SK Telecom</option>
+                      <option>KT</option>
+                      <option>LG U+</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="status-select">
+                      <option>승인</option>
+                      <option>대기</option>
+                      <option>거부</option>
+                    </select>
+                  </td>
+                  <td>
+                    <div class="user-profile">
+                      <div class="user-initial color-blue">배</div>
+                      <span>배성진</span>
+                    </div>
+                  </td>
+                  <td>genie0111</td>
+                  <td>010-2746-7169</td>
+                  <td>
+                    <button class="btn-detail">상세보기</button>
+                    <button class="btn-edit">수정하기</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>23038</td>
+                  <td>
+                    <select class="status-select">
+                      <option>SK Telecom</option>
+                      <option>KT</option>
+                      <option>LG U+</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="status-select">
+                      <option>승인</option>
+                      <option>대기</option>
+                      <option>거부</option>
+                    </select>
+                  </td>
+                  <td>
+                    <div class="user-profile">
+                      <div class="user-initial color-green">김</div>
+                      <span>김민수</span>
+                    </div>
+                  </td>
+                  <td>minsu123</td>
+                  <td>010-1234-5678</td>
+                  <td>
+                    <button class="btn-detail">상세보기</button>
+                    <button class="btn-edit">수정하기</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>23037</td>
+                  <td>
+                    <select class="status-select">
+                      <option>SK Telecom</option>
+                      <option>KT</option>
+                      <option>LG U+</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="status-select">
+                      <option>승인</option>
+                      <option>대기</option>
+                      <option>거부</option>
+                    </select>
+                  </td>
+                  <td>
+                    <div class="user-profile">
+                      <div class="user-initial color-purple">이</div>
+                      <span>이영희</span>
+                    </div>
+                  </td>
+                  <td>younghee</td>
+                  <td>010-9876-5432</td>
+                  <td>
+                    <button class="btn-detail">상세보기</button>
+                    <button class="btn-edit">수정하기</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="list-footer">
+            <button class="btn-submit">선택된 내용 변경</button>
+            <div class="pagination">
+              <button class="page-btn" disabled>이전</button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <button class="page-btn">다음</button>
+              <span class="page-info">1/4</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
