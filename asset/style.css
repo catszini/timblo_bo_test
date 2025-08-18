@@ -1092,6 +1092,10 @@ input:checked + .slider:before {
     min-width: 100px;
     height: 40px;
     margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .user-page.member-page .btn-submit:hover {
@@ -1193,7 +1197,7 @@ input:checked + .slider:before {
 .user-page.member-page .table-container th {
     background: #F8FAFC;
     padding: 12px 16px;
-    text-align: left;
+    text-align: center;
     font-size: 14px;
     font-weight: 600;
     color: #292A2B;
@@ -1215,6 +1219,12 @@ input:checked + .slider:before {
 .user-page.member-page .table-container th:first-child,
 .user-page.member-page .table-container td:first-child {
     width: 40px;
+    text-align: center;
+}
+
+/* 체크박스 제외 모든 컬럼 가운데 정렬 */
+.user-page.member-page .table-container th:not(:first-child),
+.user-page.member-page .table-container td:not(:first-child) {
     text-align: center;
 }
 
@@ -1296,7 +1306,6 @@ input:checked + .slider:before {
     align-items: center;
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid #E5E5E5;
 }
 
 .btn-detail {
@@ -1337,13 +1346,25 @@ input:checked + .slider:before {
     gap: 8px;
 }
 
+.user-page.member-page .date-range-wrap .date-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
 .user-page.member-page .date-range-wrap .calendar-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 16px;
     color: #6B7280;
+    z-index: 1;
+    pointer-events: none;
 }
 
 .user-page.member-page .date-range-wrap .date-range {
-    padding: 8px 12px;
+    padding: 8px 12px 8px 32px;
     border: 1px solid #E5E5E5;
     border-radius: 4px;
     font-size: 14px;
