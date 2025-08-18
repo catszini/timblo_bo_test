@@ -445,9 +445,9 @@ body {
 .calendar-range { display: flex; gap: 12px; align-items: flex-start; }
 .calendar { width: 280px; }
 .cal-header {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 8px;
 }
 .cal-nav { display: none; }
