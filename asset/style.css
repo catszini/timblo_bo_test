@@ -196,11 +196,12 @@ body {
     display: block;
 }
 
-/* 활성화된 경우 화살표도 위로 회전 고정 */
+/* 활성화된 경우 화살표도 위로 회전 고정 및 활성화된 메뉴와 같은 파란색으로 변경 */
 .menu-section li:has(> a.active) > a::after,
 .menu-section li:has(> .submenu a.active) > a::after {
     transform: translateY(-50%) rotate(180deg);
     background-image: url('../asset/select-arrow.svg');
+    filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(202deg) brightness(118%) contrast(119%);
 }
 
 .submenu li a {
