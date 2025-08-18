@@ -1304,7 +1304,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .modal-overlay-hidden {
-    display: none;
+    display: none !important;
 }
 
 .category-modal-hidden {
