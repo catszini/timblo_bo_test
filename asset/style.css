@@ -1296,7 +1296,9 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .submenu-active-link {
+    background: none;
     color: #0066ff;
+    font-weight: 600;
 }
 
 .submenu-active-link-alt {
