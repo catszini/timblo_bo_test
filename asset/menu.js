@@ -76,8 +76,11 @@
       
       a.addEventListener('click', function (e) {
         const href = a.getAttribute('href');
-        // Only toggle if it's a category toggle (href="#" or no href)
-        if (!href || href === '#') {
+        const text = (a.textContent || '').trim();
+        
+        // Allow submenu toggle for "권한 관리" menu even with href="user.html"
+        // For other menus, only toggle if it's a category toggle (href="#" or no href)
+        if (!href || href === '#' || text === '권한 관리') {
           e.preventDefault();
           const willOpen = !li.classList.contains('open');
           console.log('Menu clicked for:', a.textContent.trim(), 'willOpen:', willOpen);
