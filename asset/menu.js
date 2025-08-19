@@ -74,19 +74,22 @@
       const a = li.querySelector(':scope > a');
       if (!a) return;
       
+      // Add click handler for the arrow (::after pseudo-element)
+      // We'll use a different approach - detect clicks on the right side of the menu item
       a.addEventListener('click', function (e) {
-        const href = a.getAttribute('href');
-        const text = (a.textContent || '').trim();
+        const rect = a.getBoundingClientRect();
+        const clickX = e.clientX;
+        const arrowArea = rect.right - 30; // Assume arrow is in the right 30px
         
-        // Allow submenu toggle for "권한 관리" menu even with href="user.html"
-        // For other menus, only toggle if it's a category toggle (href="#" or no href)
-        if (!href || href === '#' || text === '권한 관리') {
+        // If click is in the arrow area, toggle submenu
+        if (clickX >= arrowArea) {
           e.preventDefault();
           const willOpen = !li.classList.contains('open');
-          console.log('Menu clicked for:', a.textContent.trim(), 'willOpen:', willOpen);
+          console.log('Arrow clicked for:', a.textContent.trim(), 'willOpen:', willOpen);
           setOpen(li, willOpen, state);
-          console.log('Submenu state after click:', li.classList.contains('open'));
+          console.log('Submenu state after arrow click:', li.classList.contains('open'));
         }
+        // If click is on the text area, let the normal navigation happen
       });
     });
   });
