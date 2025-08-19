@@ -74,16 +74,18 @@
       const a = li.querySelector(':scope > a');
       if (!a) return;
       
-      // Add click handler for the arrow (::after pseudo-element)
-      // We'll use a different approach - detect clicks on the right side of the menu item
+      // Add click handler for the arrow area
+      // Detect clicks on the right side where the arrow is located
       a.addEventListener('click', function (e) {
         const rect = a.getBoundingClientRect();
         const clickX = e.clientX;
-        const arrowArea = rect.right - 30; // Assume arrow is in the right 30px
+        const itemWidth = rect.width;
+        const arrowArea = rect.left + (itemWidth * 0.8); // Arrow is in the right 20% of the item
         
         // If click is in the arrow area, toggle submenu
         if (clickX >= arrowArea) {
           e.preventDefault();
+          e.stopPropagation();
           const willOpen = !li.classList.contains('open');
           console.log('Arrow clicked for:', a.textContent.trim(), 'willOpen:', willOpen);
           setOpen(li, willOpen, state);
