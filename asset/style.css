@@ -188,7 +188,7 @@ body {
 
 
 /* 펼쳐진 상태에서 화살표 위로 회전 */
-.menu-section li.open > .menu-arrow {
+.menu-section li.open > a > .menu-arrow {
   transform: translateY(-50%) rotate(180deg);
 }
 
@@ -206,9 +206,9 @@ body {
 }
 
 /* 활성화된 경우 화살표도 위로 회전 고정 */
-.menu-section li:has(> a.active) > .menu-arrow,
-.menu-section li:has(> .submenu a.active) > .menu-arrow {
-    transform: translateY(-50%) rotate(180deg);
+.menu-section li:has(> a.active) > a > .menu-arrow,
+.menu-section li:has(> .submenu a.active) > a > .menu-arrow {
+  transform: translateY(-50%) rotate(180deg);
 }
 
 .submenu li a {
