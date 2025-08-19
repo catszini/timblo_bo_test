@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>권한 관리 - 그룹 설정</title>
+  <link rel="stylesheet" href="../asset/style.css">
+  <style>
+    * {
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .member-page {
+      background-color: #F8FAFC;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    .member-page .content-body {
+      background-color: #F8FAFC;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: calc(100vh - 120px);
+    }
+
+    .content-header {
+      background-color: white;
+      padding: 30px 30px 20px 30px;
+      margin: 0;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .group-table-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .group-table-header {
+      background-color: #F8FAFC;
+      padding: 20px 24px;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .group-table-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #111827;
+      margin: 0;
+    }
+
+    .group-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .group-table th {
+      background-color: #F9FAFB;
+      padding: 16px 20px;
+      text-align: left;
+      font-weight: 600;
+      color: #374151;
+      border-bottom: 1px solid #E5E7EB;
+      font-size: 14px;
+    }
+
+    .group-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid #F3F4F6;
+      color: #374151;
+      font-size: 14px;
+    }
+
+    .group-table tr:hover {
+      background-color: #F9FAFB;
+    }
+
+    .group-name {
+      font-weight: 500;
+      color: #111827;
+    }
+
+    .group-type {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .group-type.master {
+      background-color: #FEF3C7;
+      color: #92400E;
+    }
+
+    .group-type.admin {
+      background-color: #DBEAFE;
+      color: #1E40AF;
+    }
+
+    .group-type.employee {
+      background-color: #D1FAE5;
+      color: #065F46;
+    }
+
+    .group-type.test {
+      background-color: #F3E8FF;
+      color: #7C3AED;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-edit,
+    .btn-delete {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-edit {
+      background-color: #3B82F6;
+      color: white;
+    }
+
+    .btn-edit:hover {
+      background-color: #2563EB;
+    }
+
+    .btn-delete {
+      background-color: #EF4444;
+      color: white;
+    }
+
+    .btn-delete:hover {
+      background-color: #DC2626;
+    }
+
+    .add-group-section {
+      padding: 20px 24px;
+      border-top: 1px solid #E5E7EB;
+      background-color: #F8FAFC;
+    }
+
+    .btn-add-group {
+      background-color: #10B981;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-add-group:hover {
+      background-color: #059669;
+    }
+  </style>
+</head>
+
+<body class="member-page">
+  <div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>시스템</h3>
+        <ul>
+          <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
+          <li><a href="terms.html"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <h3>워크스페이스</h3>
+        <ul>
+          <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li>
+            <a href="user.html">
+              <img src="../asset/user.svg" alt="">권한 관리
+              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
+            </a>
+            <ul class="submenu">
+              <li><a href="#">권한정보</a></li>
+              <li><a href="member_register.html">권한등록</a></li>
+              <li><a href="group_setting.html" class="active">그룹설정</a></li>
+              <li><a href="#">비활성 권한</a></li>
+              <li><a href="#">탈퇴 권한</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <img src="../asset/history.svg" alt="">이력 관리
+              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
+            </a>
+            <ul class="submenu">
+              <li><a href="login_history.html">사용자 접속 이력</a></li>
+              <li><a href="download_history.html">다운로드 이력</a></li>
+            </ul>
+          </li>
+          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
+          <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li>
+            <a href="prompt.html">
+              <img src="../asset/history.svg" alt="">프롬프트 관리
+              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
+            </a>
+            <ul class="submenu">
+              <li><a href="index.html">회의록 템플릿 관리</a></li>
+              <li><a href="calendar.html">캘린더 프롬프트 관리</a></li>
+              <li><a href="summary.html">요약번역 관리</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <img src="../asset/stats.svg" alt="">통계
+              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
+            </a>
+            <ul class="submenu">
+              <li><a href="stats_usage.html">사용량 통계</a></li>
+              <li><a href="stats_user.html">사용자별 통계</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 콘텐츠 영역 -->
+    <div class="content">
+      <div class="content-header">
+        <div class="breadcrumb">워크스페이스 > 권한 관리 > 그룹 설정</div>
+      </div>
+
+      <div class="content-body">
+        <div class="group-table-container">
+          <div class="group-table-header">
+            <h2 class="group-table-title">그룹 설정</h2>
+          </div>
+
+          <table class="group-table">
+            <thead>
+              <tr>
+                <th>번호</th>
+                <th>그룹명</th>
+                <th>구분</th>
+                <th>구분 기능</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td class="group-name">마스터</td>
+                <td><span class="group-type master">최고관리자</span></td>
+                <td class="action-buttons">
+                  <button class="btn-edit">수정</button>
+                  <button class="btn-delete">삭제</button>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td class="group-name">관리자</td>
+                <td><span class="group-type admin">하위관리자</span></td>
+                <td class="action-buttons">
+                  <button class="btn-edit">수정</button>
+                  <button class="btn-delete">삭제</button>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td class="group-name">직원</td>
+                <td><span class="group-type employee">직원</span></td>
+                <td class="action-buttons">
+                  <button class="btn-edit">수정</button>
+                  <button class="btn-delete">삭제</button>
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td class="group-name">테스트</td>
+                <td><span class="group-type test">테스트용</span></td>
+                <td class="action-buttons">
+                  <button class="btn-edit">수정</button>
+                  <button class="btn-delete">삭제</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="add-group-section">
+            <button class="btn-add-group">+ 새 그룹 추가</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../asset/menu.js"></script>
+</body>
+
+</html>
