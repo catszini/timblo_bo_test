@@ -63,24 +63,27 @@
     // Also open if current page is active within submenu
     submenuParents.forEach(li => {
       const hasActiveChild = !!li.querySelector(':scope > .submenu a.active');
-      if (hasActiveChild) li.classList.add('open');
+      if (hasActiveChild) {
+        li.classList.add('open');
+        console.log('Opening submenu for:', li.querySelector('a').textContent.trim());
+      }
     });
 
-    // Toggle on click of the 1-depth anchor
+    // Toggle on click of the main menu item (for submenu toggle)
     submenuParents.forEach(li => {
       const a = li.querySelector(':scope > a');
       if (!a) return;
+      
       a.addEventListener('click', function (e) {
-        const submenu = li.querySelector(':scope > .submenu');
-        if (!submenu) return; // safety
-        const willOpen = !li.classList.contains('open');
-        setOpen(li, willOpen, state);
-        // Prevent default only for anchors that are category toggles (href="#" or no href)
         const href = a.getAttribute('href');
+        // Only toggle if it's a category toggle (href="#" or no href)
         if (!href || href === '#') {
           e.preventDefault();
+          const willOpen = !li.classList.contains('open');
+          console.log('Menu clicked for:', a.textContent.trim(), 'willOpen:', willOpen);
+          setOpen(li, willOpen, state);
+          console.log('Submenu state after click:', li.classList.contains('open'));
         }
-        // If navigating to another page, state is already saved and will be restored there
       });
     });
   });

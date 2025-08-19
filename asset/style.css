@@ -170,24 +170,33 @@ body {
 
 /* 2뎁스 화살표 아이콘 (제공 SVG) */
 .menu-section li:has(> .submenu) > a {
-    position: relative;
-    padding-right: 32px; /* 화살표 영역 확보 */
+  position: relative;
+  padding-right: 32px; /* 화살표 영역 확보 */
 }
 .menu-section li:has(> .submenu) > a::after {
-    content: "";
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    width: 20px;
-    height: 20px;
-    transform: translateY(-50%) rotate(0deg);
-    transition: transform .2s ease;
-    background: center / 20px 20px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cpath d='M19 9.00012L12 15.0001L5 9.00012' stroke='%231C274C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform .2s ease;
+  background: center / 20px 20px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cpath d='M19 9.00012L12 15.0001L5 9.00012' stroke='%231C274C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
+
+
 
 /* 펼쳐진 상태에서 화살표 위로 회전 */
 .menu-section li.open > a::after {
-    transform: translateY(-50%) rotate(180deg);
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* 서브메뉴가 열려있을 때 표시 */
+.menu-section li.open > .submenu,
+.menu-section li:has(> a.active) > .submenu,
+.menu-section li:has(> .submenu a.active) > .submenu {
+  display: block !important;
 }
 
 /* 활성화된 경우(현재 페이지)에도 항상 펼쳐짐 유지 */
