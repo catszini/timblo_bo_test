@@ -7,6 +7,31 @@
   <title>AI 회의록 관리자</title>
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
+
+  <style>
+    /* 삭제 컬럼 가운데 정렬 */
+    table th:last-child,
+    table td:last-child {
+      text-align: center;
+    }
+
+    /* 삭제 버튼 스타일 */
+    .btn-delete {
+      background-color: #EF4444;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .btn-delete:hover {
+      background-color: #DC2626;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -50,13 +75,13 @@
         <ul>
           <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
           <li>
-            <a href="#" class="active"><img src="../asset/user.svg" alt="">멤버 관리</a>
+            <a href="#" class="active"><img src="../asset/user.svg" alt="">권한 관리</a>
             <ul class="submenu">
-              <li><a href="user.html">멤버정보</a></li>
-              <li><a href="#">멤버등록</a></li>
+              <li><a href="user.html">권한정보</a></li>
+              <li><a href="member_register.html">권한등록</a></li>
               <li><a href="#">그룹설정</a></li>
-              <li><a href="#">비활성 멤버</a></li>
-              <li><a href="#">탈퇴 멤버</a></li>
+              <li><a href="#">비활성 권한</a></li>
+              <li><a href="#">탈퇴 권한</a></li>
             </ul>
           </li>
           <li>
@@ -92,7 +117,7 @@
     <div class="content user-page member-page">
       <div class="content-header">
         <div class="breadcrumb">
-          워크스페이스 > 멤버 관리
+          워크스페이스 > 권한 관리
         </div>
       </div>
       <div class="content-body">
@@ -101,15 +126,15 @@
           <!-- 왼쪽: 검색 및 필터 영역 -->
           <div class="search-section">
             <div class="search-header">
-              <h3>멤버 검색</h3>
+              <h3>권한 검색</h3>
             </div>
             <div class="search-filters">
               <div class="filter-row">
                 <div class="filter-group">
-                  <label>멤버 그룹</label>
+                  <label>권한 그룹</label>
                   <select class="condition-select">
-                    <option>전체보기</option>
                     <option>SK Telecom</option>
+                    <option>전체보기</option>
                     <option>KT</option>
                     <option>LG U+</option>
                   </select>
@@ -141,8 +166,9 @@
               </div>
               <div class="filter-row">
                 <div class="filter-group">
-                  <label>멤버 상태</label>
+                  <label>권한 상태</label>
                   <select class="condition-select">
+                    <option>승인</option>
                     <option>전체보기</option>
                     <option>활성</option>
                     <option>비활성</option>
@@ -174,10 +200,10 @@
             </div>
           </div>
 
-          <!-- 오른쪽: 멤버 통계 정보 영역 -->
+          <!-- 오른쪽: 권한 통계 정보 영역 -->
           <div class="stats-section">
             <div class="stats-header">
-              <h3>멤버 (명)</h3>
+              <h3>권한 (명)</h3>
             </div>
             <div class="stats-list">
               <div class="stats-row">
@@ -191,7 +217,7 @@
               </div>
 
               <div class="stats-row">
-                <span class="stats-label">총멤버</span>
+                <span class="stats-label">총권한</span>
                 <span class="stats-value stats-value-highlight">22,996</span>
               </div>
 
@@ -203,10 +229,10 @@
           </div>
         </div>
 
-        <!-- 멤버 리스트 테이블 영역 -->
+        <!-- 권한 리스트 테이블 영역 -->
         <div class="list-section">
           <div class="list-header">
-            <h3>멤버 리스트 <span class="separator-bar"></span><span class="total-count">Total 23,039</span></h3>
+            <h3>권한 리스트 <span class="separator-bar"></span><span class="total-count">Total 23,039</span></h3>
             <div class="list-controls">
               <select class="condition-select">
                 <option>10개씩 정렬</option>
@@ -226,32 +252,21 @@
                 <tr>
                   <th><input type="checkbox" /></th>
                   <th>번호</th>
-                  <th>멤버 그룹</th>
+                  <th>권한 그룹</th>
                   <th>상태</th>
                   <th>회원명</th>
                   <th>아이디</th>
                   <th>연락처</th>
                   <th>관리</th>
+                  <th>삭제</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><input type="checkbox" /></td>
                   <td>23039</td>
-                  <td>
-                    <select class="status-select">
-                      <option>SK Telecom</option>
-                      <option>KT</option>
-                      <option>LG U+</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="status-select">
-                      <option>승인</option>
-                      <option>대기</option>
-                      <option>거부</option>
-                    </select>
-                  </td>
+                  <td>SK Telecom</td>
+                  <td>승인</td>
                   <td>
                     <div class="user-profile">
                       <div class="user-initial color-blue">배</div>
@@ -264,24 +279,15 @@
                     <button class="btn-detail">상세보기</button>
                     <button class="btn-edit">수정하기</button>
                   </td>
+                  <td>
+                    <button class="btn-delete">삭제</button>
+                  </td>
                 </tr>
                 <tr>
                   <td><input type="checkbox" /></td>
                   <td>23038</td>
-                  <td>
-                    <select class="status-select">
-                      <option>SK Telecom</option>
-                      <option>KT</option>
-                      <option>LG U+</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="status-select">
-                      <option>승인</option>
-                      <option>대기</option>
-                      <option>거부</option>
-                    </select>
-                  </td>
+                  <td>SK Telecom</td>
+                  <td>승인</td>
                   <td>
                     <div class="user-profile">
                       <div class="user-initial color-green">김</div>
@@ -294,24 +300,15 @@
                     <button class="btn-detail">상세보기</button>
                     <button class="btn-edit">수정하기</button>
                   </td>
+                  <td>
+                    <button class="btn-delete">삭제</button>
+                  </td>
                 </tr>
                 <tr>
                   <td><input type="checkbox" /></td>
                   <td>23037</td>
-                  <td>
-                    <select class="status-select">
-                      <option>SK Telecom</option>
-                      <option>KT</option>
-                      <option>LG U+</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="status-select">
-                      <option>승인</option>
-                      <option>대기</option>
-                      <option>거부</option>
-                    </select>
-                  </td>
+                  <td>SK Telecom</td>
+                  <td>승인</td>
                   <td>
                     <div class="user-profile">
                       <div class="user-initial color-purple">이</div>
@@ -324,24 +321,15 @@
                     <button class="btn-detail">상세보기</button>
                     <button class="btn-edit">수정하기</button>
                   </td>
+                  <td>
+                    <button class="btn-delete">삭제</button>
+                  </td>
                 </tr>
                 <tr>
                   <td><input type="checkbox" /></td>
                   <td>23036</td>
-                  <td>
-                    <select class="status-select">
-                      <option>SK Telecom</option>
-                      <option>KT</option>
-                      <option>LG U+</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="status-select">
-                      <option>승인</option>
-                      <option>대기</option>
-                      <option>거부</option>
-                    </select>
-                  </td>
+                  <td>SK Telecom</td>
+                  <td>승인</td>
                   <td>
                     <div class="user-profile">
                       <div class="user-initial color-orange">박</div>
@@ -354,24 +342,15 @@
                     <button class="btn-detail">상세보기</button>
                     <button class="btn-edit">수정하기</button>
                   </td>
+                  <td>
+                    <button class="btn-delete">삭제</button>
+                  </td>
                 </tr>
                 <tr>
                   <td><input type="checkbox" /></td>
                   <td>23035</td>
-                  <td>
-                    <select class="status-select">
-                      <option>SK Telecom</option>
-                      <option>KT</option>
-                      <option>LG U+</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="status-select">
-                      <option>승인</option>
-                      <option>대기</option>
-                      <option>거부</option>
-                    </select>
-                  </td>
+                  <td>SK Telecom</td>
+                  <td>승인</td>
                   <td>
                     <div class="user-profile">
                       <div class="user-initial color-teal">최</div>
@@ -384,24 +363,15 @@
                     <button class="btn-detail">상세보기</button>
                     <button class="btn-edit">수정하기</button>
                   </td>
+                  <td>
+                    <button class="btn-delete">삭제</button>
+                  </td>
                 </tr>
                 <tr>
                   <td><input type="checkbox" /></td>
                   <td>23034</td>
-                  <td>
-                    <select class="status-select">
-                      <option>SK Telecom</option>
-                      <option>KT</option>
-                      <option>LG U+</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="status-select">
-                      <option>승인</option>
-                      <option>대기</option>
-                      <option>거부</option>
-                    </select>
-                  </td>
+                  <td>SK Telecom</td>
+                  <td>승인</td>
                   <td>
                     <div class="user-profile">
                       <div class="user-initial color-pink">정</div>
@@ -414,24 +384,15 @@
                     <button class="btn-detail">상세보기</button>
                     <button class="btn-edit">수정하기</button>
                   </td>
+                  <td>
+                    <button class="btn-delete">삭제</button>
+                  </td>
                 </tr>
                 <tr>
                   <td><input type="checkbox" /></td>
                   <td>23033</td>
-                  <td>
-                    <select class="status-select">
-                      <option>SK Telecom</option>
-                      <option>KT</option>
-                      <option>LG U+</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="status-select">
-                      <option>승인</option>
-                      <option>대기</option>
-                      <option>거부</option>
-                    </select>
-                  </td>
+                  <td>SK Telecom</td>
+                  <td>승인</td>
                   <td>
                     <div class="user-profile">
                       <div class="user-initial color-red">한</div>
@@ -444,24 +405,15 @@
                     <button class="btn-detail">상세보기</button>
                     <button class="btn-edit">수정하기</button>
                   </td>
+                  <td>
+                    <button class="btn-delete">삭제</button>
+                  </td>
                 </tr>
                 <tr>
                   <td><input type="checkbox" /></td>
                   <td>23032</td>
-                  <td>
-                    <select class="status-select">
-                      <option>SK Telecom</option>
-                      <option>KT</option>
-                      <option>LG U+</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="status-select">
-                      <option>승인</option>
-                      <option>대기</option>
-                      <option>거부</option>
-                    </select>
-                  </td>
+                  <td>SK Telecom</td>
+                  <td>승인</td>
                   <td>
                     <div class="user-profile">
                       <div class="user-initial color-slate">윤</div>
@@ -474,24 +426,15 @@
                     <button class="btn-detail">상세보기</button>
                     <button class="btn-edit">수정하기</button>
                   </td>
+                  <td>
+                    <button class="btn-delete">삭제</button>
+                  </td>
                 </tr>
                 <tr>
                   <td><input type="checkbox" /></td>
                   <td>23031</td>
-                  <td>
-                    <select class="status-select">
-                      <option>SK Telecom</option>
-                      <option>KT</option>
-                      <option>LG U+</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="status-select">
-                      <option>승인</option>
-                      <option>대기</option>
-                      <option>거부</option>
-                    </select>
-                  </td>
+                  <td>SK Telecom</td>
+                  <td>승인</td>
                   <td>
                     <div class="user-profile">
                       <div class="user-initial color-emerald">강</div>
@@ -504,24 +447,15 @@
                     <button class="btn-detail">상세보기</button>
                     <button class="btn-edit">수정하기</button>
                   </td>
+                  <td>
+                    <button class="btn-delete">삭제</button>
+                  </td>
                 </tr>
                 <tr>
                   <td><input type="checkbox" /></td>
                   <td>23030</td>
-                  <td>
-                    <select class="status-select">
-                      <option>SK Telecom</option>
-                      <option>KT</option>
-                      <option>LG U+</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="status-select">
-                      <option>승인</option>
-                      <option>대기</option>
-                      <option>거부</option>
-                    </select>
-                  </td>
+                  <td>SK Telecom</td>
+                  <td>승인</td>
                   <td>
                     <div class="user-profile">
                       <div class="user-initial color-indigo">송</div>
@@ -534,12 +468,15 @@
                     <button class="btn-detail">상세보기</button>
                     <button class="btn-edit">수정하기</button>
                   </td>
+                  <td>
+                    <button class="btn-delete">삭제</button>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="list-footer">
-            <button class="btn-submit">선택된 내용 변경</button>
+            <button class="btn-submit">전체 삭제</button>
             <div class="pagination">
               <button class="page-btn" disabled>이전</button>
               <button class="page-btn active">1</button>
