@@ -69,21 +69,15 @@
       }
     });
 
-    // Toggle on click of the main menu item (for submenu toggle)
+    // Toggle on click of the menu arrow (for submenu toggle)
     submenuParents.forEach(li => {
       const a = li.querySelector(':scope > a');
       if (!a) return;
       
-      // Add click handler for the arrow area
-      // Detect clicks on the right side where the arrow is located
+      // Add click handler specifically for the arrow image
       a.addEventListener('click', function (e) {
-        const rect = a.getBoundingClientRect();
-        const clickX = e.clientX;
-        const itemWidth = rect.width;
-        const arrowArea = rect.left + (itemWidth * 0.8); // Arrow is in the right 20% of the item
-        
-        // If click is in the arrow area, toggle submenu
-        if (clickX >= arrowArea) {
+        // Check if the clicked element is the arrow image
+        if (e.target.classList.contains('menu-arrow')) {
           e.preventDefault();
           e.stopPropagation();
           const willOpen = !li.classList.contains('open');

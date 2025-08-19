@@ -168,27 +168,27 @@ body {
     display: block;
 }
 
-/* 2뎁스 화살표 아이콘 (제공 SVG) */
+/* 2뎁스 화살표 아이콘 */
 .menu-section li:has(> .submenu) > a {
   position: relative;
   padding-right: 32px; /* 화살표 영역 확보 */
 }
-.menu-section li:has(> .submenu) > a::after {
-  content: "";
+
+.menu-arrow {
   position: absolute;
   right: 8px;
   top: 50%;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   transform: translateY(-50%) rotate(0deg);
   transition: transform .2s ease;
-  background: center / 20px 20px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cpath d='M19 9.00012L12 15.0001L5 9.00012' stroke='%231C274C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  cursor: pointer;
 }
 
 
 
 /* 펼쳐진 상태에서 화살표 위로 회전 */
-.menu-section li.open > a::after {
+.menu-section li.open > .menu-arrow {
   transform: translateY(-50%) rotate(180deg);
 }
 
@@ -205,12 +205,10 @@ body {
     display: block;
 }
 
-/* 활성화된 경우 화살표도 위로 회전 고정 및 활성화된 메뉴와 같은 파란색으로 변경 */
-.menu-section li:has(> a.active) > a::after,
-.menu-section li:has(> .submenu a.active) > a::after {
+/* 활성화된 경우 화살표도 위로 회전 고정 */
+.menu-section li:has(> a.active) > .menu-arrow,
+.menu-section li:has(> .submenu a.active) > .menu-arrow {
     transform: translateY(-50%) rotate(180deg);
-    background-image: url('../asset/select-arrow.svg');
-    filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(202deg) brightness(118%) contrast(119%);
 }
 
 .submenu li a {
