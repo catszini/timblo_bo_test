@@ -1,11 +1,12 @@
-// Sidebar 2-depth submenu persistent toggle
+// 사이드바 2단계 서브메뉴 지속 토글
 (function () {
-  // Mark when menu JS is ready to avoid CSS hidden state
+  // 메뉴 JS 준비 완료 표시 (CSS 숨김 상태 방지)
   document.documentElement.classList.add('menu-ready');
+  
   function getKey(liEl) {
     const a = liEl.querySelector(':scope > a');
     if (!a) return null;
-    // prefer href if meaningful, fallback to text
+    // href가 의미있으면 우선, 없으면 텍스트로 폴백
     const href = a.getAttribute('href');
     const text = (a.textContent || '').trim();
     return (href && href !== '#') ? `href:${href}` : `text:${text}`;
@@ -23,7 +24,7 @@
     try {
       localStorage.setItem('openSubmenus', JSON.stringify(state));
     } catch (e) {
-      // ignore
+      // 무시
     }
   }
 
@@ -49,10 +50,10 @@
 
     const state = loadState();
 
-    // Initially collapse all
+    // 초기에 모든 서브메뉴 닫기
     submenuParents.forEach(li => li.classList.remove('open'));
 
-    // Re-open from state
+    // 저장된 상태에서 다시 열기
     submenuParents.forEach(li => {
       const key = getKey(li);
       if (key && state.includes(key)) {
@@ -60,12 +61,11 @@
       }
     });
 
-    // Also open if current page is active within submenu
+    // 현재 페이지가 서브메뉴 내부에 있으면 열기
     submenuParents.forEach(li => {
       const hasActiveChild = !!li.querySelector(':scope > .submenu a.active');
       if (hasActiveChild) {
         li.classList.add('open');
-        console.log('Opening submenu for:', li.querySelector('a').textContent.trim());
       }
     });
 
@@ -106,23 +106,31 @@
     // 페이지 로드 시 활성 메뉴로 스크롤
     scrollToActiveMenu();
 
-    // Toggle on click of the menu arrow (for submenu toggle)
+    // 메뉴 화살표 클릭 시 서브메뉴 토글
     submenuParents.forEach(li => {
       const a = li.querySelector(':scope > a');
       if (!a) return;
       
-      // Add click handler specifically for the arrow image
+      // 전체 링크에 클릭 핸들러 추가
       a.addEventListener('click', function (e) {
-        // Check if the clicked element is the arrow image
+        // 클릭된 요소가 화살표 이미지인지 확인
         if (e.target.classList.contains('menu-arrow')) {
           e.preventDefault();
           e.stopPropagation();
           const willOpen = !li.classList.contains('open');
-          console.log('Arrow clicked for:', a.textContent.trim(), 'willOpen:', willOpen);
           setOpen(li, willOpen, state);
-          console.log('Submenu state after arrow click:', li.classList.contains('open'));
+          return;
         }
-        // If click is on the text area, let the normal navigation happen
+        
+        // 서브메뉴가 있고 현재 활성 메뉴(현재 페이지)인 경우 네비게이션 방지
+        if (a.classList.contains('active') && li.querySelector(':scope > .submenu')) {
+          e.preventDefault();
+          const willOpen = !li.classList.contains('open');
+          setOpen(li, willOpen, state);
+          return;
+        }
+        
+        // 그 외의 경우 일반 네비게이션 허용
       });
     });
 
@@ -161,5 +169,3 @@
     });
   });
 })();
-
-

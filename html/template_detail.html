@@ -425,35 +425,8 @@
     </div>
   </div>
 
-  <script>
-    // 편집 드롭다운 토글 (상세 페이지 전용)
-    document.addEventListener('click', (e) => {
-      if (e.target.closest('.btn-edit')) {
-        const wrapper = e.target.closest('.edit-wrapper');
-        const menu = wrapper.querySelector('.dropdown-menu');
-        const willShow = menu.style.display !== 'block';
-        document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
-        menu.style.display = willShow ? 'block' : 'none';
-        e.stopPropagation();
-        return;
-      }
-      if (!e.target.closest('.dropdown-menu')) {
-        document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
-      }
-      if (e.target.closest('.new-category')) {
-        // 편집 모드에서만 새 카테고리 생성 모달 표시
-        const editWrapper = e.target.closest('.edit-wrapper');
-        if (editWrapper && editWrapper.querySelector('.dropdown-menu').style.display === 'block') {
-          document.querySelector('.category-modal-overlay').classList.remove('category-modal-hidden');
-          document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
-        }
-      }
-      if (e.target.matches('.category-modal-overlay') || e.target.matches('.category-modal .btn-cancel')) {
-        document.querySelector('.category-modal-overlay').classList.add('category-modal-hidden');
-      }
-    });
-  </script>
   <script src="../asset/menu.js"></script>
+  <script src="../asset/main.js"></script>
 </body>
 
 </html>

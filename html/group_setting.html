@@ -181,13 +181,13 @@
       <h3 class="group-setting-modal-header">새 그룹 추가</h3>
       <form id="addGroupForm">
         <div class="group-setting-modal-form-row">
-          <label class="group-setting-modal-form-label required">그룹명</label>
-          <input type="text" class="group-setting-modal-form-input" id="groupName" placeholder="그룹명을 입력하세요" required>
+          <label class="group-setting-modal-form-label">그룹명</label>
+          <input type="text" class="group-setting-modal-form-input" id="groupName" placeholder="그룹명을 입력하세요">
         </div>
 
         <div class="group-setting-modal-form-row">
-          <label class="group-setting-modal-form-label required">구분</label>
-          <select class="group-setting-modal-form-select" id="groupType" required>
+          <label class="group-setting-modal-form-label">구분</label>
+          <select class="group-setting-modal-form-select" id="groupType">
             <option value="">구분을 선택하세요</option>
             <option value="최고관리자">최고관리자</option>
             <option value="하위관리자">하위관리자</option>
@@ -205,61 +205,7 @@
   </div>
 
   <script src="../asset/menu.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const addGroupBtn = document.querySelector('.group-setting-btn-add-group');
-      const modal = document.getElementById('addGroupModal');
-      const cancelBtn = document.getElementById('cancelBtn');
-      const form = document.getElementById('addGroupForm');
-
-      // 새 그룹 추가 버튼 클릭 시 모달 열기
-      addGroupBtn.addEventListener('click', function () {
-        modal.classList.add('active');
-      });
-
-      // 취소 버튼 클릭 시 모달 닫기
-      cancelBtn.addEventListener('click', function () {
-        modal.classList.remove('active');
-        form.reset();
-      });
-
-      // 모달 배경 클릭 시 모달 닫기
-      modal.addEventListener('click', function (e) {
-        if (e.target === modal) {
-          modal.classList.remove('active');
-          form.reset();
-        }
-      });
-
-      // 폼 제출 처리
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const groupName = document.getElementById('groupName').value;
-        const groupType = document.getElementById('groupType').value;
-
-        if (groupName && groupType) {
-          // 여기서 새 그룹 추가 로직 구현
-          console.log('새 그룹 추가:', { groupName, groupType });
-
-          // 모달 닫기 및 폼 초기화
-          modal.classList.remove('active');
-          form.reset();
-
-          // 성공 메시지 (선택사항)
-          alert('새 그룹이 추가되었습니다.');
-        }
-      });
-
-      // ESC 키로 모달 닫기
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-          modal.classList.remove('active');
-          form.reset();
-        }
-      });
-    });
-  </script>
+  <script src="../asset/main.js"></script>
 </body>
 
 </html>

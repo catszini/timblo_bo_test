@@ -553,12 +553,19 @@ body {
 /* 검색 필터 스타일 개선 */
 .search-section .condition-select {
     min-width: 120px;
-    padding: 8px 12px;
+    padding: 8px 32px 8px 12px;
     border: 1px solid #E5E5E5;
     border-radius: 4px;
     font-size: 14px;
     background: #fff;
     cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('../asset/select-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px 16px;
 }
 
 .search-section .condition-select:focus {
@@ -2029,6 +2036,28 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     width: 120px;
 }
 
+.form-select {
+    padding: 8px 32px 8px 12px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    font-size: 14px;
+    background: #fff;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('../asset/select-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px 16px;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: #0066FF;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
 .inline-auto {
     margin-left: auto;
     gap: 8px;
@@ -2212,11 +2241,25 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 .member-register-form-select {
   flex: 1;
   padding: 12px 16px;
+  padding-right: 40px;
   border: 1px solid #D1D5DB;
   border-radius: 8px;
   font-size: 14px;
   background: white;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('../asset/select-arrow.svg');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px 16px;
+}
+
+.member-register-form-select:focus {
+  outline: none;
+  border-color: #0066FF;
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
 }
 
 .member-register-password-input-wrapper {
@@ -2242,20 +2285,52 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   display: flex;
   align-items: center;
   gap: 8px;
+  height: 24px;
+}
+
+.member-register-password-icons .member-register-password-icon:first-child {
+  position: relative; /* 첫 번째 아이콘 (눈 아이콘들)의 컨테이너 */
+}
+
+#eye-closed, #eye-open {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.member-register-password-icons .member-register-password-icon:last-child {
+  position: relative; /* X 아이콘은 일반적인 플로우에 따라 배치 */
+  margin-left: 30px;
 }
 
 .member-register-password-icon {
   cursor: pointer;
   color: #6B7280;
   font-size: 16px;
-  transition: all 0.2s;
+  transition: all 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
   display: flex;
   align-items: center;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.member-register-password-icon:hover {
+  transform: scale(1.1);
+  color: #4B5563;
 }
 
 .member-register-password-icon:hover svg path {
-  stroke: #6B7280;
-  fill: #6B7280;
+  stroke: #4B5563;
+  fill: #4B5563;
+}
+
+.member-register-password-icon:active {
+  transform: scale(0.95);
 }
 
 .member-register-password-icon.active svg path {
@@ -2264,7 +2339,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .member-register-password-icon svg {
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 }
 
 .member-register-form-buttons {

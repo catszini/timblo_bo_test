@@ -183,7 +183,7 @@
                         fill="#A9AFB3" />
                     </svg>
                   </span>
-                  <span class="member-register-password-icon" id="eye-open" style="display: none;">
+                  <span class="member-register-password-icon" id="eye-open">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="14" viewBox="0 0 18 14" fill="none">
                       <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M0.105574 6.53917C1.34557 2.81333 4.85974 0.125 9.00391 0.125C13.1456 0.125 16.6581 2.81083 17.8997 6.53333C17.9997 6.835 17.9997 7.16 17.8997 7.46083C16.6606 11.1867 13.1456 13.875 9.00224 13.875C4.86057 13.875 1.34724 11.1892 0.106408 7.46667C0.00619748 7.16562 0.00619748 6.84021 0.106408 6.53917H0.105574ZM13.3781 7C13.3781 8.16032 12.9171 9.27312 12.0967 10.0936C11.2762 10.9141 10.1634 11.375 9.00307 11.375C7.84275 11.375 6.72995 10.9141 5.90948 10.0936C5.08901 9.27312 4.62807 8.16032 4.62807 7C4.62807 5.83968 5.08901 4.72688 5.90948 3.90641C6.72995 3.08594 7.84275 2.625 9.00307 2.625C10.1634 2.625 11.2762 3.08594 12.0967 3.90641C12.9171 4.72688 13.3781 5.83968 13.3781 7Z"
@@ -221,29 +221,7 @@
   </div>
 
   <script src="../asset/menu.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const eyeClosed = document.getElementById('eye-closed');
-      const eyeOpen = document.getElementById('eye-open');
-      const passwordInput = document.querySelector('.member-register-password-input');
-
-      // 감은 눈 클릭 시
-      eyeClosed.addEventListener('click', function () {
-        passwordInput.type = 'text';
-        eyeClosed.style.display = 'none';
-        eyeOpen.style.display = 'flex';
-        eyeOpen.classList.add('active');
-      });
-
-      // 뜬 눈 클릭 시
-      eyeOpen.addEventListener('click', function () {
-        passwordInput.type = 'password';
-        eyeOpen.style.display = 'none';
-        eyeClosed.style.display = 'flex';
-        eyeClosed.classList.remove('active');
-      });
-    });
-  </script>
+  <script src="../asset/main.js"></script>
 </body>
 
 </html>

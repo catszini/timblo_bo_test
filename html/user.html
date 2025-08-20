@@ -510,37 +510,8 @@
     </div>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // 초기화 버튼 클릭 → 모달 오픈 (사용자명/이메일 채움)
-      document.querySelectorAll('.btn-reset').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const row = e.target.closest('tr');
-          const name = row.querySelector('.user-profile span')?.textContent?.trim() || '';
-          const email = row.children[1]?.textContent?.trim() || '';
-          document.getElementById('reset-name').textContent = name;
-          document.getElementById('reset-email').textContent = email;
-          document.getElementById('reset-modal').classList.remove('modal-overlay-hidden');
-        });
-      });
-
-      // 취소/확인 → 모달 닫기 (추후 실제 로직 연결 가능)
-      document.getElementById('reset-cancel').addEventListener('click', () => {
-        document.getElementById('reset-modal').classList.add('modal-overlay-hidden');
-      });
-      document.getElementById('reset-confirm').addEventListener('click', () => {
-        document.getElementById('reset-modal').classList.add('modal-overlay-hidden');
-      });
-
-      // 오버레이 클릭 닫기
-      document.getElementById('reset-modal').addEventListener('click', (e) => {
-        if (e.target.id === 'reset-modal') {
-          e.currentTarget.classList.add('modal-overlay-hidden');
-        }
-      });
-    });
-  </script>
   <script src="../asset/menu.js"></script>
+  <script src="../asset/main.js"></script>
 </body>
 
 </html>
