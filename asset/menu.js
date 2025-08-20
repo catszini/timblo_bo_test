@@ -69,6 +69,43 @@
       }
     });
 
+    // 활성 메뉴로 스크롤하는 함수
+    function scrollToActiveMenu() {
+      // 활성 메뉴 찾기 (서브메뉴 내부 또는 메인 메뉴)
+      const activeMenu = sidebar.querySelector('a.active');
+      if (!activeMenu) return;
+
+      const menuSection = activeMenu.closest('.menu-section');
+      if (!menuSection) return;
+
+      // 약간의 지연을 두어 서브메뉴 애니메이션이 완료된 후 스크롤
+      setTimeout(() => {
+        const sidebarRect = sidebar.getBoundingClientRect();
+        const activeRect = activeMenu.getBoundingClientRect();
+        const menuSectionRect = menuSection.getBoundingClientRect();
+        
+        // 사이드바 내에서의 상대적 위치 계산
+        const relativeTop = activeRect.top - sidebarRect.top + sidebar.scrollTop;
+        
+        // 활성 메뉴가 사이드바 중앙에 오도록 스크롤 위치 계산
+        const sidebarHeight = sidebar.clientHeight;
+        const targetScrollTop = relativeTop - (sidebarHeight / 2) + (activeRect.height / 2);
+        
+        // 스크롤 범위 제한
+        const maxScrollTop = sidebar.scrollHeight - sidebar.clientHeight;
+        const finalScrollTop = Math.max(0, Math.min(targetScrollTop, maxScrollTop));
+        
+        // 부드러운 스크롤
+        sidebar.scrollTo({
+          top: finalScrollTop,
+          behavior: 'smooth'
+        });
+      }, 300); // 서브메뉴 애니메이션 시간을 고려한 지연
+    }
+
+    // 페이지 로드 시 활성 메뉴로 스크롤
+    scrollToActiveMenu();
+
     // Toggle on click of the menu arrow (for submenu toggle)
     submenuParents.forEach(li => {
       const a = li.querySelector(':scope > a');

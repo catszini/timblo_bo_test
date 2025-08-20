@@ -304,14 +304,14 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 36px;
-    padding: 0 16px;
-    border-radius: 8px;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 6px;
     background: #1677FF;
     border: 1px solid #1677FF;
     color: #fff;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1;
     box-shadow: 0 1px 2px rgba(16,24,40,0.05);
     cursor: pointer;
@@ -1258,6 +1258,7 @@ input:checked + .slider:before {
     border-bottom: 1px solid #F3F4F6;
     font-size: 14px;
     color: #374151;
+    vertical-align: middle;
 }
 
 .user-page.member-page .table-container tbody tr:hover {
@@ -1925,23 +1926,52 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     background: #F3F4F6;
     border-radius: 8px;
     padding: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.period-toggle-wrap::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(50% - 4px);
+    height: calc(100% - 4px);
+    background: #fff;
+    border-radius: 6px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+.period-toggle-wrap.yearly::before {
+    transform: translateX(calc(100% + 2px));
+}
+
+.period-toggle-active,
+.period-toggle-inactive {
+    border: none;
+    background: transparent;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+    font-size: 14px;
 }
 
 .period-toggle-active {
-    border: none;
-    background: #fff;
     color: #1F6BFF;
-    padding: 6px 12px;
-    border-radius: 6px;
     font-weight: 600;
 }
 
 .period-toggle-inactive {
-    border: none;
-    background: transparent;
     color: #4D5256;
-    padding: 6px 12px;
-    border-radius: 6px;
+    font-weight: 400;
+}
+
+.period-toggle-inactive:hover {
+    color: #1F6BFF;
 }
 
 .period-row-flex {
@@ -2749,6 +2779,22 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 .workspace-page .common-topbar {
   align-items: center;
   width: 100%;
+}
+
+/* 사용량 통계 페이지 전용 스타일 */
+.stats-usage-page .search-section .common-topbar {
+  justify-content: flex-start;
+}
+
+.stats-usage-page .search-section .common-topbar .tb-left {
+  align-items: flex-start;
+}
+
+.stats-usage-page .stats-head,
+.stats-usage-page .stats-head-row,
+.stats-usage-page .stats-title {
+  text-align: left;
+  justify-content: flex-start;
 }
 
 .workspace-page .tb-right.workspace-actions-right {
