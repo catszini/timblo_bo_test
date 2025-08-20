@@ -88,6 +88,40 @@
         // If click is on the text area, let the normal navigation happen
       });
     });
+
+    // 사이드바 높이 동적 조정 함수
+    function adjustSidebarHeight() {
+      const sidebar = document.querySelector('.sidebar');
+      const content = document.querySelector('.content');
+      
+      if (!sidebar || !content) return;
+      
+      // 콘텐츠와 사이드바의 실제 높이 계산
+      const contentHeight = content.scrollHeight;
+      const sidebarContentHeight = sidebar.scrollHeight;
+      const viewportHeight = window.innerHeight;
+      
+      // 콘텐츠가 화면보다 길고, 사이드바보다 길 경우
+      if (contentHeight > viewportHeight && contentHeight > sidebarContentHeight) {
+        sidebar.classList.add('content-height');
+        sidebar.classList.remove('auto-height');
+      } else {
+        sidebar.classList.add('auto-height');
+        sidebar.classList.remove('content-height');
+      }
+    }
+    
+    // 초기 조정
+    adjustSidebarHeight();
+    
+    // 윈도우 리사이즈 시 재조정
+    window.addEventListener('resize', adjustSidebarHeight);
+    
+    // 메뉴 토글 시 재조정
+    submenuParents.forEach(li => {
+      const observer = new MutationObserver(adjustSidebarHeight);
+      observer.observe(li, { attributes: true, attributeFilter: ['class'] });
+    });
   });
 })();
 

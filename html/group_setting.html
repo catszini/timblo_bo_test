@@ -6,176 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>권한 관리 - 그룹 설정</title>
   <link rel="stylesheet" href="../asset/style.css">
-  <style>
-    * {
-      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    }
+  <link rel="stylesheet" href="../asset/modal.css">
 
-    .member-page {
-      background-color: #F8FAFC;
-      padding: 0;
-      min-height: 100vh;
-    }
-
-    .member-page .content-body {
-      background-color: #F8FAFC;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: calc(100vh - 120px);
-    }
-
-    .content-header {
-      background-color: white;
-      padding: 30px 30px 20px 30px;
-      margin: 0;
-      border-bottom: 1px solid #E5E7EB;
-    }
-
-    .group-table-container {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-    }
-
-    .group-table-header {
-      background-color: #F8FAFC;
-      padding: 20px 24px;
-      border-bottom: 1px solid #E5E7EB;
-    }
-
-    .group-table-title {
-      font-size: 20px;
-      font-weight: 600;
-      color: #111827;
-      margin: 0;
-    }
-
-    .group-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .group-table th {
-      background-color: #F9FAFB;
-      padding: 16px 20px;
-      text-align: left;
-      font-weight: 600;
-      color: #374151;
-      border-bottom: 1px solid #E5E7EB;
-      font-size: 14px;
-    }
-
-    .group-table td {
-      padding: 16px 20px;
-      border-bottom: 1px solid #F3F4F6;
-      color: #374151;
-      font-size: 14px;
-    }
-
-    .group-table tr:hover {
-      background-color: #F9FAFB;
-    }
-
-    .group-name {
-      font-weight: 500;
-      color: #111827;
-    }
-
-    .group-type {
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
-      text-align: center;
-      display: inline-block;
-    }
-
-    .group-type.master {
-      background-color: #FEF3C7;
-      color: #92400E;
-    }
-
-    .group-type.admin {
-      background-color: #DBEAFE;
-      color: #1E40AF;
-    }
-
-    .group-type.employee {
-      background-color: #D1FAE5;
-      color: #065F46;
-    }
-
-    .group-type.test {
-      background-color: #F3E8FF;
-      color: #7C3AED;
-    }
-
-    .action-buttons {
-      display: flex;
-      gap: 8px;
-    }
-
-    .btn-edit,
-    .btn-delete {
-      padding: 6px 12px;
-      border: none;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .btn-edit {
-      background-color: #3B82F6;
-      color: white;
-    }
-
-    .btn-edit:hover {
-      background-color: #2563EB;
-    }
-
-    .btn-delete {
-      background-color: #EF4444;
-      color: white;
-    }
-
-    .btn-delete:hover {
-      background-color: #DC2626;
-    }
-
-    .add-group-section {
-      padding: 20px 24px;
-      border-top: 1px solid #E5E7EB;
-      background-color: #F8FAFC;
-    }
-
-    .btn-add-group {
-      background-color: #10B981;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .btn-add-group:hover {
-      background-color: #059669;
-    }
-  </style>
 </head>
 
-<body class="member-page">
+<body class="page-group-setting">
   <div class="container">
-    <!-- 사이드바 -->
+    <!-- 왼쪽 메뉴바 -->
     <div class="sidebar">
       <div class="logo">
         <div class="logo-icon">T</div>
@@ -214,7 +51,7 @@
         <ul>
           <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
           <li>
-            <a href="user.html">
+            <a href="user.html" class="active">
               <img src="../asset/user.svg" alt="">권한 관리
               <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
             </a>
@@ -264,19 +101,20 @@
       </div>
     </div>
 
-    <!-- 콘텐츠 영역 -->
-    <div class="content">
+    <!-- 오른쪽 콘텐츠 영역 -->
+    <div class="content user-page group-setting-page">
       <div class="content-header">
-        <div class="breadcrumb">워크스페이스 > 권한 관리 > 그룹 설정</div>
+        <div class="breadcrumb">
+          워크스페이스 > 권한 관리 > 그룹 설정
+        </div>
       </div>
-
       <div class="content-body">
-        <div class="group-table-container">
-          <div class="group-table-header">
-            <h2 class="group-table-title">그룹 설정</h2>
-          </div>
+        <div class="group-setting-add-group-top">
+          <button class="group-setting-btn-add-group">+ 새 그룹 추가</button>
+        </div>
 
-          <table class="group-table">
+        <div class="group-setting-table-container">
+          <table class="group-setting-table">
             <thead>
               <tr>
                 <th>번호</th>
@@ -288,52 +126,140 @@
             <tbody>
               <tr>
                 <td>1</td>
-                <td class="group-name">마스터</td>
-                <td><span class="group-type master">최고관리자</span></td>
-                <td class="action-buttons">
-                  <button class="btn-edit">수정</button>
-                  <button class="btn-delete">삭제</button>
+                <td class="group-setting-name">마스터</td>
+                <td>최고관리자</td>
+                <td>
+                  <div class="group-setting-action-buttons">
+                    <button class="group-setting-btn-edit">수정</button>
+                    <button class="group-setting-btn-delete">삭제</button>
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td>2</td>
-                <td class="group-name">관리자</td>
-                <td><span class="group-type admin">하위관리자</span></td>
-                <td class="action-buttons">
-                  <button class="btn-edit">수정</button>
-                  <button class="btn-delete">삭제</button>
+                <td class="group-setting-name">관리자</td>
+                <td>하위관리자</td>
+                <td>
+                  <div class="group-setting-action-buttons">
+                    <button class="group-setting-btn-edit">수정</button>
+                    <button class="group-setting-btn-delete">삭제</button>
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td>3</td>
-                <td class="group-name">직원</td>
-                <td><span class="group-type employee">직원</span></td>
-                <td class="action-buttons">
-                  <button class="btn-edit">수정</button>
-                  <button class="btn-delete">삭제</button>
+                <td class="group-setting-name">직원</td>
+                <td>직원</td>
+                <td>
+                  <div class="group-setting-action-buttons">
+                    <button class="group-setting-btn-edit">수정</button>
+                    <button class="group-setting-btn-delete">삭제</button>
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td>4</td>
-                <td class="group-name">테스트</td>
-                <td><span class="group-type test">테스트용</span></td>
-                <td class="action-buttons">
-                  <button class="btn-edit">수정</button>
-                  <button class="btn-delete">삭제</button>
+                <td class="group-setting-name">테스트</td>
+                <td>테스트용</td>
+                <td>
+                  <div class="group-setting-action-buttons">
+                    <button class="group-setting-btn-edit">수정</button>
+                    <button class="group-setting-btn-delete">삭제</button>
+                  </div>
                 </td>
               </tr>
             </tbody>
           </table>
-
-          <div class="add-group-section">
-            <button class="btn-add-group">+ 새 그룹 추가</button>
-          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- 새 그룹 추가 모달 -->
+  <div class="group-setting-modal-overlay" id="addGroupModal">
+    <div class="group-setting-modal-content">
+      <h3 class="group-setting-modal-header">새 그룹 추가</h3>
+      <form id="addGroupForm">
+        <div class="group-setting-modal-form-row">
+          <label class="group-setting-modal-form-label required">그룹명</label>
+          <input type="text" class="group-setting-modal-form-input" id="groupName" placeholder="그룹명을 입력하세요" required>
+        </div>
+
+        <div class="group-setting-modal-form-row">
+          <label class="group-setting-modal-form-label required">구분</label>
+          <select class="group-setting-modal-form-select" id="groupType" required>
+            <option value="">구분을 선택하세요</option>
+            <option value="최고관리자">최고관리자</option>
+            <option value="하위관리자">하위관리자</option>
+            <option value="직원">직원</option>
+            <option value="테스트용">테스트용</option>
+          </select>
+        </div>
+
+        <div class="group-setting-modal-buttons">
+          <button type="button" class="group-setting-modal-btn-cancel" id="cancelBtn">취소</button>
+          <button type="submit" class="group-setting-modal-btn-create" id="createBtn">생성</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script src="../asset/menu.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const addGroupBtn = document.querySelector('.group-setting-btn-add-group');
+      const modal = document.getElementById('addGroupModal');
+      const cancelBtn = document.getElementById('cancelBtn');
+      const form = document.getElementById('addGroupForm');
+
+      // 새 그룹 추가 버튼 클릭 시 모달 열기
+      addGroupBtn.addEventListener('click', function () {
+        modal.classList.add('active');
+      });
+
+      // 취소 버튼 클릭 시 모달 닫기
+      cancelBtn.addEventListener('click', function () {
+        modal.classList.remove('active');
+        form.reset();
+      });
+
+      // 모달 배경 클릭 시 모달 닫기
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+          form.reset();
+        }
+      });
+
+      // 폼 제출 처리
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const groupName = document.getElementById('groupName').value;
+        const groupType = document.getElementById('groupType').value;
+
+        if (groupName && groupType) {
+          // 여기서 새 그룹 추가 로직 구현
+          console.log('새 그룹 추가:', { groupName, groupType });
+
+          // 모달 닫기 및 폼 초기화
+          modal.classList.remove('active');
+          form.reset();
+
+          // 성공 메시지 (선택사항)
+          alert('새 그룹이 추가되었습니다.');
+        }
+      });
+
+      // ESC 키로 모달 닫기
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          modal.classList.remove('active');
+          form.reset();
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>

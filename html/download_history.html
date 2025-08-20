@@ -6,84 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>다운로드 이력</title>
   <link rel="stylesheet" href="../asset/style.css" />
-  <style>
-    /* 다운로드 이력 테이블 고정 레이아웃 */
-    .download-history-page .table-container table {
-      table-layout: auto;
-    }
 
-    /* 컬럼 너비 조정 (구분은 소폭 확대, 타 컬럼 일부 축소) */
-    .download-history-page .table-container table th:first-child,
-    .download-history-page .table-container table td:first-child {
-      min-width: 120px;
-    }
-
-    .download-history-page .table-container table th:nth-child(2),
-    .download-history-page .table-container table td:nth-child(2) {
-      width: 240px;
-    }
-
-    .download-history-page .table-container table td:nth-child(2) {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .download-history-page .table-container table th:nth-child(3),
-    .download-history-page .table-container table td:nth-child(3) {
-      max-width: 240px;
-    }
-
-    .download-history-page .table-container table th:nth-child(4),
-    .download-history-page .table-container table td:nth-child(4) {
-      width: 160px;
-    }
-
-    .download-history-page .table-container table th:nth-child(5),
-    .download-history-page .table-container table td:nth-child(5) {
-      width: 90px;
-    }
-
-    .download-history-page .table-container table th:nth-child(6),
-    .download-history-page .table-container table td:nth-child(6) {
-      width: 110px;
-    }
-
-    /* 헤더: 줄바꿈 방지만 적용 (정렬은 기본 좌측) */
-    .download-history-page .table-container table th {
-      white-space: nowrap;
-    }
-
-    .download-history-page .table-container table th:nth-child(7),
-    .download-history-page .table-container table td:nth-child(7) {
-      width: 140px;
-    }
-
-    /* 파일명(3열) 말줄임 */
-    .download-history-page .table-container table td:nth-child(3) {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    /* 본문: 기본 좌측 정렬 유지 (추가 정렬 제거) */
-
-    /* 이 페이지에서는 마지막 열(이메일)을 좌측 정렬로 강제 (전역 규칙보다 우선) */
-    .download-history-page .table-container table th:last-child,
-    .download-history-page .table-container table td:last-child {
-      text-align: left;
-    }
-
-    /* 구분(1열) 1줄 고정 + 말줄임 (줄바꿈 방지) */
-    .download-history-page .table-container table td:first-child {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  </style>
 </head>
 
-<body class="download-history-page">
+<body class="page-download-history download-history-page">
   <div class="container">
     <!-- 사이드바 -->
     <div class="sidebar">
@@ -131,7 +57,7 @@
             <ul class="submenu">
               <li><a href="#">권한정보</a></li>
               <li><a href="member_register.html">권한등록</a></li>
-              <li><a href="#">그룹설정</a></li>
+              <li><a href="group_setting.html">그룹설정</a></li>
               <li><a href="#">비활성 권한</a></li>
               <li><a href="#">탈퇴 권한</a></li>
             </ul>

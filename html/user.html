@@ -8,36 +8,11 @@
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
 
-  <style>
-    /* 삭제 컬럼 가운데 정렬 - 더 구체적인 선택자 사용 */
-    .user-page.member-page .table-container table th:last-child,
-    .user-page.member-page .table-container table td:last-child {
-      text-align: center !important;
-      vertical-align: middle;
-    }
 
-    /* 삭제 버튼 스타일 */
-    .btn-delete {
-      background-color: #EF4444;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 500;
-      display: inline-block;
-      text-align: center;
-    }
-
-    .btn-delete:hover {
-      background-color: #DC2626;
-    }
-  </style>
 
 </head>
 
-<body>
+<body class="page-user">
   <div class="container">
     <!-- 왼쪽 메뉴바 -->
     <div class="sidebar">
@@ -85,7 +60,7 @@
             <ul class="submenu">
               <li><a href="#">권한정보</a></li>
               <li><a href="member_register.html">권한등록</a></li>
-              <li><a href="#">그룹설정</a></li>
+              <li><a href="group_setting.html">그룹설정</a></li>
               <li><a href="#">비활성 권한</a></li>
               <li><a href="#">탈퇴 권한</a></li>
             </ul>
@@ -129,7 +104,7 @@
     </div>
 
     <!-- 오른쪽 콘텐츠 영역 -->
-    <div class="content user-page member-page">
+    <div class="content user-page member-page user-page-custom">
       <div class="content-header">
         <div class="breadcrumb">
           워크스페이스 > 권한 관리

@@ -6,177 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>워크스페이스 일반</title>
   <link rel="stylesheet" href="../asset/style.css" />
-  <style>
-    .general-page .card {
-      background: #F7FAFD;
-      border: 1px solid #E5EAF0;
-      border-radius: 8px;
-      padding: 20px;
-    }
 
-    .general-page .section {
-      margin-bottom: 24px;
-    }
-
-    .general-page .row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-top: 12px;
-    }
-
-    .general-page .logo-box {
-      width: 260px;
-      height: 120px;
-      background: #fff;
-      border: 1px solid #E5E5E5;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .general-page .hint {
-      color: #666;
-      font-size: 13px;
-      margin-top: 6px;
-    }
-
-    .general-page .btn {
-      padding: 8px 16px;
-      border-radius: 4px;
-      border: 1px solid #E5E5E5;
-      background: #fff;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .general-page .btn.primary {
-      background: #0066FF;
-      color: #fff;
-      border: none;
-    }
-
-    .general-page .btn.danger {
-      border-color: #FF4444;
-      color: #FF4444;
-      background: #fff;
-    }
-
-    .general-page .name-row {
-      display: flex;
-      gap: 12px;
-      max-width: 520px;
-      margin-top: 16px;
-      /* 제목과 인풋 사이 간격 확대 */
-    }
-
-    .general-page .form-input {
-      flex: 1;
-      padding: 10px 12px;
-      border: 1px solid #E5E5E5;
-      border-radius: 4px;
-      font-size: 14px;
-    }
-
-    .general-page .toggle-group {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .general-page .toggle-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #333;
-      font-size: 14px;
-    }
-
-    .general-page .table-container {
-      margin-top: 16px;
-    }
-
-    /* 회의 데이터 자동삭제 전용 */
-    .general-page .auto-delete-desc {
-      margin-top: 8px;
-      color: #4D5256;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .general-page .inline-group {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .general-page .count-input.small {
-      width: 60px;
-    }
-
-    .general-page .condition-select.small {
-      min-width: 84px;
-    }
-
-    .general-page .custom-retention {
-      display: none;
-    }
-
-    /* 회의 데이터 자동삭제 카드 배경/외곽선/여백 제거 */
-    .general-page .auto-delete-card {
-      background: transparent;
-      border: none;
-      padding: 0;
-    }
-
-    .general-page .auto-delete-card .table-container {
-      margin-top: 8px;
-      box-shadow: none;
-      border: none;
-      background: transparent;
-    }
-
-    /* 로고 이미지 카드 배경/외곽선/여백 제거 */
-    .general-page .logo-card {
-      background: #F7FAFD;
-      border: 1px solid #E5EAF0;
-      border-radius: 8px;
-      padding: 20px;
-    }
-
-    .general-page .logo-card .logo-box {
-      background: #FFFFFF;
-      border: 1px solid #E5E5E5;
-    }
-
-    .general-page .logo-card .row {
-      margin-top: 12px;
-    }
-
-    .general-page .unit-text {
-      font-size: 14px;
-      color: #4D5256;
-    }
-
-    /* 섹션 타이틀 위 여백 확대 */
-    .general-page .ws-title,
-    .general-page .perm-title,
-    .general-page .auto-del-title {
-      margin-top: 30px;
-      display: block;
-    }
-
-    /* 워크스페이스 이름 카드 경량화 */
-    .general-page .name-card {
-      background: transparent;
-      border: none;
-      padding: 0;
-    }
-  </style>
 </head>
 
-<body class="general-page">
+<body class="page-general general-page">
   <div class="container">
     <!-- 사이드바 -->
     <div class="sidebar">
@@ -224,7 +57,7 @@
             <ul class="submenu">
               <li><a href="#">권한정보</a></li>
               <li><a href="member_register.html">권한등록</a></li>
-              <li><a href="#">그룹설정</a></li>
+              <li><a href="group_setting.html">그룹설정</a></li>
               <li><a href="#">비활성 권한</a></li>
               <li><a href="#">탈퇴 권한</a></li>
             </ul>
