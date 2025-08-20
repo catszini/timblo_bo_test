@@ -26,6 +26,11 @@ document.addEventListener('DOMContentLoaded', function () {
     initMemberRegister();
   }
   
+  // 비활성 멤버 페이지
+  if (currentPage.includes('page-inactive-members')) {
+    initInactiveMembers();
+  }
+  
   // 템플릿 상세 페이지
   if (currentPage.includes('template-detail-page')) {
     initTemplateDetail();
@@ -144,6 +149,55 @@ function initGroupSetting() {
 
 // 권한 관리 페이지 초기화
 function initUserPage() {
+  // 전체 선택 체크박스 기능
+  const headerCheckbox = document.querySelector('thead input[type="checkbox"]');
+  const rowCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+
+  if (headerCheckbox && rowCheckboxes.length > 0) {
+    // 헤더 체크박스 클릭 시 전체 선택/해제
+    headerCheckbox.addEventListener('change', function() {
+      const isChecked = this.checked;
+      rowCheckboxes.forEach(checkbox => {
+        checkbox.checked = isChecked;
+        updateRowBackground(checkbox);
+      });
+    });
+
+    // 개별 체크박스 클릭 시 헤더 체크박스 상태 업데이트
+    rowCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        updateRowBackground(this);
+        updateHeaderCheckbox();
+      });
+    });
+
+    // 행 배경색 업데이트 함수
+    function updateRowBackground(checkbox) {
+      const row = checkbox.closest('tr');
+      if (checkbox.checked) {
+        row.classList.add('selected');
+      } else {
+        row.classList.remove('selected');
+      }
+    }
+
+    // 헤더 체크박스 상태 업데이트 함수
+    function updateHeaderCheckbox() {
+      const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
+      
+      if (checkedCount === 0) {
+        headerCheckbox.checked = false;
+        headerCheckbox.indeterminate = false;
+      } else if (checkedCount === rowCheckboxes.length) {
+        headerCheckbox.checked = true;
+        headerCheckbox.indeterminate = false;
+      } else {
+        headerCheckbox.checked = false;
+        headerCheckbox.indeterminate = true;
+      }
+    }
+  }
+
   // 초기화 버튼 클릭 → 모달 오픈 (사용자명/이메일 채움)
   document.querySelectorAll('.btn-reset').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -411,4 +465,80 @@ function initIndex() {
 
 function initPrompt() {
   // 프롬프트 관리 페이지 스크립트
+}
+
+// 비활성 멤버 페이지 초기화
+function initInactiveMembers() {
+  // 검색 기능
+  const searchBtn = document.querySelector('.btn-submit');
+  const resetBtn = document.querySelector('.btn-outline');
+  
+  if (searchBtn) {
+    searchBtn.addEventListener('click', function() {
+      // 검색 로직 (추후 구현)
+      console.log('휴면 회원 검색 실행');
+    });
+  }
+  
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function() {
+      // 검색 폼 초기화
+      document.querySelectorAll('.condition-select').forEach(select => {
+        select.selectedIndex = 0;
+      });
+      document.querySelectorAll('.combo-input').forEach(input => {
+        input.value = '';
+      });
+      document.querySelectorAll('.date-range').forEach(input => {
+        input.value = '';
+      });
+      console.log('검색 조건 초기화');
+    });
+  }
+  
+  // 활성화/탈퇴 버튼 기능
+  document.querySelectorAll('.btn-activate').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const row = e.target.closest('tr');
+      const name = row.querySelector('.user-profile span')?.textContent?.trim() || '';
+      
+      if (confirm(`${name} 회원을 활성화하시겠습니까?`)) {
+        // 활성화 로직 (추후 구현)
+        console.log('회원 활성화:', name);
+        
+        // 임시로 행 제거 (실제로는 서버 통신 후 처리)
+        row.remove();
+        
+        // 총 개수 업데이트
+        updateTotalCount();
+      }
+    });
+  });
+  
+  document.querySelectorAll('.btn-withdraw').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const row = e.target.closest('tr');
+      const name = row.querySelector('.user-profile span')?.textContent?.trim() || '';
+      
+      if (confirm(`${name} 회원을 탈퇴 처리하시겠습니까?\n이 작업은 되돌릴 수 없습니다.`)) {
+        // 탈퇴 로직 (추후 구현)
+        console.log('회원 탈퇴:', name);
+        
+        // 임시로 행 제거 (실제로는 서버 통신 후 처리)
+        row.remove();
+        
+        // 총 개수 업데이트
+        updateTotalCount();
+      }
+    });
+  });
+  
+  // 총 개수 업데이트 함수
+  function updateTotalCount() {
+    const totalCountEl = document.querySelector('.total-count');
+    const rows = document.querySelectorAll('.table-container tbody tr');
+    if (totalCountEl) {
+      totalCountEl.textContent = `Total ${rows.length.toLocaleString()}`;
+    }
+  }
 }

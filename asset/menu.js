@@ -122,12 +122,16 @@
           return;
         }
         
-        // 서브메뉴가 있고 현재 활성 메뉴(현재 페이지)인 경우 네비게이션 방지
+        // 서브메뉴가 있고 현재 활성 메뉴인 경우, href가 #이면 토글만, 실제 링크면 이동 허용
         if (a.classList.contains('active') && li.querySelector(':scope > .submenu')) {
-          e.preventDefault();
-          const willOpen = !li.classList.contains('open');
-          setOpen(li, willOpen, state);
-          return;
+          const href = a.getAttribute('href');
+          if (href === '#') {
+            e.preventDefault();
+            const willOpen = !li.classList.contains('open');
+            setOpen(li, willOpen, state);
+            return;
+          }
+          // href가 실제 페이지 링크면 이동 허용 (preventDefault 하지 않음)
         }
         
         // 그 외의 경우 일반 네비게이션 허용

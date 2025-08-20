@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>권한 관리 - 비활성 권한</title>
+  <link rel="stylesheet" href="../asset/style.css">
+  <link rel="stylesheet" href="../asset/modal.css">
+</head>
+
+<body class="page-inactive-members">
+  <div class="container">
+    <!-- 왼쪽 메뉴바 -->
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>시스템</h3>
+        <ul>
+          <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
+          <li><a href="terms.html"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <h3>워크스페이스</h3>
+        <ul>
+          <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li>
+            <a href="user.html" class="active">
+              <img src="../asset/user.svg" alt="">권한 관리
+              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
+            </a>
+            <ul class="submenu">
+              <li><a href="#">권한정보</a></li>
+              <li><a href="member_register.html">권한등록</a></li>
+              <li><a href="group_setting.html">그룹설정</a></li>
+              <li><a href="inactive_members.html" class="active">비활성 권한</a></li>
+              <li><a href="#">탈퇴 권한</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <img src="../asset/history.svg" alt="">이력 관리
+              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
+            </a>
+            <ul class="submenu">
+              <li><a href="login_history.html">사용자 접속 이력</a></li>
+              <li><a href="download_history.html">다운로드 이력</a></li>
+            </ul>
+          </li>
+          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
+          <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li>
+            <a href="prompt.html">
+              <img src="../asset/history.svg" alt="">프롬프트 관리
+              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
+            </a>
+            <ul class="submenu">
+              <li><a href="index.html">회의록 템플릿 관리</a></li>
+              <li><a href="calendar.html">캘린더 프롬프트 관리</a></li>
+              <li><a href="summary.html">요약번역 관리</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <img src="../asset/stats.svg" alt="">통계
+              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
+            </a>
+            <ul class="submenu">
+              <li><a href="stats_usage.html">사용량 통계</a></li>
+              <li><a href="stats_user.html">사용자별 통계</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 오른쪽 콘텐츠 영역 -->
+    <div class="content user-page inactive-members-page">
+      <div class="content-header">
+        <div class="breadcrumb">
+          워크스페이스 > 권한 관리 > 비활성 권한
+        </div>
+      </div>
+      <div class="content-body">
+        <!-- 휴면 회원 검색 영역 -->
+        <div class="search-section inactive-search">
+          <h2 class="page-title">휴면 회원 검색</h2>
+
+          <div class="basic-info-section">
+            <h3 class="section-title">기본 정보</h3>
+            <div class="search-row">
+              <select class="search-select">
+                <option>회원명</option>
+                <option>이메일</option>
+                <option>연락처</option>
+              </select>
+              <input type="text" class="search-input-wide" placeholder="기본 정보를 입력해주세요">
+              <button class="btn-search">검색하기</button>
+              <button class="btn-reset">전체보기</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 휴면 회원 리스트 영역 -->
+        <div class="list-section">
+          <div class="list-header">
+            <h3>휴면 회원 리스트 <span class="separator-bar"></span><span class="total-count">Total 1,247</span></h3>
+            <div class="list-controls">
+              <select class="condition-select">
+                <option>10개씩 정렬</option>
+                <option>20개씩 정렬</option>
+                <option>50개씩 정렬</option>
+              </select>
+              <select class="condition-select">
+                <option>최신순</option>
+                <option>오래된순</option>
+                <option>이름순</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>번호</th>
+                  <th>이름</th>
+                  <th>아이디(이메일)</th>
+                  <th>그룹</th>
+                  <th>상태</th>
+                  <th>마지막로그인</th>
+                  <th>비활성 처리일</th>
+                  <th>관리</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1247</td>
+                  <td>
+                    <div class="user-profile">
+                      <div class="user-initial color-gray">김</div>
+                      <span>김민수</span>
+                    </div>
+                  </td>
+                  <td>minsu.kim@example.com</td>
+                  <td>SK Telecom</td>
+                  <td><span class="status-badge status-inactive">휴면</span></td>
+                  <td>2024-03-15</td>
+                  <td>2024-09-15</td>
+                  <td>
+                    <button class="btn-activate">활성화</button>
+                    <button class="btn-withdraw">탈퇴</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1246</td>
+                  <td>
+                    <div class="user-profile">
+                      <div class="user-initial color-gray">이</div>
+                      <span>이영희</span>
+                    </div>
+                  </td>
+                  <td>younghee.lee@example.com</td>
+                  <td>KT</td>
+                  <td><span class="status-badge status-inactive">휴면</span></td>
+                  <td>2024-02-28</td>
+                  <td>2024-08-28</td>
+                  <td>
+                    <button class="btn-activate">활성화</button>
+                    <button class="btn-withdraw">탈퇴</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1245</td>
+                  <td>
+                    <div class="user-profile">
+                      <div class="user-initial color-gray">박</div>
+                      <span>박철수</span>
+                    </div>
+                  </td>
+                  <td>chulsoo.park@example.com</td>
+                  <td>LG U+</td>
+                  <td><span class="status-badge status-inactive">휴면</span></td>
+                  <td>2024-01-20</td>
+                  <td>2024-07-20</td>
+                  <td>
+                    <button class="btn-activate">활성화</button>
+                    <button class="btn-withdraw">탈퇴</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1244</td>
+                  <td>
+                    <div class="user-profile">
+                      <div class="user-initial color-gray">정</div>
+                      <span>정수진</span>
+                    </div>
+                  </td>
+                  <td>sujin.jung@example.com</td>
+                  <td>관리자</td>
+                  <td><span class="status-badge status-inactive">휴면</span></td>
+                  <td>2023-12-10</td>
+                  <td>2024-06-10</td>
+                  <td>
+                    <button class="btn-activate">활성화</button>
+                    <button class="btn-withdraw">탈퇴</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1243</td>
+                  <td>
+                    <div class="user-profile">
+                      <div class="user-initial color-gray">최</div>
+                      <span>최동훈</span>
+                    </div>
+                  </td>
+                  <td>donghun.choi@example.com</td>
+                  <td>SK Telecom</td>
+                  <td><span class="status-badge status-inactive">휴면</span></td>
+                  <td>2023-11-25</td>
+                  <td>2024-05-25</td>
+                  <td>
+                    <button class="btn-activate">활성화</button>
+                    <button class="btn-withdraw">탈퇴</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1242</td>
+                  <td>
+                    <div class="user-profile">
+                      <div class="user-initial color-gray">강</div>
+                      <span>강미영</span>
+                    </div>
+                  </td>
+                  <td>miyoung.kang@example.com</td>
+                  <td>KT</td>
+                  <td><span class="status-badge status-inactive">휴면</span></td>
+                  <td>2023-10-15</td>
+                  <td>2024-04-15</td>
+                  <td>
+                    <button class="btn-activate">활성화</button>
+                    <button class="btn-withdraw">탈퇴</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1241</td>
+                  <td>
+                    <div class="user-profile">
+                      <div class="user-initial color-gray">윤</div>
+                      <span>윤서준</span>
+                    </div>
+                  </td>
+                  <td>seojun.yoon@example.com</td>
+                  <td>LG U+</td>
+                  <td><span class="status-badge status-inactive">휴면</span></td>
+                  <td>2023-09-30</td>
+                  <td>2024-03-30</td>
+                  <td>
+                    <button class="btn-activate">활성화</button>
+                    <button class="btn-withdraw">탈퇴</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1240</td>
+                  <td>
+                    <div class="user-profile">
+                      <div class="user-initial color-gray">송</div>
+                      <span>송태현</span>
+                    </div>
+                  </td>
+                  <td>taehyun.song@example.com</td>
+                  <td>관리자</td>
+                  <td><span class="status-badge status-inactive">휴면</span></td>
+                  <td>2023-08-20</td>
+                  <td>2024-02-20</td>
+                  <td>
+                    <button class="btn-activate">활성화</button>
+                    <button class="btn-withdraw">탈퇴</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1239</td>
+                  <td>
+                    <div class="user-profile">
+                      <div class="user-initial color-gray">한</div>
+                      <span>한소희</span>
+                    </div>
+                  </td>
+                  <td>sohee.han@example.com</td>
+                  <td>SK Telecom</td>
+                  <td><span class="status-badge status-inactive">휴면</span></td>
+                  <td>2023-07-10</td>
+                  <td>2024-01-10</td>
+                  <td>
+                    <button class="btn-activate">활성화</button>
+                    <button class="btn-withdraw">탈퇴</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1238</td>
+                  <td>
+                    <div class="user-profile">
+                      <div class="user-initial color-gray">임</div>
+                      <span>임지훈</span>
+                    </div>
+                  </td>
+                  <td>jihoon.lim@example.com</td>
+                  <td>KT</td>
+                  <td><span class="status-badge status-inactive">휴면</span></td>
+                  <td>2023-06-05</td>
+                  <td>2023-12-05</td>
+                  <td>
+                    <button class="btn-activate">활성화</button>
+                    <button class="btn-withdraw">탈퇴</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination pagination-center">
+            <button class="page-btn" disabled>‹</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+            <button class="page-btn">›</button>
+            <span class="page-info">1 of 125</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../asset/menu.js"></script>
+  <script src="../asset/main.js"></script>
+</body>
+
+</html>

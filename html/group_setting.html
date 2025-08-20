@@ -59,7 +59,7 @@
               <li><a href="#">권한정보</a></li>
               <li><a href="member_register.html">권한등록</a></li>
               <li><a href="group_setting.html" class="active">그룹설정</a></li>
-              <li><a href="#">비활성 권한</a></li>
+              <li><a href="inactive_members.html">비활성 권한</a></li>
               <li><a href="#">탈퇴 권한</a></li>
             </ul>
           </li>
@@ -109,67 +109,69 @@
         </div>
       </div>
       <div class="content-body">
-        <div class="group-setting-add-group-top">
-          <button class="group-setting-btn-add-group">+ 새 그룹 추가</button>
-        </div>
+        <div class="group-setting-container">
+          <div class="group-setting-add-group-top">
+            <button class="group-setting-btn-add-group">+ 새 그룹 추가</button>
+          </div>
 
-        <div class="group-setting-table-container">
-          <table class="group-setting-table">
-            <thead>
-              <tr>
-                <th>번호</th>
-                <th>그룹명</th>
-                <th>구분</th>
-                <th>구분 기능</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td class="group-setting-name">마스터</td>
-                <td>최고관리자</td>
-                <td>
-                  <div class="group-setting-action-buttons">
-                    <button class="group-setting-btn-edit">수정</button>
-                    <button class="group-setting-btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td class="group-setting-name">관리자</td>
-                <td>하위관리자</td>
-                <td>
-                  <div class="group-setting-action-buttons">
-                    <button class="group-setting-btn-edit">수정</button>
-                    <button class="group-setting-btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td class="group-setting-name">직원</td>
-                <td>직원</td>
-                <td>
-                  <div class="group-setting-action-buttons">
-                    <button class="group-setting-btn-edit">수정</button>
-                    <button class="group-setting-btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td class="group-setting-name">테스트</td>
-                <td>테스트용</td>
-                <td>
-                  <div class="group-setting-action-buttons">
-                    <button class="group-setting-btn-edit">수정</button>
-                    <button class="group-setting-btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="group-setting-table-container">
+            <table class="group-setting-table">
+              <thead>
+                <tr>
+                  <th>번호</th>
+                  <th>그룹명</th>
+                  <th>구분</th>
+                  <th>구분 기능</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td class="group-setting-name">마스터</td>
+                  <td>최고관리자</td>
+                  <td>
+                    <div class="group-setting-action-buttons">
+                      <button class="group-setting-btn-edit">수정</button>
+                      <button class="group-setting-btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td class="group-setting-name">관리자</td>
+                  <td>하위관리자</td>
+                  <td>
+                    <div class="group-setting-action-buttons">
+                      <button class="group-setting-btn-edit">수정</button>
+                      <button class="group-setting-btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td class="group-setting-name">직원</td>
+                  <td>직원</td>
+                  <td>
+                    <div class="group-setting-action-buttons">
+                      <button class="group-setting-btn-edit">수정</button>
+                      <button class="group-setting-btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td class="group-setting-name">테스트</td>
+                  <td>테스트용</td>
+                  <td>
+                    <div class="group-setting-action-buttons">
+                      <button class="group-setting-btn-edit">수정</button>
+                      <button class="group-setting-btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
