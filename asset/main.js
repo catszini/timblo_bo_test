@@ -94,56 +94,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // 그룹 설정 페이지 초기화
 function initGroupSetting() {
-  const addGroupBtn = document.querySelector('.group-setting-btn-add-group');
-  const modal = document.getElementById('addGroupModal');
-  const cancelBtn = document.getElementById('cancelBtn');
-  const form = document.getElementById('addGroupForm');
+  const toggleTreeBtn = document.getElementById('toggleTreeBtn');
+  const treePanel = document.getElementById('treePanel');
+  const tableContainer = document.getElementById('tableContainer');
+  const layout = document.querySelector('.group-setting-layout');
 
-  if (!addGroupBtn || !modal || !cancelBtn || !form) return;
 
-  // 새 그룹 추가 버튼 클릭 시 모달 열기
-  addGroupBtn.addEventListener('click', function () {
-    modal.classList.add('active');
-  });
+  if (!toggleTreeBtn || !treePanel || !tableContainer || !layout) return;
 
-  // 취소 버튼 클릭 시 모달 닫기
-  cancelBtn.addEventListener('click', function () {
-    modal.classList.remove('active');
-    form.reset();
-  });
+  let isTreeVisible = false;
 
-  // 모달 배경 클릭 시 모달 닫기
-  modal.addEventListener('click', function (e) {
-    if (e.target === modal) {
-      modal.classList.remove('active');
-      form.reset();
+  // 새 그룹 추가 버튼 클릭 시 트리 패널 토글
+  toggleTreeBtn.addEventListener('click', function () {
+    isTreeVisible = !isTreeVisible;
+    
+    if (isTreeVisible) {
+      // 트리 패널 보이기
+      treePanel.style.display = 'block';
+      layout.classList.add('tree-visible');
+      toggleTreeBtn.textContent = '취소';
+    } else {
+      // 트리 패널 숨기기
+      treePanel.style.display = 'none';
+      layout.classList.remove('tree-visible');
+      toggleTreeBtn.textContent = '신규';
     }
   });
 
-  // 폼 제출 처리
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
 
-    const groupName = document.getElementById('groupName').value;
-    const groupType = document.getElementById('groupType').value;
 
-    // 빈 값이어도 제출 가능하도록 수정
-    console.log('새 그룹 추가:', { groupName, groupType });
-
-    // 모달 닫기 및 폼 초기화
-    modal.classList.remove('active');
-    form.reset();
-
-    // 성공 메시지 (선택사항)
-    alert('새 그룹이 추가되었습니다.');
-  });
-
-  // ESC 키로 모달 닫기
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-      modal.classList.remove('active');
-      form.reset();
-    }
+  // 부모 체크박스 클릭 시 자식들 전체 선택/해제
+  document.querySelectorAll('.tree-item > input[type="checkbox"]').forEach(parentCheckbox => {
+    parentCheckbox.addEventListener('change', function () {
+      const children = this.closest('.tree-item').querySelectorAll('.tree-children input[type="checkbox"]');
+      children.forEach(child => {
+        child.checked = this.checked;
+      });
+    });
   });
 }
 
