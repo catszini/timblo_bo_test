@@ -1683,35 +1683,78 @@ input:checked + .slider:before {
   border-color: #0066FF;
 }
 
-/* 토글 버튼 */
+/* 그룹 설정 페이지 토글 버튼 */
+.page-group-setting .toggle-buttons {
+  display: flex;
+  gap: 2px;
+  width: fit-content;
+}
+
+.page-group-setting .toggle-btn {
+  padding: 6px 16px;
+  border: 1px solid #E5E5E5;
+  background: white;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.page-group-setting .toggle-btn.active {
+  background: #0066FF;
+  color: white;
+  border-color: #0066FF;
+}
+
+.page-group-setting .toggle-btn:hover {
+  background: #F8F9FA;
+  border-color: #D1D5DB;
+}
+
+.page-group-setting .toggle-btn.active:hover {
+  background: #0052CC;
+}
+
+/* 다른 페이지 토글 버튼 (기본) */
 .toggle-buttons {
   display: flex;
-  gap: 4px;
+  gap: 2px;
 }
 
 .toggle-btn {
-  padding: 8px 16px;
-  border: 1px solid #D1D5DB;
+  padding: 8px 12px;
+  border: 1px solid #E5E5E5;
   background: white;
   border-radius: 4px;
   font-size: 12px;
   cursor: pointer;
   flex: 1;
   text-align: center;
+  min-width: 50px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .toggle-btn.active {
-  background: #3B82F6;
+  background: #0066FF;
   color: white;
-  border-color: #3B82F6;
+  border-color: #0066FF;
 }
 
 .toggle-btn:hover {
-  background: #F3F4F6;
+  background: #F8F9FA;
+  border-color: #D1D5DB;
 }
 
 .toggle-btn.active:hover {
-  background: #2563EB;
+  background: #0052CC;
 }
 
 /* 탭 컨테이너 */
@@ -1788,6 +1831,271 @@ input:checked + .slider:before {
 /* 탈퇴회원 섹션 스타일 */
 .user-page.member-page .withdrawn-members-section {
   margin-top: 16px;
+}
+
+/* 메뉴 관리 페이지 전용 스타일 */
+.page-menu-setting .menu-management-container {
+  background: #fff;
+  border-radius: 8px;
+  margin-top: 24px;
+}
+
+.page-menu-setting .menu-management-layout {
+  display: flex;
+  gap: 24px;
+  min-height: 600px;
+}
+
+/* 메뉴 트리 패널 */
+.page-menu-setting .menu-tree-panel {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.page-menu-setting .menu-tree-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.page-menu-setting .menu-tree-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #292A2B;
+  margin: 0;
+}
+
+.page-menu-setting .menu-tree-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.page-menu-setting .btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+  height: auto;
+  min-width: auto;
+}
+
+/* 메뉴 트리 아이템 */
+.page-menu-setting .menu-tree-content {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.page-menu-setting .menu-tree-item {
+  margin-bottom: 2px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.page-menu-setting .menu-tree-item .menu-item-header:hover {
+  background: #F8F9FA;
+}
+
+.page-menu-setting .menu-tree-item.selected .menu-item-header {
+  background: #EFF6FF;
+  border: 1px solid #DBEAFE;
+}
+
+.page-menu-setting .menu-item-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 1px 0;
+  transition: all 0.2s ease;
+}
+
+.page-menu-setting .menu-toggle {
+  width: 16px;
+  font-size: 12px;
+  color: #6B7280;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.page-menu-setting .menu-icon {
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.page-menu-setting .menu-title {
+  flex: 1;
+  font-size: 14px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.page-menu-setting .menu-url {
+  font-size: 12px;
+  color: #9CA3AF;
+  margin-left: 8px;
+}
+
+.page-menu-setting .menu-item-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.page-menu-setting .menu-tree-item:hover .menu-item-actions {
+  opacity: 1;
+}
+
+/* 메뉴 트리 버튼 스타일 - 기존 페이지와 일관성 */
+.page-menu-setting .btn-edit {
+  padding: 6px 12px;
+  background: #0066FF;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-right: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.page-menu-setting .btn-edit:hover {
+  background: #0052CC;
+}
+
+.page-menu-setting .btn-delete {
+  padding: 6px 12px;
+  background: #EF4444;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.page-menu-setting .btn-delete:hover {
+  background: #DC2626;
+}
+
+/* 메뉴 자식 요소 들여쓰기 */
+.page-menu-setting .menu-children {
+  margin-left: 20px;
+  border-left: 2px solid #F1F3F4;
+  padding-left: 8px;
+  margin-top: 4px;
+}
+
+.page-menu-setting .menu-tree-item[data-level="2"] .menu-item-header {
+  padding-left: 12px;
+}
+
+.page-menu-setting .menu-tree-item[data-level="3"] .menu-item-header {
+  padding-left: 16px;
+  font-size: 13px;
+}
+
+.page-menu-setting .menu-tree-item[data-level="3"] .menu-title {
+  font-size: 13px;
+  color: #6B7280;
+}
+
+/* 메뉴 편집 패널 */
+.page-menu-setting .menu-edit-panel {
+  flex: 0 0 400px;
+  background: #fff;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.page-menu-setting .menu-edit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.page-menu-setting .menu-edit-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #292A2B;
+  margin: 0;
+}
+
+.page-menu-setting .menu-edit-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* 메뉴 편집 폼 */
+.page-menu-setting .menu-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.page-menu-setting .form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.page-menu-setting .form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.page-menu-setting .form-group.full-width {
+  flex: 1 1 100%;
+}
+
+.page-menu-setting .form-group label {
+  font-size: 12px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.page-menu-setting .form-input, .page-menu-setting .form-select {
+  padding: 8px 12px;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+}
+
+.page-menu-setting .form-select {
+  padding-right: 32px;
+  appearance: none;
+  background-image: url('../asset/select-arrow.svg');
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px 16px;
+}
+
+.page-menu-setting .form-input:focus, .page-menu-setting .form-select:focus {
+  outline: none;
+  border-color: #0066FF;
+}
+
+/* 드래그 앤 드롭 스타일 */
+.page-menu-setting .menu-tree-item.dragging {
+  opacity: 0.5;
+}
+
+.page-menu-setting .menu-tree-item.drop-target {
+  background: #DBEAFE;
+  border: 2px dashed #3B82F6;
 }
 
 .user-page.member-page .withdrawn-members-section .list-footer {
