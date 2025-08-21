@@ -360,6 +360,7 @@ body {
     flex-direction: row;
     gap: 24px;
     align-items: stretch;
+    margin-bottom: 0;
 }
 
 .user-page.member-page .search-section {
@@ -957,6 +958,7 @@ th, td {
 th {
     background-color: #f8f9fa;
     font-weight: 500;
+    white-space: nowrap;
     color: #333;
 }
 
@@ -1070,7 +1072,7 @@ input:checked + .slider:before {
     font-size: 18px;
     font-weight: 600;
     color: #292A2B;
-    margin: 3px 0 20px 0;
+    margin: 0 0 20px 0;
 }
 
 .search-filters {
@@ -1137,16 +1139,16 @@ input:checked + .slider:before {
 
 /* 멤버 관리 페이지 버튼 스타일 */
 .user-page.member-page .btn-submit {
-    padding: 12px 24px;
+    padding: 8px 16px;
     background: #0066FF;
     color: #fff;
     border: none;
-    border-radius: 6px;
-    font-size: 14px;
+    border-radius: 4px;
+    font-size: 12px;
     font-weight: 500;
     cursor: pointer;
-    min-width: 100px;
-    height: 40px;
+    min-width: 60px;
+    height: 32px;
     margin-right: 12px;
     display: flex;
     align-items: center;
@@ -1379,6 +1381,466 @@ input:checked + .slider:before {
     align-items: center;
     margin-top: 16px;
     padding-top: 16px;
+}
+
+.user-page.member-page .list-footer {
+    margin-top: 0;
+}
+
+.user-page.member-page .pagination {
+    margin-top: 0;
+}
+
+.user-page.member-page .inactive-members-section {
+    margin-top: 16px;
+}
+
+.user-page.member-page .inactive-members-section .list-footer {
+    margin-top: 0;
+}
+
+.user-page.member-page .inactive-members-section .pagination {
+    margin-top: 0;
+}
+
+/* user 페이지 휴면회원 섹션 버튼 스타일 */
+.user-page.member-page .btn-activate {
+  padding: 6px 12px;
+  background: #fff;
+  color: #0066FF;
+  border: 1px solid #0066FF;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  margin-right: 4px;
+  transition: all 0.15s ease;
+}
+
+.user-page.member-page .btn-activate:hover {
+  background: #F0F7FF;
+  border-color: #0052CC;
+  color: #0052CC;
+}
+
+.user-page.member-page .btn-withdraw {
+  padding: 6px 12px;
+  background: #fff;
+  color: #EF4444;
+  border: 1px solid #EF4444;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  margin-right: 0;
+  transition: all 0.15s ease;
+}
+
+.user-page.member-page .btn-withdraw:hover {
+  background: #FEF2F2;
+  border-color: #DC2626;
+  color: #DC2626;
+}
+
+/* user 페이지 상태 배지 스타일 */
+.user-page.member-page .status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  display: inline-block;
+}
+
+.user-page.member-page .status-inactive {
+  background: #F3F4F6;
+  color: #6B7280;
+}
+
+.user-page.member-page .status-withdrawn {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+/* 간단한 검색 영역 스타일 */
+.search-section-simple {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.search-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.search-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 간단한 검색 입력 스타일 */
+.combo-search-simple {
+  display: flex;
+  align-items: center;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  background: #fff;
+  padding: 0;
+  min-width: 200px;
+}
+
+.combo-search-simple .search-input {
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  flex: 1;
+  background: transparent;
+  width: 100%;
+}
+
+.combo-search-simple .search-input::placeholder {
+  color: #9CA3AF;
+}
+
+/* 통계와 상세정보 섹션 */
+.stats-and-detail-section {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.stats-and-detail-section .stats-section {
+  flex: 0 0 300px;
+}
+
+.stats-and-detail-section .detail-form-section {
+  flex: 1;
+}
+
+/* 상세 폼 섹션 */
+.detail-form-section {
+  background: #fff;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.detail-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.detail-form-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #292A2B;
+  margin: 0;
+}
+
+.detail-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-info {
+  font-size: 12px;
+  color: #6B7280;
+  margin-right: 8px;
+}
+
+/* 검색 영역 버튼 스타일 */
+.search-right .btn-orange {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: #FF8C00;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 80px;
+  height: 40px;
+  text-align: center;
+}
+
+.search-right .btn-orange:hover {
+  background: #E67E00;
+}
+
+.search-right .btn-gray {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: #fff;
+  color: #374151;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 80px;
+  height: 40px;
+  text-align: center;
+}
+
+.search-right .btn-gray:hover {
+  background: #F9FAFB;
+  border-color: #9CA3AF;
+}
+
+.search-right .btn-red {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: #EF4444;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 80px;
+  height: 40px;
+  text-align: center;
+}
+
+.search-right .btn-red:hover {
+  background: #DC2626;
+}
+
+/* 폼 내용 */
+.detail-form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detail-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.detail-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detail-form-group label {
+  font-size: 12px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.detail-input {
+  padding: 8px 12px;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+}
+
+.detail-input:focus {
+  outline: none;
+  border-color: #0066FF;
+}
+
+.detail-select {
+  padding: 8px 32px 8px 12px;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('../asset/select-arrow.svg');
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px 16px;
+}
+
+.detail-select:focus {
+  outline: none;
+  border-color: #0066FF;
+}
+
+/* 토글 버튼 */
+.toggle-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.toggle-btn {
+  padding: 8px 16px;
+  border: 1px solid #D1D5DB;
+  background: white;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+}
+
+.toggle-btn.active {
+  background: #3B82F6;
+  color: white;
+  border-color: #3B82F6;
+}
+
+.toggle-btn:hover {
+  background: #F3F4F6;
+}
+
+.toggle-btn.active:hover {
+  background: #2563EB;
+}
+
+/* 탭 컨테이너 */
+.tab-container {
+  margin-top: 24px;
+}
+
+/* 탭 네비게이션 */
+.tab-nav {
+  display: flex;
+  border-bottom: 1px solid #E5E5E5;
+  margin-bottom: 0;
+}
+
+.tab-btn {
+  padding: 12px 24px;
+  background: #F8F9FA;
+  color: #6B7280;
+  border: 1px solid #E5E5E5;
+  border-bottom: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  margin-right: 2px;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  background: #F1F3F4;
+  color: #374151;
+}
+
+.tab-btn.active {
+  background: #fff;
+  color: #0066FF;
+  border-color: #E5E5E5;
+  border-bottom: 1px solid #fff;
+  position: relative;
+  z-index: 1;
+}
+
+/* 탭 내용 */
+.tab-content {
+  display: none;
+  background: #fff;
+  border: 1px solid #E5E5E5;
+  border-top: none;
+  border-radius: 0 8px 8px 8px;
+  padding: 20px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* 탭 내 리스트 섹션 마진 조정 */
+.tab-content .list-section {
+  margin-top: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+/* 탭 내 테이블 외곽선 제거 */
+.tab-content .table-container {
+  border: none;
+}
+
+.tab-content .table-container table {
+  border: none;
+}
+
+/* 탈퇴회원 섹션 스타일 */
+.user-page.member-page .withdrawn-members-section {
+  margin-top: 16px;
+}
+
+.user-page.member-page .withdrawn-members-section .list-footer {
+  margin-top: 0;
+  justify-content: flex-end;
+}
+
+.user-page.member-page .withdrawn-members-section .pagination {
+  margin-top: 0;
+}
+
+/* 휴면회원 섹션 페이징 오른쪽 정렬 */
+.user-page.member-page .inactive-members-section .list-footer {
+  justify-content: flex-end;
+}
+
+/* 탈퇴회원 버튼 스타일 */
+.user-page.member-page .btn-restore {
+  padding: 6px 12px;
+  background: #fff;
+  color: #059669;
+  border: 1px solid #059669;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  margin-right: 4px;
+  transition: all 0.15s ease;
+}
+
+.user-page.member-page .btn-restore:hover {
+  background: #ECFDF5;
+  border-color: #047857;
+  color: #047857;
+}
+
+.user-page.member-page .btn-delete-permanent {
+  padding: 6px 12px;
+  background: #fff;
+  color: #DC2626;
+  border: 1px solid #DC2626;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  margin-right: 0;
+  transition: all 0.15s ease;
+}
+
+.user-page.member-page .btn-delete-permanent:hover {
+  background: #FEF2F2;
+  border-color: #B91C1C;
+  color: #B91C1C;
 }
 
 .btn-detail {

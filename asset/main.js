@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // 권한 관리 페이지 (사용자)
   if (currentPage.includes('page-user')) {
     initUserPage();
+    initTabs();
   }
   
   // 사용량 통계 페이지
@@ -528,4 +529,29 @@ function initInactiveMembers() {
       totalCountEl.textContent = `Total ${rows.length.toLocaleString()}`;
     }
   }
+}
+
+// 탭 기능 초기화
+function initTabs() {
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+  
+  tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const targetTab = this.getAttribute('data-tab');
+      
+      // 모든 탭 버튼 비활성화
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      // 모든 탭 내용 숨기기
+      tabContents.forEach(content => content.classList.remove('active'));
+      
+      // 클릭된 탭 버튼 활성화
+      this.classList.add('active');
+      // 해당 탭 내용 표시
+      const targetContent = document.getElementById(targetTab + '-tab');
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
+    });
+  });
 }
