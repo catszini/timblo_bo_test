@@ -3922,14 +3922,14 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 /* 새로운 그룹 설정 폼 테이블 */
 .group-setting-form-container {
-  margin-top: 16px;
+  border-top: 1px solid #F3F4F6
 }
 
 .form-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 24px 0 12px 0;
+  margin: 12px 0;
 }
 
 .form-title {
