@@ -144,7 +144,16 @@
 
         <!-- 워크스페이스 정보 섹션 -->
         <div class="card section info-card">
-          <div class="ws-title"><strong>워크스페이스 정보</strong></div>
+          <div class="ws-title-with-status">
+            <div class="ws-title"><strong>워크스페이스 정보</strong></div>
+            <div class="status-switch">
+              <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+              </label>
+              <span class="status-text">활성</span>
+            </div>
+          </div>
           <div class="info-grid">
             <div class="info-row">
               <label>워크스페이스 ID</label>
@@ -162,16 +171,58 @@
               <label>도메인</label>
               <input type="text" class="form-input" value="timbel.net" />
             </div>
-            <div class="info-row">
+            <div class="info-row full-width">
               <label>설명</label>
               <textarea class="form-textarea" rows="3"
                 placeholder="워크스페이스 설명을 입력하세요">AI 기반 회의록 관리 시스템을 위한 워크스페이스입니다.</textarea>
             </div>
-            <div class="info-row">
-              <label>상태</label>
-              <div class="toggle-buttons">
-                <button class="toggle-btn active">활성</button>
-                <button class="toggle-btn">비활성</button>
+          </div>
+        </div>
+
+        <!-- 구성원 관리 섹션 -->
+        <div class="card section members-card">
+          <div class="ws-title"><strong>구성원 관리</strong></div>
+          <div class="members-header">
+            <div class="members-count">총 <span id="memberCount">5</span>명</div>
+            <button class="btn primary btn-add-member">+ 구성원 추가</button>
+          </div>
+
+          <!-- 관리자 섹션 -->
+          <div class="member-section">
+            <div class="member-section-title">
+              <span class="section-label">관리자</span>
+              <span class="section-count">(<span id="adminCount">1</span>명)</span>
+            </div>
+            <div class="members-badges admin-badges">
+              <div class="member-badge" data-member-id="1" data-role="admin">
+                <span class="member-name">배성진</span>
+                <button class="badge-remove-btn" title="구성원 제거">×</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 일반 구성원 섹션 -->
+          <div class="member-section">
+            <div class="member-section-title">
+              <span class="section-label">일반 구성원</span>
+              <span class="section-count">(<span id="generalCount">4</span>명)</span>
+            </div>
+            <div class="members-badges general-badges">
+              <div class="member-badge" data-member-id="2" data-role="user">
+                <span class="member-name">김철수</span>
+                <button class="badge-remove-btn" title="구성원 제거">×</button>
+              </div>
+              <div class="member-badge" data-member-id="3" data-role="user">
+                <span class="member-name">박영희</span>
+                <button class="badge-remove-btn" title="구성원 제거">×</button>
+              </div>
+              <div class="member-badge" data-member-id="4" data-role="viewer">
+                <span class="member-name">이민수</span>
+                <button class="badge-remove-btn" title="구성원 제거">×</button>
+              </div>
+              <div class="member-badge" data-member-id="5" data-role="user">
+                <span class="member-name">정다은</span>
+                <button class="badge-remove-btn" title="구성원 제거">×</button>
               </div>
             </div>
           </div>
@@ -285,6 +336,38 @@
             <button class="btn outline large">취소</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 구성원 추가 모달 -->
+  <div class="modal-overlay member-modal-overlay" id="memberModal" style="display: none;">
+    <div class="modal member-modal">
+      <div class="modal-header">
+        <h3>구성원 추가</h3>
+        <button class="modal-close" id="memberModalClose">×</button>
+      </div>
+      <div class="modal-content">
+        <div class="form-group">
+          <label for="memberName">이름</label>
+          <input type="text" id="memberName" class="form-input" placeholder="이름을 입력하세요">
+        </div>
+        <div class="form-group">
+          <label for="memberEmail">이메일</label>
+          <input type="email" id="memberEmail" class="form-input" placeholder="이메일을 입력하세요">
+        </div>
+        <div class="form-group">
+          <label for="memberRole">역할</label>
+          <select id="memberRole" class="form-select">
+            <option value="user">일반 사용자</option>
+            <option value="admin">관리자</option>
+            <option value="viewer">뷰어</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn outline" id="memberModalCancel">취소</button>
+        <button class="btn primary" id="memberModalAdd">추가</button>
       </div>
     </div>
   </div>
