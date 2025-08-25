@@ -329,6 +329,115 @@
           </div>
         </div>
 
+        <!-- 회의 데이터 자동삭제 섹션 -->
+        <div class="card section auto-delete-card">
+          <div class="auto-del-title"><strong>회의 데이터 자동삭제</strong></div>
+          <div class="auto-delete-desc">
+            설정한 기간이 지난 회의록 데이터를 유형별로 자동 삭제하여 보안을 강화하고 리소스를 관리합니다.
+            삭제된 데이터는 복구할 수 없으니 신중하게 설정하세요.
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th class="th-width-40">데이터 유형</th>
+                  <th class="th-width-40">보존 기간</th>
+                  <th class="th-width-20">자동 삭제 정책 사용</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="retention-row">
+                  <td>음성/영상 원본 파일</td>
+                  <td>
+                    <div class="inline-group">
+                      <select class="condition-select retention-select">
+                        <option>영구 보관</option>
+                        <option>90일 후</option>
+                        <option>180일 후</option>
+                        <option>1년 후</option>
+                        <option>3년 후</option>
+                        <option>직접 입력</option>
+                      </select>
+                      <span class="custom-retention">
+                        <div class="count-spinner">
+                          <input type="number" class="count-input" value="30" min="0">
+                          <div class="spinner-buttons">
+                            <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                            <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg"
+                                alt="감소"></button>
+                          </div>
+                        </div>
+                        <span class="unit-text">일 후</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                  </td>
+                </tr>
+                <tr class="retention-row">
+                  <td>음성 기록 파일</td>
+                  <td>
+                    <div class="inline-group">
+                      <select class="condition-select retention-select">
+                        <option>영구 보관</option>
+                        <option>90일 후</option>
+                        <option>180일 후</option>
+                        <option>1년 후</option>
+                        <option>3년 후</option>
+                        <option selected>직접 입력</option>
+                      </select>
+                      <span class="custom-retention custom-retention-inline">
+                        <div class="count-spinner">
+                          <input type="number" class="count-input" value="5" min="0">
+                          <div class="spinner-buttons">
+                            <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                            <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg"
+                                alt="감소"></button>
+                          </div>
+                        </div>
+                        <span class="unit-text">일 후</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                  </td>
+                </tr>
+                <tr class="retention-row">
+                  <td>AI 요약</td>
+                  <td>
+                    <div class="inline-group">
+                      <select class="condition-select retention-select">
+                        <option>영구 보관</option>
+                        <option>90일 후</option>
+                        <option>180일 후</option>
+                        <option>1년 후</option>
+                        <option>3년 후</option>
+                        <option>직접 입력</option>
+                      </select>
+                      <span class="custom-retention">
+                        <div class="count-spinner">
+                          <input type="number" class="count-input" value="30" min="0">
+                          <div class="spinner-buttons">
+                            <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                            <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg"
+                                alt="감소"></button>
+                          </div>
+                        </div>
+                        <span class="unit-text">일 후</span>
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <!-- 저장 버튼 -->
         <div class="section">
           <div class="button-row">
@@ -372,6 +481,33 @@
     </div>
   </div>
 
+  <script>
+    // 회의 데이터 자동삭제 관련 JavaScript
+    document.addEventListener('DOMContentLoaded', function () {
+      // count-spinner 동작
+      document.querySelectorAll('.spinner-btn').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          const input = btn.closest('.count-spinner')?.querySelector('.count-input');
+          if (!input) return;
+          const isUp = btn.classList.contains('spinner-up');
+          const cur = parseInt(input.value) || 0;
+          input.value = isUp ? cur + 1 : Math.max(0, cur - 1);
+        });
+      });
+
+      // 보존 기간: '직접 입력' 선택 시 커스텀 입력 영역 표시
+      document.querySelectorAll('.retention-row .retention-select').forEach(function (sel) {
+        const custom = sel.closest('.inline-group')?.querySelector('.custom-retention');
+        const sync = () => {
+          const isCustom = sel.value.includes('직접 입력');
+          if (custom) custom.style.display = isCustom ? 'inline-flex' : 'none';
+        };
+        sel.addEventListener('change', sync);
+        sync();
+      });
+    });
+  </script>
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
 </body>

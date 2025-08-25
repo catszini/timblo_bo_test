@@ -120,7 +120,7 @@
         <div class="search-section">
           <div class="common-topbar">
             <div class="tb-left">
-              <div class="combo-search combo-search-small">
+              <div class="combo-search combo-search-wide">
                 <div class="combo-field">
                   <select class="combo-select">
                     <option>전체</option>
@@ -131,14 +131,21 @@
                   <div class="divider"></div>
                   <div class="combo-input-wrap">
                     <span class="mag-icon">🔍</span>
-                    <input type="text" class="combo-input" placeholder="이름, 도메인, 소유자를 입력해주세요" />
+                    <input type="text" class="combo-input" placeholder="검색어를 입력해주세요." />
                   </div>
                   <button class="append-btn">조회</button>
                 </div>
               </div>
             </div>
-            <div class="tb-right workspace-actions-right">
-              <span class="total-count">총 28개</span>
+            <div class="tb-right tb-right-full">
+              <div class="right-tail">
+                <div class="total-count">총 28건</div>
+                <select class="condition-select">
+                  <option>10개씩 보기</option>
+                  <option>20개씩 보기</option>
+                  <option>50개씩 보기</option>
+                </select>
+              </div>
               <div class="ws-actions">
                 <button class="delete-btn">삭제</button>
                 <button class="edit-btn">수정</button>
@@ -798,6 +805,51 @@
             input.value = currentValue + 1;
           } else {
             input.value = Math.max(0, currentValue - 1);
+          }
+        });
+      });
+
+      // 체크박스 기능 구현
+      const selectAllCheckbox = document.querySelector('.select-all');
+      const rowCheckboxes = document.querySelectorAll('tbody td:first-child input[type="checkbox"]');
+
+      // 전체 선택/해제 기능
+      if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', function () {
+          const isChecked = this.checked;
+          rowCheckboxes.forEach(checkbox => {
+            checkbox.checked = isChecked;
+            const row = checkbox.closest('tr');
+            if (row) {
+              row.classList.toggle('selected', isChecked);
+            }
+          });
+        });
+      }
+
+      // 개별 체크박스 변경 시 행 스타일 변경 및 전체 선택 체크박스 상태 업데이트
+      rowCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+          const row = this.closest('tr');
+          if (row) {
+            row.classList.toggle('selected', this.checked);
+          }
+
+          // 전체 선택 체크박스 상태 업데이트
+          if (selectAllCheckbox) {
+            const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
+            const totalCount = rowCheckboxes.length;
+
+            if (checkedCount === 0) {
+              selectAllCheckbox.checked = false;
+              selectAllCheckbox.indeterminate = false;
+            } else if (checkedCount === totalCount) {
+              selectAllCheckbox.checked = true;
+              selectAllCheckbox.indeterminate = false;
+            } else {
+              selectAllCheckbox.checked = false;
+              selectAllCheckbox.indeterminate = true;
+            }
           }
         });
       });

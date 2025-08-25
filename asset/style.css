@@ -2368,8 +2368,32 @@ input:checked + .slider:before {
 .page-workspace-detail .toggle-item input[type="checkbox"] {
   width: 16px;
   height: 16px;
-  accent-color: #0066FF;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 2px solid #D1D5DB;
+  border-radius: 3px;
+  background-color: white;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.page-workspace-detail .toggle-item input[type="checkbox"]:checked {
+  background-color: #10B981;
+  border-color: #10B981;
+}
+
+.page-workspace-detail .toggle-item input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 3px;
+  height: 6px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
 }
 
 .page-workspace-detail .toggle-item label {
@@ -2640,6 +2664,18 @@ input:checked + .slider:before {
   padding: 12px 32px;
   font-size: 14px;
   min-width: 120px;
+}
+
+/* workspace-detail 페이지 변경사항 저장 버튼 스타일 */
+.workspace-detail-page .btn.primary.large {
+  background-color: #10B981;
+  border-color: #10B981;
+  color: white;
+}
+
+.workspace-detail-page .btn.primary.large:hover {
+  background-color: #059669;
+  border-color: #059669;
 }
 
 .user-page.member-page .withdrawn-members-section .list-footer {
@@ -4631,6 +4667,11 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   line-height: 1.6;
 }
 
+/* workspace_detail 페이지 자동삭제 설명 텍스트 여백 */
+.page-workspace-detail .auto-delete-desc {
+  margin: 16px 0 20px 0;
+}
+
 .general-page .inline-group {
   display: inline-flex;
   align-items: center;
@@ -5068,6 +5109,40 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     max-width: 60%;
     height: auto;
     display: block;
+}
+
+/* 워크스페이스 관리 페이지 체크박스 행 선택 스타일 */
+.page-workspace .table-container table tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.page-workspace .table-container table tbody tr:hover {
+    background-color: #F5F9FF;
+}
+
+.page-workspace .table-container table tbody tr.selected {
+    background-color: #E8F1FF;
+}
+
+.page-workspace .table-container table tbody tr.selected:hover {
+    background-color: #D6E8FF;
+}
+
+/* 사용자 관리 페이지 체크박스 행 선택 스타일 */
+.page-user .table-container table tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.page-user .table-container table tbody tr:hover {
+    background-color: #F5F9FF;
+}
+
+.page-user .table-container table tbody tr.selected {
+    background-color: #E8F1FF;
+}
+
+.page-user .table-container table tbody tr.selected:hover {
+    background-color: #D6E8FF;
 }
 
 /* 메뉴 설정 페이지 드래그 앤 드롭 스타일 */
