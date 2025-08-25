@@ -765,6 +765,35 @@ body {
     border-color: #0F6BFF;
 }
 
+/* 위험 버튼 (삭제 등) */
+.btn-danger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    padding: 0 16px;
+    min-width: 64px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    border: 1px solid #DC2626;
+    background: #DC2626;
+    color: #FFFFFF;
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+
+.btn-danger:hover {
+    background: #B91C1C;
+    border-color: #B91C1C;
+}
+
+.btn-danger:active {
+    background: #991B1B;
+    border-color: #991B1B;
+}
+
 /* 달력 UI */
 .calendar-range { display: flex; gap: 12px; align-items: flex-start; }
 .calendar { width: 280px; }
@@ -2044,10 +2073,7 @@ input:checked + .slider:before {
   gap: 20px;
 }
 
-.page-menu-setting .form-row {
-  display: flex;
-  gap: 16px;
-}
+
 
 .page-menu-setting .form-group {
   flex: 1;
@@ -2058,6 +2084,10 @@ input:checked + .slider:before {
 
 .page-menu-setting .form-group.full-width {
   flex: 1 1 100%;
+}
+
+.page-menu-setting .form-group:last-child {
+  margin-bottom: 0;
 }
 
 .page-menu-setting .form-group label {
@@ -2203,57 +2233,7 @@ input:checked + .slider:before {
   margin-bottom: 16px;
 }
 
-.page-workspace-detail .status-switch {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
 
-.page-workspace-detail .switch {
-  position: relative;
-  display: inline-block;
-  width: 44px;
-  height: 24px;
-}
-
-.page-workspace-detail .switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.page-workspace-detail .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #D1D5DB;
-  transition: 0.3s;
-  border-radius: 24px;
-}
-
-.page-workspace-detail .slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: 0.3s;
-  border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.page-workspace-detail input:checked + .slider {
-  background-color: #10B981;
-}
-
-.page-workspace-detail input:checked + .slider:before {
-  transform: translateX(20px);
-}
 
 .page-workspace-detail .status-text {
   font-size: 14px;
@@ -4672,132 +4652,9 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   margin: 16px 0 20px 0;
 }
 
-/* workspace_detail 페이지 비활성화 상태 스타일 */
-.page-workspace-detail.disabled .form-input,
-.page-workspace-detail.disabled .form-textarea,
-.page-workspace-detail.disabled .form-select,
-.page-workspace-detail.disabled .condition-select,
-.page-workspace-detail.disabled .count-input {
-  background-color: #F3F4F6 !important;
-  color: #9CA3AF !important;
-  cursor: not-allowed !important;
-  pointer-events: none !important;
-  border-color: #E5E7EB !important;
-}
 
-.page-workspace-detail.disabled .form-input:disabled,
-.page-workspace-detail.disabled .form-textarea:disabled,
-.page-workspace-detail.disabled .form-select:disabled,
-.page-workspace-detail.disabled .condition-select:disabled,
-.page-workspace-detail.disabled .count-input:disabled {
-  background-color: #F3F4F6 !important;
-  color: #9CA3AF !important;
-  cursor: not-allowed !important;
-}
 
-.page-workspace-detail.disabled .toggle-item input[type="checkbox"],
-.page-workspace-detail.disabled .switch input[type="checkbox"]:not(.status-switch-large input[type="checkbox"]),
-.page-workspace-detail.disabled .spinner-btn {
-  pointer-events: none;
-  opacity: 0.5;
-}
 
-/* 상태 스위치는 항상 활성화 상태 유지 */
-.page-workspace-detail.disabled .status-switch-large input[type="checkbox"] {
-  pointer-events: auto !important;
-  opacity: 1 !important;
-}
-
-.page-workspace-detail.disabled .btn.primary,
-.page-workspace-detail.disabled .btn.danger {
-  opacity: 0.5;
-  pointer-events: none;
-  cursor: not-allowed;
-}
-
-.page-workspace-detail.disabled .badge-remove-btn {
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-/* 비활성화 상태 알림 메시지 */
-.page-workspace-detail.disabled::before {
-  content: '⚠️ 워크스페이스가 비활성화되어 수정할 수 없습니다. 활성화 후 다시 시도해주세요.';
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #FEF3C7;
-  border: 1px solid #F59E0B;
-  color: #92400E;
-  padding: 12px 20px;
-  border-radius: 6px;
-  font-size: 14px;
-  z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.page-workspace-detail.disabled .card.section:not(.status-control-card) {
-  position: relative;
-}
-
-.page-workspace-detail.disabled .card.section:not(.status-control-card)::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(243, 244, 246, 0.5);
-  pointer-events: none;
-  border-radius: 8px;
-}
-
-/* 상태 제어 카드 스타일 */
-.status-control-card {
-  background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
-  border: 1px solid #0EA5E9;
-  margin-bottom: 24px;
-}
-
-.status-control-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0;
-}
-
-.status-info {
-  flex: 1;
-}
-
-.status-title {
-  font-size: 16px;
-  color: #0C4A6E;
-  margin-bottom: 4px;
-}
-
-.status-desc {
-  font-size: 13px;
-  color: #0369A1;
-  line-height: 1.4;
-}
-
-.status-switch-large {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  background: white;
-  border-radius: 8px;
-}
-
-.status-text-large {
-  font-size: 14px;
-  font-weight: 600;
-  color: #374151;
-  min-width: 40px;
-}
 
 /* switch-large 스타일 제거 - 기본 switch 사용 */
 

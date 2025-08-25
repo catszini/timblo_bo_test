@@ -115,22 +115,7 @@
       </div>
 
       <div class="content-body">
-        <!-- 워크스페이스 상태 제어 섹션 -->
-        <div class="card section status-control-card">
-          <div class="status-control-header">
-            <div class="status-info">
-              <div class="status-title"><strong>워크스페이스 상태</strong></div>
-              <div class="status-desc">워크스페이스를 비활성화하면 모든 수정 기능이 잠깁니다</div>
-            </div>
-            <div class="status-switch-large">
-              <span class="status-text-large">활성</span>
-              <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider"></span>
-              </label>
-            </div>
-          </div>
-        </div>
+
 
         <!-- 워크스페이스 이름 섹션 -->
         <div class="card section name-card">
@@ -492,106 +477,7 @@
   <script>
     // 회의 데이터 자동삭제 관련 JavaScript
     document.addEventListener('DOMContentLoaded', function () {
-      // 워크스페이스 활성/비활성 상태 관리
-      const statusSwitch = document.querySelector('.status-switch-large input[type="checkbox"]');
-      const statusText = document.querySelector('.status-text-large');
-      const pageBody = document.querySelector('.page-workspace-detail');
 
-      function updateWorkspaceStatus() {
-        const isActive = statusSwitch.checked;
-        console.log('상태 업데이트:', isActive ? '활성' : '비활성');
-        statusText.textContent = isActive ? '활성' : '비활성';
-
-        if (isActive) {
-          console.log('워크스페이스 활성화 중...');
-          pageBody.classList.remove('disabled');
-          enableAllInputs();
-        } else {
-          console.log('워크스페이스 비활성화 중...');
-          pageBody.classList.add('disabled');
-          disableAllInputs();
-        }
-      }
-
-      function disableAllInputs() {
-        // 모든 입력 필드 비활성화
-        const inputs = document.querySelectorAll('.form-input, .form-textarea, .form-select, .condition-select, .count-input');
-        inputs.forEach(input => {
-          input.disabled = true;
-          input.readOnly = true;
-        });
-
-        // 모든 체크박스와 스위치 비활성화 (상태 스위치 제외)
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]:not(.status-switch-large input)');
-        checkboxes.forEach(checkbox => {
-          checkbox.disabled = true;
-        });
-
-        // 구성원 제거 버튼 비활성화
-        const removeButtons = document.querySelectorAll('.badge-remove-btn');
-        removeButtons.forEach(btn => {
-          btn.disabled = true;
-          btn.style.pointerEvents = 'none';
-        });
-
-        // 스피너 버튼 비활성화
-        const spinnerButtons = document.querySelectorAll('.spinner-btn');
-        spinnerButtons.forEach(btn => {
-          btn.disabled = true;
-        });
-
-        // 저장/취소 버튼 비활성화
-        const actionButtons = document.querySelectorAll('.btn.primary, .btn.outline');
-        actionButtons.forEach(btn => {
-          btn.disabled = true;
-        });
-      }
-
-      function enableAllInputs() {
-        // 모든 입력 필드 활성화
-        const inputs = document.querySelectorAll('.form-input, .form-textarea, .form-select, .condition-select, .count-input');
-        inputs.forEach(input => {
-          input.disabled = false;
-          input.readOnly = false;
-        });
-
-        // 모든 체크박스와 스위치 활성화
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(checkbox => {
-          checkbox.disabled = false;
-        });
-
-        // 구성원 제거 버튼 활성화
-        const removeButtons = document.querySelectorAll('.badge-remove-btn');
-        removeButtons.forEach(btn => {
-          btn.disabled = false;
-          btn.style.pointerEvents = 'auto';
-        });
-
-        // 스피너 버튼 활성화
-        const spinnerButtons = document.querySelectorAll('.spinner-btn');
-        spinnerButtons.forEach(btn => {
-          btn.disabled = false;
-        });
-
-        // 저장/취소 버튼 활성화
-        const actionButtons = document.querySelectorAll('.btn.primary, .btn.outline');
-        actionButtons.forEach(btn => {
-          btn.disabled = false;
-        });
-      }
-
-      if (statusSwitch) {
-        console.log('상태 스위치를 찾았습니다:', statusSwitch);
-        statusSwitch.addEventListener('change', function (e) {
-          console.log('상태 스위치 변경됨:', e.target.checked);
-          updateWorkspaceStatus();
-        });
-        // 초기 상태 설정
-        updateWorkspaceStatus();
-      } else {
-        console.error('상태 스위치를 찾을 수 없습니다. 선택자를 확인하세요.');
-      }
       // count-spinner 동작
       document.querySelectorAll('.spinner-btn').forEach(function (btn) {
         btn.addEventListener('click', function (e) {
