@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>일반관리 - 메뉴관리</title>
+  <title>시스템관리 - 권한 관리 - 메뉴관리</title>
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
 
@@ -39,10 +39,22 @@
       </div>
 
       <div class="menu-section">
-        <h3>시스템</h3>
+        <h3>시스템관리</h3>
         <ul>
           <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
-          <li><a href="terms.html"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+
+          <li><a href="system_user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li>
+            <a href="#" class="active">
+              <img src="../asset/user.svg" alt="">권한 관리
+              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
+            </a>
+            <ul class="submenu">
+              <li><a href="group_setting.html">권한관리</a></li>
+              <li><a href="menu_setting.html" class="active">메뉴관리</a></li>
+            </ul>
+          </li>
+          <li><a href="system_stats.html"><img src="../asset/stats.svg" alt="">통계</a></li>
         </ul>
       </div>
 
@@ -62,15 +74,15 @@
         </div>
         <ul>
           <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
           <li>
-            <a href="#" class="active">
-              <img src="../asset/user.svg" alt="">일반관리
+            <a href="#" class="">
+              <img src="../asset/user.svg" alt="">공통관리
               <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
             </a>
             <ul class="submenu">
-              <li><a href="user.html">사용자관리</a></li>
-              <li><a href="menu_setting.html" class="active">메뉴관리</a></li>
-              <li><a href="group_setting.html">그룹설정</a></li>
+              <li><a href="group_setting.html">권한관리</a></li>
+              <li><a href="workspace_menu_setting.html">메뉴관리</a></li>
             </ul>
           </li>
           <li>
@@ -86,16 +98,8 @@
           <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
           <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
           <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
-          <li>
-            <a href="prompt.html">
-              <img src="../asset/history.svg" alt="">프롬프트 관리
-              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
-            </a>
-            <ul class="submenu">
-              <li><a href="index.html">회의록 템플릿 관리</a></li>
-
-            </ul>
-          </li>
+          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
+          <li><a href="index.html"><img src="../asset/history.svg" alt="">회의록 템플릿 관리</a></li>
           <li>
             <a href="#">
               <img src="../asset/stats.svg" alt="">통계
@@ -114,7 +118,7 @@
     <div class="content menu-setting-page">
       <div class="content-header">
         <div class="breadcrumb">
-          워크스페이스 > 일반관리 > 메뉴관리
+          시스템관리 > 권한 관리 > 메뉴관리
         </div>
       </div>
       <div class="content-body">
@@ -132,12 +136,12 @@
                 </div>
               </div>
               <div class="menu-tree-content" id="menuTree">
-                <!-- 시스템 메뉴 -->
+                <!-- 시스템관리 메뉴 -->
                 <div class="menu-tree-item" data-level="1" data-id="system" draggable="true">
                   <div class="menu-item-header">
                     <span class="menu-toggle">▼</span>
                     <span class="menu-icon">📁</span>
-                    <span class="menu-title">시스템</span>
+                    <span class="menu-title">시스템관리</span>
 
                   </div>
                   <div class="menu-children">
@@ -146,7 +150,6 @@
                         <span class="menu-icon">📄</span>
                         <span class="menu-title">워크스페이스 관리</span>
 
-
                       </div>
                     </div>
                     <div class="menu-tree-item" data-level="2" data-id="terms" draggable="true">
@@ -154,42 +157,27 @@
                         <span class="menu-icon">📄</span>
                         <span class="menu-title">이용약관 관리</span>
 
-
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                <!-- 워크스페이스 메뉴 -->
-                <div class="menu-tree-item" data-level="1" data-id="workspace-section" draggable="true">
-                  <div class="menu-item-header">
-                    <span class="menu-toggle">▼</span>
-                    <span class="menu-icon">📁</span>
-                    <span class="menu-title">워크스페이스</span>
-
-                  </div>
-                  <div class="menu-children">
-                    <div class="menu-tree-item" data-level="2" data-id="general" draggable="true">
+                    <div class="menu-tree-item" data-level="2" data-id="system-user" draggable="true">
                       <div class="menu-item-header">
                         <span class="menu-icon">📄</span>
-                        <span class="menu-title">일반</span>
-
+                        <span class="menu-title">사용자 관리</span>
 
                       </div>
                     </div>
-                    <div class="menu-tree-item" data-level="2" data-id="user-management" draggable="true">
+                    <div class="menu-tree-item" data-level="2" data-id="permission-management" draggable="true">
                       <div class="menu-item-header">
                         <span class="menu-toggle">▼</span>
                         <span class="menu-icon">📁</span>
-                        <span class="menu-title">일반관리</span>
+                        <span class="menu-title">권한 관리</span>
 
                       </div>
                       <div class="menu-children">
-                        <div class="menu-tree-item" data-level="3" data-id="user-info" draggable="true">
+                        <div class="menu-tree-item" data-level="3" data-id="group-setting" draggable="true">
                           <div class="menu-item-header">
                             <span class="menu-icon">📄</span>
-                            <span class="menu-title">사용자관리</span>
-
+                            <span class="menu-title">권한관리</span>
 
                           </div>
                         </div>
@@ -198,20 +186,71 @@
                             <span class="menu-icon">📄</span>
                             <span class="menu-title">메뉴관리</span>
 
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="menu-tree-item" data-level="2" data-id="system-stats" draggable="true">
+                      <div class="menu-item-header">
+                        <span class="menu-icon">📄</span>
+                        <span class="menu-title">통계</span>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 워크스페이스 메뉴 -->
+                <div class="menu-tree-item disabled" data-level="1" data-id="workspace-section">
+                  <div class="menu-item-header">
+                    <span class="menu-toggle">▼</span>
+                    <span class="menu-icon">📁</span>
+                    <span class="menu-title">워크스페이스</span>
+
+                  </div>
+                  <div class="menu-children">
+                    <div class="menu-tree-item disabled" data-level="2" data-id="general">
+                      <div class="menu-item-header">
+                        <span class="menu-icon">📄</span>
+                        <span class="menu-title">일반</span>
+
+
+                      </div>
+                    </div>
+                    <div class="menu-tree-item disabled" data-level="2" data-id="user-management">
+                      <div class="menu-item-header">
+                        <span class="menu-icon">📄</span>
+                        <span class="menu-title">사용자 관리</span>
+
+                      </div>
+                    </div>
+                    <div class="menu-tree-item disabled" data-level="2" data-id="common-management">
+                      <div class="menu-item-header">
+                        <span class="menu-toggle">▼</span>
+                        <span class="menu-icon">📁</span>
+                        <span class="menu-title">공통관리</span>
+
+                      </div>
+                      <div class="menu-children">
+                        <div class="menu-tree-item disabled" data-level="3" data-id="workspace-permission">
+                          <div class="menu-item-header">
+                            <span class="menu-icon">📄</span>
+                            <span class="menu-title">권한관리</span>
+
 
                           </div>
                         </div>
-                        <div class="menu-tree-item" data-level="3" data-id="group-setting" draggable="true">
+                        <div class="menu-tree-item disabled" data-level="3" data-id="workspace-menu">
                           <div class="menu-item-header">
                             <span class="menu-icon">📄</span>
-                            <span class="menu-title">그룹설정</span>
+                            <span class="menu-title">메뉴관리</span>
 
 
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="menu-tree-item" data-level="2" data-id="history" draggable="true">
+                    <div class="menu-tree-item disabled" data-level="2" data-id="history">
                       <div class="menu-item-header">
                         <span class="menu-toggle">▼</span>
                         <span class="menu-icon">📁</span>
@@ -219,7 +258,7 @@
 
                       </div>
                       <div class="menu-children">
-                        <div class="menu-tree-item" data-level="3" data-id="login-history" draggable="true">
+                        <div class="menu-tree-item disabled" data-level="3" data-id="login-history">
                           <div class="menu-item-header">
                             <span class="menu-icon">📄</span>
                             <span class="menu-title">사용자 접속 이력</span>
@@ -227,7 +266,7 @@
 
                           </div>
                         </div>
-                        <div class="menu-tree-item" data-level="3" data-id="download-history" draggable="true">
+                        <div class="menu-tree-item disabled" data-level="3" data-id="download-history">
                           <div class="menu-item-header">
                             <span class="menu-icon">📄</span>
                             <span class="menu-title">다운로드 이력</span>
@@ -237,7 +276,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="menu-tree-item" data-level="2" data-id="meeting" draggable="true">
+                    <div class="menu-tree-item" data-level="2" data-id="meeting">
                       <div class="menu-item-header">
                         <span class="menu-icon">📄</span>
                         <span class="menu-title">회의록 관리</span>
@@ -245,7 +284,7 @@
 
                       </div>
                     </div>
-                    <div class="menu-tree-item" data-level="2" data-id="consent" draggable="true">
+                    <div class="menu-tree-item" data-level="2" data-id="consent">
                       <div class="menu-item-header">
                         <span class="menu-icon">📄</span>
                         <span class="menu-title">동의서 관리</span>
@@ -253,7 +292,7 @@
 
                       </div>
                     </div>
-                    <div class="menu-tree-item" data-level="2" data-id="dictionary" draggable="true">
+                    <div class="menu-tree-item" data-level="2" data-id="dictionary">
                       <div class="menu-item-header">
                         <span class="menu-icon">📄</span>
                         <span class="menu-title">사전 관리</span>
@@ -261,26 +300,21 @@
 
                       </div>
                     </div>
-                    <div class="menu-tree-item" data-level="2" data-id="prompt" draggable="true">
+                    <div class="menu-tree-item" data-level="2" data-id="prompt">
                       <div class="menu-item-header">
-                        <span class="menu-toggle">▼</span>
-                        <span class="menu-icon">📁</span>
+                        <span class="menu-icon">📄</span>
                         <span class="menu-title">프롬프트 관리</span>
 
                       </div>
-                      <div class="menu-children">
-                        <div class="menu-tree-item" data-level="3" data-id="template" draggable="true">
-                          <div class="menu-item-header">
-                            <span class="menu-icon">📄</span>
-                            <span class="menu-title">회의록 템플릿 관리</span>
-
-
-                          </div>
-                        </div>
+                    </div>
+                    <div class="menu-tree-item" data-level="2" data-id="template">
+                      <div class="menu-item-header">
+                        <span class="menu-icon">📄</span>
+                        <span class="menu-title">회의록 템플릿 관리</span>
 
                       </div>
                     </div>
-                    <div class="menu-tree-item" data-level="2" data-id="stats" draggable="true">
+                    <div class="menu-tree-item" data-level="2" data-id="stats">
                       <div class="menu-item-header">
                         <span class="menu-toggle">▼</span>
                         <span class="menu-icon">📁</span>
@@ -288,7 +322,7 @@
 
                       </div>
                       <div class="menu-children">
-                        <div class="menu-tree-item" data-level="3" data-id="usage-stats" draggable="true">
+                        <div class="menu-tree-item" data-level="3" data-id="usage-stats">
                           <div class="menu-item-header">
                             <span class="menu-icon">📄</span>
                             <span class="menu-title">사용량 통계</span>
@@ -296,7 +330,7 @@
 
                           </div>
                         </div>
-                        <div class="menu-tree-item" data-level="3" data-id="user-stats" draggable="true">
+                        <div class="menu-tree-item" data-level="3" data-id="user-stats">
                           <div class="menu-item-header">
                             <span class="menu-icon">📄</span>
                             <span class="menu-title">사용자별 통계</span>
@@ -308,6 +342,7 @@
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
 
@@ -349,9 +384,10 @@
                       <label>상위 메뉴</label>
                       <select class="form-select">
                         <option>최상위</option>
-                        <option>시스템</option>
+                        <option>시스템관리</option>
                         <option>워크스페이스</option>
-                        <option>일반관리</option>
+                        <option>사용자 관리</option>
+                        <option>공통관리</option>
                         <option>이력 관리</option>
                         <option>프롬프트 관리</option>
                         <option>통계</option>

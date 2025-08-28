@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // 현재 페이지 식별
   const currentPage = document.body.className || '';
   
+
+  
   // 그룹 설정 페이지
   if (currentPage.includes('page-group-setting')) {
     initGroupSetting();

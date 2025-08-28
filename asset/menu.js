@@ -3,69 +3,40 @@
   // 메뉴 JS 준비 완료 표시 (CSS 숨김 상태 방지)
   document.documentElement.classList.add('menu-ready');
   
-  function getKey(liEl) {
-    const a = liEl.querySelector(':scope > a');
-    if (!a) return null;
-    // href가 의미있으면 우선, 없으면 텍스트로 폴백
-    const href = a.getAttribute('href');
-    const text = (a.textContent || '').trim();
-    return (href && href !== '#') ? `href:${href}` : `text:${text}`;
-  }
 
-  function loadState() {
-    try {
-      return JSON.parse(localStorage.getItem('openSubmenus') || '[]');
-    } catch (e) {
-      return [];
-    }
-  }
 
-  function saveState(state) {
-    try {
-      localStorage.setItem('openSubmenus', JSON.stringify(state));
-    } catch (e) {
-      // 무시
-    }
-  }
-
-  function setOpen(liEl, willOpen, state) {
-    const key = getKey(liEl);
-    if (!key) return;
+  function setOpen(liEl, willOpen) {
     if (willOpen) {
       liEl.classList.add('open');
-      if (!state.includes(key)) state.push(key);
     } else {
       liEl.classList.remove('open');
-      const idx = state.indexOf(key);
-      if (idx >= 0) state.splice(idx, 1);
     }
-    saveState(state);
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     const sidebar = document.querySelector('.sidebar');
     if (!sidebar) return;
+    
     const submenuParents = Array.from(sidebar.querySelectorAll('.menu-section > ul > li'))
       .filter(li => li.querySelector(':scope > .submenu'));
 
-    const state = loadState();
 
-    // 초기에 모든 서브메뉴 닫기
-    submenuParents.forEach(li => li.classList.remove('open'));
 
-    // 저장된 상태에서 다시 열기
+    // 모든 서브메뉴 닫기 (새 페이지 진입 시마다 초기화)
     submenuParents.forEach(li => {
-      const key = getKey(li);
-      if (key && state.includes(key)) {
-        li.classList.add('open');
-      }
+      li.classList.remove('open');
+      li.classList.remove('has-active-child');
     });
 
-    // 현재 페이지가 서브메뉴 내부에 있으면 열기
+    // 현재 페이지가 서브메뉴 내부에 있으면 해당 메뉴만 열기
     submenuParents.forEach(li => {
       const hasActiveChild = !!li.querySelector(':scope > .submenu a.active');
-      if (hasActiveChild) {
+      const isParentActive = !!li.querySelector(':scope > a.active[href="#"]');
+      
+      if (hasActiveChild || isParentActive) {
         li.classList.add('open');
+        // CSS :has() 선택자 미지원 브라우저를 위한 클래스 추가
+        li.classList.add('has-active-child');
       }
     });
 
@@ -109,33 +80,27 @@
     // 메뉴 화살표 클릭 시 서브메뉴 토글
     submenuParents.forEach(li => {
       const a = li.querySelector(':scope > a');
-      if (!a) return;
+      const arrow = li.querySelector(':scope > a > .menu-arrow');
+      if (!a || !arrow) return;
       
-      // 전체 링크에 클릭 핸들러 추가
-      a.addEventListener('click', function (e) {
-        // 클릭된 요소가 화살표 이미지인지 확인
-        if (e.target.classList.contains('menu-arrow')) {
+              // 화살표에만 클릭 이벤트 추가
+        arrow.addEventListener('click', function (e) {
           e.preventDefault();
           e.stopPropagation();
           const willOpen = !li.classList.contains('open');
-          setOpen(li, willOpen, state);
-          return;
-        }
-        
-        // 서브메뉴가 있고 현재 활성 메뉴인 경우, href가 #이면 토글만, 실제 링크면 이동 허용
-        if (a.classList.contains('active') && li.querySelector(':scope > .submenu')) {
+          setOpen(li, willOpen);
+        });
+
+        // 메뉴 링크 자체에는 href가 #인 경우에만 토글
+        a.addEventListener('click', function (e) {
           const href = a.getAttribute('href');
           if (href === '#') {
             e.preventDefault();
             const willOpen = !li.classList.contains('open');
-            setOpen(li, willOpen, state);
-            return;
+            setOpen(li, willOpen);
           }
-          // href가 실제 페이지 링크면 이동 허용 (preventDefault 하지 않음)
-        }
-        
-        // 그 외의 경우 일반 네비게이션 허용
-      });
+          // href가 실제 링크인 경우 정상 이동
+        });
     });
 
     // 사이드바 높이 동적 조정 함수

@@ -7,7 +7,7 @@
    - .page-workspace (워크스페이스)
    - .page-download-history (다운로드 이력)
    - .page-template-detail (템플릿 상세)
-   - .page-terms-new (약관 신규)
+
    
    전역 충돌을 방지하려면 스타일을 다음과 같이 작성:
    .page-specific .common-class { ... }
@@ -234,22 +234,24 @@ body {
 }
 
 /* 서브메뉴가 열려있을 때 표시 */
-.menu-section li.open > .submenu,
-.menu-section li:has(> a.active) > .submenu,
+.menu-section li.open > .submenu {
+  display: block !important;
+}
+
+/* 현재 페이지가 서브메뉴에 있을 때 자동으로 열림 */
 .menu-section li:has(> .submenu a.active) > .submenu {
   display: block !important;
 }
 
-/* 활성화된 경우(현재 페이지)에도 항상 펼쳐짐 유지 */
-.menu-section li:has(> a.active) > .submenu,
-.menu-section li:has(> .submenu a.active) > .submenu {
-    display: block;
+/* 현재 페이지가 서브메뉴에 있을 때 화살표도 회전 */
+.menu-section li:has(> .submenu a.active) > a > .menu-arrow,
+.menu-section li.has-active-child > a > .menu-arrow {
+  transform: translateY(-50%) rotate(180deg);
 }
 
-/* 활성화된 경우 화살표도 위로 회전 고정 */
-.menu-section li:has(> a.active) > a > .menu-arrow,
-.menu-section li:has(> .submenu a.active) > a > .menu-arrow {
-  transform: translateY(-50%) rotate(180deg);
+/* CSS :has() 미지원 브라우저를 위한 폴백 */
+.menu-section li.has-active-child > .submenu {
+  display: block !important;
 }
 
 .submenu li a {
@@ -4348,101 +4350,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   flex: 1 1 0 !important;
 }
 
-/* 약관 신규 페이지 전용 스타일 */
-.terms-new-page .form-grid {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: 20px 24px;
-}
 
-.terms-new-page .form-label {
-  font-size: 14px;
-  font-weight: 600;
-  color: #292A2B;
-  padding-top: 10px;
-}
-
-.terms-new-page .form-input,
-.terms-new-page .form-select {
-  width: 100%;
-  padding: 10px 36px 10px 12px;
-  border: 1px solid #E5E5E5;
-  border-radius: 4px;
-  font-size: 14px;
-  background: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-.terms-new-page .form-select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url('../asset/select-arrow.svg');
-  background-repeat: no-repeat;
-  background-position: right 8px center;
-  background-size: 16px 16px;
-  cursor: pointer;
-}
-
-.terms-new-page input[type="date"] {
-  font-family: inherit;
-  font-size: 14px;
-  color: #333;
-}
-
-.terms-new-page .inline {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.terms-new-page .editor {
-  border: 1px solid #E5E5E5;
-  border-radius: 6px;
-  background: #fff;
-}
-
-.terms-new-page .editor-toolbar {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  padding: 10px 12px;
-  border-bottom: 1px solid #E5E5E5;
-  background: #F8FAFC;
-}
-
-.terms-new-page .editor-area {
-  min-height: 420px;
-  padding: 12px;
-  font-size: 14px;
-  color: #333;
-}
-
-.terms-new-page .switch {
-  margin-left: 8px;
-}
-
-.terms-new-page .actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.terms-new-page .btn {
-  padding: 8px 20px;
-  border-radius: 4px;
-  font-size: 14px;
-  cursor: pointer;
-  border: 1px solid #E5E5E5;
-  background: #fff;
-}
-
-.terms-new-page .btn.primary {
-  background: #0066FF;
-  color: #fff;
-  border: none;
-}
 
 /* 다운로드 히스토리 페이지 전용 스타일 */
 .download-history-page .table-container table {
@@ -4807,6 +4715,219 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   background: #F9FAFB;
 }
 
+/* 시스템 사용자 페이지 전용 스타일 */
+.page-system-user.user-page.member-page .search-section {
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin-bottom: 16px;
+  background: transparent;
+}
+
+.page-system-user.user-page.member-page .search-section .common-topbar {
+  padding: 0;
+  margin: 0;
+}
+
+/* 시스템 사용자 페이지 버튼 스타일 개선 */
+.page-system-user.user-page.member-page .btn-submit {
+  padding: 8px 16px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  min-width: auto;
+}
+
+.page-system-user.user-page.member-page .tb-right .btn-submit {
+  background: #EF4444;
+  border: 1px solid #EF4444;
+  color: #fff;
+  margin: 0;
+}
+
+.page-system-user.user-page.member-page .tb-right .btn-submit:hover {
+  background: #DC2626;
+  border-color: #DC2626;
+}
+
+/* 시스템 사용자 페이지 검색 박스 내 조회 버튼 */
+.page-system-user.user-page.member-page .combo-field .append-btn {
+  height: 100%;
+  border: none;
+  border-left: 1px solid transparent;
+  padding: 0 16px;
+  background: #1677FF;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  min-width: 64px;
+}
+
+.page-system-user.user-page.member-page .combo-field .append-btn:hover {
+  background: #2B85FF;
+}
+
+.page-system-user.user-page.member-page .combo-field .append-btn:active {
+  background: #0F6BFF;
+}
+
+/* 시스템 사용자 페이지 10개씩 보기 셀렉트 스타일 개선 */
+.page-system-user.user-page.member-page .tb-right .condition-select {
+  height: 40px;
+  padding: 8px 32px 8px 12px;
+  border: 1px solid #E5E5E5;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5' stroke='%23666' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 12px 12px;
+}
+
+.page-system-user.user-page.member-page .tb-right .condition-select:focus {
+  outline: none;
+  border-color: #0066FF;
+}
+
+.page-system-user.user-page.member-page .tb-right .condition-select:hover {
+  border-color: #9CA3AF;
+}
+
+/* 시스템 사용자 페이지 테이블 내 버튼 스타일 */
+.page-system-user.user-page.member-page .table-container .btn-outline {
+  padding: 6px 12px;
+  font-size: 13px;
+  height: 32px;
+  min-width: 60px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-system-user.user-page.member-page .table-container .btn-danger {
+  padding: 6px 12px;
+  font-size: 13px;
+  height: 32px;
+  min-width: 50px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 시스템 사용자 페이지 테이블 텍스트 줄바꿈 방지 */
+.page-system-user.user-page.member-page .table-container td {
+  white-space: nowrap;
+}
+
+.page-system-user.user-page.member-page .table-container .user-profile {
+  white-space: nowrap;
+}
+
+.page-system-user.user-page.member-page .table-container .workspace-badge {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: #10B981;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 24px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* 시스템 사용자 페이지 페이지네이션 중앙 정렬 */
+.page-system-user.user-page.member-page .list-footer {
+  justify-content: center;
+}
+
+.page-system-user.user-page.member-page .pagination-info {
+  position: absolute;
+  right: 0;
+}
+
+/* 시스템 사용자 페이지 검색/액션 버튼 텍스트 보호 */
+.page-system-user.user-page.member-page .tb-right .btn-submit {
+  white-space: nowrap;
+}
+
+/* 시스템 사용자 페이지 권한 셀렉트 박스 커스텀 */
+.page-system-user.user-page.member-page .table-container .permission-select {
+  width: 100px;
+  height: 32px;
+  padding: 4px 24px 4px 8px;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 12px;
+  color: #374151;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5' stroke='%23666' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  background-size: 12px 12px;
+}
+
+.page-system-user.user-page.member-page .table-container .permission-select:focus {
+  outline: none;
+  border-color: #0066FF;
+}
+
+.page-system-user.user-page.member-page .table-container .permission-select:hover {
+  border-color: #9CA3AF;
+}
+
+/* 시스템 사용자 페이지 검색 영역 레이아웃 개선 */
+.page-system-user.user-page.member-page .search-section .common-topbar {
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.page-system-user.user-page.member-page .search-section .tb-left {
+  flex: none;
+}
+
+.page-system-user.user-page.member-page .search-section .combo-search {
+  width: 400px;
+  max-width: 400px;
+}
+
+.page-system-user.user-page.member-page .search-section .combo-field {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+.page-system-user.user-page.member-page .search-section .combo-input-wrap {
+  min-width: 200px;
+  flex: 1;
+}
+
+.page-system-user.user-page.member-page .search-section .tb-right {
+  flex: none;
+  gap: 6px;
+}
+
 /* 비활성 멤버 페이지 버튼 스타일 - 외곽선 스타일 */
 .inactive-members-page .btn-activate {
   padding: 6px 12px;
@@ -5165,28 +5286,28 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 /* 메뉴 설정 페이지 드래그 앤 드롭 스타일 */
-.page-menu-setting .menu-tree-item {
+.page-workspace-menu-setting .menu-tree-item {
     transition: all 0.2s ease;
     cursor: grab;
     position: relative;
 }
 
-.page-menu-setting .menu-tree-item:active {
+.page-workspace-menu-setting .menu-tree-item:active {
     cursor: grabbing;
 }
 
-.page-menu-setting .menu-tree-item.dragging {
+.page-workspace-menu-setting .menu-tree-item.dragging {
     opacity: 0.6;
     transform: scale(0.98);
     z-index: 1000;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.page-menu-setting .menu-tree-item.drag-over {
+.page-workspace-menu-setting .menu-tree-item.drag-over {
     position: relative;
 }
 
-.page-menu-setting .menu-tree-item.drag-over::before {
+.page-workspace-menu-setting .menu-tree-item.drag-over::before {
     content: '';
     position: absolute;
     top: -2px;
@@ -5197,48 +5318,48 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     z-index: 999;
 }
 
-.page-menu-setting .menu-tree-item.drop-allowed::before {
+.page-workspace-menu-setting .menu-tree-item.drop-allowed::before {
     background: #10B981;
     box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
 }
 
-.page-menu-setting .menu-tree-item.drop-not-allowed::before {
+.page-workspace-menu-setting .menu-tree-item.drop-not-allowed::before {
     background: #EF4444;
     box-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
 }
 
-.page-menu-setting .menu-tree-item.drop-allowed .menu-item-header {
+.page-workspace-menu-setting .menu-tree-item.drop-allowed .menu-item-header {
     background: rgba(16, 185, 129, 0.05);
     border: 1px dashed #10B981;
     border-radius: 4px;
 }
 
-.page-menu-setting .menu-tree-item.drop-not-allowed .menu-item-header {
+.page-workspace-menu-setting .menu-tree-item.drop-not-allowed .menu-item-header {
     background: rgba(239, 68, 68, 0.05);
     border: 1px dashed #EF4444;
     border-radius: 4px;
 }
 
-.page-menu-setting .menu-tree-item.selected {
+.page-workspace-menu-setting .menu-tree-item.selected {
     background: rgba(75, 136, 240, 0.1);
     border-radius: 4px;
 }
 
-.page-menu-setting .menu-tree-item.selected .menu-item-header {
+.page-workspace-menu-setting .menu-tree-item.selected .menu-item-header {
     background: rgba(75, 136, 240, 0.05);
     border: 1px solid rgba(75, 136, 240, 0.2);
     border-radius: 4px;
 }
 
 /* 드래그 중 메뉴 아이템 스타일 */
-.page-menu-setting .menu-tree-item.dragging .menu-item-header {
+.page-workspace-menu-setting .menu-tree-item.dragging .menu-item-header {
     background: #f8f9fa;
     border: 1px solid #dee2e6;
     border-radius: 4px;
 }
 
 /* 메뉴 토글 버튼 스타일 개선 */
-.page-menu-setting .menu-toggle {
+.page-workspace-menu-setting .menu-toggle {
     display: inline-block;
     width: 16px;
     height: 16px;
@@ -5252,12 +5373,12 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     transition: color 0.2s ease;
 }
 
-.page-menu-setting .menu-toggle:hover {
+.page-workspace-menu-setting .menu-toggle:hover {
     color: #374151;
 }
 
 /* 메뉴 아이템 헤더 패딩 조정 */
-.page-menu-setting .menu-item-header {
+.page-workspace-menu-setting .menu-item-header {
     display: flex;
     align-items: center;
     padding: 8px 12px;
@@ -5266,13 +5387,13 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 /* 메뉴 아이콘 스타일 */
-.page-menu-setting .menu-icon {
+.page-workspace-menu-setting .menu-icon {
     margin-right: 8px;
     font-size: 16px;
 }
 
 /* 메뉴 제목 스타일 */
-.page-menu-setting .menu-title {
+.page-workspace-menu-setting .menu-title {
     font-size: 14px;
     font-weight: 500;
     color: #374151;
@@ -5280,37 +5401,37 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 /* 드래그 비활성화 상태 */
-.page-menu-setting .menu-tree-item[draggable="false"] {
+.page-workspace-menu-setting .menu-tree-item[draggable="false"] {
     cursor: default;
     opacity: 0.6;
 }
 
 /* 메뉴 레벨별 들여쓰기 */
-.page-menu-setting .menu-tree-item[data-level="1"] {
+.page-workspace-menu-setting .menu-tree-item[data-level="1"] {
     margin-left: 0;
 }
 
-.page-menu-setting .menu-tree-item[data-level="2"] {
+.page-workspace-menu-setting .menu-tree-item[data-level="2"] {
     margin-left: 20px;
 }
 
-.page-menu-setting .menu-tree-item[data-level="3"] {
+.page-workspace-menu-setting .menu-tree-item[data-level="3"] {
     margin-left: 40px;
 }
 
 /* 메뉴 접기/펼치기 애니메이션 */
-.page-menu-setting .menu-children {
+.page-workspace-menu-setting .menu-children {
     transition: all 0.3s ease;
     overflow: hidden;
 }
 
-.page-menu-setting .menu-tree-item.collapsed .menu-children {
+.page-workspace-menu-setting .menu-tree-item.collapsed .menu-children {
     max-height: 0;
     opacity: 0;
 }
 
 /* 드래그 앤 드롭 가이드 텍스트 */
-.page-menu-setting .drag-guide {
+.page-workspace-menu-setting .drag-guide {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -5326,12 +5447,12 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     transition: opacity 0.2s ease;
 }
 
-.page-menu-setting .menu-tree-item.dragging .drag-guide {
+.page-workspace-menu-setting .menu-tree-item.dragging .drag-guide {
     opacity: 1;
 }
 
 /* 메뉴 트리 컨테이너 스타일 개선 */
-.page-menu-setting .menu-tree-content {
+.page-workspace-menu-setting .menu-tree-content {
     position: relative;
     min-height: 400px;
     padding: 16px;
@@ -5341,13 +5462,940 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 /* 빈 메뉴 트리 상태 */
-.page-menu-setting .menu-tree-content:empty::before {
+.page-workspace-menu-setting .menu-tree-content:empty::before {
     content: '메뉴를 드래그하여 순서를 변경하거나 "새 메뉴" 버튼을 클릭하여 메뉴를 추가하세요.';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #9CA3AF;
+      color: #9CA3AF;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* 시스템 통계 페이지 CSS */
+/* 통계 페이지 전용 워크스페이스 배지 스타일 */
+.page-system-stats .workspace-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  background: #10B981;
+  color: #fff;
+  text-align: center;
+  min-width: 60px;
+}
+
+/* 통계 페이지 전용 통계 카운트 배지 스타일 */
+.page-system-stats .stats-count {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 24px;
+  text-align: center;
+}
+
+.page-system-stats .stats-count.new {
+  background: #DCFCE7;
+  color: #16A34A;
+}
+
+.page-system-stats .stats-count.edit {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.page-system-stats .stats-count.delete {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.page-system-stats .stats-count.total {
+  background: #E0E7FF;
+  color: #3730A3;
+}
+/* 시스템 통계 페이지 CSS 끝 */
+
+/* System Menu Setting 페이지 스타일 */
+.page-menu-setting .menu-management-container {
+  gap: 30px;
+  height: 100%;
+}
+
+.page-menu-setting .menu-tree-container {
+  flex: 1;
+  background: white;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.page-menu-setting .menu-tree-container h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.page-menu-setting .menu-tree {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-menu-setting .tree-item {
+  margin-bottom: 8px;
+}
+
+.page-menu-setting .tree-icon {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.page-menu-setting .menu-title {
+  font-size: 14px;
+  color: #34495e;
+  font-weight: 500;
+}
+
+.page-menu-setting .tree-children {
+  margin-left: 20px;
+  margin-top: 8px;
+}
+
+.page-menu-setting .tree-children .tree-item {
+  margin-bottom: 6px;
+}
+
+.page-menu-setting .tree-children .menu-title {
+  font-size: 13px;
+  color: #7f8c8d;
+}
+
+.page-menu-setting .menu-management-actions {
+  flex: 0 0 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.page-menu-setting .action-section {
+  background: white;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.page-menu-setting .action-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.page-menu-setting .form-group {
+  margin-bottom: 15px;
+}
+
+.page-menu-setting .form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.page-menu-setting .form-group input,
+.page-menu-setting .form-group textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  background: white;
+}
+
+.page-menu-setting .form-group input:focus,
+.page-menu-setting .form-group textarea:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+}
+
+.page-menu-setting .combo-select {
+  position: relative;
+  display: block;
+}
+
+.page-menu-setting .combo-select select {
+  width: 100%;
+  padding: 8px 30px 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  background: white;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.page-menu-setting .combo-select .select-arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 12px;
+  height: 12px;
+}
+
+.page-menu-setting .checkbox-group {
+  display: flex;
+  gap: 20px;
+  margin-top: 5px;
+}
+
+.page-menu-setting .checkbox-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 13px;
+  color: #34495e;
+}
+
+.page-menu-setting .checkbox-item input[type="checkbox"] {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+}
+
+.page-menu-setting .form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.page-menu-setting .form-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.page-menu-setting .btn-add {
+  background-color: #27ae60;
+  color: white;
+}
+
+.page-menu-setting .btn-add:hover {
+  background-color: #2ecc71;
+}
+
+.page-menu-setting .btn-update {
+  background-color: #3498db;
+  color: white;
+}
+
+.page-menu-setting .btn-update:hover {
+  background-color: #5dade2;
+}
+
+.page-menu-setting .btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.page-menu-setting .btn-delete:hover {
+  background-color: #ec7063;
+}
+
+.page-menu-setting .btn-save-permission {
+  background-color: #8e44ad;
+  color: white;
+  width: 100%;
+}
+
+.page-menu-setting .btn-save-permission:hover {
+  background-color: #a569bd;
+}
+
+  /* Workspace Menu Setting 페이지 스타일 */
+  /* 워크스페이스 선택 섹션 */
+  .page-workspace-menu-setting .workspace-selection-section {
+    background: white;
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+  }
+
+  .page-workspace-menu-setting .workspace-select-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .page-workspace-menu-setting .workspace-label {
     font-size: 14px;
-    text-align: center;
+    font-weight: 600;
+    color: #2c3e50;
+    white-space: nowrap;
+  }
+
+  .page-workspace-menu-setting .workspace-selection-section .combo-select {
+    width: 300px;
+  }
+
+  .page-workspace-menu-setting .menu-management-container {
+    display: flex;
+    gap: 25px;
+    height: 100%;
+  }
+
+.page-workspace-menu-setting .menu-tree-container {
+  flex: 6;
+  background: white;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.page-workspace-menu-setting .menu-tree-container h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.page-workspace-menu-setting .menu-tree {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-workspace-menu-setting .tree-item {
+  margin-bottom: 8px;
+}
+
+.page-workspace-menu-setting .tree-icon {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.page-workspace-menu-setting .menu-title {
+  font-size: 14px;
+  color: #34495e;
+  font-weight: 500;
+}
+
+.page-workspace-menu-setting .tree-children {
+  margin-left: 20px;
+  margin-top: 8px;
+}
+
+.page-workspace-menu-setting .tree-children .tree-item {
+  margin-bottom: 6px;
+}
+
+.page-workspace-menu-setting .tree-children .menu-title {
+  font-size: 13px;
+  color: #7f8c8d;
+}
+
+/* 체크박스 메뉴 트리 스타일 */
+.page-workspace-menu-setting .menu-tree-checkbox {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-workspace-menu-setting .menu-checkbox-item {
+  margin-bottom: 8px;
+}
+
+.page-workspace-menu-setting .menu-checkbox-item input[type="checkbox"] {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  accent-color: #3498db;
+}
+
+.page-workspace-menu-setting .checkbox-label {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 14px;
+  color: #34495e;
+  font-weight: 500;
+  user-select: none;
+  margin-left: 5px;
+}
+
+.page-workspace-menu-setting .checkbox-label:hover {
+  color: #2c3e50;
+}
+
+.page-workspace-menu-setting .tree-children {
+  margin-left: 24px;
+  margin-top: 8px;
+}
+
+.page-workspace-menu-setting .tree-children .menu-checkbox-item {
+  margin-bottom: 6px;
+}
+
+.page-workspace-menu-setting .tree-children .checkbox-label {
+  font-size: 13px;
+  color: #7f8c8d;
+}
+
+.page-workspace-menu-setting .checkbox-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+
+.page-workspace-menu-setting .menu-management-actions {
+  flex: 4;
+ height: 100%;
+ min-height: 535px;
+}
+
+
+  .page-workspace-menu-setting .action-section {
+    background: white;
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    padding: 20px;
+    height: 100%;
+    min-height: 535px;
+    position: relative;
+  }
+
+
+
+.page-workspace-menu-setting .action-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.page-workspace-menu-setting .form-group {
+  margin-bottom: 15px;
+}
+
+.page-workspace-menu-setting .form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.page-workspace-menu-setting .form-group input,
+.page-workspace-menu-setting .form-group textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  background: white;
+  font-family: inherit;
+}
+
+.page-workspace-menu-setting .form-group textarea {
+  resize: none;
+}
+
+/* 권한그룹 관리 테이블 스타일 */
+.page-workspace-menu-setting .permission-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.page-workspace-menu-setting .permission-table th {
+  background: #f8f9fa;
+  border: 1px solid #e1e8ed;
+  padding: 12px 15px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.page-workspace-menu-setting .permission-table th:first-child {
+  text-align: left;
+  width: 50%;
+}
+
+.page-workspace-menu-setting .permission-table td {
+  border: 1px solid #e1e8ed;
+  padding: 10px 15px;
+  font-size: 13px;
+  color: #2c3e50;
+}
+
+.page-workspace-menu-setting .permission-table td.submenu-indent {
+  padding-left: 35px;
+  position: relative;
+}
+
+.page-workspace-menu-setting .permission-table td.submenu-indent:before {
+  content: "└";
+  position: absolute;
+  left: 20px;
+  color: #999;
+}
+
+.page-workspace-menu-setting .permission-status {
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.page-workspace-menu-setting .permission-status.enabled {
+  color: #27ae60;
+}
+
+.page-workspace-menu-setting .permission-status.disabled {
+  color: #95a5a6;
+}
+
+.page-workspace-menu-setting .permission-status.limited {
+  color: #f39c12;
+  font-size: 12px;
+}
+
+/* 권한그룹 테이블 분리 스타일 */
+.page-workspace-menu-setting .permission-tables {
+  display: flex;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.page-workspace-menu-setting .permission-table-group {
+  flex: 1;
+}
+
+.page-workspace-menu-setting .permission-group-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  background: #f8f9fa;
+  border: 1px solid #e1e8ed;
+  border-radius: 4px;
+  text-align: center;
+  color: #2c3e50;
+}
+
+/* 메뉴 관리 버튼 스타일 */
+.page-workspace-menu-setting .form-actions {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.page-workspace-menu-setting .btn-save {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.page-workspace-menu-setting .btn-save:hover {
+  background: #2980b9;
+}
+
+/* 권한그룹 관리 별도 섹션 스타일 */
+.page-workspace-menu-setting .permission-group-section {
+  margin-top: 25px;
+  background: white;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.page-workspace-menu-setting .permission-group-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.page-workspace-menu-setting .form-group input:focus,
+.page-workspace-menu-setting .form-group textarea:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+}
+
+.page-workspace-menu-setting .combo-select {
+  position: relative;
+  display: block;
+}
+
+.page-workspace-menu-setting .combo-select select {
+  width: 100%;
+  padding: 8px 30px 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  background: white;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.page-workspace-menu-setting .combo-select .select-arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 12px;
+  height: 12px;
+}
+
+.page-workspace-menu-setting .checkbox-group {
+  display: flex;
+  gap: 20px;
+  margin-top: 5px;
+}
+
+.page-workspace-menu-setting .checkbox-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 13px;
+  color: #34495e;
+}
+
+.page-workspace-menu-setting .checkbox-item input[type="checkbox"] {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+}
+
+.page-workspace-menu-setting .form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.page-workspace-menu-setting .form-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.page-workspace-menu-setting .btn-add {
+  background-color: #27ae60;
+  color: white;
+}
+
+.page-workspace-menu-setting .btn-add:hover {
+  background-color: #2ecc71;
+}
+
+.page-workspace-menu-setting .btn-update {
+  background-color: #3498db;
+  color: white;
+}
+
+.page-workspace-menu-setting .btn-update:hover {
+  background-color: #5dade2;
+}
+
+.page-workspace-menu-setting .btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.page-workspace-menu-setting .btn-delete:hover {
+  background-color: #ec7063;
+}
+
+.page-workspace-menu-setting .btn-save-permission {
+  background-color: #8e44ad;
+  color: white;
+  width: 100%;
+}
+
+.page-workspace-menu-setting .btn-save-permission:hover {
+  background-color: #a569bd;
+}
+
+
+
+/* Workspace Permission 페이지 스타일 */
+.page-workspace-permission .permission-management-container {
+}
+
+.page-workspace-permission .permission-header {
+  margin-bottom: 30px;
+}
+
+.page-workspace-permission .permission-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.page-workspace-permission .permission-header p {
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+.page-workspace-permission .permission-section {
+  margin-bottom: 40px;
+}
+
+.page-workspace-permission .permission-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  padding-bottom: 10px;
+}
+
+.page-workspace-permission .permission-types {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.page-workspace-permission .permission-type-card {
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  padding: 20px;
+  background: #ffffff;
+}
+
+.page-workspace-permission .permission-type-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.page-workspace-permission .permission-type-header h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.page-workspace-permission .permission-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.page-workspace-permission .permission-badge.owner {
+  background-color: #3498db;
+  color: white;
+}
+
+.page-workspace-permission .permission-badge.member {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.page-workspace-permission .permission-type-description p {
+  color: #7f8c8d;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.page-workspace-permission .permission-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.page-workspace-permission .permission-list li {
+  color: #34495e;
+  font-size: 13px;
+  padding: 4px 0;
+  position: relative;
+  padding-left: 16px;
+}
+
+.page-workspace-permission .permission-list li:before {
+  content: "•";
+  color: #3498db;
+  position: absolute;
+  left: 0;
+}
+
+.page-workspace-permission .permission-table-container {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.page-workspace-permission .permission-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.page-workspace-permission .permission-table th {
+  background-color: #f8f9fa;
+  color: #2c3e50;
+  font-weight: 600;
+  padding: 15px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e1e8ed;
+  font-size: 14px;
+}
+
+.page-workspace-permission .permission-table td {
+  padding: 15px 12px;
+  border-bottom: 1px solid #f1f3f4;
+  color: #34495e;
+  font-size: 14px;
+}
+
+.page-workspace-permission .user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-workspace-permission .user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #3498db;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.page-workspace-permission .combo-select {
+  position: relative;
+  display: inline-block;
+}
+
+.page-workspace-permission .permission-select {
+  padding: 6px 30px 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  background: white;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  min-width: 100px;
+}
+
+.page-workspace-permission .combo-select .select-arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 12px;
+  height: 12px;
+}
+
+.page-workspace-permission .btn-permission-change {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  background: #f8f9fa;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+.page-workspace-permission .permission-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.page-workspace-permission .btn-save-permissions {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.page-workspace-permission .btn-invite-user {
+  padding: 10px 20px;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.page-workspace-permission .permission-rules {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.page-workspace-permission .rule-item {
+  margin-bottom: 15px;
+}
+
+.page-workspace-permission .rule-item:last-child {
+  margin-bottom: 0;
+}
+
+.page-workspace-permission .rule-item strong {
+  color: #2c3e50;
+  font-size: 14px;
+}
+
+.page-workspace-permission .rule-item p {
+  color: #7f8c8d;
+  font-size: 13px;
+  margin: 5px 0 0 0;
+  line-height: 1.4;
 }

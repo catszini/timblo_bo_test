@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="menu-ready">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>약관 등록</title>
-  <link rel="stylesheet" href="../asset/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>워크스페이스 - 권한 관리</title>
+  <link rel="stylesheet" href="../asset/style.css">
+  <link rel="stylesheet" href="../asset/modal.css">
 
 </head>
 
-<body class="page-terms-new terms-new-page">
+<body class="page-workspace-permission">
   <div class="container">
-    <!-- 사이드바 -->
+    <!-- 왼쪽 메뉴바 -->
     <div class="sidebar">
       <div class="logo">
         <div class="logo-icon">T</div>
@@ -38,10 +39,22 @@
       </div>
 
       <div class="menu-section">
-        <h3>시스템</h3>
+        <h3>시스템관리</h3>
         <ul>
           <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
-          <li><a href="terms.html" class="active"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+
+          <li><a href="system_user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li>
+            <a href="#">
+              <img src="../asset/user.svg" alt="">권한 관리
+              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
+            </a>
+            <ul class="submenu">
+              <li><a href="group_setting.html">권한관리</a></li>
+              <li><a href="menu_setting.html">메뉴관리</a></li>
+            </ul>
+          </li>
+          <li><a href="system_stats.html"><img src="../asset/stats.svg" alt="">통계</a></li>
         </ul>
       </div>
 
@@ -61,16 +74,15 @@
         </div>
         <ul>
           <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
           <li>
-            <a href="user.html">
-              <img src="../asset/user.svg" alt="">일반관리
+            <a href="#" class="active">
+              <img src="../asset/user.svg" alt="">공통관리
               <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
             </a>
             <ul class="submenu">
-              <li><a href="user.html">사용자관리</a></li>
-              <li><a href="menu_setting.html">메뉴관리</a></li>
-              <li><a href="group_setting.html">그룹설정</a></li>
-
+              <li><a href="workspace_permission.html" class="active">권한관리</a></li>
+              <li><a href="workspace_menu_setting.html">메뉴관리</a></li>
             </ul>
           </li>
           <li>
@@ -86,17 +98,10 @@
           <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
           <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
           <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
+          <li><a href="index.html"><img src="../asset/history.svg" alt="">회의록 템플릿 관리</a></li>
           <li>
-            <a href="prompt.html">
-              <img src="../asset/history.svg" alt="">프롬프트 관리
-              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
-            </a>
-            <ul class="submenu">
-              <li><a href="index.html">회의록 템플릿 관리</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">
+            <a href="stats_usage.html">
               <img src="../asset/stats.svg" alt="">통계
               <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
             </a>
@@ -109,71 +114,169 @@
       </div>
     </div>
 
-    <!-- 콘텐츠 영역 -->
+    <!-- 오른쪽 콘텐츠 영역 -->
     <div class="content">
       <div class="content-header">
-        <div class="breadcrumb">시스템 > 이용약관 관리 > 약관 등록</div>
+        <div class="breadcrumb">워크스페이스 > 권한 관리</div>
       </div>
 
       <div class="content-body">
-        <div class="form-grid">
-          <div class="form-label">구분</div>
-          <div>
-            <select class="form-select">
-              <option>선택</option>
-            </select>
+        <div class="permission-management-container">
+          <div class="permission-header">
+            <p>워크스페이스 내 사용자의 권한을 관리합니다.</p>
           </div>
 
-          <div class="form-label">약관명</div>
-          <div>
-            <input type="text" class="form-input" placeholder="약관명을 입력하세요." />
-          </div>
+          <div class="permission-content">
+            <div class="permission-section">
+              <h3>권한 유형</h3>
+              <div class="permission-types">
+                <div class="permission-type-card">
+                  <div class="permission-type-header">
+                    <h4>소유자</h4>
+                    <span class="permission-badge owner">OWNER</span>
+                  </div>
+                  <div class="permission-type-description">
+                    <p>워크스페이스의 모든 권한을 가집니다.</p>
+                    <ul class="permission-list">
+                      <li>워크스페이스 설정 변경</li>
+                      <li>사용자 초대 및 권한 관리</li>
+                      <li>모든 콘텐츠 접근 및 수정</li>
+                      <li>워크스페이스 삭제</li>
+                      <li>결제 및 구독 관리</li>
+                    </ul>
+                  </div>
+                </div>
 
-          <div class="form-label">약관 실행일</div>
-          <div class="inline">
-            <input type="date" class="form-input form-input-medium" />
-            <select class="form-select form-select-medium">
-              <option>0시</option>
-            </select>
-            <select class="form-select form-select-medium">
-              <option>0분</option>
-            </select>
-            <div class="inline inline-auto">
-              <span>사용 여부</span>
-              <label class="switch">
-                <input type="checkbox" />
-                <span class="slider"></span>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-label">약관 내용</div>
-          <div>
-            <div class="editor">
-              <div class="editor-toolbar">
-                <span>↺</span><span>↻</span>
-                <select class="form-select form-select-medium">
-                  <option>Serif</option>
-                </select>
-                <select class="form-select form-select-medium">
-                  <option>Normal</option>
-                </select>
-                <span>B</span><span>I</span><span>U</span><span>A</span>
+                <div class="permission-type-card">
+                  <div class="permission-type-header">
+                    <h4>참여자</h4>
+                    <span class="permission-badge member">MEMBER</span>
+                  </div>
+                  <div class="permission-type-description">
+                    <p>제한된 권한으로 워크스페이스를 이용할 수 있습니다.</p>
+                    <ul class="permission-list">
+                      <li>할당된 콘텐츠 접근 및 수정</li>
+                      <li>회의록 작성 및 관리</li>
+                      <li>사전 및 템플릿 이용</li>
+                      <li>개인 설정 변경</li>
+                      <li>통계 조회 (제한적)</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-              <div class="editor-area" contenteditable="true">약관 내용을 입력하세요.</div>
+            </div>
+
+            <div class="permission-section">
+              <h3>현재 워크스페이스 권한 설정</h3>
+              <div class="current-permissions">
+                <div class="permission-table-container">
+                  <table class="permission-table">
+                    <thead>
+                      <tr>
+                        <th>사용자</th>
+                        <th>이메일</th>
+                        <th>현재 권한</th>
+                        <th>가입일</th>
+                        <th>마지막 접속</th>
+                        <th>관리</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="user-info">
+                            <div class="user-avatar">김</div>
+                            <span>김워크스페이스</span>
+                          </div>
+                        </td>
+                        <td>workspace@timbel.net</td>
+                        <td><span class="permission-badge owner">소유자</span></td>
+                        <td>2024-01-15</td>
+                        <td>2024-03-15 14:30</td>
+                        <td>
+                          <button class="btn-permission-change" disabled>권한 변경</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="user-info">
+                            <div class="user-avatar">이</div>
+                            <span>이참여자</span>
+                          </div>
+                        </td>
+                        <td>member1@timbel.net</td>
+                        <td><span class="permission-badge member">참여자</span></td>
+                        <td>2024-02-01</td>
+                        <td>2024-03-15 09:45</td>
+                        <td>
+                          <div class="combo-select">
+                            <select class="permission-select">
+                              <option value="member" selected>참여자</option>
+                              <option value="owner">소유자</option>
+                            </select>
+                            <img src="../asset/select-arrow.svg" alt="화살표" class="select-arrow">
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="user-info">
+                            <div class="user-avatar">박</div>
+                            <span>박참여자</span>
+                          </div>
+                        </td>
+                        <td>member2@timbel.net</td>
+                        <td><span class="permission-badge member">참여자</span></td>
+                        <td>2024-02-15</td>
+                        <td>2024-03-14 16:20</td>
+                        <td>
+                          <div class="combo-select">
+                            <select class="permission-select">
+                              <option value="member" selected>참여자</option>
+                              <option value="owner">소유자</option>
+                            </select>
+                            <img src="../asset/select-arrow.svg" alt="화살표" class="select-arrow">
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="permission-actions">
+                  <button class="btn-save-permissions">권한 변경 저장</button>
+                  <button class="btn-invite-user">사용자 초대</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="permission-section">
+              <h3>권한 설정 규칙</h3>
+              <div class="permission-rules">
+                <div class="rule-item">
+                  <strong>소유자 권한:</strong>
+                  <p>워크스페이스당 최소 1명의 소유자가 있어야 합니다. 마지막 소유자는 권한을 변경할 수 없습니다.</p>
+                </div>
+                <div class="rule-item">
+                  <strong>권한 변경:</strong>
+                  <p>소유자만 다른 사용자의 권한을 변경할 수 있습니다. 권한 변경 후 즉시 적용됩니다.</p>
+                </div>
+                <div class="rule-item">
+                  <strong>사용자 제거:</strong>
+                  <p>참여자는 언제든지 워크스페이스에서 제거할 수 있습니다. 소유자는 다른 소유자에 의해서만 제거됩니다.</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="actions">
-          <button class="btn">취소</button>
-          <button class="btn primary">생성</button>
         </div>
       </div>
     </div>
   </div>
+
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
+
+
 </body>
 
 </html>

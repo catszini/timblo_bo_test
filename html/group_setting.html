@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>메뉴목록 - 그룹 설정</title>
+  <title>시스템관리 - 권한 관리</title>
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
 
@@ -39,10 +39,22 @@
       </div>
 
       <div class="menu-section">
-        <h3>시스템</h3>
+        <h3>시스템관리</h3>
         <ul>
           <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
-          <li><a href="terms.html"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+
+          <li><a href="system_user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li>
+            <a href="#" class="active">
+              <img src="../asset/user.svg" alt="">권한 관리
+              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
+            </a>
+            <ul class="submenu">
+              <li><a href="group_setting.html" class="active">권한관리</a></li>
+              <li><a href="menu_setting.html">메뉴관리</a></li>
+            </ul>
+          </li>
+          <li><a href="system_stats.html"><img src="../asset/stats.svg" alt="">통계</a></li>
         </ul>
       </div>
 
@@ -62,19 +74,19 @@
         </div>
         <ul>
           <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
           <li>
-            <a href="#" class="active">
-              <img src="../asset/user.svg" alt="">일반관리
+            <a href="#" class="">
+              <img src="../asset/user.svg" alt="">공통관리
               <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
             </a>
             <ul class="submenu">
-              <li><a href="user.html">사용자관리</a></li>
-              <li><a href="menu_setting.html">메뉴관리</a></li>
-              <li><a href="group_setting.html" class="active">그룹설정</a></li>
+              <li><a href="workspace_permission.html" class="">권한관리</a></li>
+              <li><a href="workspace_menu_setting.html">메뉴관리</a></li>
             </ul>
           </li>
           <li>
-            <a href="login_history.html">
+            <a href="#">
               <img src="../asset/history.svg" alt="">이력 관리
               <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
             </a>
@@ -86,15 +98,8 @@
           <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
           <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
           <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
-          <li>
-            <a href="prompt.html">
-              <img src="../asset/history.svg" alt="">프롬프트 관리
-              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
-            </a>
-            <ul class="submenu">
-              <li><a href="index.html">회의록 템플릿 관리</a></li>
-            </ul>
-          </li>
+          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
+          <li><a href="index.html"><img src="../asset/history.svg" alt="">회의록 템플릿 관리</a></li>
           <li>
             <a href="stats_usage.html">
               <img src="../asset/stats.svg" alt="">통계
@@ -113,7 +118,7 @@
     <div class="content user-page group-setting-page">
       <div class="content-header">
         <div class="breadcrumb">
-          워크스페이스 > 메뉴목록 > 그룹 설정
+          시스템관리 > 권한 관리
         </div>
       </div>
       <div class="content-body">
@@ -249,71 +254,62 @@
                       <label for="일반">일반</label>
                     </div>
                     <div class="tree-item">
-                      <input type="checkbox" id="일반관리" checked>
-                      <label for="일반관리">일반관리</label>
-                      <div class="tree-children">
-                        <div class="tree-item">
-                          <input type="checkbox" id="사용자관리" checked>
-                          <label for="사용자관리">사용자관리</label>
-                        </div>
-                        <div class="tree-item">
-                          <input type="checkbox" id="메뉴관리" checked>
-                          <label for="메뉴관리">메뉴관리</label>
-                        </div>
-                        <div class="tree-item">
-                          <input type="checkbox" id="그룹설정" checked>
-                          <label for="그룹설정">그룹설정</label>
-                        </div>
+                      <input type="checkbox" id="사용자관리" checked>
+                      <label for="사용자관리">사용자 관리</label>
+                      <div class="tree-item">
+                        <input type="checkbox" id="메뉴관리" checked>
+                        <label for="메뉴관리">메뉴관리</label>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="tree-item">
+                    <input type="checkbox" id="이력관리" checked>
+                    <label for="이력관리">이력 관리</label>
+                    <div class="tree-children">
+                      <div class="tree-item">
+                        <input type="checkbox" id="사용자접속이력" checked>
+                        <label for="사용자접속이력">사용자 접속 이력</label>
+                      </div>
+                      <div class="tree-item">
+                        <input type="checkbox" id="다운로드이력" checked>
+                        <label for="다운로드이력">다운로드 이력</label>
                       </div>
                     </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="이력관리" checked>
-                      <label for="이력관리">이력 관리</label>
-                      <div class="tree-children">
-                        <div class="tree-item">
-                          <input type="checkbox" id="사용자접속이력" checked>
-                          <label for="사용자접속이력">사용자 접속 이력</label>
-                        </div>
-                        <div class="tree-item">
-                          <input type="checkbox" id="다운로드이력" checked>
-                          <label for="다운로드이력">다운로드 이력</label>
-                        </div>
+                  </div>
+                  <div class="tree-item">
+                    <input type="checkbox" id="회의록관리" checked>
+                    <label for="회의록관리">회의록 관리</label>
+                  </div>
+                  <div class="tree-item">
+                    <input type="checkbox" id="동의서관리" checked>
+                    <label for="동의서관리">동의서 관리</label>
+                  </div>
+                  <div class="tree-item">
+                    <input type="checkbox" id="사전관리" checked>
+                    <label for="사전관리">사전 관리</label>
+                  </div>
+                  <div class="tree-item">
+                    <input type="checkbox" id="프롬프트관리" checked>
+                    <label for="프롬프트관리">프롬프트 관리</label>
+                    <div class="tree-children">
+                      <div class="tree-item">
+                        <input type="checkbox" id="회의록템플릿관리" checked>
+                        <label for="회의록템플릿관리">회의록 템플릿 관리</label>
                       </div>
                     </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="회의록관리" checked>
-                      <label for="회의록관리">회의록 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="동의서관리" checked>
-                      <label for="동의서관리">동의서 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="사전관리" checked>
-                      <label for="사전관리">사전 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="프롬프트관리" checked>
-                      <label for="프롬프트관리">프롬프트 관리</label>
-                      <div class="tree-children">
-                        <div class="tree-item">
-                          <input type="checkbox" id="회의록템플릿관리" checked>
-                          <label for="회의록템플릿관리">회의록 템플릿 관리</label>
-                        </div>
+                  </div>
+                  <div class="tree-item">
+                    <input type="checkbox" id="통계" checked>
+                    <label for="통계">통계</label>
+                    <div class="tree-children">
+                      <div class="tree-item">
+                        <input type="checkbox" id="사용량통계" checked>
+                        <label for="사용량통계">사용량 통계</label>
                       </div>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="통계" checked>
-                      <label for="통계">통계</label>
-                      <div class="tree-children">
-                        <div class="tree-item">
-                          <input type="checkbox" id="사용량통계" checked>
-                          <label for="사용량통계">사용량 통계</label>
-                        </div>
-                        <div class="tree-item">
-                          <input type="checkbox" id="사용자별통계" checked>
-                          <label for="사용자별통계">사용자별 통계</label>
-                        </div>
+                      <div class="tree-item">
+                        <input type="checkbox" id="사용자별통계" checked>
+                        <label for="사용자별통계">사용자별 통계</label>
                       </div>
                     </div>
                   </div>
@@ -324,11 +320,12 @@
         </div>
       </div>
     </div>
+  </div>
 
 
 
-    <script src="../asset/menu.js"></script>
-    <script src="../asset/main.js"></script>
+  <script src="../asset/menu.js"></script>
+  <script src="../asset/main.js"></script>
 </body>
 
 </html>

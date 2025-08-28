@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI 회의록 관리자</title>
+  <title>시스템관리 - 사용자 관리</title>
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
+
 </head>
 
-<body>
+<body class="page-system-user user-page member-page">
   <div class="container">
     <!-- 왼쪽 메뉴바 -->
     <div class="sidebar">
@@ -42,7 +43,7 @@
         <ul>
           <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
 
-          <li><a href="system_user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li><a href="system_user.html" class="active"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
           <li>
             <a href="#">
               <img src="../asset/user.svg" alt="">권한 관리
@@ -97,7 +98,7 @@
           <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
           <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
           <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
-          <li><a href="prompt.html" class="active"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
+          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
           <li><a href="index.html"><img src="../asset/history.svg" alt="">회의록 템플릿 관리</a></li>
           <li>
             <a href="#">
@@ -114,251 +115,296 @@
     </div>
 
     <!-- 오른쪽 콘텐츠 영역 -->
-    <div class="content">
+    <div class="content user-page member-page user-page-custom">
       <div class="content-header">
         <div class="breadcrumb">
-          워크스페이스 > 프롬프트관리
+          시스템 > 사용자 관리
         </div>
       </div>
       <div class="content-body">
-        <div class="search-section">
-          <div class="search-group">
-            <div class="right-group">
-              <button class="new-button">파일업로드</button>
+        <div class="top-section">
+          <div class="search-section">
+            <div class="common-topbar">
+              <div class="tb-left">
+                <div class="combo-search">
+                  <div class="combo-field">
+                    <select class="combo-select">
+                      <option>전체</option>
+                      <option>생성자</option>
+                      <option>이름</option>
+                      <option>이메일</option>
+                    </select>
+                    <div class="combo-input-wrap">
+                      <input type="text" class="combo-input" placeholder="검색어를 입력해주세요">
+                    </div>
+                    <button class="append-btn">조회</button>
+                  </div>
+                </div>
+              </div>
+              <div class="tb-right">
+                <select class="condition-select">
+                  <option>10개씩 보기</option>
+                  <option>20개씩 보기</option>
+                  <option>50개씩 보기</option>
+                </select>
+                <button class="btn-submit">전체 삭제</button>
+              </div>
             </div>
           </div>
         </div>
+
         <div class="table-container">
           <table>
             <thead>
               <tr>
-                <th>카테고리</th>
-                <th>KEY</th>
+                <th><input type="checkbox" class="select-all"></th>
+                <th>순번</th>
+                <th>워크스페이스</th>
+                <th>이메일</th>
                 <th>이름</th>
-                <th>설명</th>
-                <th>등록일</th>
-                <th>등록자</th>
-                <th>버전</th>
+                <th>권한</th>
+                <th>비밀번호 초기화</th>
+                <th>삭제</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>회의록</td>
-                <td>TRN-EK-001</td>
-                <td>핵심 요약 프롬프트</td>
-                <td>회의의 핵심 내용을 요약하는 프롬프트</td>
-                <td>2024-02-28 14:30</td>
+                <td><input type="checkbox"></td>
+                <td>120</td>
                 <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-blue">김</div>
-                    <span>김철수</span>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
                   </div>
                 </td>
-                <td>v1.2</td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
               </tr>
               <tr>
-                <td>번역</td>
-                <td>TRN-EK-002</td>
-                <td>영어 번역 프롬프트</td>
-                <td>한국어를 영어로 번역하는 프롬프트</td>
-                <td>2024-02-27 11:20</td>
+                <td><input type="checkbox"></td>
+                <td>120</td>
                 <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-purple">이</div>
-                    <span>이영희</span>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
                   </div>
                 </td>
-                <td>v2.0</td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
               </tr>
               <tr>
-                <td>일정</td>
-                <td>TRN-EK-003</td>
-                <td>일정 정리 프롬프트</td>
-                <td>캘린더 일정을 정리하는 프롬프트</td>
-                <td>2024-02-26 09:15</td>
+                <td><input type="checkbox"></td>
+                <td>120</td>
                 <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-green">박</div>
-                    <span>박지민</span>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
                   </div>
                 </td>
-                <td>v1.0</td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
               </tr>
               <tr>
-                <td>번역</td>
-                <td>TRN-EK-004</td>
-                <td>중국어 번역 프롬프트</td>
-                <td>한국어를 중국어로 번역하는 프롬프트</td>
-                <td>2024-02-25 16:45</td>
+                <td><input type="checkbox"></td>
+                <td>120</td>
                 <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-orange">최</div>
-                    <span>최동훈</span>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
                   </div>
                 </td>
-                <td>v1.5</td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
               </tr>
               <tr>
-                <td>회의록</td>
-                <td>TRN-EK-005</td>
-                <td>주요 안건 추출 프롬프트</td>
-                <td>회의에서 논의된 주요 안건을 추출하는 프롬프트</td>
-                <td>2024-02-24 13:10</td>
+                <td><input type="checkbox"></td>
+                <td>120</td>
                 <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-pink">정</div>
-                    <span>정미경</span>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
                   </div>
                 </td>
-                <td>v2.1</td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
               </tr>
               <tr>
-                <td>번역</td>
-                <td>TRN-EK-006</td>
-                <td>일본어 번역 프롬프트</td>
-                <td>한국어를 일본어로 번역하는 프롬프트</td>
-                <td>2024-02-23 10:30</td>
+                <td><input type="checkbox"></td>
+                <td>120</td>
                 <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-blue">강</div>
-                    <span>강민수</span>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
                   </div>
                 </td>
-                <td>v1.3</td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
               </tr>
               <tr>
-                <td>회의록</td>
-                <td>TRN-EK-007</td>
-                <td>참석자 정보 정리 프롬프트</td>
-                <td>회의 참석자 정보를 정리하는 프롬프트</td>
-                <td>2024-02-22 15:20</td>
+                <td><input type="checkbox"></td>
+                <td>120</td>
                 <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-purple">윤</div>
-                    <span>윤서연</span>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
                   </div>
                 </td>
-                <td>v1.1</td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
               </tr>
               <tr>
-                <td>번역</td>
-                <td>TRN-EK-008</td>
-                <td>베트남어 번역 프롬프트</td>
-                <td>한국어를 베트남어로 번역하는 프롬프트</td>
-                <td>2024-02-21 09:45</td>
+                <td><input type="checkbox"></td>
+                <td>120</td>
                 <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-green">조</div>
-                    <span>조현우</span>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
                   </div>
                 </td>
-                <td>v2.2</td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
               </tr>
               <tr>
-                <td>회의록</td>
-                <td>TRN-EK-009</td>
-                <td>결과 요약 프롬프트</td>
-                <td>회의 결과를 요약하는 프롬프트</td>
-                <td>2024-02-20 16:15</td>
+                <td><input type="checkbox"></td>
+                <td>120</td>
                 <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-orange">한</div>
-                    <span>한지원</span>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
                   </div>
                 </td>
-                <td>v1.4</td>
-              </tr>
-              <tr>
-                <td>번역</td>
-                <td>TRN-EK-010</td>
-                <td>스페인어 번역 프롬프트</td>
-                <td>한국어를 스페인어로 번역하는 프롬프트</td>
-                <td>2024-02-19 11:00</td>
                 <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-pink">임</div>
-                    <span>임수진</span>
-                  </div>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
                 </td>
-                <td>v1.0</td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
               </tr>
             </tbody>
           </table>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- 프롬프트 등록 모달 -->
-  <div class="modal-overlay" style="display: none;">
-    <div class="modal-container prompt-modal">
-      <div class="modal-header">
-        <div class="header-content">
-          <h2>프롬프트 등록</h2>
-          <button class="btn-close">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M1.33398 14.6663L14.6673 1.33301M1.33398 1.33301L14.6673 14.6663" stroke="#15191E"
-                stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
-        </div>
-      </div>
-      <div class="modal-content">
-        <div class="form-group">
-          <label>카테고리</label>
-          <input type="text" class="form-input" placeholder="카테고리를 입력하세요">
-        </div>
-
-        <div class="form-group">
-          <label>KEY</label>
-          <input type="text" class="form-input" placeholder="KEY를 입력하세요">
-        </div>
-
-        <div class="form-group">
-          <label>이름</label>
-          <input type="text" class="form-input" placeholder="이름을 입력하세요">
-        </div>
-
-        <div class="form-group">
-          <label>설명</label>
-          <textarea class="form-textarea" placeholder="설명을 입력하세요"></textarea>
-        </div>
-
-        <div class="modal-footer">
-          <button class="btn-cancel">취소</button>
-          <button class="btn-submit">등록</button>
+        <div class="list-footer">
+          <div class="pagination">
+            <button class="page-btn prev">‹</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+            <button class="page-btn">6</button>
+            <button class="page-btn">7</button>
+            <button class="page-btn">8</button>
+            <button class="page-btn">9</button>
+            <button class="page-btn">10</button>
+            <span class="page-dots">...</span>
+            <button class="page-btn">301</button>
+            <button class="page-btn next">›</button>
+          </div>
+          <div class="pagination-info">
+            <span>1</span> of <span>301</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // 신규 등록 버튼 클릭 시 모달 표시
-      document.querySelector('.new-button').addEventListener('click', () => {
-        document.querySelector('.modal-overlay').style.display = 'flex';
-      });
-
-      // 메인 모달 닫기 버튼 클릭 시 모달 닫기
-      document.querySelector('.btn-close').addEventListener('click', () => {
-        document.querySelector('.modal-overlay').style.display = 'none';
-      });
-
-      // 메인 모달의 취소 버튼 클릭 시 모달 닫기
-      document.querySelector('.modal-overlay .btn-cancel').addEventListener('click', () => {
-        document.querySelector('.modal-overlay').style.display = 'none';
-      });
-
-      // 메인 모달 외부 영역 클릭 시 모달 닫기
-      document.querySelector('.modal-overlay').addEventListener('click', (e) => {
-        if (e.target === e.currentTarget) {
-          document.querySelector('.modal-overlay').style.display = 'none';
-        }
-      });
-    });
-  </script>
-  <script src="../asset/menu.js"></script>
-  <script src="../asset/main.js"></script>
+    <script src="../asset/menu.js"></script>
+    <script src="../asset/main.js"></script>
 </body>
 
 </html>

@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>이용약관 관리</title>
+  <title>시스템관리 - 통계</title>
   <link rel="stylesheet" href="../asset/style.css" />
-  <link rel="stylesheet" href="../asset/modal.css" />
+
 </head>
 
-<body>
+<body class="page-system-stats stats-page">
   <div class="container">
     <!-- 사이드바 -->
     <div class="sidebar">
@@ -38,10 +38,22 @@
       </div>
 
       <div class="menu-section">
-        <h3>시스템</h3>
+        <h3>시스템관리</h3>
         <ul>
           <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
-          <li><a href="terms.html" class="active"><img src="../asset/transfer.svg" alt="">이용약관 관리</a></li>
+
+          <li><a href="system_user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li>
+            <a href="#">
+              <img src="../asset/user.svg" alt="">권한 관리
+              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
+            </a>
+            <ul class="submenu">
+              <li><a href="workspace_permission.html">권한관리</a></li>
+              <li><a href="workspace_menu_setting.html">메뉴관리</a></li>
+            </ul>
+          </li>
+          <li><a href="system_stats.html" class="active"><img src="../asset/stats.svg" alt="">통계</a></li>
         </ul>
       </div>
 
@@ -61,20 +73,19 @@
         </div>
         <ul>
           <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
           <li>
-            <a href="user.html">
-              <img src="../asset/user.svg" alt="">일반관리
+            <a href="#">
+              <img src="../asset/user.svg" alt="">공통관리
               <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
             </a>
             <ul class="submenu">
-              <li><a href="user.html">사용자관리</a></li>
-              <li><a href="menu_setting.html">메뉴관리</a></li>
-              <li><a href="group_setting.html">그룹설정</a></li>
-
+              <li><a href="workspace_permission.html">권한관리</a></li>
+              <li><a href="workspace_menu_setting.html">메뉴관리</a></li>
             </ul>
           </li>
           <li>
-            <a href="login_history.html">
+            <a href="#">
               <img src="../asset/history.svg" alt="">이력 관리
               <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
             </a>
@@ -86,15 +97,8 @@
           <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
           <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
           <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
-          <li>
-            <a href="prompt.html">
-              <img src="../asset/history.svg" alt="">프롬프트 관리
-              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
-            </a>
-            <ul class="submenu">
-              <li><a href="index.html">회의록 템플릿 관리</a></li>
-            </ul>
-          </li>
+          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
+          <li><a href="index.html"><img src="../asset/history.svg" alt="">회의록 템플릿 관리</a></li>
           <li>
             <a href="stats_usage.html">
               <img src="../asset/stats.svg" alt="">통계
@@ -107,51 +111,56 @@
           </li>
         </ul>
       </div>
+
+
     </div>
 
     <!-- 콘텐츠 영역 -->
     <div class="content">
       <div class="content-header">
-        <div class="breadcrumb">시스템 > 이용약관 관리</div>
+        <div class="breadcrumb">시스템관리 > 통계</div>
       </div>
 
       <div class="content-body">
-        <!-- 검색 영역 (이미지 구조 기반) -->
+        <!-- 검색 영역 -->
         <div class="search-section">
           <div class="common-topbar">
             <div class="tb-left">
               <div class="date-range-wrap">
                 <span class="calendar-icon">📅</span>
-                <input type="text" id="tm-range" class="date-range" placeholder="날짜 범위를 선택하세요" readonly />
-                <div class="range-panel" id="tm-panel">
+                <input type="text" id="stats-range" class="date-range" placeholder="날짜 범위를 선택하세요" readonly />
+                <div class="range-panel" id="stats-panel">
                   <div class="calendar-range">
-                    <div class="calendar" id="tm-cal-start"></div>
-                    <div class="calendar" id="tm-cal-end"></div>
+                    <div class="calendar" id="stats-cal-start"></div>
+                    <div class="calendar" id="stats-cal-end"></div>
                   </div>
                   <div class="range-panel-info">
-                    <span id="tm-picked">-</span>
+                    <span id="stats-picked">-</span>
                     <div class="range-actions">
-                      <button class="btn-outline" id="tm-cancel">취소</button>
-                      <button class="btn-submit" id="tm-apply">적용</button>
+                      <button class="btn-outline" id="stats-cancel">취소</button>
+                      <button class="btn-submit" id="stats-apply">적용</button>
                     </div>
                   </div>
                 </div>
               </div>
               <select class="condition-select">
-                <option>전체</option>
+                <option>전체 워크스페이스</option>
+                <option>개발팀</option>
+                <option>디자인팀</option>
+                <option>기획팀</option>
               </select>
               <select class="condition-select">
-                <option>전체</option>
-              </select>
-              <select class="condition-select">
-                <option>전체</option>
+                <option>전체 활동</option>
+                <option>신규 생성</option>
+                <option>변경</option>
+                <option>삭제</option>
               </select>
               <div class="combo-search combo-search-wide">
                 <div class="combo-field">
                   <select class="combo-select">
                     <option>전체</option>
-                    <option>제목</option>
-                    <option>작성자</option>
+                    <option>사용자명</option>
+                    <option>이메일</option>
                   </select>
                   <div class="divider"></div>
                   <div class="combo-input-wrap">
@@ -164,47 +173,171 @@
             </div>
             <div class="tb-right tb-right-full">
               <div class="right-tail">
-                <div class="total-count">총 10건</div>
+                <div class="total-count">총 5건</div>
                 <select class="condition-select">
                   <option>10개씩 보기</option>
                   <option>20개씩 보기</option>
                   <option>50개씩 보기</option>
                 </select>
               </div>
-              <a class="new-button new-button-link" href="terms_new.html">신규 등록</a>
             </div>
           </div>
         </div>
 
-        <!-- 테이블 영역 -->
+        <!-- 테이블 -->
         <div class="table-container">
           <table>
             <thead>
               <tr>
-                <th>구분</th>
-                <th>제목</th>
-                <th>생성일</th>
-                <th>생성자</th>
-                <th>약관 실행일</th>
-                <th>최종 수정일</th>
-                <th>수정자</th>
-                <th>사용 여부</th>
+                <th>순번</th>
+                <th>워크스페이스</th>
+                <th>사용자</th>
+                <th>신규 생성</th>
+                <th>변경</th>
                 <th>삭제</th>
+                <th>총 활동</th>
+                <th>최근 활동일</th>
               </tr>
             </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><span class="workspace-badge">개발팀</span></td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-blue">김</div><span>김개발</span>
+                  </div>
+                </td>
+                <td><span class="stats-count new">45</span></td>
+                <td><span class="stats-count edit">23</span></td>
+                <td><span class="stats-count delete">5</span></td>
+                <td><span class="stats-count total">73</span></td>
+                <td>25-01-15 14:30</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><span class="workspace-badge">디자인팀</span></td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-green">이</div><span>이디자인</span>
+                  </div>
+                </td>
+                <td><span class="stats-count new">32</span></td>
+                <td><span class="stats-count edit">18</span></td>
+                <td><span class="stats-count delete">2</span></td>
+                <td><span class="stats-count total">52</span></td>
+                <td>25-01-15 11:45</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><span class="workspace-badge">기획팀</span></td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-orange">박</div><span>박기획</span>
+                  </div>
+                </td>
+                <td><span class="stats-count new">28</span></td>
+                <td><span class="stats-count edit">15</span></td>
+                <td><span class="stats-count delete">3</span></td>
+                <td><span class="stats-count total">46</span></td>
+                <td>25-01-14 16:20</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><span class="workspace-badge">마케팅팀</span></td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-purple">최</div><span>최마케팅</span>
+                  </div>
+                </td>
+                <td><span class="stats-count new">19</span></td>
+                <td><span class="stats-count edit">12</span></td>
+                <td><span class="stats-count delete">1</span></td>
+                <td><span class="stats-count total">32</span></td>
+                <td>25-01-14 09:15</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><span class="workspace-badge">영업팀</span></td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-pink">정</div><span>정영업</span>
+                  </div>
+                </td>
+                <td><span class="stats-count new">15</span></td>
+                <td><span class="stats-count edit">8</span></td>
+                <td><span class="stats-count delete">0</span></td>
+                <td><span class="stats-count total">23</span></td>
+                <td>25-01-13 17:45</td>
+              </tr>
+            </tbody>
           </table>
-          <div class="empty-state">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7 3h10l3 4v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7l3-4z" stroke="#B0B7C3" stroke-width="1.2"
-                fill="none" />
-              <path d="M8 11h8M8 15h5" stroke="#B0B7C3" stroke-width="1.2" stroke-linecap="round" />
-            </svg>
-            <div>데이터가 존재하지 않습니다.</div>
-          </div>
+        </div>
+
+        <!-- 페이징 -->
+        <div class="pagination">
+          <button class="page-btn" disabled>이전</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">다음</button>
+          <span class="page-info">1 / 3</span>
         </div>
       </div>
     </div>
   </div>
+  <script>
+    // 두 개 달력 범위 선택 (통계)
+    (function () {
+      const wrap = document.querySelector('.date-range-wrap');
+      if (!wrap) return;
+      const input = document.getElementById('stats-range');
+      const panel = document.getElementById('stats-panel');
+      const calStart = document.getElementById('stats-cal-start');
+      const calEnd = document.getElementById('stats-cal-end');
+      const picked = document.getElementById('stats-picked');
+      const apply = document.getElementById('stats-apply');
+      const cancel = document.getElementById('stats-cancel');
+      let startDate = null, endDate = null, viewStart = new Date(), viewEnd = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);
+      function fmt(d) { return d.toISOString().slice(0, 10); }
+      function renderCalendar(targetEl, view, isStart) {
+        const y = view.getFullYear(), m = view.getMonth();
+        const first = new Date(y, m, 1), last = new Date(y, m + 1, 0); const startIdx = (first.getDay() + 6) % 7; let h = '';
+        h += '<div class="cal-header">'
+          + `<div class="cal-prev-start"><button class="cal-prev stats-prev" data-side="${isStart ? 'start' : 'end'}">‹</button></div>`
+          + '<div class="cal-month">' + y + '-' + String(m + 1).padStart(2, '0') + '</div>'
+          + `<div class="cal-next-end"><button class="cal-next stats-next" data-side="${isStart ? 'start' : 'end'}">›</button></div>`
+          + '</div>';
+        h += '<div class="cal-grid">';['월', '화', '수', '목', '금', '토', '일'].forEach(w => h += '<div class="cal-weekday">' + w + '</div>');
+        for (let i = 0; i < startIdx; i++) h += '<div class="cal-day disabled"></div>';
+        for (let d = 1; d <= last.getDate(); d++) {
+          const cur = new Date(y, m, d);
+          const inRange = startDate && endDate && cur >= startDate && cur <= endDate;
+          const sel = (startDate && fmt(cur) === fmt(startDate)) || (endDate && fmt(cur) === fmt(endDate));
+          h += '<div class="cal-day' + (inRange ? ' in-range' : '') + (sel ? ' selected' : '') + '" data-day="' + fmt(cur) + '">' + d + '</div>';
+        }
+        h += '</div>'; targetEl.innerHTML = h;
+        targetEl.querySelector('.stats-prev').onclick = () => { if (isStart) viewStart.setMonth(viewStart.getMonth() - 1); else viewEnd.setMonth(viewEnd.getMonth() - 1); sync(); };
+        targetEl.querySelector('.stats-next').onclick = () => { if (isStart) viewStart.setMonth(viewStart.getMonth() + 1); else viewEnd.setMonth(viewEnd.getMonth() + 1); sync(); };
+        targetEl.querySelectorAll('.cal-day[data-day]').forEach(el => {
+          el.onclick = () => {
+            const d = new Date(el.dataset.day);
+            if (!startDate || (startDate && endDate)) { startDate = d; endDate = null; }
+            else if (d < startDate) { endDate = startDate; startDate = d; }
+            else { endDate = d; }
+            picked.textContent = (startDate ? fmt(startDate) : '-') + ' ~ ' + (endDate ? fmt(endDate) : '-');
+            sync();
+          };
+        });
+      }
+      function sync() { renderCalendar(calStart, viewStart, true); renderCalendar(calEnd, viewEnd, false); }
+      sync();
+      input.addEventListener('click', () => { panel.style.display = panel.style.display === 'block' ? 'none' : 'block'; });
+      cancel.addEventListener('click', () => { panel.style.display = 'none'; });
+      apply.addEventListener('click', () => { if (startDate && endDate) input.value = `${fmt(startDate)} ~ ${fmt(endDate)}`; panel.style.display = 'none'; });
+      document.addEventListener('click', (e) => { if (!wrap.contains(e.target) && panel.style.display === 'block') panel.style.display = 'none'; });
+    })();
+  </script>
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
 </body>
