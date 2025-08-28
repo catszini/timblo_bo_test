@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>사전 관리</title>
+  <title>워크스페이스 엔진 관리</title>
   <link rel="stylesheet" href="../asset/style.css" />
-  <link rel="stylesheet" href="../asset/modal.css" />
+
 </head>
 
-<body>
+<body class="page-engine engine-page">
   <div class="container">
     <!-- 사이드바 -->
     <div class="sidebar">
@@ -78,8 +78,8 @@
               <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
             </a>
             <ul class="submenu">
-              <li><a href="general.html">권한관리</a></li>
-              <li><a href="workspace_menu_setting.html">메뉴관리</a></li>
+              <li><a href="group_setting.html">권한관리</a></li>
+              <li><a href="menu_setting.html">메뉴관리</a></li>
             </ul>
           </li>
           <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
@@ -97,8 +97,8 @@
             </ul>
           </li>
           <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
-          <li><a href="dictionary.html" class="active"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
-          <li><a href="engine.html"><img src="../asset/stats.svg" alt="">엔진 관리</a></li>
+          <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li><a href="engine.html" class="active"><img src="../asset/stats.svg" alt="">엔진 관리</a></li>
           <li><a href="#"><img src="../asset/daily.svg" alt="">캘린더 관리</a></li>
           <li>
             <a href="stats_usage.html">
@@ -114,155 +114,60 @@
       </div>
     </div>
 
-    <!-- 콘텐츠 영역 -->
+    <!-- 콘텐츠 -->
     <div class="content">
       <div class="content-header">
-        <div class="breadcrumb">워크스페이스 > 사전 관리</div>
+        <div class="breadcrumb">워크스페이스 > 엔진 관리</div>
+        <div class="content-subtitle" style="font-size: 14px; color: #6B7280; margin-top: 8px;">
+          회의 유형에 따라 사용할 STT엔진을 설정합니다. 설정한 엔진은 새로운 회의록 생성시 기본으로 적용됩니다.
+        </div>
       </div>
 
       <div class="content-body">
-        <!-- 검색 영역 (변경 전/후 단어 + 사용자 검색 + 조회) -->
-        <div class="search-section">
-          <div class="common-topbar">
-            <div class="tb-left">
-              <select class="condition-select">
-                <option>기본값</option>
-                <option>STT온라인_한글(16K)</option>
-                <option>STT온라인_한글(8K)</option>
-                <option>STT온라인_영어(16K)</option>
-                <option>STT배치v2_한글(16K)</option>
-              </select>
-              <div class="search-control icon-left search-control-medium">
-                <span class="mag-icon"></span>
-                <input type="text" class="search-input search-input-full" placeholder="변경 전 단어" />
-              </div>
-              <div class="search-control icon-left search-control-medium">
-                <span class="mag-icon"></span>
-                <input type="text" class="search-input search-input-full" placeholder="변경 후 단어" />
-              </div>
-              <div class="search-control icon-left search-control-small">
-                <span class="mag-icon"></span>
-                <input type="text" class="search-input search-input-full" placeholder="사용자" />
-              </div>
-              <button class="btn-query">조회</button>
-            </div>
-            <div class="tb-right">
-              <div class="total-count">총 30개</div>
-              <select class="condition-select">
-                <option>10개씩 보기</option>
-                <option>20개씩 보기</option>
-                <option>50개씩 보기</option>
-              </select>
-            </div>
+        <div class="card section engine-setting-card"
+          style="border: 1px solid #E5E7EB; padding: 24px; border-radius: 8px;">
+          <div class="section-title" style="margin-bottom: 20px;"><strong>엔진 설정</strong></div>
+          <div class="table-container" style="overflow: hidden;">
+            <table>
+              <thead>
+                <tr>
+                  <th class="th-width-20">구분</th>
+                  <th class="th-width-20">사용 엔진</th>
+                  <th class="th-width-60">엔진 설명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>한국어 회의</td>
+                  <td>
+                    <div class="combo-select">
+                      <select class="form-select"
+                        style="appearance: none; -webkit-appearance: none; -moz-appearance: none;">
+                        <option>Whisper 엔진</option>
+                        <option>EZE 엔진</option>
+                        <option>SKT 엔진</option>
+                      </select>
+                    </div>
+                  </td>
+                  <td>다국어 및 소음 환경에서 뛰어난 성능을 보이는 범용 음성인식입니다. 범용 기술에 가장 적합합니다.</td>
+                </tr>
+                <tr>
+                  <td>한국어 회의</td>
+                  <td>
+                    <div class="combo-select">
+                      <select class="form-select"
+                        style="appearance: none; -webkit-appearance: none; -moz-appearance: none;">
+                        <option>EZE 엔진</option>
+                        <option>Whisper 엔진</option>
+                        <option>SKT 엔진</option>
+                      </select>
+                    </div>
+                  </td>
+                  <td>한국어 특화 도메인에서 빠르고 정확한 음성인식 엔진입니다. 실시간 자막이 요구됩니다.</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </div>
-
-        <!-- 테이블 영역 -->
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>변경 전 단어</th>
-                <th>변경 후 단어</th>
-                <th>생성일</th>
-                <th>최종 수정일</th>
-                <th>사용자</th>
-                <th>사용 여부</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>AI</td>
-                <td>인공지능</td>
-                <td>25-08-10 09:15:21</td>
-                <td>25-08-10 09:20:05</td>
-                <td>김하늘</td>
-                <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-              </tr>
-              <tr>
-                <td>MTG</td>
-                <td>미팅</td>
-                <td>25-08-10 08:42:10</td>
-                <td>25-08-10 08:42:10</td>
-                <td>박서준</td>
-                <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-              </tr>
-              <tr>
-                <td>KR</td>
-                <td>대한민국</td>
-                <td>25-08-09 18:11:33</td>
-                <td>25-08-09 19:05:40</td>
-                <td>이수지</td>
-                <td><label class="switch"><input type="checkbox"><span class="slider"></span></label></td>
-              </tr>
-              <tr>
-                <td>Mgr</td>
-                <td>매니저</td>
-                <td>25-08-09 14:03:27</td>
-                <td>25-08-09 14:10:12</td>
-                <td>정윤호</td>
-                <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-              </tr>
-              <tr>
-                <td>ETA</td>
-                <td>도착예정시간</td>
-                <td>25-08-09 10:55:06</td>
-                <td>25-08-09 10:55:06</td>
-                <td>한지원</td>
-                <td><label class="switch"><input type="checkbox"><span class="slider"></span></label></td>
-              </tr>
-              <tr>
-                <td>ASAP</td>
-                <td>가능한 빨리</td>
-                <td>25-08-08 20:21:58</td>
-                <td>25-08-08 20:30:02</td>
-                <td>오세린</td>
-                <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-              </tr>
-              <tr>
-                <td>FYI</td>
-                <td>참고</td>
-                <td>25-08-08 18:12:17</td>
-                <td>25-08-08 18:12:17</td>
-                <td>문가람</td>
-                <td><label class="switch"><input type="checkbox"><span class="slider"></span></label></td>
-              </tr>
-              <tr>
-                <td>dept</td>
-                <td>부서</td>
-                <td>25-08-08 11:03:42</td>
-                <td>25-08-08 11:05:10</td>
-                <td>최다연</td>
-                <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-              </tr>
-              <tr>
-                <td>spec</td>
-                <td>명세</td>
-                <td>25-08-07 22:49:09</td>
-                <td>25-08-07 22:49:09</td>
-                <td>박진서</td>
-                <td><label class="switch"><input type="checkbox"><span class="slider"></span></label></td>
-              </tr>
-              <tr>
-                <td>req</td>
-                <td>요구사항</td>
-                <td>25-08-07 09:32:55</td>
-                <td>25-08-07 10:01:14</td>
-                <td>이도현</td>
-                <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- 페이징 -->
-        <div class="pagination">
-          <button class="page-btn" disabled>이전</button>
-          <button class="page-btn active">1</button>
-          <button class="page-btn">2</button>
-          <button class="page-btn">3</button>
-          <button class="page-btn">다음</button>
-          <span class="page-info">1 / 3</span>
         </div>
       </div>
     </div>

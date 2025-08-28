@@ -49,8 +49,8 @@
               <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
             </a>
             <ul class="submenu">
-              <li><a href="workspace_permission.html">권한관리</a></li>
-              <li><a href="workspace_menu_setting.html">메뉴관리</a></li>
+              <li><a href="group_setting.html">권한관리</a></li>
+              <li><a href="menu_setting.html">메뉴관리</a></li>
             </ul>
           </li>
           <li><a href="system_stats.html"><img src="../asset/stats.svg" alt="">통계</a></li>
@@ -72,18 +72,20 @@
           </a>
         </div>
         <ul>
-          <li><a href="general.html" class="active"><img src="../asset/daily.svg" alt="">일반</a></li>
-          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
           <li>
-            <a href="#">
+            <a href="#" class="active">
               <img src="../asset/user.svg" alt="">공통관리
               <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
             </a>
             <ul class="submenu">
-              <li><a href="workspace_permission.html">권한관리</a></li>
+              <li><a href="general.html" class="active">권한관리</a></li>
               <li><a href="workspace_menu_setting.html">메뉴관리</a></li>
             </ul>
           </li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="index.html"><img src="../asset/history.svg" alt="">회의 템플릿 관리</a></li>
+          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
           <li>
             <a href="#">
               <img src="../asset/history.svg" alt="">이력 관리
@@ -94,11 +96,10 @@
               <li><a href="download_history.html">다운로드 이력</a></li>
             </ul>
           </li>
-          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
           <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
           <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
-          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
-          <li><a href="index.html"><img src="../asset/history.svg" alt="">회의록 템플릿 관리</a></li>
+          <li><a href="engine.html"><img src="../asset/stats.svg" alt="">엔진 관리</a></li>
+          <li><a href="#"><img src="../asset/daily.svg" alt="">캘린더 관리</a></li>
           <li>
             <a href="stats_usage.html">
               <img src="../asset/stats.svg" alt="">통계
@@ -116,7 +117,7 @@
     <!-- 콘텐츠 -->
     <div class="content">
       <div class="content-header">
-        <div class="breadcrumb">워크스페이스 > 일반</div>
+        <div class="breadcrumb">워크스페이스 > 공통관리 > 권한관리</div>
       </div>
 
       <div class="content-body">
@@ -144,38 +145,48 @@
         </div>
 
         <div class="section">
-          <div class="perm-title perm-title-bold">사용자</div>
-          <div class="table-container perm-table-narrow">
+          <div class="perm-title perm-title-bold">권한</div>
+          <div class="table-container">
             <table>
               <thead>
                 <tr>
-                  <th class="th-width-120">구분</th>
-                  <th>다운로드 사용자</th>
-                  <th>사용 사용자</th>
+                  <th class="th-width-20">구분</th>
+                  <th class="th-width-60">항목</th>
+                  <th class="th-width-20">사용 여부</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>웹</td>
+                  <td rowspan="2">다운로드 권한</td>
+                  <td>문서 파일 다운로드</td>
                   <td>
-                    <div class="toggle-group">
-                      <div class="toggle-item">문서 파일
-                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                      </div>
-                      <div class="toggle-item">영상/음성 파일
-                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                      </div>
-                    </div>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
                   </td>
+                </tr>
+                <tr>
+                  <td>영상 / 음성 파일 다운로드</td>
                   <td>
-                    <div class="toggle-group">
-                      <div class="toggle-item">템플릿
-                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                      </div>
-                      <div class="toggle-item">재요약
-                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                      </div>
-                    </div>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td rowspan="2">사용 권한</td>
+                  <td>템플릿 사용</td>
+                  <td>
+                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>재요약 사용</td>
+                  <td>
+                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>회의 시청</td>
+                  <td>동의서 여부 적용</td>
+                  <td>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
                   </td>
                 </tr>
               </tbody>
