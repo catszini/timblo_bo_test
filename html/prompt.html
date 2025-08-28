@@ -7,6 +7,425 @@
   <title>AI 회의록 관리자</title>
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
+
+  <style>
+    /* 프롬프트 전용 클래스 - template_detail.html과 동일한 스타일 */
+    .prompt-form-group {
+      margin-bottom: 24px;
+    }
+
+    .prompt-category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .prompt-category-header label {
+      font-weight: 600;
+      color: #374151;
+      font-size: 14px;
+    }
+
+    .prompt-form-value {
+      padding: 12px;
+      background: #F9FAFB;
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      color: #6B7280;
+      font-size: 14px;
+    }
+
+    .prompt-version-group {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .prompt-version-input {
+      min-width: 150px;
+    }
+
+    .prompt-edit-wrapper {
+      position: relative;
+    }
+
+    .prompt-btn-edit {
+      background: #F3F4F6;
+      border: 1px solid #D1D5DB;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: #6B7280;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .prompt-btn-edit:hover {
+      background: #E5E7EB;
+    }
+
+    .prompt-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: white;
+      border: 1px solid #D1D5DB;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      min-width: 200px;
+      z-index: 1000;
+      display: none;
+    }
+
+    .prompt-dropdown-menu ul {
+      list-style: none;
+      padding: 8px 0;
+      margin: 0;
+    }
+
+    .prompt-dropdown-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .prompt-dropdown-item:hover {
+      background: #F3F4F6;
+    }
+
+    .prompt-dropdown-divider {
+      height: 1px;
+      background: #E5E7EB;
+      margin: 8px 0;
+    }
+
+    .prompt-new-category {
+      color: #3B82F6;
+      font-weight: 500;
+    }
+
+    .prompt-item-actions {
+      display: flex;
+      gap: 4px;
+    }
+
+    .prompt-btn-icon {
+      background: none;
+      border: none;
+      padding: 4px;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .prompt-btn-icon:hover {
+      opacity: 1;
+    }
+
+    .prompt-category-select-group {
+      margin-top: 8px;
+    }
+
+    .prompt-form-input,
+    .prompt-form-select,
+    .prompt-form-textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #D1D5DB;
+      border-radius: 6px;
+      font-size: 14px;
+      background: white;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .prompt-form-input:focus,
+    .prompt-form-select:focus,
+    .prompt-form-textarea:focus {
+      outline: none;
+      border-color: #3B82F6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .prompt-form-textarea {
+      resize: vertical;
+      min-height: 80px;
+      font-family: inherit;
+    }
+
+    .prompt-input-counter {
+      text-align: right;
+      font-size: 12px;
+      color: #6B7280;
+      margin-top: 4px;
+    }
+
+    .prompt-switch-group {
+      margin-top: 8px;
+    }
+
+    .prompt-switches {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .prompt-switch-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .prompt-switch-text {
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .prompt-switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+
+    .prompt-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .prompt-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #CBD5E1;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .prompt-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked+.prompt-slider {
+      background-color: #3B82F6;
+    }
+
+    input:checked+.prompt-slider:before {
+      transform: translateX(20px);
+    }
+
+    /* 카테고리 생성 모달 */
+    .prompt-category-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .prompt-category-modal-hidden {
+      display: none;
+    }
+
+    .prompt-category-modal {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      min-width: 400px;
+      max-width: 500px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .prompt-category-modal h3 {
+      margin: 0 0 16px 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .prompt-category-modal-content {
+      margin-bottom: 24px;
+    }
+
+    .prompt-category-modal-footer {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .prompt-btn-cancel,
+    .prompt-btn-submit {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid;
+      transition: all 0.2s;
+    }
+
+    .prompt-btn-cancel {
+      background: white;
+      border-color: #D1D5DB;
+      color: #374151;
+    }
+
+    .prompt-btn-submit {
+      background: #3B82F6;
+      border-color: #3B82F6;
+      color: white;
+    }
+
+    .prompt-btn-cancel:hover {
+      background: #F3F4F6;
+    }
+
+    .prompt-btn-submit:hover {
+      background: #2563EB;
+      border-color: #2563EB;
+    }
+
+    /* 테이블 스타일 */
+    .prompt-table-container {
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .prompt-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .prompt-table th,
+    .prompt-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .prompt-table th {
+      background: #F9FAFB;
+      font-weight: 600;
+      color: #374151;
+      font-size: 13px;
+    }
+
+    .prompt-table td {
+      color: #111827;
+    }
+
+    .prompt-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .prompt-table tbody tr:hover {
+      background: #F9FAFB;
+    }
+
+    /* 페이지네이션 */
+    .prompt-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .prompt-page-btn {
+      padding: 8px 12px;
+      border: 1px solid #D1D5DB;
+      background: white;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .prompt-page-btn:hover:not(:disabled) {
+      background: #F3F4F6;
+    }
+
+    .prompt-page-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .prompt-page-btn.prompt-active {
+      background: #3B82F6;
+      border-color: #3B82F6;
+      color: white;
+    }
+
+    .prompt-page-info {
+      font-size: 14px;
+      color: #6B7280;
+      margin-left: 12px;
+    }
+
+    /* 프롬프트 모달 폭 강제 적용 */
+    .modal-container.prompt-modal {
+      width: 1000px !important;
+      max-width: 1000px !important;
+      min-width: 1000px !important;
+    }
+
+    /* 커스텀 셀렉트박스 스타일 */
+    .combo-select {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .combo-select select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: transparent;
+      padding-right: 40px;
+    }
+
+    .combo-select img {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      width: 16px;
+      height: 16px;
+    }
+
+    /* 버전정보 테이블의 변경사항 컬럼 말줄임표 */
+    .prompt-table td:nth-child(4) {
+      max-width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  </style>
 </head>
 
 <body>
@@ -283,37 +702,184 @@
 
   <!-- 프롬프트 등록 모달 -->
   <div class="modal-overlay" style="display: none;">
-    <div class="modal-container prompt-modal">
-      <div class="modal-header">
-        <div class="header-content">
-          <h2>프롬프트 등록</h2>
-          <button class="btn-close">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M1.33398 14.6663L14.6673 1.33301M1.33398 1.33301L14.6673 14.6663" stroke="#15191E"
-                stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
+    <div class="modal-container prompt-modal"
+      style="width: 1000px !important; max-width: 1000px !important; min-width: 1000px !important;">
+      <div class="modal-content" style="max-height: 85vh; overflow-y: auto; padding: 24px; box-sizing: border-box;">
+        <!-- 프롬프트 전용 클래스로 template_detail.html과 동일한 구조 구현 -->
+        <div class="prompt-form-group">
+          <div class="prompt-category-header">
+            <label>ID</label>
+            <button class="btn-close" style="background: none; border: none; cursor: pointer; padding: 4px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M1.33398 14.6663L14.6673 1.33301M1.33398 1.33301L14.6673 14.6663" stroke="#15191E"
+                  stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+          <div class="prompt-form-value">DEF-001-SK</div>
         </div>
-      </div>
-      <div class="modal-content">
-        <div class="form-group">
-          <label>카테고리</label>
-          <input type="text" class="form-input" placeholder="카테고리를 입력하세요">
+        <div class="prompt-form-group">
+          <div class="prompt-category-header"><label>버전정보</label></div>
+          <div class="prompt-version-group">
+            <div class="prompt-version-input">
+              <div class="combo-select">
+                <select class="prompt-form-select">
+                  <option>V1.0.0</option>
+                  <option>V1.1.0</option>
+                  <option>V1.2.0</option>
+                  <option>V2.0.0</option>
+                </select>
+                <img src="../asset/select-arrow.svg" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="prompt-form-group">
+          <div class="prompt-category-header">
+            <label>카테고리</label>
+            <div class="prompt-edit-wrapper">
+              <button type="button" class="prompt-btn-edit">편집</button>
+              <div class="prompt-dropdown-menu">
+                <ul>
+                  <li class="prompt-dropdown-item"><span>일반회의</span>
+                    <div class="prompt-item-actions"><button class="prompt-btn-icon"><img src="../asset/edit-icon.svg"
+                          alt="수정"></button><button class="prompt-btn-icon"><img src="../asset/delete-icon.svg"
+                          alt="삭제"></button></div>
+                  </li>
+                  <li class="prompt-dropdown-item"><span>세미나</span>
+                    <div class="prompt-item-actions"><button class="prompt-btn-icon"><img src="../asset/edit-icon.svg"
+                          alt="수정"></button><button class="prompt-btn-icon"><img src="../asset/delete-icon.svg"
+                          alt="삭제"></button></div>
+                  </li>
+                  <li class="prompt-dropdown-item"><span>상담진료</span>
+                    <div class="prompt-item-actions"><button class="prompt-btn-icon"><img src="../asset/edit-icon.svg"
+                          alt="수정"></button><button class="prompt-btn-icon"><img src="../asset/delete-icon.svg"
+                          alt="삭제"></button></div>
+                  </li>
+                  <li class="prompt-dropdown-item"><span>고객</span>
+                    <div class="prompt-item-actions"><button class="prompt-btn-icon"><img src="../asset/edit-icon.svg"
+                          alt="수정"></button><button class="prompt-btn-icon"><img src="../asset/delete-icon.svg"
+                          alt="삭제"></button></div>
+                  </li>
+                  <li class="prompt-dropdown-divider"></li>
+                  <li class="prompt-dropdown-item prompt-new-category"><span>새 카테고리 생성</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="prompt-category-select-group">
+            <div class="combo-select">
+              <select class="prompt-form-select">
+                <option>일반회의</option>
+                <option>세미나</option>
+                <option>상담진료</option>
+                <option>고객</option>
+              </select>
+              <img src="../asset/select-arrow.svg" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="prompt-category-modal-overlay prompt-category-modal-hidden">
+          <div class="prompt-category-modal">
+            <h3>새 카테고리 생성</h3>
+            <div class="prompt-category-modal-content"><input type="text" class="prompt-form-input"
+                placeholder="새 카테고리 이름을 입력해주세요">
+            </div>
+            <div class="prompt-category-modal-footer"><button class="prompt-btn-cancel">취소</button><button
+                class="prompt-btn-submit">저장</button></div>
+          </div>
+        </div>
+        <div class="prompt-form-group">
+          <div class="prompt-category-header"><label>공통 영역 노출 여부</label></div>
+          <div class="prompt-switch-group">
+            <div class="prompt-switches">
+              <div class="prompt-switch-label">
+                <div class="prompt-switch-text">핵심요약</div><label class="prompt-switch"><input type="checkbox"><span
+                    class="prompt-slider"></span></label>
+              </div>
+              <div class="prompt-switch-label">
+                <div class="prompt-switch-text">참석자</div><label class="prompt-switch"><input type="checkbox"><span
+                    class="prompt-slider"></span></label>
+              </div>
+              <div class="prompt-switch-label">
+                <div class="prompt-switch-text">키워드</div><label class="prompt-switch"><input type="checkbox"><span
+                    class="prompt-slider"></span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="prompt-form-group">
+          <div class="prompt-category-header"><label>템플릿명</label></div>
+          <input type="text" class="prompt-form-input" placeholder="템플릿 이름을 입력하세요">
+          <div class="prompt-input-counter">8/10자</div>
+        </div>
+        <div class="prompt-form-group">
+          <div class="prompt-category-header"><label>템플릿 설명</label></div>
+          <textarea class="prompt-form-textarea" placeholder="사용자에게 템플릿을 소개할 수 있는 설명을 입력하세요"></textarea>
+          <div class="prompt-input-counter">56/100자</div>
         </div>
 
-        <div class="form-group">
-          <label>KEY</label>
-          <input type="text" class="form-input" placeholder="KEY를 입력하세요">
-        </div>
-
-        <div class="form-group">
-          <label>이름</label>
-          <input type="text" class="form-input" placeholder="이름을 입력하세요">
-        </div>
-
-        <div class="form-group">
-          <label>설명</label>
-          <textarea class="form-textarea" placeholder="설명을 입력하세요"></textarea>
+        <!-- 버전정보 테이블 섹션 -->
+        <div class="prompt-form-group">
+          <div class="prompt-category-header">
+            <label>버전정보</label>
+          </div>
+          <div class="prompt-table-container">
+            <table class="prompt-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>버전</th>
+                  <th>유형</th>
+                  <th>변경사항</th>
+                  <th>등록일</th>
+                  <th>등록자</th>
+                  <th>수정자</th>
+                  <th>수정일자</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>DEF-001-SK</td>
+                  <td>V1.2.0</td>
+                  <td>텍스트</td>
+                  <td title="의료 용어 사전 최신 반영">의료 용어 사전 최신 반영</td>
+                  <td>2025-07-18 14:30:25</td>
+                  <td>김철수</td>
+                  <td>박지민</td>
+                  <td>2025-08-08 16:45:12</td>
+                </tr>
+                <tr>
+                  <td>DEF-001-SK</td>
+                  <td>V1.1.0</td>
+                  <td>음성</td>
+                  <td title="녹취 품질 개선 프롬프트 적용">녹취 품질 개선 프롬프트 적용</td>
+                  <td>2025-06-02 11:20:15</td>
+                  <td>박지민</td>
+                  <td>김철수</td>
+                  <td>2025-07-15 09:30:45</td>
+                </tr>
+                <tr>
+                  <td>DEF-001-SK</td>
+                  <td></td>
+                  <td>텍스트</td>
+                  <td title="초기 배포">초기 배포</td>
+                  <td>2025-05-10 10:15:30</td>
+                  <td>이영희</td>
+                  <td>이영희</td>
+                  <td>2025-05-10 10:15:30</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="prompt-pagination">
+            <button class="prompt-page-btn" disabled>이전</button>
+            <button class="prompt-page-btn prompt-active">1</button>
+            <button class="prompt-page-btn">2</button>
+            <button class="prompt-page-btn">3</button>
+            <button class="prompt-page-btn">다음</button>
+            <span class="prompt-page-info">1 / 3</span>
+          </div>
         </div>
 
         <div class="modal-footer">

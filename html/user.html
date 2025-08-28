@@ -144,128 +144,10 @@
             </div>
             <button class="btn-submit">조회</button>
           </div>
-          <div class="search-right">
-            <span class="detail-info">사용자를 비밀번호 초기 ⓘ</span>
-            <button class="btn-orange">초기</button>
-            <button class="btn-gray">저장</button>
-            <button class="btn-red">삭제</button>
-          </div>
+
         </div>
 
-        <!-- 사용자 통계 및 상세 정보 영역 -->
-        <div class="stats-and-detail-section">
-          <!-- 사용자 통계 정보 영역 -->
-          <div class="stats-section">
-            <div class="stats-header">
-              <h3>사용자 (명)</h3>
-            </div>
-            <div class="stats-list">
-              <div class="stats-row">
-                <span class="stats-label">신규가입</span>
-                <span class="stats-value">2</span>
-              </div>
-
-              <div class="stats-row">
-                <span class="stats-label">신규탈퇴</span>
-                <span class="stats-value">0</span>
-              </div>
-
-              <div class="stats-row">
-                <span class="stats-label">총사용자</span>
-                <span class="stats-value stats-value-highlight">22,996</span>
-              </div>
-
-              <div class="stats-row">
-                <span class="stats-label">관리자</span>
-                <span class="stats-value stats-value-highlight">19</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 상세 정보 영역 -->
-          <div class="detail-form-section">
-            <div class="detail-form-header">
-              <h3>상세내역</h3>
-            </div>
-            <div class="detail-form-content">
-              <!-- 첫 번째 행 -->
-              <div class="detail-form-row">
-                <div class="detail-form-group">
-                  <label>• 사용자ID</label>
-                  <input type="text" class="detail-input" value="genie0111" />
-                </div>
-                <div class="detail-form-group">
-                  <label>비밀번호</label>
-                  <input type="password" class="detail-input" value="password123" />
-                </div>
-                <div class="detail-form-group">
-                  <label>비밀번호확인</label>
-                  <input type="password" class="detail-input" value="password123" />
-                </div>
-                <div class="detail-form-group">
-                  <label>통합인증</label>
-                  <input type="text" class="detail-input" value="사용" />
-                </div>
-              </div>
-
-              <!-- 두 번째 행 -->
-              <div class="detail-form-row">
-                <div class="detail-form-group">
-                  <label>성명</label>
-                  <input type="text" class="detail-input" value="배성진" />
-                </div>
-                <div class="detail-form-group">
-                  <label>• 권한</label>
-                  <select class="detail-select">
-                    <option>관리자</option>
-                    <option>사용자</option>
-                    <option>게스트</option>
-                  </select>
-                </div>
-                <div class="detail-form-group">
-                  <label>• 소속부서</label>
-                  <select class="detail-select">
-                    <option>IT부서</option>
-                    <option>총무부</option>
-                    <option>영업부</option>
-                  </select>
-                </div>
-                <div class="detail-form-group">
-                  <label>담당업무</label>
-                  <input type="text" class="detail-input" value="시스템 관리" />
-                </div>
-              </div>
-
-              <!-- 세 번째 행 -->
-              <div class="detail-form-row">
-                <div class="detail-form-group">
-                  <label>직책</label>
-                  <select class="detail-select">
-                    <option>팀장</option>
-                    <option>대리</option>
-                    <option>사원</option>
-                  </select>
-                </div>
-                <div class="detail-form-group">
-                  <label>휴대전화</label>
-                  <input type="text" class="detail-input" value="010-2746-7169" />
-                </div>
-                <div class="detail-form-group">
-                  <label>• 이메일</label>
-                  <input type="email" class="detail-input" value="genie0111@naver.com" />
-                </div>
-                <div class="detail-form-group">
-                  <label>사용여부</label>
-                  <div class="toggle-buttons">
-                    <button class="toggle-btn active">사용</button>
-                    <button class="toggle-btn">미사용</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <!-- 상세 정보 영역 (풀 사이즈) -->
         <!-- 탭 영역 -->
         <div class="tab-container">
           <div class="tab-nav">
@@ -675,6 +557,100 @@
             </div>
           </div>
         </div>
+        <div class="stats-and-detail-section">
+          <div class="detail-form-section" style="width: 100%; max-width: 100%;">
+            <div class="detail-form-header">
+              <h3>상세내역</h3>
+            </div>
+            <div class="detail-form-content">
+              <!-- 첫 번째 행 -->
+              <div class="detail-form-row">
+                <div class="detail-form-group">
+                  <label>• 사용자ID</label>
+                  <input type="text" class="detail-input" value="genie0111" />
+                </div>
+                <div class="detail-form-group">
+                  <label>비밀번호</label>
+                  <input type="password" class="detail-input" value="password123" />
+                </div>
+                <div class="detail-form-group">
+                  <label>비밀번호확인</label>
+                  <input type="password" class="detail-input" value="password123" />
+                </div>
+                <div class="detail-form-group">
+                  <label>통합인증</label>
+                  <input type="text" class="detail-input" value="사용" />
+                </div>
+              </div>
+
+              <!-- 두 번째 행 -->
+              <div class="detail-form-row">
+                <div class="detail-form-group">
+                  <label>성명</label>
+                  <input type="text" class="detail-input" value="배성진" />
+                </div>
+                <div class="detail-form-group">
+                  <label>• 권한</label>
+                  <select class="detail-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>게스트</option>
+                  </select>
+                </div>
+                <div class="detail-form-group">
+                  <label>• 소속부서</label>
+                  <select class="detail-select">
+                    <option>IT부서</option>
+                    <option>총무부</option>
+                    <option>영업부</option>
+                  </select>
+                </div>
+                <div class="detail-form-group">
+                  <label>담당업무</label>
+                  <input type="text" class="detail-input" value="시스템 관리" />
+                </div>
+              </div>
+
+              <!-- 세 번째 행 -->
+              <div class="detail-form-row">
+                <div class="detail-form-group">
+                  <label>직책</label>
+                  <select class="detail-select">
+                    <option>팀장</option>
+                    <option>대리</option>
+                    <option>사원</option>
+                  </select>
+                </div>
+                <div class="detail-form-group">
+                  <label>휴대전화</label>
+                  <input type="text" class="detail-input" value="010-2746-7169" />
+                </div>
+                <div class="detail-form-group">
+                  <label>• 이메일</label>
+                  <input type="email" class="detail-input" value="genie0111@naver.com" />
+                </div>
+                <div class="detail-form-group">
+                  <label>사용여부</label>
+                  <div class="toggle-buttons">
+                    <button class="toggle-btn active">사용</button>
+                    <button class="toggle-btn">미사용</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 사용자 관리 액션 버튼 영역 -->
+        <div class="user-action-section">
+          <div class="user-action-content">
+            <span class="detail-info">사용자를의 비밀번호를 초기화 ⓘ</span>
+            <button class="btn-orange">초기</button>
+            <button class="btn-gray">저장</button>
+            <button class="btn-red">삭제</button>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
