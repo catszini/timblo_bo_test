@@ -2,10 +2,10 @@
 <html lang="ko">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>통계 - 사용자별 통계</title>
-  <link rel="stylesheet" href="../asset/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>사용자 동의 이력</title>
+  <link rel="stylesheet" href="../asset/style.css" />
 </head>
 
 <body>
@@ -59,7 +59,6 @@
       <div class="menu-section">
         <div class="menu-section-header">
           <h3>워크스페이스</h3>
-
         </div>
         <ul>
           <li>
@@ -77,14 +76,14 @@
           <li><a href="meet_template.html"><img src="../asset/history.svg" alt="">회의 템플릿 관리</a></li>
           <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
           <li>
-            <a href="#">
+            <a href="#" class="active">
               <img src="../asset/history.svg" alt="">이력 관리
               <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
             </a>
             <ul class="submenu">
               <li><a href="login_history.html">사용자 접속 이력</a></li>
               <li><a href="download_history.html">다운로드 이력</a></li>
-              <li><a href="user_consent_history.html">사용자 동의 이력</a></li>
+              <li><a href="user_consent_history.html" class="active">사용자 동의 이력</a></li>
               <li><a href="setting_change_history.html">설정변경 이력</a></li>
             </ul>
           </li>
@@ -93,23 +92,25 @@
           <li><a href="engine.html"><img src="../asset/stats.svg" alt="">엔진 관리</a></li>
           <li><a href="calendar.html"><img src="../asset/daily.svg" alt="">캘린더 관리</a></li>
           <li>
-            <a href="#" class="active">
+            <a href="#">
               <img src="../asset/stats.svg" alt="">통계
               <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
             </a>
             <ul class="submenu">
               <li><a href="stats_usage.html">사용량 통계</a></li>
-              <li><a class="active" href="stats_user.html">사용자별 통계</a></li>
+              <li><a href="stats_user.html">사용자별 통계</a></li>
             </ul>
           </li>
         </ul>
       </div>
     </div>
 
-    <!-- 콘텐츠 영역 -->
+    <!-- 메인 콘텐츠 -->
     <div class="content">
       <div class="content-header">
-        <div class="breadcrumb">통계 > 사용자별 통계</div>
+        <div class="breadcrumb">
+          이력 관리 > 사용자 동의 이력
+        </div>
       </div>
 
       <div class="content-body">
@@ -119,32 +120,32 @@
             <div class="tb-left">
               <div class="date-range-wrap">
                 <span class="calendar-icon">📅</span>
-                <input type="text" id="su-range" class="date-range" placeholder="날짜 범위를 선택하세요" readonly />
-                <div class="range-panel" id="su-panel">
+                <input type="text" id="consent-range" class="date-range" placeholder="날짜 범위를 선택하세요" readonly />
+                <div class="range-panel" id="consent-panel">
                   <div class="calendar-range">
-                    <div class="calendar" id="su-cal-start"></div>
-                    <div class="calendar" id="su-cal-end"></div>
+                    <div class="calendar" id="consent-cal-start"></div>
+                    <div class="calendar" id="consent-cal-end"></div>
                   </div>
                   <div class="range-panel-info">
-                    <span id="su-picked">-</span>
+                    <span id="consent-picked">-</span>
                     <div class="range-actions">
-                      <button class="btn-outline" id="su-cancel">취소</button>
-                      <button class="btn-submit" id="su-apply">적용</button>
+                      <button class="btn-outline" id="consent-cancel">취소</button>
+                      <button class="btn-submit" id="consent-apply">적용</button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="combo-search">
+              <div class="combo-search combo-search-wide">
                 <div class="combo-field">
                   <select class="combo-select">
                     <option>전체</option>
-                    <option>이름</option>
-                    <option>이메일</option>
+                    <option>동의서 종류</option>
+                    <option>사용자이름</option>
                   </select>
                   <div class="divider"></div>
                   <div class="combo-input-wrap">
                     <span class="mag-icon">🔍</span>
-                    <input type="text" class="combo-input" placeholder="검색어를 입력하세요" />
+                    <input type="text" class="combo-input" placeholder="검색어를 입력해주세요." />
                   </div>
                   <button class="append-btn">조회</button>
                 </div>
@@ -152,7 +153,6 @@
             </div>
             <div class="tb-right tb-right-full">
               <div class="right-tail">
-                <div class="total-count">총 10건</div>
                 <select class="condition-select">
                   <option>10개씩 보기</option>
                   <option>20개씩 보기</option>
@@ -163,166 +163,170 @@
           </div>
         </div>
 
+        <!-- 테이블 -->
         <div class="table-container">
           <table>
             <thead>
               <tr>
-                <th>이름</th>
-                <th>이메일</th>
-                <th>회의록 건수</th>
-                <th>회의록 시간</th>
-                <th>LLM 토큰</th>
-                <th>LLM 요청수</th>
+                <th>순번</th>
+                <th>사용자이름</th>
+                <th>동의서 종류</th>
+                <th>동의 날짜</th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td>1</td>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-blue">한</div><span>한진희</span>
+                    <div class="user-initial color-blue">김</div>
+                    <span>김철수</span>
                   </div>
                 </td>
-                <td>jinhee@timbel.net</td>
-                <td>0</td>
-                <td>00:00:00</td>
-                <td>0</td>
-                <td>0</td>
+                <td>개인정보 수집 및 이용 동의</td>
+                <td>2024-03-15 14:30:25</td>
               </tr>
               <tr>
+                <td>2</td>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-rose">호</div><span>호랑</span>
+                    <div class="user-initial color-purple">이</div>
+                    <span>이영희</span>
                   </div>
                 </td>
-                <td>luckytrack@timbel.net</td>
-                <td>20</td>
-                <td>05:15:58</td>
-                <td>2,389,270</td>
-                <td>8</td>
+                <td>서비스 이용 약관 동의</td>
+                <td>2024-03-15 13:45:12</td>
               </tr>
               <tr>
+                <td>3</td>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-green">이</div><span>이세영</span>
+                    <div class="user-initial color-green">박</div>
+                    <span>박지민</span>
                   </div>
                 </td>
-                <td>seyoung67@timbel.net</td>
-                <td>0</td>
-                <td>00:00:00</td>
-                <td>0</td>
-                <td>0</td>
+                <td>마케팅 정보 수신 동의</td>
+                <td>2024-03-15 12:20:45</td>
               </tr>
               <tr>
+                <td>4</td>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-blue">j</div><span>june</span>
+                    <div class="user-initial color-orange">최</div>
+                    <span>최동훈</span>
                   </div>
                 </td>
-                <td>june@timbel.net</td>
+                <td>개인정보 제3자 제공 동의</td>
+                <td>2024-03-15 11:15:30</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-pink">정</div>
+                    <span>정미경</span>
+                  </div>
+                </td>
+                <td>위치정보 이용 동의</td>
+                <td>2024-03-15 10:30:18</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-blue">강</div>
+                    <span>강민수</span>
+                  </div>
+                </td>
+                <td>쿠키 사용 동의</td>
+                <td>2024-03-15 09:45:33</td>
+              </tr>
+              <tr>
                 <td>7</td>
-                <td>00:02:19</td>
-                <td>7,740</td>
-                <td>1</td>
-              </tr>
-              <tr>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-teal">이</div><span>이인호</span>
+                    <div class="user-initial color-purple">윤</div>
+                    <span>윤서연</span>
                   </div>
                 </td>
-                <td>mr.lee@timbel.net</td>
-                <td>0</td>
-                <td>00:00:00</td>
-                <td>0</td>
-                <td>0</td>
+                <td>알림 수신 동의</td>
+                <td>2024-03-15 08:20:15</td>
               </tr>
               <tr>
+                <td>8</td>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-orange">김</div><span>김해성</span>
+                    <div class="user-initial color-green">조</div>
+                    <span>조현우</span>
                   </div>
                 </td>
-                <td>songkim1212@timbel.net</td>
-                <td>0</td>
-                <td>00:00:00</td>
-                <td>0</td>
-                <td>0</td>
+                <td>데이터 분석 활용 동의</td>
+                <td>2024-03-15 07:15:42</td>
               </tr>
               <tr>
+                <td>9</td>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-slate">팀</div><span>팀벨_배인섭</span>
+                    <div class="user-initial color-orange">한</div>
+                    <span>한지원</span>
                   </div>
                 </td>
-                <td>bis0212@timbel.net</td>
-                <td>1</td>
-                <td>00:40:03</td>
-                <td>65,588</td>
-                <td>1</td>
+                <td>광고성 정보 수신 동의</td>
+                <td>2024-03-15 06:30:28</td>
               </tr>
               <tr>
+                <td>10</td>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-red">D</div><span>Dokyeong</span>
+                    <div class="user-initial color-pink">임</div>
+                    <span>임수진</span>
                   </div>
                 </td>
-                <td>dkyum@timbel.net</td>
-                <td>0</td>
-                <td>00:00:00</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-pink">T</div><span>TimbelTest05</span>
-                  </div>
-                </td>
-                <td>ahjilu@timbel.net</td>
-                <td>0</td>
-                <td>00:00:00</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-teal">T</div><span>TimbelTest04</span>
-                  </div>
-                </td>
-                <td>ksh0214@timbel.net</td>
-                <td>0</td>
-                <td>00:00:00</td>
-                <td>0</td>
-                <td>0</td>
+                <td>회의록 데이터 활용 동의</td>
+                <td>2024-03-15 05:45:55</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div class="pagination pagination-center">
-          <button class="page-btn" disabled>‹</button>
-          <button class="page-btn active">1</button>
-          <button class="page-btn">2</button>
-          <button class="page-btn">›</button>
-          <span class="page-info">1 of 2</span>
+        <!-- 페이징 -->
+        <div class="list-footer consent-history-pagination">
+          <div class="pagination">
+            <button class="page-btn prev" disabled>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+            <button class="page-btn next">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    // 사용자 접속 이력과 동일한 날짜 범위 피커 로직 (페이지 전용 ID 사용)
+    // 사용자 동의 이력 - 날짜 범위 피커
     (function () {
       const wrap = document.querySelector('.date-range-wrap');
       if (!wrap) return;
-      const input = document.getElementById('su-range');
-      const panel = document.getElementById('su-panel');
-      const calStart = document.getElementById('su-cal-start');
-      const calEnd = document.getElementById('su-cal-end');
-      const pickedEl = document.getElementById('su-picked');
-      const apply = document.getElementById('su-apply');
-      const cancel = document.getElementById('su-cancel');
+      const input = document.getElementById('consent-range');
+      const panel = document.getElementById('consent-panel');
+      const calStart = document.getElementById('consent-cal-start');
+      const calEnd = document.getElementById('consent-cal-end');
+      const pickedEl = document.getElementById('consent-picked');
+      const apply = document.getElementById('consent-apply');
+      const cancel = document.getElementById('consent-cancel');
       let startDate = null, endDate = null, viewStart = new Date(), viewEnd = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);
       function fmt(d) { return d.toISOString().slice(0, 10); }
       function renderCalendar(targetEl, view, isStart) {
@@ -331,9 +335,9 @@
         const startIdx = (first.getDay() + 6) % 7;
         let h = '';
         h += '<div class="cal-header">'
-          + `<div class="cal-prev-start"><button class="cal-prev su-prev" data-side="${isStart ? 'start' : 'end'}">‹</button></div>`
+          + `<div class="cal-prev-start"><button class="cal-prev consent-prev" data-side="${isStart ? 'start' : 'end'}">‹</button></div>`
           + '<div class="cal-month">' + y + '-' + String(m + 1).padStart(2, '0') + '</div>'
-          + `<div class="cal-next-end"><button class=\"cal-next su-next\" data-side=\"${isStart ? 'start' : 'end'}\">›</button></div>`
+          + `<div class="cal-next-end"><button class=\"cal-next consent-next\" data-side=\"${isStart ? 'start' : 'end'}\">›</button></div>`
           + '</div>';
         h += '<div class="cal-grid">';
         ['월', '화', '수', '목', '금', '토', '일'].forEach(w => h += '<div class="cal-weekday">' + w + '</div>');
@@ -346,8 +350,8 @@
         }
         h += '</div>';
         targetEl.innerHTML = h;
-        targetEl.querySelector('.su-prev').onclick = () => { if (isStart) viewStart.setMonth(viewStart.getMonth() - 1); else viewEnd.setMonth(viewEnd.getMonth() - 1); syncViews(); };
-        targetEl.querySelector('.su-next').onclick = () => { if (isStart) viewStart.setMonth(viewStart.getMonth() + 1); else viewEnd.setMonth(viewEnd.getMonth() + 1); syncViews(); };
+        targetEl.querySelector('.consent-prev').onclick = () => { if (isStart) viewStart.setMonth(viewStart.getMonth() - 1); else viewEnd.setMonth(viewEnd.getMonth() - 1); syncViews(); };
+        targetEl.querySelector('.consent-next').onclick = () => { if (isStart) viewStart.setMonth(viewStart.getMonth() + 1); else viewEnd.setMonth(viewEnd.getMonth() + 1); syncViews(); };
         targetEl.querySelectorAll('.cal-day[data-day]').forEach(el => {
           el.onclick = () => {
             const d = new Date(el.dataset.day);

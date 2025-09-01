@@ -75,7 +75,7 @@
           </li>
           <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
           <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
-          <li><a href="index.html"><img src="../asset/history.svg" alt="">회의 템플릿 관리</a></li>
+          <li><a href="meet_template.html"><img src="../asset/history.svg" alt="">회의 템플릿 관리</a></li>
           <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
           <li>
             <a href="#">
@@ -85,6 +85,8 @@
             <ul class="submenu">
               <li><a href="login_history.html">사용자 접속 이력</a></li>
               <li><a href="download_history.html">다운로드 이력</a></li>
+              <li><a href="user_consent_history.html">사용자 동의 이력</a></li>
+              <li><a href="setting_change_history.html">설정변경 이력</a></li>
             </ul>
           </li>
           <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
@@ -123,31 +125,31 @@
                 <option>STT온라인_영어(16K)</option>
                 <option>STT배치v2_한글(16K)</option>
               </select>
-              <div class="combo-search combo-search-inline">
-                <div class="combo-field">
-                  <div class="combo-input-wrap">
-                    <span class="mag-icon">🔍</span>
-                    <input type="text" class="combo-input" placeholder="변경 전 단어" />
-                  </div>
-                </div>
+              <div class="search-input-wrap">
+                <svg class="mag-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                  fill="none">
+                  <circle cx="11.5" cy="11.5005" r="9.5" stroke="#9CA3AF" stroke-width="1.5" />
+                  <path d="M20 20.0005L22 22.0005" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                <input type="text" class="search-input" placeholder="변경 전 단어" />
               </div>
-              <div class="combo-search combo-search-inline">
-                <div class="combo-field">
-                  <div class="combo-input-wrap">
-                    <span class="mag-icon">🔍</span>
-                    <input type="text" class="combo-input" placeholder="변경 후 단어" />
-                  </div>
-                </div>
+              <div class="search-input-wrap">
+                <svg class="mag-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                  fill="none">
+                  <circle cx="11.5" cy="11.5005" r="9.5" stroke="#9CA3AF" stroke-width="1.5" />
+                  <path d="M20 20.0005L22 22.0005" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                <input type="text" class="search-input" placeholder="변경 후 단어" />
               </div>
-              <div class="combo-search combo-search-inline">
-                <div class="combo-field">
-                  <div class="combo-input-wrap">
-                    <span class="mag-icon">🔍</span>
-                    <input type="text" class="combo-input" placeholder="사용자" />
-                  </div>
-                  <button class="append-btn">조회</button>
-                </div>
+              <div class="search-input-wrap">
+                <svg class="mag-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                  fill="none">
+                  <circle cx="11.5" cy="11.5005" r="9.5" stroke="#9CA3AF" stroke-width="1.5" />
+                  <path d="M20 20.0005L22 22.0005" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                <input type="text" class="search-input" placeholder="사용자" />
               </div>
+              <button class="search-btn">조회</button>
             </div>
             <div class="tb-right">
               <div class="total-count">총 30개</div>
