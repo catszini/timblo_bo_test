@@ -1,0 +1,32 @@
+[33mcommit d390fb2a185ebae288b94a55b01003f0d22356f3[m
+Author: jinhee <jinhee@timbel.net>
+Date:   Mon Sep 1 13:42:55 2025 +0900
+
+    파일명 변경 및 UI 개선: index.htmlmeet_template.html, 이력관리 메뉴 확장, 폼 요소 크기/색상 통일, 새 페이지 추가
+
+html/calendar.html
+html/consent.html
+html/dictionary.html
+html/download_history.html
+html/engine.html
+html/general.html
+html/group_setting.html
+html/inactive_members.html
+html/login_history.html
+html/meet_template.html
+html/meeting.html
+html/menu_setting.html
+html/prompt.html
+html/setting_change_history.html
+html/stats_usage.html
+html/stats_user.html
+html/summary.html
+html/system_stats.html
+html/system_user.html
+html/template_detail.html
+html/user.html
+html/user_consent_history.html
+html/workspace.html
+html/workspace_detail.html
+html/workspace_menu_setting.html
+html/workspace_permission.html
