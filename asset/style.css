@@ -6788,3 +6788,105 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   margin: 5px 0 0 0;
   line-height: 1.4;
 }
+
+/* 캘린더 관리 페이지 스타일 */
+.calendar-settings-section {
+  margin-bottom: 40px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.calendar-settings-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 12px 0;
+}
+
+.calendar-settings-section p {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 24px 0;
+  line-height: 1.5;
+}
+
+.calendar-integration-list {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.calendar-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 250px;
+  max-width: calc(25% - 12px);
+}
+
+.calendar-item:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.calendar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.calendar-logo img {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.calendar-logo span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* 캘린더 관리 페이지 커스텀 셀렉트 박스 */
+.calendar-settings-section .combo-select {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+}
+
+.calendar-settings-section .combo-select div {
+  position: relative;
+  display: block;
+}
+
+.calendar-settings-section .combo-select select {
+  width: 100%;
+  padding: 8px 30px 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #fff;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.calendar-settings-section .combo-select .select-arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 16px;
+  height: 16px;
+}

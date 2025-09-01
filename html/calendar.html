@@ -113,252 +113,82 @@
         </div>
       </div>
       <div class="content-body">
-        <div class="search-section">
-          <div class="search-group">
-            <div class="right-group">
-              <button class="new-button">신규 등록</button>
+        <!-- 외부 캘린더 연동 섹션 -->
+        <div class="calendar-settings-section">
+          <h3>외부 캘린더 연동</h3>
+          <p>외부 캘린더를 연동하여 예정된 회의를 자동으로 인식하고 관리합니다. 연동된 정보 정보는 회의 전 및 <strong>회의중</strong> 활용에 사용됩니다.</p>
+
+          <div class="calendar-integration-list">
+            <div class="calendar-item">
+              <div class="calendar-logo">
+                <img src="../asset/google-calendar-icon.png" alt="Google Calendar">
+                <span>Google 캘린더</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+              </label>
             </div>
+
+            <div class="calendar-item">
+              <div class="calendar-logo">
+                <img src="../asset/outlook-calendar-icon.png" alt="Microsoft Outlook">
+                <span>Microsoft Outlook</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <!-- <div class="calendar-item">
+              <div class="calendar-logo">
+                <img src="../asset/icalendar-icon.png" alt="iCalendar">
+                <span>iCalendar</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="calendar-item">
+              <div class="calendar-logo">
+                <img src="../asset/naver-calendar-icon.png" alt="네이버 캘린더">
+                <span>네이버 캘린더</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+            </div> -->
           </div>
         </div>
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th class="sortable" data-sort-key="enabled">사용여부 <span class="sort-icon" aria-hidden="true"></span>
-                </th>
-                <th>카테고리</th>
-                <th>템플릿명</th>
-                <th>최근수정일</th>
-                <th>수정자</th>
-                <th>버전</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>DEF-001-SK</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>회의</td>
-                <td>일반 회의록 템플릿</td>
-                <td>2024-02-28 14:30</td>
-                <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-blue">김</div>
-                    <span>김철수</span>
-                  </div>
-                </td>
-                <td>v1.2</td>
-              </tr>
-              <tr>
-                <td>DEF-002-SK</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>세미나</td>
-                <td>주간 업무 보고 템플릿</td>
-                <td>2024-02-27 11:20</td>
-                <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-purple">이</div>
-                    <span>이영희</span>
-                  </div>
-                </td>
-                <td>v2.0</td>
-              </tr>
-              <tr>
-                <td>DEF-003-SK</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>상담</td>
-                <td>프로젝트 킥오프 템플릿</td>
-                <td>2024-02-26 09:15</td>
-                <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-green">박</div>
-                    <span>박지민</span>
-                  </div>
-                </td>
-                <td>v1.0</td>
-              </tr>
-              <tr>
-                <td>DEF-004-SK</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>의료</td>
-                <td>1:1 면담 템플릿</td>
-                <td>2024-02-25 16:45</td>
-                <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-orange">최</div>
-                    <span>최동훈</span>
-                  </div>
-                </td>
-                <td>v1.5</td>
-              </tr>
-              <tr>
-                <td>DEF-005-SK</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>보고서</td>
-                <td>고객 미팅 템플릿</td>
-                <td>2024-02-24 13:10</td>
-                <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-pink">정</div>
-                    <span>정미경</span>
-                  </div>
-                </td>
-                <td>v2.1</td>
-              </tr>
-              <tr>
-                <td>DEF-006-SK</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>회의</td>
-                <td>월간 보고 템플릿</td>
-                <td>2024-02-23 10:30</td>
-                <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-blue">강</div>
-                    <span>강민수</span>
-                  </div>
-                </td>
-                <td>v1.3</td>
-              </tr>
-              <tr>
-                <td>DEF-007-SK</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>세미나</td>
-                <td>팀 미팅 템플릿</td>
-                <td>2024-02-22 15:20</td>
-                <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-purple">윤</div>
-                    <span>윤서연</span>
-                  </div>
-                </td>
-                <td>v1.1</td>
-              </tr>
-              <tr>
-                <td>DEF-008-SK</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>상담</td>
-                <td>이사회 템플릿</td>
-                <td>2024-02-21 09:45</td>
-                <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-green">조</div>
-                    <span>조현우</span>
-                  </div>
-                </td>
-                <td>v2.2</td>
-              </tr>
-              <tr>
-                <td>DEF-009-SK</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>의료</td>
-                <td>부서장 회의 템플릿</td>
-                <td>2024-02-20 16:15</td>
-                <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-orange">한</div>
-                    <span>한지원</span>
-                  </div>
-                </td>
-                <td>v1.4</td>
-              </tr>
-              <tr>
-                <td>DEF-010-SK</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>보고서</td>
-                <td>외부 미팅 템플릿</td>
-                <td>2024-02-19 11:00</td>
-                <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-pink">임</div>
-                    <span>임수진</span>
-                  </div>
-                </td>
-                <td>v1.0</td>
-              </tr>
-            </tbody>
-          </table>
+
+        <!-- 외부 캘린더 동기화 주기 섹션 -->
+        <div class="calendar-settings-section">
+          <h3>외부 캘린더 동기화 주기</h3>
+          <p>외부 캘린더를 동기화 하는 주기를 선택합니다.</p>
+
+          <div class="combo-select">
+            <div>
+              <select>
+                <option>선택해 주세요</option>
+                <option selected>매일</option>
+                <option>1주일</option>
+                <option>2주일</option>
+                <option>1개월</option>
+              </select>
+              <img src="../asset/select-arrow.svg" alt="선택 화살표" class="select-arrow">
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
-  <script>
-    // 캘린더 프롬프트 관리 - 사용여부 정렬
-    (function () {
-      const table = document.querySelector('.table-container table');
-      const tbody = table && table.querySelector('tbody');
-      const header = table && table.querySelector('th[data-sort-key="enabled"]');
-      let asc = true;
-      if (!table || !tbody || !header) return;
-      header.classList.toggle('asc', asc);
-      header.classList.toggle('desc', !asc);
-      header.addEventListener('click', function (e) {
-        e.stopPropagation();
-        const rows = Array.from(tbody.querySelectorAll('tr'));
-        rows.sort((a, b) => {
-          const aChecked = !!a.querySelector('td:nth-child(2) input[type="checkbox"]:checked');
-          const bChecked = !!b.querySelector('td:nth-child(2) input[type="checkbox"]:checked');
-          const diff = (aChecked === bChecked) ? 0 : (aChecked ? -1 : 1);
-          return asc ? diff : -diff;
-        });
-        rows.forEach(r => tbody.appendChild(r));
-        asc = !asc;
-        header.classList.toggle('asc', asc);
-        header.classList.toggle('desc', !asc);
-      });
-    })();
-  </script>
+
 </body>
 
 </html>
