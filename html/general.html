@@ -137,161 +137,176 @@
           </div>
         </div>
 
-        <div class="section">
-          <div class="perm-title perm-title-bold">권한</div>
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th class="th-width-20">구분</th>
-                  <th class="th-width-60">항목</th>
-                  <th class="th-width-20">사용 여부</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td rowspan="2">다운로드 권한</td>
-                  <td>문서 파일 다운로드</td>
-                  <td>
-                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                  </td>
-                </tr>
-                <tr>
-                  <td>영상 / 음성 파일 다운로드</td>
-                  <td>
-                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                  </td>
-                </tr>
-                <tr>
-                  <td rowspan="2">사용 권한</td>
-                  <td>템플릿 사용</td>
-                  <td>
-                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                  </td>
-                </tr>
-                <tr>
-                  <td>재요약 사용</td>
-                  <td>
-                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                  </td>
-                </tr>
-                <tr>
-                  <td>회의 시청</td>
-                  <td>동의서 여부 적용</td>
-                  <td>
-                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        <!-- 탭 네비게이션 -->
+        <div class="tab-navigation">
+          <button class="tab-btn active" data-tab="permission">권한설정</button>
+          <button class="tab-btn" data-tab="auto-delete">자동삭제</button>
+        </div>
+
+        <!-- 권한설정 탭 -->
+        <div class="tab-content active" id="permission-tab">
+          <div class="section">
+            <div class="perm-title perm-title-bold">권한</div>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="th-width-20">구분</th>
+                    <th class="th-width-60">항목</th>
+                    <th class="th-width-20">사용 여부</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="2">다운로드 권한</td>
+                    <td>문서 파일 다운로드</td>
+                    <td>
+                      <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>영상 / 음성 파일 다운로드</td>
+                    <td>
+                      <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td rowspan="2">사용 권한</td>
+                    <td>템플릿 사용</td>
+                    <td>
+                      <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>재요약 사용</td>
+                    <td>
+                      <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>회의 시청</td>
+                    <td>동의서 여부 적용</td>
+                    <td>
+                      <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
-        <div class="card section auto-delete-card">
-          <div class="auto-del-title"><strong>회의 데이터 자동삭제</strong></div>
-          <div class="auto-delete-desc">
-            설정한 기간이 지난 회의록 데이터를 유형별로 자동 삭제하여 보안을 강화하고 리소스를 관리합니다.
-            삭제된 데이터는 복구할 수 없으니 신중하게 설정하세요.
-          </div>
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th class="th-width-40">데이터 유형</th>
-                  <th class="th-width-40">보존 기간</th>
-                  <th class="th-width-20">자동 삭제 정책 사용</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="retention-row">
-                  <td>음성/영상 원본 파일</td>
-                  <td>
-                    <div class="inline-group">
-                      <select class="condition-select retention-select">
-                        <option>영구 보관</option>
-                        <option>90일 후</option>
-                        <option>180일 후</option>
-                        <option>1년 후</option>
-                        <option>3년 후</option>
-                        <option>직접 입력</option>
-                      </select>
-                      <span class="custom-retention">
-                        <div class="count-spinner">
-                          <input type="number" class="count-input" value="30" min="0">
-                          <div class="spinner-buttons">
-                            <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                            <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg"
-                                alt="감소"></button>
+        <!-- 자동삭제 탭 -->
+        <div class="tab-content" id="auto-delete-tab">
+          <div class="card section auto-delete-card">
+            <div class="auto-del-title"><strong>회의 데이터 자동삭제</strong></div>
+            <div class="auto-delete-desc">
+              설정한 기간이 지난 회의록 데이터를 유형별로 자동 삭제하여 보안을 강화하고 리소스를 관리합니다.
+              삭제된 데이터는 복구할 수 없으니 신중하게 설정하세요.
+            </div>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="th-width-40">데이터 유형</th>
+                    <th class="th-width-40">보존 기간</th>
+                    <th class="th-width-20">자동 삭제 정책 사용</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="retention-row">
+                    <td>음성/영상 원본 파일</td>
+                    <td>
+                      <div class="inline-group">
+                        <select class="condition-select retention-select">
+                          <option>영구 보관</option>
+                          <option>90일 후</option>
+                          <option>180일 후</option>
+                          <option>1년 후</option>
+                          <option>3년 후</option>
+                          <option>직접 입력</option>
+                        </select>
+                        <span class="custom-retention">
+                          <div class="count-spinner">
+                            <input type="number" class="count-input" value="30" min="0">
+                            <div class="spinner-buttons">
+                              <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg"
+                                  alt="증가"></button>
+                              <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg"
+                                  alt="감소"></button>
+                            </div>
                           </div>
-                        </div>
-                        <span class="unit-text">일 후</span>
-                      </span>
-                    </div>
-                  </td>
-                  <td>
-                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                  </td>
-                </tr>
-                <tr class="retention-row">
-                  <td>음성 기록 파일</td>
-                  <td>
-                    <div class="inline-group">
-                      <select class="condition-select retention-select">
-                        <option>영구 보관</option>
-                        <option>90일 후</option>
-                        <option>180일 후</option>
-                        <option>1년 후</option>
-                        <option>3년 후</option>
-                        <option selected>직접 입력</option>
-                      </select>
-                      <span class="custom-retention custom-retention-inline">
-                        <div class="count-spinner">
-                          <input type="number" class="count-input" value="5" min="0">
-                          <div class="spinner-buttons">
-                            <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                            <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg"
-                                alt="감소"></button>
+                          <span class="unit-text">일 후</span>
+                        </span>
+                      </div>
+                    </td>
+                    <td>
+                      <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                    </td>
+                  </tr>
+                  <tr class="retention-row">
+                    <td>음성 기록 파일</td>
+                    <td>
+                      <div class="inline-group">
+                        <select class="condition-select retention-select">
+                          <option>영구 보관</option>
+                          <option>90일 후</option>
+                          <option>180일 후</option>
+                          <option>1년 후</option>
+                          <option>3년 후</option>
+                          <option selected>직접 입력</option>
+                        </select>
+                        <span class="custom-retention custom-retention-inline">
+                          <div class="count-spinner">
+                            <input type="number" class="count-input" value="5" min="0">
+                            <div class="spinner-buttons">
+                              <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg"
+                                  alt="증가"></button>
+                              <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg"
+                                  alt="감소"></button>
+                            </div>
                           </div>
-                        </div>
-                        <span class="unit-text">일 후</span>
-                      </span>
-                    </div>
-                  </td>
-                  <td>
-                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                  </td>
-                </tr>
-                <tr class="retention-row">
-                  <td>AI 요약</td>
-                  <td>
-                    <div class="inline-group">
-                      <select class="condition-select retention-select">
-                        <option>영구 보관</option>
-                        <option>90일 후</option>
-                        <option>180일 후</option>
-                        <option>1년 후</option>
-                        <option>3년 후</option>
-                        <option>직접 입력</option>
-                      </select>
-                      <span class="custom-retention">
-                        <div class="count-spinner">
-                          <input type="number" class="count-input" value="30" min="0">
-                          <div class="spinner-buttons">
-                            <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                            <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg"
-                                alt="감소"></button>
+                          <span class="unit-text">일 후</span>
+                        </span>
+                      </div>
+                    </td>
+                    <td>
+                      <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                    </td>
+                  </tr>
+                  <tr class="retention-row">
+                    <td>AI 요약</td>
+                    <td>
+                      <div class="inline-group">
+                        <select class="condition-select retention-select">
+                          <option>영구 보관</option>
+                          <option>90일 후</option>
+                          <option>180일 후</option>
+                          <option>1년 후</option>
+                          <option>3년 후</option>
+                          <option>직접 입력</option>
+                        </select>
+                        <span class="custom-retention">
+                          <div class="count-spinner">
+                            <input type="number" class="count-input" value="30" min="0">
+                            <div class="spinner-buttons">
+                              <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg"
+                                  alt="증가"></button>
+                              <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg"
+                                  alt="감소"></button>
+                            </div>
                           </div>
-                        </div>
-                        <span class="unit-text">일 후</span>
-                      </span>
-                    </div>
-                  </td>
-                  <td>
-                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                          <span class="unit-text">일 후</span>
+                        </span>
+                      </div>
+                    </td>
+                    <td>
+                      <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -300,8 +315,30 @@
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
   <script>
-    // 보존 기간: '직접 입력' 선택 시 커스텀 입력 영역 표시
     document.addEventListener('DOMContentLoaded', function () {
+      // 탭 기능
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          const targetTab = this.getAttribute('data-tab');
+
+          // 모든 탭 버튼 비활성화
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          // 모든 탭 내용 숨기기
+          tabContents.forEach(content => content.classList.remove('active'));
+
+          // 클릭된 탭 버튼 활성화
+          this.classList.add('active');
+          // 해당 탭 내용 표시
+          const targetContent = document.getElementById(targetTab + '-tab');
+          if (targetContent) {
+            targetContent.classList.add('active');
+          }
+        });
+      });
+
       // count-spinner 동작
       document.querySelectorAll('.spinner-btn').forEach(function (btn) {
         btn.addEventListener('click', function (e) {

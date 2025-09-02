@@ -64,18 +64,20 @@
 
         </div>
         <ul>
-          <li><a href="general.html"><img src="../asset/daily.svg" alt="">일반</a></li>
-          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
           <li>
             <a href="#">
               <img src="../asset/user.svg" alt="">공통관리
               <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
             </a>
             <ul class="submenu">
-              <li><a href="group_setting.html">권한관리</a></li>
-              <li><a href="menu_setting.html">메뉴관리</a></li>
+              <li><a href="general.html">권한관리</a></li>
+              <li><a href="workspace_menu_setting.html">메뉴관리</a></li>
             </ul>
           </li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="meet_template.html"><img src="../asset/history.svg" alt="">회의 템플릿 관리</a></li>
+          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
           <li>
             <a href="#">
               <img src="../asset/history.svg" alt="">이력 관리
@@ -88,11 +90,10 @@
               <li><a href="setting_change_history.html">설정변경 이력</a></li>
             </ul>
           </li>
-          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
           <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
           <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
-          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
-          <li><a href="meet_template.html"><img src="../asset/history.svg" alt="">회의록 템플릿 관리</a></li>
+          <li><a href="engine.html"><img src="../asset/stats.svg" alt="">엔진 관리</a></li>
+          <li><a href="calendar.html"><img src="../asset/daily.svg" alt="">캘린더 관리</a></li>
           <li>
             <a href="stats_usage.html">
               <img src="../asset/stats.svg" alt="">통계
@@ -116,114 +117,128 @@
       </div>
       <div class="content-body">
         <div class="group-setting-container">
-          <div class="group-setting-layout">
+          <div class="group-setting-layout tree-visible">
             <div class="group-setting-left-panel">
-              <!-- 그룹정보 서브 타이틀 -->
-              <h3 class="group-info-subtitle">그룹정보</h3>
-              <!-- 그룹 리스트 테이블 -->
+              <!-- 권한정보 헤더와 버튼들 -->
+              <div class="group-info-header">
+                <div class="group-info-title-section">
+                  <h3 class="group-info-subtitle">권한 정보</h3>
+                  <span class="group-total-count">총 4개</span>
+                </div>
+                <div class="group-info-buttons">
+                  <button class="btn-form-delete">삭제</button>
+                  <button class="btn-form-edit">수정</button>
+                  <button class="group-setting-btn-add-group" id="createPermissionBtn">생성</button>
+                </div>
+              </div>
+              <!-- 권한 정보 테이블 -->
               <div class="group-setting-table-container" id="tableContainer">
                 <table class="group-setting-table">
                   <thead>
                     <tr>
-                      <th>번호</th>
-                      <th>그룹명</th>
+                      <th><input type="checkbox" class="select-all"></th>
+                      <th>순번</th>
+                      <th>워크스페이스</th>
+                      <th>이름</th>
+                      <th>권한명</th>
                       <th>구분</th>
-                      <th>구분 기능</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
+                      <td><input type="checkbox"></td>
                       <td>1</td>
-                      <td class="group-setting-name">마스터</td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-teal">S</div>
+                          <span>SK Telecom</span>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="user-icon">
+                          <div class="user-initial color-blue">홍</div>
+                          <span>홍길동</span>
+                        </div>
+                      </td>
+                      <td>시스템관리자</td>
                       <td>최고관리자</td>
-                      <td>
-                        <div class="group-setting-action-buttons">
-                          <button class="group-setting-btn-edit">수정</button>
-                          <button class="group-setting-btn-delete">삭제</button>
-                        </div>
-                      </td>
                     </tr>
                     <tr>
+                      <td><input type="checkbox"></td>
                       <td>2</td>
-                      <td class="group-setting-name">관리자</td>
-                      <td>하위관리자</td>
                       <td>
-                        <div class="group-setting-action-buttons">
-                          <button class="group-setting-btn-edit">수정</button>
-                          <button class="group-setting-btn-delete">삭제</button>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-indigo">S</div>
+                          <span>SK Hynix</span>
                         </div>
                       </td>
+                      <td>
+                        <div class="user-icon">
+                          <div class="user-initial color-green">박</div>
+                          <span>박영수</span>
+                        </div>
+                      </td>
+                      <td>워크스페이스관리자</td>
+                      <td>관리자</td>
                     </tr>
                     <tr>
+                      <td><input type="checkbox"></td>
                       <td>3</td>
-                      <td class="group-setting-name">직원</td>
-                      <td>직원</td>
                       <td>
-                        <div class="group-setting-action-buttons">
-                          <button class="group-setting-btn-edit">수정</button>
-                          <button class="group-setting-btn-delete">삭제</button>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-rose">T</div>
+                          <span>Timbel_Mk</span>
                         </div>
                       </td>
+                      <td>
+                        <div class="user-icon">
+                          <div class="user-initial color-purple">김</div>
+                          <span>김철수</span>
+                        </div>
+                      </td>
+                      <td>일반사용자</td>
+                      <td>사용자</td>
                     </tr>
                     <tr>
+                      <td><input type="checkbox"></td>
                       <td>4</td>
-                      <td class="group-setting-name">테스트</td>
-                      <td>테스트용</td>
                       <td>
-                        <div class="group-setting-action-buttons">
-                          <button class="group-setting-btn-edit">수정</button>
-                          <button class="group-setting-btn-delete">삭제</button>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-amber">T</div>
+                          <span>Timbel_sol</span>
                         </div>
                       </td>
+                      <td>
+                        <div class="user-icon">
+                          <div class="user-initial color-orange">이</div>
+                          <span>이영희</span>
+                        </div>
+                      </td>
+                      <td>게스트</td>
+                      <td>뷰어</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
 
-              <!-- 사용자정보 헤더와 버튼들 -->
-              <div class="form-header">
-                <h3 class="form-title">권한정보</h3>
-                <div class="form-header-buttons">
-                  <button class="group-setting-btn-add-group" id="toggleTreeBtn">신규</button>
-                  <button class="btn-form-save">저장</button>
-                  <button class="btn-form-delete">삭제</button>
-                </div>
-              </div>
 
-              <!-- 새로운 그룹 설정 폼 테이블 -->
-              <div class="group-setting-form-container">
-                <table class="group-setting-form-table">
-                  <tbody>
-                    <tr>
-                      <td class="form-label">그룹명</td>
-                      <td class="form-input-cell">
-                        <input type="text" class="form-input-field" value="시스템관리자" />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="form-label">권한정보</td>
-                      <td class="form-input-cell">
-                        <input type="text" class="form-input-field" value="시스템관리자" />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="form-label">사용여부</td>
-                      <td class="form-input-cell">
-                        <div class="toggle-buttons">
-                          <button class="toggle-btn active">사용</button>
-                          <button class="toggle-btn">미사용</button>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
             </div>
-            <div class="group-setting-tree-panel" id="treePanel" style="display: none;">
+            <div class="group-setting-tree-panel" id="treePanel">
               <div class="tree-header">
-                <h4>메뉴목록</h4>
+                <h4>권한 미리보기</h4>
               </div>
-              <div class="tree-menu">
+              <div class="no-data-area" id="noDataArea">
+                <div class="no-data-icon">
+                  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M20 16H44C46.2091 16 48 17.7909 48 20V44C48 46.2091 46.2091 48 44 48H20C17.7909 48 16 46.2091 16 44V20C16 17.7909 17.7909 16 20 16Z"
+                      fill="#E5E7EB" stroke="#D1D5DB" stroke-width="2" />
+                    <path d="M28 28H36M28 32H36M28 36H32" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                </div>
+                <p class="no-data-text">권한 항목 미리보기가 가능합니다.</p>
+              </div>
+              <div class="tree-menu" id="treeMenu" style="display: none;">
                 <div class="tree-item">
                   <input type="checkbox" id="시스템" checked>
                   <label for="시스템">시스템</label>
@@ -253,7 +268,6 @@
                         <input type="checkbox" id="메뉴관리" checked>
                         <label for="메뉴관리">메뉴관리</label>
                       </div>
-
                     </div>
                   </div>
                   <div class="tree-item">
@@ -308,8 +322,15 @@
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
+        </div>
+
+        <!-- 권한 미리보기 하단 버튼들 (외곽선 밖) -->
+        <div class="preview-actions-external">
+          <button class="btn-reset">초기화</button>
+          <button class="btn-save">저장</button>
         </div>
       </div>
     </div>
@@ -317,8 +338,177 @@
 
 
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const tableRows = document.querySelectorAll('.group-setting-table tbody tr');
+      const noDataArea = document.getElementById('noDataArea');
+      const treeMenu = document.getElementById('treeMenu');
+
+      // 테이블 행 클릭 이벤트
+      tableRows.forEach(row => {
+        row.addEventListener('click', function (e) {
+          // 체크박스 클릭은 제외
+          if (e.target.type === 'checkbox') return;
+
+          // 기존 선택된 행 해제
+          tableRows.forEach(r => r.classList.remove('selected'));
+
+          // 현재 행 선택
+          this.classList.add('selected');
+
+          // 노데이터 영역 숨기고 트리 메뉴 표시
+          noDataArea.style.display = 'none';
+          treeMenu.style.display = 'block';
+
+          // 선택된 권한에 따라 다른 메뉴 표시 (추후 확장 가능)
+          const permissionType = this.querySelector('td:nth-child(5)').textContent;
+          console.log('선택된 권한:', permissionType);
+        });
+      });
+
+      // 체크박스 전체 선택 기능
+      const selectAllCheckbox = document.querySelector('.select-all');
+      const rowCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+
+      if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', function () {
+          const isChecked = this.checked;
+          rowCheckboxes.forEach(checkbox => {
+            checkbox.checked = isChecked;
+          });
+        });
+      }
+
+      // 개별 체크박스 변경 시 전체 선택 체크박스 상태 업데이트
+      rowCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+          const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
+
+          if (checkedCount === 0) {
+            selectAllCheckbox.checked = false;
+            selectAllCheckbox.indeterminate = false;
+          } else if (checkedCount === rowCheckboxes.length) {
+            selectAllCheckbox.checked = true;
+            selectAllCheckbox.indeterminate = false;
+          } else {
+            selectAllCheckbox.checked = false;
+            selectAllCheckbox.indeterminate = true;
+          }
+        });
+      });
+
+      // 하단 버튼 기능
+      const resetBtn = document.querySelector('.btn-reset');
+      const saveBtn = document.querySelector('.btn-save');
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+          // 모든 체크박스 초기화
+          const treeCheckboxes = document.querySelectorAll('#treeMenu input[type="checkbox"]');
+          treeCheckboxes.forEach(cb => cb.checked = false);
+          alert('권한이 초기화되었습니다.');
+        });
+      }
+
+      if (saveBtn) {
+        saveBtn.addEventListener('click', function () {
+          // 권한 저장 로직
+          const selectedRow = document.querySelector('.group-setting-table tbody tr.selected');
+          if (selectedRow) {
+            const userName = selectedRow.querySelector('td:nth-child(4)').textContent.trim();
+            alert(`${userName}의 권한이 저장되었습니다.`);
+          } else {
+            alert('권한을 수정할 사용자를 선택해주세요.');
+          }
+        });
+      }
+
+      // 권한 생성 모달 기능
+      const createPermissionBtn = document.getElementById('createPermissionBtn');
+      const permissionModal = document.getElementById('permissionModal');
+      const permissionCancel = document.getElementById('permissionCancel');
+      const permissionCreate = document.getElementById('permissionCreate');
+
+      // 생성 버튼 클릭 시 모달 열기
+      if (createPermissionBtn) {
+        createPermissionBtn.addEventListener('click', function () {
+          permissionModal.classList.remove('modal-overlay-hidden');
+        });
+      }
+
+      // 모달 닫기 기능들
+      if (permissionCancel) {
+        permissionCancel.addEventListener('click', function () {
+          permissionModal.classList.add('modal-overlay-hidden');
+        });
+      }
+
+      // 모달 외부 클릭 시 닫기
+      if (permissionModal) {
+        permissionModal.addEventListener('click', function (e) {
+          if (e.target === permissionModal) {
+            permissionModal.classList.add('modal-overlay-hidden');
+          }
+        });
+      }
+
+      // 생성 버튼 클릭
+      if (permissionCreate) {
+        permissionCreate.addEventListener('click', function () {
+          const permissionName = document.getElementById('permissionName').value.trim();
+          const permissionType = document.getElementById('permissionType').value.trim();
+
+          if (!permissionName) {
+            alert('권한명을 입력해주세요.');
+            return;
+          }
+
+          if (!permissionType) {
+            alert('구분을 입력해주세요.');
+            return;
+          }
+
+          alert('권한이 생성되었습니다.');
+          permissionModal.classList.add('modal-overlay-hidden');
+
+          // 폼 초기화
+          document.getElementById('permissionName').value = '';
+          document.getElementById('permissionType').value = '';
+        });
+      }
+    });
+  </script>
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
+
+  <!-- 권한 생성 모달 -->
+  <div class="modal-overlay modal-overlay-hidden" id="permissionModal">
+    <div class="modal-container permission-modal">
+      <div class="modal-header">
+        <h2>권한 생성</h2>
+      </div>
+      <div class="modal-content">
+        <div class="form-group">
+          <label for="userName">이름</label>
+          <input type="text" id="userName" class="form-input" placeholder="SK Telecom" disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="permissionName">권한명</label>
+          <input type="text" id="permissionName" class="form-input" placeholder="권한명을 입력하세요">
+        </div>
+
+        <div class="form-group">
+          <label for="permissionType">구분</label>
+          <input type="text" id="permissionType" class="form-input" placeholder="구분을 입력하세요">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" id="permissionCancel">취소</button>
+        <button class="btn-submit" id="permissionCreate">생성</button>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

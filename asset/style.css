@@ -327,6 +327,343 @@ tbody tr:hover td {
   margin-bottom: 0;
 }
 
+/* 워크스페이스 관리 - 테이블 헤더와 내용 가운데 정렬 */
+.page-workspace table th,
+.page-workspace table td {
+  text-align: center;
+}
+
+/* 워크스페이스 관리 - 사용자 현황 아이콘 스타일 (겹침 효과) */
+.user-status-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.status-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-left: -8px;
+  position: relative;
+  z-index: 1;
+}
+
+.status-icon:first-child {
+  margin-left: 0;
+  z-index: 4;
+}
+
+.status-icon:nth-child(2) {
+  z-index: 3;
+}
+
+.status-icon:nth-child(3) {
+  z-index: 2;
+}
+
+.status-icon:nth-child(4) {
+  z-index: 1;
+}
+
+/* 시스템 사용자 관리 페이지 - 검색 영역 스타일 */
+.page-system-user.user-page.member-page .search-section .common-topbar {
+  align-items: center;
+}
+
+.page-system-user .tb-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-system-user .total-count {
+  font-size: 16px;
+  color: #292A2B;
+  font-weight: 600;
+}
+
+.page-system-user .delete-btn {
+  background: #DC2626;
+  color: white;
+  border: 1px solid #DC2626;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.page-system-user .delete-btn:hover {
+  background: #B91C1C;
+}
+
+/* 그룹 설정 페이지 - 그룹정보 헤더 스타일 */
+.page-group-setting .group-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.page-group-setting .group-info-title-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-group-setting .group-info-subtitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #292A2B;
+}
+
+.page-group-setting .group-total-count {
+  font-size: 14px;
+  color: #666;
+  font-weight: 400;
+}
+
+.page-group-setting .group-info-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.page-group-setting .group-setting-btn-add-group,
+.page-group-setting .btn-form-save,
+.page-group-setting .btn-form-delete {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid;
+  transition: all 0.2s ease;
+}
+
+.page-group-setting .group-setting-btn-add-group {
+  background: #0066FF;
+  color: white;
+  border-color: #0066FF;
+}
+
+.page-group-setting .btn-form-save {
+  background: #10B981;
+  color: white;
+  border-color: #10B981;
+}
+
+.page-group-setting .btn-form-delete {
+  background: #DC2626;
+  color: white;
+  border-color: #DC2626;
+}
+
+.page-group-setting .btn-form-edit {
+  background: white;
+  color: #666;
+  border: 1px solid #E5E5E5;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.page-group-setting .btn-form-edit:hover {
+  background: #F8F9FA;
+  border-color: #D1D5DB;
+}
+
+/* 그룹 설정 페이지 - 노데이터 영역 스타일 */
+.page-group-setting .no-data-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  text-align: center;
+}
+
+.page-group-setting .no-data-icon {
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.page-group-setting .no-data-text {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+/* 권한 정보 테이블 행 클릭 효과 */
+.page-group-setting .group-setting-table tbody tr {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.page-group-setting .group-setting-table tbody tr:hover {
+  background-color: #F8F9FA;
+}
+
+.page-group-setting .group-setting-table tbody tr.selected {
+  background-color: #E3F2FD;
+  border-left: 3px solid #0066FF;
+}
+
+/* 권한 미리보기 외곽선 밖 하단 버튼 스타일 */
+.page-group-setting .preview-actions-external {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* 권한 생성 모달 스타일 */
+.permission-modal {
+  width: 400px !important;
+}
+
+.permission-modal .modal-header {
+  text-align: center;
+  border-bottom: none;
+  padding: 24px 24px 16px 24px;
+}
+
+.permission-modal .modal-content {
+  padding-top: 0;
+}
+
+.permission-modal .form-group:last-child {
+  margin-bottom: 0;
+}
+
+.permission-modal .modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #292A2B;
+}
+
+.permission-modal .modal-footer {
+  display: flex;
+  gap: 8px;
+  padding: 0 24px 24px 24px;
+  margin: 0;
+  border-top: 0;
+}
+
+.permission-modal .btn-cancel,
+.permission-modal .btn-submit {
+  flex: 1;
+  margin: 0;
+  border-radius: 8;
+  padding: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  border-top: none;
+}
+
+.permission-modal .btn-cancel {
+  background: #F8F9FA;
+  color: #666;
+}
+
+.permission-modal .btn-cancel:hover {
+  background: #E9ECEF;
+}
+
+.permission-modal .btn-submit {
+  background: #0066FF;
+  color: white;
+}
+
+.permission-modal .btn-submit:hover {
+  background: #0052CC;
+}
+
+.page-group-setting .btn-reset {
+  background: white;
+  color: #666;
+  border: 1px solid #E5E5E5;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.page-group-setting .btn-reset:hover {
+  background: #F8F9FA;
+  border-color: #D1D5DB;
+}
+
+.page-group-setting .btn-save {
+  background: #0066FF;
+  color: white;
+  border: 1px solid #0066FF;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.page-group-setting .btn-save:hover {
+  background: #0052CC;
+  border-color: #0052CC;
+}
+
+.permission-modal label{
+  margin-bottom: 4px;
+}
+
+/* 워크스페이스 메뉴관리 - 간단한 메뉴 구조 스타일 */
+.page-workspace-menu-setting .menu-list {
+  padding: 16px 0;
+}
+
+.page-workspace-menu-setting .menu-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #292A2B;
+  margin-bottom: 12px;
+  padding-left: 0;
+}
+
+.page-workspace-menu-setting .menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  margin-left: 0;
+}
+
+.page-workspace-menu-setting .menu-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.page-workspace-menu-setting .menu-item label {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  margin: 0;
+}
+
 /* 반응형 레이아웃 */
 @media (max-width: 768px) {
   .consent-detail-page .form-row {
@@ -352,6 +689,65 @@ tbody tr:hover td {
     flex-direction: column;
     gap: 16px;
   }
+}
+
+/* General 페이지 - 탭 네비게이션 스타일 (사용자 관리와 동일) */
+.page-general .tab-navigation {
+  display: flex;
+  margin-bottom: 0;
+}
+
+.page-general .tab-btn {
+  padding: 12px 24px;
+  background: #F8F9FA;
+  color: #6B7280;
+  border: 1px solid #E5E5E5;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  margin-right: 2px;
+}
+
+.page-general .tab-btn:hover {
+  background: #F1F3F4;
+  color: #374151;
+}
+
+.page-general .tab-btn.active {
+  background: #fff;
+  color: #0066FF;
+  border-color: #E5E5E5;
+  border-bottom: 1px solid #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.page-general .tab-content {
+  display: none;
+  background: #fff;
+  border: 1px solid #E5E5E5;
+  border-radius: 0 8px 8px 8px;
+  padding: 24px;
+}
+
+.page-general .tab-content.active {
+  display: block;
+}
+
+/* General 페이지 탭 내용의 첫 번째 섹션 상단 여백 제거 */
+.page-general .tab-content .section:first-child {
+  margin-top: 0;
+}
+
+.page-general .tab-content .perm-title {
+  margin-top: 0;
+}
+
+.page-general .tab-content .auto-del-title {
+  margin-top: 0;
 }
 
 body {
@@ -3489,6 +3885,7 @@ input:checked + .slider:before {
 .workspace-icon.color-lime { background-color: #84CC16; }
 .workspace-icon.color-fuchsia { background-color: #D946EF; }
 .workspace-icon.color-slate { background-color: #64748B; }
+.workspace-icon.color-blue { background-color: #3B82F6; }
 
 .count-spinner {
     position: relative;
@@ -4398,7 +4795,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   margin: 0;
 }
 
-.group-setting-layout.tree-visible .group-setting-left-panel {
+.group-setting-layout .group-setting-left-panel {
   width: 50%;
 }
 

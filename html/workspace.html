@@ -158,16 +158,17 @@
             <thead>
               <tr>
                 <th><input type="checkbox" class="select-all"></th>
-                <th>이름</th>
+                <th>워크스페이스명</th>
                 <th>도메인</th>
                 <th>생성자</th>
                 <th>구성원</th>
-                <th>소유자</th>
+                <th>관리자</th>
                 <th>게스트</th>
+                <th>사용자 현황</th>
                 <th>생성일</th>
-                <th class="sortable" data-sort-key="enabled">사용 여부 <span class="sort-icon" aria-hidden="true"></span>
-                </th>
                 <th>비활성일</th>
+                <th class="sortable" data-sort-key="enabled">사용여부 <span class="sort-icon" aria-hidden="true"></span>
+                </th>
                 <th>비고</th>
               </tr>
             </thead>
@@ -176,20 +177,20 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-teal">P</div>
-                    <span>posco</span>
+                    <div class="workspace-icon color-teal">S</div>
+                    <span>SK Telecom</span>
                   </div>
                 </td>
-                <td>posco.com</td>
+                <td>www.sktelecom.ai</td>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-purple">포</div>
-                    <span>포스코1</span>
+                    <div class="user-initial color-blue">홍</div>
+                    <span>홍길동</span>
                   </div>
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="120" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -198,7 +199,7 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="4" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -207,41 +208,49 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="40" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
                     </div>
                   </div>
                 </td>
-                <td>2025-06-15</td>
+                <td>
+                  <div class="user-status-icons">
+                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
+                    <img src="../asset/user-owner.svg" alt="소유자" class="status-icon owner" title="소유자">
+                    <img src="../asset/user-member.svg" alt="구성원" class="status-icon member" title="구성원">
+                    <img src="../asset/user-guest.svg" alt="게스트" class="status-icon guest" title="게스트">
+                  </div>
+                </td>
+                <td>2025-09-01</td>
+                <td>2025-10-01</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox" checked>
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>-</td>
                 <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-indigo">E</div>
-                    <span>ecstel</span>
+                    <div class="workspace-icon color-indigo">S</div>
+                    <span>SK Hynix</span>
                   </div>
                 </td>
-                <td>ecstel.co.kr</td>
+                <td>www.sktelecom.ai</td>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-orange">박</div>
-                    <span>박홍수</span>
+                    <div class="user-initial color-blue">홍</div>
+                    <span>홍길동</span>
                   </div>
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="120" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -250,7 +259,7 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="4" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -259,41 +268,47 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="40" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
                     </div>
                   </div>
                 </td>
-                <td>2025-05-31</td>
+                <td>
+                  <div class="user-status-icons">
+                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
+                    <img src="../asset/user-member.svg" alt="구성원" class="status-icon member" title="구성원">
+                  </div>
+                </td>
+                <td>2025-09-01</td>
+                <td>2025-10-01</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox" checked>
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>-</td>
                 <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-rose">M</div>
-                    <span>mkcg</span>
+                    <div class="workspace-icon color-rose">S</div>
+                    <span>SK On</span>
                   </div>
                 </td>
-                <td>mkcg.co.kr</td>
+                <td>www.sktelecom.ai</td>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-green">M</div>
-                    <span>Meyer</span>
+                    <div class="user-initial color-blue">홍</div>
+                    <span>홍길동</span>
                   </div>
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="120" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -302,7 +317,7 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="4" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -311,21 +326,27 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="40" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
                     </div>
                   </div>
                 </td>
-                <td>2025-04-21</td>
+                <td>
+                  <div class="user-status-icons">
+                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
+                    <img src="../asset/user-member.svg" alt="구성원" class="status-icon member" title="구성원">
+                  </div>
+                </td>
+                <td>2025-09-01</td>
+                <td>2025-10-01</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox" checked>
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>-</td>
                 <td>-</td>
               </tr>
               <tr>
@@ -333,10 +354,10 @@
                 <td>
                   <div class="workspace-name">
                     <div class="workspace-icon color-amber">T</div>
-                    <span>timbel</span>
+                    <span>Timbel_Mk</span>
                   </div>
                 </td>
-                <td>timbel.net45</td>
+                <td>www.timblo.io</td>
                 <td>
                   <div class="user-icon">
                     <div class="user-initial color-pink">j</div>
@@ -345,7 +366,7 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="120" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -354,7 +375,7 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="4" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -363,14 +384,21 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="40" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
                     </div>
                   </div>
                 </td>
-                <td>2025-03-31</td>
+                <td>
+                  <div class="user-status-icons">
+                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
+                    <img src="../asset/user-owner.svg" alt="소유자" class="status-icon owner" title="소유자">
+                  </div>
+                </td>
+                <td>2025-09-01</td>
+                <td>2025-10-01</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox" checked>
@@ -378,26 +406,25 @@
                   </label>
                 </td>
                 <td>-</td>
-                <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-emerald">D</div>
-                    <span>daum</span>
+                    <div class="workspace-icon color-blue">T</div>
+                    <span>Timbel_sol...</span>
                   </div>
                 </td>
-                <td>daum.net</td>
+                <td>www.timblo.io</td>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-red">소</div>
-                    <span>소프트기어</span>
+                    <div class="user-initial color-blue">홍</div>
+                    <span>홍길동</span>
                   </div>
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="120" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -406,7 +433,7 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="4" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -415,14 +442,21 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="1" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
                     </div>
                   </div>
                 </td>
-                <td>2025-03-28</td>
+                <td>
+                  <div class="user-status-icons">
+                    <img src="../asset/user-member.svg" alt="구성원" class="status-icon member" title="구성원">
+                    <img src="../asset/user-guest.svg" alt="게스트" class="status-icon guest" title="게스트">
+                  </div>
+                </td>
+                <td>2025-09-01</td>
+                <td>2025-10-01</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox" checked>
@@ -430,26 +464,25 @@
                   </label>
                 </td>
                 <td>-</td>
-                <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-violet">T</div>
-                    <span>tinno</span>
+                    <div class="workspace-icon color-blue">T</div>
+                    <span>Timbel_Glo...</span>
                   </div>
                 </td>
-                <td>tinno.co.kr</td>
+                <td>www.timblo.io</td>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-gray">t</div>
-                    <span>tn</span>
+                    <div class="user-initial color-blue">홍</div>
+                    <span>홍길동</span>
                   </div>
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="120" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -458,7 +491,7 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="4" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -467,14 +500,20 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="1" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
                     </div>
                   </div>
                 </td>
-                <td>2025-03-28</td>
+                <td>
+                  <div class="user-status-icons">
+                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
+                  </div>
+                </td>
+                <td>2025-09-01</td>
+                <td>2025-10-01</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox" checked>
@@ -482,26 +521,25 @@
                   </label>
                 </td>
                 <td>-</td>
-                <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-cyan">H</div>
-                    <span>hanmail</span>
+                    <div class="workspace-icon color-blue">T</div>
+                    <span>Timbel_Inv...</span>
                   </div>
                 </td>
-                <td>hanmail.net</td>
+                <td>www.timblo.io</td>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-brown">마</div>
-                    <span>마루치</span>
+                    <div class="user-initial color-blue">홍</div>
+                    <span>홍길동</span>
                   </div>
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="120" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -510,7 +548,7 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="4" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -519,14 +557,20 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="1" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
                     </div>
                   </div>
                 </td>
-                <td>2025-03-20</td>
+                <td>
+                  <div class="user-status-icons">
+                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
+                  </div>
+                </td>
+                <td>2025-09-01</td>
+                <td>2025-10-01</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox" checked>
@@ -534,73 +578,20 @@
                   </label>
                 </td>
                 <td>-</td>
-                <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-lime">U</div>
-                    <span>ultari</span>
+                    <div class="workspace-icon color-blue">T</div>
+                    <span>Timbel_gro...</span>
                   </div>
                 </td>
-                <td>ultari.co.kr</td>
+                <td>www.timblo.io</td>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-teal">울</div>
-                    <span>울타리 게...</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="120" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="4" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="40" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>2025-03-11</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>-</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>
-                  <div class="workspace-name">
-                    <div class="workspace-icon color-fuchsia">I</div>
-                    <span>iotspace</span>
-                  </div>
-                </td>
-                <td>iotspace.co.kr</td>
-                <td>
-                  <div class="user-icon">
-                    <div class="user-initial color-orange">E</div>
-                    <span>Ed</span>
+                    <div class="user-initial color-blue">홍</div>
+                    <span>홍길동</span>
                   </div>
                 </td>
                 <td>
@@ -623,41 +614,49 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="40" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
                     </div>
                   </div>
                 </td>
-                <td>2025-03-06</td>
+                <td>
+                  <div class="user-status-icons">
+                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
+                    <img src="../asset/user-owner.svg" alt="소유자" class="status-icon owner" title="소유자">
+                    <img src="../asset/user-member.svg" alt="구성원" class="status-icon member" title="구성원">
+                    <img src="../asset/user-guest.svg" alt="게스트" class="status-icon guest" title="게스트">
+                  </div>
+                </td>
+                <td>2025-09-01</td>
+                <td>2025-10-01</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox" checked>
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>-</td>
                 <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-slate">E</div>
-                    <span>example</span>
+                    <div class="workspace-icon color-blue">T</div>
+                    <span>Timbel_gro...</span>
                   </div>
                 </td>
-                <td>example.com</td>
+                <td>www.timblo.io</td>
                 <td>
                   <div class="user-icon">
-                    <div class="user-initial color-orange">조</div>
-                    <span>조동혁</span>
+                    <div class="user-initial color-blue">홍</div>
+                    <span>홍길동</span>
                   </div>
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="551" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -666,7 +665,7 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="4" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
@@ -675,14 +674,20 @@
                 </td>
                 <td>
                   <div class="count-spinner">
-                    <input type="number" class="count-input" value="1" min="0">
+                    <input type="number" class="count-input" value="1000" min="0">
                     <div class="spinner-buttons">
                       <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
                       <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
                     </div>
                   </div>
                 </td>
-                <td>2025-03-04</td>
+                <td>
+                  <div class="user-status-icons">
+                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
+                  </div>
+                </td>
+                <td>2025-09-01</td>
+                <td>2025-10-01</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox" checked>
@@ -690,7 +695,63 @@
                   </label>
                 </td>
                 <td>-</td>
-                <td>testWorkspace</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-blue">T</div>
+                    <span>Timbel_gro...</span>
+                  </div>
+                </td>
+                <td>www.timblo.io</td>
+                <td>
+                  <div class="user-icon">
+                    <div class="user-initial color-blue">홍</div>
+                    <span>홍길동</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="1000" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="1000" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="1000" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="user-status-icons">
+                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
+                  </div>
+                </td>
+                <td>2025-09-01</td>
+                <td>2025-10-01</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>-</td>
               </tr>
             </tbody>
           </table>
@@ -866,8 +927,8 @@
           e.stopPropagation();
           const rows = Array.from(tbody.querySelectorAll('tr'));
           rows.sort((a, b) => {
-            const aChecked = !!a.querySelector('td:nth-child(9) input[type="checkbox"]:checked');
-            const bChecked = !!b.querySelector('td:nth-child(9) input[type="checkbox"]:checked');
+            const aChecked = !!a.querySelector('td:nth-child(11) input[type="checkbox"]:checked');
+            const bChecked = !!b.querySelector('td:nth-child(11) input[type="checkbox"]:checked');
             const diff = (aChecked === bChecked) ? 0 : (aChecked ? -1 : 1);
             return enabledSortAsc ? diff : -diff;
           });

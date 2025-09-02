@@ -10,7 +10,7 @@
 
 </head>
 
-<body class="page-workspace-menu-setting">
+<body class="page-workspace-menu-setting page-group-setting">
   <div class="container">
     <!-- 왼쪽 메뉴바 -->
     <div class="sidebar">
@@ -115,291 +115,403 @@
       </div>
 
       <div class="content-body">
-        <!-- 워크스페이스 선택 섹션 -->
-        <div class="workspace-selection-section">
-          <div class="workspace-select-group">
-            <label for="workspace-select" class="workspace-label">워크스페이스 선택</label>
-            <div class="combo-select">
-              <select id="workspace-select" name="workspace-select">
-                <option value="">워크스페이스를 선택하세요</option>
-                <option value="workspace1">AI 회의록 워크스페이스</option>
-                <option value="workspace2">마케팅 팀 워크스페이스</option>
-                <option value="workspace3">개발팀 워크스페이스</option>
-                <option value="workspace4">디자인팀 워크스페이스</option>
-              </select>
-              <img src="../asset/select-arrow.svg" alt="화살표" class="select-arrow">
-            </div>
-          </div>
-        </div>
-
-        <div class="menu-management-container">
-          <div class="menu-tree-container">
-            <h2>메뉴목록</h2>
-            <div class="menu-tree-checkbox">
-              <div class="menu-checkbox-item">
-                <div class="checkbox-wrapper">
-                  <input type="checkbox" id="workspace" checked>
-                  <label for="workspace" class="checkbox-label">워크스페이스</label>
+        <div class="group-setting-container">
+          <div class="group-setting-layout tree-visible">
+            <div class="group-setting-left-panel">
+              <!-- 메뉴정보 헤더와 버튼들 -->
+              <div class="group-info-header">
+                <div class="group-info-title-section">
+                  <h3 class="group-info-subtitle">메뉴정보</h3>
+                  <span class="group-total-count">총 11개</span>
                 </div>
-                <div class="tree-children">
-                  <div class="menu-checkbox-item">
-                    <div class="checkbox-wrapper">
-                      <input type="checkbox" id="general" checked>
-                      <label for="general" class="checkbox-label">일반</label>
-                    </div>
-                  </div>
-                  <div class="menu-checkbox-item">
-                    <div class="checkbox-wrapper">
-                      <input type="checkbox" id="user-management" checked>
-                      <label for="user-management" class="checkbox-label">사용자 관리</label>
-                    </div>
-                  </div>
-                  <div class="menu-checkbox-item">
-                    <div class="checkbox-wrapper">
-                      <input type="checkbox" id="common-management">
-                      <label for="common-management" class="checkbox-label">공통관리</label>
-                    </div>
-                    <div class="tree-children">
-                      <div class="menu-checkbox-item">
-                        <div class="checkbox-wrapper">
-                          <input type="checkbox" id="workspace-permission">
-                          <label for="workspace-permission" class="checkbox-label">권한관리</label>
-                        </div>
-                      </div>
-                      <div class="menu-checkbox-item">
-                        <div class="checkbox-wrapper">
-                          <input type="checkbox" id="workspace-menu">
-                          <label for="workspace-menu" class="checkbox-label">메뉴관리</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="menu-checkbox-item">
-                    <div class="checkbox-wrapper">
-                      <input type="checkbox" id="history-management">
-                      <label for="history-management" class="checkbox-label">이력 관리</label>
-                    </div>
-                    <div class="tree-children">
-                      <div class="menu-checkbox-item">
-                        <div class="checkbox-wrapper">
-                          <input type="checkbox" id="login-history">
-                          <label for="login-history" class="checkbox-label">사용자 접속 이력</label>
-                        </div>
-                      </div>
-                      <div class="menu-checkbox-item">
-                        <div class="checkbox-wrapper">
-                          <input type="checkbox" id="download-history">
-                          <label for="download-history" class="checkbox-label">다운로드 이력</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="menu-checkbox-item">
-                    <div class="checkbox-wrapper">
-                      <input type="checkbox" id="meeting-management" checked>
-                      <label for="meeting-management" class="checkbox-label">회의록 관리</label>
-                    </div>
-                  </div>
-                  <div class="menu-checkbox-item">
-                    <div class="checkbox-wrapper">
-                      <input type="checkbox" id="consent-management">
-                      <label for="consent-management" class="checkbox-label">동의서 관리</label>
-                    </div>
-                  </div>
-                  <div class="menu-checkbox-item">
-                    <div class="checkbox-wrapper">
-                      <input type="checkbox" id="dictionary-management" checked>
-                      <label for="dictionary-management" class="checkbox-label">사전 관리</label>
-                    </div>
-                  </div>
-                  <div class="menu-checkbox-item">
-                    <div class="checkbox-wrapper">
-                      <input type="checkbox" id="prompt-management" checked>
-                      <label for="prompt-management" class="checkbox-label">프롬프트 관리</label>
-                    </div>
-                  </div>
-                  <div class="menu-checkbox-item">
-                    <div class="checkbox-wrapper">
-                      <input type="checkbox" id="template-management" checked>
-                      <label for="template-management" class="checkbox-label">회의록 템플릿 관리</label>
-                    </div>
-                  </div>
-                  <div class="menu-checkbox-item">
-                    <div class="checkbox-wrapper">
-                      <input type="checkbox" id="stats-management">
-                      <label for="stats-management" class="checkbox-label">통계</label>
-                    </div>
-                    <div class="tree-children">
-                      <div class="menu-checkbox-item">
-                        <div class="checkbox-wrapper">
-                          <input type="checkbox" id="usage-stats">
-                          <label for="usage-stats" class="checkbox-label">사용량 통계</label>
-                        </div>
-                      </div>
-                      <div class="menu-checkbox-item">
-                        <div class="checkbox-wrapper">
-                          <input type="checkbox" id="user-stats">
-                          <label for="user-stats" class="checkbox-label">사용자별 통계</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="group-info-buttons">
+                  <button class="btn-form-delete">삭제</button>
+                  <button class="btn-form-edit">수정</button>
+                  <button class="group-setting-btn-add-group" id="createMenuBtn">생성</button>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="menu-management-actions">
-            <div class="action-section">
-              <h3>메뉴 관리</h3>
-              <div class="menu-form">
-                <div class="form-group">
-                  <label for="permission-name">권한명</label>
-                  <input type="text" id="permission-name" name="permission-name" placeholder="권한명을 입력하세요">
-                </div>
-                <div class="form-group">
-                  <label for="menu-order">메뉴순서</label>
-                  <input type="number" id="menu-order" name="menu-order" min="1" placeholder="메뉴 순서">
-                </div>
-                <div class="form-actions">
-                  <button type="button" class="btn-save">설정 저장</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- 권한그룹 관리 - 별도 섹션 -->
-        <div class="permission-group-section">
-          <h3>권한그룹 관리</h3>
-
-          <div class="permission-tables">
-            <div class="permission-table-group">
-              <h4 class="permission-group-title owner-title">소유자</h4>
-              <div class="table-container">
-                <table class="permission-table owner-table">
+              <!-- 메뉴 정보 테이블 -->
+              <div class="group-setting-table-container" id="tableContainer">
+                <table class="group-setting-table">
                   <thead>
                     <tr>
+                      <th><input type="checkbox" class="select-all"></th>
+                      <th>순번</th>
+                      <th>타입</th>
                       <th>메뉴명</th>
-                      <th>접근권한</th>
+                      <th>정렬순서</th>
+                      <th>사용여부</th>
+                      <th>URL</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>워크스페이스</td>
-                      <td class="permission-status enabled">전체 접근</td>
+                      <td><input type="checkbox"></td>
+                      <td>1</td>
+                      <td>폴더</td>
+                      <td>공통관리</td>
+                      <td>1</td>
+                      <td><span class="status-pill active">사용</span></td>
+                      <td>-</td>
                     </tr>
                     <tr>
-                      <td class="submenu-indent">공통관리</td>
-                      <td class="permission-status enabled">전체 접근</td>
+                      <td><input type="checkbox"></td>
+                      <td>2</td>
+                      <td>폴더</td>
+                      <td>사용자 관리</td>
+                      <td>2</td>
+                      <td><span class="status-pill active">사용</span></td>
+                      <td>-</td>
                     </tr>
                     <tr>
-                      <td class="submenu-indent">권한관리</td>
-                      <td class="permission-status enabled">전체 접근</td>
-                    </tr>
-                    <tr>
-                      <td class="submenu-indent">메뉴관리</td>
-                      <td class="permission-status enabled">전체 접근</td>
-                    </tr>
-                    <tr>
-                      <td>이력 관리</td>
-                      <td class="permission-status enabled">전체 접근</td>
-                    </tr>
-                    <tr>
-                      <td>사전 관리</td>
-                      <td class="permission-status enabled">전체 접근</td>
-                    </tr>
-                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>3</td>
+                      <td>폴더</td>
                       <td>회의록 관리</td>
-                      <td class="permission-status enabled">전체 접근</td>
+                      <td>3</td>
+                      <td><span class="status-pill active">사용</span></td>
+                      <td>-</td>
                     </tr>
                     <tr>
-                      <td>캘린더</td>
-                      <td class="permission-status enabled">전체 접근</td>
+                      <td><input type="checkbox"></td>
+                      <td>4</td>
+                      <td>폴더</td>
+                      <td>회의 템플릿 관리</td>
+                      <td>4</td>
+                      <td><span class="status-pill active">사용</span></td>
+                      <td>-</td>
                     </tr>
                     <tr>
+                      <td><input type="checkbox"></td>
+                      <td>5</td>
+                      <td>폴더</td>
+                      <td>프롬프트 관리</td>
+                      <td>5</td>
+                      <td><span class="status-pill active">사용</span></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>6</td>
+                      <td>폴더</td>
+                      <td>이력 관리</td>
+                      <td>6</td>
+                      <td><span class="status-pill active">사용</span></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>7</td>
+                      <td>폴더</td>
+                      <td>동의서 관리</td>
+                      <td>7</td>
+                      <td><span class="status-pill active">사용</span></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>8</td>
+                      <td>폴더</td>
+                      <td>사전 관리</td>
+                      <td>8</td>
+                      <td><span class="status-pill active">사용</span></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>9</td>
+                      <td>폴더</td>
+                      <td>엔진 관리</td>
+                      <td>9</td>
+                      <td><span class="status-pill active">사용</span></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>10</td>
+                      <td>폴더</td>
+                      <td>캘린더 관리</td>
+                      <td>10</td>
+                      <td><span class="status-pill active">사용</span></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>11</td>
+                      <td>폴더</td>
                       <td>통계</td>
-                      <td class="permission-status enabled">전체 접근</td>
-                    </tr>
-                    <tr>
-                      <td class="submenu-indent">사용량 통계</td>
-                      <td class="permission-status enabled">전체 접근</td>
-                    </tr>
-                    <tr>
-                      <td class="submenu-indent">사용자별 통계</td>
-                      <td class="permission-status enabled">전체 접근</td>
+                      <td>11</td>
+                      <td><span class="status-pill active">사용</span></td>
+                      <td>-</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-            </div>
 
-            <div class="permission-table-group">
-              <h4 class="permission-group-title member-title">참여자</h4>
-              <div class="table-container">
-                <table class="permission-table member-table">
-                  <thead>
-                    <tr>
-                      <th>메뉴명</th>
-                      <th>접근권한</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>워크스페이스</td>
-                      <td class="permission-status enabled">접근 가능</td>
-                    </tr>
-                    <tr>
-                      <td class="submenu-indent">공통관리</td>
-                      <td class="permission-status disabled">접근 불가</td>
-                    </tr>
-                    <tr>
-                      <td class="submenu-indent">권한관리</td>
-                      <td class="permission-status disabled">접근 불가</td>
-                    </tr>
-                    <tr>
-                      <td class="submenu-indent">메뉴관리</td>
-                      <td class="permission-status disabled">접근 불가</td>
-                    </tr>
-                    <tr>
-                      <td>이력 관리</td>
-                      <td class="permission-status limited">읽기 전용</td>
-                    </tr>
-                    <tr>
-                      <td>사전 관리</td>
-                      <td class="permission-status enabled">접근 가능</td>
-                    </tr>
-                    <tr>
-                      <td>회의록 관리</td>
-                      <td class="permission-status enabled">접근 가능</td>
-                    </tr>
-                    <tr>
-                      <td>캘린더</td>
-                      <td class="permission-status enabled">접근 가능</td>
-                    </tr>
-                    <tr>
-                      <td>통계</td>
-                      <td class="permission-status disabled">접근 불가</td>
-                    </tr>
-                    <tr>
-                      <td class="submenu-indent">사용량 통계</td>
-                      <td class="permission-status disabled">접근 불가</td>
-                    </tr>
-                    <tr>
-                      <td class="submenu-indent">사용자별 통계</td>
-                      <td class="permission-status disabled">접근 불가</td>
-                    </tr>
-                  </tbody>
-                </table>
+            </div>
+            <div class="group-setting-tree-panel" id="treePanel">
+              <div class="tree-header">
+                <h4>메뉴 구조</h4>
+              </div>
+              <div class="tree-menu" id="treeMenu">
+                <div class="menu-list">
+                  <div class="menu-section-title">워크스페이스</div>
+                  <div class="menu-item">
+                    <input type="checkbox" id="공통관리" checked>
+                    <label for="공통관리">공통관리</label>
+                  </div>
+                  <div class="menu-item">
+                    <input type="checkbox" id="사용자관리" checked>
+                    <label for="사용자관리">사용자 관리</label>
+                  </div>
+                  <div class="menu-item">
+                    <input type="checkbox" id="회의록관리" checked>
+                    <label for="회의록관리">회의록 관리</label>
+                  </div>
+                  <div class="menu-item">
+                    <input type="checkbox" id="회의템플릿관리" checked>
+                    <label for="회의템플릿관리">회의 템플릿 관리</label>
+                  </div>
+                  <div class="menu-item">
+                    <input type="checkbox" id="프롬프트관리" checked>
+                    <label for="프롬프트관리">프롬프트 관리</label>
+                  </div>
+                  <div class="menu-item">
+                    <input type="checkbox" id="이력관리" checked>
+                    <label for="이력관리">이력 관리</label>
+                  </div>
+                  <div class="menu-item">
+                    <input type="checkbox" id="법령관리" checked>
+                    <label for="법령관리">법령 관리</label>
+                  </div>
+                  <div class="menu-item">
+                    <input type="checkbox" id="동의서관리" checked>
+                    <label for="동의서관리">동의서 관리</label>
+                  </div>
+                  <div class="menu-item">
+                    <input type="checkbox" id="사전관리" checked>
+                    <label for="사전관리">사전 관리</label>
+                  </div>
+                  <div class="menu-item">
+                    <input type="checkbox" id="엔진관리" checked>
+                    <label for="엔진관리">엔진 관리</label>
+                  </div>
+                  <div class="menu-item">
+                    <input type="checkbox" id="캘린더관리" checked>
+                    <label for="캘린더관리">캘린더 관리</label>
+                  </div>
+                  <div class="menu-item">
+                    <input type="checkbox" id="통계" checked>
+                    <label for="통계">통계</label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- 메뉴 미리보기 하단 버튼들 (외곽선 밖) -->
+        <div class="preview-actions-external">
+          <button class="btn-reset">새로고침</button>
+          <button class="btn-save">저장</button>
         </div>
       </div>
     </div>
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const tableRows = document.querySelectorAll('.group-setting-table tbody tr');
+      const noDataArea = document.getElementById('noDataArea');
+      const treeMenu = document.getElementById('treeMenu');
+
+      // 테이블 행 클릭 이벤트
+      tableRows.forEach(row => {
+        row.addEventListener('click', function (e) {
+          // 체크박스 클릭은 제외
+          if (e.target.type === 'checkbox') return;
+
+          // 기존 선택된 행 해제
+          tableRows.forEach(r => r.classList.remove('selected'));
+
+          // 현재 행 선택
+          this.classList.add('selected');
+
+          // 선택된 메뉴에 따라 다른 메뉴 표시 (추후 확장 가능)
+          const menuName = this.querySelector('td:nth-child(4)').textContent;
+          console.log('선택된 메뉴:', menuName);
+        });
+      });
+
+      // 체크박스 전체 선택 기능
+      const selectAllCheckbox = document.querySelector('.select-all');
+      const rowCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+
+      if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', function () {
+          const isChecked = this.checked;
+          rowCheckboxes.forEach(checkbox => {
+            checkbox.checked = isChecked;
+          });
+        });
+      }
+
+      // 하단 버튼 기능
+      const resetBtn = document.querySelector('.btn-reset');
+      const saveBtn = document.querySelector('.btn-save');
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+          // 페이지 새로고침
+          location.reload();
+        });
+      }
+
+      if (saveBtn) {
+        saveBtn.addEventListener('click', function () {
+          const selectedRow = document.querySelector('.group-setting-table tbody tr.selected');
+          if (selectedRow) {
+            const menuName = selectedRow.querySelector('td:nth-child(4)').textContent.trim();
+            alert(`${menuName}의 메뉴 설정이 저장되었습니다.`);
+          } else {
+            alert('메뉴를 선택해주세요.');
+          }
+        });
+      }
+    });
+  </script>
+  <!-- 메뉴 생성 모달 -->
+  <div class="modal-overlay modal-overlay-hidden" id="menuModal">
+    <div class="modal-container permission-modal">
+      <div class="modal-header">
+        <h2>메뉴 생성</h2>
+      </div>
+      <div class="modal-content">
+        <div class="form-group">
+          <label for="menuType">메뉴명</label>
+          <input type="text" id="menuType" class="form-input" placeholder="법령 관리" disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="menuName">설명</label>
+          <input type="text" id="menuName" class="form-input" placeholder="법령을 관리할 수 있는 시스템">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" id="menuCancel">취소</button>
+        <button class="btn-submit" id="menuCreate">생성</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const tableRows = document.querySelectorAll('.group-setting-table tbody tr');
+      const treeMenu = document.getElementById('treeMenu');
+
+      // 테이블 행 클릭 이벤트
+      tableRows.forEach(row => {
+        row.addEventListener('click', function (e) {
+          // 체크박스 클릭은 제외
+          if (e.target.type === 'checkbox') return;
+
+          // 기존 선택된 행 해제
+          tableRows.forEach(r => r.classList.remove('selected'));
+
+          // 현재 행 선택
+          this.classList.add('selected');
+
+          // 선택된 메뉴에 따라 다른 메뉴 표시 (추후 확장 가능)
+          const menuName = this.querySelector('td:nth-child(4)').textContent;
+          console.log('선택된 메뉴:', menuName);
+        });
+      });
+
+      // 체크박스 전체 선택 기능
+      const selectAllCheckbox = document.querySelector('.select-all');
+      const rowCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+
+      if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', function () {
+          const isChecked = this.checked;
+          rowCheckboxes.forEach(checkbox => {
+            checkbox.checked = isChecked;
+          });
+        });
+      }
+
+      // 하단 버튼 기능
+      const resetBtn = document.querySelector('.btn-reset');
+      const saveBtn = document.querySelector('.btn-save');
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+          // 페이지 새로고침
+          location.reload();
+        });
+      }
+
+      if (saveBtn) {
+        saveBtn.addEventListener('click', function () {
+          const selectedRow = document.querySelector('.group-setting-table tbody tr.selected');
+          if (selectedRow) {
+            const menuName = selectedRow.querySelector('td:nth-child(4)').textContent.trim();
+            alert(`${menuName}의 메뉴 설정이 저장되었습니다.`);
+          } else {
+            alert('메뉴를 선택해주세요.');
+          }
+        });
+      }
+
+      // 메뉴 생성 모달 기능
+      const createMenuBtn = document.getElementById('createMenuBtn');
+      const menuModal = document.getElementById('menuModal');
+      const menuCancel = document.getElementById('menuCancel');
+      const menuCreate = document.getElementById('menuCreate');
+
+      // 생성 버튼 클릭 시 모달 열기
+      if (createMenuBtn) {
+        createMenuBtn.addEventListener('click', function () {
+          menuModal.classList.remove('modal-overlay-hidden');
+        });
+      }
+
+      // 모달 닫기 기능들
+      if (menuCancel) {
+        menuCancel.addEventListener('click', function () {
+          menuModal.classList.add('modal-overlay-hidden');
+        });
+      }
+
+      // 모달 외부 클릭 시 닫기
+      if (menuModal) {
+        menuModal.addEventListener('click', function (e) {
+          if (e.target === menuModal) {
+            menuModal.classList.add('modal-overlay-hidden');
+          }
+        });
+      }
+
+      // 생성 버튼 클릭
+      if (menuCreate) {
+        menuCreate.addEventListener('click', function () {
+          const menuName = document.getElementById('menuName').value.trim();
+
+          if (!menuName) {
+            alert('설명을 입력해주세요.');
+            return;
+          }
+
+          alert('메뉴가 생성되었습니다.');
+          menuModal.classList.add('modal-overlay-hidden');
+
+          // 폼 초기화
+          document.getElementById('menuName').value = '';
+          document.getElementById('menuDescription').value = '';
+        });
+      }
+    });
+  </script>
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
 </body>
