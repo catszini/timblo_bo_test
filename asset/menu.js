@@ -22,23 +22,8 @@
 
 
 
-    // 모든 서브메뉴 닫기 (새 페이지 진입 시마다 초기화)
-    submenuParents.forEach(li => {
-      li.classList.remove('open');
-      li.classList.remove('has-active-child');
-    });
-
-    // 현재 페이지가 서브메뉴 내부에 있으면 해당 메뉴만 열기
-    submenuParents.forEach(li => {
-      const hasActiveChild = !!li.querySelector(':scope > .submenu a.active');
-      const isParentActive = !!li.querySelector(':scope > a.active[href="#"]');
-      
-      if (hasActiveChild || isParentActive) {
-        li.classList.add('open');
-        // CSS :has() 선택자 미지원 브라우저를 위한 클래스 추가
-        li.classList.add('has-active-child');
-      }
-    });
+    // 서브메뉴가 제거되어 더 이상 필요하지 않음
+    // 모든 메뉴는 이제 1뎁스로 단순화됨
 
     // 활성 메뉴로 스크롤하는 함수
     function scrollToActiveMenu() {
@@ -77,31 +62,8 @@
     // 페이지 로드 시 활성 메뉴로 스크롤
     scrollToActiveMenu();
 
-    // 메뉴 화살표 클릭 시 서브메뉴 토글
-    submenuParents.forEach(li => {
-      const a = li.querySelector(':scope > a');
-      const arrow = li.querySelector(':scope > a > .menu-arrow');
-      if (!a || !arrow) return;
-      
-              // 화살표에만 클릭 이벤트 추가
-        arrow.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          const willOpen = !li.classList.contains('open');
-          setOpen(li, willOpen);
-        });
-
-        // 메뉴 링크 자체에는 href가 #인 경우에만 토글
-        a.addEventListener('click', function (e) {
-          const href = a.getAttribute('href');
-          if (href === '#') {
-            e.preventDefault();
-            const willOpen = !li.classList.contains('open');
-            setOpen(li, willOpen);
-          }
-          // href가 실제 링크인 경우 정상 이동
-        });
-    });
+    // 서브메뉴 토글 기능 제거 (모든 메뉴가 1뎁스로 변경됨)
+    // 이제 모든 메뉴 링크는 직접 페이지로 이동
 
     // 사이드바 높이 동적 조정 함수
     function adjustSidebarHeight() {
@@ -131,10 +93,6 @@
     // 윈도우 리사이즈 시 재조정
     window.addEventListener('resize', adjustSidebarHeight);
     
-    // 메뉴 토글 시 재조정
-    submenuParents.forEach(li => {
-      const observer = new MutationObserver(adjustSidebarHeight);
-      observer.observe(li, { attributes: true, attributeFilter: ['class'] });
-    });
+    // 메뉴 토글 기능이 제거되어 더 이상 필요하지 않음
   });
 })();

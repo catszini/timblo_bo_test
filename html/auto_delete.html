@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>데이터 삭제관리</title>
+  <link rel="stylesheet" href="../asset/style.css">
+  <link rel="stylesheet" href="../asset/modal.css">
+</head>
+
+<body class="page-auto-delete">
+  <div class="container">
+    <!-- 왼쪽 메뉴바 -->
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>시스템관리</h3>
+        <ul>
+          <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
+          <li><a href="system_user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li><a href="group_setting.html"><img src="../asset/user.svg" alt="">권한관리</a></li>
+          <li><a href="menu_setting.html"><img src="../asset/user.svg" alt="">메뉴관리</a></li>
+          <li><a href="system_stats.html"><img src="../asset/stats.svg" alt="">통계</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-header">
+          <h3>워크스페이스</h3>
+        </div>
+        <ul>
+          <li><a href="workspace_permission.html"><img src="../asset/user.svg" alt="">권한관리</a></li>
+          <li><a href="workspace_menu_setting.html"><img src="../asset/user.svg" alt="">메뉴관리</a></li>
+          <li><a href="general.html"><img src="../asset/user.svg" alt="">로고 이미지 관리</a></li>
+          <li><a href="permission_settings.html"><img src="../asset/user.svg" alt="">사용메뉴 관리</a></li>
+          <li><a href="auto_delete.html" class="active"><img src="../asset/history.svg" alt="">데이터 삭제관리</a></li>
+          <li><a href="meet_template.html"><img src="../asset/history.svg" alt="">회의 템플릿 관리</a></li>
+          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
+          <li><a href="calendar.html"><img src="../asset/daily.svg" alt="">캘린더 관리</a></li>
+          <li><a href="login_history.html"><img src="../asset/history.svg" alt="">이력 관리</a></li>
+          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li><a href="stats_usage.html"><img src="../asset/stats.svg" alt="">통계</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
+          <li><a href="download_history.html"><img src="../asset/history.svg" alt="">다운로드 이력</a></li>
+          <li><a href="user_consent_history.html"><img src="../asset/history.svg" alt="">사용자 동의 이력</a></li>
+          <li><a href="setting_change_history.html"><img src="../asset/history.svg" alt="">설정변경 이력</a></li>
+          <li><a href="stats_user.html"><img src="../asset/stats.svg" alt="">사용자별 통계</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 콘텐츠 -->
+    <div class="content">
+      <div class="content-header">
+        <div class="breadcrumb">데이터 삭제관리</div>
+        <div class="content-subtitle" style="font-size: 14px; color: #6B7280; margin-top: 8px; margin-bottom: 24px;">
+          시스템 데이터 삭제 관련 설정을 관리합니다. key와 값을 입력하여 각 기능별 설정을 구성할 수 있습니다.
+        </div>
+      </div>
+
+      <div class="content-body">
+        <!-- 데이터 삭제관리 섹션 -->
+        <div class="card section auto-delete-card">
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th class="th-width-10">순번</th>
+                  <th class="th-width-25">기능</th>
+                  <th class="th-width-25">key</th>
+                  <th class="th-width-25">값</th>
+                  <th class="th-width-15">설명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>음성/영상 원본 파일 삭제</td>
+                  <td>
+                    <input type="text" class="form-input" placeholder="키를 입력하세요">
+                  </td>
+                  <td>
+                    <input type="text" class="form-input" placeholder="값을 입력하세요">
+                  </td>
+                  <td>원본 파일 자동삭제 설정</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>음성 기록 파일 삭제</td>
+                  <td>
+                    <input type="text" class="form-input" placeholder="키를 입력하세요">
+                  </td>
+                  <td>
+                    <input type="text" class="form-input" placeholder="값을 입력하세요">
+                  </td>
+                  <td>음성 기록 자동삭제 설정</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>AI 요약 삭제</td>
+                  <td>
+                    <input type="text" class="form-input" placeholder="키를 입력하세요">
+                  </td>
+                  <td>
+                    <input type="text" class="form-input" placeholder="값을 입력하세요">
+                  </td>
+                  <td>AI 요약 자동삭제 설정</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>회의록 문서 삭제</td>
+                  <td>
+                    <input type="text" class="form-input" placeholder="키를 입력하세요">
+                  </td>
+                  <td>
+                    <input type="text" class="form-input" placeholder="값을 입력하세요">
+                  </td>
+                  <td>회의록 문서 자동삭제 설정</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>사용자 로그 삭제</td>
+                  <td>
+                    <input type="text" class="form-input" placeholder="키를 입력하세요">
+                  </td>
+                  <td>
+                    <input type="text" class="form-input" placeholder="값을 입력하세요">
+                  </td>
+                  <td>사용자 활동 로그 자동삭제 설정</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 주의사항 -->
+          <div class="notice-text" style="margin-top: 16px; font-size: 12px; color: #9CA3AF; text-align: right;">
+            ※ 원본데이터가 삭제시 북마크, 메모등도 함께 삭제됩니다
+          </div>
+
+          <!-- 저장 버튼 -->
+          <div class="section-actions" style="margin-top: 16px; display: flex; justify-content: flex-end; gap: 12px;">
+            <button class="btn outline">취소</button>
+            <button class="btn" style="background-color: #10B981; color: white; border: 1px solid #10B981;">설정
+              저장</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../asset/menu.js"></script>
+  <script src="../asset/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // 저장 버튼 클릭 이벤트
+      const saveBtn = document.querySelector('.btn[style*="background-color: #10B981"]');
+      if (saveBtn) {
+        saveBtn.addEventListener('click', function () {
+          // 데이터 삭제관리 설정 저장 로직
+          const settings = {};
+          const rows = document.querySelectorAll('tbody tr');
+
+          rows.forEach((row, index) => {
+            const func = row.cells[1]?.textContent?.trim();
+            const keyInput = row.cells[2]?.querySelector('input');
+            const valueInput = row.cells[3]?.querySelector('input');
+            const description = row.cells[4]?.textContent?.trim();
+
+            if (func && keyInput && valueInput) {
+              settings[`setting_${index + 1}`] = {
+                function: func,
+                key: keyInput.value,
+                value: valueInput.value,
+                description: description
+              };
+            }
+          });
+
+          console.log('저장될 데이터 삭제관리 설정:', settings);
+          alert('데이터 삭제관리 설정이 저장되었습니다.');
+        });
+      }
+
+      // 취소 버튼 클릭 이벤트
+      const cancelBtn = document.querySelector('.btn.outline');
+      if (cancelBtn) {
+        cancelBtn.addEventListener('click', function () {
+          if (confirm('변경사항을 취소하시겠습니까?')) {
+            // 모든 입력 필드 초기화
+            document.querySelectorAll('input[type="text"]').forEach(input => {
+              input.value = '';
+            });
+          }
+        });
+      }
+
+      // 입력 필드 포커스 이벤트
+      document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.addEventListener('focus', function () {
+          this.style.borderColor = '#0066FF';
+        });
+
+        input.addEventListener('blur', function () {
+          this.style.borderColor = '';
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

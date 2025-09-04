@@ -4,13 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>워크스페이스 - 권한 관리</title>
+  <title>워크스페이스 권한관리</title>
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
-
 </head>
 
-<body class="page-group-setting">
+<body class="page-workspace-permission">
   <div class="container">
     <!-- 왼쪽 메뉴바 -->
     <div class="sidebar">
@@ -42,18 +41,9 @@
         <h3>시스템관리</h3>
         <ul>
           <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
-
           <li><a href="system_user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
-          <li>
-            <a href="#">
-              <img src="../asset/user.svg" alt="">권한 관리
-              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
-            </a>
-            <ul class="submenu">
-              <li><a href="group_setting.html">권한관리</a></li>
-              <li><a href="menu_setting.html">메뉴관리</a></li>
-            </ul>
-          </li>
+          <li><a href="group_setting.html"><img src="../asset/user.svg" alt="">권한관리</a></li>
+          <li><a href="menu_setting.html"><img src="../asset/user.svg" alt="">메뉴관리</a></li>
           <li><a href="system_stats.html"><img src="../asset/stats.svg" alt="">통계</a></li>
         </ul>
       </div>
@@ -61,430 +51,227 @@
       <div class="menu-section">
         <div class="menu-section-header">
           <h3>워크스페이스</h3>
-
         </div>
         <ul>
-          <li>
-            <a href="#" class="active">
-              <img src="../asset/user.svg" alt="">공통관리
-              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
-            </a>
-            <ul class="submenu">
-              <li><a href="general.html">일반</a></li>
-              <li><a href="workspace_permission.html" class="active">권한관리</a></li>
-              <li><a href="workspace_menu_setting.html">메뉴관리</a></li>
-            </ul>
-          </li>
-          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
-          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="workspace_permission.html" class="active"><img src="../asset/user.svg" alt="">권한관리</a></li>
+          <li><a href="workspace_menu_setting.html"><img src="../asset/user.svg" alt="">메뉴관리</a></li>
+          <li><a href="general.html"><img src="../asset/user.svg" alt="">로고 이미지 관리</a></li>
+          <li><a href="permission_settings.html"><img src="../asset/user.svg" alt="">사용메뉴 관리</a></li>
+          <li><a href="auto_delete.html"><img src="../asset/history.svg" alt="">데이터 삭제관리</a></li>
           <li><a href="meet_template.html"><img src="../asset/history.svg" alt="">회의 템플릿 관리</a></li>
-          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
-          <li>
-            <a href="#">
-              <img src="../asset/history.svg" alt="">이력 관리
-              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
-            </a>
-            <ul class="submenu">
-              <li><a href="login_history.html">사용자 접속 이력</a></li>
-              <li><a href="download_history.html">다운로드 이력</a></li>
-              <li><a href="user_consent_history.html">사용자 동의 이력</a></li>
-              <li><a href="setting_change_history.html">설정변경 이력</a></li>
-            </ul>
-          </li>
           <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
-          <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
-          <li><a href="engine.html"><img src="../asset/stats.svg" alt="">엔진 관리</a></li>
           <li><a href="calendar.html"><img src="../asset/daily.svg" alt="">캘린더 관리</a></li>
-          <li>
-            <a href="stats_usage.html">
-              <img src="../asset/stats.svg" alt="">통계
-              <img src="../asset/arrow-down.svg" alt="화살표" class="menu-arrow">
-            </a>
-            <ul class="submenu">
-              <li><a href="stats_usage.html">사용량 통계</a></li>
-              <li><a href="stats_user.html">사용자별 통계</a></li>
-            </ul>
-          </li>
+          <li><a href="login_history.html"><img src="../asset/history.svg" alt="">이력 관리</a></li>
+          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
+          <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
+          <li><a href="stats_usage.html"><img src="../asset/stats.svg" alt="">통계</a></li>
+          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
+          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
+          <li><a href="download_history.html"><img src="../asset/history.svg" alt="">다운로드 이력</a></li>
+          <li><a href="user_consent_history.html"><img src="../asset/history.svg" alt="">사용자 동의 이력</a></li>
+          <li><a href="setting_change_history.html"><img src="../asset/history.svg" alt="">설정변경 이력</a></li>
+          <li><a href="stats_user.html"><img src="../asset/stats.svg" alt="">사용자별 통계</a></li>
         </ul>
       </div>
     </div>
 
     <!-- 오른쪽 콘텐츠 영역 -->
-    <div class="content user-page group-setting-page">
+    <div class="content">
       <div class="content-header">
-        <div class="breadcrumb">
-          공통관리 > 권한관리
+        <div class="breadcrumb">권한관리</div>
+        <div class="content-subtitle" style="font-size: 14px; color: #6B7280; margin-top: 8px; margin-bottom: 24px;">
+          워크스페이스의 기능별 권한을 설정하고 관리합니다.
         </div>
       </div>
+
       <div class="content-body">
-        <div class="group-setting-container">
-          <div class="group-setting-layout tree-visible">
-            <div class="group-setting-left-panel">
-              <!-- 권한정보 헤더와 버튼들 -->
-              <div class="group-info-header">
-                <div class="group-info-title-section">
-                  <h3 class="group-info-subtitle">권한 정보</h3>
-                  <span class="group-total-count">총 4개</span>
-                </div>
-                <div class="group-info-buttons">
-                  <button class="btn-form-delete">삭제</button>
-                  <button class="btn-form-edit">수정</button>
-                  <button class="group-setting-btn-add-group" id="createPermissionBtn">생성</button>
-                </div>
-              </div>
-              <!-- 권한 정보 테이블 -->
-              <div class="group-setting-table-container" id="tableContainer">
-                <table class="group-setting-table">
-                  <thead>
-                    <tr>
-                      <th><input type="checkbox" class="select-all"></th>
-                      <th>순번</th>
-                      <th>워크스페이스</th>
-                      <th>이름</th>
-                      <th>메뉴</th>
-                      <th>권한명</th>
-                      <th>설명</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td>1</td>
-                      <td>
-                        <div class="workspace-name">
-                          <div class="workspace-icon color-teal">S</div>
-                          <span>SK Telecom</span>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="user-icon">
-                          <div class="user-initial color-blue">홍</div>
-                          <span>홍길동</span>
-                        </div>
-                      </td>
-                      <td>전체 메뉴</td>
-                      <td>시스템관리자</td>
-                      <td>모든 메뉴에 대한 전체 권한</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td>2</td>
-                      <td>
-                        <div class="workspace-name">
-                          <div class="workspace-icon color-indigo">S</div>
-                          <span>SK Hynix</span>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="user-icon">
-                          <div class="user-initial color-green">박</div>
-                          <span>박영수</span>
-                        </div>
-                      </td>
-                      <td>워크스페이스 관리</td>
-                      <td>워크스페이스관리자</td>
-                      <td>워크스페이스 관련 메뉴 관리 권한</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td>3</td>
-                      <td>
-                        <div class="workspace-name">
-                          <div class="workspace-icon color-rose">T</div>
-                          <span>Timbel_Mk</span>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="user-icon">
-                          <div class="user-initial color-purple">김</div>
-                          <span>김철수</span>
-                        </div>
-                      </td>
-                      <td>회의록, 통계</td>
-                      <td>일반사용자</td>
-                      <td>회의록 관리 및 통계 조회 권한</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td>4</td>
-                      <td>
-                        <div class="workspace-name">
-                          <div class="workspace-icon color-amber">T</div>
-                          <span>Timbel_sol</span>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="user-icon">
-                          <div class="user-initial color-orange">이</div>
-                          <span>이영희</span>
-                        </div>
-                      </td>
-                      <td>통계 조회</td>
-                      <td>게스트</td>
-                      <td>통계 조회만 가능한 제한된 권한</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-
-            </div>
-            <div class="group-setting-tree-panel" id="treePanel">
-              <div class="tree-header">
-                <h4>권한 미리보기</h4>
-              </div>
-              <div class="no-data-area" id="noDataArea">
-                <div class="no-data-icon">
-                  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M20 16H44C46.2091 16 48 17.7909 48 20V44C48 46.2091 46.2091 48 44 48H20C17.7909 48 16 46.2091 16 44V20C16 17.7909 17.7909 16 20 16Z"
-                      fill="#E5E7EB" stroke="#D1D5DB" stroke-width="2" />
-                    <path d="M28 28H36M28 32H36M28 36H32" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" />
-                  </svg>
-                </div>
-                <p class="no-data-text">권한 항목 미리보기가 가능합니다.</p>
-              </div>
-              <div class="tree-menu" id="treeMenu" style="display: none;">
-                <div class="permission-header">
-                  <div class="current-permission">현재 권한: 시스템관리자</div>
-                  <div class="workspace-title">워크스페이스</div>
-                </div>
-                <div class="tree-item">
-                  <input type="checkbox" id="공통관리" checked>
-                  <label for="공통관리">공통 관리</label>
-                </div>
-                <div class="tree-item">
-                  <input type="checkbox" id="사용자관리" checked>
-                  <label for="사용자관리">사용자 관리</label>
-                </div>
-                <div class="tree-item">
-                  <input type="checkbox" id="회의록관리" checked>
-                  <label for="회의록관리">회의록 관리</label>
-                </div>
-                <div class="tree-item">
-                  <input type="checkbox" id="회의템플릿관리" checked>
-                  <label for="회의템플릿관리">회의 템플릿 관리</label>
-                </div>
-                <div class="tree-item">
-                  <input type="checkbox" id="프롬프트관리" checked>
-                  <label for="프롬프트관리">프롬프트 관리</label>
-                </div>
-                <div class="tree-item">
-                  <input type="checkbox" id="이력관리" checked>
-                  <label for="이력관리">이력 관리</label>
-                </div>
-                <div class="tree-item">
-                  <input type="checkbox" id="동의서관리" checked>
-                  <label for="동의서관리">동의서 관리</label>
-                </div>
-                <div class="tree-item">
-                  <input type="checkbox" id="사전관리" checked>
-                  <label for="사전관리">사전 관리</label>
-                </div>
-                <div class="tree-item">
-                  <input type="checkbox" id="엔진관리" checked>
-                  <label for="엔진관리">엔진 관리</label>
-                </div>
-                <div class="tree-item">
-                  <input type="checkbox" id="캘린더관리" checked>
-                  <label for="캘린더관리">캘린더 관리</label>
-                </div>
-                <div class="tree-item">
-                  <input type="checkbox" id="통계" checked>
-                  <label for="통계">통계</label>
-                </div>
-              </div>
-
-            </div>
-          </div>
+        <!-- 권한관리 테이블 -->
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th class="th-width-10">순번</th>
+                <th class="th-width-25">권한이름</th>
+                <th class="th-width-45">권한정보</th>
+                <th class="th-width-20">권한사용여부</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>녹음</td>
+                <td>회의 중 음성 녹음 및 저장 권한</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>파일 업로드</td>
+                <td>회의 관련 파일 업로드 권한</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>파일 공유</td>
+                <td>업로드된 파일을 다른 사용자와 공유하는 권한</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>전체요약</td>
+                <td>회의 전체 내용을 AI로 요약하는 권한</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>북마크</td>
+                <td>회의 중요 부분에 북마크를 추가하는 권한</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>메모</td>
+                <td>회의 중 개인 메모를 작성하는 권한</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>노트</td>
+                <td>회의 노트를 작성하고 편집하는 권한</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>다운로드 문서</td>
+                <td>회의록을 txt, hwp, pdf, docx 형태로 다운로드하는 권한</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>다운로드 영상</td>
+                <td>회의 영상을 다운로드하는 권한</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>제목수정</td>
+                <td>회의록 제목을 수정하는 권한</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <!-- 권한 미리보기 하단 버튼들 (외곽선 밖) -->
-        <div class="preview-actions-external">
-          <button class="btn-reset">초기화</button>
-          <button class="btn-save">저장</button>
+        <!-- 저장 버튼 -->
+        <div class="section-actions" style="margin-top: 32px; display: flex; justify-content: flex-end; gap: 12px;">
+          <button class="btn outline">취소</button>
+          <button class="btn" style="background-color: #10B981; color: white; border: 1px solid #10B981;">권한 설정
+            저장</button>
         </div>
       </div>
     </div>
   </div>
 
-
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const tableRows = document.querySelectorAll('.group-setting-table tbody tr');
-      const noDataArea = document.getElementById('noDataArea');
-      const treeMenu = document.getElementById('treeMenu');
-
-      // 테이블 행 클릭 이벤트
-      tableRows.forEach(row => {
-        row.addEventListener('click', function (e) {
-          // 체크박스 클릭은 제외
-          if (e.target.type === 'checkbox') return;
-
-          // 기존 선택된 행 해제
-          tableRows.forEach(r => r.classList.remove('selected'));
-
-          // 현재 행 선택
-          this.classList.add('selected');
-
-          // 노데이터 영역 숨기고 트리 메뉴 표시
-          noDataArea.style.display = 'none';
-          treeMenu.style.display = 'block';
-
-          // 선택된 권한에 따라 헤더 업데이트
-          const permissionType = this.querySelector('td:nth-child(6)').textContent;
-          const currentPermissionEl = document.querySelector('.current-permission');
-          if (currentPermissionEl) {
-            currentPermissionEl.textContent = `현재 권한: ${permissionType}`;
-          }
-          console.log('선택된 권한:', permissionType);
-        });
-      });
-
-      // 체크박스 전체 선택 기능
-      const selectAllCheckbox = document.querySelector('.select-all');
-      const rowCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]');
-
-      if (selectAllCheckbox) {
-        selectAllCheckbox.addEventListener('change', function () {
-          const isChecked = this.checked;
-          rowCheckboxes.forEach(checkbox => {
-            checkbox.checked = isChecked;
-          });
-        });
-      }
-
-      // 개별 체크박스 변경 시 전체 선택 체크박스 상태 업데이트
-      rowCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function () {
-          const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
-
-          if (checkedCount === 0) {
-            selectAllCheckbox.checked = false;
-            selectAllCheckbox.indeterminate = false;
-          } else if (checkedCount === rowCheckboxes.length) {
-            selectAllCheckbox.checked = true;
-            selectAllCheckbox.indeterminate = false;
-          } else {
-            selectAllCheckbox.checked = false;
-            selectAllCheckbox.indeterminate = true;
-          }
-        });
-      });
-
-      // 하단 버튼 기능
-      const resetBtn = document.querySelector('.btn-reset');
-      const saveBtn = document.querySelector('.btn-save');
-
-      if (resetBtn) {
-        resetBtn.addEventListener('click', function () {
-          // 모든 체크박스 초기화
-          const treeCheckboxes = document.querySelectorAll('#treeMenu input[type="checkbox"]');
-          treeCheckboxes.forEach(cb => cb.checked = false);
-          alert('권한이 초기화되었습니다.');
-        });
-      }
-
-      if (saveBtn) {
-        saveBtn.addEventListener('click', function () {
-          // 권한 저장 로직
-          const selectedRow = document.querySelector('.group-setting-table tbody tr.selected');
-          if (selectedRow) {
-            const userName = selectedRow.querySelector('td:nth-child(4)').textContent.trim();
-            alert(`${userName}의 권한이 저장되었습니다.`);
-          } else {
-            alert('권한을 수정할 사용자를 선택해주세요.');
-          }
-        });
-      }
-
-      // 권한 생성 모달 기능
-      const createPermissionBtn = document.getElementById('createPermissionBtn');
-      const permissionModal = document.getElementById('permissionModal');
-      const permissionCancel = document.getElementById('permissionCancel');
-      const permissionCreate = document.getElementById('permissionCreate');
-
-      // 생성 버튼 클릭 시 모달 열기
-      if (createPermissionBtn) {
-        createPermissionBtn.addEventListener('click', function () {
-          permissionModal.classList.remove('modal-overlay-hidden');
-        });
-      }
-
-      // 모달 닫기 기능들
-      if (permissionCancel) {
-        permissionCancel.addEventListener('click', function () {
-          permissionModal.classList.add('modal-overlay-hidden');
-        });
-      }
-
-      // 모달 외부 클릭 시 닫기
-      if (permissionModal) {
-        permissionModal.addEventListener('click', function (e) {
-          if (e.target === permissionModal) {
-            permissionModal.classList.add('modal-overlay-hidden');
-          }
-        });
-      }
-
-      // 생성 버튼 클릭
-      if (permissionCreate) {
-        permissionCreate.addEventListener('click', function () {
-          const permissionName = document.getElementById('permissionName').value.trim();
-          const permissionType = document.getElementById('permissionType').value.trim();
-
-          if (!permissionName) {
-            alert('권한명을 입력해주세요.');
-            return;
-          }
-
-          if (!permissionType) {
-            alert('구분을 입력해주세요.');
-            return;
-          }
-
-          alert('권한이 생성되었습니다.');
-          permissionModal.classList.add('modal-overlay-hidden');
-
-          // 폼 초기화
-          document.getElementById('permissionName').value = '';
-          document.getElementById('permissionType').value = '';
-        });
-      }
-    });
-  </script>
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // 권한 설정 저장 버튼
+      const saveBtn = document.querySelector('.btn[style*="background-color: #10B981"]');
+      if (saveBtn) {
+        saveBtn.addEventListener('click', function () {
+          const permissions = {};
+          const rows = document.querySelectorAll('tbody tr');
 
-  <!-- 권한 생성 모달 -->
-  <div class="modal-overlay modal-overlay-hidden" id="permissionModal">
-    <div class="modal-container permission-modal">
-      <div class="modal-header">
-        <h2>권한 생성</h2>
-      </div>
-      <div class="modal-content">
-        <div class="form-group">
-          <label for="userName">이름</label>
-          <input type="text" id="userName" class="form-input" placeholder="SK Telecom" disabled>
-        </div>
+          rows.forEach(row => {
+            const permissionName = row.cells[1]?.textContent?.trim();
+            const permissionInfo = row.cells[2]?.textContent?.trim();
+            const isEnabled = row.cells[3]?.querySelector('input[type="checkbox"]')?.checked;
 
-        <div class="form-group">
-          <label for="permissionName">권한명</label>
-          <input type="text" id="permissionName" class="form-input" placeholder="권한명을 입력하세요">
-        </div>
+            if (permissionName) {
+              permissions[permissionName] = {
+                info: permissionInfo,
+                enabled: isEnabled
+              };
+            }
+          });
 
-        <div class="form-group">
-          <label for="permissionType">구분</label>
-          <input type="text" id="permissionType" class="form-input" placeholder="구분을 입력하세요">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn-cancel" id="permissionCancel">취소</button>
-        <button class="btn-submit" id="permissionCreate">생성</button>
-      </div>
-    </div>
-  </div>
+          console.log('저장될 권한 설정:', permissions);
+          alert('권한 설정이 저장되었습니다.');
+        });
+      }
+
+      // 취소 버튼
+      const cancelBtn = document.querySelector('.btn.outline');
+      if (cancelBtn) {
+        cancelBtn.addEventListener('click', function () {
+          if (confirm('변경사항을 취소하시겠습니까?')) {
+            location.reload();
+          }
+        });
+      }
+
+      // 권한 토글 변경 시 로그
+      document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+          const row = this.closest('tr');
+          const permissionName = row.cells[1]?.textContent?.trim();
+          const isEnabled = this.checked;
+
+          console.log(`권한 변경: ${permissionName} - ${isEnabled ? '허용' : '거부'}`);
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>

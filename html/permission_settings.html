@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI 회의록 관리자</title>
+  <title>사용메뉴 관리</title>
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
 </head>
 
-<body>
+<body class="page-permission-settings">
   <div class="container">
     <!-- 왼쪽 메뉴바 -->
     <div class="sidebar">
@@ -54,13 +54,13 @@
         </div>
         <ul>
           <li><a href="workspace_permission.html"><img src="../asset/user.svg" alt="">권한관리</a></li>
-          <li><a href="workspace_menu_setting.html"><img src="../asset/user.svg" alt="">메뉴관리</a></li>
+          <li><a href="workspace_menu_setting.html"><img src="../asset/user.svg" alt="">멤뉴관리</a></li>
           <li><a href="general.html"><img src="../asset/user.svg" alt="">로고 이미지 관리</a></li>
-          <li><a href="permission_settings.html"><img src="../asset/user.svg" alt="">사용메뉴 관리</a></li>
+          <li><a href="permission_settings.html" class="active"><img src="../asset/user.svg" alt="">사용메뉴 관리</a></li>
           <li><a href="auto_delete.html"><img src="../asset/history.svg" alt="">데이터 삭제관리</a></li>
           <li><a href="meet_template.html"><img src="../asset/history.svg" alt="">회의 템플릿 관리</a></li>
           <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
-          <li><a href="calendar.html" class="active"><img src="../asset/daily.svg" alt="">캘린더 관리</a></li>
+          <li><a href="calendar.html"><img src="../asset/daily.svg" alt="">캘린더 관리</a></li>
           <li><a href="login_history.html"><img src="../asset/history.svg" alt="">이력 관리</a></li>
           <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
           <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
@@ -75,90 +75,115 @@
       </div>
     </div>
 
-    <!-- 오른쪽 콘텐츠 영역 -->
+    <!-- 콘텐츠 -->
     <div class="content">
       <div class="content-header">
-        <div class="breadcrumb">
-          캘린더 관리
-        </div>
+        <div class="breadcrumb">사용메뉴 관리</div>
       </div>
+
       <div class="content-body">
-        <!-- 외부 캘린더 연동 섹션 -->
-        <div class="calendar-settings-section">
-          <h3>외부 캘린더 연동</h3>
-          <p>외부 캘린더를 연동하여 예정된 회의를 자동으로 인식하고 관리합니다. 연동된 정보 정보는 회의 전 및 <strong>회의중</strong> 활용에 사용됩니다.</p>
-
-          <div class="calendar-integration-list">
-            <div class="calendar-item">
-              <div class="calendar-logo">
-                <img src="../asset/google-calendar-icon.png" alt="Google Calendar">
-                <span>Google 캘린더</span>
-              </div>
-              <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider"></span>
-              </label>
-            </div>
-
-            <div class="calendar-item">
-              <div class="calendar-logo">
-                <img src="../asset/outlook-calendar-icon.png" alt="Microsoft Outlook">
-                <span>Microsoft Outlook</span>
-              </div>
-              <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider"></span>
-              </label>
-            </div>
-
-            <!-- <div class="calendar-item">
-              <div class="calendar-logo">
-                <img src="../asset/icalendar-icon.png" alt="iCalendar">
-                <span>iCalendar</span>
-              </div>
-              <label class="switch">
-                <input type="checkbox">
-                <span class="slider"></span>
-              </label>
-            </div>
-
-            <div class="calendar-item">
-              <div class="calendar-logo">
-                <img src="../asset/naver-calendar-icon.png" alt="네이버 캘린더">
-                <span>네이버 캘린더</span>
-              </div>
-              <label class="switch">
-                <input type="checkbox">
-                <span class="slider"></span>
-              </label>
-            </div> -->
+        <!-- 권한설정 섹션 -->
+        <div class="section">
+          <div class="perm-title perm-title-bold">권한</div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th class="th-width-20">구분</th>
+                  <th class="th-width-60">항목</th>
+                  <th class="th-width-20">사용 여부</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="2">다운로드 권한</td>
+                  <td>문서 파일 다운로드</td>
+                  <td>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>영상 / 음성 파일 다운로드</td>
+                  <td>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td rowspan="2">사용 권한</td>
+                  <td>템플릿 사용</td>
+                  <td>
+                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>재요약 사용</td>
+                  <td>
+                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>회의 시청</td>
+                  <td>동의서 여부 적용</td>
+                  <td>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </div>
 
-        <!-- 외부 캘린더 동기화 주기 섹션 -->
-        <div class="calendar-settings-section">
-          <h3>외부 캘린더 동기화 주기</h3>
-          <p>외부 캘린더를 동기화 하는 주기를 선택합니다.</p>
-
-          <div class="combo-select">
-            <div>
-              <select>
-                <option>선택해 주세요</option>
-                <option selected>매일</option>
-                <option>1주일</option>
-                <option>2주일</option>
-                <option>1개월</option>
-              </select>
-              <img src="../asset/select-arrow.svg" alt="선택 화살표" class="select-arrow">
-            </div>
+          <!-- 저장 버튼 -->
+          <div class="section-actions" style="margin-top: 32px; display: flex; justify-content: flex-end; gap: 12px;">
+            <button class="btn outline">취소</button>
+            <button class="btn" style="background-color: #10B981; color: white; border: 1px solid #10B981;">설정
+              저장</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // 저장 버튼 클릭 이벤트
+      const saveBtn = document.querySelector('.btn[style*="background-color: #10B981"]');
+      if (saveBtn) {
+        saveBtn.addEventListener('click', function () {
+          // 권한 설정 저장 로직
+          const permissions = {};
+          const rows = document.querySelectorAll('tbody tr');
 
+          rows.forEach(row => {
+            const category = row.cells[0]?.textContent?.trim();
+            const item = row.cells[1]?.textContent?.trim();
+            const isEnabled = row.cells[2]?.querySelector('input[type="checkbox"]')?.checked;
+
+            if (category && item) {
+              if (!permissions[category]) {
+                permissions[category] = {};
+              }
+              permissions[category][item] = isEnabled;
+            }
+          });
+
+          console.log('저장될 권한 설정:', permissions);
+          alert('권한 설정이 저장되었습니다.');
+        });
+      }
+
+      // 취소 버튼 클릭 이벤트
+      const cancelBtn = document.querySelector('.btn.outline');
+      if (cancelBtn) {
+        cancelBtn.addEventListener('click', function () {
+          if (confirm('변경사항을 취소하시겠습니까?')) {
+            location.reload();
+          }
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>
