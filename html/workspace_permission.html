@@ -214,8 +214,10 @@
         <!-- 저장 버튼 -->
         <div class="section-actions" style="margin-top: 32px; display: flex; justify-content: flex-end; gap: 12px;">
           <button class="btn outline">취소</button>
-          <button class="btn" style="background-color: #10B981; color: white; border: 1px solid #10B981;">권한 설정
-            저장</button>
+          <button class="btn primary">생성</button>
+          <button class="btn"
+            style="background-color: #10B981 !important; color: white !important; border: 1px solid #10B981 !important;">권한
+            설정 저장</button>
         </div>
       </div>
     </div>
@@ -247,6 +249,32 @@
 
           console.log('저장될 권한 설정:', permissions);
           alert('권한 설정이 저장되었습니다.');
+        });
+      }
+
+      // 생성 버튼
+      const createBtn = document.querySelector('.btn.primary');
+      if (createBtn) {
+        createBtn.addEventListener('click', function () {
+          // 새로운 권한 행 추가
+          const tbody = document.querySelector('tbody');
+          const newRowCount = tbody.children.length + 1;
+
+          const newRow = document.createElement('tr');
+          newRow.innerHTML = `
+            <td>${newRowCount}</td>
+            <td>새 권한</td>
+            <td>새로운 권한에 대한 설명을 입력하세요</td>
+            <td>
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+            </td>
+          `;
+
+          tbody.appendChild(newRow);
+          alert('새로운 권한이 추가되었습니다. 내용을 수정해주세요.');
         });
       }
 
