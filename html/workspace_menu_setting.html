@@ -81,7 +81,7 @@
     <!-- 오른쪽 콘텐츠 영역 -->
     <div class="content">
       <div class="content-header">
-        <div class="breadcrumb">공통관리 > 메뉴관리</div>
+        <div class="breadcrumb">메뉴관리</div>
       </div>
 
       <div class="content-body">
@@ -313,17 +313,58 @@
         });
       });
 
-      // 체크박스 전체 선택 기능
+      // 체크박스 전체 선택 기능 (사용여부 토글 제외)
       const selectAllCheckbox = document.querySelector('.select-all');
-      const rowCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+      const rowCheckboxes = document.querySelectorAll('tbody td:first-child input[type="checkbox"]');
 
-      if (selectAllCheckbox) {
+      if (selectAllCheckbox && rowCheckboxes.length > 0) {
+        // 전체 선택 체크박스 클릭 시
         selectAllCheckbox.addEventListener('change', function () {
           const isChecked = this.checked;
+          console.log('전체 선택:', isChecked, '대상 체크박스 수:', rowCheckboxes.length);
+
+          // 첫 번째 컬럼의 체크박스만 선택 (사용여부 토글은 제외)
           rowCheckboxes.forEach(checkbox => {
             checkbox.checked = isChecked;
+            // 행 선택 스타일 적용
+            const row = checkbox.closest('tr');
+            if (row) {
+              row.classList.toggle('selected', isChecked);
+            }
           });
         });
+
+        // 개별 체크박스 변경 시 전체 선택 상태 업데이트
+        rowCheckboxes.forEach(checkbox => {
+          checkbox.addEventListener('change', function () {
+            const row = this.closest('tr');
+            if (row) {
+              row.classList.toggle('selected', this.checked);
+            }
+
+            // 전체 선택 체크박스 상태 업데이트
+            updateSelectAllState();
+          });
+        });
+
+        // 전체 선택 상태 업데이트 함수
+        function updateSelectAllState() {
+          const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
+
+          if (checkedCount === 0) {
+            selectAllCheckbox.checked = false;
+            selectAllCheckbox.indeterminate = false;
+          } else if (checkedCount === rowCheckboxes.length) {
+            selectAllCheckbox.checked = true;
+            selectAllCheckbox.indeterminate = false;
+          } else {
+            selectAllCheckbox.checked = false;
+            selectAllCheckbox.indeterminate = true;
+          }
+        }
+
+        // 페이지 로드 시 초기 상태 설정
+        updateSelectAllState();
       }
 
       // 하단 버튼 기능
@@ -397,17 +438,58 @@
         });
       });
 
-      // 체크박스 전체 선택 기능
+      // 체크박스 전체 선택 기능 (사용여부 토글 제외)
       const selectAllCheckbox = document.querySelector('.select-all');
-      const rowCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+      const rowCheckboxes = document.querySelectorAll('tbody td:first-child input[type="checkbox"]');
 
-      if (selectAllCheckbox) {
+      if (selectAllCheckbox && rowCheckboxes.length > 0) {
+        // 전체 선택 체크박스 클릭 시
         selectAllCheckbox.addEventListener('change', function () {
           const isChecked = this.checked;
+          console.log('전체 선택:', isChecked, '대상 체크박스 수:', rowCheckboxes.length);
+
+          // 첫 번째 컬럼의 체크박스만 선택 (사용여부 토글은 제외)
           rowCheckboxes.forEach(checkbox => {
             checkbox.checked = isChecked;
+            // 행 선택 스타일 적용
+            const row = checkbox.closest('tr');
+            if (row) {
+              row.classList.toggle('selected', isChecked);
+            }
           });
         });
+
+        // 개별 체크박스 변경 시 전체 선택 상태 업데이트
+        rowCheckboxes.forEach(checkbox => {
+          checkbox.addEventListener('change', function () {
+            const row = this.closest('tr');
+            if (row) {
+              row.classList.toggle('selected', this.checked);
+            }
+
+            // 전체 선택 체크박스 상태 업데이트
+            updateSelectAllState();
+          });
+        });
+
+        // 전체 선택 상태 업데이트 함수
+        function updateSelectAllState() {
+          const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
+
+          if (checkedCount === 0) {
+            selectAllCheckbox.checked = false;
+            selectAllCheckbox.indeterminate = false;
+          } else if (checkedCount === rowCheckboxes.length) {
+            selectAllCheckbox.checked = true;
+            selectAllCheckbox.indeterminate = false;
+          } else {
+            selectAllCheckbox.checked = false;
+            selectAllCheckbox.indeterminate = true;
+          }
+        }
+
+        // 페이지 로드 시 초기 상태 설정
+        updateSelectAllState();
       }
 
       // 하단 버튼 기능
