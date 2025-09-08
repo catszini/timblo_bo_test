@@ -635,11 +635,25 @@ tbody tr:hover td {
 }
 
 .page-workspace-menu-setting .menu-section-title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: #292A2B;
   margin-bottom: 12px;
   padding-left: 0;
+}
+
+/* 메뉴 트리의 섹션 제목 스타일 */
+.menu-tree-content .menu-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #292A2B;
+  margin: 20px 0 12px 0;
+  padding-left: 8px;
+  border-left: 3px solid #007BFF;
+}
+
+.menu-tree-content .menu-section-title:first-child {
+  margin-top: 0;
 }
 
 .page-workspace-menu-setting .menu-item {
