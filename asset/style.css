@@ -631,7 +631,7 @@ tbody tr:hover td {
 
 /* 워크스페이스 메뉴관리 - 간단한 메뉴 구조 스타일 */
 .page-workspace-menu-setting .menu-list {
-  padding: 16px 0;
+  padding: 0 0 16px 0;
 }
 
 .page-workspace-menu-setting .menu-section-title {
