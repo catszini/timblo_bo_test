@@ -8690,10 +8690,17 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   padding: 8px 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  background: #f8f9fa;
+  background: white;
   font-size: 14px;
   color: #495057;
   text-align: center;
+  transition: border-color 0.2s ease;
+}
+
+.page-workspace-permission .setting-input:focus {
+  outline: none;
+  border-color: #0066FF;
+  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);
 }
 
 .page-workspace-permission .setting-combo-wrapper {
@@ -8778,7 +8785,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   align-items: center;
   gap: 4px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
   color: #495057;
   white-space: nowrap;
   margin: 0;
