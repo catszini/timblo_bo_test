@@ -98,16 +98,6 @@
 
               <div class="form-row">
                 <div class="form-group">
-                  <label for="notice-priority">중요도</label>
-                  <div class="combo-select">
-                    <select id="notice-priority" class="form-select">
-                      <option value="low">낮음</option>
-                      <option value="medium" selected>보통</option>
-                      <option value="high">높음</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
                   <label for="notice-status">상태</label>
                   <div class="combo-select">
                     <select id="notice-status" class="form-select">
@@ -269,7 +259,6 @@
           <div class="preview-header">
             <h2 id="preview-title"></h2>
             <div class="preview-meta">
-              <span class="preview-priority"></span>
               <span class="preview-date"></span>
               <span class="preview-author">관리자</span>
             </div>
@@ -433,17 +422,18 @@
       if (mode === 'create') {
         breadcrumbTitle.textContent = '새 공지사항';
         document.title = '새 공지사항';
-      } else if (mode === 'edit' && noticeId) {
-        breadcrumbTitle.textContent = '공지사항 수정';
-        document.title = '공지사항 수정';
-        loadNoticeData(noticeId);
-      } else {
+      } else if (mode === 'view' && noticeId) {
         breadcrumbTitle.textContent = '공지사항 보기';
         document.title = '공지사항 보기';
+        loadNoticeData(noticeId);
+        // 읽기 모드로 설정
+        setReadOnlyMode();
+      } else {
+        // 기본은 편집 모드
+        breadcrumbTitle.textContent = noticeId ? '공지사항 수정' : '새 공지사항';
+        document.title = noticeId ? '공지사항 수정' : '새 공지사항';
         if (noticeId) {
           loadNoticeData(noticeId);
-          // 읽기 모드로 설정
-          setReadOnlyMode();
         }
       }
     }
@@ -452,7 +442,6 @@
       // 실제로는 서버에서 데이터를 가져옴
       const sampleData = {
         title: '[긴급] 시스템 점검 안내 (2024.09.20 02:00~06:00)',
-        priority: 'high',
         status: 'published',
         startDate: '2024-09-15T00:00',
         endDate: '2024-09-25T23:59',
@@ -471,7 +460,6 @@
 
       // 폼에 데이터 채우기
       document.getElementById('notice-title').value = sampleData.title;
-      document.getElementById('notice-priority').value = sampleData.priority;
       document.getElementById('notice-status').value = sampleData.status;
       document.getElementById('notice-start-date').value = sampleData.startDate;
       document.getElementById('notice-end-date').value = sampleData.endDate;
@@ -565,7 +553,6 @@
     function saveNotice(status) {
       const formData = {
         title: document.getElementById('notice-title').value,
-        priority: document.getElementById('notice-priority').value,
         status: status,
         startDate: document.getElementById('notice-start-date').value,
         endDate: document.getElementById('notice-end-date').value,
@@ -593,21 +580,10 @@
 
     function showPreview() {
       const title = document.getElementById('notice-title').value;
-      const priority = document.getElementById('notice-priority').value;
       const content = document.getElementById('notice-content').innerHTML;
-
-      const priorityText = {
-        'high': '높음',
-        'medium': '보통',
-        'low': '낮음'
-      };
 
       document.getElementById('preview-title').textContent = title || '제목 없음';
       document.getElementById('preview-content').innerHTML = content || '내용 없음';
-
-      const previewPriority = document.querySelector('.preview-priority');
-      previewPriority.textContent = priorityText[priority];
-      previewPriority.className = `preview-priority priority-${priority}`;
 
       document.querySelector('.preview-date').textContent = new Date().toLocaleDateString('ko-KR');
 
