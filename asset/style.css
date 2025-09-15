@@ -5909,7 +5909,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 /* 시스템 사용자 페이지 권한 셀렉트 박스 커스텀 */
 .page-system-user.user-page.member-page .table-container .permission-select {
-  width: 100px;
+  width: 140px;
   height: 32px;
   padding: 4px 24px 4px 8px;
   border: 1px solid #E5E5E5;
