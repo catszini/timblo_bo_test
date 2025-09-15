@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>워크스페이스 - 공통관리 - 메뉴관리</title>
+  <title>워크스페이스 - 공통관리 - 메뉴리스트 관리</title>
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
 
@@ -41,36 +41,38 @@
       <div class="menu-section">
         <h3>시스템관리</h3>
         <ul>
-          <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
-
-          <li><a href="system_user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
-          <li><a href="group_setting.html"><img src="../asset/user.svg" alt="">권한관리</a></li>
-          <li><a href="menu_setting.html"><img src="../asset/user.svg" alt="">메뉴관리</a></li>
-          <li><a href="system_stats.html"><img src="../asset/stats.svg" alt="">통계</a></li>
+          <li><a href="workspace.html">워크스페이스 관리</a></li>
+          <li><a href="system_user.html">사용자 관리</a></li>
+          <li><a href="menu_setting.html">메뉴생성관리</a></li>
+          <li><a href="group_setting.html">메뉴권한관리</a></li>
+          <li><a href="system_stats_usage.html">사용량 통계</a></li>
+          <li><a href="system_stats_user.html">사용자별 통계</a></li>
         </ul>
       </div>
 
       <div class="menu-section">
         <div class="menu-section-header">
           <h3>워크스페이스</h3>
-
         </div>
         <ul>
-          <li><a href="workspace_permission.html"><img src="../asset/user.svg" alt="">권한관리</a></li>
-          <li><a href="workspace_menu_setting.html" class="active"><img src="../asset/user.svg" alt="">메뉴관리</a></li>
-          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
-          <li><a href="logo.html"><img src="../asset/user.svg" alt="">로고 이미지 관리</a></li>
-          <li><a href="permission_settings.html"><img src="../asset/user.svg" alt="">사용메뉴 관리</a></li>
-          <li><a href="auto_delete.html"><img src="../asset/history.svg" alt="">데이터 삭제관리</a></li>
-          <li><a href="meet_template.html"><img src="../asset/history.svg" alt="">회의 템플릿 관리</a></li>
-          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
-          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
-          <li><a href="calendar.html"><img src="../asset/daily.svg" alt="">캘린더 관리</a></li>
-          <li><a href="login_history.html"><img src="../asset/history.svg" alt="">이력 관리</a></li>
-          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
-          <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
-          <li><a href="stats_usage.html"><img src="../asset/stats.svg" alt="">사용량 통계</a></li>
-          <li><a href="stats_user.html"><img src="../asset/stats.svg" alt="">사용자별 통계</a></li>
+          <li><a href="workspace_permission.html">기능권한관리</a></li>
+          <li><a href="workspace_menu_setting.html" class="active">메뉴리스트 관리</a></li>
+          <li><a href="workspace_group_setting.html">그룹권한관리</a></li>
+          <li><a href="user.html">사용자 관리</a></li>
+          <li><a href="logo.html">로고 이미지 관리</a></li>
+          <li><a href="meet_template.html">회의 템플릿 관리</a></li>
+          <li><a href="prompt.html">프롬프트 관리</a></li>
+          <li><a href="consent.html">동의서 관리</a></li>
+          <li><a href="calendar.html">캘린더 관리</a></li>
+          <li><a href="login_history.html">사용자 접속 이력</a></li>
+          <li><a href="download_history.html">다운로드 이력</a></li>
+          <li><a href="user_consent_history.html">사용자 동의 이력</a></li>
+          <li><a href="setting_change_history.html">설정변경 이력</a></li>
+          <li><a href="meeting.html">회의록 관리</a></li>
+          <li><a href="dictionary.html">사전 관리</a></li>
+          <li><a href="notice.html">공지사항 관리</a></li>
+          <li><a href="stats_usage.html">사용량 통계</a></li>
+          <li><a href="stats_user.html">사용자별 통계</a></li>
         </ul>
       </div>
     </div>
@@ -78,7 +80,7 @@
     <!-- 오른쪽 콘텐츠 영역 -->
     <div class="content">
       <div class="content-header">
-        <div class="breadcrumb">메뉴관리</div>
+        <div class="breadcrumb">메뉴리스트 관리</div>
       </div>
 
       <div class="content-body">
@@ -89,12 +91,11 @@
               <div class="group-info-header">
                 <div class="group-info-title-section">
                   <h3 class="group-info-subtitle">메뉴정보</h3>
-                  <span class="group-total-count">총 11개</span>
+                  <span class="group-total-count">총 17개</span>
                 </div>
                 <div class="group-info-buttons">
-                  <button class="btn-form-delete">삭제</button>
-                  <button class="btn-form-edit">수정</button>
                   <button class="group-setting-btn-add-group" id="createMenuBtn">생성</button>
+                  <button class="btn-add-separator" id="addSeparatorBtn">구분선 추가</button>
                 </div>
               </div>
               <!-- 메뉴 정보 테이블 -->
@@ -102,112 +103,112 @@
                 <table class="group-setting-table">
                   <thead>
                     <tr>
-                      <th><input type="checkbox" class="select-all"></th>
-                      <th>순번</th>
-                      <th>타입</th>
                       <th>메뉴명</th>
-                      <th>정렬순서</th>
-                      <th>사용여부</th>
-                      <th>URL</th>
+                      <th width="100">정렬순서</th>
+                      <th width="100">사용여부</th>
+                      <th width="200">URL</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><input type="checkbox"></td>
-                      <td>1</td>
-                      <td>폴더</td>
                       <td>공통관리</td>
                       <td>1</td>
                       <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
                       <td>-</td>
                     </tr>
                     <tr>
-                      <td><input type="checkbox"></td>
+                      <td>기능권한관리</td>
                       <td>2</td>
-                      <td>폴더</td>
+                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
                       <td>사용자 관리</td>
-                      <td>2</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td>3</td>
-                      <td>폴더</td>
-                      <td>회의록 관리</td>
                       <td>3</td>
                       <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
                       <td>-</td>
                     </tr>
                     <tr>
-                      <td><input type="checkbox"></td>
+                      <td>로고 이미지 관리</td>
                       <td>4</td>
-                      <td>폴더</td>
+                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
                       <td>회의 템플릿 관리</td>
-                      <td>4</td>
+                      <td>5</td>
                       <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
                       <td>-</td>
                     </tr>
                     <tr>
-                      <td><input type="checkbox"></td>
-                      <td>5</td>
-                      <td>폴더</td>
                       <td>프롬프트 관리</td>
-                      <td>5</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td>6</td>
-                      <td>폴더</td>
-                      <td>이력 관리</td>
                       <td>6</td>
                       <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
                       <td>-</td>
                     </tr>
                     <tr>
-                      <td><input type="checkbox"></td>
-                      <td>7</td>
-                      <td>폴더</td>
                       <td>동의서 관리</td>
                       <td>7</td>
                       <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
                       <td>-</td>
                     </tr>
                     <tr>
-                      <td><input type="checkbox"></td>
-                      <td>8</td>
-                      <td>폴더</td>
-                      <td>사전 관리</td>
+                      <td>캘린더 관리</td>
                       <td>8</td>
                       <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
                       <td>-</td>
                     </tr>
                     <tr>
-                      <td><input type="checkbox"></td>
+                      <td>사용자 접속 이력</td>
                       <td>9</td>
-                      <td>폴더</td>
-                      <td>엔진 관리</td>
-                      <td>9</td>
-                      <td><label class="switch"><input type="checkbox"><span class="slider"></span></label></td>
+                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
                       <td>-</td>
                     </tr>
                     <tr>
-                      <td><input type="checkbox"></td>
+                      <td>다운로드 이력</td>
                       <td>10</td>
-                      <td>폴더</td>
-                      <td>캘린더 관리</td>
-                      <td>10</td>
-                      <td><label class="switch"><input type="checkbox"><span class="slider"></span></label></td>
+                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
                       <td>-</td>
                     </tr>
                     <tr>
-                      <td><input type="checkbox"></td>
+                      <td>사용자 동의 이력</td>
                       <td>11</td>
-                      <td>폴더</td>
-                      <td>통계</td>
-                      <td>11</td>
+                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td>설정변경 이력</td>
+                      <td>12</td>
+                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td>회의록 관리</td>
+                      <td>13</td>
+                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td>사전 관리</td>
+                      <td>14</td>
+                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td>공지사항 관리</td>
+                      <td>15</td>
+                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td>사용량 통계</td>
+                      <td>16</td>
+                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td>사용자별 통계</td>
+                      <td>17</td>
                       <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
                       <td>-</td>
                     </tr>
@@ -222,54 +223,73 @@
               </div>
               <div class="tree-menu" id="treeMenu">
                 <div class="menu-list">
-                  <div class="menu-section-title">워크스페이스</div>
-                  <div class="menu-item">
-                    <input type="checkbox" id="공통관리" checked>
-                    <label for="공통관리">공통관리</label>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">공통관리</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
                   </div>
-                  <div class="menu-item">
-                    <input type="checkbox" id="사용자관리" checked>
-                    <label for="사용자관리">사용자 관리</label>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">기능권한관리</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
                   </div>
-                  <div class="menu-item">
-                    <input type="checkbox" id="회의록관리" checked>
-                    <label for="회의록관리">회의록 관리</label>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">사용자 관리</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
                   </div>
-                  <div class="menu-item">
-                    <input type="checkbox" id="회의템플릿관리" checked>
-                    <label for="회의템플릿관리">회의 템플릿 관리</label>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">로고 이미지 관리</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
                   </div>
-                  <div class="menu-item">
-                    <input type="checkbox" id="프롬프트관리" checked>
-                    <label for="프롬프트관리">프롬프트 관리</label>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">회의 템플릿 관리</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
                   </div>
-                  <div class="menu-item">
-                    <input type="checkbox" id="이력관리" checked>
-                    <label for="이력관리">이력 관리</label>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">프롬프트 관리</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
                   </div>
-                  <div class="menu-item">
-                    <input type="checkbox" id="법령관리" checked>
-                    <label for="법령관리">법령 관리</label>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">동의서 관리</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
                   </div>
-                  <div class="menu-item">
-                    <input type="checkbox" id="동의서관리" checked>
-                    <label for="동의서관리">동의서 관리</label>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">캘린더 관리</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
                   </div>
-                  <div class="menu-item">
-                    <input type="checkbox" id="사전관리" checked>
-                    <label for="사전관리">사전 관리</label>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">사용자 접속 이력</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
                   </div>
-                  <div class="menu-item">
-                    <input type="checkbox" id="엔진관리" checked>
-                    <label for="엔진관리">엔진 관리</label>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">다운로드 이력</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
                   </div>
-                  <div class="menu-item">
-                    <input type="checkbox" id="캘린더관리" checked>
-                    <label for="캘린더관리">캘린더 관리</label>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">사용자 동의 이력</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
                   </div>
-                  <div class="menu-item">
-                    <input type="checkbox" id="통계" checked>
-                    <label for="통계">통계</label>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">설정변경 이력</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
+                  </div>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">회의록 관리</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
+                  </div>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">사전 관리</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
+                  </div>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">공지사항 관리</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
+                  </div>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">사용량 통계</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
+                  </div>
+                  <div class="menu-item" draggable="true">
+                    <span class="menu-text">사용자별 통계</span>
+                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
                   </div>
                 </div>
               </div>
@@ -560,6 +580,82 @@
         });
       }
     });
+
+    // 구분선 추가 함수
+    function addMenuSeparator() {
+      const menuList = document.querySelector('.menu-list');
+      const separatorCount = document.querySelectorAll('.menu-separator').length + 1;
+
+      const separator = document.createElement('div');
+      separator.className = 'menu-separator';
+      separator.innerHTML = `
+        <span class="separator-text">── 구분선 ${separatorCount} ──</span>
+        <button class="remove-separator" onclick="removeSeparator(this)" title="구분선 제거">×</button>
+      `;
+
+      menuList.appendChild(separator);
+      console.log('구분선이 추가되었습니다.');
+    }
+
+    // 구분선 제거 함수
+    function removeSeparator(button) {
+      if (confirm('이 구분선을 제거하시겠습니까?')) {
+        button.parentElement.remove();
+        console.log('구분선이 제거되었습니다.');
+      }
+    }
+
+    // 드래그 앤 드롭 초기화
+    function initDragAndDrop() {
+      const menuItems = document.querySelectorAll('.menu-item[draggable="true"]');
+
+      menuItems.forEach(item => {
+        item.addEventListener('dragstart', function (e) {
+          e.dataTransfer.effectAllowed = 'move';
+          e.dataTransfer.setData('text/html', this.outerHTML);
+          this.classList.add('dragging');
+        });
+
+        item.addEventListener('dragend', function (e) {
+          this.classList.remove('dragging');
+        });
+
+        item.addEventListener('dragover', function (e) {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          this.classList.add('drag-over');
+        });
+
+        item.addEventListener('dragleave', function (e) {
+          this.classList.remove('drag-over');
+        });
+
+        item.addEventListener('drop', function (e) {
+          e.preventDefault();
+          const draggedHTML = e.dataTransfer.getData('text/html');
+          const draggedElement = document.querySelector('.dragging');
+
+          if (draggedElement && draggedElement !== this) {
+            // 드롭 위치에 따라 before 또는 after 결정
+            const rect = this.getBoundingClientRect();
+            const midY = rect.top + rect.height / 2;
+
+            if (e.clientY < midY) {
+              this.parentNode.insertBefore(draggedElement, this);
+            } else {
+              this.parentNode.insertBefore(draggedElement, this.nextSibling);
+            }
+
+            console.log('메뉴 순서가 변경되었습니다.');
+          }
+
+          this.classList.remove('drag-over');
+        });
+      });
+    }
+
+    // 페이지 로드 시 드래그 앤 드롭 초기화
+    initDragAndDrop();
   </script>
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>

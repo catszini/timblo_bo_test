@@ -4,14 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>워크스페이스 권한관리</title>
+  <title>워크스페이스 기능권한관리</title>
   <link rel="stylesheet" href="../asset/style.css">
-  <link rel="stylesheet" href="../asset/modal.css">
 </head>
 
 <body class="page-workspace-permission">
   <div class="container">
-    <!-- 왼쪽 메뉴바 -->
     <div class="sidebar">
       <div class="logo">
         <div class="logo-icon">T</div>
@@ -40,11 +38,12 @@
       <div class="menu-section">
         <h3>시스템관리</h3>
         <ul>
-          <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
-          <li><a href="system_user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
-          <li><a href="group_setting.html"><img src="../asset/user.svg" alt="">권한관리</a></li>
-          <li><a href="menu_setting.html"><img src="../asset/user.svg" alt="">메뉴관리</a></li>
-          <li><a href="system_stats.html"><img src="../asset/stats.svg" alt="">통계</a></li>
+          <li><a href="workspace.html">워크스페이스 관리</a></li>
+          <li><a href="system_user.html">사용자 관리</a></li>
+          <li><a href="menu_setting.html">메뉴생성관리</a></li>
+          <li><a href="group_setting.html">메뉴권한관리</a></li>
+          <li><a href="system_stats_usage.html">사용량 통계</a></li>
+          <li><a href="system_stats_user.html">사용자별 통계</a></li>
         </ul>
       </div>
 
@@ -53,250 +52,397 @@
           <h3>워크스페이스</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html" class="active"><img src="../asset/user.svg" alt="">권한관리</a></li>
-          <li><a href="workspace_menu_setting.html"><img src="../asset/user.svg" alt="">메뉴관리</a></li>
-          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
-          <li><a href="logo.html"><img src="../asset/user.svg" alt="">로고 이미지 관리</a></li>
-          <li><a href="permission_settings.html"><img src="../asset/user.svg" alt="">사용메뉴 관리</a></li>
-          <li><a href="auto_delete.html"><img src="../asset/history.svg" alt="">데이터 삭제관리</a></li>
-          <li><a href="meet_template.html"><img src="../asset/history.svg" alt="">회의 템플릿 관리</a></li>
-          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
-          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
-          <li><a href="calendar.html"><img src="../asset/daily.svg" alt="">캘린더 관리</a></li>
-          <li><a href="login_history.html"><img src="../asset/history.svg" alt="">이력 관리</a></li>
-          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
-          <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
-          <li><a href="stats_usage.html"><img src="../asset/stats.svg" alt="">사용량 통계</a></li>
-          <li><a href="stats_user.html"><img src="../asset/stats.svg" alt="">사용자별 통계</a></li>
+          <li><a href="workspace_permission.html" class="active">기능권한관리</a></li>
+          <li><a href="workspace_menu_setting.html">메뉴리스트 관리</a></li>
+          <li><a href="workspace_group_setting.html">그룹권한관리</a></li>
+          <li><a href="user.html">사용자 관리</a></li>
+          <li><a href="logo.html">로고 이미지 관리</a></li>
+          <li><a href="meet_template.html">회의 템플릿 관리</a></li>
+          <li><a href="prompt.html">프롬프트 관리</a></li>
+          <li><a href="consent.html">동의서 관리</a></li>
+          <li><a href="calendar.html">캘린더 관리</a></li>
+          <li><a href="login_history.html">사용자 접속 이력</a></li>
+          <li><a href="download_history.html">다운로드 이력</a></li>
+          <li><a href="user_consent_history.html">사용자 동의 이력</a></li>
+          <li><a href="setting_change_history.html">설정변경 이력</a></li>
+          <li><a href="meeting.html">회의록 관리</a></li>
+          <li><a href="dictionary.html">사전 관리</a></li>
+          <li><a href="notice.html">공지사항 관리</a></li>
+          <li><a href="stats_usage.html">사용량 통계</a></li>
+          <li><a href="stats_user.html">사용자별 통계</a></li>
         </ul>
       </div>
     </div>
 
-    <!-- 오른쪽 콘텐츠 영역 -->
     <div class="content">
       <div class="content-header">
-        <div class="breadcrumb">권한관리</div>
-        <div class="content-subtitle" style="font-size: 14px; color: #6B7280; margin-top: 8px; margin-bottom: 24px;">
-          워크스페이스의 기능별 권한을 설정하고 관리합니다.
-        </div>
+        <div class="breadcrumb">기능권한관리</div>
       </div>
 
       <div class="content-body">
-        <!-- 권한관리 테이블 -->
-        <div class="table-container">
-          <table>
+        <!-- 기능권한관리 테이블 -->
+        <div class="permission-table-container">
+          <table class="permission-table">
             <thead>
               <tr>
-                <th class="th-width-10">순번</th>
-                <th class="th-width-25">권한이름</th>
-                <th class="th-width-45">권한정보</th>
-                <th class="th-width-20">권한사용여부</th>
+                <th width="200">기능</th>
+                <th>사용 설정</th>
+                <th width="400">권한 설명</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>1</td>
-                <td>녹음</td>
-                <td>회의 중 음성 녹음 및 저장 권한</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
+                <td class="feature-name">브라우저 제목바 제목</td>
+                <td class="feature-setting">
+                  <input type="text" class="setting-input" value="AI 회의록 - dev" readonly>
                 </td>
+                <td class="feature-description">브라우저 제목바에 표시될 제목을 설정합니다.</td>
               </tr>
               <tr>
-                <td>2</td>
-                <td>파일 업로드</td>
-                <td>회의 관련 파일 업로드 권한</td>
-                <td>
-                  <label class="switch">
+                <td class="feature-name">동의서 제출 요구</td>
+                <td class="feature-setting">
+                  <label class="toggle-switch">
                     <input type="checkbox" checked>
-                    <span class="slider"></span>
+                    <span class="toggle-slider"></span>
                   </label>
                 </td>
+                <td class="feature-description">각종 서비스 이용에 대한 동의서 제출을 요구합니다.</td>
               </tr>
               <tr>
-                <td>3</td>
-                <td>파일 공유</td>
-                <td>업로드된 파일을 다른 사용자와 공유하는 권한</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>전체요약</td>
-                <td>회의 전체 내용을 AI로 요약하는 권한</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>북마크</td>
-                <td>회의 중요 부분에 북마크를 추가하는 권한</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>메모</td>
-                <td>회의 중 개인 메모를 작성하는 권한</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>노트</td>
-                <td>회의 노트를 작성하고 편집하는 권한</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-              </tr>
-              <tr>
-                <td>8</td>
-                <td>다운로드 문서</td>
-                <td>회의록을 txt, hwp, pdf, docx 형태로 다운로드하는 권한</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-              </tr>
-              <tr>
-                <td>9</td>
-                <td>다운로드 영상</td>
-                <td>회의 영상을 다운로드하는 권한</td>
-                <td>
-                  <label class="switch">
+                <td class="feature-name">썸네일 이미지 업로드</td>
+                <td class="feature-setting">
+                  <label class="toggle-switch">
                     <input type="checkbox">
-                    <span class="slider"></span>
+                    <span class="toggle-slider"></span>
                   </label>
                 </td>
+                <td class="feature-description">썸네일 이미지 업로드 기능을 활성화합니다.</td>
               </tr>
               <tr>
-                <td>10</td>
-                <td>제목수정</td>
-                <td>회의록 제목을 수정하는 권한</td>
-                <td>
-                  <label class="switch">
+                <td class="feature-name">닉네임 수정</td>
+                <td class="feature-setting">
+                  <label class="toggle-switch">
                     <input type="checkbox" checked>
-                    <span class="slider"></span>
+                    <span class="toggle-slider"></span>
                   </label>
                 </td>
+                <td class="feature-description">닉네임 수정 기능을 활성화합니다.</td>
+              </tr>
+              <tr>
+                <td class="feature-name">주소록 사용</td>
+                <td class="feature-setting">
+                  <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </td>
+                <td class="feature-description">주소록 기능을 활성화합니다.</td>
+              </tr>
+              <tr>
+                <td class="feature-name">녹음 기능</td>
+                <td class="feature-setting">
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </td>
+                <td class="feature-description">녹음 관련 기능을 전체적으로 비활성화하지 비활성화합니다.</td>
+              </tr>
+              <tr>
+                <td class="feature-name">파일 업로드</td>
+                <td class="feature-setting">
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </td>
+                <td class="feature-description">파일 업로드 기능을 활성화합니다.</td>
+              </tr>
+              <tr>
+                <td class="feature-name">이메일 알림</td>
+                <td class="feature-setting">
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </td>
+                <td class="feature-description">신규 콘텐츠에 대한 이메일 알림을 활성화합니다.</td>
+              </tr>
+              <tr>
+                <td class="feature-name">콘텐츠 공유</td>
+                <td class="feature-setting">
+                  <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </td>
+                <td class="feature-description">콘텐츠 공유기능을 활성화합니다.</td>
+              </tr>
+              <tr>
+                <td class="feature-name">콘텐츠 복사 기능</td>
+                <td class="feature-setting">
+                  <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </td>
+                <td class="feature-description">콘텐츠 복사 기능을 활성화합니다.</td>
+              </tr>
+              <tr>
+                <td class="feature-name">재요약 사용</td>
+                <td class="feature-setting">
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </td>
+                <td class="feature-description">회의록 전체 요약의 재요약 기능을 활성화합니다.</td>
+              </tr>
+              <tr>
+                <td class="feature-name">템플릿 사용</td>
+                <td class="feature-setting">
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </td>
+                <td class="feature-description">회의록 노트 텍스트의 템플릿 기능을 활성화합니다.</td>
+              </tr>
+              <tr>
+                <td class="feature-name">영상/음성 다운로드</td>
+                <td class="feature-setting">
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </td>
+                <td class="feature-description">영상/음성 다운로드 기능 진체에 활성화합니다.</td>
+              </tr>
+              <tr>
+                <td class="feature-name">문서 다운로드</td>
+                <td class="feature-setting">
+                  <div class="checkbox-group-horizontal">
+                    <label class="checkbox-item">
+                      <input type="checkbox" class="feature-checkbox">
+                      <span class="checkmark"></span>
+                      TXT 다운로드
+                    </label>
+                    <label class="checkbox-item">
+                      <input type="checkbox" class="feature-checkbox">
+                      <span class="checkmark"></span>
+                      PDF 다운로드
+                    </label>
+                    <label class="checkbox-item">
+                      <input type="checkbox" class="feature-checkbox">
+                      <span class="checkmark"></span>
+                      DOCX 다운로드
+                    </label>
+                    <label class="checkbox-item">
+                      <input type="checkbox" class="feature-checkbox">
+                      <span class="checkmark"></span>
+                      HWP 다운로드
+                    </label>
+                  </div>
+                </td>
+                <td class="feature-description">문서 다운로드 관련 기능 진체에 활성화합니다.</td>
+              </tr>
+              <tr>
+                <td class="feature-name">문서 내보내기 활용</td>
+                <td class="feature-setting">
+                  <div class="checkbox-group-horizontal">
+                    <label class="checkbox-item">
+                      <input type="checkbox" class="feature-checkbox">
+                      <span class="checkmark"></span>
+                      전체 요약
+                    </label>
+                    <label class="checkbox-item">
+                      <input type="checkbox" class="feature-checkbox">
+                      <span class="checkmark"></span>
+                      별도
+                    </label>
+                    <label class="checkbox-item">
+                      <input type="checkbox" class="feature-checkbox">
+                      <span class="checkmark"></span>
+                      하이라이트
+                    </label>
+                    <label class="checkbox-item">
+                      <input type="checkbox" class="feature-checkbox">
+                      <span class="checkmark"></span>
+                      노트
+                    </label>
+                    <label class="checkbox-item">
+                      <input type="checkbox" class="feature-checkbox">
+                      <span class="checkmark"></span>
+                      음성 기록
+                    </label>
+                  </div>
+                </td>
+                <td class="feature-description">문서를 내보내 포함지 활용을 선택합니다.</td>
+              </tr>
+              <tr>
+                <td class="feature-name">원본 콘텐츠 보존기간</td>
+                <td class="feature-setting">
+                  <div class="setting-combo-wrapper">
+                    <div class="combo-select">
+                      <select class="setting-select" id="content-retention-select">
+                        <option value="90일">90일</option>
+                        <option value="180일" selected>180일</option>
+                        <option value="1년">1년</option>
+                        <option value="3년">3년</option>
+                        <option value="custom">직접 입력</option>
+                      </select>
+                    </div>
+                    <input type="text" class="custom-input" id="content-retention-input" placeholder="일 수 입력"
+                      style="display: none;">
+                  </div>
+                </td>
+                <td class="feature-description">원본 콘텐츠 보존기간을 설정합니다.</td>
+              </tr>
+              <tr>
+                <td class="feature-name">음성 전사 기록에 대한 보존 기간</td>
+                <td class="feature-setting">
+                  <div class="setting-combo-wrapper">
+                    <div class="combo-select">
+                      <select class="setting-select" id="voice-retention-select">
+                        <option value="영구" selected>영구</option>
+                        <option value="1년">1년</option>
+                        <option value="2년">2년</option>
+                        <option value="3년">3년</option>
+                        <option value="custom">직접 입력</option>
+                      </select>
+                    </div>
+                    <input type="text" class="custom-input" id="voice-retention-input" placeholder="연도 입력"
+                      style="display: none;">
+                  </div>
+                </td>
+                <td class="feature-description">음성 전사 기록에 대한 보존 기간을 설정합니다.</td>
+              </tr>
+              <tr>
+                <td class="feature-name">AI 모델에 대한 보존 기간</td>
+                <td class="feature-setting">
+                  <div class="setting-combo-wrapper">
+                    <div class="combo-select">
+                      <select class="setting-select" id="ai-retention-select">
+                        <option value="영구" selected>영구</option>
+                        <option value="1년">1년</option>
+                        <option value="2년">2년</option>
+                        <option value="3년">3년</option>
+                        <option value="custom">직접 입력</option>
+                      </select>
+                    </div>
+                    <input type="text" class="custom-input" id="ai-retention-input" placeholder="연도 입력"
+                      style="display: none;">
+                  </div>
+                </td>
+                <td class="feature-description">AI 모델에 대한 보존 기간을 설정합니다.</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <!-- 저장 버튼 -->
-        <div class="section-actions" style="margin-top: 32px; display: flex; justify-content: flex-end; gap: 12px;">
-          <button class="btn outline">취소</button>
-          <button class="btn primary">생성</button>
-          <button class="btn"
-            style="background-color: #10B981 !important; color: white !important; border: 1px solid #10B981 !important;">권한
-            설정 저장</button>
+        <div class="form-actions">
+          <button class="btn btn-primary save-permissions">변경사항 저장</button>
         </div>
       </div>
     </div>
   </div>
 
-  <script src="../asset/menu.js"></script>
-  <script src="../asset/main.js"></script>
   <script>
+    // 기능권한관리 페이지 스크립트
     document.addEventListener('DOMContentLoaded', function () {
-      // 권한 설정 저장 버튼
-      const saveBtn = document.querySelector('.btn[style*="background-color: #10B981"]');
-      if (saveBtn) {
-        saveBtn.addEventListener('click', function () {
-          const permissions = {};
-          const rows = document.querySelectorAll('tbody tr');
-
-          rows.forEach(row => {
-            const permissionName = row.cells[1]?.textContent?.trim();
-            const permissionInfo = row.cells[2]?.textContent?.trim();
-            const isEnabled = row.cells[3]?.querySelector('input[type="checkbox"]')?.checked;
-
-            if (permissionName) {
-              permissions[permissionName] = {
-                info: permissionInfo,
-                enabled: isEnabled
-              };
-            }
-          });
-
-          console.log('저장될 권한 설정:', permissions);
-          alert('권한 설정이 저장되었습니다.');
-        });
-      }
-
-      // 생성 버튼
-      const createBtn = document.querySelector('.btn.primary');
-      if (createBtn) {
-        createBtn.addEventListener('click', function () {
-          // 새로운 권한 행 추가
-          const tbody = document.querySelector('tbody');
-          const newRowCount = tbody.children.length + 1;
-
-          const newRow = document.createElement('tr');
-          newRow.innerHTML = `
-            <td>${newRowCount}</td>
-            <td>새 권한</td>
-            <td>새로운 권한에 대한 설명을 입력하세요</td>
-            <td>
-              <label class="switch">
-                <input type="checkbox">
-                <span class="slider"></span>
-              </label>
-            </td>
-          `;
-
-          tbody.appendChild(newRow);
-          alert('새로운 권한이 추가되었습니다. 내용을 수정해주세요.');
-        });
-      }
-
-      // 취소 버튼
-      const cancelBtn = document.querySelector('.btn.outline');
-      if (cancelBtn) {
-        cancelBtn.addEventListener('click', function () {
-          if (confirm('변경사항을 취소하시겠습니까?')) {
-            location.reload();
-          }
-        });
-      }
-
-      // 권한 토글 변경 시 로그
-      document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-        checkbox.addEventListener('change', function () {
-          const row = this.closest('tr');
-          const permissionName = row.cells[1]?.textContent?.trim();
-          const isEnabled = this.checked;
-
-          console.log(`권한 변경: ${permissionName} - ${isEnabled ? '허용' : '거부'}`);
+      // 토글 스위치 이벤트
+      const toggleSwitches = document.querySelectorAll('.toggle-switch input[type="checkbox"]');
+      toggleSwitches.forEach(toggle => {
+        toggle.addEventListener('change', function () {
+          console.log('기능 토글:', this.closest('tr').querySelector('.feature-name').textContent, this.checked);
         });
       });
+
+      // 체크박스 이벤트
+      const featureCheckboxes = document.querySelectorAll('.feature-checkbox');
+      featureCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+          console.log('기능 체크박스:', this.closest('label').textContent.trim(), this.checked);
+        });
+      });
+
+      // 셀렉트박스 이벤트
+      const settingSelects = document.querySelectorAll('.setting-select');
+      settingSelects.forEach(select => {
+        select.addEventListener('change', function () {
+          console.log('설정 변경:', this.closest('tr').querySelector('.feature-name').textContent, this.value);
+          handleCustomInput(this);
+        });
+      });
+
+      // 직접 입력 처리 함수
+      function handleCustomInput(selectElement) {
+        const wrapper = selectElement.closest('.setting-combo-wrapper');
+        const customInput = wrapper.querySelector('.custom-input');
+
+        if (selectElement.value === 'custom') {
+          customInput.style.display = 'inline-block';
+          customInput.focus();
+        } else {
+          customInput.style.display = 'none';
+          customInput.value = '';
+        }
+      }
+
+      // 저장 버튼
+      const saveBtn = document.querySelector('.save-permissions');
+      saveBtn?.addEventListener('click', function () {
+        const permissions = collectPermissionData();
+        console.log('저장할 권한 설정:', permissions);
+        alert('권한 설정이 저장되었습니다.');
+      });
     });
+
+    function collectPermissionData() {
+      const data = {};
+
+      // 토글 스위치 데이터 수집
+      const toggleRows = document.querySelectorAll('tr:not(.feature-group-header):not(.feature-sub-row)');
+      toggleRows.forEach(row => {
+        const featureName = row.querySelector('.feature-name')?.textContent;
+        const toggle = row.querySelector('.toggle-switch input[type="checkbox"]');
+        const select = row.querySelector('.setting-select');
+        const input = row.querySelector('.setting-input');
+
+        if (featureName) {
+          if (toggle) {
+            data[featureName] = toggle.checked;
+          } else if (select) {
+            const customInput = row.querySelector('.custom-input');
+            if (select.value === 'custom' && customInput && customInput.value.trim()) {
+              data[featureName] = customInput.value.trim();
+            } else {
+              data[featureName] = select.value;
+            }
+          } else if (input) {
+            data[featureName] = input.value;
+          }
+        }
+      });
+
+      // 체크박스 그룹 데이터 수집
+      const checkboxGroups = {};
+      document.querySelectorAll('.feature-sub-row').forEach(row => {
+        const checkboxes = row.querySelectorAll('.feature-checkbox');
+        checkboxes.forEach(checkbox => {
+          const label = checkbox.closest('label').textContent.trim();
+          checkboxGroups[label] = checkbox.checked;
+        });
+      });
+
+      data['문서다운로드옵션'] = checkboxGroups;
+
+      return data;
+    }
   </script>
+  <script src="../asset/menu.js"></script>
+  <script src="../asset/main.js"></script>
 </body>
 
 </html>

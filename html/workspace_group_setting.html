@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>시스템관리 - 권한 관리</title>
+  <title>워크스페이스 - 그룹권한관리</title>
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
 
@@ -44,7 +44,7 @@
           <li><a href="workspace.html">워크스페이스 관리</a></li>
           <li><a href="system_user.html">사용자 관리</a></li>
           <li><a href="menu_setting.html">메뉴생성관리</a></li>
-          <li><a href="group_setting.html" class="active">메뉴권한관리</a></li>
+          <li><a href="group_setting.html">메뉴권한관리</a></li>
           <li><a href="system_stats_usage.html">사용량 통계</a></li>
           <li><a href="system_stats_user.html">사용자별 통계</a></li>
         </ul>
@@ -57,6 +57,7 @@
         <ul>
           <li><a href="workspace_permission.html">기능권한관리</a></li>
           <li><a href="workspace_menu_setting.html">메뉴리스트 관리</a></li>
+          <li><a href="workspace_group_setting.html" class="active">그룹권한관리</a></li>
           <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 이미지 관리</a></li>
           <li><a href="meet_template.html">회의 템플릿 관리</a></li>
@@ -80,7 +81,7 @@
     <div class="content user-page group-setting-page">
       <div class="content-header">
         <div class="breadcrumb">
-          권한 관리
+          그룹권한관리
         </div>
       </div>
       <div class="content-body">
@@ -253,42 +254,58 @@
                       <input type="checkbox" id="로고이미지관리" checked>
                       <label for="로고이미지관리">로고 이미지 관리</label>
                     </div>
-                  </div>
-                  <div class="tree-item">
-                    <input type="checkbox" id="회의템플릿관리" checked>
-                    <label for="회의템플릿관리">회의 템플릿 관리</label>
-                  </div>
-                  <div class="tree-item">
-                    <input type="checkbox" id="프롬프트관리" checked>
-                    <label for="프롬프트관리">프롬프트 관리</label>
-                  </div>
-                  <div class="tree-item">
-                    <input type="checkbox" id="동의서관리" checked>
-                    <label for="동의서관리">동의서 관리</label>
-                  </div>
-                  <div class="tree-item">
-                    <input type="checkbox" id="캘린더관리" checked>
-                    <label for="캘린더관리">캘린더 관리</label>
-                  </div>
-                  <div class="tree-item">
-                    <input type="checkbox" id="이력관리" checked>
-                    <label for="이력관리">이력 관리</label>
-                  </div>
-                  <div class="tree-item">
-                    <input type="checkbox" id="회의록관리" checked>
-                    <label for="회의록관리">회의록 관리</label>
-                  </div>
-                  <div class="tree-item">
-                    <input type="checkbox" id="사전관리" checked>
-                    <label for="사전관리">사전 관리</label>
-                  </div>
-                  <div class="tree-item">
-                    <input type="checkbox" id="사용량통계" checked>
-                    <label for="사용량통계">사용량 통계</label>
-                  </div>
-                  <div class="tree-item">
-                    <input type="checkbox" id="사용자별통계" checked>
-                    <label for="사용자별통계">사용자별 통계</label>
+                    <div class="tree-item">
+                      <input type="checkbox" id="회의템플릿관리" checked>
+                      <label for="회의템플릿관리">회의 템플릿 관리</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="프롬프트관리" checked>
+                      <label for="프롬프트관리">프롬프트 관리</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="동의서관리" checked>
+                      <label for="동의서관리">동의서 관리</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="캘린더관리" checked>
+                      <label for="캘린더관리">캘린더 관리</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="사용자접속이력" checked>
+                      <label for="사용자접속이력">사용자 접속 이력</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="다운로드이력" checked>
+                      <label for="다운로드이력">다운로드 이력</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="사용자동의이력" checked>
+                      <label for="사용자동의이력">사용자 동의 이력</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="설정변경이력" checked>
+                      <label for="설정변경이력">설정변경 이력</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="회의록관리" checked>
+                      <label for="회의록관리">회의록 관리</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="사전관리" checked>
+                      <label for="사전관리">사전 관리</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="공지사항관리" checked>
+                      <label for="공지사항관리">공지사항 관리</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="사용량통계" checked>
+                      <label for="사용량통계">사용량 통계</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="사용자별통계" checked>
+                      <label for="사용자별통계">사용자별 통계</label>
+                    </div>
                   </div>
                 </div>
               </div>

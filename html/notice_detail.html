@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>공지사항 상세</title>
+  <link rel="stylesheet" href="../asset/style.css">
+</head>
+
+<body class="notice-detail-page">
+  <div class="container">
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>시스템관리</h3>
+        <ul>
+          <li><a href="workspace.html">워크스페이스 관리</a></li>
+          <li><a href="system_user.html">사용자 관리</a></li>
+          <li><a href="menu_setting.html">메뉴생성관리</a></li>
+          <li><a href="group_setting.html">메뉴권한관리</a></li>
+          <li><a href="system_stats_usage.html">사용량 통계</a></li>
+          <li><a href="system_stats_user.html">사용자별 통계</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-header">
+          <h3>워크스페이스</h3>
+        </div>
+        <ul>
+          <li><a href="workspace_permission.html">기능권한관리</a></li>
+          <li><a href="workspace_menu_setting.html">메뉴리스트 관리</a></li>
+          <li><a href="workspace_group_setting.html">그룹권한관리</a></li>
+          <li><a href="user.html">사용자 관리</a></li>
+          <li><a href="logo.html">로고 이미지 관리</a></li>
+          <li><a href="meet_template.html">회의 템플릿 관리</a></li>
+          <li><a href="prompt.html">프롬프트 관리</a></li>
+          <li><a href="consent.html">동의서 관리</a></li>
+          <li><a href="calendar.html">캘린더 관리</a></li>
+          <li><a href="login_history.html">사용자 접속 이력</a></li>
+          <li><a href="download_history.html">다운로드 이력</a></li>
+          <li><a href="user_consent_history.html">사용자 동의 이력</a></li>
+          <li><a href="setting_change_history.html">설정변경 이력</a></li>
+          <li><a href="meeting.html">회의록 관리</a></li>
+          <li><a href="dictionary.html">사전 관리</a></li>
+          <li><a href="notice.html" class="active">공지사항 관리</a></li>
+          <li><a href="stats_usage.html">사용량 통계</a></li>
+          <li><a href="stats_user.html">사용자별 통계</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="content-header">
+        <div class="breadcrumb">
+          <a href="notice.html" class="breadcrumb-link">공지사항 관리</a> >
+          <span id="breadcrumb-title">공지사항 상세</span>
+        </div>
+      </div>
+
+      <div class="content-body">
+        <!-- 공지사항 작성/수정 폼 -->
+        <div class="notice-detail-form">
+          <form id="notice-form">
+            <div class="form-section">
+              <h3>기본 정보</h3>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="notice-title">제목 <span class="required">*</span></label>
+                  <input type="text" id="notice-title" class="form-input" placeholder="공지사항 제목을 입력하세요" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="notice-priority">중요도</label>
+                  <div class="combo-select">
+                    <select id="notice-priority" class="form-select">
+                      <option value="low">낮음</option>
+                      <option value="medium" selected>보통</option>
+                      <option value="high">높음</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="notice-status">상태</label>
+                  <div class="combo-select">
+                    <select id="notice-status" class="form-select">
+                      <option value="draft">임시저장</option>
+                      <option value="published">게시중</option>
+                      <option value="scheduled">예약게시</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="notice-start-date">게시 시작일</label>
+                  <input type="datetime-local" id="notice-start-date" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="notice-end-date">게시 종료일</label>
+                  <input type="datetime-local" id="notice-end-date" class="form-input">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group checkbox-group">
+                  <input type="checkbox" id="notice-popup" class="form-checkbox">
+                  <label for="notice-popup">팝업으로 표시</label>
+                </div>
+                <div class="form-group checkbox-group">
+                  <input type="checkbox" id="notice-top-fixed" class="form-checkbox">
+                  <label for="notice-top-fixed">상단 고정</label>
+                </div>
+              </div>
+
+              <!-- 팝업 설정 옵션 -->
+              <div class="form-row popup-settings" id="popup-settings-row" style="display: none;">
+                <div class="form-group full-width">
+                  <label>팝업 설정</label>
+                  <div class="popup-options">
+                    <div class="checkbox-group">
+                      <input type="checkbox" id="popup-dismiss-option" class="form-checkbox">
+                      <label for="popup-dismiss-option">"다시 보지 않기" 옵션 제공</label>
+                    </div>
+
+                    <div class="dismiss-options" id="dismiss-options"
+                      style="display: none; margin-top: 12px; margin-left: 24px;">
+                      <div class="dismiss-option-title">사용자 선택지:</div>
+                      <div class="dismiss-choices">
+                        <div class="checkbox-group">
+                          <input type="checkbox" id="dismiss-today" class="dismiss-checkbox" checked>
+                          <label for="dismiss-today">오늘 하루 보지 않기</label>
+                        </div>
+                        <div class="checkbox-group">
+                          <input type="checkbox" id="dismiss-3days" class="dismiss-checkbox" checked>
+                          <label for="dismiss-3days">3일동안 보지 않기</label>
+                        </div>
+                        <div class="checkbox-group">
+                          <input type="checkbox" id="dismiss-week" class="dismiss-checkbox" checked>
+                          <label for="dismiss-week">일주일 동안 보지 않기</label>
+                        </div>
+                        <div class="checkbox-group">
+                          <input type="checkbox" id="dismiss-forever" class="dismiss-checkbox">
+                          <label for="dismiss-forever">다시 보지 않기</label>
+                        </div>
+                      </div>
+                      <div class="dismiss-note">
+                        <small>⚠️ 참고: "다시 보지 않기"는 영구적으로 숨겨지므로 신중하게 선택하세요.</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3>내용 작성</h3>
+
+              <div class="form-row">
+                <div class="form-group full-width">
+                  <label for="notice-content">내용 <span class="required">*</span></label>
+                  <div class="editor-toolbar">
+                    <button type="button" class="editor-btn" data-command="bold" title="굵게">
+                      <strong>B</strong>
+                    </button>
+                    <button type="button" class="editor-btn" data-command="italic" title="기울임">
+                      <em>I</em>
+                    </button>
+                    <button type="button" class="editor-btn" data-command="underline" title="밑줄">
+                      <u>U</u>
+                    </button>
+                    <div class="editor-divider"></div>
+                    <button type="button" class="editor-btn" data-command="insertOrderedList" title="번호 목록">
+                      1.
+                    </button>
+                    <button type="button" class="editor-btn" data-command="insertUnorderedList" title="글머리 목록">
+                      •
+                    </button>
+                    <div class="editor-divider"></div>
+                    <button type="button" class="editor-btn" data-command="createLink" title="링크">
+                      🔗
+                    </button>
+                    <button type="button" class="editor-btn" id="insert-image-btn" title="이미지">
+                      🖼️
+                    </button>
+                  </div>
+                  <div id="notice-content" class="form-editor" contenteditable="true" placeholder="공지사항 내용을 입력하세요...">
+                  </div>
+                  <input type="file" id="image-upload" accept="image/*" style="display: none;">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3>첨부파일</h3>
+
+              <div class="form-row">
+                <div class="form-group full-width">
+                  <div class="file-upload-area" id="file-upload-area">
+                    <div class="file-upload-placeholder">
+                      <span class="upload-icon">📎</span>
+                      <p>파일을 드래그하거나 클릭하여 업로드하세요</p>
+                      <p class="file-info">최대 10MB, jpg, png, pdf, doc, docx, xls, xlsx 파일만 업로드 가능</p>
+                    </div>
+                    <input type="file" id="file-upload" multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx">
+                  </div>
+                  <div class="uploaded-files" id="uploaded-files">
+                    <!-- 업로드된 파일 목록이 여기에 표시됩니다 -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- 하단 액션 버튼 -->
+        <div class="form-actions">
+          <div class="actions-left">
+            <button type="button" class="btn btn-outline" id="preview-btn">미리보기</button>
+          </div>
+          <div class="actions-right">
+            <button type="button" class="btn btn-outline" id="cancel-btn">취소</button>
+            <button type="button" class="btn btn-secondary" id="save-draft-btn">임시저장</button>
+            <button type="button" class="btn btn-primary" id="save-publish-btn">저장 및 게시</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 미리보기 모달 -->
+  <div class="modal-overlay modal-overlay-hidden" id="preview-modal">
+    <div class="modal modal-large">
+      <div class="modal-header">
+        <h3>공지사항 미리보기</h3>
+        <button class="modal-close" id="preview-modal-close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="notice-preview">
+          <div class="preview-header">
+            <h2 id="preview-title"></h2>
+            <div class="preview-meta">
+              <span class="preview-priority"></span>
+              <span class="preview-date"></span>
+              <span class="preview-author">관리자</span>
+            </div>
+          </div>
+          <div class="preview-content" id="preview-content">
+          </div>
+          <div class="preview-files" id="preview-files">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="preview-close-btn">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 공지사항 상세 페이지 스크립트
+    document.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const mode = urlParams.get('mode') || 'view';
+      const noticeId = urlParams.get('id');
+
+      // 페이지 모드에 따른 초기화
+      initializePage(mode, noticeId);
+
+      // 에디터 툴바 기능
+      document.querySelectorAll('.editor-btn').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          const command = this.dataset.command;
+
+          if (command === 'createLink') {
+            const url = prompt('링크 URL을 입력하세요:');
+            if (url) {
+              document.execCommand(command, false, url);
+            }
+          } else {
+            document.execCommand(command, false, null);
+          }
+        });
+      });
+
+      // 이미지 업로드
+      const insertImageBtn = document.getElementById('insert-image-btn');
+      const imageUpload = document.getElementById('image-upload');
+
+      insertImageBtn?.addEventListener('click', function (e) {
+        e.preventDefault();
+        imageUpload.click();
+      });
+
+      imageUpload?.addEventListener('change', function (e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const img = `<img src="${e.target.result}" alt="업로드된 이미지" style="max-width: 100%; height: auto;">`;
+            document.execCommand('insertHTML', false, img);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // 파일 업로드 드래그앤드롭
+      const fileUploadArea = document.getElementById('file-upload-area');
+      const fileUpload = document.getElementById('file-upload');
+      const uploadedFiles = document.getElementById('uploaded-files');
+
+      fileUploadArea?.addEventListener('click', () => fileUpload.click());
+
+      fileUploadArea?.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        this.classList.add('drag-over');
+      });
+
+      fileUploadArea?.addEventListener('dragleave', function (e) {
+        e.preventDefault();
+        this.classList.remove('drag-over');
+      });
+
+      fileUploadArea?.addEventListener('drop', function (e) {
+        e.preventDefault();
+        this.classList.remove('drag-over');
+        const files = e.dataTransfer.files;
+        handleFileUpload(files);
+      });
+
+      fileUpload?.addEventListener('change', function (e) {
+        handleFileUpload(e.target.files);
+      });
+
+
+      // 팝업 설정 기능
+      const popupCheckbox = document.getElementById('notice-popup');
+      const popupSettingsRow = document.getElementById('popup-settings-row');
+      const dismissOptionCheckbox = document.getElementById('popup-dismiss-option');
+      const dismissOptions = document.getElementById('dismiss-options');
+
+      popupCheckbox?.addEventListener('change', function () {
+        popupSettingsRow.style.display = this.checked ? 'block' : 'none';
+        if (!this.checked) {
+          dismissOptionCheckbox.checked = false;
+          dismissOptions.style.display = 'none';
+        }
+      });
+
+      dismissOptionCheckbox?.addEventListener('change', function () {
+        dismissOptions.style.display = this.checked ? 'block' : 'none';
+      });
+
+      // 액션 버튼들
+      const cancelBtn = document.getElementById('cancel-btn');
+      const saveDraftBtn = document.getElementById('save-draft-btn');
+      const savePublishBtn = document.getElementById('save-publish-btn');
+      const previewBtn = document.getElementById('preview-btn');
+
+      cancelBtn?.addEventListener('click', function () {
+        if (confirm('변경사항이 저장되지 않습니다. 정말 취소하시겠습니까?')) {
+          window.location.href = 'notice.html';
+        }
+      });
+
+      saveDraftBtn?.addEventListener('click', function () {
+        saveNotice('draft');
+      });
+
+      savePublishBtn?.addEventListener('click', function () {
+        if (validateForm()) {
+          saveNotice('published');
+        }
+      });
+
+      previewBtn?.addEventListener('click', function () {
+        showPreview();
+      });
+
+      // 미리보기 모달
+      const previewModal = document.getElementById('preview-modal');
+      const previewModalClose = document.getElementById('preview-modal-close');
+      const previewCloseBtn = document.getElementById('preview-close-btn');
+
+      previewModalClose?.addEventListener('click', () => {
+        previewModal.classList.add('modal-overlay-hidden');
+      });
+
+      previewCloseBtn?.addEventListener('click', () => {
+        previewModal.classList.add('modal-overlay-hidden');
+      });
+
+      previewModal?.addEventListener('click', function (e) {
+        if (e.target === previewModal) {
+          previewModal.classList.add('modal-overlay-hidden');
+        }
+      });
+    });
+
+    function initializePage(mode, noticeId) {
+      const breadcrumbTitle = document.getElementById('breadcrumb-title');
+
+      if (mode === 'create') {
+        breadcrumbTitle.textContent = '새 공지사항';
+        document.title = '새 공지사항';
+      } else if (mode === 'edit' && noticeId) {
+        breadcrumbTitle.textContent = '공지사항 수정';
+        document.title = '공지사항 수정';
+        loadNoticeData(noticeId);
+      } else {
+        breadcrumbTitle.textContent = '공지사항 보기';
+        document.title = '공지사항 보기';
+        if (noticeId) {
+          loadNoticeData(noticeId);
+          // 읽기 모드로 설정
+          setReadOnlyMode();
+        }
+      }
+    }
+
+    function loadNoticeData(noticeId) {
+      // 실제로는 서버에서 데이터를 가져옴
+      const sampleData = {
+        title: '[긴급] 시스템 점검 안내 (2024.09.20 02:00~06:00)',
+        priority: 'high',
+        status: 'published',
+        startDate: '2024-09-15T00:00',
+        endDate: '2024-09-25T23:59',
+        popup: true,
+        topFixed: false,
+        content: '<h3>시스템 점검 안내</h3><p>안녕하세요. Timbel 관리팀입니다.</p><p>시스템 안정성 향상을 위한 정기 점검을 실시합니다.</p><ul><li>점검 일시: 2024년 9월 20일 (금) 02:00 ~ 06:00</li><li>점검 내용: 서버 업그레이드 및 보안 패치</li><li>영향 범위: 전체 서비스 일시 중단</li></ul><p>점검 시간 동안 서비스 이용이 불가하오니 양해 부탁드립니다.</p>',
+        // 팝업 설정
+        popupDismissOption: true,
+        dismissOptions: {
+          today: true,
+          threeDays: true,
+          week: true,
+          forever: false
+        }
+      };
+
+      // 폼에 데이터 채우기
+      document.getElementById('notice-title').value = sampleData.title;
+      document.getElementById('notice-priority').value = sampleData.priority;
+      document.getElementById('notice-status').value = sampleData.status;
+      document.getElementById('notice-start-date').value = sampleData.startDate;
+      document.getElementById('notice-end-date').value = sampleData.endDate;
+      document.getElementById('notice-popup').checked = sampleData.popup;
+      document.getElementById('notice-top-fixed').checked = sampleData.topFixed;
+      document.getElementById('notice-content').innerHTML = sampleData.content;
+
+      // 팝업 설정 데이터 로드
+      if (sampleData.popup) {
+        document.getElementById('popup-settings-row').style.display = 'block';
+        document.getElementById('popup-dismiss-option').checked = sampleData.popupDismissOption;
+
+        if (sampleData.popupDismissOption) {
+          document.getElementById('dismiss-options').style.display = 'block';
+          document.getElementById('dismiss-today').checked = sampleData.dismissOptions.today;
+          document.getElementById('dismiss-3days').checked = sampleData.dismissOptions.threeDays;
+          document.getElementById('dismiss-week').checked = sampleData.dismissOptions.week;
+          document.getElementById('dismiss-forever').checked = sampleData.dismissOptions.forever;
+        }
+      }
+    }
+
+    function setReadOnlyMode() {
+      // 읽기 전용 모드로 설정
+      const inputs = document.querySelectorAll('input, select, [contenteditable]');
+      inputs.forEach(input => {
+        if (input.hasAttribute('contenteditable')) {
+          input.setAttribute('contenteditable', 'false');
+        } else {
+          input.disabled = true;
+        }
+      });
+
+      // 액션 버튼 숨기기
+      const formActions = document.querySelector('.form-actions');
+      formActions.style.display = 'none';
+    }
+
+    function handleFileUpload(files) {
+      const uploadedFiles = document.getElementById('uploaded-files');
+
+      Array.from(files).forEach(file => {
+        if (file.size > 10 * 1024 * 1024) { // 10MB 제한
+          alert(`${file.name} 파일이 너무 큽니다. (최대 10MB)`);
+          return;
+        }
+
+        const fileItem = document.createElement('div');
+        fileItem.className = 'file-item';
+        fileItem.innerHTML = `
+          <span class="file-name">${file.name}</span>
+          <span class="file-size">(${formatFileSize(file.size)})</span>
+          <button type="button" class="file-remove" onclick="removeFile(this)">×</button>
+        `;
+
+        uploadedFiles.appendChild(fileItem);
+      });
+    }
+
+    function removeFile(button) {
+      button.parentElement.remove();
+    }
+
+    function formatFileSize(bytes) {
+      if (bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    function validateForm() {
+      const title = document.getElementById('notice-title').value.trim();
+      const content = document.getElementById('notice-content').textContent.trim();
+
+      if (!title) {
+        alert('제목을 입력해주세요.');
+        document.getElementById('notice-title').focus();
+        return false;
+      }
+
+      if (!content) {
+        alert('내용을 입력해주세요.');
+        document.getElementById('notice-content').focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    function saveNotice(status) {
+      const formData = {
+        title: document.getElementById('notice-title').value,
+        priority: document.getElementById('notice-priority').value,
+        status: status,
+        startDate: document.getElementById('notice-start-date').value,
+        endDate: document.getElementById('notice-end-date').value,
+        popup: document.getElementById('notice-popup').checked,
+        topFixed: document.getElementById('notice-top-fixed').checked,
+        content: document.getElementById('notice-content').innerHTML,
+        // 팝업 설정
+        popupDismissOption: document.getElementById('popup-dismiss-option')?.checked || false,
+        dismissOptions: {
+          today: document.getElementById('dismiss-today')?.checked || false,
+          threeDays: document.getElementById('dismiss-3days')?.checked || false,
+          week: document.getElementById('dismiss-week')?.checked || false,
+          forever: document.getElementById('dismiss-forever')?.checked || false
+        }
+      };
+
+      console.log('저장할 데이터:', formData);
+
+      // 실제로는 서버에 저장 요청
+      alert(`공지사항이 ${status === 'draft' ? '임시저장' : '저장 및 게시'}되었습니다.`);
+
+      // 목록으로 이동
+      window.location.href = 'notice.html';
+    }
+
+    function showPreview() {
+      const title = document.getElementById('notice-title').value;
+      const priority = document.getElementById('notice-priority').value;
+      const content = document.getElementById('notice-content').innerHTML;
+
+      const priorityText = {
+        'high': '높음',
+        'medium': '보통',
+        'low': '낮음'
+      };
+
+      document.getElementById('preview-title').textContent = title || '제목 없음';
+      document.getElementById('preview-content').innerHTML = content || '내용 없음';
+
+      const previewPriority = document.querySelector('.preview-priority');
+      previewPriority.textContent = priorityText[priority];
+      previewPriority.className = `preview-priority priority-${priority}`;
+
+      document.querySelector('.preview-date').textContent = new Date().toLocaleDateString('ko-KR');
+
+      document.getElementById('preview-modal').classList.remove('modal-overlay-hidden');
+    }
+  </script>
+  <script src="../asset/menu.js"></script>
+  <script src="../asset/main.js"></script>
+</body>
+
+</html>

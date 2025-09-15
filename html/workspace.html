@@ -41,11 +41,12 @@
       <div class="menu-section">
         <h3>시스템관리</h3>
         <ul>
-          <li><a href="workspace.html" class="active"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
-          <li><a href="system_user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
-          <li><a href="group_setting.html"><img src="../asset/user.svg" alt="">권한관리</a></li>
-          <li><a href="menu_setting.html"><img src="../asset/user.svg" alt="">메뉴관리</a></li>
-          <li><a href="system_stats.html"><img src="../asset/stats.svg" alt="">통계</a></li>
+          <li><a href="workspace.html" class="active">워크스페이스 관리</a></li>
+          <li><a href="system_user.html">사용자 관리</a></li>
+          <li><a href="menu_setting.html">메뉴생성관리</a></li>
+          <li><a href="group_setting.html">메뉴권한관리</a></li>
+          <li><a href="system_stats_usage.html">사용량 통계</a></li>
+          <li><a href="system_stats_user.html">사용자별 통계</a></li>
         </ul>
       </div>
 
@@ -54,21 +55,24 @@
           <h3>워크스페이스</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html"><img src="../asset/user.svg" alt="">권한관리</a></li>
-          <li><a href="workspace_menu_setting.html"><img src="../asset/user.svg" alt="">메뉴관리</a></li>
-          <li><a href="user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
-          <li><a href="logo.html"><img src="../asset/user.svg" alt="">로고 이미지 관리</a></li>
-          <li><a href="permission_settings.html"><img src="../asset/user.svg" alt="">사용메뉴 관리</a></li>
-          <li><a href="auto_delete.html"><img src="../asset/history.svg" alt="">데이터 삭제관리</a></li>
-          <li><a href="meet_template.html"><img src="../asset/history.svg" alt="">회의 템플릿 관리</a></li>
-          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
-          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
-          <li><a href="calendar.html"><img src="../asset/daily.svg" alt="">캘린더 관리</a></li>
-          <li><a href="login_history.html"><img src="../asset/history.svg" alt="">이력 관리</a></li>
-          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
-          <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
-          <li><a href="stats_usage.html"><img src="../asset/stats.svg" alt="">사용량 통계</a></li>
-          <li><a href="stats_user.html"><img src="../asset/stats.svg" alt="">사용자별 통계</a></li>
+          <li><a href="workspace_permission.html">기능권한관리</a></li>
+          <li><a href="workspace_menu_setting.html">메뉴리스트 관리</a></li>
+          <li><a href="workspace_group_setting.html">그룹권한관리</a></li>
+          <li><a href="user.html">사용자 관리</a></li>
+          <li><a href="logo.html">로고 이미지 관리</a></li>
+          <li><a href="meet_template.html">회의 템플릿 관리</a></li>
+          <li><a href="prompt.html">프롬프트 관리</a></li>
+          <li><a href="consent.html">동의서 관리</a></li>
+          <li><a href="calendar.html">캘린더 관리</a></li>
+          <li><a href="login_history.html">사용자 접속 이력</a></li>
+          <li><a href="download_history.html">다운로드 이력</a></li>
+          <li><a href="user_consent_history.html">사용자 동의 이력</a></li>
+          <li><a href="setting_change_history.html">설정변경 이력</a></li>
+          <li><a href="meeting.html">회의록 관리</a></li>
+          <li><a href="dictionary.html">사전 관리</a></li>
+          <li><a href="notice.html">공지사항 관리</a></li>
+          <li><a href="stats_usage.html">사용량 통계</a></li>
+          <li><a href="stats_user.html">사용자별 통계</a></li>
         </ul>
       </div>
     </div>
@@ -127,8 +131,6 @@
                 <th>도메인</th>
                 <th>생성자</th>
                 <th>구성원</th>
-                <th>관리자</th>
-                <th>게스트</th>
                 <th>사용자 현황</th>
                 <th>생성일</th>
                 <th>비활성일</th>
@@ -162,32 +164,7 @@
                     </div>
                   </div>
                 </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="user-status-icons">
-                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
-                    <img src="../asset/user-owner.svg" alt="소유자" class="status-icon owner" title="소유자">
-                    <img src="../asset/user-member.svg" alt="구성원" class="status-icon member" title="구성원">
-                    <img src="../asset/user-guest.svg" alt="게스트" class="status-icon guest" title="게스트">
-                  </div>
-                </td>
+                <td>총 사용자 1명<br>소유자 1</td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -222,30 +199,7 @@
                     </div>
                   </div>
                 </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="user-status-icons">
-                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
-                    <img src="../asset/user-member.svg" alt="구성원" class="status-icon member" title="구성원">
-                  </div>
-                </td>
+                <td>총 사용자 1명<br>소유자 1</td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -280,30 +234,7 @@
                     </div>
                   </div>
                 </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="user-status-icons">
-                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
-                    <img src="../asset/user-member.svg" alt="구성원" class="status-icon member" title="구성원">
-                  </div>
-                </td>
+                <td>총 사용자 1명<br>소유자 1</td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -338,30 +269,7 @@
                     </div>
                   </div>
                 </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="user-status-icons">
-                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
-                    <img src="../asset/user-owner.svg" alt="소유자" class="status-icon owner" title="소유자">
-                  </div>
-                </td>
+                <td>총 사용자 1명<br>소유자 1</td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -396,30 +304,7 @@
                     </div>
                   </div>
                 </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="user-status-icons">
-                    <img src="../asset/user-member.svg" alt="구성원" class="status-icon member" title="구성원">
-                    <img src="../asset/user-guest.svg" alt="게스트" class="status-icon guest" title="게스트">
-                  </div>
-                </td>
+                <td>총 사용자 1명<br>소유자 1</td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -454,29 +339,7 @@
                     </div>
                   </div>
                 </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="user-status-icons">
-                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
-                  </div>
-                </td>
+                <td>총 사용자 1명<br>소유자 1</td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -511,29 +374,7 @@
                     </div>
                   </div>
                 </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="user-status-icons">
-                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
-                  </div>
-                </td>
+                <td>총 사용자 1명<br>소유자 1</td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -568,32 +409,7 @@
                     </div>
                   </div>
                 </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="4" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="user-status-icons">
-                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
-                    <img src="../asset/user-owner.svg" alt="소유자" class="status-icon owner" title="소유자">
-                    <img src="../asset/user-member.svg" alt="구성원" class="status-icon member" title="구성원">
-                    <img src="../asset/user-guest.svg" alt="게스트" class="status-icon guest" title="게스트">
-                  </div>
-                </td>
+                <td>총 사용자 1명<br>소유자 1</td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -628,29 +444,7 @@
                     </div>
                   </div>
                 </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="user-status-icons">
-                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
-                  </div>
-                </td>
+                <td>총 사용자 1명<br>소유자 1</td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -685,29 +479,7 @@
                     </div>
                   </div>
                 </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="user-status-icons">
-                    <img src="../asset/user-admin.svg" alt="관리자" class="status-icon admin" title="관리자">
-                  </div>
-                </td>
+                <td>총 사용자 1명<br>소유자 1</td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -730,7 +502,6 @@
           <button class="page-btn">3</button>
           <button class="page-btn next">›</button>
           <button class="page-btn last">»</button>
-          <span class="page-info">1 of 3</span>
         </div>
       </div>
     </div>

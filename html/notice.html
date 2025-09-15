@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>공지사항 관리</title>
+  <link rel="stylesheet" href="../asset/style.css">
+</head>
+
+<body class="notice-page">
+  <div class="container">
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>시스템관리</h3>
+        <ul>
+          <li><a href="workspace.html">워크스페이스 관리</a></li>
+          <li><a href="system_user.html">사용자 관리</a></li>
+          <li><a href="menu_setting.html">메뉴생성관리</a></li>
+          <li><a href="group_setting.html">메뉴권한관리</a></li>
+          <li><a href="system_stats_usage.html">사용량 통계</a></li>
+          <li><a href="system_stats_user.html">사용자별 통계</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-header">
+          <h3>워크스페이스</h3>
+        </div>
+        <ul>
+          <li><a href="workspace_permission.html">기능권한관리</a></li>
+          <li><a href="workspace_menu_setting.html">메뉴리스트 관리</a></li>
+          <li><a href="workspace_group_setting.html">그룹권한관리</a></li>
+          <li><a href="user.html">사용자 관리</a></li>
+          <li><a href="logo.html">로고 이미지 관리</a></li>
+          <li><a href="meet_template.html">회의 템플릿 관리</a></li>
+          <li><a href="prompt.html">프롬프트 관리</a></li>
+          <li><a href="consent.html">동의서 관리</a></li>
+          <li><a href="calendar.html">캘린더 관리</a></li>
+          <li><a href="login_history.html">사용자 접속 이력</a></li>
+          <li><a href="download_history.html">다운로드 이력</a></li>
+          <li><a href="user_consent_history.html">사용자 동의 이력</a></li>
+          <li><a href="setting_change_history.html">설정변경 이력</a></li>
+          <li><a href="meeting.html">회의록 관리</a></li>
+          <li><a href="dictionary.html">사전 관리</a></li>
+          <li><a href="notice.html" class="active">공지사항 관리</a></li>
+          <li><a href="stats_usage.html">사용량 통계</a></li>
+          <li><a href="stats_user.html">사용자별 통계</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="content-header">
+        <div class="breadcrumb">공지사항 관리</div>
+      </div>
+
+      <div class="content-body">
+        <!-- 검색 영역 -->
+        <div class="search-section">
+          <div class="common-topbar">
+            <div class="tb-left">
+              <div class="date-range-wrap">
+                <span class="calendar-icon">📅</span>
+                <input type="text" id="notice-range" class="date-range" placeholder="날짜 범위를 선택하세요" readonly />
+              </div>
+              <div class="combo-select">
+                <select class="condition-select" id="notice-status">
+                  <option value="">전체 상태</option>
+                  <option value="published">게시중</option>
+                  <option value="draft">임시저장</option>
+                  <option value="scheduled">예약게시</option>
+                  <option value="expired">게시종료</option>
+                </select>
+              </div>
+              <div class="combo-select">
+                <select class="condition-select" id="notice-priority">
+                  <option value="">전체 중요도</option>
+                  <option value="high">높음</option>
+                  <option value="medium">보통</option>
+                  <option value="low">낮음</option>
+                </select>
+              </div>
+              <input type="text" class="combo-input" placeholder="제목 검색" id="notice-search" />
+              <button class="btn-submit" id="notice-search-btn">검색</button>
+              <button class="btn-outline" id="notice-reset-btn">초기화</button>
+            </div>
+            <div class="tb-right">
+              <button class="btn btn-primary" id="notice-create-btn">
+                <span>새 공지사항</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 공지사항 테이블 -->
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th width="50">
+                  <input type="checkbox" id="notice-select-all">
+                </th>
+                <th width="60">번호</th>
+                <th width="70">중요도</th>
+                <th>제목</th>
+                <th width="90">작성자</th>
+                <th width="130">게시기간</th>
+                <th width="70">상태</th>
+                <th width="70">팝업</th>
+                <th width="100">작성일</th>
+                <th width="70">관리</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" class="notice-checkbox"></td>
+                <td>5</td>
+                <td><span class="priority-badge high">높음</span></td>
+                <td>
+                  <a href="notice_detail.html?id=5" class="notice-title-link">
+                    [긴급] 시스템 점검 안내 (2024.09.20 02:00~06:00)
+                  </a>
+                </td>
+                <td>관리자</td>
+                <td>2024.09.15 ~ 2024.09.25</td>
+                <td><span class="status-badge published">게시중</span></td>
+                <td><span class="popup-badge active">팝업</span></td>
+                <td>2024.09.15 14:30</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon edit-notice" data-id="5" title="수정">
+                      <img src="../asset/edit-icon.svg" alt="수정">
+                    </button>
+                    <button class="btn-icon delete-notice" data-id="5" title="삭제">
+                      <img src="../asset/delete-icon.svg" alt="삭제">
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="notice-checkbox"></td>
+                <td>4</td>
+                <td><span class="priority-badge medium">보통</span></td>
+                <td>
+                  <a href="notice_detail.html?id=4" class="notice-title-link">
+                    AI 회의록 기능 업데이트 안내
+                  </a>
+                </td>
+                <td>시스템관리자</td>
+                <td>2024.09.10 ~ 2024.10.10</td>
+                <td><span class="status-badge published">게시중</span></td>
+                <td><span class="popup-badge inactive">-</span></td>
+                <td>2024.09.10 09:15</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon edit-notice" data-id="4" title="수정">
+                      <img src="../asset/edit-icon.svg" alt="수정">
+                    </button>
+                    <button class="btn-icon delete-notice" data-id="4" title="삭제">
+                      <img src="../asset/delete-icon.svg" alt="삭제">
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="notice-checkbox"></td>
+                <td>3</td>
+                <td><span class="priority-badge low">낮음</span></td>
+                <td>
+                  <a href="notice_detail.html?id=3" class="notice-title-link">
+                    워크스페이스 사용 가이드 안내
+                  </a>
+                </td>
+                <td>관리자</td>
+                <td>2024.09.01 ~ 2024.12.31</td>
+                <td><span class="status-badge published">게시중</span></td>
+                <td><span class="popup-badge inactive">-</span></td>
+                <td>2024.09.01 16:45</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon edit-notice" data-id="3" title="수정">
+                      <img src="../asset/edit-icon.svg" alt="수정">
+                    </button>
+                    <button class="btn-icon delete-notice" data-id="3" title="삭제">
+                      <img src="../asset/delete-icon.svg" alt="삭제">
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="notice-checkbox"></td>
+                <td>2</td>
+                <td><span class="priority-badge medium">보통</span></td>
+                <td>
+                  <a href="notice_detail.html?id=2" class="notice-title-link">
+                    개인정보 처리방침 변경 안내
+                  </a>
+                </td>
+                <td>법무팀</td>
+                <td>2024.08.25 ~ 2024.09.30</td>
+                <td><span class="status-badge expired">게시종료</span></td>
+                <td><span class="popup-badge active">팝업</span></td>
+                <td>2024.08.25 11:20</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon edit-notice" data-id="2" title="수정">
+                      <img src="../asset/edit-icon.svg" alt="수정">
+                    </button>
+                    <button class="btn-icon delete-notice" data-id="2" title="삭제">
+                      <img src="../asset/delete-icon.svg" alt="삭제">
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="notice-checkbox"></td>
+                <td>1</td>
+                <td><span class="priority-badge high">높음</span></td>
+                <td>
+                  <a href="notice_detail.html?id=1" class="notice-title-link">
+                    Timbel 서비스 오픈 안내
+                  </a>
+                </td>
+                <td>관리자</td>
+                <td>2024.08.01 ~ 2024.12.31</td>
+                <td><span class="status-badge draft">임시저장</span></td>
+                <td><span class="popup-badge inactive">-</span></td>
+                <td>2024.08.01 10:00</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon edit-notice" data-id="1" title="수정">
+                      <img src="../asset/edit-icon.svg" alt="수정">
+                    </button>
+                    <button class="btn-icon delete-notice" data-id="1" title="삭제">
+                      <img src="../asset/delete-icon.svg" alt="삭제">
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 하단 액션 영역 -->
+        <div class="table-actions">
+          <div class="bulk-actions">
+            <button class="btn btn-outline" id="bulk-delete-btn">선택 삭제</button>
+            <button class="btn btn-outline" id="bulk-publish-btn">선택 게시</button>
+            <button class="btn btn-outline" id="bulk-unpublish-btn">선택 게시중단</button>
+          </div>
+          <div class="table-info">
+            <span class="total-count">Total 5</span>
+          </div>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <div class="pagination pagination-center">
+          <button class="page-btn" disabled>‹</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 공지사항 관리 페이지 스크립트
+    document.addEventListener('DOMContentLoaded', function () {
+      // 전체 선택 체크박스
+      const selectAllCheckbox = document.getElementById('notice-select-all');
+      const itemCheckboxes = document.querySelectorAll('.notice-checkbox');
+
+      selectAllCheckbox?.addEventListener('change', function () {
+        itemCheckboxes.forEach(checkbox => {
+          checkbox.checked = this.checked;
+        });
+      });
+
+      // 개별 체크박스
+      itemCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+          const checkedCount = Array.from(itemCheckboxes).filter(cb => cb.checked).length;
+          selectAllCheckbox.checked = checkedCount === itemCheckboxes.length;
+          selectAllCheckbox.indeterminate = checkedCount > 0 && checkedCount < itemCheckboxes.length;
+        });
+      });
+
+      // 새 공지사항 버튼
+      const createBtn = document.getElementById('notice-create-btn');
+      createBtn?.addEventListener('click', function () {
+        window.location.href = 'notice_detail.html?mode=create';
+      });
+
+      // 수정 버튼
+      document.querySelectorAll('.edit-notice').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const id = this.dataset.id;
+          window.location.href = `notice_detail.html?id=${id}&mode=edit`;
+        });
+      });
+
+      // 삭제 버튼
+      document.querySelectorAll('.delete-notice').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const id = this.dataset.id;
+          if (confirm('이 공지사항을 삭제하시겠습니까?')) {
+            // 삭제 로직 (실제로는 서버 API 호출)
+            console.log('공지사항 삭제:', id);
+            alert('공지사항이 삭제되었습니다.');
+            location.reload();
+          }
+        });
+      });
+
+      // 검색 버튼
+      const searchBtn = document.getElementById('notice-search-btn');
+      searchBtn?.addEventListener('click', function () {
+        const status = document.getElementById('notice-status').value;
+        const priority = document.getElementById('notice-priority').value;
+        const searchText = document.getElementById('notice-search').value;
+
+        console.log('검색 조건:', { status, priority, searchText });
+        // 검색 로직 구현
+      });
+
+      // 초기화 버튼
+      const resetBtn = document.getElementById('notice-reset-btn');
+      resetBtn?.addEventListener('click', function () {
+        document.getElementById('notice-status').value = '';
+        document.getElementById('notice-priority').value = '';
+        document.getElementById('notice-search').value = '';
+        // 검색 결과 초기화
+        location.reload();
+      });
+
+      // 대량 작업 버튼들
+      const bulkDeleteBtn = document.getElementById('bulk-delete-btn');
+      const bulkPublishBtn = document.getElementById('bulk-publish-btn');
+      const bulkUnpublishBtn = document.getElementById('bulk-unpublish-btn');
+
+      bulkDeleteBtn?.addEventListener('click', function () {
+        const checkedItems = Array.from(itemCheckboxes).filter(cb => cb.checked);
+        if (checkedItems.length === 0) {
+          alert('삭제할 공지사항을 선택해주세요.');
+          return;
+        }
+        if (confirm(`선택된 ${checkedItems.length}개의 공지사항을 삭제하시겠습니까?`)) {
+          console.log('대량 삭제 실행');
+          alert('선택된 공지사항이 삭제되었습니다.');
+          location.reload();
+        }
+      });
+
+      bulkPublishBtn?.addEventListener('click', function () {
+        const checkedItems = Array.from(itemCheckboxes).filter(cb => cb.checked);
+        if (checkedItems.length === 0) {
+          alert('게시할 공지사항을 선택해주세요.');
+          return;
+        }
+        if (confirm(`선택된 ${checkedItems.length}개의 공지사항을 게시하시겠습니까?`)) {
+          console.log('대량 게시 실행');
+          alert('선택된 공지사항이 게시되었습니다.');
+          location.reload();
+        }
+      });
+
+      bulkUnpublishBtn?.addEventListener('click', function () {
+        const checkedItems = Array.from(itemCheckboxes).filter(cb => cb.checked);
+        if (checkedItems.length === 0) {
+          alert('게시중단할 공지사항을 선택해주세요.');
+          return;
+        }
+        if (confirm(`선택된 ${checkedItems.length}개의 공지사항을 게시중단하시겠습니까?`)) {
+          console.log('대량 게시중단 실행');
+          alert('선택된 공지사항이 게시중단되었습니다.');
+          location.reload();
+        }
+      });
+    });
+  </script>
+  <script src="../asset/menu.js"></script>
+  <script src="../asset/main.js"></script>
+</body>
+
+</html>

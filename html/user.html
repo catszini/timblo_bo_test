@@ -4,15 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI 회의록 관리자</title>
+  <title>워크스페이스 - 사용자 관리</title>
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
 
-
-
 </head>
 
-<body class="page-user">
+<body class="page-system-user user-page member-page">
   <div class="container">
     <!-- 왼쪽 메뉴바 -->
     <div class="sidebar">
@@ -43,11 +41,12 @@
       <div class="menu-section">
         <h3>시스템관리</h3>
         <ul>
-          <li><a href="workspace.html"><img src="../asset/workspace.svg" alt="">워크스페이스 관리</a></li>
-          <li><a href="system_user.html"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
-          <li><a href="group_setting.html"><img src="../asset/user.svg" alt="">권한관리</a></li>
-          <li><a href="menu_setting.html"><img src="../asset/user.svg" alt="">메뉴관리</a></li>
-          <li><a href="system_stats.html"><img src="../asset/stats.svg" alt="">통계</a></li>
+          <li><a href="workspace.html">워크스페이스 관리</a></li>
+          <li><a href="system_user.html">사용자 관리</a></li>
+          <li><a href="menu_setting.html">메뉴생성관리</a></li>
+          <li><a href="group_setting.html">메뉴권한관리</a></li>
+          <li><a href="system_stats_usage.html">사용량 통계</a></li>
+          <li><a href="system_stats_user.html">사용자별 통계</a></li>
         </ul>
       </div>
 
@@ -56,21 +55,24 @@
           <h3>워크스페이스</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html"><img src="../asset/user.svg" alt="">권한관리</a></li>
-          <li><a href="workspace_menu_setting.html"><img src="../asset/user.svg" alt="">메뉴관리</a></li>
-          <li><a href="user.html" class="active"><img src="../asset/user.svg" alt="">사용자 관리</a></li>
-          <li><a href="logo.html"><img src="../asset/user.svg" alt="">로고 이미지 관리</a></li>
-          <li><a href="permission_settings.html"><img src="../asset/user.svg" alt="">사용메뉴 관리</a></li>
-          <li><a href="auto_delete.html"><img src="../asset/history.svg" alt="">데이터 삭제관리</a></li>
-          <li><a href="meet_template.html"><img src="../asset/history.svg" alt="">회의 템플릿 관리</a></li>
-          <li><a href="prompt.html"><img src="../asset/history.svg" alt="">프롬프트 관리</a></li>
-          <li><a href="consent.html"><img src="../asset/meeting.svg" alt="">동의서 관리</a></li>
-          <li><a href="calendar.html"><img src="../asset/daily.svg" alt="">캘린더 관리</a></li>
-          <li><a href="login_history.html"><img src="../asset/history.svg" alt="">이력 관리</a></li>
-          <li><a href="meeting.html"><img src="../asset/meeting.svg" alt="">회의록 관리</a></li>
-          <li><a href="dictionary.html"><img src="../asset/dictionary.svg" alt="">사전 관리</a></li>
-          <li><a href="stats_usage.html"><img src="../asset/stats.svg" alt="">사용량 통계</a></li>
-          <li><a href="stats_user.html"><img src="../asset/stats.svg" alt="">사용자별 통계</a></li>
+          <li><a href="workspace_permission.html">기능권한관리</a></li>
+          <li><a href="workspace_menu_setting.html">메뉴리스트 관리</a></li>
+          <li><a href="workspace_group_setting.html">그룹권한관리</a></li>
+          <li><a href="user.html" class="active">사용자 관리</a></li>
+          <li><a href="logo.html">로고 이미지 관리</a></li>
+          <li><a href="meet_template.html">회의 템플릿 관리</a></li>
+          <li><a href="prompt.html">프롬프트 관리</a></li>
+          <li><a href="consent.html">동의서 관리</a></li>
+          <li><a href="calendar.html">캘린더 관리</a></li>
+          <li><a href="login_history.html">사용자 접속 이력</a></li>
+          <li><a href="download_history.html">다운로드 이력</a></li>
+          <li><a href="user_consent_history.html">사용자 동의 이력</a></li>
+          <li><a href="setting_change_history.html">설정변경 이력</a></li>
+          <li><a href="meeting.html">회의록 관리</a></li>
+          <li><a href="dictionary.html">사전 관리</a></li>
+          <li><a href="notice.html">공지사항 관리</a></li>
+          <li><a href="stats_usage.html">사용량 통계</a></li>
+          <li><a href="stats_user.html">사용자별 통계</a></li>
         </ul>
       </div>
     </div>
@@ -83,630 +85,278 @@
         </div>
       </div>
       <div class="content-body">
-        <!-- 검색 영역 -->
-        <div class="search-section">
-          <div class="common-topbar">
-            <div class="tb-left">
-              <select class="condition-select">
-                <option>전체</option>
-                <option>SK Telecom</option>
-                <option>KT</option>
-                <option>LG U+</option>
-              </select>
-              <select class="condition-select">
-                <option>전체</option>
-                <option>승인</option>
-                <option>활성</option>
-                <option>비활성</option>
-                <option>정지</option>
-                <option>탈퇴</option>
-              </select>
-              <select class="condition-select">
-                <option>전체</option>
-              </select>
-              <select class="condition-select">
-                <option>전체</option>
-              </select>
-              <div class="combo-search combo-search-inline">
-                <div class="combo-field">
-                  <div class="combo-input-wrap">
-                    <span class="mag-icon">🔍</span>
-                    <input type="text" class="combo-input" placeholder="검색어를 입력해주세요" />
+        <div class="top-section">
+          <div class="search-section">
+            <div class="common-topbar">
+              <div class="tb-left">
+                <span class="total-count">총 21개</span>
+              </div>
+              <div class="tb-right">
+                <div class="combo-search">
+                  <div class="combo-field">
+                    <select class="combo-select">
+                      <option>생성자</option>
+                      <option>전체</option>
+                      <option>이름</option>
+                      <option>이메일</option>
+                    </select>
+                    <div class="combo-input-wrap">
+                      <span class="mag-icon">🔍</span>
+                      <input type="text" class="combo-input" placeholder="검색어를 입력해주세요.">
+                    </div>
+                    <button class="append-btn">조회</button>
                   </div>
-                  <button class="append-btn">조회</button>
                 </div>
+                <button class="delete-btn">삭제</button>
+                <button class="edit-btn">수정</button>
+                <button class="new-button">생성</button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 상세 정보 영역 (풀 사이즈) -->
-        <!-- 탭 영역 -->
-        <div class="tab-container">
-          <div class="tab-nav">
-            <button class="tab-btn active" data-tab="auth">사용자</button>
-            <button class="tab-btn" data-tab="inactive">휴면</button>
-            <button class="tab-btn" data-tab="withdrawn">탈퇴</button>
-          </div>
-
-          <!-- 사용자 탭 내용 -->
-          <div class="tab-content active" id="auth-tab">
-            <div class="list-section">
-              <div class="list-header">
-                <h3>사용자 리스트 <span class="separator-bar"></span><span class="total-count">Total 23,039</span></h3>
-                <div class="list-controls">
-                  <select class="condition-select">
-                    <option>최신순</option>
-                    <option>오래된순</option>
-                    <option>이름순</option>
-                  </select>
-                </div>
-              </div>
-              <div class="table-container">
-                <table>
-                  <thead>
-                    <tr>
-                      <th><input type="checkbox" /></th>
-                      <th>번호</th>
-                      <th>사용자 그룹</th>
-                      <th>상태</th>
-                      <th>회원명</th>
-                      <th>아이디</th>
-                      <th>연락처</th>
-                      <th>관리</th>
-                      <th>삭제</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><input type="checkbox" /></td>
-                      <td>23039</td>
-                      <td>SK Telecom</td>
-                      <td>승인</td>
-                      <td>
-                        <div class="user-profile">
-                          <div class="user-initial color-blue">배</div>
-                          <span>배성진</span>
-                        </div>
-                      </td>
-                      <td>genie0111@naver.com</td>
-                      <td>010-2746-7169</td>
-                      <td>
-                        <button class="btn-detail">상세보기</button>
-                        <button class="btn-edit">수정하기</button>
-                      </td>
-                      <td>
-                        <button class="btn-delete">삭제</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" /></td>
-                      <td>23038</td>
-                      <td>SK Telecom</td>
-                      <td>승인</td>
-                      <td>
-                        <div class="user-profile">
-                          <div class="user-initial color-green">김</div>
-                          <span>김민수</span>
-                        </div>
-                      </td>
-                      <td>minsu123@timbel.com</td>
-                      <td>010-1234-5678</td>
-                      <td>
-                        <button class="btn-detail">상세보기</button>
-                        <button class="btn-edit">수정하기</button>
-                      </td>
-                      <td>
-                        <button class="btn-delete">삭제</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" /></td>
-                      <td>23037</td>
-                      <td>SK Telecom</td>
-                      <td>승인</td>
-                      <td>
-                        <div class="user-profile">
-                          <div class="user-initial color-purple">이</div>
-                          <span>이영희</span>
-                        </div>
-                      </td>
-                      <td>younghee@daum.net</td>
-                      <td>010-9876-5432</td>
-                      <td>
-                        <button class="btn-detail">상세보기</button>
-                        <button class="btn-edit">수정하기</button>
-                      </td>
-                      <td>
-                        <button class="btn-delete">삭제</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" /></td>
-                      <td>23036</td>
-                      <td>SK Telecom</td>
-                      <td>승인</td>
-                      <td>
-                        <div class="user-profile">
-                          <div class="user-initial color-orange">박</div>
-                          <span>박지민</span>
-                        </div>
-                      </td>
-                      <td>jimin.park@gmail.com</td>
-                      <td>010-5555-1234</td>
-                      <td>
-                        <button class="btn-detail">상세보기</button>
-                        <button class="btn-edit">수정하기</button>
-                      </td>
-                      <td>
-                        <button class="btn-delete">삭제</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" /></td>
-                      <td>23035</td>
-                      <td>SK Telecom</td>
-                      <td>승인</td>
-                      <td>
-                        <div class="user-profile">
-                          <div class="user-initial color-teal">최</div>
-                          <span>최수진</span>
-                        </div>
-                      </td>
-                      <td>sujin.choi@outlook.com</td>
-                      <td>010-7777-8888</td>
-                      <td>
-                        <button class="btn-detail">상세보기</button>
-                        <button class="btn-edit">수정하기</button>
-                      </td>
-                      <td>
-                        <button class="btn-delete">삭제</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="list-footer">
-                <button class="btn-submit">전체 삭제</button>
-                <div class="pagination">
-                  <button class="page-btn" disabled>이전</button>
-                  <button class="page-btn active">1</button>
-                  <button class="page-btn">2</button>
-                  <button class="page-btn">3</button>
-                  <button class="page-btn">다음</button>
-                  <span class="page-info">1/4</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 휴면 탭 내용 -->
-          <div class="tab-content" id="inactive-tab">
-            <div class="list-section">
-              <div class="list-header">
-                <h3>휴면 회원 리스트 <span class="separator-bar"></span><span class="total-count">Total 1,247</span></h3>
-                <div class="list-controls">
-                  <select class="condition-select">
-                    <option>최신순</option>
-                    <option>오래된순</option>
-                    <option>이름순</option>
-                  </select>
-                </div>
-              </div>
-              <div class="table-container">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>번호</th>
-                      <th>이름</th>
-                      <th>아이디(이메일)</th>
-                      <th>그룹</th>
-                      <th>마지막로그인</th>
-                      <th>비활성 처리일</th>
-                      <th>관리</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1247</td>
-                      <td>
-                        <div class="user-profile">
-                          <div class="user-initial color-gray">김</div>
-                          <span>김민수</span>
-                        </div>
-                      </td>
-                      <td>minsu.kim@example.com</td>
-                      <td>SK Telecom</td>
-                      <td>2024-03-15</td>
-                      <td>2024-09-15</td>
-                      <td>
-                        <button class="btn-activate">활성화</button>
-                        <button class="btn-withdraw">탈퇴</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>1246</td>
-                      <td>
-                        <div class="user-profile">
-                          <div class="user-initial color-gray">이</div>
-                          <span>이영희</span>
-                        </div>
-                      </td>
-                      <td>younghee.lee@example.com</td>
-                      <td>KT</td>
-                      <td>2024-02-28</td>
-                      <td>2024-08-28</td>
-                      <td>
-                        <button class="btn-activate">활성화</button>
-                        <button class="btn-withdraw">탈퇴</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>1245</td>
-                      <td>
-                        <div class="user-profile">
-                          <div class="user-initial color-gray">박</div>
-                          <span>박철수</span>
-                        </div>
-                      </td>
-                      <td>chulsoo.park@example.com</td>
-                      <td>LG U+</td>
-                      <td>2024-01-20</td>
-                      <td>2024-07-20</td>
-                      <td>
-                        <button class="btn-activate">활성화</button>
-                        <button class="btn-withdraw">탈퇴</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>1244</td>
-                      <td>
-                        <div class="user-profile">
-                          <div class="user-initial color-gray">정</div>
-                          <span>정수진</span>
-                        </div>
-                      </td>
-                      <td>sujin.jung@example.com</td>
-                      <td>관리자</td>
-                      <td>2023-12-10</td>
-                      <td>2024-06-10</td>
-                      <td>
-                        <button class="btn-activate">활성화</button>
-                        <button class="btn-withdraw">탈퇴</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>1243</td>
-                      <td>
-                        <div class="user-profile">
-                          <div class="user-initial color-gray">최</div>
-                          <span>최동훈</span>
-                        </div>
-                      </td>
-                      <td>donghun.choi@example.com</td>
-                      <td>SK Telecom</td>
-                      <td>2023-11-25</td>
-                      <td>2024-05-25</td>
-                      <td>
-                        <button class="btn-activate">활성화</button>
-                        <button class="btn-withdraw">탈퇴</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="list-footer">
-                <div class="pagination">
-                  <button class="page-btn" disabled>이전</button>
-                  <button class="page-btn active">1</button>
-                  <button class="page-btn">2</button>
-                  <button class="page-btn">3</button>
-                  <button class="page-btn">다음</button>
-                  <span class="page-info">1/250</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 탈퇴 탭 내용 -->
-          <div class="tab-content" id="withdrawn-tab">
-            <div class="list-section">
-              <div class="list-header">
-                <h3>탈퇴 회원 리스트 <span class="separator-bar"></span><span class="total-count">Total 892</span></h3>
-                <div class="list-controls">
-                  <select class="condition-select">
-                    <option>최신순</option>
-                    <option>오래된순</option>
-                    <option>이름순</option>
-                  </select>
-                </div>
-              </div>
-              <div class="table-container">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>번호</th>
-                      <th>이름</th>
-                      <th>아이디(이메일)</th>
-                      <th>그룹</th>
-                      <th>탈퇴일</th>
-                      <th>관리</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>892</td>
-                      <td>
-                        <div class="user-profile">
-                          <div class="user-initial color-gray">홍</div>
-                          <span>홍길동</span>
-                        </div>
-                      </td>
-                      <td>gildong.hong@example.com</td>
-                      <td>SK Telecom</td>
-                      <td>2024-12-01</td>
-                      <td>
-                        <button class="btn-restore">복구</button>
-                        <button class="btn-delete-permanent">영구삭제</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>891</td>
-                      <td>
-                        <div class="user-profile">
-                          <div class="user-initial color-gray">김</div>
-                          <span>김철수</span>
-                        </div>
-                      </td>
-                      <td>chulsoo.kim@example.com</td>
-                      <td>KT</td>
-                      <td>2024-11-28</td>
-                      <td>
-                        <button class="btn-restore">복구</button>
-                        <button class="btn-delete-permanent">영구삭제</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>890</td>
-                      <td>
-                        <div class="user-profile">
-                          <div class="user-initial color-gray">이</div>
-                          <span>이미영</span>
-                        </div>
-                      </td>
-                      <td>miyoung.lee@example.com</td>
-                      <td>LG U+</td>
-                      <td>2024-11-25</td>
-                      <td>
-                        <button class="btn-restore">복구</button>
-                        <button class="btn-delete-permanent">영구삭제</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>889</td>
-                      <td>
-                        <div class="user-profile">
-                          <div class="user-initial color-gray">박</div>
-                          <span>박영수</span>
-                        </div>
-                      </td>
-                      <td>youngsoo.park@example.com</td>
-                      <td>관리자</td>
-                      <td>2024-11-20</td>
-                      <td>
-                        <button class="btn-restore">복구</button>
-                        <button class="btn-delete-permanent">영구삭제</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>888</td>
-                      <td>
-                        <div class="user-profile">
-                          <div class="user-initial color-gray">정</div>
-                          <span>정하나</span>
-                        </div>
-                      </td>
-                      <td>hana.jung@example.com</td>
-                      <td>SK Telecom</td>
-                      <td>2024-11-15</td>
-                      <td>
-                        <button class="btn-restore">복구</button>
-                        <button class="btn-delete-permanent">영구삭제</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="list-footer">
-                <div class="pagination">
-                  <button class="page-btn" disabled>이전</button>
-                  <button class="page-btn active">1</button>
-                  <button class="page-btn">2</button>
-                  <button class="page-btn">3</button>
-                  <button class="page-btn">다음</button>
-                  <span class="page-info">1/179</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="stats-and-detail-section">
-          <div class="detail-form-section" style="width: 100%; max-width: 100%;">
-            <div class="detail-form-header">
-              <h3>상세내역</h3>
-            </div>
-            <div class="detail-form-content">
-              <!-- 첫 번째 행 -->
-              <div class="detail-form-row">
-                <div class="detail-form-group">
-                  <label>• 사용자ID</label>
-                  <input type="text" class="detail-input" value="genie0111" />
-                </div>
-                <div class="detail-form-group">
-                  <label>비밀번호</label>
-                  <input type="password" class="detail-input" value="password123" />
-                </div>
-                <div class="detail-form-group">
-                  <label>비밀번호확인</label>
-                  <input type="password" class="detail-input" value="password123" />
-                </div>
-                <div class="detail-form-group">
-                  <label>통합인증</label>
-                  <input type="text" class="detail-input" value="사용" />
-                </div>
-              </div>
-
-              <!-- 두 번째 행 -->
-              <div class="detail-form-row">
-                <div class="detail-form-group">
-                  <label>성명</label>
-                  <input type="text" class="detail-input" value="배성진" />
-                </div>
-                <div class="detail-form-group">
-                  <label>• 권한</label>
-                  <select class="detail-select">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th><input type="checkbox" class="select-all"></th>
+                <th>워크스페이스</th>
+                <th>이메일</th>
+                <th>이름</th>
+                <th>권한</th>
+                <th>비밀번호 초기화</th>
+                <th>삭제</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
+                  </div>
+                </td>
+                <td>
+                  <select class="permission-select">
                     <option>관리자</option>
                     <option>사용자</option>
-                    <option>게스트</option>
+                    <option>뷰어</option>
                   </select>
-                </div>
-                <div class="detail-form-group">
-                  <label>• 소속부서</label>
-                  <select class="detail-select">
-                    <option>IT부서</option>
-                    <option>총무부</option>
-                    <option>영업부</option>
-                  </select>
-                </div>
-                <div class="detail-form-group">
-                  <label>담당업무</label>
-                  <input type="text" class="detail-input" value="시스템 관리" />
-                </div>
-              </div>
-
-              <!-- 세 번째 행 -->
-              <div class="detail-form-row">
-                <div class="detail-form-group">
-                  <label>직책</label>
-                  <select class="detail-select">
-                    <option>팀장</option>
-                    <option>대리</option>
-                    <option>사원</option>
-                  </select>
-                </div>
-                <div class="detail-form-group">
-                  <label>휴대전화</label>
-                  <input type="text" class="detail-input" value="010-2746-7169" />
-                </div>
-                <div class="detail-form-group">
-                  <label>• 이메일</label>
-                  <input type="email" class="detail-input" value="genie0111@naver.com" />
-                </div>
-                <div class="detail-form-group">
-                  <label>사용여부</label>
-                  <div class="toggle-buttons">
-                    <button class="toggle-btn active">사용</button>
-                    <button class="toggle-btn">미사용</button>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
                   </div>
-                </div>
-              </div>
-            </div>
+                </td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
+                  </div>
+                </td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
+                  </div>
+                </td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
+                  </div>
+                </td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
+                  </div>
+                </td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
+                  </div>
+                </td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
+                  </div>
+                </td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-badge">S</div>
+                  SK Telecom
+                </td>
+                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">홍길동</span>
+                  </div>
+                </td>
+                <td>
+                  <select class="permission-select">
+                    <option>관리자</option>
+                    <option>사용자</option>
+                    <option>뷰어</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="list-footer">
+          <div class="pagination">
+            <button class="page-btn prev">‹</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+            <button class="page-btn">6</button>
+            <button class="page-btn">7</button>
+            <button class="page-btn">8</button>
+            <button class="page-btn">9</button>
+            <button class="page-btn">10</button>
+            <span class="page-dots">...</span>
+            <button class="page-btn">301</button>
+            <button class="page-btn next">›</button>
+          </div>
+          <div class="pagination-info">
+            <span>1</span> of <span>301</span>
           </div>
         </div>
-
-        <!-- 사용자 관리 액션 버튼 영역 -->
-        <div class="user-action-section">
-          <div class="user-action-content">
-            <span class="detail-info">사용자를의 비밀번호를 초기화 ⓘ</span>
-            <button class="btn-orange">초기</button>
-            <button class="btn-gray">저장</button>
-            <button class="btn-red">삭제</button>
-          </div>
-        </div>
-
       </div>
     </div>
-  </div>
 
-  <!-- 비밀번호 초기화 모달 -->
-  <div class="modal-overlay modal-overlay-hidden" id="reset-modal">
-    <div class="modal-container reset-modal">
-      <div class="modal-content">
-        <div class="reset-title">비밀번호 초기화</div>
-        <div class="reset-subtitle">아래 사용자 계정의 비밀번호를 초기화합니다.</div>
-        <div class="reset-info">
-          <div id="reset-name" class="reset-name-bold">홍길동</div>
-          <div id="reset-email" class="reset-email-color">gildong.hong@timbel.com</div>
-        </div>
-        <div class="reset-error">
-          <span>
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="9" cy="9" r="9" fill="#F9463B" />
-              <path
-                d="M9 5C8.44604 5 8 5.41173 8 5.92308V10.3077C8 10.819 8.44604 11.2308 9 11.2308C9.55396 11.2308 10 10.819 10 10.3077V5.92308C10 5.41173 9.55396 5 9 5ZM9 12.1538C8.44604 12.1538 8 12.5656 8 13.0769C8 13.5883 8.44604 14 9 14C9.55396 14 10 13.5883 10 13.0769C10 12.5656 9.55396 12.1538 9 12.1538Z"
-                fill="white" />
-            </svg>
-          </span>
-          <span>초기화 비밀번호는 ‘0000’ 입니다.</span>
-        </div>
-        <div class="reset-actions">
-          <button class="btn-outline" id="reset-cancel">취소</button>
-          <button class="btn-submit" id="reset-confirm">초기화</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // 체크박스 기능 구현
-      const selectAllCheckbox = document.querySelector('thead input[type="checkbox"]');
-      const rowCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]');
-
-      // 전체 선택/해제 기능
-      if (selectAllCheckbox) {
-        selectAllCheckbox.addEventListener('change', function () {
-          const isChecked = this.checked;
-          rowCheckboxes.forEach(checkbox => {
-            checkbox.checked = isChecked;
-            const row = checkbox.closest('tr');
-            if (row) {
-              row.classList.toggle('selected', isChecked);
-            }
-          });
-        });
-      }
-
-      // 개별 체크박스 변경 시 행 스타일 변경 및 전체 선택 체크박스 상태 업데이트
-      rowCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function () {
-          const row = this.closest('tr');
-          if (row) {
-            row.classList.toggle('selected', this.checked);
-          }
-
-          // 전체 선택 체크박스 상태 업데이트
-          if (selectAllCheckbox) {
-            const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
-            const totalCount = rowCheckboxes.length;
-
-            if (checkedCount === 0) {
-              selectAllCheckbox.checked = false;
-              selectAllCheckbox.indeterminate = false;
-            } else if (checkedCount === totalCount) {
-              selectAllCheckbox.checked = true;
-              selectAllCheckbox.indeterminate = false;
-            } else {
-              selectAllCheckbox.checked = false;
-              selectAllCheckbox.indeterminate = true;
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <script src="../asset/menu.js"></script>
-  <script src="../asset/main.js"></script>
+    <script src="../asset/menu.js"></script>
+    <script src="../asset/main.js"></script>
 </body>
 
 </html>

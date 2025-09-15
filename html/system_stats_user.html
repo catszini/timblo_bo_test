@@ -4,8 +4,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>통계 - 사용자별 통계</title>
+  <title>시스템관리 - 사용자별 통계</title>
   <link rel="stylesheet" href="../asset/style.css">
+  <style>
+    .table-container table td {
+      padding: 12px 8px;
+    }
+
+    /* 워크스페이스 컬럼 텍스트 오버플로우 처리 */
+    .table-container table td:nth-child(1) {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 이메일 컬럼 텍스트 오버플로우 처리 */
+    .table-container table td:nth-child(3) {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 0;
+    }
+
+    /* 워크스페이스 이름 영역 스타일 */
+    .workspace-name {
+      display: flex;
+      align-items: center;
+    }
+
+    .workspace-name span {
+      margin-left: 8px;
+    }
+
+    /* 사용자 아이콘 영역은 정상 표시되도록 */
+    .table-container table td .user-icon {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .table-container table td .user-icon span {
+      margin-left: 8px;
+    }
+  </style>
 </head>
 
 <body>
@@ -44,7 +85,7 @@
           <li><a href="menu_setting.html">메뉴생성관리</a></li>
           <li><a href="group_setting.html">메뉴권한관리</a></li>
           <li><a href="system_stats_usage.html">사용량 통계</a></li>
-          <li><a href="system_stats_user.html">사용자별 통계</a></li>
+          <li><a href="system_stats_user.html" class="active">사용자별 통계</a></li>
         </ul>
       </div>
 
@@ -69,7 +110,7 @@
           <li><a href="dictionary.html">사전 관리</a></li>
           <li><a href="notice.html">공지사항 관리</a></li>
           <li><a href="stats_usage.html">사용량 통계</a></li>
-          <li><a href="stats_user.html" class="active">사용자별 통계</a></li>
+          <li><a href="stats_user.html">사용자별 통계</a></li>
         </ul>
       </div>
     </div>
@@ -77,7 +118,7 @@
     <!-- 콘텐츠 영역 -->
     <div class="content">
       <div class="content-header">
-        <div class="breadcrumb">사용자별 통계</div>
+        <div class="breadcrumb">시스템관리 > 사용자별 통계</div>
       </div>
 
       <div class="content-body">
@@ -108,6 +149,7 @@
                     <option>전체</option>
                     <option>이름</option>
                     <option>이메일</option>
+                    <option>워크스페이스</option>
                   </select>
                   <div class="divider"></div>
                   <div class="combo-input-wrap">
@@ -120,9 +162,8 @@
             </div>
             <div class="tb-right tb-right-full">
               <div class="right-tail">
-                <div class="total-count">총 10건</div>
-                <button class="btn"
-                  style="background-color: #10B981; color: white; border: 1px solid #10B981; display: flex; align-items: center; gap: 8px;">
+                <div class="total-count">총 47건</div>
+                <button class="btn" style="background-color: #10B981; color: white; border: 1px solid #10B981;">
                   엑셀 다운로드
                 </button>
                 <select class="condition-select">
@@ -136,9 +177,19 @@
         </div>
 
         <div class="table-container">
-          <table>
+          <table style="table-layout: fixed; width: 100%;">
+            <colgroup>
+              <col style="width: 18%;">
+              <col style="width: 12%;">
+              <col style="width: 20%;">
+              <col style="width: 12%;">
+              <col style="width: 12%;">
+              <col style="width: 13%;">
+              <col style="width: 13%;">
+            </colgroup>
             <thead>
               <tr>
+                <th>워크스페이스</th>
                 <th>이름</th>
                 <th>이메일</th>
                 <th>회의록 건수</th>
@@ -150,65 +201,101 @@
             <tbody>
               <tr>
                 <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-teal">S</div>
+                    <span>SK Telecom</span>
+                  </div>
+                </td>
+                <td>
                   <div class="user-icon">
                     <div class="user-initial color-blue">한</div><span>한진희</span>
                   </div>
                 </td>
-                <td>jinhee@timbel.net</td>
+                <td>jinhee@sktelecom.com</td>
                 <td>0</td>
                 <td>00:00:00</td>
                 <td>0</td>
                 <td>0</td>
               </tr>
               <tr>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-teal">S</div>
+                    <span>SK Telecom</span>
+                  </div>
+                </td>
                 <td>
                   <div class="user-icon">
                     <div class="user-initial color-rose">호</div><span>호랑</span>
                   </div>
                 </td>
-                <td>luckytrack@timbel.net</td>
-                <td>20</td>
-                <td>05:15:58</td>
-                <td>2,389,270</td>
-                <td>8</td>
+                <td>luckytrack@sktelecom.com</td>
+                <td>40</td>
+                <td>10:31:56</td>
+                <td>4,778,540</td>
+                <td>16</td>
               </tr>
               <tr>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-indigo">S</div>
+                    <span>SK Hynix</span>
+                  </div>
+                </td>
                 <td>
                   <div class="user-icon">
                     <div class="user-initial color-green">이</div><span>이세영</span>
                   </div>
                 </td>
-                <td>seyoung67@timbel.net</td>
+                <td>seyoung67@skhynix.com</td>
                 <td>0</td>
                 <td>00:00:00</td>
                 <td>0</td>
                 <td>0</td>
               </tr>
               <tr>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-blue">K</div>
+                    <span>KT</span>
+                  </div>
+                </td>
                 <td>
                   <div class="user-icon">
                     <div class="user-initial color-blue">j</div><span>june</span>
                   </div>
                 </td>
-                <td>june@timbel.net</td>
-                <td>7</td>
-                <td>00:02:19</td>
-                <td>7,740</td>
-                <td>1</td>
+                <td>june@kt.com</td>
+                <td>14</td>
+                <td>00:04:38</td>
+                <td>15,480</td>
+                <td>2</td>
               </tr>
               <tr>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-rose">L</div>
+                    <span>LG U+</span>
+                  </div>
+                </td>
                 <td>
                   <div class="user-icon">
                     <div class="user-initial color-teal">이</div><span>이인호</span>
                   </div>
                 </td>
-                <td>mr.lee@timbel.net</td>
+                <td>mr.lee@lguplus.co.kr</td>
                 <td>0</td>
                 <td>00:00:00</td>
                 <td>0</td>
                 <td>0</td>
               </tr>
               <tr>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-emerald">T</div>
+                    <span>Timbel_Mk</span>
+                  </div>
+                </td>
                 <td>
                   <div class="user-icon">
                     <div class="user-initial color-orange">김</div><span>김해성</span>
@@ -222,17 +309,29 @@
               </tr>
               <tr>
                 <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-emerald">T</div>
+                    <span>Timbel_Mk</span>
+                  </div>
+                </td>
+                <td>
                   <div class="user-icon">
                     <div class="user-initial color-slate">팀</div><span>팀벨_배인섭</span>
                   </div>
                 </td>
                 <td>bis0212@timbel.net</td>
-                <td>1</td>
-                <td>00:40:03</td>
-                <td>65,588</td>
-                <td>1</td>
+                <td>2</td>
+                <td>01:20:06</td>
+                <td>131,176</td>
+                <td>2</td>
               </tr>
               <tr>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-emerald">T</div>
+                    <span>Timbel_Mk</span>
+                  </div>
+                </td>
                 <td>
                   <div class="user-icon">
                     <div class="user-initial color-red">D</div><span>Dokyeong</span>
@@ -246,6 +345,12 @@
               </tr>
               <tr>
                 <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-emerald">T</div>
+                    <span>Timbel_Mk</span>
+                  </div>
+                </td>
+                <td>
                   <div class="user-icon">
                     <div class="user-initial color-pink">T</div><span>TimbelTest05</span>
                   </div>
@@ -257,6 +362,12 @@
                 <td>0</td>
               </tr>
               <tr>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-emerald">T</div>
+                    <span>Timbel_Mk</span>
+                  </div>
+                </td>
                 <td>
                   <div class="user-icon">
                     <div class="user-initial color-teal">T</div><span>TimbelTest04</span>
@@ -276,6 +387,9 @@
           <button class="page-btn" disabled>‹</button>
           <button class="page-btn active">1</button>
           <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">4</button>
+          <button class="page-btn">5</button>
           <button class="page-btn">›</button>
         </div>
       </div>
@@ -288,7 +402,7 @@
       const excelBtn = document.querySelector('.btn[style*="background-color: #10B981"]');
       if (excelBtn && excelBtn.textContent.includes('엑셀 다운로드')) {
         excelBtn.addEventListener('click', function () {
-          alert('사용자별 통계 데이터를 엑셀로 다운로드합니다.');
+          alert('시스템 전체 사용자별 통계 데이터를 엑셀로 다운로드합니다.');
           // 실제 다운로드 로직은 여기에 구현
         });
       }
