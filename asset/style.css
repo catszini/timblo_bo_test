@@ -328,9 +328,20 @@ tbody tr:hover td {
 }
 
 /* 워크스페이스 관리 - 테이블 헤더와 내용 가운데 정렬 */
-.page-workspace table th,
+.page-workspace table th {
+  text-align: center;
+  padding: 12px 8px;
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #292A2B;
+  border-bottom: 1px solid #E5E5E5;
+}
+
 .page-workspace table td {
   text-align: center;
+  padding: 8px;
+  border-bottom: 1px solid #F1F3F4;
+  vertical-align: middle;
 }
 
 /* 워크스페이스 관리 - 사용자 현황 아이콘 스타일 (겹침 효과) */
@@ -658,11 +669,11 @@ tbody tr:hover td {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 12px;
-  margin: 2px 0;
+  padding: 6px 8px;
+  margin: 1px 0;
   background: transparent;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: grab;
   transition: all 0.2s ease;
 }
@@ -677,7 +688,7 @@ tbody tr:hover td {
 }
 
 .page-workspace-menu-setting .menu-text {
-  font-size: 14px;
+  font-size: 13px;
   color: #495057;
   font-weight: 500;
   flex: 1;
@@ -687,10 +698,10 @@ tbody tr:hover td {
   background: none;
   border: none;
   color: #6c757d;
-  font-size: 16px;
+  font-size: 14px;
   cursor: grab;
-  padding: 4px;
-  border-radius: 4px;
+  padding: 2px;
+  border-radius: 3px;
   transition: all 0.2s ease;
   opacity: 0.7;
 }
@@ -1479,7 +1490,7 @@ body {
 .search-section .combo-select {
     padding: 8px 12px;
     border: none;
-    border-right: 1px solid #E5E5E5;
+
     background: #fff;
     font-size: 14px;
     cursor: pointer;
@@ -3290,7 +3301,7 @@ input:checked + .slider:before {
 }
 
 .page-workspace-detail .perm-table-narrow td {
-  padding: 16px;
+  padding: 10px 16px;
   border-bottom: 1px solid #F1F1F1;
   vertical-align: top;
 }
@@ -5090,7 +5101,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 .group-setting-table th {
   background-color: #F8FAFC;
-  padding: 16px 20px;
+  padding: 12px 16px;
   text-align: center;
   font-weight: 600;
   color: #292A2B;
@@ -5100,7 +5111,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 .group-setting-table td {
   background-color: white;
-  padding: 16px 20px;
+  padding: 10px 16px;
   text-align: center;
   border-bottom: 1px solid #F3F4F6;
   color: #374151;
@@ -7790,6 +7801,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   position: relative;
   display: inline-block;
   min-width: 140px;
+  padding: 0;
 }
 
 .notice-page .combo-select select {
@@ -7864,7 +7876,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 /* 공지사항 테이블 스타일 */
 .notice-page .table-container {
   background: white;
-  border: 1px solid #E5E5E5;
+
   border-radius: 8px;
   overflow: hidden;
 }
@@ -7893,11 +7905,13 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   white-space: nowrap;
 }
 
-.notice-page table td:nth-child(4) {
+.notice-page table td:nth-child(3) {
   text-align: left;
   white-space: normal;
   word-break: break-word;
   max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .notice-page table tbody tr:hover {
@@ -7969,7 +7983,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 0;
+
 }
 
 .notice-page .bulk-actions {
@@ -8082,46 +8096,32 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   color: #9CA3AF;
 }
 
-/* 공지사항 페이지네이션 스타일 */
+
+/* 공지사항 페이지 하단 영역 스타일 */
+.notice-page .table-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.notice-page .bulk-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.notice-page .list-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+}
+
 .notice-page .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  margin-top: 24px;
-  padding: 20px 0;
-}
-
-.notice-page .page-btn {
-  width: 32px;
-  height: 32px;
-  border: 1px solid #ddd;
-  background: white;
-  color: #666;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-}
-
-.notice-page .page-btn:hover:not(:disabled) {
-  background: #f8f9fa;
-  border-color: #0066FF;
-  color: #0066FF;
-}
-
-.notice-page .page-btn.active {
-  background: #0066FF;
-  border-color: #0066FF;
-  color: white;
-}
-
-.notice-page .page-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+  gap: 4px;
+  margin-top: 0;
 }
 
 /* 공지사항 페이지 반응형 */
@@ -8721,6 +8721,25 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   margin-top: 24px;
   display: flex;
   justify-content: flex-end;
+  gap: 12px;
+}
+
+.page-workspace-permission .create-permission {
+  padding: 10px 24px;
+  background: white;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.page-workspace-permission .create-permission:hover {
+  background: #f8f9fa;
+  border-color: #0066FF;
+  color: #0066FF;
 }
 
 .page-workspace-permission .save-permissions {

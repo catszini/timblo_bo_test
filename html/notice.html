@@ -97,14 +97,6 @@
                   <option value="expired">게시종료</option>
                 </select>
               </div>
-              <div class="combo-select">
-                <select class="condition-select" id="notice-priority">
-                  <option value="">전체 중요도</option>
-                  <option value="high">높음</option>
-                  <option value="medium">보통</option>
-                  <option value="low">낮음</option>
-                </select>
-              </div>
               <input type="text" class="combo-input" placeholder="제목 검색" id="notice-search" />
               <button class="btn-submit" id="notice-search-btn">검색</button>
               <button class="btn-outline" id="notice-reset-btn">초기화</button>
@@ -126,21 +118,19 @@
                   <input type="checkbox" id="notice-select-all">
                 </th>
                 <th width="60">번호</th>
-                <th width="70">중요도</th>
-                <th>제목</th>
-                <th width="90">작성자</th>
-                <th width="130">게시기간</th>
-                <th width="70">상태</th>
+                <th width="300">제목</th>
+                <th width="100">작성자</th>
+                <th width="140">게시기간</th>
+                <th width="80">상태</th>
                 <th width="70">팝업</th>
-                <th width="100">작성일</th>
-                <th width="70">관리</th>
+                <th width="110">작성일</th>
+                <th width="80">관리</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><input type="checkbox" class="notice-checkbox"></td>
                 <td>5</td>
-                <td><span class="priority-badge high">높음</span></td>
                 <td>
                   <a href="notice_detail.html?id=5" class="notice-title-link">
                     [긴급] 시스템 점검 안내 (2024.09.20 02:00~06:00)
@@ -165,7 +155,6 @@
               <tr>
                 <td><input type="checkbox" class="notice-checkbox"></td>
                 <td>4</td>
-                <td><span class="priority-badge medium">보통</span></td>
                 <td>
                   <a href="notice_detail.html?id=4" class="notice-title-link">
                     AI 회의록 기능 업데이트 안내
@@ -190,7 +179,6 @@
               <tr>
                 <td><input type="checkbox" class="notice-checkbox"></td>
                 <td>3</td>
-                <td><span class="priority-badge low">낮음</span></td>
                 <td>
                   <a href="notice_detail.html?id=3" class="notice-title-link">
                     워크스페이스 사용 가이드 안내
@@ -215,7 +203,6 @@
               <tr>
                 <td><input type="checkbox" class="notice-checkbox"></td>
                 <td>2</td>
-                <td><span class="priority-badge medium">보통</span></td>
                 <td>
                   <a href="notice_detail.html?id=2" class="notice-title-link">
                     개인정보 처리방침 변경 안내
@@ -240,7 +227,6 @@
               <tr>
                 <td><input type="checkbox" class="notice-checkbox"></td>
                 <td>1</td>
-                <td><span class="priority-badge high">높음</span></td>
                 <td>
                   <a href="notice_detail.html?id=1" class="notice-title-link">
                     Timbel 서비스 오픈 안내
@@ -273,18 +259,19 @@
             <button class="btn btn-outline" id="bulk-publish-btn">선택 게시</button>
             <button class="btn btn-outline" id="bulk-unpublish-btn">선택 게시중단</button>
           </div>
-          <div class="table-info">
-            <span class="total-count">Total 5</span>
-          </div>
         </div>
 
         <!-- 페이지네이션 -->
-        <div class="pagination pagination-center">
-          <button class="page-btn" disabled>‹</button>
-          <button class="page-btn active">1</button>
-          <button class="page-btn">2</button>
-          <button class="page-btn">3</button>
-          <button class="page-btn">›</button>
+        <div class="list-footer">
+          <div class="pagination">
+            <button class="page-btn prev">‹</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+            <button class="page-btn next">›</button>
+          </div>
         </div>
       </div>
     </div>
