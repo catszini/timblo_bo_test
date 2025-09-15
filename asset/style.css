@@ -1003,8 +1003,8 @@ body {
 }
 
 .menu-section {
-    margin-bottom: 24px;
-    padding-top: 24px;
+    margin-bottom: 16px;
+    padding-top: 16px;
 }
 
 .menu-section:last-child {
@@ -1016,7 +1016,7 @@ body {
     padding: 0;
     font-size: 16px;
     color: #292A2B;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     font-weight: 600;
 }
 
@@ -1027,7 +1027,7 @@ body {
 .menu-section li a {
     display: flex;
     align-items: center;
-    padding: 12px;
+    padding: 8px 12px;
     color: #333;
     text-decoration: none;
     font-size: 14px;
