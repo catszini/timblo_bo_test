@@ -298,11 +298,6 @@
           </div>
         </div>
 
-        <!-- 메뉴 미리보기 하단 버튼들 (외곽선 밖) -->
-        <div class="preview-actions-external">
-          <button class="btn-reset">새로고침</button>
-          <button class="btn-save">저장</button>
-        </div>
       </div>
     </div>
   </div>
@@ -384,29 +379,6 @@
         // 페이지 로드 시 초기 상태 설정
         updateSelectAllState();
       }
-
-      // 하단 버튼 기능
-      const resetBtn = document.querySelector('.btn-reset');
-      const saveBtn = document.querySelector('.btn-save');
-
-      if (resetBtn) {
-        resetBtn.addEventListener('click', function () {
-          // 페이지 새로고침
-          location.reload();
-        });
-      }
-
-      if (saveBtn) {
-        saveBtn.addEventListener('click', function () {
-          const selectedRow = document.querySelector('.group-setting-table tbody tr.selected');
-          if (selectedRow) {
-            const menuName = selectedRow.querySelector('td:nth-child(4)').textContent.trim();
-            alert(`${menuName}의 메뉴 설정이 저장되었습니다.`);
-          } else {
-            alert('메뉴를 선택해주세요.');
-          }
-        });
-      }
     });
   </script>
 
@@ -485,29 +457,6 @@
 
         // 페이지 로드 시 초기 상태 설정
         updateSelectAllState();
-      }
-
-      // 하단 버튼 기능
-      const resetBtn = document.querySelector('.btn-reset');
-      const saveBtn = document.querySelector('.btn-save');
-
-      if (resetBtn) {
-        resetBtn.addEventListener('click', function () {
-          // 페이지 새로고침
-          location.reload();
-        });
-      }
-
-      if (saveBtn) {
-        saveBtn.addEventListener('click', function () {
-          const selectedRow = document.querySelector('.group-setting-table tbody tr.selected');
-          if (selectedRow) {
-            const menuName = selectedRow.querySelector('td:nth-child(4)').textContent.trim();
-            alert(`${menuName}의 메뉴 설정이 저장되었습니다.`);
-          } else {
-            alert('메뉴를 선택해주세요.');
-          }
-        });
       }
 
       // 초기화 및 저장 버튼 기능
