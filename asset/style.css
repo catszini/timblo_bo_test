@@ -769,14 +769,12 @@ table td {
 
 /* 메뉴 구분선 스타일 */
 .page-workspace-menu-setting .menu-separator {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 12px;
+
+
   margin: 8px 0;
   background: #f8f9fa;
   border: 1px dashed #dee2e6;
-  border-radius: 4px;
+
 }
 
 .page-workspace-menu-setting .separator-text {
@@ -8569,6 +8567,15 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 .notice-detail-page .dismiss-checkbox:checked + label {
   color: #0066FF;
   font-weight: 500;
+}
+
+/* 사이드바 메뉴 구분선 스타일 */
+.menu-separator {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 0 16px;
+  padding: 0;
+  list-style: none;
 }
 
 /* 통계 페이지 tb-right 스타일 */
