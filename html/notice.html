@@ -40,8 +40,8 @@
         <ul>
           <li><a href="workspace.html">워크스페이스 관리</a></li>
           <li><a href="system_user.html">사용자 관리</a></li>
-          <li><a href="menu_setting.html">메뉴생성관리</a></li>
-          <li><a href="group_setting.html">메뉴권한관리</a></li>
+          <li><a href="menu_setting.html">메뉴 생성 관리</a></li>
+          <li><a href="group_setting.html">메뉴 권한 관리</a></li>
           <li><a href="system_stats_usage.html">사용량 통계</a></li>
           <li><a href="system_stats_user.html">사용자별 통계</a></li>
         </ul>
@@ -52,9 +52,9 @@
           <h3>워크스페이스</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html">기능권한관리</a></li>
+          <li><a href="workspace_permission.html">기능 권한 관리</a></li>
           <li><a href="workspace_menu_setting.html">메뉴리스트 관리</a></li>
-          <li><a href="workspace_group_setting.html">그룹권한관리</a></li>
+          <li><a href="workspace_group_setting.html">그룹 권한 관리</a></li>
           <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 이미지 관리</a></li>
           <li><a href="meet_template.html">회의 템플릿 관리</a></li>
@@ -86,25 +86,49 @@
             <div class="tb-left">
               <div class="date-range-wrap">
                 <span class="calendar-icon">📅</span>
-                <input type="text" id="notice-range" class="date-range" placeholder="날짜 범위를 선택하세요" readonly />
+                <input type="text" id="consent-range" class="date-range" placeholder="날짜 범위를 선택하세요" readonly />
+                <div class="range-panel" id="consent-panel">
+                  <div class="calendar-range">
+                    <div class="calendar" id="consent-cal-start"></div>
+                    <div class="calendar" id="consent-cal-end"></div>
+                  </div>
+                  <div class="range-panel-info">
+                    <span id="consent-picked">-</span>
+                    <div class="range-actions">
+                      <button class="btn-outline" id="consent-cancel">취소</button>
+                      <button class="btn-submit" id="consent-apply">적용</button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="combo-select">
-                <select class="condition-select" id="notice-status">
-                  <option value="">전체 상태</option>
-                  <option value="published">게시중</option>
-                  <option value="draft">임시저장</option>
-                  <option value="scheduled">예약게시</option>
-                  <option value="expired">게시종료</option>
-                </select>
-              </div>
-              <input type="text" class="combo-input" placeholder="제목 검색" id="notice-search" />
-              <button class="btn-submit" id="notice-search-btn">검색</button>
-              <button class="btn-outline" id="notice-reset-btn">초기화</button>
+
             </div>
             <div class="tb-right">
-              <button class="btn btn-primary" id="notice-create-btn">
-                <span>새 공지사항</span>
-              </button>
+              <div class="right-tail">
+                <select class="condition-select">
+                  <option>10개씩 보기</option>
+                  <option>20개씩 보기</option>
+                  <option>50개씩 보기</option>
+                </select>
+                <div class="combo-search combo-search-wide">
+                  <div class="combo-field">
+                    <select class="combo-select">
+                      <option>전체</option>
+                      <option>구분</option>
+                      <option>이름</option>
+                      <option>이메일</option>
+                      <option>제목</option>
+                      <option>버전</option>
+                    </select>
+                    <div class="divider"></div>
+                    <div class="combo-input-wrap">
+                      <span class="mag-icon">🔍</span>
+                      <input type="text" class="combo-input" placeholder="검색어를 입력해주세요." />
+                    </div>
+                    <button class="append-btn">조회</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

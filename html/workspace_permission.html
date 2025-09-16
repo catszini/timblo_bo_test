@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>워크스페이스 기능권한관리</title>
+  <title>워크스페이스 기능 권한 관리</title>
   <link rel="stylesheet" href="../asset/style.css">
 </head>
 
@@ -40,8 +40,8 @@
         <ul>
           <li><a href="workspace.html">워크스페이스 관리</a></li>
           <li><a href="system_user.html">사용자 관리</a></li>
-          <li><a href="menu_setting.html">메뉴생성관리</a></li>
-          <li><a href="group_setting.html">메뉴권한관리</a></li>
+          <li><a href="menu_setting.html">메뉴 생성 관리</a></li>
+          <li><a href="group_setting.html">메뉴 권한 관리</a></li>
           <li><a href="system_stats_usage.html">사용량 통계</a></li>
           <li><a href="system_stats_user.html">사용자별 통계</a></li>
         </ul>
@@ -52,9 +52,9 @@
           <h3>워크스페이스</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html" class="active">기능권한관리</a></li>
+          <li><a href="workspace_permission.html" class="active">기능 권한 관리</a></li>
           <li><a href="workspace_menu_setting.html">메뉴리스트 관리</a></li>
-          <li><a href="workspace_group_setting.html">그룹권한관리</a></li>
+          <li><a href="workspace_group_setting.html">그룹 권한 관리</a></li>
           <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 이미지 관리</a></li>
           <li><a href="meet_template.html">회의 템플릿 관리</a></li>
@@ -76,11 +76,11 @@
 
     <div class="content">
       <div class="content-header">
-        <div class="breadcrumb">기능권한관리</div>
+        <div class="breadcrumb">기능 권한 관리</div>
       </div>
 
       <div class="content-body">
-        <!-- 기능권한관리 테이블 -->
+        <!-- 기능 권한 관리 테이블 -->
         <div class="permission-table-container">
           <table class="permission-table">
             <thead>
@@ -292,8 +292,8 @@
                         <option value="custom">직접 입력</option>
                       </select>
                     </div>
-                    <input type="text" class="custom-input" id="content-retention-input" placeholder="일 수 입력"
-                      style="display: none;">
+                    <input type="text" class="custom-input" id="content-retention-input" style="display: none;">
+                    <span class="input-unit" style="display: none;">일 후</span>
                   </div>
                 </td>
                 <td class="feature-description">원본 콘텐츠 보존기간을 설정합니다.</td>
@@ -311,14 +311,14 @@
                         <option value="custom">직접 입력</option>
                       </select>
                     </div>
-                    <input type="text" class="custom-input" id="voice-retention-input" placeholder="연도 입력"
-                      style="display: none;">
+                    <input type="text" class="custom-input" id="voice-retention-input" style="display: none;">
+                    <span class="input-unit" style="display: none;">일 후</span>
                   </div>
                 </td>
                 <td class="feature-description">음성 전사 기록에 대한 보존 기간을 설정합니다.</td>
               </tr>
               <tr>
-                <td class="feature-name">AI 모델에 대한 보존 기간</td>
+                <td class="feature-name">AI 요약에 대한 보존 기간</td>
                 <td class="feature-setting">
                   <div class="setting-combo-wrapper">
                     <div class="combo-select">
@@ -330,11 +330,11 @@
                         <option value="custom">직접 입력</option>
                       </select>
                     </div>
-                    <input type="text" class="custom-input" id="ai-retention-input" placeholder="연도 입력"
-                      style="display: none;">
+                    <input type="text" class="custom-input" id="ai-retention-input" style="display: none;">
+                    <span class="input-unit" style="display: none;">일 후</span>
                   </div>
                 </td>
-                <td class="feature-description">AI 모델에 대한 보존 기간을 설정합니다.</td>
+                <td class="feature-description">AI 요약에 대한 보존 기간을 설정합니다.</td>
               </tr>
             </tbody>
           </table>
@@ -350,7 +350,7 @@
   </div>
 
   <script>
-    // 기능권한관리 페이지 스크립트
+    // 기능 권한 관리 페이지 스크립트
     document.addEventListener('DOMContentLoaded', function () {
       // 토글 스위치 이벤트
       const toggleSwitches = document.querySelectorAll('.toggle-switch input[type="checkbox"]');
@@ -381,12 +381,19 @@
       function handleCustomInput(selectElement) {
         const wrapper = selectElement.closest('.setting-combo-wrapper');
         const customInput = wrapper.querySelector('.custom-input');
+        const inputUnit = wrapper.querySelector('.input-unit');
 
         if (selectElement.value === 'custom') {
           customInput.style.display = 'inline-block';
+          if (inputUnit) {
+            inputUnit.style.display = 'inline';
+          }
           customInput.focus();
         } else {
           customInput.style.display = 'none';
+          if (inputUnit) {
+            inputUnit.style.display = 'none';
+          }
           customInput.value = '';
         }
       }

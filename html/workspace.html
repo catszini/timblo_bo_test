@@ -43,8 +43,8 @@
         <ul>
           <li><a href="workspace.html" class="active">워크스페이스 관리</a></li>
           <li><a href="system_user.html">사용자 관리</a></li>
-          <li><a href="menu_setting.html">메뉴생성관리</a></li>
-          <li><a href="group_setting.html">메뉴권한관리</a></li>
+          <li><a href="menu_setting.html">메뉴 생성 관리</a></li>
+          <li><a href="group_setting.html">메뉴 권한 관리</a></li>
           <li><a href="system_stats_usage.html">사용량 통계</a></li>
           <li><a href="system_stats_user.html">사용자별 통계</a></li>
         </ul>
@@ -55,9 +55,9 @@
           <h3>워크스페이스</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html">기능권한관리</a></li>
+          <li><a href="workspace_permission.html">기능 권한 관리</a></li>
           <li><a href="workspace_menu_setting.html">메뉴리스트 관리</a></li>
-          <li><a href="workspace_group_setting.html">그룹권한관리</a></li>
+          <li><a href="workspace_group_setting.html">그룹 권한 관리</a></li>
           <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 이미지 관리</a></li>
           <li><a href="meet_template.html">회의 템플릿 관리</a></li>
@@ -87,26 +87,28 @@
       <div class="content-body">
         <div class="search-section">
           <div class="common-topbar">
-            <div class="tb-left">
-              <div class="combo-search combo-search-wide">
-                <div class="combo-field">
-                  <select class="combo-select">
-                    <option>전체</option>
-                    <option>이름</option>
-                    <option>도메인</option>
-                    <option>소유자</option>
-                  </select>
-                  <div class="divider"></div>
-                  <div class="combo-input-wrap">
-                    <span class="mag-icon">🔍</span>
-                    <input type="text" class="combo-input" placeholder="검색어를 입력해주세요." />
-                  </div>
-                  <button class="append-btn">조회</button>
-                </div>
-              </div>
+            <div class="tb-left" style="width: 100%;">
+              <p>라이센스 적용인원 00명</p>
+              <button class="new-button">라이센스 업로드 </button>
             </div>
             <div class="tb-right tb-right-full">
               <div class="right-tail">
+                <div class="combo-search combo-search-wide">
+                  <div class="combo-field">
+                    <select class="combo-select">
+                      <option>전체</option>
+                      <option>이름</option>
+                      <option>도메인</option>
+                      <option>소유자</option>
+                    </select>
+                    <div class="divider"></div>
+                    <div class="combo-input-wrap">
+                      <span class="mag-icon">🔍</span>
+                      <input type="text" class="combo-input" placeholder="검색어를 입력해주세요." />
+                    </div>
+                    <button class="append-btn">조회</button>
+                  </div>
+                </div>
                 <select class="condition-select">
                   <option>10개씩 보기</option>
                   <option>20개씩 보기</option>
@@ -135,7 +137,6 @@
                 <th>비활성일</th>
                 <th class="sortable" data-sort-key="enabled">사용여부 <span class="sort-icon" aria-hidden="true"></span>
                 </th>
-                <th>비고</th>
               </tr>
             </thead>
             <tbody>
@@ -172,7 +173,6 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -207,7 +207,6 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -242,7 +241,6 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -277,7 +275,6 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -312,7 +309,6 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -347,7 +343,6 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -382,7 +377,6 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -417,7 +411,6 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -452,7 +445,6 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>-</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -487,7 +479,6 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>-</td>
               </tr>
             </tbody>
           </table>
@@ -532,10 +523,6 @@
           <div class="form-note">필수 입력 항목입니다.</div>
         </div>
 
-        <div class="form-group">
-          <label>비고</label>
-          <textarea class="form-textarea" placeholder="비고를 입력하세요"></textarea>
-        </div>
 
         <div class="modal-footer">
           <button class="btn-cancel">취소</button>
@@ -661,8 +648,8 @@
           e.stopPropagation();
           const rows = Array.from(tbody.querySelectorAll('tr'));
           rows.sort((a, b) => {
-            const aChecked = !!a.querySelector('td:nth-child(11) input[type="checkbox"]:checked');
-            const bChecked = !!b.querySelector('td:nth-child(11) input[type="checkbox"]:checked');
+            const aChecked = !!a.querySelector('td:nth-child(10) input[type="checkbox"]:checked');
+            const bChecked = !!b.querySelector('td:nth-child(10) input[type="checkbox"]:checked');
             const diff = (aChecked === bChecked) ? 0 : (aChecked ? -1 : 1);
             return enabledSortAsc ? diff : -diff;
           });
