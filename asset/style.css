@@ -730,7 +730,6 @@ table td {
 
 .page-workspace-menu-setting .drag-handle {
   background: none;
-  border: none;
   color: #6c757d;
   font-size: 14px;
   cursor: grab;
@@ -7046,11 +7045,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     width: 300px;
   }
 
-  .page-workspace-menu-setting .menu-management-container {
-    display: flex;
-    gap: 25px;
-    height: 100%;
-  }
+
 
 .page-workspace-menu-setting .menu-tree-container {
   flex: 6;

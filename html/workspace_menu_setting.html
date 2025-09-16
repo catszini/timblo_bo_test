@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="ko" class="menu-ready">
+<html lang="ko">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>워크스페이스 - 공통관리 - 메뉴리스트 관리</title>
+  <title>워크스페이스 - 메뉴리스트 관리</title>
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
-
 </head>
 
-<body class="page-workspace-menu-setting page-group-setting">
+<body class="page-workspace-menu-setting">
   <div class="container">
     <!-- 왼쪽 메뉴바 -->
     <div class="sidebar">
@@ -24,7 +23,7 @@
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_logout)">
               <path
-                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21H12"
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
                 stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
               <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
                 stroke-linecap="round" stroke-linejoin="round" />
@@ -84,481 +83,515 @@
       </div>
 
       <div class="content-body">
-        <div class="group-setting-container">
-          <div class="group-setting-layout tree-visible">
-            <div class="group-setting-left-panel">
-              <!-- 메뉴정보 헤더와 버튼들 -->
-              <div class="group-info-header">
-                <div class="group-info-title-section">
-                  <h3 class="group-info-subtitle">메뉴정보</h3>
-                  <span class="group-total-count">총 17개</span>
-                </div>
-                <div class="group-info-buttons">
-                  <button class="btn-reset" id="resetBtn">초기화</button>
-                  <button class="btn-add-separator" id="addSeparatorBtn">구분선 추가</button>
-                  <button class="btn-save" id="saveBtn">저장</button>
-                </div>
-              </div>
-              <!-- 메뉴 정보 테이블 -->
-              <div class="group-setting-table-container" id="tableContainer">
-                <table class="group-setting-table">
-                  <thead>
-                    <tr>
-                      <th>메뉴명</th>
-                      <th width="100">정렬순서</th>
-                      <th width="100">사용여부</th>
-                      <th width="200">URL</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>공통관리</td>
-                      <td>1</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>기능 권한 관리</td>
-                      <td>2</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>사용자 관리</td>
-                      <td>3</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>로고 이미지 관리</td>
-                      <td>4</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>회의 템플릿 관리</td>
-                      <td>5</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>프롬프트 관리</td>
-                      <td>6</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>동의서 관리</td>
-                      <td>7</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>캘린더 관리</td>
-                      <td>8</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>사용자 접속 이력</td>
-                      <td>9</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>다운로드 이력</td>
-                      <td>10</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>사용자 동의 이력</td>
-                      <td>11</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>설정변경 이력</td>
-                      <td>12</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>회의록 관리</td>
-                      <td>13</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>사전 관리</td>
-                      <td>14</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>공지사항 관리</td>
-                      <td>15</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>사용량 통계</td>
-                      <td>16</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <td>사용자별 통계</td>
-                      <td>17</td>
-                      <td><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></td>
-                      <td>-</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
+        <div class="menu-management-container">
+          <!-- 메뉴정보 헤더 -->
+          <div class="menu-title-header">
+            <div class="menu-title-section">
+              <h3 class="menu-subtitle">메뉴 관리</h3>
+              <span class="menu-total-count">총 17개</span>
             </div>
-            <div class="group-setting-tree-panel" id="treePanel">
-              <div class="tree-header">
-                <h4>메뉴 구조</h4>
-              </div>
-              <div class="tree-menu" id="treeMenu">
-                <div class="menu-list">
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">공통관리</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">기능 권한 관리</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">사용자 관리</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">로고 이미지 관리</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">회의 템플릿 관리</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">프롬프트 관리</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">동의서 관리</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">캘린더 관리</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">사용자 접속 이력</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">다운로드 이력</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">사용자 동의 이력</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">설정변경 이력</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">회의록 관리</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">사전 관리</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">공지사항 관리</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">사용량 통계</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                  <div class="menu-item" draggable="true">
-                    <span class="menu-text">사용자별 통계</span>
-                    <button class="drag-handle" title="드래그하여 순서 변경">☰</button>
-                  </div>
-                </div>
+            <div class="menu-action-section">
+              <div class="menu-action-buttons">
+                <button class="btn-reset" id="resetBtn">초기화</button>
+                <button class="btn-add-separator" id="addSeparatorBtn">구분선 추가</button>
+                <button class="btn-save" id="saveBtn">저장</button>
               </div>
             </div>
           </div>
-        </div>
 
+          <!-- 액션 버튼들 -->
+
+
+          <!-- 드래그 가능한 메뉴 테이블 -->
+          <div class="drag-table-container">
+            <table class="drag-sortable-table">
+              <thead>
+                <tr>
+                  <th width="50" class="drag-column"></th>
+                  <th width="250">메뉴명</th>
+                  <th width="100">사용여부</th>
+                  <th width="300">URL</th>
+                </tr>
+              </thead>
+              <tbody id="sortable-menu-list">
+                <tr draggable="true" data-menu-id="1" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">공통관리</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="2" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">기능 권한 관리</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="3" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">사용자 관리</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="4" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">로고 이미지 관리</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="5" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">회의 템플릿 관리</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="6" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">프롬프트 관리</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="7" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">동의서 관리</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="8" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">캘린더 관리</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="9" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">사용자 접속 이력</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="10" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">다운로드 이력</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="11" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">사용자 동의 이력</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="12" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">설정변경 이력</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="13" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">회의록 관리</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="14" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">사전 관리</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="15" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">공지사항 관리</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="16" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">사용량 통계</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+                <tr draggable="true" data-menu-id="17" class="draggable-row">
+                  <td class="drag-handle" title="드래그하여 순서 변경">☰</td>
+                  <td class="menu-name">사용자별 통계</td>
+                  <td class="menu-status"><label class="switch"><input type="checkbox" checked><span
+                        class="slider"></span></label></td>
+                  <td class="menu-url">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const tableRows = document.querySelectorAll('.group-setting-table tbody tr');
-      const noDataArea = document.getElementById('noDataArea');
-      const treeMenu = document.getElementById('treeMenu');
-
-      // 테이블 행 클릭 이벤트
-      tableRows.forEach(row => {
-        row.addEventListener('click', function (e) {
-          // 체크박스 클릭은 제외
-          if (e.target.type === 'checkbox') return;
-
-          // 기존 선택된 행 해제
-          tableRows.forEach(r => r.classList.remove('selected'));
-
-          // 현재 행 선택
-          this.classList.add('selected');
-
-          // 선택된 메뉴에 따라 다른 메뉴 표시 (추후 확장 가능)
-          const menuName = this.querySelector('td:nth-child(4)').textContent;
-          console.log('선택된 메뉴:', menuName);
-        });
-      });
-
-      // 체크박스 전체 선택 기능 (사용여부 토글 제외)
-      const selectAllCheckbox = document.querySelector('.select-all');
-      const rowCheckboxes = document.querySelectorAll('tbody td:first-child input[type="checkbox"]');
-
-      if (selectAllCheckbox && rowCheckboxes.length > 0) {
-        // 전체 선택 체크박스 클릭 시
-        selectAllCheckbox.addEventListener('change', function () {
-          const isChecked = this.checked;
-          console.log('전체 선택:', isChecked, '대상 체크박스 수:', rowCheckboxes.length);
-
-          // 첫 번째 컬럼의 체크박스만 선택 (사용여부 토글은 제외)
-          rowCheckboxes.forEach(checkbox => {
-            checkbox.checked = isChecked;
-            // 행 선택 스타일 적용
-            const row = checkbox.closest('tr');
-            if (row) {
-              row.classList.toggle('selected', isChecked);
-            }
-          });
-        });
-
-        // 개별 체크박스 변경 시 전체 선택 상태 업데이트
-        rowCheckboxes.forEach(checkbox => {
-          checkbox.addEventListener('change', function () {
-            const row = this.closest('tr');
-            if (row) {
-              row.classList.toggle('selected', this.checked);
-            }
-
-            // 전체 선택 체크박스 상태 업데이트
-            updateSelectAllState();
-          });
-        });
-
-        // 전체 선택 상태 업데이트 함수
-        function updateSelectAllState() {
-          const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
-
-          if (checkedCount === 0) {
-            selectAllCheckbox.checked = false;
-            selectAllCheckbox.indeterminate = false;
-          } else if (checkedCount === rowCheckboxes.length) {
-            selectAllCheckbox.checked = true;
-            selectAllCheckbox.indeterminate = false;
-          } else {
-            selectAllCheckbox.checked = false;
-            selectAllCheckbox.indeterminate = true;
-          }
-        }
-
-        // 페이지 로드 시 초기 상태 설정
-        updateSelectAllState();
-      }
-    });
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const tableRows = document.querySelectorAll('.group-setting-table tbody tr');
-      const treeMenu = document.getElementById('treeMenu');
-
-      // 테이블 행 클릭 이벤트
-      tableRows.forEach(row => {
-        row.addEventListener('click', function (e) {
-          // 체크박스 클릭은 제외
-          if (e.target.type === 'checkbox') return;
-
-          // 기존 선택된 행 해제
-          tableRows.forEach(r => r.classList.remove('selected'));
-
-          // 현재 행 선택
-          this.classList.add('selected');
-
-          // 선택된 메뉴에 따라 다른 메뉴 표시 (추후 확장 가능)
-          const menuName = this.querySelector('td:nth-child(4)').textContent;
-          console.log('선택된 메뉴:', menuName);
-        });
-      });
-
-      // 체크박스 전체 선택 기능 (사용여부 토글 제외)
-      const selectAllCheckbox = document.querySelector('.select-all');
-      const rowCheckboxes = document.querySelectorAll('tbody td:first-child input[type="checkbox"]');
-
-      if (selectAllCheckbox && rowCheckboxes.length > 0) {
-        // 전체 선택 체크박스 클릭 시
-        selectAllCheckbox.addEventListener('change', function () {
-          const isChecked = this.checked;
-          console.log('전체 선택:', isChecked, '대상 체크박스 수:', rowCheckboxes.length);
-
-          // 첫 번째 컬럼의 체크박스만 선택 (사용여부 토글은 제외)
-          rowCheckboxes.forEach(checkbox => {
-            checkbox.checked = isChecked;
-            // 행 선택 스타일 적용
-            const row = checkbox.closest('tr');
-            if (row) {
-              row.classList.toggle('selected', isChecked);
-            }
-          });
-        });
-
-        // 개별 체크박스 변경 시 전체 선택 상태 업데이트
-        rowCheckboxes.forEach(checkbox => {
-          checkbox.addEventListener('change', function () {
-            const row = this.closest('tr');
-            if (row) {
-              row.classList.toggle('selected', this.checked);
-            }
-
-            // 전체 선택 체크박스 상태 업데이트
-            updateSelectAllState();
-          });
-        });
-
-        // 전체 선택 상태 업데이트 함수
-        function updateSelectAllState() {
-          const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
-
-          if (checkedCount === 0) {
-            selectAllCheckbox.checked = false;
-            selectAllCheckbox.indeterminate = false;
-          } else if (checkedCount === rowCheckboxes.length) {
-            selectAllCheckbox.checked = true;
-            selectAllCheckbox.indeterminate = false;
-          } else {
-            selectAllCheckbox.checked = false;
-            selectAllCheckbox.indeterminate = true;
-          }
-        }
-
-        // 페이지 로드 시 초기 상태 설정
-        updateSelectAllState();
-      }
-
-      // 초기화 및 저장 버튼 기능
-      const resetBtnTop = document.getElementById('resetBtn');
-      const saveBtnTop = document.getElementById('saveBtn');
-
-      // 초기화 버튼 기능
-      if (resetBtnTop) {
-        resetBtnTop.addEventListener('click', function () {
-          if (confirm('모든 변경사항을 초기화하시겠습니까?')) {
-            location.reload();
-          }
-        });
-      }
-
-      // 저장 버튼 기능
-      if (saveBtnTop) {
-        saveBtnTop.addEventListener('click', function () {
-          if (confirm('현재 메뉴 설정을 저장하시겠습니까?')) {
-            // 여기에 저장 로직 추가
-            alert('메뉴 설정이 저장되었습니다.');
-          }
-        });
-      }
-    });
-
-    // 구분선 추가 함수
-    function addMenuSeparator() {
-      const menuList = document.querySelector('.menu-list');
-      const separatorCount = document.querySelectorAll('.menu-separator').length + 1;
-
-      const separator = document.createElement('div');
-      separator.className = 'menu-separator';
-      separator.innerHTML = `
-        <span class="separator-text">── 구분선 ${separatorCount} ──</span>
-        <button class="remove-separator" onclick="removeSeparator(this)" title="구분선 제거">×</button>
-      `;
-
-      menuList.appendChild(separator);
-      console.log('구분선이 추가되었습니다.');
+  <!-- 드래그 앤 드롭 스타일 -->
+  <style>
+    /* 드래그 테이블 스타일 */
+    .drag-sortable-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
-    // 구분선 제거 함수
-    function removeSeparator(button) {
-      if (confirm('이 구분선을 제거하시겠습니까?')) {
-        button.parentElement.remove();
-        console.log('구분선이 제거되었습니다.');
-      }
+    .drag-sortable-table th {
+      background: #f8f9fa;
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      color: #374151;
+      border-bottom: 1px solid #e5e7eb;
     }
 
-    // 드래그 앤 드롭 초기화
-    function initDragAndDrop() {
-      const menuItems = document.querySelectorAll('.menu-item[draggable="true"]');
+    .drag-sortable-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #f3f4f6;
+      vertical-align: middle;
+    }
 
-      menuItems.forEach(item => {
-        item.addEventListener('dragstart', function (e) {
+    .draggable-row {
+      cursor: move;
+      transition: all 0.2s ease;
+    }
+
+    .draggable-row:hover {
+      background: #f8f9fa;
+    }
+
+    .draggable-row.dragging {
+      opacity: 0.5;
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .drag-handle {
+      cursor: grab;
+      color: #9ca3af;
+      font-weight: bold;
+      text-align: center;
+      user-select: none;
+      font-size: 18px;
+      line-height: 1;
+      padding: 8px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .drag-handle:hover {
+      color: #374151;
+    }
+
+    .drag-handle:active {
+      cursor: grabbing;
+    }
+
+    .drag-over-top {
+      border-top: 3px solid #0066ff;
+    }
+
+    .drag-over-bottom {
+      border-bottom: 3px solid #0066ff;
+    }
+
+    /* 구분선 행 스타일 */
+    .separator-row {
+      background: transparent;
+      height: 30px;
+      cursor: move;
+    }
+
+    .separator-row:hover {
+      background: #f8f9fa;
+    }
+
+    .separator-row.dragging {
+      opacity: 0.5;
+      background: #e5e7eb;
+    }
+
+    .separator-row td {
+      border-bottom: none;
+      vertical-align: middle;
+      padding: 8px 16px;
+    }
+
+    .separator-content {
+      padding: 0;
+    }
+
+    .separator-line {
+      width: 100%;
+      height: 2px;
+      background: repeating-linear-gradient(to right,
+          #d1d5db 0px,
+          #d1d5db 8px,
+          transparent 8px,
+          transparent 16px);
+      margin: 10px 0;
+    }
+
+    .separator-text {
+      color: #6b7280;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .menu-management-container {}
+
+    .menu-title-header {
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .menu-action-section {}
+
+    .menu-title-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .menu-subtitle {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .menu-total-count {
+      background: #f3f4f6;
+      color: #6b7280;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .menu-action-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .drag-table-container {
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // 전역 드래그 변수
+      let draggedRow = null;
+
+      // 드래그 앤 드롭 기능 초기화
+      initializeDragAndDrop();
+
+      // 버튼 기능 초기화
+      initializeButtons();
+
+      // 드래그 앤 드롭 기능 초기화 함수
+      function initializeDragAndDrop() {
+        const tbody = document.getElementById('sortable-menu-list');
+        const rows = tbody.querySelectorAll('tr.draggable-row');
+
+        rows.forEach(row => {
+          addDragEventsToRow(row);
+        });
+      }
+
+      // 개별 행에 드래그 이벤트를 추가하는 함수
+      function addDragEventsToRow(row) {
+        const tbody = document.getElementById('sortable-menu-list');
+
+        // 드래그 시작
+        row.addEventListener('dragstart', function (e) {
+          draggedRow = this;
+          this.classList.add('dragging');
           e.dataTransfer.effectAllowed = 'move';
           e.dataTransfer.setData('text/html', this.outerHTML);
-          this.classList.add('dragging');
         });
 
-        item.addEventListener('dragend', function (e) {
+        // 드래그 종료
+        row.addEventListener('dragend', function (e) {
           this.classList.remove('dragging');
+          draggedRow = null;
+          updateMenuOrder();
         });
 
-        item.addEventListener('dragover', function (e) {
+        // 드래그 오버
+        row.addEventListener('dragover', function (e) {
           e.preventDefault();
           e.dataTransfer.dropEffect = 'move';
-          this.classList.add('drag-over');
-        });
 
-        item.addEventListener('dragleave', function (e) {
-          this.classList.remove('drag-over');
-        });
-
-        item.addEventListener('drop', function (e) {
-          e.preventDefault();
-          const draggedHTML = e.dataTransfer.getData('text/html');
-          const draggedElement = document.querySelector('.dragging');
-
-          if (draggedElement && draggedElement !== this) {
-            // 드롭 위치에 따라 before 또는 after 결정
+          if (draggedRow && draggedRow !== this) {
             const rect = this.getBoundingClientRect();
-            const midY = rect.top + rect.height / 2;
+            const midpoint = rect.top + rect.height / 2;
 
-            if (e.clientY < midY) {
-              this.parentNode.insertBefore(draggedElement, this);
+            if (e.clientY < midpoint) {
+              this.classList.add('drag-over-top');
+              this.classList.remove('drag-over-bottom');
             } else {
-              this.parentNode.insertBefore(draggedElement, this.nextSibling);
+              this.classList.add('drag-over-bottom');
+              this.classList.remove('drag-over-top');
             }
-
-            console.log('메뉴 순서가 변경되었습니다.');
           }
-
-          this.classList.remove('drag-over');
         });
-      });
-    }
 
-    // 페이지 로드 시 드래그 앤 드롭 초기화
-    initDragAndDrop();
+        // 드래그 리브
+        row.addEventListener('dragleave', function (e) {
+          this.classList.remove('drag-over-top', 'drag-over-bottom');
+        });
+
+        // 드롭
+        row.addEventListener('drop', function (e) {
+          e.preventDefault();
+          this.classList.remove('drag-over-top', 'drag-over-bottom');
+
+          if (draggedRow && draggedRow !== this) {
+            const rect = this.getBoundingClientRect();
+            const midpoint = rect.top + rect.height / 2;
+
+            if (e.clientY < midpoint) {
+              tbody.insertBefore(draggedRow, this);
+            } else {
+              tbody.insertBefore(draggedRow, this.nextSibling);
+            }
+          }
+        });
+      }
+
+      // 메뉴 순서 업데이트 함수
+      function updateMenuOrder() {
+        const allRows = document.querySelectorAll('#sortable-menu-list tr');
+        const menuRows = document.querySelectorAll('#sortable-menu-list tr:not(.separator-row)');
+
+        // 메뉴 행들의 순서 업데이트
+        menuRows.forEach((row, index) => {
+          row.setAttribute('data-order', index + 1);
+        });
+
+        // 총 개수 업데이트 (구분선 제외)
+        const totalCount = document.querySelector('.menu-total-count');
+        if (totalCount) {
+          totalCount.textContent = `총 ${menuRows.length}개`;
+        }
+
+        console.log('메뉴 순서 업데이트됨 - 메뉴:', menuRows.length, '전체:', allRows.length);
+      }
+
+      // 버튼 기능 초기화 함수
+      function initializeButtons() {
+        // 초기화 버튼
+        const resetBtn = document.getElementById('resetBtn');
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function () {
+            if (confirm('모든 변경사항을 초기화하시겠습니까?')) {
+              location.reload();
+            }
+          });
+        }
+
+        // 저장 버튼
+        const saveBtn = document.getElementById('saveBtn');
+        if (saveBtn) {
+          saveBtn.addEventListener('click', function () {
+            if (confirm('현재 메뉴 설정을 저장하시겠습니까?')) {
+              saveMenuOrder();
+            }
+          });
+        }
+
+        // 구분선 추가 버튼
+        const addSeparatorBtn = document.getElementById('addSeparatorBtn');
+        if (addSeparatorBtn) {
+          addSeparatorBtn.addEventListener('click', function () {
+            addMenuSeparator();
+          });
+        }
+      }
+
+      // 메뉴 순서 저장 함수
+      function saveMenuOrder() {
+        const rows = document.querySelectorAll('#sortable-menu-list tr.draggable-row');
+        const menuOrder = [];
+
+        rows.forEach((row, index) => {
+          const menuData = {
+            id: row.getAttribute('data-menu-id'),
+            name: row.querySelector('.menu-name').textContent,
+            order: index + 1,
+            enabled: row.querySelector('.menu-status input[type="checkbox"]').checked,
+            url: row.querySelector('.menu-url').textContent
+          };
+          menuOrder.push(menuData);
+        });
+
+        console.log('저장할 메뉴 순서:', menuOrder);
+        alert('메뉴 설정이 저장되었습니다.');
+      }
+
+      // 구분선 추가 함수
+      function addMenuSeparator() {
+        const tbody = document.getElementById('sortable-menu-list');
+        const separatorCount = document.querySelectorAll('.separator-row').length + 1;
+
+        const separatorRow = document.createElement('tr');
+        separatorRow.className = 'separator-row draggable-row';
+        separatorRow.setAttribute('draggable', 'true');
+        separatorRow.setAttribute('data-separator-id', `sep-${separatorCount}`);
+        separatorRow.innerHTML = `
+          <td class="separator-content" colspan="4">
+            <div class="separator-line"></div>
+          </td>
+        `;
+
+        tbody.appendChild(separatorRow);
+
+        // 새로 추가된 구분선에도 드래그 이벤트 적용
+        addDragEventsToRow(separatorRow);
+        updateMenuOrder();
+
+        console.log('구분선이 추가되었습니다.');
+      }
+
+      // 구분선 더블클릭으로 제거
+      function initializeSeparatorRemoval() {
+        document.addEventListener('dblclick', function (e) {
+          const separatorRow = e.target.closest('.separator-row');
+          if (separatorRow) {
+            if (confirm('구분선을 삭제하시겠습니까?')) {
+              separatorRow.remove();
+              updateMenuOrder();
+            }
+          }
+        });
+      }
+
+      // 구분선 제거 기능 초기화
+      initializeSeparatorRemoval();
+    });
   </script>
+
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
 </body>
