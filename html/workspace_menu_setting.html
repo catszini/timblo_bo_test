@@ -57,7 +57,7 @@
         <ul>
           <li><a href="workspace_permission.html">기능 권한 관리</a></li>
           <li><a href="workspace_menu_setting.html" class="active">메뉴리스트 관리</a></li>
-          <li><a href="workspace_group_setting.html">그룹 권한 관리</a></li>
+          <li><a href="workspace_group_setting.html">메뉴 권한 관리</a></li>
           <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 이미지 관리</a></li>
           <li><a href="meet_template.html">회의 템플릿 관리</a></li>
@@ -94,8 +94,9 @@
                   <span class="group-total-count">총 17개</span>
                 </div>
                 <div class="group-info-buttons">
-                  <button class="group-setting-btn-add-group" id="createMenuBtn">생성</button>
+                  <button class="btn-reset" id="resetBtn">초기화</button>
                   <button class="btn-add-separator" id="addSeparatorBtn">구분선 추가</button>
+                  <button class="btn-save" id="saveBtn">저장</button>
                 </div>
               </div>
               <!-- 메뉴 정보 테이블 -->
@@ -408,29 +409,6 @@
       }
     });
   </script>
-  <!-- 메뉴 생성 모달 -->
-  <div class="modal-overlay modal-overlay-hidden" id="menuModal">
-    <div class="modal-container permission-modal">
-      <div class="modal-header">
-        <h2>메뉴 생성</h2>
-      </div>
-      <div class="modal-content">
-        <div class="form-group">
-          <label for="menuType">메뉴명</label>
-          <input type="text" id="menuType" class="form-input" placeholder="법령 관리" disabled>
-        </div>
-
-        <div class="form-group">
-          <label for="menuName">설명</label>
-          <input type="text" id="menuName" class="form-input" placeholder="법령을 관리할 수 있는 시스템">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn-cancel" id="menuCancel">취소</button>
-        <button class="btn-submit" id="menuCreate">생성</button>
-      </div>
-    </div>
-  </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -532,51 +510,26 @@
         });
       }
 
-      // 메뉴 생성 모달 기능
-      const createMenuBtn = document.getElementById('createMenuBtn');
-      const menuModal = document.getElementById('menuModal');
-      const menuCancel = document.getElementById('menuCancel');
-      const menuCreate = document.getElementById('menuCreate');
+      // 초기화 및 저장 버튼 기능
+      const resetBtnTop = document.getElementById('resetBtn');
+      const saveBtnTop = document.getElementById('saveBtn');
 
-      // 생성 버튼 클릭 시 모달 열기
-      if (createMenuBtn) {
-        createMenuBtn.addEventListener('click', function () {
-          menuModal.classList.remove('modal-overlay-hidden');
-        });
-      }
-
-      // 모달 닫기 기능들
-      if (menuCancel) {
-        menuCancel.addEventListener('click', function () {
-          menuModal.classList.add('modal-overlay-hidden');
-        });
-      }
-
-      // 모달 외부 클릭 시 닫기
-      if (menuModal) {
-        menuModal.addEventListener('click', function (e) {
-          if (e.target === menuModal) {
-            menuModal.classList.add('modal-overlay-hidden');
+      // 초기화 버튼 기능
+      if (resetBtnTop) {
+        resetBtnTop.addEventListener('click', function () {
+          if (confirm('모든 변경사항을 초기화하시겠습니까?')) {
+            location.reload();
           }
         });
       }
 
-      // 생성 버튼 클릭
-      if (menuCreate) {
-        menuCreate.addEventListener('click', function () {
-          const menuName = document.getElementById('menuName').value.trim();
-
-          if (!menuName) {
-            alert('설명을 입력해주세요.');
-            return;
+      // 저장 버튼 기능
+      if (saveBtnTop) {
+        saveBtnTop.addEventListener('click', function () {
+          if (confirm('현재 메뉴 설정을 저장하시겠습니까?')) {
+            // 여기에 저장 로직 추가
+            alert('메뉴 설정이 저장되었습니다.');
           }
-
-          alert('메뉴가 생성되었습니다.');
-          menuModal.classList.add('modal-overlay-hidden');
-
-          // 폼 초기화
-          document.getElementById('menuName').value = '';
-          document.getElementById('menuDescription').value = '';
         });
       }
     });
