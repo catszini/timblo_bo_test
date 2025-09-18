@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>통계 - 사용자별 통계</title>
   <link rel="stylesheet" href="../asset/style.css">
+  <style>
+    .btn[style*="color: #10B981"]:hover {
+      background-color: #f0fdf4 !important;
+    }
+  </style>
 </head>
 
 <body>
@@ -54,7 +59,6 @@
         </div>
         <ul>
           <li><a href="workspace_permission.html">기능 권한 관리</a></li>
-          <li><a href="workspace_menu_setting.html">메뉴리스트 관리</a></li>
           <li><a href="workspace_group_setting.html">메뉴 권한 관리</a></li>
           <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 이미지 관리</a></li>
@@ -129,7 +133,7 @@
                   </div>
                 </div>
                 <button class="btn"
-                  style="background-color: #10B981; color: white; border: 1px solid #10B981; display: flex; align-items: center; gap: 8px;">
+                  style="background-color: transparent; color: #10B981; border: 1px solid #10B981; display: flex; align-items: center; gap: 8px; transition: all 0.2s ease;">
                   엑셀 다운로드
                 </button>
 
@@ -268,7 +272,7 @@
   <script>
     // 엑셀 다운로드 버튼 기능
     document.addEventListener('DOMContentLoaded', function () {
-      const excelBtn = document.querySelector('.btn[style*="background-color: #10B981"]');
+      const excelBtn = document.querySelector('.btn[style*="color: #10B981"]');
       if (excelBtn && excelBtn.textContent.includes('엑셀 다운로드')) {
         excelBtn.addEventListener('click', function () {
           alert('사용자별 통계 데이터를 엑셀로 다운로드합니다.');

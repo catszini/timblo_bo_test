@@ -19,6 +19,16 @@
     box-sizing: border-box;
 }
 
+/* 전역 버튼 높이 통일 */
+button {
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    line-height: 1;
+}
+
 /* 초기 로드 시 메뉴 깜빡임 방지: JS가 준비되기 전까지 사이드바 비가시화(공간 유지) */
 html:not(.menu-ready) .sidebar { visibility: hidden; }
 
@@ -52,6 +62,7 @@ table th {
   color: #292A2B;
   border-bottom: 1px solid #E5E5E5;
   font-size: 14px;
+  text-align: center;
 }
 
 table td {
@@ -59,6 +70,7 @@ table td {
   border-bottom: 1px solid #F1F3F4;
   vertical-align: middle;
   font-size: 14px;
+  text-align: center;
 }
 
 /* Breadcrumb 링크 스타일 */
@@ -268,25 +280,25 @@ table td {
 
 /* 주요 버튼 (파란색) */
 .consent-detail-page .btn-primary {
-  background: #0066FF;
-  color: white;
+  background: transparent;
+  color: #0066FF;
   border-color: #0066FF;
 }
 
 .consent-detail-page .btn-primary:hover {
-  background: #0052CC;
-  border-color: #0052CC;
+  background: #f0f7ff;
+  border-color: #0066FF;
 }
 
 /* 위험 버튼 (빨간색) */
 .consent-detail-page .btn-danger {
-  background: #DC2626;
-  color: white;
+  background: transparent;
+  color: #DC2626;
   border-color: #DC2626;
 }
 
 .consent-detail-page .btn-danger:hover {
-  background: #B91C1C;
+  background: #fef2f2;
   border-color: #B91C1C;
 }
 
@@ -432,19 +444,19 @@ table td {
 }
 
 .page-system-user .delete-btn {
-  background: #DC2626;
-  color: white;
+  background: transparent;
+  color: #DC2626;
   border: 1px solid #DC2626;
   padding: 8px 16px;
   border-radius: 4px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .page-system-user .delete-btn:hover {
-  background: #B91C1C;
+  background: #fef2f2;
 }
 
 /* 그룹 설정 페이지 - 그룹정보 헤더 스타일 */
@@ -493,20 +505,20 @@ table td {
 }
 
 .page-group-setting .group-setting-btn-add-group {
-  background: #0066FF;
-  color: white;
+  background: transparent;
+  color: #0066FF;
   border-color: #0066FF;
 }
 
 .page-group-setting .btn-form-save {
-  background: #10B981;
-  color: white;
+  background: transparent;
+  color: #10B981;
   border-color: #10B981;
 }
 
 .page-group-setting .btn-form-delete {
-  background: #DC2626;
-  color: white;
+  background: transparent;
+  color: #DC2626;
   border-color: #DC2626;
 }
 
@@ -628,23 +640,30 @@ table td {
 }
 
 .permission-modal .btn-submit {
-  background: #0066FF;
-  color: white;
+  background: transparent;
+  color: #0066FF;
+  border-color: #0066FF;
 }
 
 .permission-modal .btn-submit:hover {
-  background: #0052CC;
+  background: #f0f7ff;
 }
 
 .page-group-setting .btn-reset {
   background: white;
   color: #666;
   border: 1px solid #E5E5E5;
-  padding: 8px 16px;
-  border-radius: 4px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  line-height: 1;
   transition: all 0.2s ease;
 }
 
@@ -654,20 +673,26 @@ table td {
 }
 
 .page-group-setting .btn-save {
-  background: #0066FF;
-  color: white;
+  background: transparent;
+  color: #0066FF;
   border: 1px solid #0066FF;
-  padding: 8px 16px;
-  border-radius: 4px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  line-height: 1;
   transition: all 0.2s ease;
 }
 
 .page-group-setting .btn-save:hover {
-  background: #0052CC;
-  border-color: #0052CC;
+  background: #f0f7ff;
+  border-color: #0066FF;
 }
 
 .permission-modal label{
@@ -752,8 +777,8 @@ table td {
 /* 구분선 추가 버튼 스타일 */
 .page-workspace-menu-setting .btn-add-separator {
   padding: 8px 16px;
-  background: #6c757d;
-  color: white;
+  background: transparent;
+  color: #6c757d;
   border: 1px solid #6c757d;
   border-radius: 4px;
   font-size: 14px;
@@ -763,8 +788,8 @@ table td {
 }
 
 .page-workspace-menu-setting .btn-add-separator:hover {
-  background: #5a6268;
-  border-color: #5a6268;
+  background: #f8f9fa;
+  border-color: #6c757d;
 }
 
 /* 메뉴 구분선 스타일 */
@@ -784,9 +809,9 @@ table td {
 }
 
 .page-workspace-menu-setting .remove-separator {
-  background: #dc3545;
-  color: white;
-  border: none;
+  background: transparent;
+  color: #dc3545;
+  border: 1px solid #dc3545;
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -795,10 +820,11 @@ table td {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s ease;
 }
 
 .page-workspace-menu-setting .remove-separator:hover {
-  background: #c82333;
+  background: #fef2f2;
 }
 
 /* 드래그 상태 스타일 */
@@ -1186,17 +1212,17 @@ body {
     height: 32px;
     padding: 0 12px;
     border-radius: 6px;
-    background: #1677FF;
+    background: transparent;
     border: 1px solid #1677FF;
-    color: #fff;
+    color: #1677FF;
     font-weight: 600;
     font-size: 13px;
     line-height: 1;
     box-shadow: 0 1px 2px rgba(16,24,40,0.05);
     cursor: pointer;
 }
-.btn-query:hover { background:#2B85FF; border-color:#2B85FF; }
-.btn-query:active { background:#0F6BFF; border-color:#0F6BFF; }
+.btn-query:hover { background:#f0f7ff; border-color:#1677FF; }
+.btn-query:active { background:#e6f2ff; border-color:#1677FF; }
 
 /* 셀렉트+인풋 결합형 검색 컴포넌트 */
 .search-section .combo-search { display:flex; align-items:center; gap:8px; }
@@ -1224,8 +1250,9 @@ body {
   border: none;
   border-left: 1px solid transparent;
   padding: 0 16px;
-  background: #1677FF;
-  color: #fff;
+  background: transparent;
+  color: #1677FF;
+  border: 1px solid #1677FF;
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
@@ -1238,11 +1265,11 @@ body {
 }
 
 .user-page .search-section .combo-search .append-btn:hover {
-  background: #2B85FF;
+  background: #f0f7ff;
 }
 
 .user-page .search-section .combo-search .append-btn:active {
-  background: #0F6BFF;
+  background: #e6f2ff;
 }
 .search-section .combo-search .combo-field {
     display:flex; align-items:center; height:36px;
@@ -1578,14 +1605,25 @@ body {
 }
 
 .new-button {
-    padding: 8px 20px;
-    background-color: #0066ff;
-    color: white;
-    border: none;
-    border-radius: 4px;
+    height: 36px;
+    padding: 0 20px;
+    background-color: transparent;
+    color: #0066ff;
+    border: 1px solid #0066ff;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    line-height: 1;
+    transition: all 0.2s ease;
+}
+
+.new-button:hover {
+    background-color: #f0f7ff;
 }
 
 .condition-select {
@@ -1684,17 +1722,17 @@ body {
     background: #F9FAFB;
 }
 .range-actions .btn-submit {
-    background: #1677FF; /* 더 선명한 블루 */
+    background: transparent;
     border: 1px solid #1677FF;
-    color: #FFFFFF;
+    color: #1677FF;
 }
 .range-actions .btn-submit:hover {
-    background: #2B85FF;
-    border-color: #2B85FF;
+    background: #f0f7ff;
+    border-color: #1677FF;
 }
 .range-actions .btn-submit:active {
-    background: #0F6BFF;
-    border-color: #0F6BFF;
+    background: #e6f2ff;
+    border-color: #1677FF;
 }
 
 /* 위험 버튼 (삭제 등) */
@@ -1711,19 +1749,19 @@ body {
     line-height: 1;
     cursor: pointer;
     border: 1px solid #DC2626;
-    background: #DC2626;
-    color: #FFFFFF;
+    background: transparent;
+    color: #DC2626;
     transition: background-color .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
 }
 
 .btn-danger:hover {
-    background: #B91C1C;
-    border-color: #B91C1C;
+    background: #fef2f2;
+    border-color: #DC2626;
 }
 
 .btn-danger:active {
-    background: #991B1B;
-    border-color: #991B1B;
+    background: #fee2e2;
+    border-color: #DC2626;
 }
 
 /* 달력 UI */
@@ -1787,11 +1825,16 @@ body {
     width: 36px;
     height: 36px;
     padding: 0;
-    background-color: #0066FF;
-    color: white;
-    border: none;
+    background-color: transparent;
+    color: #0066FF;
+    border: 1px solid #0066FF;
     border-radius: 8px;
     cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.search-button:hover {
+    background-color: #f0f7ff;
 }
 .search-button svg { width: 20px; height: 20px; }
 
@@ -1987,16 +2030,17 @@ input:checked + .slider:before {
 
 /* 테이블용 채움형 삭제 버튼 (회의록/사전 관리용) */
 .delete-btn--filled {
-    background-color: #FF4444;
+    background-color: transparent;
     border: 1px solid #FF4444;
     border-radius: 4px;
+    color: #FF4444;
 }
 .delete-btn--filled:hover {
-    background-color: #E03E2F;
-    border-color: #E03E2F;
+    background-color: #fff5f5;
+    border-color: #FF4444;
 }
 .delete-btn--filled img {
-    filter: brightness(0) invert(1);
+    filter: none;
 }
 
 /* 사용자 관리 페이지 스타일 */
@@ -2101,9 +2145,9 @@ input:checked + .slider:before {
 /* 멤버 관리 페이지 버튼 스타일 */
 .user-page.member-page .btn-submit {
     padding: 8px 16px;
-    background: #0066FF;
-    color: #fff;
-    border: none;
+    background: transparent;
+    color: #0066FF;
+    border: 1px solid #0066FF;
     border-radius: 4px;
     font-size: 12px;
     font-weight: 500;
@@ -2115,17 +2159,23 @@ input:checked + .slider:before {
     align-items: center;
     justify-content: center;
     text-align: center;
+    transition: all 0.2s ease;
 }
 
 .user-page.member-page .btn-submit:hover {
-    background: #0052CC;
+    background: #f0f7ff;
 }
 
 .user-page.member-page .btn-outline {
-    padding: 12px 24px;
+    height: 36px;
+    padding: 0 24px;
     background: #fff;
     color: #374151;
     border: 1px solid #D1D5DB;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
     border-radius: 6px;
     font-size: 14px;
     font-weight: 500;
@@ -2525,10 +2575,11 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 24px;
-  background: #FF8C00;
-  color: #fff;
-  border: none;
+  height: 36px;
+  padding: 0 24px;
+  background: transparent;
+  color: #FF8C00;
+  border: 1px solid #FF8C00;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
@@ -2536,17 +2587,19 @@ input:checked + .slider:before {
   min-width: 80px;
   height: 36px;
   text-align: center;
+  transition: all 0.2s ease;
 }
 
 .search-right .btn-orange:hover {
-  background: #E67E00;
+  background: #fff7ed;
 }
 
 .search-right .btn-gray {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 24px;
+  height: 36px;
+  padding: 0 24px;
   background: #fff;
   color: #374151;
   border: 1px solid #D1D5DB;
@@ -2568,10 +2621,11 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 24px;
-  background: #EF4444;
-  color: #fff;
-  border: none;
+  height: 36px;
+  padding: 0 24px;
+  background: transparent;
+  color: #EF4444;
+  border: 1px solid #EF4444;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
@@ -2579,10 +2633,11 @@ input:checked + .slider:before {
   min-width: 80px;
   height: 36px;
   text-align: center;
+  transition: all 0.2s ease;
 }
 
 .search-right .btn-red:hover {
-  background: #DC2626;
+  background: #fef2f2;
 }
 
 /* 사용자 관리 액션 섹션 */
@@ -2607,26 +2662,28 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 24px;
-  background: #FF8C00;
-  color: #fff;
-  border: none;
+  height: 36px;
+  padding: 0 24px;
+  background: transparent;
+  color: #FF8C00;
+  border: 1px solid #FF8C00;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .user-action-content .btn-orange:hover {
-  background: #E67E00;
+  background: #fff7ed;
 }
 
 .user-action-content .btn-gray {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 24px;
+  height: 36px;
+  padding: 0 24px;
   background: #fff;
   color: #374151;
   border: 1px solid #D1D5DB;
@@ -2646,19 +2703,20 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 24px;
-  background: #EF4444;
-  color: #fff;
-  border: none;
+  height: 36px;
+  padding: 0 24px;
+  background: transparent;
+  color: #EF4444;
+  border: 1px solid #EF4444;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .user-action-content .btn-red:hover {
-  background: #DC2626;
+  background: #fef2f2;
 }
 
 /* 폼 내용 */
@@ -2807,7 +2865,8 @@ input:checked + .slider:before {
 }
 
 .tab-btn {
-  padding: 12px 24px;
+  height: 36px;
+  padding: 0 24px;
   background: #F8F9FA;
   color: #6B7280;
   border: 1px solid #E5E5E5;
@@ -2816,6 +2875,10 @@ input:checked + .slider:before {
   font-weight: 500;
   cursor: pointer;
   border-radius: 8px 8px 0 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   margin-right: 2px;
   transition: all 0.2s ease;
 }
@@ -2991,35 +3054,35 @@ input:checked + .slider:before {
 /* 메뉴 트리 버튼 스타일 - 기존 페이지와 일관성 */
 .page-menu-setting .btn-edit {
   padding: 6px 12px;
-  background: #0066FF;
-  color: #fff;
-  border: none;
+  background: transparent;
+  color: #0066FF;
+  border: 1px solid #0066FF;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   margin-right: 4px;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .page-menu-setting .btn-edit:hover {
-  background: #0052CC;
+  background: #f0f7ff;
 }
 
 .page-menu-setting .btn-delete {
   padding: 6px 12px;
-  background: #EF4444;
-  color: #fff;
-  border: none;
+  background: transparent;
+  color: #EF4444;
+  border: 1px solid #EF4444;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .page-menu-setting .btn-delete:hover {
-  background: #DC2626;
+  background: #fef2f2;
 }
 
 /* 메뉴 자식 요소 들여쓰기 */
@@ -3866,17 +3929,19 @@ input:checked + .slider:before {
 }
 
 .btn-reset {
-    padding: 6px 12px;
+    height: 36px;
+    padding: 0 12px;
     background-color: #F8F9FA;
     border: 1px solid #E5E5E5;
-    border-radius: 4px;
+    border-radius: 6px;
     color: #666;
-    font-size: 13px;
+    font-size: 14px;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 32px;
+    box-sizing: border-box;
+    line-height: 1;
 }
 
 .btn-reset:hover {
@@ -4008,7 +4073,9 @@ input:checked + .slider:before {
 .workspace-name {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
+    width: auto;
 }
 
 .workspace-icon {
@@ -5232,8 +5299,8 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .group-setting-btn-add-group {
-  background: #22C55E;
-  color: white;
+  background: transparent;
+  color: #22C55E;
   border: 1px solid #22C55E;
   padding: 8px 16px;
   border-radius: 4px;
@@ -5244,8 +5311,8 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .group-setting-btn-add-group:hover {
-  background: #16A34A;
-  border-color: #16A34A;
+  background: #f0fdf4;
+  border-color: #22C55E;
 }
 
 /* 그룹 설정 모달 스타일 */
@@ -5540,9 +5607,13 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .general-page .btn.primary {
-  background: #0066FF;
-  color: #fff;
-  border: none;
+  background: transparent;
+  color: #0066FF;
+  border: 1px solid #0066FF;
+}
+
+.general-page .btn.primary:hover {
+  background: #f0f7ff;
 }
 
 .general-page .btn.danger {
@@ -5776,15 +5847,16 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .page-system-user.user-page.member-page .tb-right .btn-submit {
-  background: #EF4444;
+  background: transparent;
   border: 1px solid #EF4444;
-  color: #fff;
+  color: #EF4444;
   margin: 0;
+  transition: all 0.2s ease;
 }
 
 .page-system-user.user-page.member-page .tb-right .btn-submit:hover {
-  background: #DC2626;
-  border-color: #DC2626;
+  background: #fef2f2;
+  border-color: #EF4444;
 }
 
 /* 시스템 사용자 페이지 검색 박스 내 조회 버튼 */
@@ -6132,9 +6204,9 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 
 .user-page-custom .btn-delete {
-  background-color: #EF4444;
-  color: white;
-  border: none;
+  background-color: transparent;
+  color: #EF4444;
+  border: 1px solid #EF4444;
   margin-right: 0;
   padding: 6px 12px;
   border-radius: 4px;
@@ -6143,10 +6215,11 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   font-weight: 500;
   display: inline-block;
   text-align: center;
+  transition: all 0.2s ease;
 }
 
 .user-page-custom .btn-delete:hover {
-  background-color: #DC2626;
+  background-color: #fef2f2;
 }
 
 /* 전역 스타일 충돌 방지 예시 */
@@ -6154,44 +6227,61 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 /* 기본 전역 스타일 (모든 페이지 공통) */
 .btn {
-  padding: 8px 16px;
+  height: 36px;
+  padding: 0 16px;
   border: 1px solid #E5E5E5;
   background: #fff;
   cursor: pointer;
   font-size: 14px;
-  border-radius: 4px;
+  border-radius: 6px;
   transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  line-height: 1;
 }
 
-/* 페이지별 .btn 스타일 오버라이드 */
+/* 페이지별 .btn 스타일 오버라이드 - 높이는 36px로 통일 */
 .page-user .btn {
-  padding: 6px 12px;
+  height: 36px;
+  padding: 0 12px;
   font-size: 13px;
 }
 
 .page-group-setting .btn {
-  padding: 10px 20px;
-  font-size: 15px;
+  height: 36px;
+  padding: 0 20px;
+  font-size: 14px;
   border-radius: 6px;
 }
 
 .page-member-register .btn {
-  padding: 12px 24px;
-  font-size: 16px;
-  border-radius: 8px;
+  height: 36px;
+  padding: 0 24px;
+  font-size: 14px;
+  border-radius: 6px;
 }
 
 /* 특정 버튼 타입들도 페이지별로 제한 가능 */
 .page-user .btn.primary {
-  background: #0066FF;
-  color: white;
+  background: transparent;
+  color: #0066FF;
   border-color: #0066FF;
 }
 
+.page-user .btn.primary:hover {
+  background: #f0f7ff;
+}
+
 .page-group-setting .btn.primary {
-  background: #10B981;
-  color: white;
+  background: transparent;
+  color: #10B981;
   border-color: #10B981;
+}
+
+.page-group-setting .btn.primary:hover {
+  background: #f0fdf4;
 }
 
 .modal-overlay-hidden {
@@ -6684,14 +6774,14 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .template-detail-actions .btn-delete {
-  background: #EF4444;
+  background: transparent;
   border: 1px solid #EF4444;
-  color: #fff;
+  color: #EF4444;
 }
 
 .template-detail-actions .btn-delete:hover {
-  background: #DC2626;
-  border-color: #DC2626;
+  background: #fef2f2;
+  border-color: #EF4444;
 }
 
 .template-detail-actions .btn-cancel {
@@ -6980,40 +7070,44 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .page-menu-setting .btn-add {
-  background-color: #27ae60;
-  color: white;
+  background-color: transparent;
+  color: #27ae60;
+  border: 1px solid #27ae60;
 }
 
 .page-menu-setting .btn-add:hover {
-  background-color: #2ecc71;
+  background-color: #f0fdf4;
 }
 
 .page-menu-setting .btn-update {
-  background-color: #3498db;
-  color: white;
+  background-color: transparent;
+  color: #3498db;
+  border: 1px solid #3498db;
 }
 
 .page-menu-setting .btn-update:hover {
-  background-color: #5dade2;
+  background-color: #eaf4fd;
 }
 
 .page-menu-setting .btn-delete {
-  background-color: #e74c3c;
-  color: white;
+  background-color: transparent;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
 }
 
 .page-menu-setting .btn-delete:hover {
-  background-color: #ec7063;
+  background-color: #fef2f2;
 }
 
 .page-menu-setting .btn-save-permission {
-  background-color: #8e44ad;
-  color: white;
+  background-color: transparent;
+  color: #8e44ad;
+  border: 1px solid #8e44ad;
   width: 100%;
 }
 
 .page-menu-setting .btn-save-permission:hover {
-  background-color: #a569bd;
+  background-color: #f8f4ff;
 }
 
   /* Workspace Menu Setting 페이지 스타일 */
@@ -7292,19 +7386,25 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .page-workspace-menu-setting .btn-save {
-  background: #3498db;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-size: 13px;
+  background: transparent;
+  color: #3498db;
+  border: 1px solid #3498db;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 6px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  line-height: 1;
+  transition: all 0.2s ease;
 }
 
 .page-workspace-menu-setting .btn-save:hover {
-  background: #2980b9;
+  background: #eaf4fd;
 }
 
 /* 권한그룹 관리 별도 섹션 스타일 */
@@ -7398,40 +7498,44 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .page-workspace-menu-setting .btn-add {
-  background-color: #27ae60;
-  color: white;
+  background-color: transparent;
+  color: #27ae60;
+  border: 1px solid #27ae60;
 }
 
 .page-workspace-menu-setting .btn-add:hover {
-  background-color: #2ecc71;
+  background-color: #f0fdf4;
 }
 
 .page-workspace-menu-setting .btn-update {
-  background-color: #3498db;
-  color: white;
+  background-color: transparent;
+  color: #3498db;
+  border: 1px solid #3498db;
 }
 
 .page-workspace-menu-setting .btn-update:hover {
-  background-color: #5dade2;
+  background-color: #eaf4fd;
 }
 
 .page-workspace-menu-setting .btn-delete {
-  background-color: #e74c3c;
-  color: white;
+  background-color: transparent;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
 }
 
 .page-workspace-menu-setting .btn-delete:hover {
-  background-color: #ec7063;
+  background-color: #fef2f2;
 }
 
 .page-workspace-menu-setting .btn-save-permission {
-  background-color: #8e44ad;
-  color: white;
+  background-color: transparent;
+  color: #8e44ad;
+  border: 1px solid #8e44ad;
   width: 100%;
 }
 
 .page-workspace-menu-setting .btn-save-permission:hover {
-  background-color: #a569bd;
+  background-color: #f8f4ff;
 }
 
 
@@ -7636,14 +7740,20 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .page-workspace-permission .btn-save-permissions {
-  padding: 10px 20px;
+  height: 36px;
+  padding: 0 20px;
   background-color: #3498db;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 14px;
   cursor: pointer;
   font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  line-height: 1;
 }
 
 .page-workspace-permission .btn-invite-user {
@@ -7867,17 +7977,17 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 .notice-page .btn-submit {
   padding: 8px 16px;
-  background: #0066FF;
-  color: white;
+  background: transparent;
+  color: #0066FF;
   border: 1px solid #0066FF;
   border-radius: 4px;
   font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .notice-page .btn-submit:hover {
-  background: #0052CC;
+  background: #f0f7ff;
 }
 
 .notice-page .btn-outline {
@@ -7949,22 +8059,22 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 .notice-page .btn.btn-primary {
   padding: 8px 16px;
-  background: #0066FF;
-  color: white;
+  background: transparent;
+  color: #0066FF;
   border: 1px solid #0066FF;
   border-radius: 4px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
 .notice-page .btn.btn-primary:hover {
-  background: #0052CC;
-  border-color: #0052CC;
+  background: #f0f7ff;
+  border-color: #0066FF;
 }
 
 .notice-page .tb-right {
@@ -8486,25 +8596,25 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .notice-detail-page .btn.btn-secondary {
-  background: #6c757d;
-  color: white;
+  background: transparent;
+  color: #6c757d;
   border-color: #6c757d;
 }
 
 .notice-detail-page .btn.btn-secondary:hover {
-  background: #5a6268;
-  border-color: #5a6268;
+  background: #f8f9fa;
+  border-color: #6c757d;
 }
 
 .notice-detail-page .btn.btn-primary {
-  background: #0066FF;
-  color: white;
+  background: transparent;
+  color: #0066FF;
   border-color: #0066FF;
 }
 
 .notice-detail-page .btn.btn-primary:hover {
-  background: #0052CC;
-  border-color: #0052CC;
+  background: #f0f7ff;
+  border-color: #0066FF;
 }
 
 /* 팝업 설정 스타일 */
@@ -8805,9 +8915,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   cursor: pointer;
 }
 
-.page-workspace-permission .checkmark {
-  /* 체크박스 커스텀 스타일이 필요한 경우 추가 */
-}
+/* 체크박스 커스텀 스타일이 필요한 경우 여기에 추가 */
 
 /* 폼 액션 버튼 */
 .page-workspace-permission .form-actions {

@@ -7,6 +7,73 @@
   <title>AI 회의록 관리자</title>
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
+  <style>
+    /* 사용자 현황 컬럼 스타일 */
+    .user-status {
+      line-height: 1.4;
+      font-size: 13px;
+    }
+
+    .user-total {
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    .user-roles {
+      color: #6B7280;
+    }
+
+    .role-item {
+      display: inline;
+      font-weight: 400;
+    }
+
+    .role-item.owner {
+      color: #6B7280;
+      font-weight: 400;
+    }
+
+    .role-item.admin {
+      color: #6B7280;
+      font-weight: 400;
+    }
+
+    .role-item.member {
+      color: #6B7280;
+      font-weight: 400;
+    }
+
+    .role-separator {
+      color: #9CA3AF;
+      margin: 0 8px;
+    }
+
+    /* 라이센스 정보 스타일 */
+    .license-info {
+      margin-bottom: 12px;
+    }
+
+    .license-info p {
+      margin: 4px 0;
+      font-size: 14px;
+      color: #374151;
+      font-weight: 500;
+    }
+
+    /* 모바일 대응 */
+    @media (max-width: 768px) {
+      .user-status {
+        font-size: 12px;
+        min-width: 90px;
+      }
+
+      .license-info p {
+        font-size: 13px;
+      }
+    }
+  </style>
 
 </head>
 
@@ -56,7 +123,6 @@
         </div>
         <ul>
           <li><a href="workspace_permission.html">기능 권한 관리</a></li>
-          <li><a href="workspace_menu_setting.html">메뉴리스트 관리</a></li>
           <li><a href="workspace_group_setting.html">메뉴 권한 관리</a></li>
           <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 이미지 관리</a></li>
@@ -89,7 +155,10 @@
         <div class="search-section">
           <div class="common-topbar">
             <div class="tb-left" style="width: 50%;">
-              <p>라이센스 적용인원 00명</p>
+              <div class="license-info">
+                <p>라이센스 적용 가능한 인원 : 무제한</p>
+                <p>라이센스 사용 중인 인원 : 83명</p>
+              </div>
               <button class="new-button">라이센스 업로드 </button>
             </div>
             <div class="tb-right tb-right-full">
@@ -160,7 +229,14 @@
                     </div>
                   </div>
                 </td>
-                <td>총 사용자 1명<br>소유자 1</td>
+                <td>
+                  <div class="user-status">
+                    <div class="user-total">총 1명</div>
+                    <div class="user-roles">
+                      <span class="role-item owner">소유자 1</span>
+                    </div>
+                  </div>
+                </td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -189,7 +265,16 @@
                     </div>
                   </div>
                 </td>
-                <td>총 사용자 1명<br>소유자 1</td>
+                <td>
+                  <div class="user-status">
+                    <div class="user-total">총 8명</div>
+                    <div class="user-roles">
+                      <span class="role-item admin">관리자 1</span><span class="role-separator">/</span><span
+                        class="role-item owner">소유자 2</span><span class="role-separator">/</span><span
+                        class="role-item member">구성원 5</span>
+                    </div>
+                  </div>
+                </td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -218,7 +303,15 @@
                     </div>
                   </div>
                 </td>
-                <td>총 사용자 1명<br>소유자 1</td>
+                <td>
+                  <div class="user-status">
+                    <div class="user-total">총 3명</div>
+                    <div class="user-roles">
+                      <span class="role-item owner">소유자 1</span><span class="role-separator">/</span><span
+                        class="role-item member">구성원 2</span>
+                    </div>
+                  </div>
+                </td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -247,7 +340,16 @@
                     </div>
                   </div>
                 </td>
-                <td>총 사용자 1명<br>소유자 1</td>
+                <td>
+                  <div class="user-status">
+                    <div class="user-total">총 15명</div>
+                    <div class="user-roles">
+                      <span class="role-item admin">관리자 3</span><span class="role-separator">/</span><span
+                        class="role-item owner">소유자 1</span><span class="role-separator">/</span><span
+                        class="role-item member">구성원 11</span>
+                    </div>
+                  </div>
+                </td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -276,7 +378,15 @@
                     </div>
                   </div>
                 </td>
-                <td>총 사용자 1명<br>소유자 1</td>
+                <td>
+                  <div class="user-status">
+                    <div class="user-total">총 2명</div>
+                    <div class="user-roles">
+                      <span class="role-item owner">소유자 1</span><span class="role-separator">/</span><span
+                        class="role-item member">구성원 1</span>
+                    </div>
+                  </div>
+                </td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -305,7 +415,14 @@
                     </div>
                   </div>
                 </td>
-                <td>총 사용자 1명<br>소유자 1</td>
+                <td>
+                  <div class="user-status">
+                    <div class="user-total">총 1명</div>
+                    <div class="user-roles">
+                      <span class="role-item owner">소유자 1</span>
+                    </div>
+                  </div>
+                </td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -334,7 +451,14 @@
                     </div>
                   </div>
                 </td>
-                <td>총 사용자 1명<br>소유자 1</td>
+                <td>
+                  <div class="user-status">
+                    <div class="user-total">총 1명</div>
+                    <div class="user-roles">
+                      <span class="role-item owner">소유자 1</span>
+                    </div>
+                  </div>
+                </td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -363,7 +487,14 @@
                     </div>
                   </div>
                 </td>
-                <td>총 사용자 1명<br>소유자 1</td>
+                <td>
+                  <div class="user-status">
+                    <div class="user-total">총 1명</div>
+                    <div class="user-roles">
+                      <span class="role-item owner">소유자 1</span>
+                    </div>
+                  </div>
+                </td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -392,7 +523,14 @@
                     </div>
                   </div>
                 </td>
-                <td>총 사용자 1명<br>소유자 1</td>
+                <td>
+                  <div class="user-status">
+                    <div class="user-total">총 1명</div>
+                    <div class="user-roles">
+                      <span class="role-item owner">소유자 1</span>
+                    </div>
+                  </div>
+                </td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>
@@ -421,7 +559,14 @@
                     </div>
                   </div>
                 </td>
-                <td>총 사용자 1명<br>소유자 1</td>
+                <td>
+                  <div class="user-status">
+                    <div class="user-total">총 1명</div>
+                    <div class="user-roles">
+                      <span class="role-item owner">소유자 1</span>
+                    </div>
+                  </div>
+                </td>
                 <td>2025-09-01</td>
                 <td>2025-10-01</td>
                 <td>

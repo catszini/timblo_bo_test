@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="../asset/modal.css">
   <style>
     /* 메뉴 테이블 스타일 */
+    .menu-table .menu-action-buttons {
+      justify-content: center;
+    }
+
     .menu-table {
       width: 100%;
       border-collapse: collapse;
@@ -38,9 +42,6 @@
       text-align: center;
     }
 
-    .menu-table td:nth-child(3) {
-      text-align: left;
-    }
 
     .menu-table .section-header {
       background: #EBF8FF;
@@ -111,25 +112,25 @@
     }
 
     .menu-title-header .menu-action-buttons .btn-save {
-      background: #10B981;
-      color: white;
+      background: transparent;
+      color: #10B981;
       border-color: #10B981;
     }
 
     .menu-title-header .menu-action-buttons .btn-save:hover {
-      background: #059669;
-      border-color: #059669;
+      background: #f0fdf4;
+      border-color: #10B981;
     }
 
     .menu-title-header .menu-action-buttons .btn-submit {
-      background: #0066FF;
-      color: white;
+      background: transparent;
+      color: #0066FF;
       border-color: #0066FF;
     }
 
     .menu-title-header .menu-action-buttons .btn-submit:hover {
-      background: #0052CC;
-      border-color: #0052CC;
+      background: #f0f7ff;
+      border-color: #0066FF;
     }
 
     .btn-edit,
@@ -145,24 +146,24 @@
     }
 
     .btn-edit {
-      background: #0066FF;
-      color: white;
+      background: transparent;
+      color: #0066FF;
       border-color: #0066FF;
     }
 
     .btn-edit:hover {
-      background: #0052CC;
+      background: #f0f7ff;
       transform: translateY(-1px);
     }
 
     .btn-delete {
-      background: #EF4444;
-      color: white;
+      background: transparent;
+      color: #EF4444;
       border-color: #EF4444;
     }
 
     .btn-delete:hover {
-      background: #DC2626;
+      background: #fef2f2;
       transform: translateY(-1px);
     }
 
@@ -222,7 +223,6 @@
         </div>
         <ul>
           <li><a href="workspace_permission.html">기능 권한 관리</a></li>
-          <li><a href="workspace_menu_setting.html">메뉴리스트 관리</a></li>
           <li><a href="workspace_group_setting.html">메뉴 권한 관리</a></li>
           <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 이미지 관리</a></li>
@@ -271,22 +271,15 @@
           <table class="menu-table">
             <thead>
               <tr>
-                <th width="50">순번</th>
-                <th width="120">구분</th>
-                <th width="250">메뉴명</th>
+                <th width="300">메뉴명</th>
                 <th width="100">사용여부</th>
-                <th width="300">URL</th>
+                <th width="350">URL</th>
                 <th width="140">액션</th>
               </tr>
             </thead>
             <tbody>
               <!-- 시스템관리 메뉴들 -->
-              <tr class="section-header">
-                <td colspan="6" class="section-title">시스템관리</td>
-              </tr>
               <tr>
-                <td>1</td>
-                <td>시스템관리</td>
                 <td>워크스페이스 관리</td>
                 <td>
                   <label class="switch">
@@ -303,8 +296,6 @@
                 </td>
               </tr>
               <tr>
-                <td>2</td>
-                <td>시스템관리</td>
                 <td>사용자 관리</td>
                 <td>
                   <label class="switch">
@@ -321,8 +312,6 @@
                 </td>
               </tr>
               <tr>
-                <td>3</td>
-                <td>시스템관리</td>
                 <td>메뉴 생성 관리</td>
                 <td>
                   <label class="switch">
@@ -339,8 +328,6 @@
                 </td>
               </tr>
               <tr>
-                <td>4</td>
-                <td>시스템관리</td>
                 <td>메뉴 권한 관리</td>
                 <td>
                   <label class="switch">
@@ -357,8 +344,6 @@
                 </td>
               </tr>
               <tr>
-                <td>5</td>
-                <td>시스템관리</td>
                 <td>사용량 통계</td>
                 <td>
                   <label class="switch">
@@ -375,8 +360,6 @@
                 </td>
               </tr>
               <tr>
-                <td>6</td>
-                <td>시스템관리</td>
                 <td>사용자별 통계</td>
                 <td>
                   <label class="switch">
@@ -394,12 +377,7 @@
               </tr>
 
               <!-- 워크스페이스 메뉴들 -->
-              <tr class="section-header">
-                <td colspan="6" class="section-title">워크스페이스</td>
-              </tr>
               <tr>
-                <td>7</td>
-                <td>워크스페이스</td>
                 <td>기능 권한 관리</td>
                 <td>
                   <label class="switch">
@@ -416,8 +394,6 @@
                 </td>
               </tr>
               <tr>
-                <td>8</td>
-                <td>워크스페이스</td>
                 <td>메뉴리스트 관리</td>
                 <td>
                   <label class="switch">
@@ -434,8 +410,6 @@
                 </td>
               </tr>
               <tr>
-                <td>9</td>
-                <td>워크스페이스</td>
                 <td>메뉴 권한 관리</td>
                 <td>
                   <label class="switch">
@@ -452,8 +426,6 @@
                 </td>
               </tr>
               <tr>
-                <td>10</td>
-                <td>워크스페이스</td>
                 <td>사용자 관리</td>
                 <td>
                   <label class="switch">
@@ -470,8 +442,6 @@
                 </td>
               </tr>
               <tr>
-                <td>11</td>
-                <td>워크스페이스</td>
                 <td>로고 이미지 관리</td>
                 <td>
                   <label class="switch">
@@ -488,8 +458,6 @@
                 </td>
               </tr>
               <tr>
-                <td>12</td>
-                <td>워크스페이스</td>
                 <td>회의 템플릿 관리</td>
                 <td>
                   <label class="switch">
@@ -506,8 +474,6 @@
                 </td>
               </tr>
               <tr>
-                <td>13</td>
-                <td>워크스페이스</td>
                 <td>프롬프트 관리</td>
                 <td>
                   <label class="switch">
@@ -524,8 +490,6 @@
                 </td>
               </tr>
               <tr>
-                <td>14</td>
-                <td>워크스페이스</td>
                 <td>동의서 관리</td>
                 <td>
                   <label class="switch">
@@ -542,8 +506,6 @@
                 </td>
               </tr>
               <tr>
-                <td>15</td>
-                <td>워크스페이스</td>
                 <td>캘린더 관리</td>
                 <td>
                   <label class="switch">
@@ -560,8 +522,6 @@
                 </td>
               </tr>
               <tr>
-                <td>16</td>
-                <td>워크스페이스</td>
                 <td>사용자 접속 이력</td>
                 <td>
                   <label class="switch">
@@ -578,8 +538,6 @@
                 </td>
               </tr>
               <tr>
-                <td>17</td>
-                <td>워크스페이스</td>
                 <td>다운로드 이력</td>
                 <td>
                   <label class="switch">
@@ -596,8 +554,6 @@
                 </td>
               </tr>
               <tr>
-                <td>18</td>
-                <td>워크스페이스</td>
                 <td>사용자 동의 이력</td>
                 <td>
                   <label class="switch">
@@ -614,8 +570,6 @@
                 </td>
               </tr>
               <tr>
-                <td>19</td>
-                <td>워크스페이스</td>
                 <td>설정변경 이력</td>
                 <td>
                   <label class="switch">
@@ -632,8 +586,6 @@
                 </td>
               </tr>
               <tr>
-                <td>20</td>
-                <td>워크스페이스</td>
                 <td>회의록 관리</td>
                 <td>
                   <label class="switch">
@@ -650,8 +602,6 @@
                 </td>
               </tr>
               <tr>
-                <td>21</td>
-                <td>워크스페이스</td>
                 <td>사전 관리</td>
                 <td>
                   <label class="switch">
@@ -668,8 +618,6 @@
                 </td>
               </tr>
               <tr>
-                <td>22</td>
-                <td>워크스페이스</td>
                 <td>공지사항 관리</td>
                 <td>
                   <label class="switch">
@@ -686,8 +634,6 @@
                 </td>
               </tr>
               <tr>
-                <td>23</td>
-                <td>워크스페이스</td>
                 <td>사용량 통계</td>
                 <td>
                   <label class="switch">
@@ -704,8 +650,6 @@
                 </td>
               </tr>
               <tr>
-                <td>24</td>
-                <td>워크스페이스</td>
                 <td>사용자별 통계</td>
                 <td>
                   <label class="switch">
