@@ -201,10 +201,6 @@
                       <label for="시스템사용자관리">사용자 관리</label>
                     </div>
                     <div class="tree-item">
-                      <input type="checkbox" id="시스템기능 권한 관리" checked>
-                      <label for="시스템기능 권한 관리">기능 권한 관리</label>
-                    </div>
-                    <div class="tree-item">
                       <input type="checkbox" id="시스템메뉴생성관리" checked>
                       <label for="시스템메뉴생성관리">메뉴 생성 관리</label>
                     </div>
@@ -229,10 +225,6 @@
                     <div class="tree-item">
                       <input type="checkbox" id="기능 권한 관리" checked>
                       <label for="기능 권한 관리">기능 권한 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="메뉴리스트관리" checked>
-                      <label for="메뉴리스트관리">메뉴리스트 관리</label>
                     </div>
                     <div class="tree-item">
                       <input type="checkbox" id="메뉴 권한 관리" checked>
@@ -374,6 +366,79 @@
             selectAllCheckbox.indeterminate = true;
           }
         });
+      });
+
+      // 섹션별 전체 선택 기능
+      const systemSectionCheckbox = document.getElementById('시스템');
+      const workspaceSectionCheckbox = document.getElementById('워크스페이스');
+
+      if (systemSectionCheckbox) {
+        systemSectionCheckbox.addEventListener('change', function () {
+          const isChecked = this.checked;
+          // 시스템 섹션의 모든 하위 체크박스 선택/해제
+          const systemParent = this.closest('.tree-item');
+          const systemChildren = systemParent.querySelectorAll('.tree-children input[type="checkbox"]');
+          systemChildren.forEach(checkbox => {
+            checkbox.checked = isChecked;
+          });
+        });
+      }
+
+      if (workspaceSectionCheckbox) {
+        workspaceSectionCheckbox.addEventListener('change', function () {
+          const isChecked = this.checked;
+          // 워크스페이스 섹션의 모든 하위 체크박스 선택/해제
+          const workspaceParent = this.closest('.tree-item');
+          const workspaceChildren = workspaceParent.querySelectorAll('.tree-children input[type="checkbox"]');
+          workspaceChildren.forEach(checkbox => {
+            checkbox.checked = isChecked;
+          });
+        });
+      }
+
+      // 하위 체크박스 변경 시 부모 체크박스 상태 업데이트 함수
+      function updateParentCheckboxState() {
+        // 시스템 섹션 체크박스 상태 업데이트
+        const systemParentItem = document.getElementById('시스템').parentElement;
+        const systemChildren = systemParentItem.querySelectorAll('.tree-children input[type="checkbox"]');
+        const systemCheckedCount = Array.from(systemChildren).filter(cb => cb.checked).length;
+
+        if (systemSectionCheckbox) {
+          if (systemCheckedCount === 0) {
+            systemSectionCheckbox.checked = false;
+            systemSectionCheckbox.indeterminate = false;
+          } else if (systemCheckedCount === systemChildren.length) {
+            systemSectionCheckbox.checked = true;
+            systemSectionCheckbox.indeterminate = false;
+          } else {
+            systemSectionCheckbox.checked = false;
+            systemSectionCheckbox.indeterminate = true;
+          }
+        }
+
+        // 워크스페이스 섹션 체크박스 상태 업데이트
+        const workspaceParentItem = document.getElementById('워크스페이스').parentElement;
+        const workspaceChildren = workspaceParentItem.querySelectorAll('.tree-children input[type="checkbox"]');
+        const workspaceCheckedCount = Array.from(workspaceChildren).filter(cb => cb.checked).length;
+
+        if (workspaceSectionCheckbox) {
+          if (workspaceCheckedCount === 0) {
+            workspaceSectionCheckbox.checked = false;
+            workspaceSectionCheckbox.indeterminate = false;
+          } else if (workspaceCheckedCount === workspaceChildren.length) {
+            workspaceSectionCheckbox.checked = true;
+            workspaceSectionCheckbox.indeterminate = false;
+          } else {
+            workspaceSectionCheckbox.checked = false;
+            workspaceSectionCheckbox.indeterminate = true;
+          }
+        }
+      }
+
+      // 모든 하위 체크박스에 이벤트 리스너 추가
+      const allTreeCheckboxes = document.querySelectorAll('#treeMenu .tree-children input[type="checkbox"]');
+      allTreeCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateParentCheckboxState);
       });
 
       // 하단 버튼 기능

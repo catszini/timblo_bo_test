@@ -5846,6 +5846,12 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   min-width: auto;
 }
 
+/* 시스템 사용자 페이지 워크스페이스 셀렉트 박스 크기 조정 */
+.page-system-user .condition-select {
+  min-width: 180px !important;
+  width: 180px;
+}
+
 .page-system-user.user-page.member-page .tb-right .btn-submit {
   background: transparent;
   border: 1px solid #EF4444;
