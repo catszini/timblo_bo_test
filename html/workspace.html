@@ -12,17 +12,23 @@
     .user-status {
       line-height: 1.4;
       font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
     }
 
     .user-total {
       font-weight: 600;
       color: #374151;
-      margin-bottom: 4px;
+      margin-bottom: 0;
       font-size: 16px;
+      min-width: 80px;
     }
 
     .user-roles {
       color: #6B7280;
+      font-size: 12px;
     }
 
     .role-item {
@@ -65,8 +71,17 @@
     /* 모바일 대응 */
     @media (max-width: 768px) {
       .user-status {
-        font-size: 12px;
-        min-width: 90px;
+        font-size: 11px;
+        min-width: 120px;
+        gap: 6px;
+      }
+
+      .user-total {
+        font-size: 14px;
+      }
+
+      .user-roles {
+        font-size: 10px;
       }
 
       .license-info p {
@@ -237,7 +252,7 @@
                   </div>
                 </td>
                 <td>2025-09-01</td>
-                <td>2025-10-01</td>
+                <td>-</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox" checked>
@@ -253,7 +268,7 @@
                     <span>SK Hynix</span>
                   </div>
                 </td>
-                <td>www.sktelecom.ai</td>
+                <td>www.skhynix.com</td>
                 <td>홍길동</td>
                 <td>
                   <div class="count-spinner">
@@ -268,17 +283,17 @@
                   <div class="user-status">
                     <div class="user-total">총 8명</div>
                     <div class="user-roles">
-                      <span class="role-item admin">관리자 1</span><span class="role-separator">/</span><span
-                        class="role-item owner">소유자 2</span><span class="role-separator">/</span><span
+                      <span class="role-item owner">소유자 2</span><span class="role-separator">/</span><span
+                        class="role-item admin">관리자 1</span><span class="role-separator">/</span><span
                         class="role-item member">구성원 5</span>
                     </div>
                   </div>
                 </td>
-                <td>2025-09-01</td>
-                <td>2025-10-01</td>
+                <td>2025-08-15</td>
+                <td>2025-12-31</td>
                 <td>
                   <label class="switch">
-                    <input type="checkbox" checked>
+                    <input type="checkbox">
                     <span class="slider"></span>
                   </label>
                 </td>
@@ -291,7 +306,7 @@
                     <span>SK On</span>
                   </div>
                 </td>
-                <td>www.sktelecom.ai</td>
+                <td>www.sk-on.com</td>
                 <td>홍길동</td>
                 <td>
                   <div class="count-spinner">
@@ -311,11 +326,11 @@
                     </div>
                   </div>
                 </td>
-                <td>2025-09-01</td>
-                <td>2025-10-01</td>
+                <td>2025-07-20</td>
+                <td>2025-11-15</td>
                 <td>
                   <label class="switch">
-                    <input type="checkbox" checked>
+                    <input type="checkbox">
                     <span class="slider"></span>
                   </label>
                 </td>
@@ -324,11 +339,11 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-amber">T</div>
-                    <span>Timbel_Mk</span>
+                    <div class="workspace-icon color-amber">S</div>
+                    <span>SK C&C</span>
                   </div>
                 </td>
-                <td>www.timblo.io</td>
+                <td>www.skcc.com</td>
                 <td>jwpark12</td>
                 <td>
                   <div class="count-spinner">
@@ -343,14 +358,14 @@
                   <div class="user-status">
                     <div class="user-total">총 15명</div>
                     <div class="user-roles">
-                      <span class="role-item admin">관리자 3</span><span class="role-separator">/</span><span
-                        class="role-item owner">소유자 1</span><span class="role-separator">/</span><span
+                      <span class="role-item owner">소유자 1</span><span class="role-separator">/</span><span
+                        class="role-item admin">관리자 3</span><span class="role-separator">/</span><span
                         class="role-item member">구성원 11</span>
                     </div>
                   </div>
                 </td>
-                <td>2025-09-01</td>
-                <td>2025-10-01</td>
+                <td>2025-09-05</td>
+                <td>-</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox" checked>
@@ -362,11 +377,11 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-blue">T</div>
-                    <span>Timbel_sol...</span>
+                    <div class="workspace-icon color-blue">S</div>
+                    <span>SK Innovation</span>
                   </div>
                 </td>
-                <td>www.timblo.io</td>
+                <td>www.skinnovation.com</td>
                 <td>홍길동</td>
                 <td>
                   <div class="count-spinner">
@@ -386,8 +401,8 @@
                     </div>
                   </div>
                 </td>
-                <td>2025-09-01</td>
-                <td>2025-10-01</td>
+                <td>2025-08-30</td>
+                <td>-</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox" checked>
@@ -399,11 +414,47 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-blue">T</div>
-                    <span>Timbel_Glo...</span>
+                    <div class="workspace-icon color-emerald">S</div>
+                    <span>SK Networks</span>
                   </div>
                 </td>
-                <td>www.timblo.io</td>
+                <td>www.sknetworks.co.kr</td>
+                <td>홍길동</td>
+                <td>
+                  <div class="count-spinner">
+                    <input type="number" class="count-input" value="1000" min="0">
+                    <div class="spinner-buttons">
+                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
+                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="user-status">
+                    <div class="user-total">총 1명</div>
+                    <div class="user-roles">
+                      <span class="role-item owner">소유자 1</span>
+                    </div>
+                  </div>
+                </td>
+                <td>2025-06-10</td>
+                <td>2026-01-20</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-violet">S</div>
+                    <span>SK Materials</span>
+                  </div>
+                </td>
+                <td>www.skmaterials.com</td>
                 <td>홍길동</td>
                 <td>
                   <div class="count-spinner">
@@ -435,48 +486,12 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-blue">T</div>
-                    <span>Timbel_Inv...</span>
+                    <div class="workspace-icon color-rose">S</div>
+                    <span>SK Biopharm</span>
                   </div>
                 </td>
-                <td>www.timblo.io</td>
-                <td>홍길동</td>
-                <td>
-                  <div class="count-spinner">
-                    <input type="number" class="count-input" value="1000" min="0">
-                    <div class="spinner-buttons">
-                      <button class="spinner-btn spinner-up"><img src="../asset/spinner-up.svg" alt="증가"></button>
-                      <button class="spinner-btn spinner-down"><img src="../asset/spinner-down.svg" alt="감소"></button>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="user-status">
-                    <div class="user-total">총 1명</div>
-                    <div class="user-roles">
-                      <span class="role-item owner">소유자 1</span>
-                    </div>
-                  </div>
-                </td>
-                <td>2025-09-01</td>
-                <td>2025-10-01</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>
-                  <div class="workspace-name">
-                    <div class="workspace-icon color-blue">T</div>
-                    <span>Timbel_gro...</span>
-                  </div>
-                </td>
-                <td>www.timblo.io</td>
-                <td>홍길동</td>
+                <td>www.skbiopharm.com</td>
+                <td>김영희</td>
                 <td>
                   <div class="count-spinner">
                     <input type="number" class="count-input" value="120" min="0">
@@ -494,8 +509,8 @@
                     </div>
                   </div>
                 </td>
-                <td>2025-09-01</td>
-                <td>2025-10-01</td>
+                <td>2025-09-12</td>
+                <td>-</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox" checked>
@@ -507,12 +522,12 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-blue">T</div>
-                    <span>Timbel_gro...</span>
+                    <div class="workspace-icon color-cyan">S</div>
+                    <span>SK E&S</span>
                   </div>
                 </td>
-                <td>www.timblo.io</td>
-                <td>홍길동</td>
+                <td>www.skens.com</td>
+                <td>이민준</td>
                 <td>
                   <div class="count-spinner">
                     <input type="number" class="count-input" value="1000" min="0">
@@ -530,11 +545,11 @@
                     </div>
                   </div>
                 </td>
-                <td>2025-09-01</td>
-                <td>2025-10-01</td>
+                <td>2025-05-25</td>
+                <td>2025-10-30</td>
                 <td>
                   <label class="switch">
-                    <input type="checkbox" checked>
+                    <input type="checkbox">
                     <span class="slider"></span>
                   </label>
                 </td>
@@ -543,12 +558,12 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-blue">T</div>
-                    <span>Timbel_gro...</span>
+                    <div class="workspace-icon color-lime">S</div>
+                    <span>SK Shieldus</span>
                   </div>
                 </td>
-                <td>www.timblo.io</td>
-                <td>홍길동</td>
+                <td>www.skshieldus.com</td>
+                <td>박서준</td>
                 <td>
                   <div class="count-spinner">
                     <input type="number" class="count-input" value="1000" min="0">
@@ -566,8 +581,8 @@
                     </div>
                   </div>
                 </td>
-                <td>2025-09-01</td>
-                <td>2025-10-01</td>
+                <td>2025-09-18</td>
+                <td>-</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox" checked>

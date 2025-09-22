@@ -84,20 +84,31 @@
         </h1>
       </div>
       <div class="content-body">
-        <div class="top-section">
-          <div class="search-section">
-            <div class="common-topbar">
-              <div class="tb-left">
-                <span class="total-count">총 21개</span>
+        <!-- 통합 검색 툴바 컴포넌트 -->
+        <div class="search-toolbar">
+          <div class="common-topbar">
+            <div class="tb-left">
+              <span class="total-count">총 9개</span>
+              <select class="condition-select">
+                <option>워크스페이스 목록</option>
+                <option>SK Telecom</option>
+                <option>SK Hynix</option>
+                <option>SK E&S</option>
+                <option>SK C&C</option>
+                <option>SK Innovation</option>
+                <option>SK Networks</option>
+                <option>SK Biopharm</option>
+                <option>SK Materials</option>
+                <option>SK Shieldus</option>
+              </select>
+            </div>
+            <div class="tb-right">
+              <div class="right-tail">
                 <select class="condition-select">
-                  <option>워크스페이스 목록</option>
-                  <option>SK Telecom</option>
-                  <option>SK Hynix</option>
-                  <option>KT</option>
-                  <option>LG U+</option>
+                  <option>10개씩 보기</option>
+                  <option>20개씩 보기</option>
+                  <option>50개씩 보기</option>
                 </select>
-              </div>
-              <div class="tb-right">
                 <div class="combo-search">
                   <div class="combo-field">
                     <select class="combo-select">
@@ -106,6 +117,7 @@
                       <option>이름</option>
                       <option>이메일</option>
                     </select>
+                    <div class="divider"></div>
                     <div class="combo-input-wrap">
                       <span class="mag-icon">🔍</span>
                       <input type="text" class="combo-input" placeholder="검색어를 입력해주세요.">
@@ -143,15 +155,15 @@
                     <span>SK Telecom</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:admin@sktelecom.com" class="email-link">admin@sktelecom.com</a></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status online">김민수</span>
                   </div>
                 </td>
                 <td>
                   <select class="permission-select">
-                    <option>시스템 관리</option>
+                    <option selected>시스템 관리</option>
                     <option>워크스페이스관리자</option>
                     <option>일반사용자</option>
                   </select>
@@ -163,20 +175,20 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-teal">S</div>
-                    <span>SK Telecom</span>
+                    <div class="workspace-icon color-indigo">S</div>
+                    <span>SK Hynix</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:manager@skhynix.com" class="email-link">manager@skhynix.com</a></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status online">박지영</span>
                   </div>
                 </td>
                 <td>
                   <select class="permission-select">
                     <option>시스템 관리</option>
-                    <option>워크스페이스관리자</option>
+                    <option selected>워크스페이스관리자</option>
                     <option>일반사용자</option>
                   </select>
                 </td>
@@ -187,20 +199,44 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-teal">S</div>
-                    <span>SK Telecom</span>
+                    <div class="workspace-icon color-violet">S</div>
+                    <span>SK E&S</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:energy@skens.com" class="email-link">energy@skens.com</a></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status offline">이상훈</span>
                   </div>
                 </td>
                 <td>
                   <select class="permission-select">
                     <option>시스템 관리</option>
                     <option>워크스페이스관리자</option>
+                    <option selected>일반사용자</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-blue">S</div>
+                    <span>SK C&C</span>
+                  </div>
+                </td>
+                <td><a href="mailto:admin@skcc.com" class="email-link">admin@skcc.com</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">최은정</span>
+                  </div>
+                </td>
+                <td>
+                  <select class="permission-select">
+                    <option>시스템 관리</option>
+                    <option selected>워크스페이스관리자</option>
                     <option>일반사용자</option>
                   </select>
                 </td>
@@ -211,20 +247,44 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-teal">S</div>
-                    <span>SK Telecom</span>
+                    <div class="workspace-icon color-emerald">S</div>
+                    <span>SK Innovation</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:innovation@skinnovation.com" class="email-link">innovation@skinnovation.com</a></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status online">정호준</span>
                   </div>
                 </td>
                 <td>
                   <select class="permission-select">
                     <option>시스템 관리</option>
                     <option>워크스페이스관리자</option>
+                    <option selected>일반사용자</option>
+                  </select>
+                </td>
+                <td><button class="btn-outline btn-sm">초기화</button></td>
+                <td><button class="btn-danger btn-sm">삭제</button></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-amber">S</div>
+                    <span>SK Networks</span>
+                  </div>
+                </td>
+                <td><a href="mailto:networks@sknetworks.co.kr" class="email-link">networks@sknetworks.co.kr</a></td>
+                <td>
+                  <div class="user-profile">
+                    <span class="user-status online">송민아</span>
+                  </div>
+                </td>
+                <td>
+                  <select class="permission-select">
+                    <option>시스템 관리</option>
+                    <option selected>워크스페이스관리자</option>
                     <option>일반사용자</option>
                   </select>
                 </td>
@@ -235,21 +295,21 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-teal">S</div>
-                    <span>SK Telecom</span>
+                    <div class="workspace-icon color-rose">S</div>
+                    <span>SK Biopharm</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:bio@skbiopharm.com" class="email-link">bio@skbiopharm.com</a></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status offline">한도영</span>
                   </div>
                 </td>
                 <td>
                   <select class="permission-select">
                     <option>시스템 관리</option>
                     <option>워크스페이스관리자</option>
-                    <option>일반사용자</option>
+                    <option selected>일반사용자</option>
                   </select>
                 </td>
                 <td><button class="btn-outline btn-sm">초기화</button></td>
@@ -259,21 +319,21 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-teal">S</div>
-                    <span>SK Telecom</span>
+                    <div class="workspace-icon color-rose">S</div>
+                    <span>SK Materials</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:materials@skmaterials.com" class="email-link">materials@skmaterials.com</a></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status online">윤서현</span>
                   </div>
                 </td>
                 <td>
                   <select class="permission-select">
                     <option>시스템 관리</option>
                     <option>워크스페이스관리자</option>
-                    <option>일반사용자</option>
+                    <option selected>일반사용자</option>
                   </select>
                 </td>
                 <td><button class="btn-outline btn-sm">초기화</button></td>
@@ -283,68 +343,20 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="workspace-name">
-                    <div class="workspace-icon color-teal">S</div>
-                    <span>SK Telecom</span>
+                    <div class="workspace-icon color-cyan">S</div>
+                    <span>SK Shieldus</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:security@skshieldus.com" class="email-link">security@skshieldus.com</a></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status online">강태현</span>
                   </div>
                 </td>
                 <td>
                   <select class="permission-select">
                     <option>시스템 관리</option>
-                    <option>워크스페이스관리자</option>
-                    <option>일반사용자</option>
-                  </select>
-                </td>
-                <td><button class="btn-outline btn-sm">초기화</button></td>
-                <td><button class="btn-danger btn-sm">삭제</button></td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>
-                  <div class="workspace-name">
-                    <div class="workspace-icon color-teal">S</div>
-                    <span>SK Telecom</span>
-                  </div>
-                </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
-                <td>
-                  <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
-                  </div>
-                </td>
-                <td>
-                  <select class="permission-select">
-                    <option>시스템 관리</option>
-                    <option>워크스페이스관리자</option>
-                    <option>일반사용자</option>
-                  </select>
-                </td>
-                <td><button class="btn-outline btn-sm">초기화</button></td>
-                <td><button class="btn-danger btn-sm">삭제</button></td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>
-                  <div class="workspace-name">
-                    <div class="workspace-icon color-teal">S</div>
-                    <span>SK Telecom</span>
-                  </div>
-                </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
-                <td>
-                  <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
-                  </div>
-                </td>
-                <td>
-                  <select class="permission-select">
-                    <option>시스템 관리</option>
-                    <option>워크스페이스관리자</option>
+                    <option selected>워크스페이스관리자</option>
                     <option>일반사용자</option>
                   </select>
                 </td>
@@ -355,16 +367,12 @@
           </table>
         </div>
 
-        <div class="list-footer">
-          <div class="pagination">
-            <button class="page-btn prev">‹</button>
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn">3</button>
-            <button class="page-btn">4</button>
-            <button class="page-btn">5</button>
-            <button class="page-btn next">›</button>
-          </div>
+        <div class="pagination">
+          <button class="page-btn prev" disabled>‹</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn next">›</button>
         </div>
       </div>
     </div>

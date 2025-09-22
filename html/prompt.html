@@ -346,45 +346,6 @@
       background: #F9FAFB;
     }
 
-    /* 페이지네이션 */
-    .prompt-pagination {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 16px;
-    }
-
-    .prompt-page-btn {
-      padding: 8px 12px;
-      border: 1px solid #D1D5DB;
-      background: white;
-      border-radius: 6px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .prompt-page-btn:hover:not(:disabled) {
-      background: #F3F4F6;
-    }
-
-    .prompt-page-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    .prompt-page-btn.prompt-active {
-      background: #3B82F6;
-      border-color: #3B82F6;
-      color: white;
-    }
-
-    .prompt-page-info {
-      font-size: 14px;
-      color: #6B7280;
-      margin-left: 12px;
-    }
 
     /* 프롬프트 모달 폭 강제 적용 */
     .modal-container.prompt-modal {
@@ -616,6 +577,15 @@
             </tbody>
           </table>
         </div>
+
+        <!-- 페이징 -->
+        <div class="pagination">
+          <button class="page-btn prev" disabled>‹</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn next">›</button>
+        </div>
       </div>
     </div>
   </div>
@@ -792,13 +762,12 @@
               </tbody>
             </table>
           </div>
-          <div class="prompt-pagination">
-            <button class="prompt-page-btn" disabled>이전</button>
-            <button class="prompt-page-btn prompt-active">1</button>
-            <button class="prompt-page-btn">2</button>
-            <button class="prompt-page-btn">3</button>
-            <button class="prompt-page-btn">다음</button>
-            <span class="prompt-page-info">1 / 3</span>
+          <div class="pagination">
+            <button class="page-btn prev" disabled>‹</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn next">›</button>
           </div>
         </div>
 

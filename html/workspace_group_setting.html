@@ -91,7 +91,7 @@
               <div class="group-info-header">
                 <div class="group-info-title-section">
                   <h3 class="group-info-subtitle">권한 정보</h3>
-                  <span class="group-total-count">총 4개</span>
+                  <span class="group-total-count">총 5개</span>
                 </div>
                 <div class="group-info-buttons">
                   <button class="btn-form-delete">삭제</button>
@@ -106,84 +106,46 @@
                     <tr>
                       <th><input type="checkbox" class="select-all"></th>
                       <th>순번</th>
-                      <th>워크스페이스</th>
                       <th>이름</th>
                       <th>권한명</th>
                       <th>설명</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr data-permission="meeting-admin">
                       <td><input type="checkbox"></td>
                       <td>1</td>
-                      <td>
-                        <div class="workspace-name">
-                          <div class="workspace-icon color-teal">S</div>
-                          <span>SK Telecom</span>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="user-icon">
-                          <div class="user-initial color-blue">홍</div>
-                          <span>홍길동</span>
-                        </div>
-                      </td>
-                      <td>시스템관리자</td>
-                      <td>최고관리자</td>
+                      <td>박영수</td>
+                      <td>회의관리자</td>
+                      <td>회의록 및 템플릿 관리</td>
                     </tr>
-                    <tr>
+                    <tr data-permission="logo-admin">
                       <td><input type="checkbox"></td>
                       <td>2</td>
-                      <td>
-                        <div class="workspace-name">
-                          <div class="workspace-icon color-indigo">S</div>
-                          <span>SK Hynix</span>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="user-icon">
-                          <div class="user-initial color-green">박</div>
-                          <span>박영수</span>
-                        </div>
-                      </td>
-                      <td>워크스페이스관리자</td>
-                      <td>관리자</td>
+                      <td>김철수</td>
+                      <td>로고관리자</td>
+                      <td>로고 이미지 관리</td>
                     </tr>
-                    <tr>
+                    <tr data-permission="user-admin">
                       <td><input type="checkbox"></td>
                       <td>3</td>
-                      <td>
-                        <div class="workspace-name">
-                          <div class="workspace-icon color-rose">T</div>
-                          <span>Timbel_Mk</span>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="user-icon">
-                          <div class="user-initial color-purple">김</div>
-                          <span>김철수</span>
-                        </div>
-                      </td>
-                      <td>일반사용자</td>
-                      <td>사용자</td>
+                      <td>이민수</td>
+                      <td>사용자관리자</td>
+                      <td>사용자 관리 및 접속 이력</td>
                     </tr>
-                    <tr>
+                    <tr data-permission="stats-admin">
                       <td><input type="checkbox"></td>
                       <td>4</td>
-                      <td>
-                        <div class="workspace-name">
-                          <div class="workspace-icon color-amber">T</div>
-                          <span>Timbel_sol</span>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="user-icon">
-                          <div class="user-initial color-orange">이</div>
-                          <span>이영희</span>
-                        </div>
-                      </td>
-                      <td>게스트</td>
-                      <td>뷰어</td>
+                      <td>최지영</td>
+                      <td>통계관리자</td>
+                      <td>사용량 및 사용자별 통계</td>
+                    </tr>
+                    <tr data-permission="content-admin">
+                      <td><input type="checkbox"></td>
+                      <td>5</td>
+                      <td>정수현</td>
+                      <td>컨텐츠관리자</td>
+                      <td>공지사항 및 사전 관리</td>
                     </tr>
                   </tbody>
                 </table>
@@ -207,84 +169,7 @@
                 <p class="no-data-text">권한 항목 미리보기가 가능합니다.</p>
               </div>
               <div class="tree-menu" id="treeMenu" style="display: none;">
-                <div class="tree-item">
-                  <input type="checkbox" id="워크스페이스" checked>
-                  <label for="워크스페이스">워크스페이스</label>
-                  <div class="tree-children">
-                    <div class="tree-item">
-                      <input type="checkbox" id="기능 권한 관리" checked>
-                      <label for="기능 권한 관리">기능 권한 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="메뉴리스트 관리" checked>
-                      <label for="메뉴리스트 관리">메뉴리스트 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="메뉴 권한 관리" checked>
-                      <label for="메뉴 권한 관리">메뉴 권한 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="사용자 관리" checked>
-                      <label for="사용자 관리">사용자 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="로고 이미지 관리" checked>
-                      <label for="로고 이미지 관리">로고 이미지 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="회의 템플릿 관리" checked>
-                      <label for="회의 템플릿 관리">회의 템플릿 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="프롬프트 관리" checked>
-                      <label for="프롬프트 관리">프롬프트 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="동의서 관리" checked>
-                      <label for="동의서 관리">동의서 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="캘린더 관리" checked>
-                      <label for="캘린더 관리">캘린더 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="사용자 접속 이력" checked>
-                      <label for="사용자 접속 이력">사용자 접속 이력</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="다운로드 이력" checked>
-                      <label for="다운로드 이력">다운로드 이력</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="사용자 동의 이력" checked>
-                      <label for="사용자 동의 이력">사용자 동의 이력</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="설정변경 이력" checked>
-                      <label for="설정변경 이력">설정변경 이력</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="회의록 관리" checked>
-                      <label for="회의록 관리">회의록 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="사전 관리" checked>
-                      <label for="사전 관리">사전 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="공지사항 관리" checked>
-                      <label for="공지사항 관리">공지사항 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="사용량 통계" checked>
-                      <label for="사용량 통계">사용량 통계</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="사용자별 통계" checked>
-                      <label for="사용자별 통계">사용자별 통계</label>
-                    </div>
-                  </div>
-                </div>
+                <!-- 동적으로 생성됩니다 -->
               </div>
             </div>
 
@@ -309,6 +194,190 @@
       const noDataArea = document.getElementById('noDataArea');
       const treeMenu = document.getElementById('treeMenu');
 
+      // 권한별 메뉴 구성 데이터
+      const permissionMenus = {
+        'meeting-admin': {
+          title: '워크스페이스',
+          menus: [
+            { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
+            { id: '메뉴 권한 관리', name: '메뉴 권한 관리', checked: false },
+            { id: '사용자 관리', name: '사용자 관리', checked: false },
+            { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
+            { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: true },
+            { id: '프롬프트 관리', name: '프롬프트 관리', checked: false },
+            { id: '동의서 관리', name: '동의서 관리', checked: false },
+            { id: '캘린더 관리', name: '캘린더 관리', checked: true },
+            { id: '사용자 접속 이력', name: '사용자 접속 이력', checked: false },
+            { id: '다운로드 이력', name: '다운로드 이력', checked: false },
+            { id: '사용자 동의 이력', name: '사용자 동의 이력', checked: false },
+            { id: '설정변경 이력', name: '설정변경 이력', checked: false },
+            { id: '회의록 관리', name: '회의록 관리', checked: true },
+            { id: '사전 관리', name: '사전 관리', checked: false },
+            { id: '공지사항 관리', name: '공지사항 관리', checked: false },
+            { id: '사용량 통계', name: '사용량 통계', checked: false },
+            { id: '사용자별 통계', name: '사용자별 통계', checked: false }
+          ]
+        },
+        'logo-admin': {
+          title: '워크스페이스',
+          menus: [
+            { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
+            { id: '메뉴 권한 관리', name: '메뉴 권한 관리', checked: false },
+            { id: '사용자 관리', name: '사용자 관리', checked: false },
+            { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: true },
+            { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: false },
+            { id: '프롬프트 관리', name: '프롬프트 관리', checked: false },
+            { id: '동의서 관리', name: '동의서 관리', checked: false },
+            { id: '캘린더 관리', name: '캘린더 관리', checked: false },
+            { id: '사용자 접속 이력', name: '사용자 접속 이력', checked: false },
+            { id: '다운로드 이력', name: '다운로드 이력', checked: false },
+            { id: '사용자 동의 이력', name: '사용자 동의 이력', checked: false },
+            { id: '설정변경 이력', name: '설정변경 이력', checked: false },
+            { id: '회의록 관리', name: '회의록 관리', checked: false },
+            { id: '사전 관리', name: '사전 관리', checked: false },
+            { id: '공지사항 관리', name: '공지사항 관리', checked: false },
+            { id: '사용량 통계', name: '사용량 통계', checked: false },
+            { id: '사용자별 통계', name: '사용자별 통계', checked: false }
+          ]
+        },
+        'user-admin': {
+          title: '워크스페이스',
+          menus: [
+            { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
+            { id: '메뉴 권한 관리', name: '메뉴 권한 관리', checked: false },
+            { id: '사용자 관리', name: '사용자 관리', checked: true },
+            { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
+            { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: false },
+            { id: '프롬프트 관리', name: '프롬프트 관리', checked: false },
+            { id: '동의서 관리', name: '동의서 관리', checked: false },
+            { id: '캘린더 관리', name: '캘린더 관리', checked: false },
+            { id: '사용자 접속 이력', name: '사용자 접속 이력', checked: true },
+            { id: '다운로드 이력', name: '다운로드 이력', checked: true },
+            { id: '사용자 동의 이력', name: '사용자 동의 이력', checked: true },
+            { id: '설정변경 이력', name: '설정변경 이력', checked: true },
+            { id: '회의록 관리', name: '회의록 관리', checked: false },
+            { id: '사전 관리', name: '사전 관리', checked: false },
+            { id: '공지사항 관리', name: '공지사항 관리', checked: false },
+            { id: '사용량 통계', name: '사용량 통계', checked: false },
+            { id: '사용자별 통계', name: '사용자별 통계', checked: false }
+          ]
+        },
+        'stats-admin': {
+          title: '워크스페이스',
+          menus: [
+            { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
+            { id: '메뉴 권한 관리', name: '메뉴 권한 관리', checked: false },
+            { id: '사용자 관리', name: '사용자 관리', checked: false },
+            { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
+            { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: false },
+            { id: '프롬프트 관리', name: '프롬프트 관리', checked: false },
+            { id: '동의서 관리', name: '동의서 관리', checked: false },
+            { id: '캘린더 관리', name: '캘린더 관리', checked: false },
+            { id: '사용자 접속 이력', name: '사용자 접속 이력', checked: false },
+            { id: '다운로드 이력', name: '다운로드 이력', checked: false },
+            { id: '사용자 동의 이력', name: '사용자 동의 이력', checked: false },
+            { id: '설정변경 이력', name: '설정변경 이력', checked: false },
+            { id: '회의록 관리', name: '회의록 관리', checked: false },
+            { id: '사전 관리', name: '사전 관리', checked: false },
+            { id: '공지사항 관리', name: '공지사항 관리', checked: false },
+            { id: '사용량 통계', name: '사용량 통계', checked: true },
+            { id: '사용자별 통계', name: '사용자별 통계', checked: true }
+          ]
+        },
+        'content-admin': {
+          title: '워크스페이스',
+          menus: [
+            { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
+            { id: '메뉴 권한 관리', name: '메뉴 권한 관리', checked: false },
+            { id: '사용자 관리', name: '사용자 관리', checked: false },
+            { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
+            { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: false },
+            { id: '프롬프트 관리', name: '프롬프트 관리', checked: true },
+            { id: '동의서 관리', name: '동의서 관리', checked: false },
+            { id: '캘린더 관리', name: '캘린더 관리', checked: false },
+            { id: '사용자 접속 이력', name: '사용자 접속 이력', checked: false },
+            { id: '다운로드 이력', name: '다운로드 이력', checked: false },
+            { id: '사용자 동의 이력', name: '사용자 동의 이력', checked: false },
+            { id: '설정변경 이력', name: '설정변경 이력', checked: false },
+            { id: '회의록 관리', name: '회의록 관리', checked: false },
+            { id: '사전 관리', name: '사전 관리', checked: true },
+            { id: '공지사항 관리', name: '공지사항 관리', checked: true },
+            { id: '사용량 통계', name: '사용량 통계', checked: false },
+            { id: '사용자별 통계', name: '사용자별 통계', checked: false }
+          ]
+        }
+      };
+
+      // 트리 메뉴 생성 함수
+      function createTreeMenu(permissionType) {
+        const menuData = permissionMenus[permissionType];
+        if (!menuData) return '';
+
+        let html = `
+          <div class="tree-item">
+            <input type="checkbox" id="워크스페이스" class="workspace-select-all">
+            <label for="워크스페이스">${menuData.title}</label>
+            <div class="tree-children">`;
+
+        menuData.menus.forEach(menu => {
+          html += `
+            <div class="tree-item">
+              <input type="checkbox" id="${menu.id}" ${menu.checked ? 'checked' : ''}>
+              <label for="${menu.id}">${menu.name}</label>
+            </div>`;
+        });
+
+        html += `
+            </div>
+          </div>`;
+
+        return html;
+      }
+
+      // 워크스페이스 체크박스 상태 업데이트 함수
+      function updateWorkspaceCheckboxState() {
+        const workspaceSelectAll = document.querySelector('.workspace-select-all');
+        const workspaceChildCheckboxes = document.querySelectorAll('.tree-children input[type="checkbox"]');
+
+        if (!workspaceSelectAll || !workspaceChildCheckboxes.length) return;
+
+        const checkedCount = Array.from(workspaceChildCheckboxes).filter(cb => cb.checked).length;
+
+        if (checkedCount === 0) {
+          workspaceSelectAll.checked = false;
+          workspaceSelectAll.indeterminate = false;
+        } else if (checkedCount === workspaceChildCheckboxes.length) {
+          workspaceSelectAll.checked = true;
+          workspaceSelectAll.indeterminate = false;
+        } else {
+          workspaceSelectAll.checked = false;
+          workspaceSelectAll.indeterminate = true;
+        }
+      }
+
+      // 워크스페이스 전체 선택 이벤트 바인딩 함수
+      function bindWorkspaceSelectAllEvent() {
+        const workspaceSelectAll = document.querySelector('.workspace-select-all');
+        const workspaceChildCheckboxes = document.querySelectorAll('.tree-children input[type="checkbox"]');
+
+        if (workspaceSelectAll) {
+          workspaceSelectAll.addEventListener('change', function () {
+            const isChecked = this.checked;
+            workspaceChildCheckboxes.forEach(checkbox => {
+              checkbox.checked = isChecked;
+            });
+          });
+        }
+
+        // 하위 체크박스 변경 시 워크스페이스 체크박스 상태 업데이트
+        workspaceChildCheckboxes.forEach(checkbox => {
+          checkbox.addEventListener('change', updateWorkspaceCheckboxState);
+        });
+
+        // 초기 상태 설정
+        updateWorkspaceCheckboxState();
+      }
+
       // 테이블 행 클릭 이벤트
       tableRows.forEach(row => {
         row.addEventListener('click', function (e) {
@@ -321,12 +390,20 @@
           // 현재 행 선택
           this.classList.add('selected');
 
+          // 권한 타입 가져오기
+          const permissionType = this.getAttribute('data-permission');
+
+          // 해당 권한에 맞는 트리 메뉴 생성
+          const treeHTML = createTreeMenu(permissionType);
+          treeMenu.innerHTML = treeHTML;
+
           // 노데이터 영역 숨기고 트리 메뉴 표시
           noDataArea.style.display = 'none';
           treeMenu.style.display = 'block';
 
-          // 선택된 권한에 따라 다른 메뉴 표시 (추후 확장 가능)
-          const permissionType = this.querySelector('td:nth-child(5)').textContent;
+          // 워크스페이스 전체 선택 이벤트 바인딩
+          bindWorkspaceSelectAllEvent();
+
           console.log('선택된 권한:', permissionType);
         });
       });
@@ -368,10 +445,22 @@
 
       if (resetBtn) {
         resetBtn.addEventListener('click', function () {
-          // 모든 체크박스 초기화
-          const treeCheckboxes = document.querySelectorAll('#treeMenu input[type="checkbox"]');
-          treeCheckboxes.forEach(cb => cb.checked = false);
-          alert('권한이 초기화되었습니다.');
+          // 현재 선택된 행의 권한 타입 가져오기
+          const selectedRow = document.querySelector('.group-setting-table tbody tr.selected');
+          if (selectedRow) {
+            const permissionType = selectedRow.getAttribute('data-permission');
+
+            // 해당 권한의 원래 상태로 트리 메뉴 재생성
+            const treeHTML = createTreeMenu(permissionType);
+            treeMenu.innerHTML = treeHTML;
+
+            // 워크스페이스 전체 선택 이벤트 재바인딩
+            bindWorkspaceSelectAllEvent();
+
+            alert('권한이 초기화되었습니다.');
+          } else {
+            alert('초기화할 권한을 선택해주세요.');
+          }
         });
       }
 
@@ -380,13 +469,14 @@
           // 권한 저장 로직
           const selectedRow = document.querySelector('.group-setting-table tbody tr.selected');
           if (selectedRow) {
-            const userName = selectedRow.querySelector('td:nth-child(4)').textContent.trim();
+            const userName = selectedRow.querySelector('td:nth-child(3)').textContent.trim();
             alert(`${userName}의 권한이 저장되었습니다.`);
           } else {
             alert('권한을 수정할 사용자를 선택해주세요.');
           }
         });
       }
+
 
       // 권한 생성 모달 기능
       const createPermissionBtn = document.getElementById('createPermissionBtn');

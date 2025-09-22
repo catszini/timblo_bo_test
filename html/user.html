@@ -84,13 +84,19 @@
         </h1>
       </div>
       <div class="content-body">
-        <div class="top-section">
-          <div class="search-section">
-            <div class="common-topbar">
-              <div class="tb-left">
-                <span class="total-count">총 21개</span>
-              </div>
-              <div class="tb-right">
+        <!-- 통합 검색 툴바 컴포넌트 -->
+        <div class="search-toolbar">
+          <div class="common-topbar">
+            <div class="tb-left">
+              <span class="total-count">총 9개</span>
+            </div>
+            <div class="tb-right">
+              <div class="right-tail">
+                <select class="condition-select">
+                  <option>10개씩 보기</option>
+                  <option>20개씩 보기</option>
+                  <option>50개씩 보기</option>
+                </select>
                 <div class="combo-search">
                   <div class="combo-field">
                     <select class="combo-select">
@@ -99,6 +105,7 @@
                       <option>이름</option>
                       <option>이메일</option>
                     </select>
+                    <div class="divider"></div>
                     <div class="combo-input-wrap">
                       <span class="mag-icon">🔍</span>
                       <input type="text" class="combo-input" placeholder="검색어를 입력해주세요.">
@@ -131,15 +138,20 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status online">박영수</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:park.ys@sktelecom.com" class="email-link">park.ys@sktelecom.com</a></td>
                 <td>
-                  <select class="permission-select">
-                    <option>관리자</option>
-                    <option>사용자</option>
-                  </select>
+                  <div class="combo-select">
+                    <select class="permission-select">
+                      <option selected>회의관리자</option>
+                      <option>로고관리자</option>
+                      <option>사용자관리자</option>
+                      <option>통계관리자</option>
+                      <option>컨텐츠관리자</option>
+                    </select>
+                  </div>
                 </td>
                 <td><button class="btn-outline btn-sm">초기화</button></td>
                 <td><button class="btn-danger btn-sm">삭제</button></td>
@@ -148,15 +160,20 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status online">김철수</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:kim.cs@sktelecom.com" class="email-link">kim.cs@sktelecom.com</a></td>
                 <td>
-                  <select class="permission-select">
-                    <option>관리자</option>
-                    <option>사용자</option>
-                  </select>
+                  <div class="combo-select">
+                    <select class="permission-select">
+                      <option>회의관리자</option>
+                      <option selected>로고관리자</option>
+                      <option>사용자관리자</option>
+                      <option>통계관리자</option>
+                      <option>컨텐츠관리자</option>
+                    </select>
+                  </div>
                 </td>
                 <td><button class="btn-outline btn-sm">초기화</button></td>
                 <td><button class="btn-danger btn-sm">삭제</button></td>
@@ -165,15 +182,20 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status online">이민수</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:lee.ms@sktelecom.com" class="email-link">lee.ms@sktelecom.com</a></td>
                 <td>
-                  <select class="permission-select">
-                    <option>관리자</option>
-                    <option>사용자</option>
-                  </select>
+                  <div class="combo-select">
+                    <select class="permission-select">
+                      <option>회의관리자</option>
+                      <option>로고관리자</option>
+                      <option selected>사용자관리자</option>
+                      <option>통계관리자</option>
+                      <option>컨텐츠관리자</option>
+                    </select>
+                  </div>
                 </td>
                 <td><button class="btn-outline btn-sm">초기화</button></td>
                 <td><button class="btn-danger btn-sm">삭제</button></td>
@@ -182,15 +204,20 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status online">최지영</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:choi.jy@sktelecom.com" class="email-link">choi.jy@sktelecom.com</a></td>
                 <td>
-                  <select class="permission-select">
-                    <option>관리자</option>
-                    <option>사용자</option>
-                  </select>
+                  <div class="combo-select">
+                    <select class="permission-select">
+                      <option>회의관리자</option>
+                      <option>로고관리자</option>
+                      <option>사용자관리자</option>
+                      <option selected>통계관리자</option>
+                      <option>컨텐츠관리자</option>
+                    </select>
+                  </div>
                 </td>
                 <td><button class="btn-outline btn-sm">초기화</button></td>
                 <td><button class="btn-danger btn-sm">삭제</button></td>
@@ -199,15 +226,20 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status online">정수현</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:jung.sh@sktelecom.com" class="email-link">jung.sh@sktelecom.com</a></td>
                 <td>
-                  <select class="permission-select">
-                    <option>관리자</option>
-                    <option>사용자</option>
-                  </select>
+                  <div class="combo-select">
+                    <select class="permission-select">
+                      <option>회의관리자</option>
+                      <option>로고관리자</option>
+                      <option>사용자관리자</option>
+                      <option>통계관리자</option>
+                      <option selected>컨텐츠관리자</option>
+                    </select>
+                  </div>
                 </td>
                 <td><button class="btn-outline btn-sm">초기화</button></td>
                 <td><button class="btn-danger btn-sm">삭제</button></td>
@@ -216,15 +248,20 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status offline">강민호</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:kang.mh@sktelecom.com" class="email-link">kang.mh@sktelecom.com</a></td>
                 <td>
-                  <select class="permission-select">
-                    <option>관리자</option>
-                    <option>사용자</option>
-                  </select>
+                  <div class="combo-select">
+                    <select class="permission-select">
+                      <option selected>회의관리자</option>
+                      <option>로고관리자</option>
+                      <option>사용자관리자</option>
+                      <option>통계관리자</option>
+                      <option>컨텐츠관리자</option>
+                    </select>
+                  </div>
                 </td>
                 <td><button class="btn-outline btn-sm">초기화</button></td>
                 <td><button class="btn-danger btn-sm">삭제</button></td>
@@ -233,15 +270,20 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status online">송현지</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:song.hj@sktelecom.com" class="email-link">song.hj@sktelecom.com</a></td>
                 <td>
-                  <select class="permission-select">
-                    <option>관리자</option>
-                    <option>사용자</option>
-                  </select>
+                  <div class="combo-select">
+                    <select class="permission-select">
+                      <option>회의관리자</option>
+                      <option>로고관리자</option>
+                      <option>사용자관리자</option>
+                      <option selected>통계관리자</option>
+                      <option>컨텐츠관리자</option>
+                    </select>
+                  </div>
                 </td>
                 <td><button class="btn-outline btn-sm">초기화</button></td>
                 <td><button class="btn-danger btn-sm">삭제</button></td>
@@ -250,15 +292,20 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status online">윤서준</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:yoon.sj@sktelecom.com" class="email-link">yoon.sj@sktelecom.com</a></td>
                 <td>
-                  <select class="permission-select">
-                    <option>관리자</option>
-                    <option>사용자</option>
-                  </select>
+                  <div class="combo-select">
+                    <select class="permission-select">
+                      <option>회의관리자</option>
+                      <option selected>로고관리자</option>
+                      <option>사용자관리자</option>
+                      <option>통계관리자</option>
+                      <option>컨텐츠관리자</option>
+                    </select>
+                  </div>
                 </td>
                 <td><button class="btn-outline btn-sm">초기화</button></td>
                 <td><button class="btn-danger btn-sm">삭제</button></td>
@@ -267,15 +314,20 @@
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="user-profile">
-                    <span class="user-status online">홍길동</span>
+                    <span class="user-status offline">한도윤</span>
                   </div>
                 </td>
-                <td><a href="mailto:www.sktelecom.ai" class="email-link">www.sktelecom.ai</a></td>
+                <td><a href="mailto:han.dy@sktelecom.com" class="email-link">han.dy@sktelecom.com</a></td>
                 <td>
-                  <select class="permission-select">
-                    <option>관리자</option>
-                    <option>사용자</option>
-                  </select>
+                  <div class="combo-select">
+                    <select class="permission-select">
+                      <option>회의관리자</option>
+                      <option>로고관리자</option>
+                      <option>사용자관리자</option>
+                      <option>통계관리자</option>
+                      <option selected>컨텐츠관리자</option>
+                    </select>
+                  </div>
                 </td>
                 <td><button class="btn-outline btn-sm">초기화</button></td>
                 <td><button class="btn-danger btn-sm">삭제</button></td>
@@ -284,16 +336,12 @@
           </table>
         </div>
 
-        <div class="list-footer">
-          <div class="pagination">
-            <button class="page-btn prev">‹</button>
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn">3</button>
-            <button class="page-btn">4</button>
-            <button class="page-btn">5</button>
-            <button class="page-btn next">›</button>
-          </div>
+        <div class="pagination">
+          <button class="page-btn prev" disabled>‹</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn next">›</button>
         </div>
       </div>
     </div>

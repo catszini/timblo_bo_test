@@ -71,7 +71,48 @@
     .menu-title-section {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 24px;
+    }
+
+    .workspace-selector {
+      display: flex;
+      align-items: center;
+    }
+
+    .workspace-selector .combo-select {
+      position: relative;
+      display: inline-block;
+    }
+
+    .workspace-selector .workspace-select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding: 8px 32px 8px 12px;
+      border: 1px solid #E5E5E5;
+      border-radius: 8px;
+      background: white;
+      font-size: 14px;
+      color: #374151;
+      cursor: pointer;
+      min-width: 180px;
+      transition: all 0.2s ease;
+    }
+
+    .workspace-selector .workspace-select:focus {
+      outline: none;
+      border-color: #0066FF;
+      box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);
+    }
+
+    .workspace-selector .select-arrow {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      pointer-events: none;
     }
 
     .menu-subtitle {
@@ -255,6 +296,19 @@
         <div class="menu-title-header">
           <div class="menu-title-section">
             <h3 class="menu-subtitle">메뉴 관리</h3>
+            <div class="workspace-selector">
+              <div class="combo-select">
+                <select id="workspaceSelect" class="workspace-select">
+                  <option value="all">전체 워크스페이스</option>
+                  <option value="sk-telecom">SK Telecom</option>
+                  <option value="sk-hynix">SK Hynix</option>
+                  <option value="sk-on">SK On</option>
+                  <option value="timbel-mk">Timbel_Mk</option>
+                  <option value="timbel-sol">Timbel_sol</option>
+                </select>
+                <img src="../asset/select-arrow.svg" alt="선택" class="select-arrow">
+              </div>
+            </div>
           </div>
           <div class="menu-action-section">
             <div class="menu-action-buttons">
@@ -273,108 +327,10 @@
                 <th width="300">메뉴명</th>
                 <th width="100">사용여부</th>
                 <th width="350">URL</th>
-                <th width="140">액션</th>
+                <th width="140">수정/삭제</th>
               </tr>
             </thead>
             <tbody>
-              <!-- 시스템관리 메뉴들 -->
-              <tr>
-                <td>워크스페이스 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>workspace.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>사용자 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>system_user.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>메뉴 생성 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>menu_setting.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>메뉴 권한 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>group_setting.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>사용량 통계</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>system_stats_usage.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>사용자별 통계</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>system_stats_user.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-
               <!-- 워크스페이스 메뉴들 -->
               <tr>
                 <td>기능 권한 관리</td>
@@ -731,6 +687,7 @@
       const saveBtn = document.getElementById('menuModalSave');
       const resetBtn = document.querySelector('.btn-reset');
       const saveAllBtn = document.querySelector('.btn-save');
+      const workspaceSelect = document.getElementById('workspaceSelect');
 
       // 새 메뉴 버튼 클릭 시 모달 열기
       if (newMenuBtn) {
@@ -783,6 +740,28 @@
         saveAllBtn.addEventListener('click', function () {
           if (confirm('현재 메뉴 설정을 저장하시겠습니까?')) {
             alert('메뉴 설정이 저장되었습니다.');
+          }
+        });
+      }
+
+      // 워크스페이스 선택 기능
+      if (workspaceSelect) {
+        workspaceSelect.addEventListener('change', function () {
+          const selectedWorkspace = this.value;
+          const selectedText = this.options[this.selectedIndex].text;
+
+          // 테이블 필터링 로직 (실제로는 서버에서 데이터를 가져와야 함)
+          console.log(`선택된 워크스페이스: ${selectedText} (${selectedWorkspace})`);
+
+          // 예시: 선택된 워크스페이스에 따라 메뉴 표시/숨김
+          if (selectedWorkspace === 'all') {
+            // 모든 메뉴 표시
+            document.querySelectorAll('.menu-table tbody tr').forEach(row => {
+              row.style.display = '';
+            });
+          } else {
+            // 특정 워크스페이스 메뉴만 표시 (실제로는 서버 데이터 기반으로 구현)
+            alert(`${selectedText} 워크스페이스의 메뉴를 표시합니다.`);
           }
         });
       }
