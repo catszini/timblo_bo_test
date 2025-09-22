@@ -4,16 +4,43 @@ import {
   Drawer, 
   AppBar, 
   Toolbar, 
-  List, 
-  ListItem, 
-  ListItemButton, 
+    List,
+  ListItem,
+  ListItemButton,
   ListItemText,
+  ListItemIcon,
   Collapse,
   Typography,
   IconButton
 } from '@mui/material'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { ExpandLess, ExpandMore, Logout } from '@mui/icons-material'
+import { 
+  ExpandLess, 
+  ExpandMore, 
+  Logout,
+  WorkspacesOutlined,
+  PeopleOutlined,
+  MenuOutlined,
+  SecurityOutlined,
+  BarChartOutlined,
+  AssessmentOutlined,
+  SettingsOutlined,
+  PersonOutlined,
+  ImageOutlined,
+  DescriptionOutlined,
+  SmartToyOutlined,
+  ArticleOutlined,
+  CalendarTodayOutlined,
+  HistoryOutlined,
+  DownloadOutlined,
+  PolicyOutlined,
+  FactCheckOutlined,
+  RecordVoiceOverOutlined,
+  BookOutlined,
+  CampaignOutlined,
+  TrendingUpOutlined,
+  PersonSearchOutlined
+} from '@mui/icons-material'
 
 const drawerWidth = 240
 
@@ -79,13 +106,18 @@ function Layout({ children }) {
             top: 0,
             height: '100vh',
             overflowY: 'auto',
-            '&::-webkit-scrollbar': {
-              display: 'none',
+            borderRadius: '0px !important',
+            boxShadow: 'none !important',
+            transform: 'none !important',
+            transition: 'none !important',
+            '&:hover': {
+              boxShadow: 'none !important',
+              transform: 'none !important',
             },
+            '&::-webkit-scrollbar': {
+              display: 'none'},
             scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-          },
-        }}
+            msOverflowStyle: 'none'}}}
       >
         {/* 로고 섹션 */}
         <Box sx={{ 
@@ -93,20 +125,25 @@ function Layout({ children }) {
           borderBottom: '1px solid #E5E5E5',
           display: 'flex',
           alignItems: 'center',
-          gap: 1
+          gap: 1,
+          boxShadow: 'none !important',
+          transform: 'none !important',
+          transition: 'none !important',
+          '&:hover': {
+            boxShadow: 'none !important',
+            transform: 'none !important',
+          }
         }}>
           <Box sx={{
             width: 40,
             height: 40,
-            backgroundColor: '#4B88F0',
             borderRadius: '8px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             color: 'white',
             fontSize: '24px',
-            fontWeight: 600,
-          }}>
+            fontWeight: 600}}>
             S
           </Box>
           <Box sx={{ flex: 1 }}>
@@ -130,10 +167,7 @@ function Layout({ children }) {
             size="small"
             sx={{
               width: 32,
-              height: 32,
-              '&:hover': {
-                backgroundColor: '#F8F9FA',
-              }
+              height: 32
             }}
           >
             <Logout sx={{ width: 20, height: 20, color: '#4D5256' }} />
@@ -141,7 +175,17 @@ function Layout({ children }) {
         </Box>
 
 
-        <Box sx={{ px: 2, pt: 3 }}>
+        <Box sx={{ 
+          px: 2, 
+          pt: 3,
+          boxShadow: 'none !important',
+          transform: 'none !important',
+          transition: 'none !important',
+          '&:hover': {
+            boxShadow: 'none !important',
+            transform: 'none !important',
+          }
+        }}>
           {menuSections.map((section, sectionIndex) => (
             <Box key={section.title} sx={{ mb: sectionIndex < menuSections.length - 1 ? 2 : 0 }}>
               <Typography sx={{ 
@@ -155,36 +199,28 @@ function Layout({ children }) {
               </Typography>
               <List dense sx={{ py: 0 }}>
                 {section.items.map((item) => (
-                  <ListItem key={item.text} disablePadding>
+                  <ListItem key={item.text} disablePadding sx={{ borderRadius: '0px !important' }}>
                     <ListItemButton
                       selected={location.pathname === item.path}
                       onClick={() => handleMenuClick(item.path)}
                       sx={{
-                        borderRadius: 0,
+                        borderRadius: '0px !important',
                         margin: 0,
                         padding: '8px 12px',
                         fontSize: '14px',
                         color: '#333',
                         transition: 'background-color 0.2s',
-                        '&:hover': {
-                          backgroundColor: '#f5f6f8',
-                        },
                         '&.Mui-selected': {
-                          backgroundColor: '#f0f7ff',
-                          color: '#0066ff',
+                          color: '#6366F1',
                           fontWeight: 600,
-                          '&:hover': {
-                            backgroundColor: '#f0f7ff',
-                          },
-                        },
-                      }}
+                          borderRadius: '0px !important'}}}
                     >
                       <ListItemText 
                         primary={item.text}
                         primaryTypographyProps={{
                           fontSize: '14px',
                           fontWeight: location.pathname === item.path ? 600 : 400,
-                          color: location.pathname === item.path ? '#0066ff' : '#333',
+                          color: location.pathname === item.path ? '#6366F1' : '#333',
                         }}
                       />
                     </ListItemButton>
@@ -201,13 +237,16 @@ function Layout({ children }) {
         component="main"
         sx={{
           flexGrow: 1,
-          padding: { xs: '16px', sm: '24px 32px' },
-          backgroundColor: '#ffffff',
+          width: `calc(100vw - ${drawerWidth}px)`, // 정확한 너비 계산
+          padding: { xs: '16px', sm: '20px 24px' }, // 패딩 감소,
           borderLeft: '1px solid #e1e1e1',
           minHeight: '100vh',
           overflowX: 'hidden', // 가로 스크롤만 막기
           overflowY: 'auto',   // 세로 스크롤 허용
           minWidth: 0, // flexbox에서 최소 너비 제한 해제
+          maxWidth: `calc(100vw - ${drawerWidth}px)`, // 최대 너비도 제한
+          backgroundColor: '#ffffff', // 메인 영역 배경색 하얀색
+          backgroundImage: 'none', // 그라데이션 제거
         }}
       >
         {children}

@@ -21,8 +21,8 @@ import {
 const loginHistoryData = [
   {
     id: 1,
-    userName: '김사용자',
-    email: 'kim.user@sktelecom.com',
+    userName: '안지훈',
+    email: 'jihoon.ahn@sktelecom.com',
     workspace: 'SK Telecom',
     workspaceColor: '#14B8A6',
     loginTime: '2024-01-15 14:32:15',
@@ -34,8 +34,8 @@ const loginHistoryData = [
   },
   {
     id: 2,
-    userName: '이관리자',
-    email: 'lee.admin@skhynix.com',
+    userName: '강수정',
+    email: 'sujeong.kang@skhynix.com',
     workspace: 'SK Hynix',
     workspaceColor: '#6366F1',
     loginTime: '2024-01-15 09:15:33',
@@ -47,8 +47,8 @@ const loginHistoryData = [
   },
   {
     id: 3,
-    userName: '박개발자',
-    email: 'park.dev@skcc.com',
+    userName: '임도현',
+    email: 'dohyun.lim@skcc.com',
     workspace: 'SK C&C',
     workspaceColor: '#F43F5E',
     loginTime: '2024-01-15 08:45:12',
@@ -60,8 +60,8 @@ const loginHistoryData = [
   },
   {
     id: 4,
-    userName: '최운영팀',
-    email: 'choi.ops@skinnovation.com',
+    userName: '윤채원',
+    email: 'chaewon.yoon@skinnovation.com',
     workspace: 'SK Innovation',
     workspaceColor: '#10B981',
     loginTime: '2024-01-14 16:20:44',
@@ -138,7 +138,6 @@ function LoginHistoryPage() {
               alignItems: 'center',
               border: '1px solid #E5E5E5',
               borderRadius: '8px',
-              backgroundColor: '#fff',
               overflow: 'hidden'
             }}>
               <FormControl size="small" sx={{ minWidth: 120 }}>
@@ -149,8 +148,7 @@ function LoginHistoryPage() {
                     borderRadius: 0,
                     '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
                     '&:hover .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                  }}
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
                 >
                   <MenuItem value="userName">사용자명</MenuItem>
                   <MenuItem value="email">이메일</MenuItem>
@@ -158,7 +156,7 @@ function LoginHistoryPage() {
                   <MenuItem value="workspace">워크스페이스</MenuItem>
                 </Select>
               </FormControl>
-              <Box sx={{ width: '1px', height: '24px', backgroundColor: '#E5E5E5' }} />
+              <Box sx={{ width: '1px', height: '24px' }} />
               <TextField
                 size="small"
                 placeholder="검색어를 입력하세요"
@@ -171,19 +169,16 @@ function LoginHistoryPage() {
                     borderRadius: 0,
                     '& fieldset': { border: 'none' },
                     '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' },
-                  },
-                }}
+                    '&.Mui-focused fieldset': { border: 'none' }}}}
               />
             </Box>
             <Button 
-              variant="contained" 
+              variant="text"
+              color="primary" 
               size="small"
               sx={{ 
                 height: '36px',
-                minWidth: '60px',
-                backgroundColor: '#0066FF',
-                '&:hover': { backgroundColor: '#0052CC' }
+                minWidth: '60px'
               }}
             >
               검색
@@ -298,20 +293,18 @@ function LoginHistoryPage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ‹
         </Button>
         <Button 
-          variant="contained"
+          variant="text"
+              color="primary"
           size="small"
           sx={{ 
             minWidth: '32px', 
-            height: '32px',
-            backgroundColor: '#0066FF',
-            '&:hover': { backgroundColor: '#0052CC' }
+            height: '32px'
           }}
         >
           1
@@ -323,8 +316,7 @@ function LoginHistoryPage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ›

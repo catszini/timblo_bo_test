@@ -122,12 +122,11 @@ function NoticePage() {
             marginLeft: 'auto'
           }}>
             <Button 
-              variant="contained" 
+              variant="text"
+              color="primary"
               size="small"
               sx={{ 
-                height: '36px',
-                backgroundColor: '#0066FF',
-                '&:hover': { backgroundColor: '#0052CC' }
+                height: '36px'
               }}
             >
               새 공지사항
@@ -137,7 +136,6 @@ function NoticePage() {
               alignItems: 'center',
               border: '1px solid #E5E5E5',
               borderRadius: '8px',
-              backgroundColor: '#fff',
               overflow: 'hidden'
             }}>
               <FormControl size="small" sx={{ minWidth: 120 }}>
@@ -148,15 +146,14 @@ function NoticePage() {
                     borderRadius: 0,
                     '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
                     '&:hover .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                  }}
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
                 >
                   <MenuItem value="title">제목</MenuItem>
                   <MenuItem value="content">내용</MenuItem>
                   <MenuItem value="author">작성자</MenuItem>
                 </Select>
               </FormControl>
-              <Box sx={{ width: '1px', height: '24px', backgroundColor: '#E5E5E5' }} />
+              <Box sx={{ width: '1px', height: '24px' }} />
               <TextField
                 size="small"
                 placeholder="검색어를 입력하세요"
@@ -169,19 +166,16 @@ function NoticePage() {
                     borderRadius: 0,
                     '& fieldset': { border: 'none' },
                     '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' },
-                  },
-                }}
+                    '&.Mui-focused fieldset': { border: 'none' }}}}
               />
             </Box>
             <Button 
-              variant="contained" 
+              variant="text"
+              color="primary" 
               size="small"
               sx={{ 
                 height: '36px',
-                minWidth: '60px',
-                backgroundColor: '#0066FF',
-                '&:hover': { backgroundColor: '#0052CC' }
+                minWidth: '60px'
               }}
             >
               검색
@@ -214,8 +208,7 @@ function NoticePage() {
                       sx={{ 
                         color: '#0066FF', 
                         textDecoration: 'none',
-                        fontWeight: 500,
-                        '&:hover': { textDecoration: 'underline' }
+                        fontWeight: 500
                       }}
                     >
                       {notice.title}
@@ -293,20 +286,18 @@ function NoticePage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ‹
         </Button>
         <Button 
-          variant="contained"
+          variant="text"
+              color="primary"
           size="small"
           sx={{ 
             minWidth: '32px', 
-            height: '32px',
-            backgroundColor: '#0066FF',
-            '&:hover': { backgroundColor: '#0052CC' }
+            height: '32px'
           }}
         >
           1
@@ -318,8 +309,7 @@ function NoticePage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ›

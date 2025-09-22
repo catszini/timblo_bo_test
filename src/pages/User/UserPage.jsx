@@ -21,36 +21,36 @@ import { Search } from '@mui/icons-material'
 
 const userData = [
   {
-    name: '김회의',
-    email: 'kim.meeting@sktelecom.com',
+    name: '김민호',
+    email: 'minho.kim@sktelecom.com',
     permission: '회의관리자',
     status: 'online',
     lastLogin: '2024-01-15 14:30'
   },
   {
-    name: '이로고',
-    email: 'lee.logo@sktelecom.com',
+    name: '이수연',
+    email: 'suyeon.lee@sktelecom.com',
     permission: '로고관리자',
     status: 'offline',
     lastLogin: '2024-01-14 09:15'
   },
   {
-    name: '박사용자',
-    email: 'park.user@sktelecom.com',
+    name: '박재민',
+    email: 'jaemin.park@sktelecom.com',
     permission: '사용자관리자',
     status: 'online',
     lastLogin: '2024-01-15 16:45'
   },
   {
-    name: '최통계',
-    email: 'choi.stats@sktelecom.com',
+    name: '최윤서',
+    email: 'yunseo.choi@sktelecom.com',
     permission: '통계관리자',
     status: 'offline',
     lastLogin: '2024-01-13 11:20'
   },
   {
-    name: '정컨텐츠',
-    email: 'jung.content@sktelecom.com',
+    name: '정하늘',
+    email: 'haneul.jung@sktelecom.com',
     permission: '컨텐츠관리자',
     status: 'online',
     lastLogin: '2024-01-15 13:10'
@@ -111,7 +111,6 @@ function UserPage() {
               alignItems: 'center',
               border: '1px solid #E5E5E5',
               borderRadius: '8px',
-              backgroundColor: '#fff',
               overflow: 'hidden',
               width: { xs: '100%', sm: 'auto' }
             }}>
@@ -122,15 +121,11 @@ function UserPage() {
                     height: '36px',
                     borderRadius: 0,
                     '& .MuiOutlinedInput-notchedOutline': {
-                      border: 'none',
-                    },
+                      border: 'none'},
                     '&:hover .MuiOutlinedInput-notchedOutline': {
-                      border: 'none',
-                    },
+                      border: 'none'},
                     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                      border: 'none',
-                    },
-                  }}
+                      border: 'none'}}}
                 >
                   <MenuItem value="name">이름</MenuItem>
                   <MenuItem value="email">이메일</MenuItem>
@@ -138,8 +133,7 @@ function UserPage() {
               </FormControl>
               <Box sx={{ 
                 width: '1px', 
-                height: '24px', 
-                backgroundColor: '#E5E5E5' 
+                height: '24px' 
               }} />
               <TextField
                 size="small"
@@ -152,28 +146,20 @@ function UserPage() {
                     height: '36px',
                     borderRadius: 0,
                     '& fieldset': {
-                      border: 'none',
-                    },
+                      border: 'none'},
                     '&:hover fieldset': {
-                      border: 'none',
-                    },
+                      border: 'none'},
                     '&.Mui-focused fieldset': {
-                      border: 'none',
-                    },
-                  },
-                }}
+                      border: 'none'}}}}
               />
             </Box>
             <Button 
-              variant="contained" 
+              variant="text"
+              color="primary" 
               size="small"
               sx={{ 
                 height: '36px',
-                minWidth: '60px',
-                backgroundColor: '#0066FF',
-                '&:hover': {
-                  backgroundColor: '#0052CC',
-                }
+                minWidth: '60px'
               }}
             >
               검색

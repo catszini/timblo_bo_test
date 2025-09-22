@@ -119,7 +119,7 @@ function CalendarAccessPage() {
       {/* 저장 버튼 */}
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 3 }}>
         <Button 
-          variant="contained" 
+          variant="text" 
           sx={{ 
             fontSize: '14px',
             minWidth: '100px',

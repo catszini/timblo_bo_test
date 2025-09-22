@@ -164,7 +164,6 @@ function SettingChangeHistoryPage() {
               alignItems: 'center',
               border: '1px solid #E5E5E5',
               borderRadius: '8px',
-              backgroundColor: '#fff',
               overflow: 'hidden'
             }}>
               <FormControl size="small" sx={{ minWidth: 120 }}>
@@ -175,15 +174,14 @@ function SettingChangeHistoryPage() {
                     borderRadius: 0,
                     '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
                     '&:hover .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                  }}
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
                 >
                   <MenuItem value="userName">사용자명</MenuItem>
                   <MenuItem value="settingName">설정명</MenuItem>
                   <MenuItem value="workspace">워크스페이스</MenuItem>
                 </Select>
               </FormControl>
-              <Box sx={{ width: '1px', height: '24px', backgroundColor: '#E5E5E5' }} />
+              <Box sx={{ width: '1px', height: '24px' }} />
               <TextField
                 size="small"
                 placeholder="검색어를 입력하세요"
@@ -196,19 +194,16 @@ function SettingChangeHistoryPage() {
                     borderRadius: 0,
                     '& fieldset': { border: 'none' },
                     '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' },
-                  },
-                }}
+                    '&.Mui-focused fieldset': { border: 'none' }}}}
               />
             </Box>
             <Button 
-              variant="contained" 
+              variant="text"
+              color="primary" 
               size="small"
               sx={{ 
                 height: '36px',
-                minWidth: '60px',
-                backgroundColor: '#0066FF',
-                '&:hover': { backgroundColor: '#0052CC' }
+                minWidth: '60px'
               }}
             >
               검색
@@ -269,7 +264,7 @@ function SettingChangeHistoryPage() {
                   <Chip 
                     label={history.settingCategory}
                     size="small"
-                    sx={{ backgroundColor: '#f0f7ff', color: '#0066FF' }}
+                    sx={{ color: '#0066FF' }}
                   />
                 </TableCell>
                 <TableCell>
@@ -345,20 +340,18 @@ function SettingChangeHistoryPage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ‹
         </Button>
         <Button 
-          variant="contained"
+          variant="text"
+              color="primary"
           size="small"
           sx={{ 
             minWidth: '32px', 
-            height: '32px',
-            backgroundColor: '#0066FF',
-            '&:hover': { backgroundColor: '#0052CC' }
+            height: '32px'
           }}
         >
           1
@@ -370,8 +363,7 @@ function SettingChangeHistoryPage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ›
@@ -391,7 +383,7 @@ function SettingChangeHistoryPage() {
           {selectedChange && (
             <Box>
               {/* 변경 정보 헤더 */}
-              <Card sx={{ mb: 3, backgroundColor: '#f8f9fa' }}>
+              <Card sx={{ mb: 3 }}>
                 <CardContent>
                   <Grid container spacing={2}>
                     <Grid item xs={6}>
@@ -420,7 +412,7 @@ function SettingChangeHistoryPage() {
                       <Chip 
                         label={selectedChange.settingCategory}
                         size="small"
-                        sx={{ backgroundColor: '#f0f7ff', color: '#0066FF' }}
+                        sx={{ color: '#0066FF' }}
                       />
                     </Grid>
                     <Grid item xs={6}>
@@ -461,12 +453,10 @@ function SettingChangeHistoryPage() {
                       pb: 1,
                       borderBottom: '1px solid #E5E5E5'
                     }}>
-                      <Box sx={{ 
-                        width: 12, 
+                      <Box color="error"
+              sx={{width: 12, 
                         height: 12, 
-                        borderRadius: '50%', 
-                        backgroundColor: '#EF4444' 
-                      }} />
+                        borderRadius: '50%'}} />
                       <Typography variant="h6" sx={{ fontSize: '16px', fontWeight: 600, color: '#EF4444' }}>
                         변경 전
                       </Typography>
@@ -474,7 +464,6 @@ function SettingChangeHistoryPage() {
                     
                     <Box sx={{ 
                       p: 2, 
-                      backgroundColor: '#fef2f2', 
                       borderRadius: 1,
                       height: 320,
                       overflow: 'auto'
@@ -516,12 +505,10 @@ function SettingChangeHistoryPage() {
                       pb: 1,
                       borderBottom: '1px solid #E5E5E5'
                     }}>
-                      <Box sx={{ 
-                        width: 12, 
+                      <Box color="success"
+              sx={{width: 12, 
                         height: 12, 
-                        borderRadius: '50%', 
-                        backgroundColor: '#10B981' 
-                      }} />
+                        borderRadius: '50%'}} />
                       <Typography variant="h6" sx={{ fontSize: '16px', fontWeight: 600, color: '#10B981' }}>
                         변경 후
                       </Typography>
@@ -529,7 +516,6 @@ function SettingChangeHistoryPage() {
                     
                     <Box sx={{ 
                       p: 2, 
-                      backgroundColor: '#f0fdf4', 
                       borderRadius: 1,
                       height: 320,
                       overflow: 'auto'
@@ -570,21 +556,20 @@ function SettingChangeHistoryPage() {
                 display: 'flex', 
                 alignItems: 'center', 
                 gap: 2, 
-                p: 2, 
-                backgroundColor: '#f8f9fa',
+                p: 2,
                 borderRadius: 1,
                 border: '1px solid #E5E5E5'
               }}>
                 <Chip 
                   label={selectedChange.oldValue}
                   size="small"
-                  sx={{ backgroundColor: '#fef2f2', color: '#991b1b', fontWeight: 500 }}
+                  sx={{ color: '#991b1b', fontWeight: 500 }}
                 />
-                <ArrowForward sx={{ color: '#6B7280' }} />
+                                                        <ArrowForward sx={{ color: '#6B7280' }} />
                 <Chip 
                   label={selectedChange.newValue}
                   size="small"
-                  sx={{ backgroundColor: '#f0fdf4', color: '#166534', fontWeight: 500 }}
+                  sx={{ color: '#166534', fontWeight: 500 }}
                 />
               </Box>
               <Typography sx={{ fontSize: '14px', color: '#6B7280', mt: 2 }}>

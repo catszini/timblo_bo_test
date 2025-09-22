@@ -105,7 +105,7 @@ function MenuManagementPage() {
               }}
             />
             <Button 
-              variant="contained" 
+              variant="text" 
               sx={{ 
                 height: '36px',
                 fontSize: '14px',
@@ -145,7 +145,7 @@ function MenuManagementPage() {
                   />
                 </TableCell>
                 <TableCell>
-                  <Typography sx={{ fontSize: '14px', fontFamily: 'monospace', color: '#6B7280' }}>
+                  <Typography sx={{ fontSize: '14px', color: '#6B7280' }}>
                     {menu.url}
                   </Typography>
                 </TableCell>
@@ -225,21 +225,19 @@ function MenuManagementPage() {
               height: '36px',
               fontSize: '14px',
               color: '#6B7280',
-              borderColor: '#D1D5DB',
-              '&:hover': { borderColor: '#D1D5DB' }
+              borderColor: '#D1D5DB'
             }}
           >
             ‹
           </Button>
           <Button 
-            variant="contained" 
+            variant="text"
+              color="primary" 
             size="small"
             sx={{ 
               minWidth: '36px',
               height: '36px',
-              fontSize: '14px',
-              backgroundColor: '#0066FF',
-              '&:hover': { backgroundColor: '#0052CC' }
+              fontSize: '14px'
             }}
           >
             1
@@ -252,8 +250,7 @@ function MenuManagementPage() {
               height: '36px',
               fontSize: '14px',
               color: '#6B7280',
-              borderColor: '#D1D5DB',
-              '&:hover': { borderColor: '#D1D5DB' }
+              borderColor: '#D1D5DB'
             }}
           >
             ›

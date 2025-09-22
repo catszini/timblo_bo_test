@@ -200,7 +200,6 @@ function PromptPage() {
               alignItems: 'center',
               border: '1px solid #E5E5E5',
               borderRadius: '8px',
-              backgroundColor: '#fff',
               overflow: 'hidden'
             }}>
               <TextField
@@ -215,32 +214,27 @@ function PromptPage() {
                     borderRadius: 0,
                     '& fieldset': { border: 'none' },
                     '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' },
-                  },
-                }}
+                    '&.Mui-focused fieldset': { border: 'none' }}}}
               />
             </Box>
             <Button 
-              variant="contained" 
+              variant="text"
+              color="primary" 
               size="small"
               sx={{ 
                 height: '36px',
-                minWidth: '60px',
-                backgroundColor: '#0066FF',
-                '&:hover': { backgroundColor: '#0052CC' }
+                minWidth: '60px'
               }}
             >
               검색
             </Button>
             <Button 
-              variant="contained" 
+              variant="text" 
               size="small"
               startIcon={<Add />}
               onClick={handleCreate}
               sx={{ 
-                height: '36px',
-                backgroundColor: '#10B981',
-                '&:hover': { backgroundColor: '#059669' }
+                height: '36px'
               }}
             >
               프롬프트 생성
@@ -281,7 +275,7 @@ function PromptPage() {
                   <Chip 
                     label={prompt.category}
                     size="small"
-                    sx={{ backgroundColor: '#f0f7ff', color: '#0066FF' }}
+                    sx={{ color: '#0066FF' }}
                   />
                 </TableCell>
                 <TableCell>
@@ -340,20 +334,18 @@ function PromptPage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ‹
         </Button>
         <Button 
-          variant="contained"
+          variant="text"
+              color="primary"
           size="small"
           sx={{ 
             minWidth: '32px', 
-            height: '32px',
-            backgroundColor: '#0066FF',
-            '&:hover': { backgroundColor: '#0052CC' }
+            height: '32px'
           }}
         >
           1
@@ -365,8 +357,7 @@ function PromptPage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ›
@@ -435,7 +426,7 @@ function PromptPage() {
               />
             </Grid>
             <Grid item xs={12}>
-              <Box sx={{ p: 2, backgroundColor: '#f0f7ff', borderRadius: 1 }}>
+              <Box sx={{ p: 2, borderRadius: 1 }}>
                 <Typography sx={{ fontSize: '14px', fontWeight: 500, mb: 1 }}>
                   프롬프트 작성 가이드
                 </Typography>
@@ -465,7 +456,7 @@ function PromptPage() {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setCreateDialogOpen(false)}>취소</Button>
-          <Button variant="contained" onClick={handleSavePrompt}>저장</Button>
+          <Button variant="text" onClick={handleSavePrompt}>저장</Button>
         </DialogActions>
       </Dialog>
 
@@ -528,7 +519,7 @@ function PromptPage() {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setEditDialogOpen(false)}>취소</Button>
-          <Button variant="contained" onClick={handleSavePrompt}>저장</Button>
+          <Button variant="text" onClick={handleSavePrompt}>저장</Button>
         </DialogActions>
       </Dialog>
 
@@ -539,7 +530,7 @@ function PromptPage() {
           <Grid container spacing={2} sx={{ mt: 1 }}>
             <Grid item xs={12}>
               <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500 }}>프롬프트 내용</Typography>
-              <Paper sx={{ p: 2, backgroundColor: '#f8f9fa', border: '1px solid #E5E5E5' }}>
+              <Paper sx={{ p: 2, border: '1px solid #E5E5E5' }}>
                 <Typography component="pre" sx={{ 
                   fontFamily: 'monospace', 
                   fontSize: '12px', 
@@ -567,13 +558,11 @@ function PromptPage() {
               />
               <Box sx={{ mt: 1 }}>
                 <Button 
-                  variant="contained" 
+                  variant="text" 
                   size="small"
                   startIcon={<PlayArrow />}
                   onClick={handleRunTest}
-                  sx={{ 
-                    backgroundColor: '#10B981',
-                    '&:hover': { backgroundColor: '#059669' }
+                  sx={{
                   }}
                 >
                   실행
@@ -585,7 +574,6 @@ function PromptPage() {
               <Paper sx={{ 
                 p: 2, 
                 height: 300, 
-                backgroundColor: '#f8f9fa', 
                 border: '1px solid #E5E5E5',
                 overflow: 'auto'
               }}>

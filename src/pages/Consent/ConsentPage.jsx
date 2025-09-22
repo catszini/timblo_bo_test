@@ -129,12 +129,11 @@ function ConsentPage() {
             marginLeft: 'auto'
           }}>
             <Button 
-              variant="contained" 
+              variant="text"
+              color="primary" 
               size="small"
               sx={{ 
-                height: '36px',
-                backgroundColor: '#0066FF',
-                '&:hover': { backgroundColor: '#0052CC' }
+                height: '36px'
               }}
             >
               새 동의서
@@ -144,7 +143,6 @@ function ConsentPage() {
               alignItems: 'center',
               border: '1px solid #E5E5E5',
               borderRadius: '8px',
-              backgroundColor: '#fff',
               overflow: 'hidden'
             }}>
               <FormControl size="small" sx={{ minWidth: 120 }}>
@@ -155,15 +153,14 @@ function ConsentPage() {
                     borderRadius: 0,
                     '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
                     '&:hover .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                  }}
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
                 >
                   <MenuItem value="title">제목</MenuItem>
                   <MenuItem value="author">작성자</MenuItem>
                   <MenuItem value="version">버전</MenuItem>
                 </Select>
               </FormControl>
-              <Box sx={{ width: '1px', height: '24px', backgroundColor: '#E5E5E5' }} />
+              <Box sx={{ width: '1px', height: '24px' }} />
               <TextField
                 size="small"
                 placeholder="검색어를 입력하세요"
@@ -176,19 +173,16 @@ function ConsentPage() {
                     borderRadius: 0,
                     '& fieldset': { border: 'none' },
                     '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' },
-                  },
-                }}
+                    '&.Mui-focused fieldset': { border: 'none' }}}}
               />
             </Box>
             <Button 
-              variant="contained" 
+              variant="text"
+              color="primary" 
               size="small"
               sx={{ 
                 height: '36px',
-                minWidth: '60px',
-                backgroundColor: '#0066FF',
-                '&:hover': { backgroundColor: '#0052CC' }
+                minWidth: '60px'
               }}
             >
               검색
@@ -222,8 +216,7 @@ function ConsentPage() {
                     sx={{ 
                       color: '#0066FF', 
                       textDecoration: 'none',
-                      fontWeight: 500,
-                      '&:hover': { textDecoration: 'underline' }
+                      fontWeight: 500
                     }}
                   >
                     {consent.title}
@@ -233,7 +226,7 @@ function ConsentPage() {
                   <Chip 
                     label={consent.version}
                     size="small"
-                    sx={{ backgroundColor: '#f0f7ff', color: '#0066FF' }}
+                    sx={{ color: '#0066FF' }}
                   />
                 </TableCell>
                 <TableCell>
@@ -252,17 +245,14 @@ function ConsentPage() {
                       sx={{
                         width: 60,
                         height: 6,
-                        backgroundColor: '#E5E5E5',
                         borderRadius: 3,
-                        overflow: 'hidden',
-                      }}
+                        overflow: 'hidden'}}
                     >
                       <Box
                         sx={{
                           width: `${consent.agreeRate}%`,
                           height: '100%',
-                          backgroundColor: consent.agreeRate > 80 ? '#10B981' : consent.agreeRate > 50 ? '#F59E0B' : '#EF4444',
-                        }}
+                          backgroundColor: consent.agreeRate > 80 ? '#10B981' : consent.agreeRate > 50 ? '#F59E0B' : '#EF4444'}}
                       />
                     </Box>
                   </Box>
@@ -332,20 +322,18 @@ function ConsentPage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ‹
         </Button>
         <Button 
-          variant="contained"
+          variant="text"
+              color="primary"
           size="small"
           sx={{ 
             minWidth: '32px', 
-            height: '32px',
-            backgroundColor: '#0066FF',
-            '&:hover': { backgroundColor: '#0052CC' }
+            height: '32px'
           }}
         >
           1
@@ -357,8 +345,7 @@ function ConsentPage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ›

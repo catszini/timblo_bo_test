@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Box } from '@mui/material'
 import Layout from './components/Layout/Layout'
+import LicenseCheck from './components/LicenseCheck'
+import { setMuiLicense } from './utils/muiLicense'
 import UserPage from './pages/User/UserPage'
 import WorkspacePage from './pages/Workspace/WorkspacePage'
 import MeetingPage from './pages/Meeting/MeetingPage'
@@ -26,8 +28,14 @@ import CalendarAccessPage from './pages/CalendarAccess/CalendarAccessPage'
 import NoticeDetailPage from './pages/NoticeDetail/NoticeDetailPage'
 
 function App() {
+  // MUI X Pro 라이센스 초기화
+  useEffect(() => {
+    setMuiLicense()
+  }, [])
+
   return (
     <Box sx={{ display: 'flex', height: '100vh' }}>
+      <LicenseCheck />
       <Layout>
         <Routes>
           <Route path="/" element={<MeetingPage />} />

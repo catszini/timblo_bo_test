@@ -246,7 +246,7 @@ function NoticeDetailPage() {
                 <Chip 
                   label={noticeDetail.category}
                   size="small"
-                  sx={{ backgroundColor: '#f0f7ff', color: '#0066FF' }}
+                  sx={{ color: '#0066FF' }}
                 />
                 <Chip 
                   label={noticeDetail.importance}
@@ -273,7 +273,8 @@ function NoticeDetailPage() {
               </Typography>
               
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
-                <Avatar sx={{ width: 40, height: 40, backgroundColor: '#0066FF' }}>
+                <Avatar color="primary"
+              sx={{width: 40, height: 40}}>
                   {noticeDetail.author[0]}
                 </Avatar>
                 <Box>
@@ -345,8 +346,7 @@ function NoticeDetailPage() {
                     <ListItemIcon>
                       <Box sx={{ 
                         width: 32, 
-                        height: 32, 
-                        backgroundColor: '#f0f7ff',
+                        height: 32,
                         borderRadius: 1,
                         display: 'flex',
                         alignItems: 'center',
@@ -377,7 +377,7 @@ function NoticeDetailPage() {
             </Typography>
 
             {/* 댓글 작성 */}
-            <Box sx={{ mb: 3, p: 2, backgroundColor: '#f8f9fa', borderRadius: 1 }}>
+            <Box sx={{ mb: 3, p: 2, borderRadius: 1 }}>
               <TextField
                 fullWidth
                 multiline
@@ -389,7 +389,7 @@ function NoticeDetailPage() {
               />
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <Button 
-                  variant="contained"
+                  variant="text"
                   onClick={handleAddComment}
                   disabled={!newComment.trim()}
                 >
@@ -437,7 +437,7 @@ function NoticeDetailPage() {
                       
                       {/* 답글 */}
                       {comment.replies.map((reply) => (
-                        <Box key={reply.id} sx={{ ml: 4, mt: 2, p: 2, backgroundColor: '#f8f9fa', borderRadius: 1 }}>
+                        <Box key={reply.id} sx={{ ml: 4, mt: 2, p: 2, borderRadius: 1 }}>
                           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
                             <Avatar sx={{ width: 24, height: 24 }}>
                               {reply.userName[0]}
@@ -483,7 +483,8 @@ function NoticeDetailPage() {
             <CardContent>
               <Typography variant="h6" sx={{ mb: 2 }}>작성자 정보</Typography>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <Avatar sx={{ width: 48, height: 48, backgroundColor: '#0066FF' }}>
+                <Avatar color="primary"
+              sx={{width: 48, height: 48}}>
                   {noticeDetail.author[0]}
                 </Avatar>
                 <Box>
@@ -506,39 +507,39 @@ function NoticeDetailPage() {
             <CardContent>
               <Typography variant="h6" sx={{ mb: 2 }}>관련 공지사항</Typography>
               <List dense>
-                <ListItem sx={{ px: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 36 }}>
-                    <Schedule sx={{ fontSize: 20, color: '#0066FF' }} />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="정기 점검 안내 (1월)"
-                    secondary="2024-01-10"
-                    primaryTypographyProps={{ fontSize: '14px' }}
-                    secondaryTypographyProps={{ fontSize: '12px' }}
-                  />
-                </ListItem>
-                <ListItem sx={{ px: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 36 }}>
-                    <Schedule sx={{ fontSize: 20, color: '#0066FF' }} />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="보안 정책 업데이트"
-                    secondary="2024-01-05"
-                    primaryTypographyProps={{ fontSize: '14px' }}
-                    secondaryTypographyProps={{ fontSize: '12px' }}
-                  />
-                </ListItem>
-                <ListItem sx={{ px: 0 }}>
-                  <ListItemIcon sx={{ minWidth: 36 }}>
-                    <Schedule sx={{ fontSize: 20, color: '#0066FF' }} />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="신규 기능 안내"
-                    secondary="2023-12-28"
-                    primaryTypographyProps={{ fontSize: '14px' }}
-                    secondaryTypographyProps={{ fontSize: '12px' }}
-                  />
-                </ListItem>
+                                  <ListItem sx={{ px: 0 }}>
+                    <ListItemIcon sx={{ minWidth: 36 }}>
+                      <Schedule sx={{ fontSize: 20, color: '#0066FF' }} />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="정기 점검 안내 (1월)"
+                      secondary="2024-01-10"
+                      primaryTypographyProps={{ fontSize: '14px' }}
+                      secondaryTypographyProps={{ fontSize: '12px' }}
+                    />
+                  </ListItem>
+                                  <ListItem sx={{ px: 0 }}>
+                    <ListItemIcon sx={{ minWidth: 36 }}>
+                      <Schedule sx={{ fontSize: 20, color: '#0066FF' }} />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="보안 정책 업데이트"
+                      secondary="2024-01-05"
+                      primaryTypographyProps={{ fontSize: '14px' }}
+                      secondaryTypographyProps={{ fontSize: '12px' }}
+                    />
+                  </ListItem>
+                                  <ListItem sx={{ px: 0 }}>
+                    <ListItemIcon sx={{ minWidth: 36 }}>
+                      <Schedule sx={{ fontSize: 20, color: '#0066FF' }} />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="신규 기능 안내"
+                      secondary="2023-12-28"
+                      primaryTypographyProps={{ fontSize: '14px' }}
+                      secondaryTypographyProps={{ fontSize: '12px' }}
+                    />
+                  </ListItem>
               </List>
             </CardContent>
           </Card>
@@ -604,7 +605,7 @@ function NoticeDetailPage() {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setEditDialogOpen(false)}>취소</Button>
-          <Button variant="contained">저장</Button>
+          <Button variant="text">저장</Button>
         </DialogActions>
       </Dialog>
     </Box>

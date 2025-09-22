@@ -22,8 +22,8 @@ import {
 const systemStatsData = [
   {
     id: 1,
-    userName: '김관리',
-    email: 'kim.admin@sktelecom.com',
+    userName: '김태현',
+    email: 'taehyun.kim@sktelecom.com',
     workspace: 'SK Telecom',
     workspaceColor: '#14B8A6',
     role: '시스템관리자',
@@ -38,8 +38,8 @@ const systemStatsData = [
   },
   {
     id: 2,
-    userName: '이운영',
-    email: 'lee.ops@skhynix.com',
+    userName: '이정우',
+    email: 'jungwoo.lee@skhynix.com',
     workspace: 'SK Hynix',
     workspaceColor: '#6366F1',
     role: '운영자',
@@ -54,8 +54,8 @@ const systemStatsData = [
   },
   {
     id: 3,
-    userName: '박담당',
-    email: 'park.manager@skcc.com',
+    userName: '박서현',
+    email: 'seohyun.park@skcc.com',
     workspace: 'SK C&C',
     workspaceColor: '#F43F5E',
     role: '담당자',
@@ -70,8 +70,8 @@ const systemStatsData = [
   },
   {
     id: 4,
-    userName: '최개발',
-    email: 'choi.dev@skinnovation.com',
+    userName: '최민준',
+    email: 'minjun.choi@skinnovation.com',
     workspace: 'SK Innovation',
     workspaceColor: '#10B981',
     role: '개발자',
@@ -86,7 +86,7 @@ const systemStatsData = [
   },
   {
     id: 5,
-    userName: '정분석',
+    userName: '정유진',
     email: 'jung.analyst@sknetworks.com',
     workspace: 'SK Networks',
     workspaceColor: '#F59E0B',
@@ -193,12 +193,11 @@ function SystemStatsPage() {
             marginLeft: 'auto'
           }}>
             <Button 
-              variant="contained" 
+              variant="text"
+              color="primary"
               size="small"
               sx={{ 
-                height: '36px',
-                backgroundColor: '#0066FF',
-                '&:hover': { backgroundColor: '#0052CC' }
+                height: '36px'
               }}
             >
               데이터 내보내기
@@ -208,7 +207,6 @@ function SystemStatsPage() {
               alignItems: 'center',
               border: '1px solid #E5E5E5',
               borderRadius: '8px',
-              backgroundColor: '#fff',
               overflow: 'hidden'
             }}>
               <FormControl size="small" sx={{ minWidth: 120 }}>
@@ -219,15 +217,14 @@ function SystemStatsPage() {
                     borderRadius: 0,
                     '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
                     '&:hover .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                  }}
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
                 >
                   <MenuItem value="userName">사용자명</MenuItem>
                   <MenuItem value="email">이메일</MenuItem>
                   <MenuItem value="workspace">워크스페이스</MenuItem>
                 </Select>
               </FormControl>
-              <Box sx={{ width: '1px', height: '24px', backgroundColor: '#E5E5E5' }} />
+              <Box sx={{ width: '1px', height: '24px' }} />
               <TextField
                 size="small"
                 placeholder="검색어를 입력하세요"
@@ -240,19 +237,16 @@ function SystemStatsPage() {
                     borderRadius: 0,
                     '& fieldset': { border: 'none' },
                     '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' },
-                  },
-                }}
+                    '&.Mui-focused fieldset': { border: 'none' }}}}
               />
             </Box>
             <Button 
-              variant="contained" 
+              variant="text"
+              color="primary" 
               size="small"
               sx={{ 
                 height: '36px',
-                minWidth: '60px',
-                backgroundColor: '#0066FF',
-                '&:hover': { backgroundColor: '#0052CC' }
+                minWidth: '60px'
               }}
             >
               검색
@@ -374,11 +368,8 @@ function SystemStatsPage() {
                         sx={{
                           height: 6,
                           borderRadius: 3,
-                          backgroundColor: '#E5E5E5',
                           '& .MuiLinearProgress-bar': {
-                            backgroundColor: getScoreColor(stats.usageScore),
-                          },
-                        }}
+                            backgroundColor: getScoreColor(stats.usageScore)}}}
                       />
                     </Box>
                   </Box>
@@ -404,20 +395,18 @@ function SystemStatsPage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ‹
         </Button>
         <Button 
-          variant="contained"
+          variant="text"
+              color="primary"
           size="small"
           sx={{ 
             minWidth: '32px', 
-            height: '32px',
-            backgroundColor: '#0066FF',
-            '&:hover': { backgroundColor: '#0052CC' }
+            height: '32px'
           }}
         >
           1
@@ -429,8 +418,7 @@ function SystemStatsPage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ›

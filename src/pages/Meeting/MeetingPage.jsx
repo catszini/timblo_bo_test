@@ -17,6 +17,11 @@ import {
   Button,
   Link
 } from '@mui/material'
+import { LocalizationProvider } from '@mui/x-date-pickers-pro/LocalizationProvider'
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import dayjs from 'dayjs'
+import 'dayjs/locale/ko'
 
 const meetingData = [
   {
@@ -26,7 +31,7 @@ const meetingData = [
     time: '14:00-15:30',
     participants: 8,
     status: '완료',
-    creator: '김회의',
+    creator: '조현석',
     workspace: 'SK Telecom'
   },
   {
@@ -36,7 +41,7 @@ const meetingData = [
     time: '10:00-11:00',
     participants: 5,
     status: '완료',
-    creator: '이기획',
+    creator: '배지우',
     workspace: 'SK Innovation'
   },
   {
@@ -46,7 +51,7 @@ const meetingData = [
     time: '16:00-17:00',
     participants: 12,
     status: '진행중',
-    creator: '박팀장',
+    creator: '신동현',
     workspace: 'SK C&C'
   },
   {
@@ -56,7 +61,7 @@ const meetingData = [
     time: '09:00-10:30',
     participants: 25,
     status: '완료',
-    creator: '최관리',
+    creator: '황수빈',
     workspace: 'SK Hynix'
   }
 ]
@@ -65,15 +70,17 @@ function MeetingPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [pageSize, setPageSize] = useState(10)
   const [statusFilter, setStatusFilter] = useState('전체')
+  const [dateRange, setDateRange] = useState([null, null])
 
   return (
-    <Box>
-      <Typography variant="h5" component="h1" gutterBottom>
-        회의록
-      </Typography>
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ko">
+      <Box>
+        <Typography variant="h5" component="h1" gutterBottom>
+          회의록
+        </Typography>
 
-      {/* 검색 툴바 */}
-      <Box sx={{ mb: 2 }}>
+        {/* 검색 툴바 */}
+        <Box sx={{ mb: 2 }}>
         <Box sx={{ 
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row' },
@@ -113,6 +120,23 @@ function MeetingPage() {
                 <MenuItem value="진행중">진행중</MenuItem>
               </Select>
             </FormControl>
+            
+            {/* 날짜 범위 선택 */}
+            <DateRangePicker
+              value={dateRange}
+              onChange={setDateRange}
+              localeText={{ start: '시작일', end: '종료일' }}
+              slotProps={{
+                textField: {
+                  size: 'small',
+                  sx: { 
+                    '& .MuiOutlinedInput-root': {
+                      height: '36px'
+                    }
+                  }
+                }
+              }}
+            />
           </Box>
           
           <Box sx={{ 
@@ -126,7 +150,6 @@ function MeetingPage() {
               alignItems: 'center',
               border: '1px solid #E5E5E5',
               borderRadius: '8px',
-              backgroundColor: '#fff',
               overflow: 'hidden'
             }}>
               <FormControl size="small" sx={{ minWidth: 120 }}>
@@ -137,15 +160,14 @@ function MeetingPage() {
                     borderRadius: 0,
                     '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
                     '&:hover .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                  }}
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
                 >
                   <MenuItem value="title">제목</MenuItem>
                   <MenuItem value="creator">작성자</MenuItem>
                   <MenuItem value="workspace">워크스페이스</MenuItem>
                 </Select>
               </FormControl>
-              <Box sx={{ width: '1px', height: '24px', backgroundColor: '#E5E5E5' }} />
+              <Box sx={{ width: '1px', height: '24px' }} />
               <TextField
                 size="small"
                 placeholder="검색어를 입력하세요"
@@ -158,19 +180,16 @@ function MeetingPage() {
                     borderRadius: 0,
                     '& fieldset': { border: 'none' },
                     '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' },
-                  },
-                }}
+                    '&.Mui-focused fieldset': { border: 'none' }}}}
               />
             </Box>
             <Button 
-              variant="contained" 
+              variant="text"
+            color="primary" 
               size="small"
               sx={{ 
                 height: '36px',
-                minWidth: '60px',
-                backgroundColor: '#0066FF',
-                '&:hover': { backgroundColor: '#0052CC' }
+                minWidth: '60px'
               }}
             >
               검색
@@ -200,8 +219,7 @@ function MeetingPage() {
                     href="#" 
                     sx={{ 
                       color: '#0066FF', 
-                      textDecoration: 'none',
-                      '&:hover': { textDecoration: 'underline' }
+                      textDecoration: 'none'
                     }}
                   >
                     {meeting.title}
@@ -244,20 +262,18 @@ function MeetingPage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ‹
         </Button>
         <Button 
-          variant="contained"
+          variant="text"
+              color="primary"
           size="small"
           sx={{ 
             minWidth: '32px', 
-            height: '32px',
-            backgroundColor: '#0066FF',
-            '&:hover': { backgroundColor: '#0052CC' }
+            height: '32px'
           }}
         >
           1
@@ -269,14 +285,14 @@ function MeetingPage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ›
         </Button>
       </Box>
-    </Box>
+      </Box>
+    </LocalizationProvider>
   )
 }
 

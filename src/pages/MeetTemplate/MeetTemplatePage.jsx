@@ -184,7 +184,6 @@ function MeetTemplatePage() {
               alignItems: 'center',
               border: '1px solid #E5E5E5',
               borderRadius: '8px',
-              backgroundColor: '#fff',
               overflow: 'hidden'
             }}>
               <TextField
@@ -199,32 +198,27 @@ function MeetTemplatePage() {
                     borderRadius: 0,
                     '& fieldset': { border: 'none' },
                     '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' },
-                  },
-                }}
+                    '&.Mui-focused fieldset': { border: 'none' }}}}
               />
             </Box>
             <Button 
-              variant="contained" 
+              variant="text"
+              color="primary" 
               size="small"
               sx={{ 
                 height: '36px',
-                minWidth: '60px',
-                backgroundColor: '#0066FF',
-                '&:hover': { backgroundColor: '#0052CC' }
+                minWidth: '60px'
               }}
             >
               검색
             </Button>
             <Button 
-              variant="contained" 
+              variant="text" 
               size="small"
               startIcon={<Add />}
               onClick={handleCreate}
               sx={{ 
-                height: '36px',
-                backgroundColor: '#10B981',
-                '&:hover': { backgroundColor: '#059669' }
+                height: '36px'
               }}
             >
               템플릿 생성
@@ -304,20 +298,18 @@ function MeetTemplatePage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ‹
         </Button>
         <Button 
-          variant="contained"
+          variant="text"
+              color="primary"
           size="small"
           sx={{ 
             minWidth: '32px', 
-            height: '32px',
-            backgroundColor: '#0066FF',
-            '&:hover': { backgroundColor: '#0052CC' }
+            height: '32px'
           }}
         >
           1
@@ -329,8 +321,7 @@ function MeetTemplatePage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ›
@@ -402,7 +393,7 @@ function MeetTemplatePage() {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setCreateDialogOpen(false)}>취소</Button>
-          <Button variant="contained" onClick={handleSaveTemplate}>저장</Button>
+          <Button variant="text" onClick={handleSaveTemplate}>저장</Button>
         </DialogActions>
       </Dialog>
 
@@ -465,7 +456,7 @@ function MeetTemplatePage() {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setEditDialogOpen(false)}>취소</Button>
-          <Button variant="contained" onClick={handleSaveTemplate}>저장</Button>
+          <Button variant="text" onClick={handleSaveTemplate}>저장</Button>
         </DialogActions>
       </Dialog>
 
@@ -497,7 +488,7 @@ function MeetTemplatePage() {
           <Divider sx={{ my: 2 }} />
           
           <Typography variant="h6" sx={{ mb: 2 }}>템플릿 내용</Typography>
-          <Paper sx={{ p: 2, backgroundColor: '#f8f9fa', border: '1px solid #E5E5E5' }}>
+          <Paper sx={{ p: 2, border: '1px solid #E5E5E5' }}>
             <Typography component="pre" sx={{ 
               fontFamily: 'monospace', 
               fontSize: '14px', 

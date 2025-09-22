@@ -250,12 +250,12 @@ function WorkspaceGroupSettingPage() {
   const currentMenus = permissionMenus[selectedPermission.permission] || { system: { children: [] }, workspace: { children: [] } }
 
   return (
-    <Box>
+    <Box sx={{ width: '100%', maxWidth: '100%' }}>
       <Typography variant="h5" component="h1" gutterBottom>
         메뉴 권한 관리
       </Typography>
 
-      <Grid container spacing={{ xs: 2, md: 3 }}>
+      <Grid container spacing={{ xs: 2, md: 3 }} sx={{ width: '100%' }}>
         {/* 왼쪽: 권한 정보 */}
         <Grid item xs={12} lg={6}>
           <Paper sx={{ p: { xs: 1.5, sm: 2 } }}>
@@ -311,13 +311,12 @@ function WorkspaceGroupSettingPage() {
                   수정
                 </Button>
                 <Button 
-                  variant="contained" 
+                  variant="text"
+              color="primary" 
                   size="small"
                   sx={{ 
                     height: '32px',
                     fontSize: { xs: '11px', sm: '12px' },
-                    backgroundColor: '#0066FF',
-                    '&:hover': { backgroundColor: '#0052CC' },
                     flex: { xs: '1', sm: 'auto' },
                     minWidth: { xs: 'auto', sm: '60px' }
                   }}
@@ -432,16 +431,14 @@ function WorkspaceGroupSettingPage() {
                 borderLeft: '1px solid #E5E5E5',
                 ml: 1
               },
-              '& input[type="checkbox"]': {
-                width: 16,
-                height: 16,
-                accentColor: '#0066FF'
+              '& .MuiCheckbox-root': {
+                padding: '4px'
               }
             }}>
               {/* 시스템 섹션 */}
               <Box className="tree-item">
-                <input 
-                  type="checkbox" 
+                <Checkbox 
+                  size="small"
                   checked={currentMenus.system?.checked || false}
                   onChange={() => {}}
                 />
@@ -457,8 +454,8 @@ function WorkspaceGroupSettingPage() {
               <Box className="tree-children">
                 {currentMenus.system?.children?.map((menu, index) => (
                   <Box key={`system-${index}`} className="tree-item">
-                    <input 
-                      type="checkbox" 
+                    <Checkbox 
+                      size="small"
                       checked={menu.checked}
                       onChange={() => {}}
                     />
@@ -475,8 +472,8 @@ function WorkspaceGroupSettingPage() {
 
               {/* 워크스페이스 섹션 */}
               <Box className="tree-item" sx={{ mt: 1 }}>
-                <input 
-                  type="checkbox" 
+                <Checkbox 
+                  size="small"
                   checked={currentMenus.workspace?.checked || false}
                   onChange={() => {}}
                 />
@@ -492,8 +489,8 @@ function WorkspaceGroupSettingPage() {
               <Box className="tree-children">
                 {currentMenus.workspace?.children?.map((menu, index) => (
                   <Box key={`workspace-${index}`} className="tree-item">
-                    <input 
-                      type="checkbox" 
+                    <Checkbox 
+                      size="small"
                       checked={menu.checked}
                       onChange={() => {}}
                     />
@@ -528,10 +525,9 @@ function WorkspaceGroupSettingPage() {
                 초기화
               </Button>
               <Button 
-                variant="contained"
-                sx={{ 
-                  backgroundColor: '#0066FF',
-                  '&:hover': { backgroundColor: '#0052CC' },
+                variant="text"
+              color="primary"
+                sx={{
                   width: { xs: '48%', sm: 'auto' },
                   minWidth: { sm: '80px' }
                 }}

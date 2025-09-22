@@ -51,7 +51,6 @@ function LogoManagementPage() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: '#F8F9FA',
               fontSize: '14px',
               color: '#6B7280'
             }}>
@@ -69,7 +68,7 @@ function LogoManagementPage() {
               
               <Box sx={{ display: 'flex', gap: 1 }}>
                 <Button 
-                  variant="contained" 
+                  variant="text" 
                   onClick={handleImageUpload}
                   sx={{ fontSize: '14px' }}
                 >
@@ -127,7 +126,7 @@ function LogoManagementPage() {
       {/* 저장 버튼 */}
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button 
-          variant="contained" 
+          variant="text" 
           onClick={handleSaveSettings}
           sx={{ 
             fontSize: '14px',

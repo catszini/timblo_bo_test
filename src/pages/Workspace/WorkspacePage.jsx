@@ -252,7 +252,7 @@ function WorkspacePage() {
   }
 
   return (
-    <Box>
+    <Box sx={{ width: '100%', maxWidth: '100%' }}>
       <Typography variant="h4" component="h1" sx={{ mb: 3, fontWeight: 600 }}>
         워크스페이스 관리
       </Typography>
@@ -328,12 +328,11 @@ function WorkspacePage() {
           />
 
           <Button 
-            variant="contained"
+            variant="text"
+            color="primary"
             sx={{ 
               height: '36px',
-              fontSize: '14px',
-              backgroundColor: '#2563EB',
-              '&:hover': { backgroundColor: '#1d4ed8' }
+              fontSize: '14px'
             }}
           >
             조회
@@ -369,12 +368,11 @@ function WorkspacePage() {
             수정
           </Button>
           <Button 
-            variant="contained"
+            variant="text"
+            color="primary"
             sx={{ 
               fontSize: '14px', 
-              height: '36px',
-              backgroundColor: '#2563EB',
-              '&:hover': { backgroundColor: '#1d4ed8' }
+              height: '36px'
             }}
           >
             생성
@@ -393,7 +391,7 @@ function WorkspacePage() {
       >
         <Table sx={{ width: '100%', tableLayout: 'fixed' }}>
           <TableHead>
-            <TableRow sx={{ backgroundColor: '#F8F9FA' }}>
+            <TableRow sx={{ }}>
               <TableCell 
                 sx={{ 
                   borderBottom: '1px solid #E5E5E5',
@@ -483,7 +481,7 @@ function WorkspacePage() {
           </TableHead>
           <TableBody>
             {workspaces.map((workspace) => (
-              <TableRow key={workspace.id} sx={{ '&:hover': { backgroundColor: '#f8f9fa' } }}>
+              <TableRow key={workspace.id} sx={{ }}>
                 <TableCell sx={{ 
                   borderBottom: '1px solid #F1F3F4',
                   padding: { xs: '8px 4px', sm: '16px' }
@@ -547,7 +545,6 @@ function WorkspacePage() {
                     alignItems: 'center',
                     border: '1px solid #E5E5E5',
                     borderRadius: '4px',
-                    backgroundColor: 'white',
                     width: 'fit-content',
                     maxWidth: '100%'
                   }}>
@@ -575,11 +572,11 @@ function WorkspacePage() {
                           padding: '4px 8px',
                           // 기본 number input 스피너 화살표 제거
                           '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
-                            '-webkit-appearance': 'none',
+                            WebkitAppearance: 'none',
                             margin: 0
                           },
                           '&[type=number]': {
-                            '-moz-appearance': 'textfield' // Firefox용
+                            MozAppearance: 'textfield' // Firefox용
                           }
                         }
                       }}
@@ -597,8 +594,7 @@ function WorkspacePage() {
                           minWidth: { xs: 16, sm: 20 }, 
                           height: 14,
                           borderRadius: 0,
-                          '& .MuiSvgIcon-root': { fontSize: { xs: 10, sm: 12 }, color: '#666' },
-                          '&:hover': { backgroundColor: '#f5f5f5' }
+                          '& .MuiSvgIcon-root': { fontSize: { xs: 10, sm: 12 }, color: '#666' }
                         }}
                       >
                         <KeyboardArrowUp />
@@ -612,8 +608,7 @@ function WorkspacePage() {
                           height: 14,
                           borderRadius: 0,
                           borderTop: '1px solid #E5E5E5',
-                          '& .MuiSvgIcon-root': { fontSize: { xs: 10, sm: 12 }, color: '#666' },
-                          '&:hover': { backgroundColor: '#f5f5f5' }
+                          '& .MuiSvgIcon-root': { fontSize: { xs: 10, sm: 12 }, color: '#666' }
                         }}
                       >
                         <KeyboardArrowDown />
@@ -664,12 +659,9 @@ function WorkspacePage() {
                     size="small"
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: '#2563EB',
-                      },
+                        color: '#2563EB'},
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: '#2563EB',
-                      },
-                    }}
+                      }}}
                   />
                 </TableCell>
               </TableRow>
@@ -687,39 +679,48 @@ function WorkspacePage() {
         gap: 0.5
       }}>
         <Button 
-          variant="contained"
+          variant="text"
+          color="primary"
           size="small"
           sx={{ 
-            minWidth: '32px',
+            width: '32px',
             height: '32px',
+            minWidth: '32px',
             borderRadius: '50%',
             fontSize: '14px',
-            backgroundColor: '#2563EB',
-            '&:hover': { backgroundColor: '#1d4ed8' }
+            padding: 0
           }}
         >
           1
         </Button>
         <Button 
           variant="text"
+              color="primary"
           size="small"
           sx={{ 
-            minWidth: '32px',
+            width: '32px',
             height: '32px',
+            minWidth: '32px',
+            borderRadius: '50%',
             fontSize: '14px',
-            color: '#6B7280'
+            color: '#6B7280',
+            padding: 0
           }}
         >
           2
         </Button>
         <Button 
           variant="text"
+              color="primary"
           size="small"
           sx={{ 
-            minWidth: '32px',
+            width: '32px',
             height: '32px',
+            minWidth: '32px',
+            borderRadius: '50%',
             fontSize: '14px',
-            color: '#6B7280'
+            color: '#6B7280',
+            padding: 0
           }}
         >
           3

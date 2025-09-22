@@ -8,15 +8,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.1",
-    "@mui/material": "^5.14.20",
-    "@mui/icons-material": "^5.14.19",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.19",
+    "@mui/material": "^5.14.20",
+    "@mui/x-charts": "^8.11.3",
     "@mui/x-data-grid": "^6.18.1",
-    "@mui/x-date-pickers": "^6.18.1"
+    "@mui/x-data-grid-pro": "^8.11.3",
+    "@mui/x-date-pickers": "^6.18.1",
+    "@mui/x-date-pickers-pro": "^8.11.3",
+    "@mui/x-license": "^8.11.3",
+    "@mui/x-license-pro": "^6.10.2",
+    "dayjs": "^1.11.18",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.0",

@@ -16,8 +16,35 @@ import {
   TextField,
   Button,
   Avatar,
-  LinearProgress
+  LinearProgress,
+  Grid,
+  Card,
+  CardContent
 } from '@mui/material'
+import { BarChart } from '@mui/x-charts/BarChart'
+import { PieChart } from '@mui/x-charts/PieChart'
+import { LineChart } from '@mui/x-charts/LineChart'
+
+// 차트 데이터
+const chartData = {
+  workspaceUsage: [
+    { workspace: 'SK Telecom', users: 1245, meetings: 8567 },
+    { workspace: 'SK Hynix', users: 892, meetings: 5234 },
+    { workspace: 'SK Innovation', users: 1456, meetings: 9876 },
+    { workspace: 'SK Energy', users: 678, meetings: 3456 },
+    { workspace: 'SK C&C', users: 1123, meetings: 7654 }
+  ],
+  monthlyTrend: {
+    months: ['1월', '2월', '3월', '4월', '5월', '6월'],
+    meetings: [2400, 1398, 9800, 3908, 4800, 3800],
+    users: [2400, 2210, 2290, 2000, 2181, 2500]
+  },
+  statusDistribution: [
+    { id: 0, value: 68, label: '활성 사용자' },
+    { id: 1, value: 22, label: '비활성 사용자' },
+    { id: 2, value: 10, label: '휴면 사용자' }
+  ]
+}
 
 const statsUsageData = [
   {
@@ -90,10 +117,93 @@ function StatsUsagePage() {
   }
 
   return (
-    <Box>
+    <Box sx={{ width: '100%', maxWidth: '100%' }}>
       <Typography variant="h5" component="h1" gutterBottom>
         사용량 통계
       </Typography>
+
+      {/* 차트 대시보드 */}
+      <Grid container spacing={3} sx={{ mb: 4, width: '100%' }}>
+        {/* 워크스페이스별 사용량 차트 */}
+        <Grid item xs={12} lg={8}>
+          <Card sx={{ height: '420px' }}>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>
+                워크스페이스별 사용량
+              </Typography>
+              <BarChart
+                dataset={chartData.workspaceUsage}
+                xAxis={[{ scaleType: 'band', dataKey: 'workspace' }]}
+                series={[
+                  { dataKey: 'users', label: '사용자 수', color: '#2563EB' },
+                  { dataKey: 'meetings', label: '회의 수', color: '#10B981' }
+                ]}
+                height={340}
+                margin={{ top: 20, right: 20, bottom: 40, left: 60 }}
+              />
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* 사용자 상태 분포 파이 차트 */}
+        <Grid item xs={12} lg={4}>
+          <Card sx={{ height: '420px' }}>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>
+                사용자 상태 분포
+              </Typography>
+              <PieChart
+                series={[
+                  {
+                    data: chartData.statusDistribution,
+                    innerRadius: 40,
+                    outerRadius: 80,
+                    paddingAngle: 2,
+                    cornerRadius: 5
+                  }
+                ]}
+                height={340}
+                slotProps={{
+                  legend: {
+                    direction: 'column',
+                    position: { vertical: 'bottom', horizontal: 'left' }
+                  }
+                }}
+              />
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* 월별 트렌드 라인 차트 */}
+        <Grid item xs={12}>
+          <Card sx={{ height: '380px' }}>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>
+                월별 사용 트렌드
+              </Typography>
+              <LineChart
+                xAxis={[{ scaleType: 'point', data: chartData.monthlyTrend.months }]}
+                series={[
+                  {
+                    data: chartData.monthlyTrend.meetings,
+                    label: '회의 수',
+                    color: '#2563EB',
+                    curve: 'linear'
+                  },
+                  {
+                    data: chartData.monthlyTrend.users,
+                    label: '활성 사용자',
+                    color: '#10B981',
+                    curve: 'linear'
+                  }
+                ]}
+                height={300}
+                margin={{ top: 20, right: 20, bottom: 40, left: 60 }}
+              />
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
 
       {/* 검색 툴바 */}
       <Box sx={{ mb: 2 }}>
@@ -144,12 +254,11 @@ function StatsUsagePage() {
             marginLeft: 'auto'
           }}>
             <Button 
-              variant="contained" 
+              variant="text"
+              color="primary" 
               size="small"
               sx={{ 
-                height: '36px',
-                backgroundColor: '#0066FF',
-                '&:hover': { backgroundColor: '#0052CC' }
+                height: '36px'
               }}
             >
               데이터 내보내기
@@ -159,7 +268,6 @@ function StatsUsagePage() {
               alignItems: 'center',
               border: '1px solid #E5E5E5',
               borderRadius: '8px',
-              backgroundColor: '#fff',
               overflow: 'hidden'
             }}>
               <FormControl size="small" sx={{ minWidth: 120 }}>
@@ -170,13 +278,12 @@ function StatsUsagePage() {
                     borderRadius: 0,
                     '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
                     '&:hover .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                  }}
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
                 >
                   <MenuItem value="workspace">워크스페이스</MenuItem>
                 </Select>
               </FormControl>
-              <Box sx={{ width: '1px', height: '24px', backgroundColor: '#E5E5E5' }} />
+              <Box sx={{ width: '1px', height: '24px' }} />
               <TextField
                 size="small"
                 placeholder="검색어를 입력하세요"
@@ -189,19 +296,16 @@ function StatsUsagePage() {
                     borderRadius: 0,
                     '& fieldset': { border: 'none' },
                     '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' },
-                  },
-                }}
+                    '&.Mui-focused fieldset': { border: 'none' }}}}
               />
             </Box>
             <Button 
-              variant="contained" 
+              variant="text"
+              color="primary" 
               size="small"
               sx={{ 
                 height: '36px',
-                minWidth: '60px',
-                backgroundColor: '#0066FF',
-                '&:hover': { backgroundColor: '#0052CC' }
+                minWidth: '60px'
               }}
             >
               검색
@@ -268,11 +372,8 @@ function StatsUsagePage() {
                         sx={{
                           height: 6,
                           borderRadius: 3,
-                          backgroundColor: '#E5E5E5',
                           '& .MuiLinearProgress-bar': {
-                            backgroundColor: stats.activeRate > 75 ? '#10B981' : stats.activeRate > 50 ? '#F59E0B' : '#EF4444',
-                          },
-                        }}
+                            backgroundColor: stats.activeRate > 75 ? '#10B981' : stats.activeRate > 50 ? '#F59E0B' : '#EF4444'}}}
                       />
                     </Box>
                   </Box>
@@ -303,14 +404,11 @@ function StatsUsagePage() {
                       sx={{
                         height: 4,
                         borderRadius: 2,
-                        backgroundColor: '#E5E5E5',
                         mt: 0.5,
                         '& .MuiLinearProgress-bar': {
                           backgroundColor: 
                             (stats.storageUsed / stats.storageLimit) > 0.8 ? '#EF4444' : 
-                            (stats.storageUsed / stats.storageLimit) > 0.6 ? '#F59E0B' : '#10B981',
-                        },
-                      }}
+                            (stats.storageUsed / stats.storageLimit) > 0.6 ? '#F59E0B' : '#10B981'}}}
                     />
                   </Box>
                 </TableCell>
@@ -318,7 +416,7 @@ function StatsUsagePage() {
                   <Chip 
                     label={stats.period}
                     size="small"
-                    sx={{ backgroundColor: '#f0f7ff', color: '#0066FF' }}
+                    sx={{ color: '#0066FF' }}
                   />
                 </TableCell>
               </TableRow>
@@ -342,20 +440,18 @@ function StatsUsagePage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ‹
         </Button>
         <Button 
-          variant="contained"
+          variant="text"
+              color="primary"
           size="small"
           sx={{ 
             minWidth: '32px', 
-            height: '32px',
-            backgroundColor: '#0066FF',
-            '&:hover': { backgroundColor: '#0052CC' }
+            height: '32px'
           }}
         >
           1
@@ -367,8 +463,7 @@ function StatsUsagePage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ›

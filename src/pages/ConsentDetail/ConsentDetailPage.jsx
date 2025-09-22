@@ -171,12 +171,10 @@ function ConsentDetailPage() {
             다운로드
           </Button>
           <Button
-            variant="contained"
+            variant="text"
             startIcon={<Edit />}
             onClick={() => setEditDialogOpen(true)}
-            sx={{ 
-              backgroundColor: '#0066FF',
-              '&:hover': { backgroundColor: '#0052CC' }
+            sx={{
             }}
             size="small"
           >
@@ -198,7 +196,7 @@ function ConsentDetailPage() {
               </Grid>
               <Grid item xs={3}>
                 <Typography variant="body2" sx={{ fontWeight: 500, mb: 0.5 }}>버전</Typography>
-                <Chip label={consentDetail.version} size="small" sx={{ backgroundColor: '#f0f7ff', color: '#0066FF' }} />
+                <Chip label={consentDetail.version} size="small" sx={{ color: '#0066FF' }} />
               </Grid>
               <Grid item xs={3}>
                 <Typography variant="body2" sx={{ fontWeight: 500, mb: 0.5 }}>타입</Typography>
@@ -242,7 +240,7 @@ function ConsentDetailPage() {
           {/* 동의서 내용 */}
           <Paper sx={{ p: 3 }}>
             <Typography variant="h6" sx={{ mb: 2 }}>동의서 내용</Typography>
-            <Paper sx={{ p: 2, backgroundColor: '#f8f9fa', border: '1px solid #E5E5E5' }}>
+            <Paper sx={{ p: 2, border: '1px solid #E5E5E5' }}>
               <Typography component="pre" sx={{ 
                 fontFamily: 'inherit', 
                 fontSize: '14px', 
@@ -303,11 +301,8 @@ function ConsentDetailPage() {
                   sx={{
                     height: 8,
                     borderRadius: 4,
-                    backgroundColor: '#E5E5E5',
                     '& .MuiLinearProgress-bar': {
-                      backgroundColor: '#10B981',
-                    },
-                  }}
+                    }}}
                 />
               </Box>
             </CardContent>
@@ -437,7 +432,7 @@ function ConsentDetailPage() {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setEditDialogOpen(false)}>취소</Button>
-          <Button variant="contained">저장</Button>
+          <Button variant="text">저장</Button>
         </DialogActions>
       </Dialog>
 

@@ -21,8 +21,8 @@ import {
 const userConsentHistoryData = [
   {
     id: 1,
-    userName: '김동의',
-    email: 'kim.consent@sktelecom.com',
+    userName: '서원준',
+    email: 'wonjun.seo@sktelecom.com',
     workspace: 'SK Telecom',
     workspaceColor: '#14B8A6',
     consentTitle: '개인정보 수집 및 이용 동의서',
@@ -35,8 +35,8 @@ const userConsentHistoryData = [
   },
   {
     id: 2,
-    userName: '이거부',
-    email: 'lee.refuse@skhynix.com',
+    userName: '한소율',
+    email: 'soyul.han@skhynix.com',
     workspace: 'SK Hynix',
     workspaceColor: '#6366F1',
     consentTitle: '마케팅 정보 수신 동의서',
@@ -49,8 +49,8 @@ const userConsentHistoryData = [
   },
   {
     id: 3,
-    userName: '박철회',
-    email: 'park.withdraw@skcc.com',
+    userName: '오준혁',
+    email: 'junhyuk.oh@skcc.com',
     workspace: 'SK C&C',
     workspaceColor: '#F43F5E',
     consentTitle: '위치 정보 활용 동의서',
@@ -63,8 +63,8 @@ const userConsentHistoryData = [
   },
   {
     id: 4,
-    userName: '최재동의',
-    email: 'choi.reaccept@skinnovation.com',
+    userName: '남예은',
+    email: 'yeeun.nam@skinnovation.com',
     workspace: 'SK Innovation',
     workspaceColor: '#10B981',
     consentTitle: '제3자 정보 제공 동의서',
@@ -143,7 +143,6 @@ function UserConsentHistoryPage() {
               alignItems: 'center',
               border: '1px solid #E5E5E5',
               borderRadius: '8px',
-              backgroundColor: '#fff',
               overflow: 'hidden'
             }}>
               <FormControl size="small" sx={{ minWidth: 120 }}>
@@ -154,15 +153,14 @@ function UserConsentHistoryPage() {
                     borderRadius: 0,
                     '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
                     '&:hover .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                  }}
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
                 >
                   <MenuItem value="userName">사용자명</MenuItem>
                   <MenuItem value="email">이메일</MenuItem>
                   <MenuItem value="consentTitle">동의서명</MenuItem>
                 </Select>
               </FormControl>
-              <Box sx={{ width: '1px', height: '24px', backgroundColor: '#E5E5E5' }} />
+              <Box sx={{ width: '1px', height: '24px' }} />
               <TextField
                 size="small"
                 placeholder="검색어를 입력하세요"
@@ -175,19 +173,16 @@ function UserConsentHistoryPage() {
                     borderRadius: 0,
                     '& fieldset': { border: 'none' },
                     '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' },
-                  },
-                }}
+                    '&.Mui-focused fieldset': { border: 'none' }}}}
               />
             </Box>
             <Button 
-              variant="contained" 
+              variant="text"
+              color="primary" 
               size="small"
               sx={{ 
                 height: '36px',
-                minWidth: '60px',
-                backgroundColor: '#0066FF',
-                '&:hover': { backgroundColor: '#0052CC' }
+                minWidth: '60px'
               }}
             >
               검색
@@ -252,7 +247,7 @@ function UserConsentHistoryPage() {
                   <Chip 
                     label={history.consentVersion}
                     size="small"
-                    sx={{ backgroundColor: '#f0f7ff', color: '#0066FF' }}
+                    sx={{ color: '#0066FF' }}
                   />
                 </TableCell>
                 <TableCell>
@@ -308,20 +303,18 @@ function UserConsentHistoryPage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ‹
         </Button>
         <Button 
-          variant="contained"
+          variant="text"
+              color="primary"
           size="small"
           sx={{ 
             minWidth: '32px', 
-            height: '32px',
-            backgroundColor: '#0066FF',
-            '&:hover': { backgroundColor: '#0052CC' }
+            height: '32px'
           }}
         >
           1
@@ -333,8 +326,7 @@ function UserConsentHistoryPage() {
             minWidth: '32px', 
             height: '32px', 
             borderColor: '#E5E5E5',
-            color: '#6B7280',
-            '&:hover': { borderColor: '#D1D5DB' }
+            color: '#6B7280'
           }}
         >
           ›
