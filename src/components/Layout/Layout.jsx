@@ -106,14 +106,6 @@ function Layout({ children }) {
             top: 0,
             height: '100vh',
             overflowY: 'auto',
-            borderRadius: '0px !important',
-            boxShadow: 'none !important',
-            transform: 'none !important',
-            transition: 'none !important',
-            '&:hover': {
-              boxShadow: 'none !important',
-              transform: 'none !important',
-            },
             '&::-webkit-scrollbar': {
               display: 'none'},
             scrollbarWidth: 'none',
@@ -125,14 +117,7 @@ function Layout({ children }) {
           borderBottom: '1px solid #E5E5E5',
           display: 'flex',
           alignItems: 'center',
-          gap: 1,
-          boxShadow: 'none !important',
-          transform: 'none !important',
-          transition: 'none !important',
-          '&:hover': {
-            boxShadow: 'none !important',
-            transform: 'none !important',
-          }
+          gap: 1
         }}>
           <Box sx={{
             width: 40,
@@ -175,17 +160,7 @@ function Layout({ children }) {
         </Box>
 
 
-        <Box sx={{ 
-          px: 2, 
-          pt: 3,
-          boxShadow: 'none !important',
-          transform: 'none !important',
-          transition: 'none !important',
-          '&:hover': {
-            boxShadow: 'none !important',
-            transform: 'none !important',
-          }
-        }}>
+        <Box sx={{ px: 2, pt: 3 }}>
           {menuSections.map((section, sectionIndex) => (
             <Box key={section.title} sx={{ mb: sectionIndex < menuSections.length - 1 ? 2 : 0 }}>
               <Typography sx={{ 
@@ -199,28 +174,36 @@ function Layout({ children }) {
               </Typography>
               <List dense sx={{ py: 0 }}>
                 {section.items.map((item) => (
-                  <ListItem key={item.text} disablePadding sx={{ borderRadius: '0px !important' }}>
+                  <ListItem key={item.text} disablePadding>
                     <ListItemButton
                       selected={location.pathname === item.path}
                       onClick={() => handleMenuClick(item.path)}
                       sx={{
-                        borderRadius: '0px !important',
                         margin: 0,
                         padding: '8px 12px',
                         fontSize: '14px',
                         color: '#333',
-                        transition: 'background-color 0.2s',
+                        transition: 'all 0.2s',
+                        '&:hover': {
+                          backgroundColor: 'rgba(139, 92, 246, 0.08)',
+                          color: '#8B5CF6',
+                        },
                         '&.Mui-selected': {
-                          color: '#6366F1',
+                          backgroundColor: 'rgba(139, 92, 246, 0.12)',
+                          color: '#8B5CF6',
                           fontWeight: 600,
-                          borderRadius: '0px !important'}}}
+                          '&:hover': {
+                            backgroundColor: 'rgba(139, 92, 246, 0.16)',
+                            color: '#8B5CF6',
+                          }
+                        }}}
                     >
                       <ListItemText 
                         primary={item.text}
                         primaryTypographyProps={{
                           fontSize: '14px',
                           fontWeight: location.pathname === item.path ? 600 : 400,
-                          color: location.pathname === item.path ? '#6366F1' : '#333',
+                          color: location.pathname === item.path ? '#8B5CF6' : '#333',
                         }}
                       />
                     </ListItemButton>

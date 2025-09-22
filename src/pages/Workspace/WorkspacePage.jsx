@@ -352,7 +352,7 @@ function WorkspacePage() {
               <MenuItem value="20개씩 보기">20개씩 보기</MenuItem>
               <MenuItem value="50개씩 보기">50개씩 보기</MenuItem>
             </Select>
-          </FormControl>
+          </FormControl> 
 
           <Button 
             variant="outlined"
