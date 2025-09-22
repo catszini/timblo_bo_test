@@ -122,9 +122,9 @@
                           <span>SK Telecom</span>
                         </div>
                       </td>
-                      <td>홍길동</td>
+                      <td>김민수</td>
                       <td>시스템관리자</td>
-                      <td>최고관리자</td>
+                      <td>최고관리자 - 모든 시스템 권한</td>
                     </tr>
                     <tr>
                       <td><input type="checkbox"></td>
@@ -135,9 +135,9 @@
                           <span>SK Hynix</span>
                         </div>
                       </td>
-                      <td>박영수</td>
+                      <td>이영희</td>
                       <td>워크스페이스관리자</td>
-                      <td>관리자</td>
+                      <td>워크스페이스 전체 관리</td>
                     </tr>
                     <tr>
                       <td><input type="checkbox"></td>
@@ -145,13 +145,27 @@
                       <td>
                         <div class="workspace-name">
                           <div class="workspace-icon color-rose">S</div>
-                          <span>SK Materials</span>
+                          <span>SK C&C</span>
                         </div>
                       </td>
-                      <td>김철수</td>
-                      <td>일반사용자</td>
-                      <td>사용자</td>
+                      <td>박철수</td>
+                      <td>메뉴관리자</td>
+                      <td>메뉴 생성/권한 관리</td>
                     </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>4</td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-amber">S</div>
+                          <span>SK Innovation</span>
+                        </div>
+                      </td>
+                      <td>정수진</td>
+                      <td>통계관리자</td>
+                      <td>사용량/통계 분석 관리</td>
+                    </tr>
+
                   </tbody>
                 </table>
               </div>
@@ -317,11 +331,60 @@
           noDataArea.style.display = 'none';
           treeMenu.style.display = 'block';
 
-          // 선택된 권한에 따라 다른 메뉴 표시 (추후 확장 가능)
+          // 선택된 권한에 따라 다른 메뉴 표시
           const permissionType = this.querySelector('td:nth-child(5)').textContent;
           console.log('선택된 권한:', permissionType);
+
+          // 권한별 메뉴 트리 업데이트
+          updateMenuTreeByPermission(permissionType);
         });
       });
+
+      // 권한별 메뉴 트리 업데이트 함수
+      function updateMenuTreeByPermission(permissionType) {
+        const systemCheckboxes = document.querySelectorAll('#treeMenu .tree-item input[type="checkbox"]');
+
+        // 모든 체크박스 초기화
+        systemCheckboxes.forEach(cb => cb.checked = false);
+
+        // 권한별 메뉴 활성화
+        switch (permissionType) {
+          case '시스템관리자':
+            // 시스템관리자는 모든 권한
+            systemCheckboxes.forEach(cb => cb.checked = true);
+            break;
+
+          case '워크스페이스관리자':
+            // 워크스페이스 관련 모든 권한
+            document.getElementById('워크스페이스').checked = true;
+            ['기능 권한 관리', '메뉴 권한 관리', '사용자관리', '로고이미지관리',
+              '회의템플릿관리', '프롬프트관리', '동의서관리', '캘린더관리'].forEach(id => {
+                const checkbox = document.getElementById(id);
+                if (checkbox) checkbox.checked = true;
+              });
+            break;
+
+          case '메뉴관리자':
+            // 시스템 메뉴 관련 권한만 (워크스페이스 메뉴 권한 관리 제외)
+            document.getElementById('시스템').checked = true;
+            document.getElementById('시스템메뉴생성관리').checked = true;
+            document.getElementById('시스템메뉴 권한 관리').checked = true;
+            break;
+
+          case '통계관리자':
+            // 통계 관련 권한만 (워크스페이스 메뉴 권한 관리 제외)
+            document.getElementById('시스템').checked = true;
+            document.getElementById('시스템사용량통계').checked = true;
+            document.getElementById('시스템사용자별통계').checked = true;
+            document.getElementById('워크스페이스').checked = true;
+            document.getElementById('사용량통계').checked = true;
+            document.getElementById('사용자별통계').checked = true;
+            break;
+        }
+
+        // 부모 체크박스 상태 업데이트
+        updateParentCheckboxState();
+      }
 
       // 체크박스 전체 선택 기능
       const selectAllCheckbox = document.querySelector('.select-all');
