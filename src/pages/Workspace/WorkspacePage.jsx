@@ -267,13 +267,19 @@ function WorkspacePage() {
         mb: 3 
       }}>
         {/* 왼쪽: 라이센스 정보 */}
-        <Box>
-          <Typography sx={{ fontSize: '14px', color: '#666', mb: 0.5 }}>
-            라이센스 적용 가능한 인원 : 무제한
-          </Typography>
-          <Typography sx={{ fontSize: '14px', color: '#666', mb: 2 }}>
-            라이센스 사용 중인 인원 : 83명
-          </Typography>
+        <Box sx={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: 3
+        }}>
+          <Box>
+            <Typography sx={{ fontSize: '14px', color: '#666', mb: 0.5 }}>
+              라이센스 적용 가능한 인원 : 무제한
+            </Typography>
+            <Typography sx={{ fontSize: '14px', color: '#666' }}>
+              라이센스 사용 중인 인원 : 83명
+            </Typography>
+          </Box>
           <Button 
             variant="outlined"
             sx={{ 

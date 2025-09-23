@@ -258,7 +258,7 @@ function WorkspaceGroupSettingPage() {
       <Grid container spacing={{ xs: 2, md: 3 }} sx={{ width: '100%' }}>
         {/* 왼쪽: 권한 정보 */}
         <Grid item xs={12} lg={6}>
-          <Paper sx={{ p: { xs: 1.5, sm: 2 } }}>
+          <Paper sx={{ p: 0, borderRadius: 0 }}>
             <Box sx={{ 
               display: 'flex', 
               flexDirection: { xs: 'column', sm: 'row' },
@@ -267,6 +267,7 @@ function WorkspaceGroupSettingPage() {
               gap: { xs: 2, sm: 0 },
               mb: 2,
               pb: 1,
+              p: { xs: 1.5, sm: 2 },
               borderBottom: '1px solid #E5E5E5'
             }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -326,7 +327,7 @@ function WorkspaceGroupSettingPage() {
               </Box>
             </Box>
 
-            <TableContainer sx={{ width: '100%' }}>
+            <TableContainer sx={{ width: '100%', borderRadius: 0 }}>
               <Table size="small" sx={{ width: '100%', tableLayout: 'fixed' }}>
                 <TableHead>
                   <TableRow>

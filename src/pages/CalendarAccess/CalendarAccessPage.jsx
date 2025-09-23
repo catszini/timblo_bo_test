@@ -19,6 +19,11 @@ const calendarIntegrations = [
 
 function CalendarAccessPage() {
   const [integrations, setIntegrations] = useState(calendarIntegrations)
+  const [settings, setSettings] = useState({
+    autoNotification: true,
+    autoSync: true,
+    autoAttach: false
+  })
 
   const handleToggleIntegration = (id) => {
     setIntegrations(prev => 
@@ -26,6 +31,13 @@ function CalendarAccessPage() {
         item.id === id ? { ...item, isEnabled: !item.isEnabled } : item
       )
     )
+  }
+
+  const handleSettingChange = (setting) => {
+    setSettings(prev => ({
+      ...prev,
+      [setting]: !prev[setting]
+    }))
   }
 
   return (
@@ -87,30 +99,51 @@ function CalendarAccessPage() {
           
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <FormControlLabel
-              control={<Switch defaultChecked size="small" />}
+              control={
+                <Switch 
+                  checked={settings.autoNotification}
+                  onChange={() => handleSettingChange('autoNotification')}
+                  size="small" 
+                />
+              }
               label={
                 <Typography sx={{ fontSize: '14px' }}>
                   회의 시작 15분 전 자동 알림
                 </Typography>
               }
+              sx={{ gap: 2 }}
             />
             
             <FormControlLabel
-              control={<Switch defaultChecked size="small" />}
+              control={
+                <Switch 
+                  checked={settings.autoSync}
+                  onChange={() => handleSettingChange('autoSync')}
+                  size="small" 
+                />
+              }
               label={
                 <Typography sx={{ fontSize: '14px' }}>
                   캘린더 이벤트 자동 동기화
                 </Typography>
               }
+              sx={{ gap: 2 }}
             />
             
             <FormControlLabel
-              control={<Switch defaultChecked={false} size="small" />}
+              control={
+                <Switch 
+                  checked={settings.autoAttach}
+                  onChange={() => handleSettingChange('autoAttach')}
+                  size="small" 
+                />
+              }
               label={
                 <Typography sx={{ fontSize: '14px' }}>
                   회의록 완료 시 캘린더에 자동 첨부
                 </Typography>
               }
+              sx={{ gap: 2 }}
             />
           </Box>
         </CardContent>

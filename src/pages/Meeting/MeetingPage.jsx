@@ -76,7 +76,7 @@ function MeetingPage() {
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ko">
       <Box>
         <Typography variant="h5" component="h1" gutterBottom>
-          회의록
+          회의록 관리
         </Typography>
 
         {/* 검색 툴바 */}

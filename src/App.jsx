@@ -38,7 +38,7 @@ function App() {
       <LicenseCheck />
       <Layout>
         <Routes>
-          <Route path="/" element={<MeetingPage />} />
+          <Route path="/" element={<WorkspacePage />} />
           <Route path="/meeting" element={<MeetingPage />} />
           <Route path="/meet-template" element={<MeetTemplatePage />} />
           <Route path="/prompt" element={<PromptPage />} />

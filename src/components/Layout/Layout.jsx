@@ -42,7 +42,7 @@ import {
   PersonSearchOutlined
 } from '@mui/icons-material'
 
-const drawerWidth = 240
+const drawerWidth = 280
 
 const menuSections = [
   {
@@ -101,11 +101,18 @@ function Layout({ children }) {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            borderRight: '1px solid #E5E5E5',
+            borderRight: 'none',
             position: 'sticky',
             top: 0,
             height: '100vh',
             overflowY: 'auto',
+            transition: 'none !important',
+            transform: 'none !important',
+            '&:hover': {
+              transition: 'none !important',
+              transform: 'none !important',
+              boxShadow: 'none !important',
+            },
             '&::-webkit-scrollbar': {
               display: 'none'},
             scrollbarWidth: 'none',
@@ -114,22 +121,33 @@ function Layout({ children }) {
         {/* 로고 섹션 */}
         <Box sx={{ 
           p: '20px 20px 24px 20px',
-          borderBottom: '1px solid #E5E5E5',
+          position: 'relative',
           display: 'flex',
           alignItems: 'center',
-          gap: 1
+          gap: 1,
+          '&::after': {
+            content: '""',
+            position: 'absolute',
+            bottom: 0,
+            left: '20px',
+            right: '20px',
+            height: '1px',
+            backgroundColor: '#E5E5E5'
+          }
         }}>
           <Box sx={{
             width: 40,
             height: 40,
+            backgroundColor: '#4B88F0',
             borderRadius: '8px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             color: 'white',
             fontSize: '24px',
-            fontWeight: 600}}>
-            S
+            fontWeight: 600
+          }}>
+            T
           </Box>
           <Box sx={{ flex: 1 }}>
             <Typography sx={{ 
@@ -183,18 +201,19 @@ function Layout({ children }) {
                         padding: '8px 12px',
                         fontSize: '14px',
                         color: '#333',
+                        borderRadius: 0,
                         transition: 'all 0.2s',
                         '&:hover': {
-                          backgroundColor: 'rgba(139, 92, 246, 0.08)',
-                          color: '#8B5CF6',
+                          backgroundColor: 'rgba(59, 130, 246, 0.08)',
+                          color: '#3B82F6',
                         },
                         '&.Mui-selected': {
-                          backgroundColor: 'rgba(139, 92, 246, 0.12)',
-                          color: '#8B5CF6',
+                          backgroundColor: 'rgba(59, 130, 246, 0.12)',
+                          color: '#3B82F6',
                           fontWeight: 600,
                           '&:hover': {
-                            backgroundColor: 'rgba(139, 92, 246, 0.16)',
-                            color: '#8B5CF6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.16)',
+                            color: '#3B82F6',
                           }
                         }}}
                     >
@@ -203,7 +222,14 @@ function Layout({ children }) {
                         primaryTypographyProps={{
                           fontSize: '14px',
                           fontWeight: location.pathname === item.path ? 600 : 400,
-                          color: location.pathname === item.path ? '#8B5CF6' : '#333',
+                          color: location.pathname === item.path ? '#3B82F6' : '#333',
+                        }}
+                        sx={{
+                          margin: 0,
+                          '& .MuiListItemText-primary': {
+                            margin: 0,
+                            padding: 0,
+                          }
                         }}
                       />
                     </ListItemButton>
