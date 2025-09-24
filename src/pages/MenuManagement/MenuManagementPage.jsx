@@ -14,12 +14,13 @@ import {
   MenuItem,
   TextField,
   Button,
-  Switch
+  Switch,
+  Pagination
 } from '@mui/material'
 
 const menuData = [
   { id: 1, name: '기능 권한 관리', isActive: true, url: 'workspace_permission.html' },
-  { id: 2, name: '메뉴리스트 관리', isActive: true, url: 'workspace_group_setting.html' },
+  { id: 2, name: '메뉴 권한 관리', isActive: true, url: 'workspace_group_setting.html' },
   { id: 3, name: '사용자 관리', isActive: true, url: 'user.html' },
   { id: 4, name: '로고 이미지 관리', isActive: true, url: 'logo.html' },
   { id: 5, name: '회의 템플릿 관리', isActive: true, url: 'meet_template.html' },
@@ -41,10 +42,16 @@ function MenuManagementPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [pageSize, setPageSize] = useState(10)
   const [statusFilter, setStatusFilter] = useState('전체')
+  const [menus, setMenus] = useState(menuData)
 
   const handleToggleStatus = (id) => {
-    // 사용여부 토글 로직
-    console.log('Toggle status for menu:', id)
+    setMenus(prevMenus => 
+      prevMenus.map(menu => 
+        menu.id === id 
+          ? { ...menu, isActive: !menu.isActive }
+          : menu
+      )
+    )
   }
 
   return (
@@ -53,66 +60,99 @@ function MenuManagementPage() {
         메뉴 생성 관리
       </Typography>
 
-      {/* 검색 툴바 */}
-      <Box sx={{ mb: 2 }}>
+      {/* 메뉴 관리 헤더 */}
+      <Box sx={{ mb: 3 }}>
         <Box sx={{ 
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: '12px',
+          gap: '24px',
           width: '100%'
         }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
             <Typography sx={{ 
-              fontSize: '14px', 
-              fontWeight: 500, 
-              color: '#292A2B',
-              minWidth: '40px'
+              fontSize: '18px', 
+              fontWeight: 600, 
+              color: '#111827'
             }}>
-              상태
+              메뉴 관리
             </Typography>
-            <FormControl size="small" sx={{ minWidth: 120 }}>
-              <Select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                sx={{ 
-                  height: '36px',
-                  fontSize: '14px',
-                  '& .MuiSelect-select': {
-                    padding: '8px 14px'
-                  }
-                }}
-              >
-                <MenuItem value="전체">전체</MenuItem>
-                <MenuItem value="사용">사용</MenuItem>
-                <MenuItem value="비사용">비사용</MenuItem>
-              </Select>
-            </FormControl>
+            <Box className="combo-select">
+              <FormControl size="small" sx={{ minWidth: 180 }}>
+                <Select
+                  value="전체"
+                  sx={{ 
+                    height: '36px',
+                    fontSize: '14px',
+                    appearance: 'none',
+                    '& .MuiSelect-select': {
+                      padding: '8px 32px 8px 12px'
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#E5E5E5'
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#0066FF'
+                    }
+                  }}
+                >
+                  <MenuItem value="전체">전체 워크스페이스</MenuItem>
+                  <MenuItem value="sk-telecom">SK Telecom</MenuItem>
+                  <MenuItem value="sk-hynix">SK Hynix</MenuItem>
+                  <MenuItem value="sk-on">SK On</MenuItem>
+                  <MenuItem value="timbel-mk">Timbel_Mk</MenuItem>
+                  <MenuItem value="timbel-sol">Timbel_sol</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
           </Box>
           
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <TextField
-              size="small"
-              placeholder="메뉴명 검색..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              sx={{ 
-                width: '300px',
-                '& .MuiOutlinedInput-root': {
-                  height: '36px',
-                  fontSize: '14px'
-                }
-              }}
-            />
             <Button 
-              variant="text" 
+              variant="outlined"
+              size="small"
               sx={{ 
                 height: '36px',
                 fontSize: '14px',
-                minWidth: '80px'
+                color: '#6B7280',
+                borderColor: '#D1D5DB',
+                '&:hover': {
+                  backgroundColor: '#F9FAFB',
+                  borderColor: '#9CA3AF'
+                }
               }}
             >
-              추가
+              초기화
+            </Button>
+            <Button 
+              variant="outlined"
+              size="small"
+              sx={{ 
+                height: '36px',
+                fontSize: '14px',
+                color: '#10B981',
+                borderColor: '#10B981',
+                '&:hover': {
+                  backgroundColor: '#f0fdf4'
+                }
+              }}
+            >
+              저장
+            </Button>
+            <Button 
+              variant="outlined"
+              size="small"
+              sx={{ 
+                height: '36px',
+                fontSize: '14px',
+                color: '#3B82F6',
+                borderColor: '#3B82F6',
+                '&:hover': {
+                  backgroundColor: '#f0f7ff'
+                }
+              }}
+            >
+              + 새 메뉴
             </Button>
           </Box>
         </Box>
@@ -130,7 +170,7 @@ function MenuManagementPage() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {menuData.map((menu) => (
+            {menus.map((menu) => (
               <TableRow key={menu.id}>
                 <TableCell>
                   <Typography sx={{ fontSize: '14px' }}>
@@ -211,51 +251,17 @@ function MenuManagementPage() {
             </Select>
           </FormControl>
           <Typography sx={{ fontSize: '14px', color: '#6B7280', ml: 2 }}>
-            총 {menuData.length}개 항목 중 1-{Math.min(pageSize, menuData.length)} 표시
+            총 {menus.length}개 항목 중 1-{Math.min(pageSize, menus.length)} 표시
           </Typography>
         </Box>
         
-        <Box sx={{ display: 'flex', gap: 1 }}>
-          <Button 
-            variant="outlined" 
-            size="small"
-            disabled
-            sx={{ 
-              minWidth: '36px',
-              height: '36px',
-              fontSize: '14px',
-              color: '#6B7280',
-              borderColor: '#D1D5DB'
-            }}
-          >
-            ‹
-          </Button>
-          <Button 
-            variant="text"
-              color="primary" 
-            size="small"
-            sx={{ 
-              minWidth: '36px',
-              height: '36px',
-              fontSize: '14px'
-            }}
-          >
-            1
-          </Button>
-          <Button 
-            variant="outlined" 
-            size="small"
-            sx={{ 
-              minWidth: '36px',
-              height: '36px',
-              fontSize: '14px',
-              color: '#6B7280',
-              borderColor: '#D1D5DB'
-            }}
-          >
-            ›
-          </Button>
-        </Box>
+        <Pagination 
+          count={5} 
+          page={1} 
+          shape="rounded"
+          showFirstButton={false}
+          showLastButton={false}
+        />
       </Box>
     </Box>
   )

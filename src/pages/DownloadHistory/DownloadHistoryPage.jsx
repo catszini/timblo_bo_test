@@ -16,9 +16,10 @@ import {
   TextField,
   Button,
   Link,
-  IconButton
+  IconButton,
+  Pagination
 } from '@mui/material'
-import { Download, FilePresent } from '@mui/icons-material'
+import { Download, Description } from '@mui/icons-material'
 
 const downloadHistoryData = [
   {
@@ -219,7 +220,10 @@ function DownloadHistoryPage() {
               <TableRow key={history.id}>
                 <TableCell>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <FilePresent sx={{ color: getFileTypeColor(history.fileType) }} />
+                    <Description sx={{ 
+                      color: getFileTypeColor(history.fileType),
+                      fontSize: '20px'
+                    }} />
                     <Box>
                       <Typography sx={{ fontWeight: 500, fontSize: '14px' }}>
                         {history.fileName}
@@ -287,10 +291,15 @@ function DownloadHistoryPage() {
                   {history.status === '완료' && (
                     <IconButton 
                       size="small"
-                      sx={{ color: '#0066FF' }}
+                      sx={{ 
+                        color: '#3B82F6',
+                        '&:hover': {
+                          backgroundColor: 'rgba(59, 130, 246, 0.1)'
+                        }
+                      }}
                       title="다시 다운로드"
                     >
-                      <Download />
+                      <Download sx={{ fontSize: '18px' }} />
                     </IconButton>
                   )}
                 </TableCell>
@@ -303,46 +312,16 @@ function DownloadHistoryPage() {
       {/* 페이지네이션 */}
       <Box sx={{ 
         display: 'flex', 
-        alignItems: 'center', 
         justifyContent: 'center', 
-        gap: 1, 
         mt: 3 
       }}>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ‹
-        </Button>
-        <Button 
-          variant="text"
-              color="primary"
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px'
-          }}
-        >
-          1
-        </Button>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ›
-        </Button>
+        <Pagination 
+          count={5} 
+          page={1} 
+          shape="rounded"
+          showFirstButton={false}
+          showLastButton={false}
+        />
       </Box>
     </Box>
   )

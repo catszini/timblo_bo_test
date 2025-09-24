@@ -16,78 +16,93 @@ import {
   TextField,
   Button,
   Avatar,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
+  Pagination,
   Grid,
   Divider,
-  IconButton,
   Card,
   CardContent
 } from '@mui/material'
-import { Visibility, Compare, ArrowForward } from '@mui/icons-material'
 
 const settingChangeHistoryData = [
   {
     id: 1,
-    userName: '김설정',
-    email: 'kim.setting@sktelecom.com',
-    workspace: 'SK Telecom',
-    workspaceColor: '#14B8A6',
-    settingCategory: '워크스페이스',
-    settingName: '로고 이미지',
-    action: '수정',
-    oldValue: 'logo_old.png',
-    newValue: 'logo_new.png',
-    changeTime: '2024-01-15 14:32:15',
-    ipAddress: '192.168.1.101',
-    device: 'Chrome (Windows)'
+    userName: '한리자',
+    ipAddress: '192.168.1.100',
+    screenName: '사용자 관리',
+    changeItem: '권한 설정',
+    changeTime: '2024-03-15 14:30:25'
   },
   {
     id: 2,
-    userName: '이권한',
-    email: 'lee.permission@skhynix.com',
-    workspace: 'SK Hynix',
-    workspaceColor: '#6366F1',
-    settingCategory: '권한',
-    settingName: '사용자 권한',
-    action: '추가',
-    oldValue: '-',
-    newValue: '회의관리자',
-    changeTime: '2024-01-15 11:20:44',
-    ipAddress: '192.168.1.205',
-    device: 'Safari (macOS)'
+    userName: '김철수',
+    ipAddress: '192.168.1.101',
+    screenName: '메뉴 관리',
+    changeItem: '메뉴 순서',
+    changeTime: '2024-03-15 13:45:12'
   },
   {
     id: 3,
-    userName: '박시스템',
-    email: 'park.system@skcc.com',
-    workspace: 'SK C&C',
-    workspaceColor: '#F43F5E',
-    settingCategory: '시스템',
-    settingName: '세션 타임아웃',
-    action: '수정',
-    oldValue: '30분',
-    newValue: '60분',
-    changeTime: '2024-01-15 09:15:22',
-    ipAddress: '192.168.1.78',
-    device: 'Edge (Windows)'
+    userName: '이영희',
+    ipAddress: '192.168.1.102',
+    screenName: '권한 관리',
+    changeItem: '사용자 권한',
+    changeTime: '2024-03-15 12:20:45'
   },
   {
     id: 4,
-    userName: '최템플릿',
-    email: 'choi.template@skinnovation.com',
-    workspace: 'SK Innovation',
-    workspaceColor: '#10B981',
-    settingCategory: '템플릿',
-    settingName: '기본 템플릿',
-    action: '삭제',
-    oldValue: '주간 회의 템플릿',
-    newValue: '-',
-    changeTime: '2024-01-14 16:45:33',
-    ipAddress: '192.168.1.156',
-    device: 'Firefox (Linux)'
+    userName: '박지민',
+    ipAddress: '192.168.1.103',
+    screenName: '엔진 관리',
+    changeItem: '엔진 설정',
+    changeTime: '2024-03-15 11:15:30'
+  },
+  {
+    id: 5,
+    userName: '최동호',
+    ipAddress: '192.168.1.104',
+    screenName: '통계',
+    changeItem: '보고서 설정',
+    changeTime: '2024-03-15 10:30:18'
+  },
+  {
+    id: 6,
+    userName: '장미영',
+    ipAddress: '192.168.1.105',
+    screenName: '사용자 관리',
+    changeItem: '프로필 설정',
+    changeTime: '2024-03-15 09:45:33'
+  },
+  {
+    id: 7,
+    userName: '강민수',
+    ipAddress: '192.168.1.106',
+    screenName: '워크스페이스 관리',
+    changeItem: '워크스페이스 설정',
+    changeTime: '2024-03-15 08:20:15'
+  },
+  {
+    id: 8,
+    userName: '윤서연',
+    ipAddress: '192.168.1.107',
+    screenName: '템플릿 관리',
+    changeItem: '템플릿 순서',
+    changeTime: '2024-03-15 07:15:42'
+  },
+  {
+    id: 9,
+    userName: '조현우',
+    ipAddress: '192.168.1.108',
+    screenName: '프롬프트 관리',
+    changeItem: '프롬프트 설정',
+    changeTime: '2024-03-15 06:30:28'
+  },
+  {
+    id: 10,
+    userName: '한지원',
+    ipAddress: '192.168.1.109',
+    screenName: '캘린더 관리',
+    changeItem: '일정 설정',
+    changeTime: '2024-03-15 05:45:55'
   }
 ]
 
@@ -95,12 +110,10 @@ function SettingChangeHistoryPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [pageSize, setPageSize] = useState(10)
   const [categoryFilter, setCategoryFilter] = useState('전체')
-  const [compareDialogOpen, setCompareDialogOpen] = useState(false)
-  const [selectedChange, setSelectedChange] = useState(null)
+  const [selectedChange, setSelectedChange] = useState(settingChangeHistoryData[0])
 
-  const handleCompare = (change) => {
+  const handleRowClick = (change) => {
     setSelectedChange(change)
-    setCompareDialogOpen(true)
   }
 
   return (
@@ -129,20 +142,9 @@ function SettingChangeHistoryPage() {
             </Typography>
             <FormControl size="small" sx={{ minWidth: 80 }}>
               <Select
-                value={pageSize}
-                onChange={(e) => setPageSize(e.target.value)}
-                sx={{ height: '36px' }}
-              >
-                <MenuItem value={10}>10개</MenuItem>
-                <MenuItem value={20}>20개</MenuItem>
-                <MenuItem value={50}>50개</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl size="small" sx={{ minWidth: 120 }}>
-              <Select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                sx={{ height: '36px' }}
+                sx={{ fontSize: '14px', height: '36px' }}
               >
                 <MenuItem value="전체">전체</MenuItem>
                 <MenuItem value="워크스페이스">워크스페이스</MenuItem>
@@ -152,49 +154,39 @@ function SettingChangeHistoryPage() {
               </Select>
             </FormControl>
           </Box>
-          
           <Box sx={{ 
             display: 'flex', 
             alignItems: 'center', 
-            gap: 1,
-            marginLeft: 'auto'
+            gap: '12px'
           }}>
             <Box sx={{ 
-              display: 'flex',
-              alignItems: 'center',
-              border: '1px solid #E5E5E5',
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '8px',
+              backgroundColor: '#FFFFFF',
+              border: '1px solid #E5E7EB',
               borderRadius: '8px',
-              overflow: 'hidden'
+              padding: '6px 12px',
+              minWidth: '240px'
             }}>
-              <FormControl size="small" sx={{ minWidth: 120 }}>
-                <Select
-                  value="userName"
-                  sx={{ 
-                    height: '36px',
-                    borderRadius: 0,
-                    '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&:hover .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
-                >
-                  <MenuItem value="userName">사용자명</MenuItem>
-                  <MenuItem value="settingName">설정명</MenuItem>
-                  <MenuItem value="workspace">워크스페이스</MenuItem>
-                </Select>
-              </FormControl>
-              <Box sx={{ width: '1px', height: '24px' }} />
               <TextField
+                placeholder="사용자명, 설정명, IP 주소로 검색"
                 size="small"
-                placeholder="검색어를 입력하세요"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                sx={{ 
-                  width: 200,
+                sx={{
+                  flexGrow: 1,
                   '& .MuiOutlinedInput-root': {
-                    height: '36px',
-                    borderRadius: 0,
-                    '& fieldset': { border: 'none' },
-                    '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' }}}}
+                    border: 'none',
+                    '& fieldset': {
+                      border: 'none',
+                    },
+                  },
+                  '& .MuiInputBase-input': {
+                    padding: '6px 0',
+                    fontSize: '14px'
+                  }
+                }}
               />
             </Box>
             <Button 
@@ -217,107 +209,50 @@ function SettingChangeHistoryPage() {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>사용자</TableCell>
-              <TableCell>워크스페이스</TableCell>
-              <TableCell>설정 분류</TableCell>
-              <TableCell>설정명</TableCell>
-              <TableCell>작업</TableCell>
-              <TableCell>변경 전</TableCell>
-              <TableCell>변경 후</TableCell>
-              <TableCell>변경 시간</TableCell>
-                <TableCell>IP 주소</TableCell>
-                <TableCell>비교</TableCell>
+              <TableCell>관리자</TableCell>
+              <TableCell>변경IP</TableCell>
+              <TableCell>화면명</TableCell>
+              <TableCell>변경항목</TableCell>
+              <TableCell>변경시간</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {settingChangeHistoryData.map((history) => (
-              <TableRow key={history.id}>
-                <TableCell>
-                  <Box>
-                    <Typography sx={{ fontWeight: 500, fontSize: '14px' }}>
-                      {history.userName}
-                    </Typography>
-                    <Typography sx={{ fontSize: '12px', color: '#6B7280' }}>
-                      {history.email}
-                    </Typography>
-                  </Box>
-                </TableCell>
-                <TableCell>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Avatar 
-                      sx={{ 
-                        width: 24, 
-                        height: 24, 
-                        backgroundColor: history.workspaceColor,
-                        fontSize: '12px',
-                        fontWeight: 600
-                      }}
-                    >
-                      S
-                    </Avatar>
-                    <Typography sx={{ fontSize: '14px', fontWeight: 500 }}>
-                      {history.workspace}
-                    </Typography>
-                  </Box>
-                </TableCell>
-                <TableCell>
-                  <Chip 
-                    label={history.settingCategory}
-                    size="small"
-                    sx={{ color: '#0066FF' }}
-                  />
-                </TableCell>
+              <TableRow 
+                key={history.id}
+                onClick={() => handleRowClick(history)}
+                sx={{ 
+                  cursor: 'pointer',
+                  backgroundColor: selectedChange?.id === history.id ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
+                  '&:hover': {
+                    backgroundColor: selectedChange?.id === history.id ? 'rgba(59, 130, 246, 0.15)' : '#F9FAFB'
+                  }
+                }}
+              >
                 <TableCell>
                   <Typography sx={{ fontSize: '14px', fontWeight: 500 }}>
-                    {history.settingName}
+                    {history.userName}
                   </Typography>
                 </TableCell>
                 <TableCell>
-                  <Chip 
-                    label={history.action}
-                    color={
-                      history.action === '추가' ? 'success' : 
-                      history.action === '삭제' ? 'error' : 'warning'
-                    }
-                    size="small"
-                  />
-                </TableCell>
-                <TableCell>
-                  <Typography sx={{ 
-                    fontSize: '14px', 
-                    fontFamily: 'monospace',
-                    color: history.oldValue === '-' ? '#6B7280' : '#292A2B'
-                  }}>
-                    {history.oldValue}
+                  <Typography sx={{ fontSize: '14px' }}>
+                    {history.ipAddress}
                   </Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography sx={{ 
-                    fontSize: '14px', 
-                    fontFamily: 'monospace',
-                    color: history.newValue === '-' ? '#6B7280' : '#292A2B'
-                  }}>
-                    {history.newValue}
+                  <Typography sx={{ fontSize: '14px' }}>
+                    {history.screenName}
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography sx={{ fontSize: '14px' }}>
+                    {history.changeItem}
                   </Typography>
                 </TableCell>
                 <TableCell>
                   <Typography sx={{ fontSize: '14px' }}>
                     {history.changeTime}
                   </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography sx={{ fontSize: '14px', fontFamily: 'monospace' }}>
-                    {history.ipAddress}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <IconButton 
-                    size="small" 
-                    color="primary"
-                    onClick={() => handleCompare(history)}
-                  >
-                    <Compare fontSize="small" />
-                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}
@@ -328,350 +263,125 @@ function SettingChangeHistoryPage() {
       {/* 페이지네이션 */}
       <Box sx={{ 
         display: 'flex', 
-        alignItems: 'center', 
         justifyContent: 'center', 
-        gap: 1, 
         mt: 3 
       }}>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ‹
-        </Button>
-        <Button 
-          variant="text"
-              color="primary"
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px'
-          }}
-        >
-          1
-        </Button>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ›
-        </Button>
+        <Pagination 
+          count={5} 
+          page={1} 
+          shape="rounded"
+          showFirstButton={false}
+          showLastButton={false}
+        />
       </Box>
 
-
-      {/* 변경사항 비교 다이얼로그 */}
-      <Dialog open={compareDialogOpen} onClose={() => setCompareDialogOpen(false)} maxWidth="lg" fullWidth>
-        <DialogTitle>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Compare />
-            <Typography variant="h6">설정 변경사항 비교</Typography>
-          </Box>
-        </DialogTitle>
-        <DialogContent>
-          {selectedChange && (
-            <Box>
-              {/* 변경 정보 헤더 */}
-              <Card sx={{ mb: 3 }}>
-                <CardContent>
-                  <Grid container spacing={2}>
-                    <Grid item xs={6}>
-                      <Typography variant="body2" sx={{ fontWeight: 500, mb: 0.5 }}>변경자</Typography>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <Avatar 
-                          sx={{ 
-                            width: 24, 
-                            height: 24, 
-                            backgroundColor: selectedChange.workspaceColor,
-                            fontSize: '12px',
-                            fontWeight: 600
-                          }}
-                        >
-                          S
-                        </Avatar>
-                        <Typography variant="body2">{selectedChange.userName}</Typography>
-                      </Box>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="body2" sx={{ fontWeight: 500, mb: 0.5 }}>변경 시간</Typography>
-                      <Typography variant="body2">{selectedChange.changeTime}</Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="body2" sx={{ fontWeight: 500, mb: 0.5 }}>설정 분류</Typography>
-                      <Chip 
-                        label={selectedChange.settingCategory}
-                        size="small"
-                        sx={{ color: '#0066FF' }}
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="body2" sx={{ fontWeight: 500, mb: 0.5 }}>작업</Typography>
-                      <Chip 
-                        label={selectedChange.action}
-                        size="small"
-                        color={
-                          selectedChange.action === '추가' ? 'success' : 
-                          selectedChange.action === '삭제' ? 'error' : 'warning'
-                        }
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Typography variant="body2" sx={{ fontWeight: 500, mb: 0.5 }}>설정명</Typography>
-                      <Typography variant="body2">{selectedChange.settingName}</Typography>
-                    </Grid>
-                  </Grid>
-                </CardContent>
-              </Card>
-
-              <Divider sx={{ my: 3 }} />
-
-              {/* 변경전/변경후 비교 */}
-              <Typography variant="h6" sx={{ mb: 3, display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Compare />
-                변경 전/후 비교
-              </Typography>
-              
-              <Grid container spacing={3}>
-                <Grid item xs={12} md={6}>
-                  <Paper sx={{ p: 2, height: 400, border: '2px solid #fecaca' }}>
-                    <Box sx={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      gap: 1, 
-                      mb: 2,
-                      pb: 1,
-                      borderBottom: '1px solid #E5E5E5'
-                    }}>
-                      <Box color="error"
-              sx={{width: 12, 
-                        height: 12, 
-                        borderRadius: '50%'}} />
-                      <Typography variant="h6" sx={{ fontSize: '16px', fontWeight: 600, color: '#EF4444' }}>
-                        변경 전
-                      </Typography>
-                    </Box>
-                    
-                    <Box sx={{ 
-                      p: 2, 
-                      borderRadius: 1,
-                      height: 320,
-                      overflow: 'auto'
-                    }}>
-                      {selectedChange.action === '추가' ? (
-                        <Typography sx={{ 
-                          fontSize: '14px', 
-                          color: '#6B7280', 
-                          fontStyle: 'italic',
-                          textAlign: 'center',
-                          mt: 10
-                        }}>
-                          이전 값이 없습니다 (신규 추가)
-                        </Typography>
-                      ) : (
-                        <Box>
-                          <Typography component="pre" sx={{ 
-                            fontFamily: 'monospace', 
-                            fontSize: '12px', 
-                            whiteSpace: 'pre-wrap',
-                            margin: 0,
-                            color: '#374151'
-                          }}>
-                            {getDetailedOldValue(selectedChange)}
-                          </Typography>
-                        </Box>
-                      )}
-                    </Box>
-                  </Paper>
-                </Grid>
-
-                <Grid item xs={12} md={6}>
-                  <Paper sx={{ p: 2, height: 400, border: '2px solid #bbf7d0' }}>
-                    <Box sx={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      gap: 1, 
-                      mb: 2,
-                      pb: 1,
-                      borderBottom: '1px solid #E5E5E5'
-                    }}>
-                      <Box color="success"
-              sx={{width: 12, 
-                        height: 12, 
-                        borderRadius: '50%'}} />
-                      <Typography variant="h6" sx={{ fontSize: '16px', fontWeight: 600, color: '#10B981' }}>
-                        변경 후
-                      </Typography>
-                    </Box>
-                    
-                    <Box sx={{ 
-                      p: 2, 
-                      borderRadius: 1,
-                      height: 320,
-                      overflow: 'auto'
-                    }}>
-                      {selectedChange.action === '삭제' ? (
-                        <Typography sx={{ 
-                          fontSize: '14px', 
-                          color: '#6B7280', 
-                          fontStyle: 'italic',
-                          textAlign: 'center',
-                          mt: 10
-                        }}>
-                          값이 삭제되었습니다
-                        </Typography>
-                      ) : (
-                        <Box>
-                          <Typography component="pre" sx={{ 
-                            fontFamily: 'monospace', 
-                            fontSize: '12px', 
-                            whiteSpace: 'pre-wrap',
-                            margin: 0,
-                            color: '#374151'
-                          }}>
-                            {getDetailedNewValue(selectedChange)}
-                          </Typography>
-                        </Box>
-                      )}
-                    </Box>
-                  </Paper>
-                </Grid>
-              </Grid>
-
-              <Divider sx={{ my: 3 }} />
-
-              {/* 변경 요약 */}
-              <Typography variant="h6" sx={{ mb: 2 }}>변경 요약</Typography>
-              <Box sx={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: 2, 
-                p: 2,
-                borderRadius: 1,
-                border: '1px solid #E5E5E5'
-              }}>
-                <Chip 
-                  label={selectedChange.oldValue}
-                  size="small"
-                  sx={{ color: '#991b1b', fontWeight: 500 }}
-                />
-                                                        <ArrowForward sx={{ color: '#6B7280' }} />
-                <Chip 
-                  label={selectedChange.newValue}
-                  size="small"
-                  sx={{ color: '#166534', fontWeight: 500 }}
-                />
-              </Box>
-              <Typography sx={{ fontSize: '14px', color: '#6B7280', mt: 2 }}>
-                {selectedChange.settingName} 설정이 {selectedChange.action}되었습니다.
-              </Typography>
-            </Box>
-          )}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setCompareDialogOpen(false)}>닫기</Button>
-        </DialogActions>
-      </Dialog>
+      {/* 선택된 변경사항 상세 정보 */}
+      {selectedChange && (
+        <Box sx={{ mt: 4 }}>
+          {/* 상세보기 */}
+          <Typography variant="h6" sx={{ mb: 3 }}>
+            상세보기
+          </Typography>
+          
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={6}>
+              <Paper sx={{ p: 2, height: 250, border: '1px solid #E5E7EB' }}>
+                <Box sx={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: 1, 
+                  mb: 2,
+                  pb: 1,
+                  borderBottom: '1px solid #E5E7EB'
+                }}>
+                  <Box 
+                    sx={{
+                      width: 12, 
+                      height: 12, 
+                      backgroundColor: '#6B7280',
+                      borderRadius: '50%'
+                    }} 
+                  />
+                  <Typography variant="h6" sx={{ fontSize: '16px', fontWeight: 600, color: '#6B7280' }}>
+                    변경전 내역
+                  </Typography>
+                </Box>
+                
+                <Box sx={{ 
+                  p: 2, 
+                  borderRadius: 1,
+                  height: 170,
+                  overflow: 'auto'
+                }}>
+                  <Box>
+                    <Typography sx={{ fontSize: '14px', mb: 1 }}>
+                      권한 설정: 일반 사용자
+                    </Typography>
+                    <Typography sx={{ fontSize: '14px', mb: 1 }}>
+                      접근 권한: 읽기 전용
+                    </Typography>
+                    <Typography sx={{ fontSize: '14px', mb: 1 }}>
+                      메뉴 접근: 제한됨
+                    </Typography>
+                    <Typography sx={{ fontSize: '14px' }}>
+                      파일 다운로드: 불가능
+                    </Typography>
+                  </Box>
+                </Box>
+              </Paper>
+            </Grid>
+            
+            <Grid item xs={12} md={6}>
+              <Paper sx={{ p: 2, height: 250, border: '1px solid #E5E7EB' }}>
+                <Box sx={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: 1, 
+                  mb: 2,
+                  pb: 1,
+                  borderBottom: '1px solid #E5E7EB'
+                }}>
+                  <Box 
+                    sx={{
+                      width: 12, 
+                      height: 12, 
+                      backgroundColor: '#3B82F6',
+                      borderRadius: '50%'
+                    }} 
+                  />
+                  <Typography variant="h6" sx={{ fontSize: '16px', fontWeight: 600, color: '#3B82F6' }}>
+                    변경후 내역
+                  </Typography>
+                </Box>
+                
+                <Box sx={{ 
+                  p: 2, 
+                  borderRadius: 1,
+                  height: 170,
+                  overflow: 'auto'
+                }}>
+                  <Box>
+                    <Typography sx={{ fontSize: '14px', mb: 1 }}>
+                      권한 설정: 관리자
+                    </Typography>
+                    <Typography sx={{ fontSize: '14px', mb: 1 }}>
+                      접근 권한: 읽기/쓰기
+                    </Typography>
+                    <Typography sx={{ fontSize: '14px', mb: 1 }}>
+                      메뉴 접근: 전체 허용
+                    </Typography>
+                    <Typography sx={{ fontSize: '14px' }}>
+                      파일 다운로드: 가능
+                    </Typography>
+                  </Box>
+                </Box>
+              </Paper>
+            </Grid>
+          </Grid>
+        </Box>
+      )}
     </Box>
   )
-}
-
-// 상세한 이전 값 생성 함수
-function getDetailedOldValue(change) {
-  switch (change.settingCategory) {
-    case '워크스페이스':
-      return `로고 이미지 설정:
-파일명: ${change.oldValue}
-크기: 245KB
-해상도: 512x256
-형식: PNG
-업로드일: 2023-12-01
-설명: 이전 회사 로고 이미지`
-
-    case '시스템':
-      return `세션 타임아웃 설정:
-현재 값: ${change.oldValue}
-단위: 분
-적용 범위: 전체 사용자
-보안 정책: 표준
-마지막 수정: 2023-11-15
-설명: 보안상 ${change.oldValue} 후 자동 로그아웃`
-
-    case '권한':
-      return `사용자 권한 설정:
-이전 상태: 권한 없음
-사용자: ${change.userName}
-워크스페이스: ${change.workspace}
-부여일: -
-만료일: -
-설명: 해당 사용자에게 부여된 권한이 없었습니다.`
-
-    case '템플릿':
-      return `템플릿 설정:
-템플릿명: ${change.oldValue}
-카테고리: 주간회의
-사용횟수: 45회
-상태: 활성
-생성일: 2023-10-01
-설명: 매주 진행되는 정기 회의용 템플릿`
-
-    default:
-      return change.oldValue
-  }
-}
-
-// 상세한 새 값 생성 함수
-function getDetailedNewValue(change) {
-  switch (change.settingCategory) {
-    case '워크스페이스':
-      return `로고 이미지 설정:
-파일명: ${change.newValue}
-크기: 189KB
-해상도: 1024x512
-형식: PNG
-업로드일: 2024-01-15
-설명: 새로운 회사 로고 이미지 (고해상도)`
-
-    case '시스템':
-      return `세션 타임아웃 설정:
-현재 값: ${change.newValue}
-단위: 분
-적용 범위: 전체 사용자
-보안 정책: 강화
-마지막 수정: 2024-01-15
-설명: 보안 강화를 위해 ${change.newValue} 후 자동 로그아웃으로 변경`
-
-    case '권한':
-      return `사용자 권한 설정:
-새 권한: ${change.newValue}
-사용자: ${change.userName}
-워크스페이스: ${change.workspace}
-부여일: 2024-01-15
-만료일: 2024-12-31
-설명: ${change.newValue} 권한이 새로 부여되었습니다.`
-
-    case '템플릿':
-      return `템플릿 삭제:
-상태: 삭제됨
-삭제일: 2024-01-14
-삭제 사유: 더 이상 사용하지 않음
-백업: 완료
-복구 가능: 30일 이내
-설명: 사용 빈도가 낮아 삭제 처리됨`
-
-    default:
-      return change.newValue
-  }
 }
 
 export default SettingChangeHistoryPage

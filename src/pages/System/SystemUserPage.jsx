@@ -15,7 +15,8 @@ import {
   MenuItem,
   TextField,
   Button,
-  Avatar
+  Avatar,
+  Pagination
 } from '@mui/material'
 
 const systemUserData = [
@@ -68,6 +69,56 @@ const systemUserData = [
     permission: '개발자',
     status: 'online',
     lastLogin: '2024-01-15 13:10'
+  },
+  {
+    id: 6,
+    name: '한네트워크',
+    email: 'han.network@sknetworks.com',
+    workspace: 'SK Networks',
+    workspaceColor: '#8B5CF6',
+    permission: '네트워크관리자',
+    status: 'offline',
+    lastLogin: '2024-01-15 10:30'
+  },
+  {
+    id: 7,
+    name: '송바이오',
+    email: 'song.bio@skbiopharm.com',
+    workspace: 'SK Biopharm',
+    workspaceColor: '#EC4899',
+    permission: '사용자',
+    status: 'online',
+    lastLogin: '2024-01-15 15:20'
+  },
+  {
+    id: 8,
+    name: '윤소재',
+    email: 'yoon.materials@skmaterials.com',
+    workspace: 'SK Materials',
+    workspaceColor: '#84CC16',
+    permission: '관리자',
+    status: 'offline',
+    lastLogin: '2024-01-14 18:45'
+  },
+  {
+    id: 9,
+    name: '조보안',
+    email: 'cho.security@skshieldus.com',
+    workspace: 'SK Shieldus',
+    workspaceColor: '#F97316',
+    permission: '보안관리자',
+    status: 'online',
+    lastLogin: '2024-01-15 12:15'
+  },
+  {
+    id: 10,
+    name: '강서비스',
+    email: 'kang.service@sktelecom.com',
+    workspace: 'SK Telecom',
+    workspaceColor: '#14B8A6',
+    permission: '서비스관리자',
+    status: 'online',
+    lastLogin: '2024-01-15 16:00'
   }
 ]
 
@@ -286,46 +337,16 @@ function SystemUserPage() {
       {/* 페이지네이션 */}
       <Box sx={{ 
         display: 'flex', 
-        alignItems: 'center', 
         justifyContent: 'center', 
-        gap: 1, 
         mt: 3 
       }}>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ‹
-        </Button>
-        <Button 
-          variant="text"
-              color="primary"
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px'
-          }}
-        >
-          1
-        </Button>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ›
-        </Button>
+        <Pagination 
+          count={5} 
+          page={1} 
+          shape="rounded"
+          showFirstButton={false}
+          showLastButton={false}
+        />
       </Box>
     </Box>
   )

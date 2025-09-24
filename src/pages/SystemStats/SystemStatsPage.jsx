@@ -16,7 +16,8 @@ import {
   TextField,
   Button,
   Avatar,
-  LinearProgress
+  LinearProgress,
+  Pagination
 } from '@mui/material'
 
 const systemStatsData = [
@@ -98,6 +99,86 @@ const systemStatsData = [
     downloadCount: 156,
     createdTemplates: 15,
     usageScore: 82.3,
+    period: '2024-01'
+  },
+  {
+    id: 6,
+    userName: '강마케팅',
+    email: 'kang.marketing@skbiopharm.com',
+    workspace: 'SK Biopharm',
+    workspaceColor: '#EC4899',
+    role: '마케팅',
+    loginCount: 87,
+    lastLogin: '2024-01-15 12:45',
+    meetingCount: 56,
+    meetingMinutes: 823,
+    downloadCount: 34,
+    createdTemplates: 7,
+    usageScore: 74.6,
+    period: '2024-01'
+  },
+  {
+    id: 7,
+    userName: '임재료',
+    email: 'lim.materials@skmaterials.com',
+    workspace: 'SK Materials',
+    workspaceColor: '#84CC16',
+    role: '연구원',
+    loginCount: 134,
+    lastLogin: '2024-01-15 14:15',
+    meetingCount: 92,
+    meetingMinutes: 1456,
+    downloadCount: 67,
+    createdTemplates: 18,
+    usageScore: 91.7,
+    period: '2024-01'
+  },
+  {
+    id: 8,
+    userName: '오보안',
+    email: 'oh.security@skshieldus.com',
+    workspace: 'SK Shieldus',
+    workspaceColor: '#F97316',
+    role: '보안전문가',
+    loginCount: 203,
+    lastLogin: '2024-01-15 17:30',
+    meetingCount: 145,
+    meetingMinutes: 2789,
+    downloadCount: 98,
+    createdTemplates: 31,
+    usageScore: 96.8,
+    period: '2024-01'
+  },
+  {
+    id: 9,
+    userName: '신기획',
+    email: 'shin.planning@sktelecom.com',
+    workspace: 'SK Telecom',
+    workspaceColor: '#14B8A6',
+    role: '기획자',
+    loginCount: 91,
+    lastLogin: '2024-01-15 11:50',
+    meetingCount: 62,
+    meetingMinutes: 934,
+    downloadCount: 28,
+    createdTemplates: 9,
+    usageScore: 79.4,
+    period: '2024-01'
+  },
+  {
+    id: 10,
+    userName: '유품질',
+    email: 'yu.quality@skhynix.com',
+    workspace: 'SK Hynix',
+    workspaceColor: '#6366F1',
+    role: '품질관리',
+    loginCount: 118,
+    lastLogin: '2024-01-15 15:40',
+    meetingCount: 83,
+    meetingMinutes: 1245,
+    downloadCount: 52,
+    createdTemplates: 14,
+    usageScore: 85.1,
     period: '2024-01'
   }
 ]
@@ -383,46 +464,16 @@ function SystemStatsPage() {
       {/* 페이지네이션 */}
       <Box sx={{ 
         display: 'flex', 
-        alignItems: 'center', 
         justifyContent: 'center', 
-        gap: 1, 
         mt: 3 
       }}>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ‹
-        </Button>
-        <Button 
-          variant="text"
-              color="primary"
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px'
-          }}
-        >
-          1
-        </Button>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ›
-        </Button>
+        <Pagination 
+          count={5} 
+          page={1} 
+          shape="rounded"
+          showFirstButton={false}
+          showLastButton={false}
+        />
       </Box>
     </Box>
   )

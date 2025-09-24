@@ -10,6 +10,7 @@ import MeetingPage from './pages/Meeting/MeetingPage'
 import WorkspaceGroupSettingPage from './pages/WorkspaceGroupSetting/WorkspaceGroupSettingPage'
 import SystemUserPage from './pages/System/SystemUserPage'
 import MeetTemplatePage from './pages/MeetTemplate/MeetTemplatePage'
+import MeetTemplateDetailPage from './pages/MeetTemplate/MeetTemplateDetailPage'
 import PromptPage from './pages/Prompt/PromptPage'
 import DictionaryPage from './pages/Dictionary/DictionaryPage'
 import NoticePage from './pages/Notice/NoticePage'
@@ -41,6 +42,7 @@ function App() {
           <Route path="/" element={<WorkspacePage />} />
           <Route path="/meeting" element={<MeetingPage />} />
           <Route path="/meet-template" element={<MeetTemplatePage />} />
+          <Route path="/meet-template/:id" element={<MeetTemplateDetailPage />} />
           <Route path="/prompt" element={<PromptPage />} />
           <Route path="/dictionary" element={<DictionaryPage />} />
           <Route path="/notice" element={<NoticePage />} />

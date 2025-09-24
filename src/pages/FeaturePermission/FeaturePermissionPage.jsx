@@ -16,7 +16,8 @@ import {
   Button,
   Switch,
   Checkbox,
-  FormControlLabel
+  FormControlLabel,
+  Pagination
 } from '@mui/material'
 
 const featurePermissionData = [
@@ -291,47 +292,13 @@ function FeaturePermissionPage() {
           </Typography>
         </Box>
         
-        <Box sx={{ display: 'flex', gap: 1 }}>
-          <Button 
-            variant="outlined" 
-            size="small"
-            disabled
-            sx={{ 
-              minWidth: '36px',
-              height: '36px',
-              fontSize: '14px',
-              color: '#6B7280',
-              borderColor: '#D1D5DB'
-            }}
-          >
-            ‹
-          </Button>
-          <Button 
-            variant="text"
-              color="primary" 
-            size="small"
-            sx={{ 
-              minWidth: '36px',
-              height: '36px',
-              fontSize: '14px'
-            }}
-          >
-            1
-          </Button>
-          <Button 
-            variant="outlined" 
-            size="small"
-            sx={{ 
-              minWidth: '36px',
-              height: '36px',
-              fontSize: '14px',
-              color: '#6B7280',
-              borderColor: '#D1D5DB'
-            }}
-          >
-            ›
-          </Button>
-        </Box>
+        <Pagination 
+          count={5} 
+          page={1} 
+          shape="rounded"
+          showFirstButton={false}
+          showLastButton={false}
+        />
       </Box>
     </Box>
   )

@@ -18,6 +18,7 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
+  Pagination,
   DialogActions,
   Grid,
   Divider,
@@ -77,6 +78,56 @@ const promptData = [
     usageCount: 78,
     lastModified: '2024-01-05',
     modifier: '정번역',
+    status: '활성'
+  },
+  {
+    id: 6,
+    title: '키워드 추출',
+    description: '회의록에서 핵심 키워드를 자동 추출',
+    category: '분석',
+    usageCount: 92,
+    lastModified: '2024-01-11',
+    modifier: '강키워드',
+    status: '활성'
+  },
+  {
+    id: 7,
+    title: '감정 분석',
+    description: '회의 참석자들의 감정 상태를 분석',
+    category: '분석',
+    usageCount: 34,
+    lastModified: '2024-01-07',
+    modifier: '송감정',
+    status: '비활성'
+  },
+  {
+    id: 8,
+    title: '토픽 분류',
+    description: '회의 내용을 주제별로 분류',
+    category: '분류',
+    usageCount: 58,
+    lastModified: '2024-01-09',
+    modifier: '윤토픽',
+    status: '활성'
+  },
+  {
+    id: 9,
+    title: '회의 품질 평가',
+    description: '회의 진행의 효율성과 품질을 평가',
+    category: '평가',
+    usageCount: 71,
+    lastModified: '2024-01-13',
+    modifier: '조품질',
+    status: '활성'
+  },
+  {
+    id: 10,
+    title: '후속 조치 생성',
+    description: '회의 결과에 따른 후속 조치 항목을 생성',
+    category: '후속조치',
+    usageCount: 63,
+    lastModified: '2024-01-14',
+    modifier: '한후속',
     status: '활성'
   }
 ]
@@ -322,46 +373,16 @@ function PromptPage() {
       {/* 페이지네이션 */}
       <Box sx={{ 
         display: 'flex', 
-        alignItems: 'center', 
         justifyContent: 'center', 
-        gap: 1, 
         mt: 3 
       }}>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ‹
-        </Button>
-        <Button 
-          variant="text"
-              color="primary"
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px'
-          }}
-        >
-          1
-        </Button>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ›
-        </Button>
+        <Pagination 
+          count={5} 
+          page={1} 
+          shape="rounded"
+          showFirstButton={false}
+          showLastButton={false}
+        />
       </Box>
 
       {/* 프롬프트 생성 다이얼로그 */}

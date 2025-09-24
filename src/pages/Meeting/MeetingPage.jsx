@@ -15,7 +15,8 @@ import {
   MenuItem,
   TextField,
   Button,
-  Link
+  Link,
+  Pagination
 } from '@mui/material'
 import { LocalizationProvider } from '@mui/x-date-pickers-pro/LocalizationProvider'
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker'
@@ -63,6 +64,66 @@ const meetingData = [
     status: '완료',
     creator: '황수빈',
     workspace: 'SK Hynix'
+  },
+  {
+    id: 5,
+    title: '기술 검토 회의',
+    date: '2024-01-11',
+    time: '13:30-15:00',
+    participants: 7,
+    status: '완료',
+    creator: '김기술',
+    workspace: 'SK Innovation'
+  },
+  {
+    id: 6,
+    title: '마케팅 전략 회의',
+    date: '2024-01-10',
+    time: '11:00-12:30',
+    participants: 6,
+    status: '완료',
+    creator: '이마케팅',
+    workspace: 'SK C&C'
+  },
+  {
+    id: 7,
+    title: '품질 관리 회의',
+    date: '2024-01-09',
+    time: '15:00-16:00',
+    participants: 9,
+    status: '진행중',
+    creator: '박품질',
+    workspace: 'SK Materials'
+  },
+  {
+    id: 8,
+    title: '보안 점검 회의',
+    date: '2024-01-08',
+    time: '10:30-11:30',
+    participants: 4,
+    status: '완료',
+    creator: '최보안',
+    workspace: 'SK Shieldus'
+  },
+  {
+    id: 9,
+    title: '에너지 효율 검토',
+    date: '2024-01-07',
+    time: '14:00-15:30',
+    participants: 11,
+    status: '완료',
+    creator: '정에너지',
+    workspace: 'SK E&S'
+  },
+  {
+    id: 10,
+    title: '디지털 혁신 회의',
+    date: '2024-01-06',
+    time: '16:30-18:00',
+    participants: 15,
+    status: '완료',
+    creator: '강디지털',
+    workspace: 'SK Square'
   }
 ]
 
@@ -250,46 +311,16 @@ function MeetingPage() {
       {/* 페이지네이션 */}
       <Box sx={{ 
         display: 'flex', 
-        alignItems: 'center', 
         justifyContent: 'center', 
-        gap: 1, 
         mt: 3 
       }}>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ‹
-        </Button>
-        <Button 
-          variant="text"
-              color="primary"
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px'
-          }}
-        >
-          1
-        </Button>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ›
-        </Button>
+        <Pagination 
+          count={5} 
+          page={1} 
+          shape="rounded"
+          showFirstButton={false}
+          showLastButton={false}
+        />
       </Box>
       </Box>
     </LocalizationProvider>

@@ -15,7 +15,8 @@ import {
   MenuItem,
   TextField,
   Button,
-  Avatar
+  Avatar,
+  Pagination
 } from '@mui/material'
 
 const loginHistoryData = [
@@ -70,6 +71,84 @@ const loginHistoryData = [
     ipAddress: '192.168.1.156',
     device: 'Firefox (Linux)',
     status: '세션 만료'
+  },
+  {
+    id: 5,
+    userName: '서민기',
+    email: 'minki.seo@sknetworks.com',
+    workspace: 'SK Networks',
+    workspaceColor: '#8B5CF6',
+    loginTime: '2024-01-15 10:15:20',
+    logoutTime: '2024-01-15 16:30:15',
+    duration: '6시간 15분',
+    ipAddress: '192.168.1.142',
+    device: 'Chrome (Windows)',
+    status: '정상 로그아웃'
+  },
+  {
+    id: 6,
+    userName: '홍예린',
+    email: 'yerin.hong@skbiopharm.com',
+    workspace: 'SK Biopharm',
+    workspaceColor: '#EC4899',
+    loginTime: '2024-01-15 08:30:45',
+    logoutTime: '2024-01-15 17:20:33',
+    duration: '8시간 50분',
+    ipAddress: '192.168.1.167',
+    device: 'Safari (macOS)',
+    status: '정상 로그아웃'
+  },
+  {
+    id: 7,
+    userName: '노준호',
+    email: 'junho.no@skmaterials.com',
+    workspace: 'SK Materials',
+    workspaceColor: '#84CC16',
+    loginTime: '2024-01-15 07:45:30',
+    logoutTime: '-',
+    duration: '진행중',
+    ipAddress: '192.168.1.189',
+    device: 'Edge (Windows)',
+    status: '접속중'
+  },
+  {
+    id: 8,
+    userName: '김보안',
+    email: 'boan.kim@skshieldus.com',
+    workspace: 'SK Shieldus',
+    workspaceColor: '#F97316',
+    loginTime: '2024-01-15 09:20:15',
+    logoutTime: '2024-01-15 18:10:45',
+    duration: '8시간 50분',
+    ipAddress: '192.168.1.134',
+    device: 'Chrome (Linux)',
+    status: '정상 로그아웃'
+  },
+  {
+    id: 9,
+    userName: '양에너지',
+    email: 'energy.yang@skens.com',
+    workspace: 'SK E&S',
+    workspaceColor: '#06B6D4',
+    loginTime: '2024-01-14 14:30:22',
+    logoutTime: '2024-01-14 17:45:18',
+    duration: '3시간 15분',
+    ipAddress: '192.168.1.201',
+    device: 'Firefox (macOS)',
+    status: '정상 로그아웃'
+  },
+  {
+    id: 10,
+    userName: '류디지털',
+    email: 'digital.ryu@sksquare.com',
+    workspace: 'SK Square',
+    workspaceColor: '#8B5CF6',
+    loginTime: '2024-01-15 11:15:40',
+    logoutTime: '2024-01-15 19:30:25',
+    duration: '8시간 15분',
+    ipAddress: '192.168.1.223',
+    device: 'Safari (iOS)',
+    status: '정상 로그아웃'
   }
 ]
 
@@ -281,46 +360,16 @@ function LoginHistoryPage() {
       {/* 페이지네이션 */}
       <Box sx={{ 
         display: 'flex', 
-        alignItems: 'center', 
         justifyContent: 'center', 
-        gap: 1, 
         mt: 3 
       }}>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ‹
-        </Button>
-        <Button 
-          variant="text"
-              color="primary"
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px'
-          }}
-        >
-          1
-        </Button>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ›
-        </Button>
+        <Pagination 
+          count={5} 
+          page={1} 
+          shape="rounded"
+          showFirstButton={false}
+          showLastButton={false}
+        />
       </Box>
     </Box>
   )

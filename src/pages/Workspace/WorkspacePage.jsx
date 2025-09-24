@@ -17,7 +17,8 @@ import {
   Switch,
   Avatar,
   Checkbox,
-  IconButton
+  IconButton,
+  Pagination
 } from '@mui/material'
 import { KeyboardArrowUp, KeyboardArrowDown } from '@mui/icons-material'
 
@@ -247,8 +248,18 @@ function WorkspacePage() {
     const workspace = workspaces.find(w => w.id === id)
     if (workspace) {
       const newValue = Math.max(0, workspace.memberCount + increment)
-      handleMemberCountChange(id, newValue)
+      handleMemberCountChange(id, newValue.toString())
     }
+  }
+
+  const handleToggleActive = (id) => {
+    setWorkspaces(prev => 
+      prev.map(workspace => 
+        workspace.id === id 
+          ? { ...workspace, isActive: !workspace.isActive }
+          : workspace
+      )
+    )
   }
 
   return (
@@ -662,12 +673,8 @@ function WorkspacePage() {
                 }}>
                   <Switch 
                     checked={workspace.isActive} 
+                    onChange={() => handleToggleActive(workspace.id)}
                     size="small"
-                    sx={{
-                      '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: '#2563EB'},
-                      '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                      }}}
                   />
                 </TableCell>
               </TableRow>
@@ -680,60 +687,15 @@ function WorkspacePage() {
       <Box sx={{ 
         display: 'flex', 
         justifyContent: 'center', 
-        alignItems: 'center', 
-        mt: 3,
-        gap: 0.5
+        mt: 3 
       }}>
-        <Button 
-          variant="text"
-          color="primary"
-          size="small"
-          sx={{ 
-            width: '32px',
-            height: '32px',
-            minWidth: '32px',
-            borderRadius: '50%',
-            fontSize: '14px',
-            padding: 0
-          }}
-        >
-          1
-        </Button>
-        <Button 
-          variant="text"
-              color="primary"
-          size="small"
-          sx={{ 
-            width: '32px',
-            height: '32px',
-            minWidth: '32px',
-            borderRadius: '50%',
-            fontSize: '14px',
-            color: '#6B7280',
-            padding: 0
-          }}
-        >
-          2
-        </Button>
-        <Button 
-          variant="text"
-              color="primary"
-          size="small"
-          sx={{ 
-            width: '32px',
-            height: '32px',
-            minWidth: '32px',
-            borderRadius: '50%',
-            fontSize: '14px',
-            color: '#6B7280',
-            padding: 0
-          }}
-        >
-          3
-        </Button>
-        <Typography sx={{ fontSize: '14px', color: '#6B7280', mx: 1 }}>
-          ...
-        </Typography>
+        <Pagination 
+          count={5} 
+          page={1} 
+          shape="rounded"
+          showFirstButton={false}
+          showLastButton={false}
+        />
       </Box>
     </Box>
   )

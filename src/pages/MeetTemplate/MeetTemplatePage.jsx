@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   Box,
   Typography,
@@ -22,9 +23,12 @@ import {
   DialogActions,
   Grid,
   Divider,
-  IconButton
+  IconButton,
+  Card,
+  CardContent,
+  Pagination
 } from '@mui/material'
-import { Add, Edit, Delete, Visibility } from '@mui/icons-material'
+import { Close, Add, Edit, Delete, Visibility } from '@mui/icons-material'
 
 const templateData = [
   {
@@ -71,10 +75,56 @@ const templateData = [
     status: '사용중',
     modifier: '정현우',
     lastModified: '2024-01-05'
+  },
+  {
+    id: 6,
+    category: '마케팅',
+    title: '마케팅 캠페인 기획 템플릿',
+    usageCount: 75,
+    status: '사용중',
+    modifier: '강마케팅',
+    lastModified: '2024-01-09'
+  },
+  {
+    id: 7,
+    category: '인사',
+    title: '인사평가 회의 템플릿',
+    usageCount: 90,
+    status: '사용중',
+    modifier: '오인사',
+    lastModified: '2024-01-11'
+  },
+  {
+    id: 8,
+    category: '재무',
+    title: '예산 검토 회의 템플릿',
+    usageCount: 40,
+    status: '미사용',
+    modifier: '임재무',
+    lastModified: '2023-12-15'
+  },
+  {
+    id: 9,
+    category: '법무',
+    title: '계약 검토 회의 템플릿',
+    usageCount: 25,
+    status: '사용중',
+    modifier: '한법무',
+    lastModified: '2024-01-03'
+  },
+  {
+    id: 10,
+    category: '운영',
+    title: '운영 리뷰 회의 템플릿',
+    usageCount: 110,
+    status: '사용중',
+    modifier: '신운영',
+    lastModified: '2024-01-13'
   }
 ]
 
 function MeetTemplatePage() {
+  const navigate = useNavigate()
   const [searchTerm, setSearchTerm] = useState('')
   const [pageSize, setPageSize] = useState(10)
   const [categoryFilter, setCategoryFilter] = useState('전체')
@@ -83,10 +133,11 @@ function MeetTemplatePage() {
   const [previewDialogOpen, setPreviewDialogOpen] = useState(false)
   const [selectedTemplate, setSelectedTemplate] = useState(null)
   const [newTemplate, setNewTemplate] = useState({
-    category: '',
+    id: '',
+    version: '',
+    category: '일반회의',
     title: '',
-    content: '',
-    status: '사용중'
+    description: ''
   })
 
   const filteredTemplates = templateData.filter(template => {
@@ -98,10 +149,11 @@ function MeetTemplatePage() {
 
   const handleCreate = () => {
     setNewTemplate({
-      category: '',
+      id: '',
+      version: '',
+      category: '일반회의',
       title: '',
-      content: '',
-      status: '사용중'
+      description: ''
     })
     setCreateDialogOpen(true)
   }
@@ -116,6 +168,10 @@ function MeetTemplatePage() {
     setPreviewDialogOpen(true)
   }
 
+  const handleDetail = (template) => {
+    navigate(`/meet-template/${template.id}`)
+  }
+
   const handleSaveTemplate = () => {
     // 템플릿 저장 로직
     setCreateDialogOpen(false)
@@ -125,7 +181,7 @@ function MeetTemplatePage() {
   return (
     <Box>
       <Typography variant="h5" component="h1" gutterBottom>
-        회의 템플릿
+        회의 템플릿 관리
       </Typography>
 
       {/* 검색 툴바 */}
@@ -243,7 +299,16 @@ function MeetTemplatePage() {
           </TableHead>
           <TableBody>
             {filteredTemplates.map((template) => (
-              <TableRow key={template.id}>
+              <TableRow 
+                key={template.id}
+                sx={{ 
+                  cursor: 'pointer',
+                  '&:hover': {
+                    backgroundColor: '#F3F4F6'
+                  }
+                }}
+                onClick={() => handleDetail(template)}
+              >
                 <TableCell>{template.category}</TableCell>
                 <TableCell>{template.title}</TableCell>
                 <TableCell>{template.usageCount}</TableCell>
@@ -261,18 +326,28 @@ function MeetTemplatePage() {
                     <IconButton 
                       size="small" 
                       color="primary" 
-                      onClick={() => handlePreview(template)}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        handlePreview(template)
+                      }}
                     >
                       <Visibility fontSize="small" />
                     </IconButton>
                     <IconButton 
                       size="small" 
                       color="primary"
-                      onClick={() => handleEdit(template)}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        handleEdit(template)
+                      }}
                     >
                       <Edit fontSize="small" />
                     </IconButton>
-                    <IconButton size="small" color="error">
+                    <IconButton 
+                      size="small" 
+                      color="error"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       <Delete fontSize="small" />
                     </IconButton>
                   </Box>
@@ -286,114 +361,228 @@ function MeetTemplatePage() {
       {/* 페이지네이션 */}
       <Box sx={{ 
         display: 'flex', 
-        alignItems: 'center', 
         justifyContent: 'center', 
-        gap: 1, 
         mt: 3 
       }}>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ‹
-        </Button>
-        <Button 
-          variant="text"
-              color="primary"
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px'
-          }}
-        >
-          1
-        </Button>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ›
-        </Button>
+        <Pagination 
+          count={5} 
+          page={1} 
+          shape="rounded"
+          showFirstButton={false}
+          showLastButton={false}
+        />
       </Box>
 
       {/* 템플릿 생성 다이얼로그 */}
-      <Dialog open={createDialogOpen} onClose={() => setCreateDialogOpen(false)} maxWidth="md" fullWidth>
-        <DialogTitle>새 템플릿 생성</DialogTitle>
-        <DialogContent>
-          <Grid container spacing={2} sx={{ mt: 1 }}>
+      <Dialog 
+        open={createDialogOpen} 
+        onClose={() => setCreateDialogOpen(false)} 
+        maxWidth="lg" 
+        fullWidth
+        PaperProps={{
+          sx: { 
+            borderRadius: 0,
+            height: '90vh',
+            maxHeight: '90vh'
+          }
+        }}
+      >
+        <Box sx={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center', 
+          p: 2, 
+          borderBottom: '1px solid #E5E7EB' 
+        }}>
+          <Typography variant="h6" sx={{ fontWeight: 600 }}>
+            템플릿 생성하기
+          </Typography>
+          <IconButton 
+            onClick={() => setCreateDialogOpen(false)}
+            size="small"
+            sx={{ p: 0.5 }}
+          >
+            <Close fontSize="small" />
+          </IconButton>
+        </Box>
+        
+        <DialogContent sx={{ p: 3, flex: 1, overflowY: 'auto' }}>
+          <Grid container spacing={3}>
+            {/* 파일 업로드 영역 */}
             <Grid item xs={6}>
-              <FormControl fullWidth>
-                <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500 }}>카테고리</Typography>
-                <Select
-                  value={newTemplate.category}
-                  onChange={(e) => setNewTemplate({...newTemplate, category: e.target.value})}
-                  size="small"
-                >
-                  <MenuItem value="업무">업무</MenuItem>
-                  <MenuItem value="기획">기획</MenuItem>
-                  <MenuItem value="회의">회의</MenuItem>
-                  <MenuItem value="교육">교육</MenuItem>
-                  <MenuItem value="기술">기술</MenuItem>
-                </Select>
-              </FormControl>
+              <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500, color: '#374151' }}>
+                템플릿편집 업로드하기
+              </Typography>
+              <Box sx={{
+                border: '2px dashed #D1D5DB',
+                borderRadius: 1,
+                p: 3,
+                textAlign: 'center',
+                backgroundColor: '#F9FAFB',
+                minHeight: '590px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+                <Typography sx={{ color: '#6B7280', fontSize: '14px', mb: 1 }}>
+                  미리보기가입니다.
+                </Typography>
+                <Typography sx={{ color: '#6B7280', fontSize: '14px' }}>
+                  템플릿을 업로드를 해 내용을 확인하세요.
+                </Typography>
+              </Box>
             </Grid>
+
+            {/* 파일 선택 영역 */}
             <Grid item xs={6}>
-              <FormControl fullWidth>
-                <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500 }}>상태</Typography>
-                <Select
-                  value={newTemplate.status}
-                  onChange={(e) => setNewTemplate({...newTemplate, status: e.target.value})}
-                  size="small"
-                >
-                  <MenuItem value="사용중">사용중</MenuItem>
-                  <MenuItem value="미사용">미사용</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500 }}>템플릿명</Typography>
-              <TextField
-                fullWidth
-                size="small"
-                placeholder="템플릿 이름을 입력하세요"
-                value={newTemplate.title}
-                onChange={(e) => setNewTemplate({...newTemplate, title: e.target.value})}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500 }}>템플릿 내용</Typography>
-              <TextField
-                fullWidth
-                multiline
-                rows={12}
-                placeholder="템플릿 내용을 입력하세요..."
-                value={newTemplate.content}
-                onChange={(e) => setNewTemplate({...newTemplate, content: e.target.value})}
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    fontFamily: 'monospace',
-                    fontSize: '14px'
-                  }
-                }}
-              />
+              <Typography sx={{ mb: 2, fontSize: '14px', fontWeight: 500, color: '#374151' }}>
+                파일 선택
+              </Typography>
+              
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                {/* ID */}
+                <Box>
+                  <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500, color: '#374151' }}>
+                    ID
+                  </Typography>
+                  <Typography sx={{ 
+                    fontSize: '14px', 
+                    color: '#374151',
+                    mb: 1
+                  }}>
+                    TMPL_001
+                  </Typography>
+                </Box>
+
+                {/* 버전정보 */}
+                <Box>
+                  <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500, color: '#374151' }}>
+                    버전정보
+                  </Typography>
+                  <Typography sx={{ 
+                    fontSize: '14px', 
+                    color: '#374151',
+                    mb: 1
+                  }}>
+                    v1.0.0
+                  </Typography>
+                </Box>
+
+                {/* 카테고리 */}
+                <Box>
+                  <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500, color: '#374151' }}>
+                    카테고리
+                  </Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <FormControl fullWidth size="small">
+                      <Select
+                        value={newTemplate.category}
+                        onChange={(e) => setNewTemplate({...newTemplate, category: e.target.value})}
+                        sx={{ 
+                          '& .MuiSelect-select': { 
+                            fontSize: '14px' 
+                          },
+                          height: '40px'
+                        }}
+                      >
+                        <MenuItem value="일반회의">일반회의</MenuItem>
+                        <MenuItem value="업무회의">업무회의</MenuItem>
+                        <MenuItem value="기획회의">기획회의</MenuItem>
+                        <MenuItem value="교육회의">교육회의</MenuItem>
+                      </Select>
+                    </FormControl>
+                    <Button 
+                      variant="outlined" 
+                      size="small"
+                      sx={{ 
+                        minWidth: '60px',
+                        fontSize: '12px',
+                        height: '40px'
+                      }}
+                    >
+                      편집
+                    </Button>
+                  </Box>
+                </Box>
+
+                {/* 템플릿명 */}
+                <Box>
+                  <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500, color: '#374151' }}>
+                    템플릿명
+                  </Typography>
+                  <TextField
+                    fullWidth
+                    size="small"
+                    placeholder="템플릿 이름을 입력하세요"
+                    value={newTemplate.title}
+                    onChange={(e) => setNewTemplate({...newTemplate, title: e.target.value})}
+                    inputProps={{ maxLength: 10 }}
+                    sx={{ 
+                      '& .MuiOutlinedInput-root': { 
+                        fontSize: '14px',
+                        height: '40px'
+                      } 
+                    }}
+                  />
+                  <Typography sx={{ fontSize: '11px', color: '#9CA3AF', textAlign: 'right', mt: 0.5 }}>
+                    {newTemplate.title.length}/10자
+                  </Typography>
+                </Box>
+
+                {/* 템플릿 설명 */}
+                <Box sx={{ flex: 1 }}>
+                  <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500, color: '#374151' }}>
+                    템플릿 설명
+                  </Typography>
+                  <Box
+                    component="textarea"
+                    placeholder="템플릿에 대한 설명을 입력하세요"
+                    value={newTemplate.description}
+                    onChange={(e) => setNewTemplate({...newTemplate, description: e.target.value})}
+                    maxLength={100}
+                    sx={{
+                      width: '100%',
+                      minHeight: '180px',
+                      padding: '12px',
+                      fontSize: '14px',
+                      border: '1px solid #E5E7EB',
+                      borderRadius: 0,
+                      resize: 'none',
+                      fontFamily: 'inherit',
+                      outline: 'none',
+                      '&:focus': {
+                        borderColor: '#3B82F6'
+                      },
+                      '&::placeholder': {
+                        color: '#9CA3AF'
+                      }
+                    }}
+                  />
+                  <Typography sx={{ fontSize: '11px', color: '#9CA3AF', textAlign: 'right', mt: 0.5 }}>
+                    {newTemplate.description.length}/100자
+                  </Typography>
+                </Box>
+              </Box>
             </Grid>
           </Grid>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setCreateDialogOpen(false)}>취소</Button>
-          <Button variant="text" onClick={handleSaveTemplate}>저장</Button>
+        
+        <DialogActions sx={{ p: 2, borderTop: '1px solid #E5E7EB', justifyContent: 'flex-end', gap: 1 }}>
+          <Button 
+            onClick={() => setCreateDialogOpen(false)}
+            variant="outlined"
+            sx={{ minWidth: '80px' }}
+          >
+            취소
+          </Button>
+          <Button 
+            variant="contained" 
+            onClick={handleSaveTemplate}
+            sx={{ minWidth: '80px' }}
+          >
+            저장
+          </Button>
         </DialogActions>
       </Dialog>
 
@@ -526,6 +715,7 @@ function MeetTemplatePage() {
           <Button onClick={() => setPreviewDialogOpen(false)}>닫기</Button>
         </DialogActions>
       </Dialog>
+
     </Box>
   )
 }

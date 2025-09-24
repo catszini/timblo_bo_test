@@ -18,6 +18,7 @@ import {
   Avatar,
   LinearProgress,
   Grid,
+  Pagination,
   Card,
   CardContent
 } from '@mui/material'
@@ -102,6 +103,90 @@ const statsUsageData = [
     period: '2024-01',
     storageUsed: 31.2,
     storageLimit: 50.0
+  },
+  {
+    id: 5,
+    workspace: 'SK Networks',
+    workspaceColor: '#8B5CF6',
+    totalUsers: 432,
+    activeUsers: 356,
+    activeRate: 82.4,
+    totalMeetings: 2890,
+    totalMinutes: 45670,
+    avgMinutesPerMeeting: 15.8,
+    period: '2024-01',
+    storageUsed: 12.8,
+    storageLimit: 30.0
+  },
+  {
+    id: 6,
+    workspace: 'SK Biopharm',
+    workspaceColor: '#EC4899',
+    totalUsers: 298,
+    activeUsers: 234,
+    activeRate: 78.5,
+    totalMeetings: 1567,
+    totalMinutes: 23890,
+    avgMinutesPerMeeting: 15.2,
+    period: '2024-01',
+    storageUsed: 7.3,
+    storageLimit: 20.0
+  },
+  {
+    id: 7,
+    workspace: 'SK Materials',
+    workspaceColor: '#84CC16',
+    totalUsers: 345,
+    activeUsers: 289,
+    activeRate: 83.8,
+    totalMeetings: 2134,
+    totalMinutes: 34567,
+    avgMinutesPerMeeting: 16.2,
+    period: '2024-01',
+    storageUsed: 9.8,
+    storageLimit: 25.0
+  },
+  {
+    id: 8,
+    workspace: 'SK Shieldus',
+    workspaceColor: '#F97316',
+    totalUsers: 156,
+    activeUsers: 134,
+    activeRate: 85.9,
+    totalMeetings: 987,
+    totalMinutes: 15678,
+    avgMinutesPerMeeting: 15.9,
+    period: '2024-01',
+    storageUsed: 4.2,
+    storageLimit: 15.0
+  },
+  {
+    id: 9,
+    workspace: 'SK E&S',
+    workspaceColor: '#06B6D4',
+    totalUsers: 512,
+    activeUsers: 423,
+    activeRate: 82.6,
+    totalMeetings: 3245,
+    totalMinutes: 56789,
+    avgMinutesPerMeeting: 17.5,
+    period: '2024-01',
+    storageUsed: 18.7,
+    storageLimit: 40.0
+  },
+  {
+    id: 10,
+    workspace: 'SK Square',
+    workspaceColor: '#8B5CF6',
+    totalUsers: 234,
+    activeUsers: 198,
+    activeRate: 84.6,
+    totalMeetings: 1456,
+    totalMinutes: 21890,
+    avgMinutesPerMeeting: 15.0,
+    period: '2024-01',
+    storageUsed: 6.5,
+    storageLimit: 20.0
   }
 ]
 
@@ -428,46 +513,16 @@ function StatsUsagePage() {
       {/* 페이지네이션 */}
       <Box sx={{ 
         display: 'flex', 
-        alignItems: 'center', 
         justifyContent: 'center', 
-        gap: 1, 
         mt: 3 
       }}>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ‹
-        </Button>
-        <Button 
-          variant="text"
-              color="primary"
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px'
-          }}
-        >
-          1
-        </Button>
-        <Button 
-          variant="outlined" 
-          size="small"
-          sx={{ 
-            minWidth: '32px', 
-            height: '32px', 
-            borderColor: '#E5E5E5',
-            color: '#6B7280'
-          }}
-        >
-          ›
-        </Button>
+        <Pagination 
+          count={5} 
+          page={1} 
+          shape="rounded"
+          showFirstButton={false}
+          showLastButton={false}
+        />
       </Box>
     </Box>
   )

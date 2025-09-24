@@ -54,6 +54,41 @@ const userData = [
     permission: '컨텐츠관리자',
     status: 'online',
     lastLogin: '2024-01-15 13:10'
+  },
+  {
+    name: '강지훈',
+    email: 'jihoon.kang@sktelecom.com',
+    permission: '템플릿관리자',
+    status: 'offline',
+    lastLogin: '2024-01-15 10:30'
+  },
+  {
+    name: '송미라',
+    email: 'mira.song@sktelecom.com',
+    permission: '알림관리자',
+    status: 'online',
+    lastLogin: '2024-01-15 15:20'
+  },
+  {
+    name: '윤태웅',
+    email: 'taewoong.yoon@sktelecom.com',
+    permission: '보고서관리자',
+    status: 'offline',
+    lastLogin: '2024-01-14 18:45'
+  },
+  {
+    name: '조서영',
+    email: 'seoyoung.cho@sktelecom.com',
+    permission: '시스템관리자',
+    status: 'online',
+    lastLogin: '2024-01-15 12:15'
+  },
+  {
+    name: '한준혁',
+    email: 'junhyuk.han@sktelecom.com',
+    permission: '데이터관리자',
+    status: 'online',
+    lastLogin: '2024-01-15 16:00'
   }
 ]
 

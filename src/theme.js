@@ -217,7 +217,7 @@ const theme = createTheme({
         root: {
           textTransform: 'none',
           height: '36px',
-          borderRadius: '0px',
+          borderRadius: '8px',
           fontSize: '14px',
           fontWeight: 500,
           padding: '0 16px',
@@ -347,7 +347,7 @@ const theme = createTheme({
         root: {
           '& .MuiOutlinedInput-root': {
             height: '36px',
-            borderRadius: '0px',
+            borderRadius: '8px',
             fontSize: '14px',
             backgroundColor: '#ffffff',
             transition: 'all 0.2s ease-in-out',
@@ -380,7 +380,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           height: '36px',
-          borderRadius: '0px',
+          borderRadius: '8px',
           fontSize: '14px',
           backgroundColor: '#fff',
           '& .MuiOutlinedInput-notchedOutline': {
@@ -589,19 +589,42 @@ const theme = createTheme({
     MuiCheckbox: {
       styleOverrides: {
         root: {
-          borderRadius: '0px',
+          borderRadius: '4px',
           padding: '8px',
           '&:hover': {
-            backgroundColor: 'transparent',
+            backgroundColor: 'rgba(59, 130, 246, 0.08)',
+            '& .MuiSvgIcon-root': {
+              color: '#3B82F6',
+            },
           },
           '&.Mui-checked': {
+            color: '#3B82F6',
             '&:hover': {
-              backgroundColor: 'transparent',
+              backgroundColor: 'rgba(59, 130, 246, 0.08)',
+            },
+          },
+          '&.Mui-disabled': {
+            '& .MuiSvgIcon-root': {
+              color: '#D1D5DB',
             },
           },
           '& .MuiSvgIcon-root': {
             fontSize: '20px',
-            borderRadius: '2px',
+            borderRadius: '4px',
+            border: '1px solid #97c3f0',
+            backgroundColor: '#ffffff',
+            color: 'transparent',
+            transition: 'all 0.2s ease-in-out',
+          },
+          '&.Mui-checked .MuiSvgIcon-root': {
+            backgroundColor: '#3B82F6',
+            borderColor: '#97c3f0',
+            color: '#ffffff',
+          },
+          '&.Mui-disabled .MuiSvgIcon-root': {
+            backgroundColor: '#F3F4F6',
+            borderColor: '#97c3f0',
+            color: '#9CA3AF',
           },
         },
       },
@@ -665,11 +688,15 @@ const theme = createTheme({
             transitionDuration: '300ms',
             '&.Mui-checked': {
               transform: 'translateX(26px)',
-              color: '#fff',
+              color: '#3B82F6',
               '& + .MuiSwitch-track': {
-                backgroundColor: '#3B82F6',
+                backgroundColor: '#ffffff !important',
                 opacity: 1,
-                border: 0,
+                border: '1px solid #D1D5DB !important',
+              },
+              '& .MuiSwitch-thumb': {
+                backgroundColor: '#3B82F6 !important',
+                border: '1px solid #3B82F6 !important',
               },
               '&.Mui-disabled + .MuiSwitch-track': {
                 opacity: 0.5,
@@ -677,7 +704,7 @@ const theme = createTheme({
             },
             '&.Mui-focusVisible .MuiSwitch-thumb': {
               color: '#3B82F6',
-              border: '6px solid #fff',
+              border: '2px solid #3B82F6',
             },
             '&.Mui-disabled .MuiSwitch-thumb': {
               color: '#E5E7EB',
@@ -690,15 +717,36 @@ const theme = createTheme({
             boxSizing: 'border-box',
             width: '28px',
             height: '28px',
-            backgroundColor: '#ffffff',
-            boxShadow: '0 2px 4px 0 rgba(0,35,11,0.2)',
+            backgroundColor: '#6B7280',
+            boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+            border: '1px solid #6B7280',
             borderRadius: '50%',
+            transition: 'all 300ms ease-in-out',
+          },
+          '& .MuiSwitch-switchBase.Mui-checked .MuiSwitch-thumb': {
+            backgroundColor: '#3B82F6 !important',
+            border: '1px solid #3B82F6 !important',
           },
           '& .MuiSwitch-track': {
             borderRadius: '16px',
-            backgroundColor: '#E5E7EB',
+            backgroundColor: '#ffffff',
             opacity: 1,
             transition: 'all 300ms ease-in-out',
+            border: '1px solid #D1D5DB',
+          },
+        },
+        sizeSmall: {
+          width: '44px',
+          height: '24px',
+          '& .MuiSwitch-switchBase': {
+            margin: '1px',
+            '&.Mui-checked': {
+              transform: 'translateX(20px)',
+            },
+          },
+          '& .MuiSwitch-thumb': {
+            width: '22px',
+            height: '22px',
           },
         },
       },
@@ -797,6 +845,102 @@ const theme = createTheme({
             backgroundColor: '#F3F4F6',
             color: '#374151',
             border: '1px solid #E5E7EB',
+          },
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: '6px',
+          padding: '6px',
+          transition: 'all 0.2s ease-in-out',
+          '& .MuiSvgIcon-root': {
+            fontSize: '18px',
+          },
+          '&.MuiIconButton-colorPrimary': {
+            color: '#3B82F6',
+            '&:hover': {
+              backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            },
+          },
+          '&.MuiIconButton-colorSecondary': {
+            color: '#6B7280',
+            '&:hover': {
+              backgroundColor: 'rgba(107, 114, 128, 0.1)',
+            },
+          },
+          '&.MuiIconButton-colorSuccess': {
+            color: '#10B981',
+            '&:hover': {
+              backgroundColor: 'rgba(16, 185, 129, 0.1)',
+            },
+          },
+          '&.MuiIconButton-colorError': {
+            color: '#EF4444',
+            '&:hover': {
+              backgroundColor: 'rgba(239, 68, 68, 0.1)',
+            },
+          },
+          '&.MuiIconButton-colorWarning': {
+            color: '#F59E0B',
+            '&:hover': {
+              backgroundColor: 'rgba(245, 158, 11, 0.1)',
+            },
+          },
+        },
+        sizeSmall: {
+          padding: '4px',
+          '& .MuiSvgIcon-root': {
+            fontSize: '16px',
+          },
+        },
+        sizeLarge: {
+          padding: '8px',
+          '& .MuiSvgIcon-root': {
+            fontSize: '22px',
+          },
+        },
+      },
+    },
+    MuiPagination: {
+      styleOverrides: {
+        root: {
+          '& .MuiPaginationItem-root': {
+            fontSize: '14px',
+            fontWeight: 500,
+            minWidth: '32px',
+            height: '32px',
+            margin: '0 2px',
+            border: 'none',
+            backgroundColor: 'transparent',
+            color: '#3B82F6',
+            borderRadius: '0px',
+            transition: 'all 0.2s ease-in-out',
+            '&:hover': {
+              backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            },
+            '&.Mui-selected': {
+              backgroundColor: '#3B82F6',
+              color: '#ffffff',
+              borderRadius: '50%',
+              '&:hover': {
+                backgroundColor: '#2563EB',
+              },
+            },
+            '&.MuiPaginationItem-previousNext': {
+              borderRadius: '0px',
+              backgroundColor: 'transparent',
+              border: 'none',
+              color: '#6B7280',
+              '&:hover': {
+                backgroundColor: 'rgba(107, 114, 128, 0.1)',
+              },
+              '&.Mui-disabled': {
+                color: '#D1D5DB',
+                backgroundColor: 'transparent',
+              },
+            },
           },
         },
       },
