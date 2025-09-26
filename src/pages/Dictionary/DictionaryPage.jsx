@@ -1,296 +1,226 @@
 import React, { useState } from 'react'
 import {
-  Box,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Chip,
   FormControl,
   Select,
   MenuItem,
   TextField,
   Button,
-  Link,
-  Pagination
+  Switch,
+  FormControlLabel
 } from '@mui/material'
+import Layout from '../../components/Layout/Layout'
 
 const dictionaryData = [
   {
     id: 1,
-    term: 'ROI',
-    fullTerm: 'Return on Investment',
-    definition: '투자수익률, 투자에 대한 수익의 비율을 나타내는 지표',
-    category: '경영',
-    usage: 89,
-    lastModified: '2024-01-15',
-    modifier: '김용어',
-    status: '승인'
+    beforeWord: 'AI',
+    afterWord: '인공지능',
+    createdAt: '25-08-10 09:15:21',
+    modifiedAt: '25-08-10 09:20:05',
+    user: '김하늘',
+    isActive: true
   },
   {
     id: 2,
-    term: 'KPI',
-    fullTerm: 'Key Performance Indicator',
-    definition: '핵심성과지표, 조직의 목표 달성도를 측정하는 지표',
-    category: '경영',
-    usage: 124,
-    lastModified: '2024-01-12',
-    modifier: '이지표',
-    status: '승인'
+    beforeWord: 'MTG',
+    afterWord: '미팅',
+    createdAt: '25-08-10 08:42:10',
+    modifiedAt: '25-08-10 08:42:10',
+    user: '박서준',
+    isActive: true
   },
   {
     id: 3,
-    term: 'MVP',
-    fullTerm: 'Minimum Viable Product',
-    definition: '최소기능제품, 고객의 피드백을 받기 위한 최소한의 기능을 가진 제품',
-    category: '개발',
-    usage: 67,
-    lastModified: '2024-01-10',
-    modifier: '박개발',
-    status: '대기'
+    beforeWord: 'KR',
+    afterWord: '대한민국',
+    createdAt: '25-08-09 18:11:33',
+    modifiedAt: '25-08-09 19:05:40',
+    user: '이수지',
+    isActive: false
   },
   {
     id: 4,
-    term: 'API',
-    fullTerm: 'Application Programming Interface',
-    definition: '응용프로그램 프로그래밍 인터페이스, 소프트웨어 간 상호작용을 위한 인터페이스',
-    category: '기술',
-    usage: 156,
-    lastModified: '2024-01-08',
-    modifier: '최기술',
-    status: '승인'
+    beforeWord: 'Mgr',
+    afterWord: '매니저',
+    createdAt: '25-08-09 14:03:27',
+    modifiedAt: '25-08-09 14:10:12',
+    user: '정윤호',
+    isActive: true
+  },
+  {
+    id: 5,
+    beforeWord: 'ETA',
+    afterWord: '도착예정시간',
+    createdAt: '25-08-09 10:55:06',
+    modifiedAt: '25-08-09 10:55:06',
+    user: '최민수',
+    isActive: true
   }
 ]
 
-function DictionaryPage() {
-  const [searchTerm, setSearchTerm] = useState('')
+const DictionaryPage = () => {
+  const [dictionaries, setDictionaries] = useState(dictionaryData)
   const [pageSize, setPageSize] = useState(10)
-  const [categoryFilter, setCategoryFilter] = useState('전체')
+  const [engineType, setEngineType] = useState('기본값')
+  const [beforeWordSearch, setBeforeWordSearch] = useState('')
+  const [afterWordSearch, setAfterWordSearch] = useState('')
+  const [userSearch, setUserSearch] = useState('')
+
+  const handleStatusChange = (id, newStatus) => {
+    setDictionaries(dictionaries.map(dict =>
+      dict.id === id ? { ...dict, isActive: newStatus } : dict
+    ))
+  }
+
+  const handleSearch = () => {
+    console.log('Search:', { beforeWordSearch, afterWordSearch, userSearch, engineType })
+  }
 
   return (
-    <Box>
-      <Typography variant="h5" component="h1" gutterBottom>
-        사전 관리
-      </Typography>
+    <Layout className="page-dictionary dictionary-page">
+      <div className="content">
+        <div className="content-header">
+          <h1 className="breadcrumb">사전 관리</h1>
+        </div>
 
-      {/* 검색 툴바 */}
-      <Box sx={{ mb: 2 }}>
-        <Box sx={{ 
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '12px',
-          width: '100%'
-        }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography sx={{ 
-              fontSize: '16px', 
-              fontWeight: 600, 
-              color: '#292A2B',
-              whiteSpace: 'nowrap'
-            }}>
-              총 {dictionaryData.length}개
-            </Typography>
-            <FormControl size="small" sx={{ minWidth: 80 }}>
-              <Select
-                value={pageSize}
-                onChange={(e) => setPageSize(e.target.value)}
-                sx={{ height: '36px' }}
-              >
-                <MenuItem value={10}>10개</MenuItem>
-                <MenuItem value={20}>20개</MenuItem>
-                <MenuItem value={50}>50개</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl size="small" sx={{ minWidth: 120 }}>
-              <Select
-                value={categoryFilter}
-                onChange={(e) => setCategoryFilter(e.target.value)}
-                sx={{ height: '36px' }}
-              >
-                <MenuItem value="전체">전체</MenuItem>
-                <MenuItem value="경영">경영</MenuItem>
-                <MenuItem value="개발">개발</MenuItem>
-                <MenuItem value="기술">기술</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-          
-          <Box sx={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 1,
-            marginLeft: 'auto'
-          }}>
-            <Button 
-              variant="text"
-              color="primary"
-              size="small"
-              sx={{ 
-                height: '36px'
-              }}
-            >
-              새 용어
-            </Button>
-            <Box sx={{ 
-              display: 'flex',
-              alignItems: 'center',
-              border: '1px solid #E5E5E5',
-              borderRadius: '8px',
-              overflow: 'hidden'
-            }}>
-              <FormControl size="small" sx={{ minWidth: 120 }}>
-                <Select
-                  value="term"
-                  sx={{ 
-                    height: '36px',
-                    borderRadius: 0,
-                    '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&:hover .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
+        <div className="content-body">
+          {/* 검색 영역 */}
+          <div className="search-section">
+            <div className="common-topbar">
+              <div className="tb-left">
+              </div>
+              <div className="tb-right">
+                <div className="total-count">총 {dictionaries.length}개</div>
+                
+                <div className="combo-select">
+                  <FormControl size="small" className="condition-select">
+                    <Select
+                      value={pageSize}
+                      onChange={(e) => setPageSize(e.target.value)}
+                      variant="outlined"
+                    >
+                      <MenuItem value={10}>10개씩 보기</MenuItem>
+                      <MenuItem value={20}>20개씩 보기</MenuItem>
+                      <MenuItem value={50}>50개씩 보기</MenuItem>
+                    </Select>
+                  </FormControl>
+                </div>
+
+                <div className="combo-select">
+                  <FormControl size="small" className="condition-select">
+                    <Select
+                      value={engineType}
+                      onChange={(e) => setEngineType(e.target.value)}
+                      variant="outlined"
+                    >
+                      <MenuItem value="기본값">기본값</MenuItem>
+                      <MenuItem value="STT온라인_한글(16K)">STT온라인_한글(16K)</MenuItem>
+                      <MenuItem value="STT온라인_한글(8K)">STT온라인_한글(8K)</MenuItem>
+                      <MenuItem value="STT온라인_영어(16K)">STT온라인_영어(16K)</MenuItem>
+                      <MenuItem value="STT배치v2_한글(16K)">STT배치v2_한글(16K)</MenuItem>
+                    </Select>
+                  </FormControl>
+                </div>
+
+                <div className="search-input-wrap">
+                  <svg className="mag-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <circle cx="11.5" cy="11.5005" r="9.5" stroke="#9CA3AF" strokeWidth="1.5" />
+                    <path d="M20 20.0005L22 22.0005" stroke="#9CA3AF" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                  <TextField
+                    className="search-input"
+                    placeholder="변경 전 단어"
+                    value={beforeWordSearch}
+                    onChange={(e) => setBeforeWordSearch(e.target.value)}
+                    variant="outlined"
+                    size="small"
+                  />
+                </div>
+
+                <div className="search-input-wrap">
+                  <svg className="mag-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <circle cx="11.5" cy="11.5005" r="9.5" stroke="#9CA3AF" strokeWidth="1.5" />
+                    <path d="M20 20.0005L22 22.0005" stroke="#9CA3AF" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                  <TextField
+                    className="search-input"
+                    placeholder="변경 후 단어"
+                    value={afterWordSearch}
+                    onChange={(e) => setAfterWordSearch(e.target.value)}
+                    variant="outlined"
+                    size="small"
+                  />
+                </div>
+
+                <div className="search-input-wrap">
+                  <svg className="mag-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <circle cx="11.5" cy="11.5005" r="9.5" stroke="#9CA3AF" strokeWidth="1.5" />
+                    <path d="M20 20.0005L22 22.0005" stroke="#9CA3AF" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                  <TextField
+                    className="search-input"
+                    placeholder="사용자"
+                    value={userSearch}
+                    onChange={(e) => setUserSearch(e.target.value)}
+                    variant="outlined"
+                    size="small"
+                  />
+                </div>
+
+                <Button 
+                  className="search-btn"
+                  variant="contained"
+                  onClick={handleSearch}
                 >
-                  <MenuItem value="term">용어</MenuItem>
-                  <MenuItem value="definition">정의</MenuItem>
-                  <MenuItem value="modifier">수정자</MenuItem>
-                </Select>
-              </FormControl>
-              <Box sx={{ width: '1px', height: '24px' }} />
-              <TextField
-                size="small"
-                placeholder="검색어를 입력하세요"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                sx={{ 
-                  width: 200,
-                  '& .MuiOutlinedInput-root': {
-                    height: '36px',
-                    borderRadius: 0,
-                    '& fieldset': { border: 'none' },
-                    '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' }}}}
-              />
-            </Box>
-            <Button 
-              variant="text"
-              color="primary" 
-              size="small"
-              sx={{ 
-                height: '36px',
-                minWidth: '60px'
-              }}
-            >
-              검색
-            </Button>
-          </Box>
-        </Box>
-      </Box>
+                  조회
+                </Button>
+              </div>
+            </div>
+          </div>
 
-      {/* 테이블 */}
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>용어</TableCell>
-              <TableCell>전체명</TableCell>
-              <TableCell>정의</TableCell>
-              <TableCell>카테고리</TableCell>
-              <TableCell>사용횟수</TableCell>
-              <TableCell>최종 수정일</TableCell>
-              <TableCell>수정자</TableCell>
-              <TableCell>상태</TableCell>
-              <TableCell>관리</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {dictionaryData.map((item) => (
-              <TableRow key={item.id}>
-                <TableCell>
-                  <Typography sx={{ fontWeight: 600, color: '#292A2B' }}>
-                    {item.term}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography sx={{ fontSize: '14px', color: '#6B7280' }}>
-                    {item.fullTerm}
-                  </Typography>
-                </TableCell>
-                <TableCell sx={{ maxWidth: 300 }}>
-                  <Typography sx={{ fontSize: '14px', color: '#292A2B' }}>
-                    {item.definition}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Chip 
-                    label={item.category}
-                    size="small"
-                    sx={{ color: '#0066FF' }}
-                  />
-                </TableCell>
-                <TableCell>{item.usage}회</TableCell>
-                <TableCell>{item.lastModified}</TableCell>
-                <TableCell>{item.modifier}</TableCell>
-                <TableCell>
-                  <Chip 
-                    label={item.status}
-                    color={item.status === '승인' ? 'success' : 'warning'}
-                    size="small"
-                  />
-                </TableCell>
-                <TableCell>
-                  <Box sx={{ display: 'flex', gap: 1 }}>
-                    <Button 
-                      size="small" 
-                      variant="outlined"
-                      sx={{ 
-                        minWidth: '60px',
-                        height: '28px',
-                        fontSize: '12px',
-                        borderColor: '#E5E5E5',
-                        color: '#4D5256'
-                      }}
-                    >
-                      수정
-                    </Button>
-                    <Button 
-                      size="small" 
-                      variant="outlined"
-                      sx={{ 
-                        minWidth: '60px',
-                        height: '28px',
-                        fontSize: '12px',
-                        borderColor: '#E5E5E5',
-                        color: '#4D5256'
-                      }}
-                    >
-                      삭제
-                    </Button>
-                  </Box>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      {/* 페이지네이션 */}
-      <Box sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        mt: 3 
-      }}>
-        <Pagination 
-          count={5} 
-          page={1} 
-          shape="rounded"
-          showFirstButton={false}
-          showLastButton={false}
-        />
-      </Box>
-    </Box>
+          {/* 테이블 영역 */}
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>변경 전 단어</th>
+                  <th>변경 후 단어</th>
+                  <th>생성일</th>
+                  <th>최종 수정일</th>
+                  <th>사용자</th>
+                  <th>사용 여부</th>
+                </tr>
+              </thead>
+              <tbody>
+                {dictionaries.slice(0, pageSize).map((dict) => (
+                  <tr key={dict.id}>
+                    <td>{dict.beforeWord}</td>
+                    <td>{dict.afterWord}</td>
+                    <td>{dict.createdAt}</td>
+                    <td>{dict.modifiedAt}</td>
+                    <td>{dict.user}</td>
+                    <td>
+                      <FormControlLabel
+                        control={
+                          <Switch
+                            checked={dict.isActive}
+                            onChange={(e) => handleStatusChange(dict.id, e.target.checked)}
+                            size="small"
+                            color="primary"
+                          />
+                        }
+                        label=""
+                        className="switch-control"
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </Layout>
   )
 }
 

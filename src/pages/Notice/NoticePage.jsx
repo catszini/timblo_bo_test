@@ -1,292 +1,347 @@
 import React, { useState } from 'react'
 import {
-  Box,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Chip,
   FormControl,
   Select,
   MenuItem,
   TextField,
   Button,
+  Checkbox,
   Link,
-  Pagination
+  Chip,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  styled
 } from '@mui/material'
+import Layout from '../../components/Layout/Layout'
+
+// 커스텀 체크박스 스타일
+const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
+  '& .MuiSvgIcon-root': {
+    width: 16,
+    height: 16,
+    border: '1.5px solid #97c3f0',
+    borderRadius: '3px',
+    backgroundColor: 'white', // 미체크 상태는 흰색 배경
+    '& path': {
+      display: 'none', // 체크 아이콘 숨김
+    },
+  },
+  '&.Mui-checked .MuiSvgIcon-root': {
+    backgroundColor: 'rgba(199, 223, 247, 0.8)', // 체크된 상태만 파란색 배경
+    borderColor: '#97c3f0',
+  },
+  '&.MuiCheckbox-indeterminate .MuiSvgIcon-root': {
+    backgroundColor: 'rgba(199, 223, 247, 0.8)', // indeterminate 상태도 파란색 배경
+    borderColor: '#97c3f0',
+  },
+  '&:hover .MuiSvgIcon-root': {
+    borderColor: '#a5cef3',
+    backgroundColor: 'white', // 미체크 호버 시에도 흰색 유지
+  },
+  '&.Mui-checked:hover .MuiSvgIcon-root': {
+    backgroundColor: 'rgba(199, 223, 247, 0.9)', // 체크된 상태 호버 시만 파란색
+    borderColor: '#a5cef3',
+  },
+}))
 
 const noticeData = [
   {
     id: 1,
-    title: '시스템 정기 점검 안내',
-    content: '2024년 1월 20일 오전 2시부터 6시까지 정기 점검이 진행됩니다.',
-    priority: '중요',
-    views: 245,
-    createdDate: '2024-01-15',
-    author: '시스템관리자',
-    status: '게시중'
+    number: 1,
+    title: '회의록 AI 기능 업데이트 안내',
+    author: '관리자',
+    startDate: '24-12-20',
+    endDate: '25-01-20',
+    status: '게시중',
+    isPopup: true,
+    createdAt: '24-12-20 14:30',
+    isSelected: false
   },
   {
     id: 2,
-    title: '새로운 기능 업데이트 알림',
-    content: 'AI 회의록 요약 기능이 새롭게 추가되었습니다.',
-    priority: '일반',
-    views: 156,
-    createdDate: '2024-01-12',
+    number: 2,
+    title: '2025년 신규 기능 출시 예정 안내',
     author: '개발팀',
-    status: '게시중'
+    startDate: '24-12-15',
+    endDate: '25-02-15',
+    status: '게시중',
+    isPopup: false,
+    createdAt: '24-12-15 09:15',
+    isSelected: false
   },
   {
     id: 3,
-    title: '개인정보 처리방침 변경 안내',
-    content: '개인정보 처리방침이 2024년 1월 1일부터 변경됩니다.',
-    priority: '중요',
-    views: 89,
-    createdDate: '2024-01-10',
-    author: '법무팀',
-    status: '게시종료'
-  },
-  {
-    id: 4,
-    title: '휴일 고객지원 일정 안내',
-    content: '설날 연휴 기간 동안의 고객지원 일정을 안내드립니다.',
-    priority: '일반',
-    views: 67,
-    createdDate: '2024-01-08',
-    author: '고객지원팀',
-    status: '게시중'
+    number: 3,
+    title: '시스템 정기 점검 안내',
+    author: '운영팀',
+    startDate: '24-12-10',
+    endDate: '24-12-25',
+    status: '게시종료',
+    isPopup: false,
+    createdAt: '24-12-10 16:45',
+    isSelected: false
   }
 ]
 
-function NoticePage() {
+const NoticePage = () => {
+  const [notices, setNotices] = useState(noticeData)
+  const [selectAll, setSelectAll] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
+  const [searchType, setSearchType] = useState('전체')
   const [pageSize, setPageSize] = useState(10)
-  const [priorityFilter, setPriorityFilter] = useState('전체')
+  const [dateRange, setDateRange] = useState('')
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+
+  const handleSelectAll = (e) => {
+    const checked = e.target.checked
+    setSelectAll(checked)
+    setNotices(notices.map(notice => ({ ...notice, isSelected: checked })))
+  }
+
+  const handleSelectNotice = (id, checked) => {
+    setNotices(notices.map(notice => 
+      notice.id === id ? { ...notice, isSelected: checked } : notice
+    ))
+    const selectedCount = notices.filter(n => n.id === id ? checked : n.isSelected).length
+    setSelectAll(selectedCount === notices.length)
+  }
+
+  const handleEdit = (id) => {
+    console.log('Edit notice:', id)
+  }
+
+  const handleDelete = (id) => {
+    if (window.confirm('이 공지사항을 삭제하시겠습니까?')) {
+      setNotices(prev => prev.filter(notice => notice.id !== id))
+    }
+  }
+
+  const handleView = (id) => {
+    console.log('View notice:', id)
+    window.open(`/notice/${id}`, '_blank')
+  }
+
+  const handleBulkDelete = () => {
+    const selectedNotices = notices.filter(notice => notice.isSelected)
+    if (selectedNotices.length === 0) {
+      alert('삭제할 공지사항을 선택해주세요.')
+      return
+    }
+    setShowDeleteDialog(true)
+  }
+
+  const confirmBulkDelete = () => {
+    setNotices(prev => prev.filter(notice => !notice.isSelected))
+    setSelectAll(false)
+    setShowDeleteDialog(false)
+  }
 
   return (
-    <Box>
-      <Typography variant="h5" component="h1" gutterBottom>
-        공지사항 관리
-      </Typography>
+    <Layout className="notice-page">
+      <div className="content">
+        <div className="content-header">
+          <h1 className="breadcrumb">공지사항 관리</h1>
+        </div>
 
-      {/* 검색 툴바 */}
-      <Box sx={{ mb: 2 }}>
-        <Box sx={{ 
-          display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
-          alignItems: { xs: 'stretch', md: 'center' },
-          justifyContent: 'space-between',
-          gap: 2,
-          width: '100%'
-        }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography sx={{ 
-              fontSize: '16px', 
-              fontWeight: 600, 
-              color: '#292A2B',
-              whiteSpace: 'nowrap'
-            }}>
-              총 {noticeData.length}개
-            </Typography>
-            <FormControl size="small" sx={{ minWidth: 80 }}>
-              <Select
-                value={pageSize}
-                onChange={(e) => setPageSize(e.target.value)}
-                sx={{ height: '36px' }}
-              >
-                <MenuItem value={10}>10개</MenuItem>
-                <MenuItem value={20}>20개</MenuItem>
-                <MenuItem value={50}>50개</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl size="small" sx={{ minWidth: 120 }}>
-              <Select
-                value={priorityFilter}
-                onChange={(e) => setPriorityFilter(e.target.value)}
-                sx={{ height: '36px' }}
-              >
-                <MenuItem value="전체">전체</MenuItem>
-                <MenuItem value="중요">중요</MenuItem>
-                <MenuItem value="일반">일반</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-          
-          <Box sx={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 1,
-            marginLeft: 'auto'
-          }}>
-            <Button 
-              variant="text"
-              color="primary"
-              size="small"
-              sx={{ 
-                height: '36px'
-              }}
-            >
-              새 공지사항
-            </Button>
-            <Box sx={{ 
-              display: 'flex',
-              alignItems: 'center',
-              border: '1px solid #E5E5E5',
-              borderRadius: '8px',
-              overflow: 'hidden'
-            }}>
-              <FormControl size="small" sx={{ minWidth: 120 }}>
-                <Select
-                  value="title"
-                  sx={{ 
-                    height: '36px',
-                    borderRadius: 0,
-                    '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&:hover .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
-                >
-                  <MenuItem value="title">제목</MenuItem>
-                  <MenuItem value="content">내용</MenuItem>
-                  <MenuItem value="author">작성자</MenuItem>
-                </Select>
-              </FormControl>
-              <Box sx={{ width: '1px', height: '24px' }} />
-              <TextField
-                size="small"
-                placeholder="검색어를 입력하세요"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                sx={{ 
-                  width: 200,
-                  '& .MuiOutlinedInput-root': {
-                    height: '36px',
-                    borderRadius: 0,
-                    '& fieldset': { border: 'none' },
-                    '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' }}}}
-              />
-            </Box>
-            <Button 
-              variant="text"
-              color="primary" 
-              size="small"
-              sx={{ 
-                height: '36px',
-                minWidth: '60px'
-              }}
-            >
-              검색
-            </Button>
-          </Box>
-        </Box>
-      </Box>
-
-      {/* 테이블 */}
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>제목</TableCell>
-              <TableCell>중요도</TableCell>
-              <TableCell>조회수</TableCell>
-              <TableCell>작성일</TableCell>
-              <TableCell>작성자</TableCell>
-              <TableCell>상태</TableCell>
-              <TableCell>관리</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {noticeData.map((notice) => (
-              <TableRow key={notice.id}>
-                <TableCell>
-                  <Box>
-                    <Link 
-                      href="#" 
-                      sx={{ 
-                        color: '#0066FF', 
-                        textDecoration: 'none',
-                        fontWeight: 500
-                      }}
-                    >
-                      {notice.title}
-                    </Link>
-                    <Typography sx={{ fontSize: '12px', color: '#6B7280', mt: 0.5 }}>
-                      {notice.content}
-                    </Typography>
-                  </Box>
-                </TableCell>
-                <TableCell>
-                  <Chip 
-                    label={notice.priority}
-                    color={notice.priority === '중요' ? 'error' : 'default'}
+        <div className="content-body">
+          {/* 검색 영역 */}
+          <div className="search-section">
+            <div className="common-topbar">
+              <div className="tb-left">
+                <div className="date-range-wrap">
+                  <span className="calendar-icon">📅</span>
+                  <TextField
+                    id="consent-range"
+                    className="date-range"
+                    placeholder="날짜 범위를 선택하세요"
+                    value={dateRange}
+                    onChange={(e) => setDateRange(e.target.value)}
+                    variant="outlined"
                     size="small"
+                    InputProps={{ readOnly: true }}
                   />
-                </TableCell>
-                <TableCell>{notice.views}회</TableCell>
-                <TableCell>{notice.createdDate}</TableCell>
-                <TableCell>{notice.author}</TableCell>
-                <TableCell>
-                  <Chip 
-                    label={notice.status}
-                    color={notice.status === '게시중' ? 'success' : 'default'}
+                  <div className="range-panel" id="consent-panel">
+                    <div className="calendar-range">
+                      <div className="calendar" id="consent-cal-start"></div>
+                      <div className="calendar" id="consent-cal-end"></div>
+                    </div>
+                    <div className="range-panel-info">
+                      <span id="consent-picked">-</span>
+                      <div className="range-actions">
+                        <button className="btn-outline" id="consent-cancel">취소</button>
+                        <button className="btn-submit" id="consent-apply">적용</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="tb-right">
+                <div className="right-tail">
+                  <FormControl size="small" className="condition-select">
+                    <Select
+                      value={pageSize}
+                      onChange={(e) => setPageSize(e.target.value)}
+                      variant="outlined"
+                    >
+                      <MenuItem value={10}>10개씩 보기</MenuItem>
+                      <MenuItem value={20}>20개씩 보기</MenuItem>
+                      <MenuItem value={50}>50개씩 보기</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <FormControl size="small" className="condition-select">
+                    <Select
+                      value={searchType}
+                      onChange={(e) => setSearchType(e.target.value)}
+                      variant="outlined"
+                    >
+                      <MenuItem value="전체">전체</MenuItem>
+                      <MenuItem value="구분">구분</MenuItem>
+                      <MenuItem value="이름">이름</MenuItem>
+                      <MenuItem value="이메일">이메일</MenuItem>
+                      <MenuItem value="제목">제목</MenuItem>
+                      <MenuItem value="버전">버전</MenuItem>
+                    </Select>
+                  </FormControl>
+                  
+                  <TextField
+                    placeholder="검색어를 입력해주세요."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    variant="outlined"
                     size="small"
+                    className="search-input-field"
                   />
-                </TableCell>
-                <TableCell>
-                  <Box sx={{ display: 'flex', gap: 1 }}>
-                    <Button 
-                      size="small" 
-                      variant="outlined"
-                      sx={{ 
-                        minWidth: '60px',
-                        height: '28px',
-                        fontSize: '12px',
-                        borderColor: '#E5E5E5',
-                        color: '#4D5256'
-                      }}
-                    >
-                      수정
-                    </Button>
-                    <Button 
-                      size="small" 
-                      variant="outlined"
-                      sx={{ 
-                        minWidth: '60px',
-                        height: '28px',
-                        fontSize: '12px',
-                        borderColor: '#E5E5E5',
-                        color: '#4D5256'
-                      }}
-                    >
-                      삭제
-                    </Button>
-                  </Box>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                  
+                  <Button 
+                    variant="contained"
+                    className="search-btn"
+                  >
+                    조회
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      {/* 페이지네이션 */}
-      <Box sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        mt: 3 
-      }}>
-        <Pagination 
-          count={5} 
-          page={1} 
-          shape="rounded"
-          showFirstButton={false}
-          showLastButton={false}
-        />
-      </Box>
-    </Box>
+          {/* 공지사항 테이블 */}
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th width="50">
+                    <CustomCheckbox
+                      id="notice-select-all"
+                      checked={selectAll}
+                      onChange={handleSelectAll}
+                      size="small"
+                    />
+                  </th>
+                  <th width="60">번호</th>
+                  <th width="300">제목</th>
+                  <th width="100">작성자</th>
+                  <th width="140">게시기간</th>
+                  <th width="80">상태</th>
+                  <th width="70">팝업</th>
+                  <th width="110">작성일</th>
+                  <th width="80">관리</th>
+                </tr>
+              </thead>
+              <tbody>
+                {notices.slice(0, pageSize).map((notice) => (
+                  <tr key={notice.id}>
+                    <td>
+                      <CustomCheckbox
+                        checked={notice.isSelected}
+                        onChange={(e) => handleSelectNotice(notice.id, e.target.checked)}
+                        size="small"
+                      />
+                    </td>
+                    <td>{notice.number}</td>
+                    <td>
+                      <Link
+                        href="#"
+                        onClick={() => handleView(notice.id)}
+                        className="notice-title"
+                        underline="none"
+                      >
+                        {notice.title}
+                      </Link>
+                    </td>
+                    <td>{notice.author}</td>
+                    <td>{notice.startDate} ~ {notice.endDate}</td>
+                    <td>
+                      <Chip
+                        label={notice.status}
+                        size="small"
+                        color={notice.status === '게시중' ? 'success' : 'default'}
+                        variant="outlined"
+                        className={`status-badge ${notice.status === '게시중' ? 'active' : 'inactive'}`}
+                      />
+                    </td>
+                    <td>
+                      <Chip
+                        label={notice.isPopup ? 'ON' : 'OFF'}
+                        size="small"
+                        color={notice.isPopup ? 'primary' : 'default'}
+                        variant="outlined"
+                        className={`popup-badge ${notice.isPopup ? 'on' : 'off'}`}
+                      />
+                    </td>
+                    <td>{notice.createdAt}</td>
+                    <td>
+                      <div className="action-buttons">
+                        <button 
+                          className="btn-icon edit-btn"
+                          onClick={() => handleEdit(notice.id)}
+                          title="수정"
+                        >
+                          ✏️
+                        </button>
+                        <button 
+                          className="btn-icon delete-btn"
+                          onClick={() => handleDelete(notice.id)}
+                          title="삭제"
+                        >
+                          🗑️
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* 일괄 액션 버튼 */}
+          <div className="table-actions">
+            <button className="btn-danger" onClick={handleBulkDelete}>
+              선택 삭제
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* 삭제 확인 다이얼로그 */}
+      <Dialog
+        open={showDeleteDialog}
+        onClose={() => setShowDeleteDialog(false)}
+      >
+        <DialogTitle>공지사항 삭제</DialogTitle>
+        <DialogContent>
+          선택된 공지사항을 삭제하시겠습니까?
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setShowDeleteDialog(false)} variant="outlined">
+            취소
+            </Button>
+          <Button onClick={confirmBulkDelete} color="error" variant="contained">
+            삭제
+            </Button>
+        </DialogActions>
+      </Dialog>
+    </Layout>
   )
 }
 

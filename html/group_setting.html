@@ -42,9 +42,10 @@
         <h3>전체 시스템 관리</h3>
         <ul>
           <li><a href="workspace.html">워크스페이스 관리</a></li>
-          <li><a href="menu_setting.html">시스템 메뉴 관리</a></li>
-          <li><a href="system_user.html">관리자 지정</a></li>
-          <li><a href="group_setting.html" class="active">관리자 접근권한</a></li>
+          <li><a href="menu_setting.html">전체 메뉴 관리</a></li>
+          <li><a href="system_user.html">사용자 관리</a></li>
+          <li><a href="group_setting.html" class="active">메뉴 권한 관리</a></li>
+          <li><a href="system_setting_history.html">설정변경 이력</a></li>
           <li><a href="system_stats_usage.html">전체 시스템 사용 통계</a></li>
           <li><a href="system_stats_user.html">사용자별 사용 통계</a></li>
         </ul>
@@ -55,9 +56,10 @@
           <h3>워크스페이스 설정</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html">메뉴/정책 관리</a></li>
-          <li><a href="workspace_group_setting.html">메뉴 권한 설정</a></li>
-          <li><a href="user.html">사용자 조회</a></li>
+          <li><a href="workspace_permission.html">FO기능정책관리</a></li>
+          <li><a href="content_retention.html">컨텐츠 보존 관리</a></li>
+          <li><a href="workspace_group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 관리</a></li>
         </ul>
       </div>
@@ -106,7 +108,7 @@
               <!-- 권한정보 헤더와 버튼들 -->
               <div class="group-info-header">
                 <div class="group-info-title-section">
-                  <h3 class="group-info-subtitle">권한 정보</h3>
+                  <h3 class="group-info-subtitle">생성된 권한</h3>
                   <span class="group-total-count">총 4개</span>
                 </div>
                 <div class="group-info-buttons">
@@ -121,17 +123,17 @@
                   <thead>
                     <tr>
                       <th><input type="checkbox" class="select-all"></th>
-                      <th>순번</th>
                       <th>워크스페이스</th>
-                      <th>이름</th>
+                      <th>권한 생성자</th>
                       <th>권한명</th>
                       <th>설명</th>
+                      <th>생성일</th>
+                      <th>최종수정일</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td><input type="checkbox"></td>
-                      <td>1</td>
                       <td>
                         <div class="workspace-name">
                           <div class="workspace-icon color-teal">S</div>
@@ -141,10 +143,11 @@
                       <td>김민수</td>
                       <td>전체관리자</td>
                       <td>최고관리자 - 모든 시스템 권한</td>
+                      <td>2024-01-15</td>
+                      <td>2024-03-20</td>
                     </tr>
                     <tr>
                       <td><input type="checkbox"></td>
-                      <td>2</td>
                       <td>
                         <div class="workspace-name">
                           <div class="workspace-icon color-indigo">S</div>
@@ -154,10 +157,11 @@
                       <td>이영희</td>
                       <td>워크스페이스관리자</td>
                       <td>워크스페이스 전체 관리</td>
+                      <td>2024-02-08</td>
+                      <td>2024-03-15</td>
                     </tr>
                     <tr>
                       <td><input type="checkbox"></td>
-                      <td>3</td>
                       <td>
                         <div class="workspace-name">
                           <div class="workspace-icon color-rose">S</div>
@@ -165,12 +169,13 @@
                         </div>
                       </td>
                       <td>박철수</td>
-                      <td>메뉴관리자</td>
+                      <td>시스템 메뉴관리자</td>
                       <td>메뉴 생성/권한 관리</td>
+                      <td>2024-01-25</td>
+                      <td>2024-03-18</td>
                     </tr>
                     <tr>
                       <td><input type="checkbox"></td>
-                      <td>4</td>
                       <td>
                         <div class="workspace-name">
                           <div class="workspace-icon color-amber">S</div>
@@ -180,6 +185,8 @@
                       <td>정수진</td>
                       <td>통계관리자</td>
                       <td>사용량/통계 분석 관리</td>
+                      <td>2024-03-05</td>
+                      <td>2024-03-25</td>
                     </tr>
 
                   </tbody>

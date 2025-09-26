@@ -1,329 +1,227 @@
 import React, { useState } from 'react'
 import {
-  Box,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Chip,
   FormControl,
   Select,
   MenuItem,
   TextField,
-  Button,
-  Link,
-  Pagination
+  Button
 } from '@mui/material'
-import { LocalizationProvider } from '@mui/x-date-pickers-pro/LocalizationProvider'
-import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import dayjs from 'dayjs'
-import 'dayjs/locale/ko'
+import Layout from '../../components/Layout/Layout'
 
 const meetingData = [
   {
     id: 1,
-    title: '2024년 1분기 성과 검토 회의',
-    date: '2024-01-15',
-    time: '14:00-15:30',
-    participants: 8,
-    status: '완료',
-    creator: '조현석',
-    workspace: 'SK Telecom'
+    type: '음성',
+    title: '웨어러블 디바이스 및 음성 인식 기술 개발 회의',
+    modifiedAt: '25-08-08 13:52:48',
+    modifier: '이상우',
+    meetingTime: '25-08-08 13:48:39',
+    duration: '0:51:22',
+    participants: '2명',
+    shared: '0명'
   },
   {
     id: 2,
-    title: '신규 프로젝트 기획 회의',
-    date: '2024-01-14',
-    time: '10:00-11:00',
-    participants: 5,
-    status: '완료',
-    creator: '배지우',
-    workspace: 'SK Innovation'
+    type: '녹음',
+    title: 'A.Biz_m_rec_20250808_125749.flac',
+    modifiedAt: '25-08-08 12:58:03',
+    modifier: 'june',
+    meetingTime: '25-08-08 12:57:49',
+    duration: '0:33:12',
+    participants: '3명',
+    shared: '1명'
   },
   {
     id: 3,
-    title: '주간 팀 미팅',
-    date: '2024-01-13',
-    time: '16:00-17:00',
-    participants: 12,
-    status: '진행중',
-    creator: '신동현',
-    workspace: 'SK C&C'
+    type: '화상',
+    title: '마케팅 전략 기획 회의',
+    modifiedAt: '25-08-07 16:22:15',
+    modifier: '김민지',
+    meetingTime: '25-08-07 15:30:00',
+    duration: '1:15:30',
+    participants: '5명',
+    shared: '3명'
   },
   {
     id: 4,
-    title: '월례 전체 회의',
-    date: '2024-01-12',
-    time: '09:00-10:30',
-    participants: 25,
-    status: '완료',
-    creator: '황수빈',
-    workspace: 'SK Hynix'
-  },
-  {
-    id: 5,
-    title: '기술 검토 회의',
-    date: '2024-01-11',
-    time: '13:30-15:00',
-    participants: 7,
-    status: '완료',
-    creator: '김기술',
-    workspace: 'SK Innovation'
-  },
-  {
-    id: 6,
-    title: '마케팅 전략 회의',
-    date: '2024-01-10',
-    time: '11:00-12:30',
-    participants: 6,
-    status: '완료',
-    creator: '이마케팅',
-    workspace: 'SK C&C'
-  },
-  {
-    id: 7,
-    title: '품질 관리 회의',
-    date: '2024-01-09',
-    time: '15:00-16:00',
-    participants: 9,
-    status: '진행중',
-    creator: '박품질',
-    workspace: 'SK Materials'
-  },
-  {
-    id: 8,
-    title: '보안 점검 회의',
-    date: '2024-01-08',
-    time: '10:30-11:30',
-    participants: 4,
-    status: '완료',
-    creator: '최보안',
-    workspace: 'SK Shieldus'
-  },
-  {
-    id: 9,
-    title: '에너지 효율 검토',
-    date: '2024-01-07',
-    time: '14:00-15:30',
-    participants: 11,
-    status: '완료',
-    creator: '정에너지',
-    workspace: 'SK E&S'
-  },
-  {
-    id: 10,
-    title: '디지털 혁신 회의',
-    date: '2024-01-06',
-    time: '16:30-18:00',
-    participants: 15,
-    status: '완료',
-    creator: '강디지털',
-    workspace: 'SK Square'
+    type: '음성',
+    title: '프로젝트 진행 상황 점검 회의',
+    modifiedAt: '25-08-07 10:45:32',
+    modifier: '박성호',
+    meetingTime: '25-08-07 10:00:00',
+    duration: '0:42:18',
+    participants: '4명',
+    shared: '2명'
   }
 ]
 
-function MeetingPage() {
-  const [searchTerm, setSearchTerm] = useState('')
+const MeetingPage = () => {
+  const [meetings, setMeetings] = useState(meetingData)
   const [pageSize, setPageSize] = useState(10)
-  const [statusFilter, setStatusFilter] = useState('전체')
-  const [dateRange, setDateRange] = useState([null, null])
+  const [searchType, setSearchType] = useState('전체')
+  const [searchTerm, setSearchTerm] = useState('')
+  const [dateRange, setDateRange] = useState('')
+  const [filter1, setFilter1] = useState('전체')
+  const [filter2, setFilter2] = useState('전체')
+  const [filter3, setFilter3] = useState('전체')
+
+  const handleSearch = () => {
+    console.log('Search:', { searchType, searchTerm, dateRange, filter1, filter2, filter3 })
+  }
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ko">
-      <Box>
-        <Typography variant="h5" component="h1" gutterBottom>
-          회의록 관리
-        </Typography>
+    <Layout className="page-meeting meeting-page">
+      <div className="content">
+        <div className="content-header">
+          <h1 className="breadcrumb">회의록 관리</h1>
+        </div>
 
-        {/* 검색 툴바 */}
-        <Box sx={{ mb: 2 }}>
-        <Box sx={{ 
-          display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
-          alignItems: { xs: 'stretch', md: 'center' },
-          justifyContent: 'space-between',
-          gap: 2,
-          width: '100%'
-        }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography sx={{ 
-              fontSize: '16px', 
-              fontWeight: 600, 
-              color: '#292A2B',
-              whiteSpace: 'nowrap'
-            }}>
-              총 {meetingData.length}개
-            </Typography>
-            <FormControl size="small" sx={{ minWidth: 80 }}>
-              <Select
-                value={pageSize}
-                onChange={(e) => setPageSize(e.target.value)}
-                sx={{ height: '36px' }}
-              >
-                <MenuItem value={10}>10개</MenuItem>
-                <MenuItem value={20}>20개</MenuItem>
-                <MenuItem value={50}>50개</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl size="small" sx={{ minWidth: 100 }}>
-              <Select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                sx={{ height: '36px' }}
-              >
-                <MenuItem value="전체">전체</MenuItem>
-                <MenuItem value="완료">완료</MenuItem>
-                <MenuItem value="진행중">진행중</MenuItem>
-              </Select>
-            </FormControl>
-            
-            {/* 날짜 범위 선택 */}
-            <DateRangePicker
-              value={dateRange}
-              onChange={setDateRange}
-              localeText={{ start: '시작일', end: '종료일' }}
-              slotProps={{
-                textField: {
-                  size: 'small',
-                  sx: { 
-                    '& .MuiOutlinedInput-root': {
-                      height: '36px'
-                    }
-                  }
-                }
-              }}
-            />
-          </Box>
-          
-          <Box sx={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 1,
-            marginLeft: 'auto'
-          }}>
-            <Box sx={{ 
-              display: 'flex',
-              alignItems: 'center',
-              border: '1px solid #E5E5E5',
-              borderRadius: '8px',
-              overflow: 'hidden'
-            }}>
-              <FormControl size="small" sx={{ minWidth: 120 }}>
-                <Select
-                  value="title"
-                  sx={{ 
-                    height: '36px',
-                    borderRadius: 0,
-                    '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&:hover .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
-                >
-                  <MenuItem value="title">제목</MenuItem>
-                  <MenuItem value="creator">작성자</MenuItem>
-                  <MenuItem value="workspace">워크스페이스</MenuItem>
-                </Select>
-              </FormControl>
-              <Box sx={{ width: '1px', height: '24px' }} />
-              <TextField
-                size="small"
-                placeholder="검색어를 입력하세요"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                sx={{ 
-                  width: 200,
-                  '& .MuiOutlinedInput-root': {
-                    height: '36px',
-                    borderRadius: 0,
-                    '& fieldset': { border: 'none' },
-                    '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' }}}}
-              />
-            </Box>
-            <Button 
-              variant="text"
-            color="primary" 
-              size="small"
-              sx={{ 
-                height: '36px',
-                minWidth: '60px'
-              }}
-            >
-              검색
-            </Button>
-          </Box>
-        </Box>
-      </Box>
-
-      {/* 테이블 */}
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>제목</TableCell>
-              <TableCell>일시</TableCell>
-              <TableCell>참여자 수</TableCell>
-              <TableCell>상태</TableCell>
-              <TableCell>작성자</TableCell>
-              <TableCell>워크스페이스</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {meetingData.map((meeting) => (
-              <TableRow key={meeting.id}>
-                <TableCell>
-                  <Link 
-                    href="#" 
-                    sx={{ 
-                      color: '#0066FF', 
-                      textDecoration: 'none'
-                    }}
-                  >
-                    {meeting.title}
-                  </Link>
-                </TableCell>
-                <TableCell>
-                  <Box>
-                    <Typography sx={{ fontSize: '14px' }}>{meeting.date}</Typography>
-                    <Typography sx={{ fontSize: '12px', color: '#6B7280' }}>{meeting.time}</Typography>
-                  </Box>
-                </TableCell>
-                <TableCell>{meeting.participants}명</TableCell>
-                <TableCell>
-                  <Chip 
-                    label={meeting.status}
-                    color={meeting.status === '완료' ? 'success' : 'warning'}
+        <div className="content-body">
+          {/* 검색 영역 */}
+          <div className="search-section">
+            <div className="common-topbar">
+              <div className="tb-left">
+                <div className="total-count">총 {meetings.length}개</div>
+                <div className="date-range-wrap">
+                  <span className="calendar-icon">📅</span>
+                  <TextField
+                    id="mt-range"
+                    className="date-range"
+                    placeholder="날짜 범위를 선택하세요"
+                    value={dateRange}
+                    onChange={(e) => setDateRange(e.target.value)}
+                    variant="outlined"
                     size="small"
+                    InputProps={{ readOnly: true }}
                   />
-                </TableCell>
-                <TableCell>{meeting.creator}</TableCell>
-                <TableCell>{meeting.workspace}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                  <div className="range-panel" id="mt-panel">
+                    <div className="calendar-range">
+                      <div className="calendar" id="mt-cal-start"></div>
+                      <div className="calendar" id="mt-cal-end"></div>
+                    </div>
+                    <div className="range-panel-info">
+                      <span id="mt-picked">-</span>
+                      <div className="range-actions">
+                        <button className="btn-outline" id="mt-cancel">취소</button>
+                        <button className="btn-submit" id="mt-apply">적용</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="tb-right">
+                <FormControl size="small" className="condition-select">
+                  <Select
+                    value={pageSize}
+                    onChange={(e) => setPageSize(e.target.value)}
+                    variant="outlined"
+                  >
+                    <MenuItem value={10}>10개씩 보기</MenuItem>
+                    <MenuItem value={20}>20개씩 보기</MenuItem>
+                    <MenuItem value={50}>50개씩 보기</MenuItem>
+                  </Select>
+                </FormControl>
+                
+                <FormControl size="small" className="condition-select">
+                  <Select
+                    value={filter1}
+                    onChange={(e) => setFilter1(e.target.value)}
+                    variant="outlined"
+                  >
+                    <MenuItem value="전체">전체</MenuItem>
+                    <MenuItem value="음성">음성</MenuItem>
+                    <MenuItem value="녹음">녹음</MenuItem>
+                    <MenuItem value="화상">화상</MenuItem>
+                  </Select>
+                </FormControl>
+                
+                <FormControl size="small" className="condition-select">
+                  <Select
+                    value={filter2}
+                    onChange={(e) => setFilter2(e.target.value)}
+                    variant="outlined"
+                  >
+                    <MenuItem value="전체">전체</MenuItem>
+                  </Select>
+                </FormControl>
+                
+                <FormControl size="small" className="condition-select">
+                  <Select
+                    value={filter3}
+                    onChange={(e) => setFilter3(e.target.value)}
+                    variant="outlined"
+                  >
+                    <MenuItem value="전체">전체</MenuItem>
+                  </Select>
+                </FormControl>
+                
+                <FormControl size="small" className="condition-select">
+                  <Select
+                    value={searchType}
+                    onChange={(e) => setSearchType(e.target.value)}
+                    variant="outlined"
+                  >
+                    <MenuItem value="전체">전체</MenuItem>
+                    <MenuItem value="제목">제목</MenuItem>
+                    <MenuItem value="작성자">작성자</MenuItem>
+                  </Select>
+                </FormControl>
+                
+                <TextField
+                  placeholder="검색어를 입력해주세요."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  variant="outlined"
+                  size="small"
+                  className="search-input-field"
+                />
+                
+                <Button 
+                  variant="contained"
+                  onClick={handleSearch}
+                  className="search-btn"
+                >
+                  조회
+                </Button>
+              </div>
+            </div>
+          </div>
 
-      {/* 페이지네이션 */}
-      <Box sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        mt: 3 
-      }}>
-        <Pagination 
-          count={5} 
-          page={1} 
-          shape="rounded"
-          showFirstButton={false}
-          showLastButton={false}
-        />
-      </Box>
-      </Box>
-    </LocalizationProvider>
+          {/* 테이블 */}
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>종류</th>
+                  <th>회의록명</th>
+                  <th>최종 수정일</th>
+                  <th>수정자</th>
+                  <th>회의 시간</th>
+                  <th>소요 시간</th>
+                  <th>참석자</th>
+                  <th>공유</th>
+                </tr>
+              </thead>
+              <tbody>
+                {meetings.slice(0, pageSize).map((meeting) => (
+                  <tr key={meeting.id}>
+                    <td>{meeting.type}</td>
+                    <td className="meeting-title">{meeting.title}</td>
+                    <td>{meeting.modifiedAt}</td>
+                    <td>{meeting.modifier}</td>
+                    <td>{meeting.meetingTime}</td>
+                    <td>{meeting.duration}</td>
+                    <td>{meeting.participants}</td>
+                    <td>{meeting.shared}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </Layout>
   )
 }
 

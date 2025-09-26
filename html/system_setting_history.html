@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>전체 시스템 관리 - 설정변경 이력</title>
+  <link rel="stylesheet" href="../asset/style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">timbel.net</div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>전체 시스템 관리</h3>
+        <ul>
+          <li><a href="workspace.html">워크스페이스 관리</a></li>
+          <li><a href="menu_setting.html">전체 메뉴 관리</a></li>
+          <li><a href="system_user.html">사용자 관리</a></li>
+          <li><a href="group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="system_setting_history.html" class="active">설정변경 이력</a></li>
+          <li><a href="system_stats_usage.html">전체 시스템 사용 통계</a></li>
+          <li><a href="system_stats_user.html">사용자별 사용 통계</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-header">
+          <h3>워크스페이스 설정</h3>
+        </div>
+        <ul>
+          <li><a href="workspace_permission.html">FO기능정책관리</a></li>
+          <li><a href="content_retention.html">컨텐츠 보존 관리</a></li>
+          <li><a href="workspace_group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="user.html">사용자 관리</a></li>
+          <li><a href="logo.html">로고 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-header">
+          <h3>세부 기능 관리</h3>
+        </div>
+        <ul>
+          <li><a href="meet_template.html">템플릿 관리 (회의록, 공통 템플릿)</a></li>
+          <li><a href="prompt.html">프롬프트 관리</a></li>
+          <li><a href="consent.html">동의서 관리</a></li>
+          <li><a href="calendar.html">캘린더 관리/설정</a></li>
+          <li><a href="dictionary.html">사전 관리</a></li>
+          <li><a href="notice.html">공지사항 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-header">
+          <h3>이력/통계 관리</h3>
+        </div>
+        <ul>
+          <li><a href="login_history.html">사용자 접속 이력</a></li>
+          <li><a href="download_history.html">다운로드 이력</a></li>
+          <li><a href="user_consent_history.html">사용자 동의 이력</a></li>
+          <li><a href="setting_change_history.html">설정 변경 이력</a></li>
+          <li><a href="meeting.html">회의록 이력</a></li>
+          <li><a href="stats_usage.html">워크스페이스 사용 통계</a></li>
+          <li><a href="stats_user.html">사용자별 사용 통계</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <div class="content">
+      <div class="content-header">
+        <h1 class="breadcrumb">
+          설정변경 이력
+        </h1>
+      </div>
+
+      <div class="content-body">
+        <!-- 검색 영역 -->
+        <div class="search-section">
+          <div class="common-topbar">
+            <div class="tb-left">
+              <div class="combo-select" style="margin-right: 15px;">
+                <div>
+                  <select id="workspace-filter">
+                    <option value="all" selected>전체 워크스페이스</option>
+                    <option value="sk-telecom">SK Telecom</option>
+                    <option value="sk-hynix">SK Hynix</option>
+                    <option value="sk-es">SK E&S</option>
+                    <option value="sk-cc">SK C&C</option>
+                    <option value="sk-innovation">SK Innovation</option>
+                    <option value="sk-networks">SK Networks</option>
+                  </select>
+
+                </div>
+              </div>
+              <div class="date-range-wrap">
+                <span class="calendar-icon">📅</span>
+                <input type="text" id="setting-range" class="date-range" placeholder="2025년 08월 12일 - 2025년 08월 19일"
+                  readonly />
+                <div class="range-panel" id="setting-panel">
+                  <div class="calendar-range">
+                    <div class="calendar" id="setting-cal-start"></div>
+                    <div class="calendar" id="setting-cal-end"></div>
+                  </div>
+                  <div class="range-panel-info">
+                    <span id="setting-picked">-</span>
+                    <div class="range-actions">
+                      <button class="btn-outline" id="setting-cancel">취소</button>
+                      <button class="btn-submit" id="setting-apply">적용</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="tb-right tb-right-full">
+              <div class="right-tail">
+                <select class="condition-select">
+                  <option>10개씩 보기</option>
+                  <option>20개씩 보기</option>
+                  <option>50개씩 보기</option>
+                </select>
+                <div class="combo-search combo-search-wide">
+                  <div class="combo-field">
+                    <select class="combo-select">
+                      <option>전체</option>
+                      <option>이름</option>
+                      <option>화면명</option>
+                      <option>변경항목</option>
+                      <option>워크스페이스 관리</option>
+                      <option>전체 메뉴 관리</option>
+                      <option>사용자 관리</option>
+                      <option>메뉴 권한 관리</option>
+                    </select>
+                    <div class="divider"></div>
+                    <div class="combo-input-wrap">
+                      <span class="mag-icon">🔍</span>
+                      <input type="text" class="combo-input" placeholder="검색어를 입력해주세요." />
+                    </div>
+                    <button class="append-btn">조회</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 상단 테이블 -->
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>순번</th>
+                <th>이름</th>
+                <th>변경IP</th>
+                <th>화면명</th>
+                <th>변경항목</th>
+                <th>변경시간</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="setting-history-row" onclick="selectHistoryRow(this)">
+                <td>1</td>
+                <td>시스템관리자</td>
+                <td>192.168.1.100</td>
+                <td>워크스페이스 관리</td>
+                <td>새 워크스페이스 생성</td>
+                <td>2024-03-15 14:30:25</td>
+              </tr>
+              <tr class="setting-history-row" onclick="selectHistoryRow(this)">
+                <td>2</td>
+                <td>김철수</td>
+                <td>192.168.1.101</td>
+                <td>전체 메뉴 관리</td>
+                <td>시스템 메뉴 순서 변경</td>
+                <td>2024-03-15 13:45:12</td>
+              </tr>
+              <tr class="setting-history-row" onclick="selectHistoryRow(this)">
+                <td>3</td>
+                <td>이영희</td>
+                <td>192.168.1.102</td>
+                <td>사용자 관리</td>
+                <td>관리자 권한 부여</td>
+                <td>2024-03-15 12:20:45</td>
+              </tr>
+              <tr class="setting-history-row" onclick="selectHistoryRow(this)">
+                <td>4</td>
+                <td>박지민</td>
+                <td>192.168.1.103</td>
+                <td>메뉴 권한 관리</td>
+                <td>접근 권한 그룹 생성</td>
+                <td>2024-03-15 11:15:30</td>
+              </tr>
+              <tr class="setting-history-row" onclick="selectHistoryRow(this)">
+                <td>5</td>
+                <td>최동훈</td>
+                <td>192.168.1.104</td>
+                <td>워크스페이스 관리</td>
+                <td>워크스페이스 삭제</td>
+                <td>2024-03-15 10:30:18</td>
+              </tr>
+              <tr class="setting-history-row" onclick="selectHistoryRow(this)">
+                <td>6</td>
+                <td>정미경</td>
+                <td>192.168.1.105</td>
+                <td>사용자 관리</td>
+                <td>시스템 사용자 추가</td>
+                <td>2024-03-15 09:45:33</td>
+              </tr>
+              <tr class="setting-history-row" onclick="selectHistoryRow(this)">
+                <td>7</td>
+                <td>강민수</td>
+                <td>192.168.1.106</td>
+                <td>전체 메뉴 관리</td>
+                <td>워크스페이스 메뉴 활성화</td>
+                <td>2024-03-15 08:20:15</td>
+              </tr>
+              <tr class="setting-history-row" onclick="selectHistoryRow(this)">
+                <td>8</td>
+                <td>윤서연</td>
+                <td>192.168.1.107</td>
+                <td>메뉴 권한 관리</td>
+                <td>권한 그룹 수정</td>
+                <td>2024-03-15 07:15:42</td>
+              </tr>
+              <tr class="setting-history-row" onclick="selectHistoryRow(this)">
+                <td>9</td>
+                <td>조현우</td>
+                <td>192.168.1.108</td>
+                <td>워크스페이스 관리</td>
+                <td>워크스페이스 설정 변경</td>
+                <td>2024-03-15 06:30:28</td>
+              </tr>
+              <tr class="setting-history-row" onclick="selectHistoryRow(this)">
+                <td>10</td>
+                <td>한지원</td>
+                <td>192.168.1.109</td>
+                <td>사용자 관리</td>
+                <td>사용자 권한 수정</td>
+                <td>2024-03-15 05:45:55</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 페이징 -->
+        <div class="pagination">
+          <button class="page-btn prev" disabled>‹</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn next">›</button>
+        </div>
+
+        <!-- 하단 변경 내역 박스 -->
+        <div class="detail-section-title">
+          <h2>상세 내역</h2>
+        </div>
+        <div class="setting-change-details">
+          <div class="change-detail-box">
+            <div class="change-detail-header">
+              <h3>변경전 내역</h3>
+            </div>
+            <div class="change-detail-content" id="beforeContent">
+              <p class="empty-message">항목을 선택하면 변경전 내역이 표시됩니다.</p>
+            </div>
+          </div>
+
+          <div class="change-detail-box">
+            <div class="change-detail-header">
+              <h3>변경후 내역</h3>
+            </div>
+            <div class="change-detail-content" id="afterContent">
+              <p class="empty-message">항목을 선택하면 변경후 내역이 표시됩니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 설정변경 이력 - 날짜 범위 피커
+    (function () {
+      const wrap = document.querySelector('.date-range-wrap');
+      if (!wrap) return;
+      const input = document.getElementById('setting-range');
+      const panel = document.getElementById('setting-panel');
+      const calStart = document.getElementById('setting-cal-start');
+      const calEnd = document.getElementById('setting-cal-end');
+      const pickedEl = document.getElementById('setting-picked');
+      const apply = document.getElementById('setting-apply');
+      const cancel = document.getElementById('setting-cancel');
+      let startDate = null, endDate = null, viewStart = new Date(), viewEnd = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);
+      function fmt(d) { return d.toISOString().slice(0, 10); }
+      function renderCalendar(targetEl, view, isStart) {
+        const y = view.getFullYear(), m = view.getMonth();
+        const first = new Date(y, m, 1), last = new Date(y, m + 1, 0);
+        const startIdx = (first.getDay() + 6) % 7;
+        let h = '';
+        h += '<div class="cal-header">'
+          + `<div class="cal-prev-start"><button class="cal-prev setting-prev" data-side="${isStart ? 'start' : 'end'}">‹</button></div>`
+          + '<div class="cal-month">' + y + '-' + String(m + 1).padStart(2, '0') + '</div>'
+          + `<div class="cal-next-end"><button class=\"cal-next setting-next\" data-side=\"${isStart ? 'start' : 'end'}\">›</button></div>`
+          + '</div>';
+        h += '<div class="cal-grid">';
+        ['월', '화', '수', '목', '금', '토', '일'].forEach(w => h += '<div class="cal-weekday">' + w + '</div>');
+        for (let i = 0; i < startIdx; i++) h += '<div class="cal-day disabled"></div>';
+        for (let d = 1; d <= last.getDate(); d++) {
+          const cur = new Date(y, m, d);
+          const inRange = startDate && endDate && cur >= startDate && cur <= endDate;
+          const sel = (startDate && fmt(cur) === fmt(startDate)) || (endDate && fmt(cur) === fmt(endDate));
+          h += '<div class="cal-day' + (inRange ? ' in-range' : '') + (sel ? ' selected' : '') + '" data-day="' + fmt(cur) + '">' + d + '</div>';
+        }
+        h += '</div>';
+        targetEl.innerHTML = h;
+        targetEl.querySelector('.setting-prev').onclick = () => { if (isStart) viewStart.setMonth(viewStart.getMonth() - 1); else viewEnd.setMonth(viewEnd.getMonth() - 1); syncViews(); };
+        targetEl.querySelector('.setting-next').onclick = () => { if (isStart) viewStart.setMonth(viewStart.getMonth() + 1); else viewEnd.setMonth(viewEnd.getMonth() + 1); syncViews(); };
+        targetEl.querySelectorAll('.cal-day[data-day]').forEach(el => {
+          el.onclick = () => {
+            const d = new Date(el.dataset.day);
+            if (!startDate || (startDate && endDate)) { startDate = d; endDate = null; }
+            else if (d < startDate) { endDate = startDate; startDate = d; }
+            else { endDate = d; }
+            pickedEl.textContent = (startDate ? fmt(startDate) : '-') + ' ~ ' + (endDate ? fmt(endDate) : '-');
+            syncViews();
+          };
+        });
+      }
+      function syncViews() {
+        renderCalendar(calStart, viewStart, true);
+        renderCalendar(calEnd, viewEnd, false);
+      }
+      syncViews();
+      input.addEventListener('click', () => { panel.style.display = panel.style.display === 'block' ? 'none' : 'block'; });
+      cancel.addEventListener('click', () => { panel.style.display = 'none'; });
+      apply.addEventListener('click', () => { if (startDate && endDate) input.value = `${fmt(startDate)} ~ ${fmt(endDate)}`; panel.style.display = 'none'; });
+      document.addEventListener('click', (e) => { if (!wrap.contains(e.target) && panel.style.display === 'block') { panel.style.display = 'none'; } });
+    })();
+
+    // 테이블 행 선택 시 변경 내역 표시
+    function selectHistoryRow(row) {
+      // 기존 선택 해제
+      document.querySelectorAll('.setting-history-row').forEach(r => r.classList.remove('selected'));
+
+      // 새로운 행 선택
+      row.classList.add('selected');
+
+      // 샘플 데이터 (실제로는 서버에서 가져올 데이터)
+      const sampleData = {
+        1: {
+          before: `권한 설정: 일반 사용자
+접근 권한: 읽기 전용
+메뉴 접근: 제한됨
+파일 다운로드: 불가능`,
+          after: `권한 설정: 관리자
+접근 권한: 읽기/쓰기
+메뉴 접근: 전체 허용
+파일 다운로드: 가능`
+        },
+        2: {
+          before: `메뉴 순서:
+1. 회의록 관리
+2. 템플릿 관리
+3. 프롬프트 관리
+4. 이력 관리`,
+          after: `메뉴 순서:
+1. 템플릿 관리
+2. 회의록 관리
+3. 프롬프트 관리
+4. 이력 관리`
+        },
+        3: {
+          before: `사용자 권한: 뷰어
+워크스페이스 접근: 제한
+편집 권한: 없음`,
+          after: `사용자 권한: 에디터
+워크스페이스 접근: 허용
+편집 권한: 있음`
+        },
+        4: {
+          before: `엔진 타입: Standard
+처리 속도: 보통
+메모리 사용량: 512MB
+동시 처리: 5개`,
+          after: `엔진 타입: Premium
+처리 속도: 빠름
+메모리 사용량: 1024MB
+동시 처리: 10개`
+        },
+        5: {
+          before: `보고서 주기: 주간
+자동 생성: 비활성화
+수신자: 관리자만
+파일 형식: PDF`,
+          after: `보고서 주기: 일간
+자동 생성: 활성화
+수신자: 전체 관리자
+파일 형식: PDF, Excel`
+        },
+        6: {
+          before: `프로필 이미지: 기본 아바타
+알림 설정: 이메일만
+언어 설정: 한국어
+테마: 라이트`,
+          after: `프로필 이미지: 사용자 업로드
+알림 설정: 이메일 + SMS
+언어 설정: 한국어
+테마: 다크`
+        },
+        7: {
+          before: `워크스페이스명: 기본 워크스페이스
+설명: 없음
+공개 설정: 비공개
+멤버 수: 5명`,
+          after: `워크스페이스명: AI 회의록 워크스페이스
+설명: AI 기반 회의록 관리 시스템
+공개 설정: 제한적 공개
+멤버 수: 12명`
+        },
+        8: {
+          before: `템플릿 순서:
+1. 일반 회의
+2. 세미나
+3. 상담
+4. 의료`,
+          after: `템플릿 순서:
+1. 의료
+2. 일반 회의
+3. 세미나
+4. 상담`
+        },
+        9: {
+          before: `프롬프트 언어: 한국어
+최대 토큰: 1000
+온도 설정: 0.7
+응답 형식: 일반`,
+          after: `프롬프트 언어: 한국어
+최대 토큰: 2000
+온도 설정: 0.5
+응답 형식: 구조화`
+        },
+        10: {
+          before: `기본 일정 시간: 1시간
+알림 설정: 15분 전
+반복 설정: 없음
+참석자 권한: 읽기 전용`,
+          after: `기본 일정 시간: 2시간
+알림 설정: 30분 전
+반복 설정: 주간 반복
+참석자 권한: 편집 가능`
+        }
+      };
+
+      const rowIndex = row.cells[0].textContent;
+      const data = sampleData[rowIndex];
+
+      if (data) {
+        document.getElementById('beforeContent').innerHTML = `<pre>${data.before}</pre>`;
+        document.getElementById('afterContent').innerHTML = `<pre>${data.after}</pre>`;
+      }
+    }
+
+    // 페이지 로드 시 첫 번째 행 자동 선택
+    document.addEventListener('DOMContentLoaded', function () {
+      const firstRow = document.querySelector('.setting-history-row');
+      if (firstRow) {
+        selectHistoryRow(firstRow);
+      }
+    });
+
+    // 워크스페이스 필터 기능
+    const workspaceFilter = document.getElementById('workspace-filter');
+    if (workspaceFilter) {
+      workspaceFilter.addEventListener('change', function () {
+        const selectedValue = this.value;
+        const rows = document.querySelectorAll('.setting-history-row');
+
+        rows.forEach(row => {
+          if (selectedValue === 'all') {
+            row.style.display = '';
+          } else {
+            const screenNameCell = row.querySelector('td:nth-child(4)'); // 화면명 컬럼
+            if (screenNameCell) {
+              const screenName = screenNameCell.textContent.toLowerCase();
+              const shouldShow = (
+                (selectedValue === 'sk-telecom' && screenName.includes('워크스페이스')) ||
+                (selectedValue === 'sk-hynix' && screenName.includes('메뉴')) ||
+                (selectedValue === 'sk-es' && screenName.includes('사용자')) ||
+                (selectedValue === 'sk-cc' && screenName.includes('권한')) ||
+                (selectedValue === 'sk-innovation' && screenName.includes('워크스페이스')) ||
+                (selectedValue === 'sk-networks' && screenName.includes('메뉴'))
+              );
+              row.style.display = shouldShow ? '' : 'none';
+            }
+          }
+        });
+      });
+    }
+  </script>
+  <script src="../asset/menu.js"></script>
+  <script src="../asset/main.js"></script>
+</body>
+
+</html>

@@ -1,266 +1,101 @@
 import React from 'react'
-import { 
-  Box, 
-  Drawer, 
-  AppBar, 
-  Toolbar, 
-    List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  ListItemIcon,
-  Collapse,
-  Typography,
-  IconButton
-} from '@mui/material'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { 
-  ExpandLess, 
-  ExpandMore, 
-  Logout,
-  WorkspacesOutlined,
-  PeopleOutlined,
-  MenuOutlined,
-  SecurityOutlined,
-  BarChartOutlined,
-  AssessmentOutlined,
-  SettingsOutlined,
-  PersonOutlined,
-  ImageOutlined,
-  DescriptionOutlined,
-  SmartToyOutlined,
-  ArticleOutlined,
-  CalendarTodayOutlined,
-  HistoryOutlined,
-  DownloadOutlined,
-  PolicyOutlined,
-  FactCheckOutlined,
-  RecordVoiceOverOutlined,
-  BookOutlined,
-  CampaignOutlined,
-  TrendingUpOutlined,
-  PersonSearchOutlined
-} from '@mui/icons-material'
+import { useLocation } from 'react-router-dom'
 
-const drawerWidth = 280
-
-const menuSections = [
-  {
-    title: '시스템관리',
-    items: [
-      { text: '워크스페이스 관리', path: '/workspace' },
-      { text: '사용자 관리', path: '/system-user' },
-      { text: '메뉴 생성 관리', path: '/menu-setting' },
-      { text: '메뉴 권한 관리', path: '/group-setting' },
-      { text: '사용량 통계', path: '/system-stats-usage' },
-      { text: '사용자별 통계', path: '/system-stats-user' }
-    ]
-  },
-  {
-    title: '워크스페이스',
-    items: [
-      { text: '기능 권한 관리', path: '/workspace-permission' },
-      { text: '메뉴 권한 관리', path: '/workspace-group-setting' },
-      { text: '사용자 관리', path: '/user' },
-      { text: '로고 이미지 관리', path: '/logo' },
-      { text: '회의 템플릿 관리', path: '/meet-template' },
-      { text: '프롬프트 관리', path: '/prompt' },
-      { text: '동의서 관리', path: '/consent' },
-      { text: '캘린더 관리', path: '/calendar' },
-      { text: '사용자 접속 이력', path: '/login-history' },
-      { text: '다운로드 이력', path: '/download-history' },
-      { text: '사용자 동의 이력', path: '/user-consent-history' },
-      { text: '설정변경 이력', path: '/setting-change-history' },
-      { text: '회의록 관리', path: '/meeting' },
-      { text: '사전 관리', path: '/dictionary' },
-      { text: '공지사항 관리', path: '/notice' },
-      { text: '사용량 통계', path: '/stats-usage' },
-      { text: '사용자별 통계', path: '/stats-user' }
-    ]
-  }
-]
-
-function Layout({ children }) {
-  const navigate = useNavigate()
+const Layout = ({ children, className = '' }) => {
   const location = useLocation()
-
-  const handleMenuClick = (path) => {
-    if (path) {
-      navigate(path)
+  
+  const isActive = (path) => {
+    // 홈 경로('/') 는 워크스페이스 관리로 리다이렉트되므로
+    if (path === '/workspace' && location.pathname === '/') {
+      return 'active'
     }
+    return location.pathname === path ? 'active' : ''
   }
-
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+    <div className={`container ${className}`}>
       {/* 사이드바 */}
-      <Drawer
-        variant="permanent"
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-            borderRight: 'none',
-            position: 'sticky',
-            top: 0,
-            height: '100vh',
-            overflowY: 'auto',
-            transition: 'none !important',
-            transform: 'none !important',
-            '&:hover': {
-              transition: 'none !important',
-              transform: 'none !important',
-              boxShadow: 'none !important',
-            },
-            '&::-webkit-scrollbar': {
-              display: 'none'},
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none'}}}
-      >
-        {/* 로고 섹션 */}
-        <Box sx={{ 
-          p: '20px 20px 24px 20px',
-          position: 'relative',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 1,
-          '&::after': {
-            content: '""',
-            position: 'absolute',
-            bottom: 0,
-            left: '20px',
-            right: '20px',
-            height: '1px',
-            backgroundColor: '#E5E5E5'
-          }
-        }}>
-          <Box sx={{
-            width: 40,
-            height: 40,
-            backgroundColor: '#4B88F0',
-            borderRadius: '8px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            fontSize: '24px',
-            fontWeight: 600
-          }}>
-            T
-          </Box>
-          <Box sx={{ flex: 1 }}>
-            <Typography sx={{ 
-              fontSize: '16px', 
-              fontWeight: 600, 
-              color: '#292A2B',
-              lineHeight: 1.2
-            }}>
-              SK Telecom
-            </Typography>
-            <Typography sx={{ 
-              fontSize: '14px', 
-              color: '#666',
-              lineHeight: 1.2
-            }}>
-              sktelecom.com
-            </Typography>
-          </Box>
-          <IconButton 
-            size="small"
-            sx={{
-              width: 32,
-              height: 32
-            }}
-          >
-            <Logout sx={{ width: 20, height: 20, color: '#4D5256' }} />
-          </IconButton>
-        </Box>
+      <div className="sidebar">
+        <div className="logo">
+          <div className="logo-icon">T</div>
+          <div className="logo-text">
+            <div className="logo-title">Timbel</div>
+            <div className="logo-url">timbel.net</div>
+          </div>
+          <button className="logout-btn" title="로그아웃">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clipPath="url(#clip0_logout)">
+                <path
+                  d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                  stroke="#4D5256" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" strokeWidth="1.5"
+                  strokeLinecap="round" strokeLinejoin="round" />
+              </g>
+              <defs>
+                <clipPath id="clip0_logout">
+                  <rect width="24" height="24" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </button>
+        </div>
 
+        <div className="menu-section">
+          <h3>전체 시스템 관리</h3>
+          <ul>
+            <li><a href="/workspace" className={isActive('/workspace')}>워크스페이스 관리</a></li>
+            <li><a href="/menu-setting" className={isActive('/menu-setting')}>시스템 메뉴 관리</a></li>
+            <li><a href="/system-user" className={isActive('/system-user')}>관리자 지정</a></li>
+            <li><a href="/group-setting" className={isActive('/group-setting')}>관리자 접근권한</a></li>
+            <li><a href="/system-stats-usage" className={isActive('/system-stats-usage')}>전체 시스템 사용 통계</a></li>
+            <li><a href="/system-stats-user" className={isActive('/system-stats-user')}>사용자별 사용 통계</a></li>
+          </ul>
+        </div>
 
-        <Box sx={{ px: 2, pt: 3 }}>
-          {menuSections.map((section, sectionIndex) => (
-            <Box key={section.title} sx={{ mb: sectionIndex < menuSections.length - 1 ? 2 : 0 }}>
-              <Typography sx={{ 
-                fontSize: '16px', 
-                fontWeight: 600, 
-                color: '#292A2B', 
-                mb: 1,
-                mt: sectionIndex > 0 ? 3 : 0
-              }}>
-                {section.title}
-              </Typography>
-              <List dense sx={{ py: 0 }}>
-                {section.items.map((item) => (
-                  <ListItem key={item.text} disablePadding>
-                    <ListItemButton
-                      selected={location.pathname === item.path}
-                      onClick={() => handleMenuClick(item.path)}
-                      sx={{
-                        margin: 0,
-                        padding: '8px 12px',
-                        fontSize: '14px',
-                        color: '#333',
-                        borderRadius: 0,
-                        transition: 'all 0.2s',
-                        '&:hover': {
-                          backgroundColor: 'rgba(59, 130, 246, 0.08)',
-                          color: '#3B82F6',
-                        },
-                        '&.Mui-selected': {
-                          backgroundColor: 'rgba(59, 130, 246, 0.12)',
-                          color: '#3B82F6',
-                          fontWeight: 600,
-                          '&:hover': {
-                            backgroundColor: 'rgba(59, 130, 246, 0.16)',
-                            color: '#3B82F6',
-                          }
-                        }}}
-                    >
-                      <ListItemText 
-                        primary={item.text}
-                        primaryTypographyProps={{
-                          fontSize: '14px',
-                          fontWeight: location.pathname === item.path ? 600 : 400,
-                          color: location.pathname === item.path ? '#3B82F6' : '#333',
-                        }}
-                        sx={{
-                          margin: 0,
-                          '& .MuiListItemText-primary': {
-                            margin: 0,
-                            padding: 0,
-                          }
-                        }}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-              </List>
-            </Box>
-          ))}
-        </Box>
-      </Drawer>
+        <div className="menu-section">
+          <div className="menu-section-header">
+            <h3>워크스페이스 설정</h3>
+          </div>
+          <ul>
+            <li><a href="/workspace-permission" className={isActive('/workspace-permission')}>FO기능정책관리</a></li>
+            <li><a href="/workspace-group-setting" className={isActive('/workspace-group-setting')}>메뉴 권한 설정</a></li>
+            <li><a href="/user" className={isActive('/user')}>사용자 조회</a></li>
+            <li><a href="/logo" className={isActive('/logo')}>로고 관리</a></li>
+          </ul>
+        </div>
+
+        <div className="menu-section">
+          <div className="menu-section-header">
+            <h3>세부 기능 관리</h3>
+          </div>
+          <ul>
+            <li><a href="/meet-template" className={isActive('/meet-template')}>템플릿 관리 (회의록, 공통 템플릿)</a></li>
+            <li><a href="/prompt" className={isActive('/prompt')}>프롬프트 관리</a></li>
+            <li><a href="/consent" className={isActive('/consent')}>동의서 관리</a></li>
+            <li><a href="/calendar" className={isActive('/calendar')}>캘린더 관리/설정</a></li>
+            <li><a href="/dictionary" className={isActive('/dictionary')}>사전 관리</a></li>
+            <li><a href="/notice" className={isActive('/notice')}>공지사항 관리</a></li>
+          </ul>
+        </div>
+
+        <div className="menu-section">
+          <div className="menu-section-header">
+            <h3>이력/통계 관리</h3>
+          </div>
+          <ul>
+            <li><a href="/login-history" className={isActive('/login-history')}>사용자 접속 이력</a></li>
+            <li><a href="/download-history" className={isActive('/download-history')}>다운로드 이력</a></li>
+            <li><a href="/user-consent-history" className={isActive('/user-consent-history')}>사용자 동의 이력</a></li>
+            <li><a href="/setting-change-history" className={isActive('/setting-change-history')}>설정 변경 이력</a></li>
+            <li><a href="/meeting" className={isActive('/meeting')}>회의록 이력</a></li>
+            <li><a href="/stats-usage" className={isActive('/stats-usage')}>워크스페이스 사용 통계</a></li>
+            <li><a href="/stats-user" className={isActive('/stats-user')}>사용자별 사용 통계</a></li>
+          </ul>
+        </div>
+      </div>
 
       {/* 메인 콘텐츠 */}
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          width: `calc(100vw - ${drawerWidth}px)`, // 정확한 너비 계산
-          padding: { xs: '16px', sm: '20px 24px' }, // 패딩 감소,
-          borderLeft: '1px solid #e1e1e1',
-          minHeight: '100vh',
-          overflowX: 'hidden', // 가로 스크롤만 막기
-          overflowY: 'auto',   // 세로 스크롤 허용
-          minWidth: 0, // flexbox에서 최소 너비 제한 해제
-          maxWidth: `calc(100vw - ${drawerWidth}px)`, // 최대 너비도 제한
-          backgroundColor: '#ffffff', // 메인 영역 배경색 하얀색
-          backgroundImage: 'none', // 그라데이션 제거
-        }}
-      >
-        {children}
-      </Box>
-    </Box>
+      {children}
+    </div>
   )
 }
 

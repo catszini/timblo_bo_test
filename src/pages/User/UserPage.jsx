@@ -1,272 +1,322 @@
 import React, { useState } from 'react'
 import {
-  Box,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Chip,
   FormControl,
   Select,
   MenuItem,
   TextField,
   Button,
-  InputAdornment
+  Checkbox,
+  ButtonGroup,
+  styled
 } from '@mui/material'
-import { Search } from '@mui/icons-material'
+import Layout from '../../components/Layout/Layout'
+
+// 커스텀 체크박스 스타일
+const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
+  '& .MuiSvgIcon-root': {
+    width: 16,
+    height: 16,
+    border: '1.5px solid #97c3f0',
+    borderRadius: '3px',
+    backgroundColor: 'white', // 미체크 상태는 흰색 배경
+    '& path': {
+      display: 'none', // 체크 아이콘 숨김
+    },
+  },
+  '&.Mui-checked .MuiSvgIcon-root': {
+    backgroundColor: 'rgba(199, 223, 247, 0.8)', // 체크된 상태만 파란색 배경
+    borderColor: '#97c3f0',
+  },
+  '&.MuiCheckbox-indeterminate .MuiSvgIcon-root': {
+    backgroundColor: 'rgba(199, 223, 247, 0.8)', // indeterminate 상태도 파란색 배경
+    borderColor: '#97c3f0',
+  },
+  '&:hover .MuiSvgIcon-root': {
+    borderColor: '#a5cef3',
+    backgroundColor: 'white', // 미체크 호버 시에도 흰색 유지
+  },
+  '&.Mui-checked:hover .MuiSvgIcon-root': {
+    backgroundColor: 'rgba(199, 223, 247, 0.9)', // 체크된 상태 호버 시만 파란색
+    borderColor: '#a5cef3',
+  },
+}))
 
 const userData = [
   {
-    name: '김민호',
-    email: 'minho.kim@sktelecom.com',
+    id: 1,
+    name: '박영수',
+    email: 'park.ys@sktelecom.com',
     permission: '회의관리자',
-    status: 'online',
-    lastLogin: '2024-01-15 14:30'
+    status: 'online'
   },
   {
-    name: '이수연',
-    email: 'suyeon.lee@sktelecom.com',
+    id: 2,
+    name: '김철수',
+    email: 'kim.cs@sktelecom.com',
     permission: '로고관리자',
-    status: 'offline',
-    lastLogin: '2024-01-14 09:15'
+    status: 'online'
   },
   {
-    name: '박재민',
-    email: 'jaemin.park@sktelecom.com',
+    id: 3,
+    name: '이민수',
+    email: 'lee.ms@sktelecom.com',
     permission: '사용자관리자',
-    status: 'online',
-    lastLogin: '2024-01-15 16:45'
+    status: 'offline'
   },
   {
-    name: '최윤서',
-    email: 'yunseo.choi@sktelecom.com',
+    id: 4,
+    name: '최지영',
+    email: 'choi.jy@sktelecom.com',
     permission: '통계관리자',
-    status: 'offline',
-    lastLogin: '2024-01-13 11:20'
+    status: 'online'
   },
   {
-    name: '정하늘',
-    email: 'haneul.jung@sktelecom.com',
+    id: 5,
+    name: '정수현',
+    email: 'jung.sh@sktelecom.com',
     permission: '컨텐츠관리자',
-    status: 'online',
-    lastLogin: '2024-01-15 13:10'
-  },
-  {
-    name: '강지훈',
-    email: 'jihoon.kang@sktelecom.com',
-    permission: '템플릿관리자',
-    status: 'offline',
-    lastLogin: '2024-01-15 10:30'
-  },
-  {
-    name: '송미라',
-    email: 'mira.song@sktelecom.com',
-    permission: '알림관리자',
-    status: 'online',
-    lastLogin: '2024-01-15 15:20'
-  },
-  {
-    name: '윤태웅',
-    email: 'taewoong.yoon@sktelecom.com',
-    permission: '보고서관리자',
-    status: 'offline',
-    lastLogin: '2024-01-14 18:45'
-  },
-  {
-    name: '조서영',
-    email: 'seoyoung.cho@sktelecom.com',
-    permission: '시스템관리자',
-    status: 'online',
-    lastLogin: '2024-01-15 12:15'
-  },
-  {
-    name: '한준혁',
-    email: 'junhyuk.han@sktelecom.com',
-    permission: '데이터관리자',
-    status: 'online',
-    lastLogin: '2024-01-15 16:00'
+    status: 'online'
   }
 ]
 
-function UserPage() {
+const UserPage = () => {
+  const [pageSize, setPageSize] = useState('10개씩 보기')
+  const [searchType, setSearchType] = useState('전체')
   const [searchTerm, setSearchTerm] = useState('')
-  const [pageSize, setPageSize] = useState(10)
+
+  const handleSearch = () => {
+    console.log('검색:', { pageSize, searchType, searchTerm })
+  }
+
+  const handleBulkDelete = () => {
+    console.log('일괄 삭제')
+  }
+
+  const handleBulkEdit = () => {
+    console.log('일괄 수정')
+  }
+
+  const handleCreateUser = () => {
+    console.log('사용자 생성')
+  }
+
+  const handlePermissionChange = (userId, permission) => {
+    console.log('권한 변경:', userId, permission)
+  }
+
+  const handlePasswordReset = (userId, userName) => {
+    console.log('비밀번호 초기화:', userId, userName)
+  }
+
+  const handleDeleteUser = (userId, userName) => {
+    console.log('사용자 삭제:', userId, userName)
+  }
 
   return (
-    <Box>
-      <Typography variant="h5" component="h1" gutterBottom>
-        사용자
-      </Typography>
-
-      {/* 검색 툴바 - 기존 스타일과 동일하게 */}
-      <Box sx={{ mb: 2 }}>
-        <Box sx={{ 
-          display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
-          alignItems: { xs: 'stretch', md: 'center' },
-          justifyContent: 'space-between',
-          gap: 2,
-          width: '100%'
-        }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography sx={{ 
-              fontSize: '16px', 
-              fontWeight: 600, 
-              color: '#292A2B',
-              whiteSpace: 'nowrap'
-            }}>
-              총 {userData.length}개
-            </Typography>
-            <FormControl size="small" sx={{ minWidth: 80 }}>
-              <Select
-                value={pageSize}
-                onChange={(e) => setPageSize(e.target.value)}
-                sx={{ height: '36px' }}
-              >
-                <MenuItem value={10}>10개</MenuItem>
-                <MenuItem value={20}>20개</MenuItem>
-                <MenuItem value={50}>50개</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-          
-          <Box sx={{ 
-            display: 'flex', 
-            flexDirection: { xs: 'column', sm: 'row' },
-            alignItems: { xs: 'stretch', sm: 'center' }, 
-            gap: 1,
-            width: { xs: '100%', md: 'auto' }
-          }}>
-            <Box sx={{ 
-              display: 'flex',
-              alignItems: 'center',
-              border: '1px solid #E5E5E5',
-              borderRadius: '8px',
-              overflow: 'hidden',
-              width: { xs: '100%', sm: 'auto' }
-            }}>
-              <FormControl size="small" sx={{ minWidth: { xs: 100, sm: 120 } }}>
-                <Select
-                  value="name"
+    <Layout className="page-user user-page member-page">
+      <div className="content user-page member-page user-page-custom">
+        <div className="content-header">
+          <h1 className="breadcrumb">사용자 관리</h1>
+        </div>
+        
+        <div className="content-body">
+          <div className="search-toolbar">
+            <div className="common-topbar">
+              <div className="tb-left">
+                <span className="total-count">총 {userData.length}개</span>
+              </div>
+              <div className="tb-right">
+                <FormControl size="small" className="condition-select">
+                  <Select
+                    value={pageSize}
+                    onChange={(e) => setPageSize(e.target.value)}
+                    variant="outlined"
+                  >
+                    <MenuItem value="10개씩 보기">10개씩 보기</MenuItem>
+                    <MenuItem value="20개씩 보기">20개씩 보기</MenuItem>
+                    <MenuItem value="50개씩 보기">50개씩 보기</MenuItem>
+                  </Select>
+                </FormControl>
+                
+                <FormControl size="small" className="condition-select">
+                  <Select
+                    value={searchType}
+                    onChange={(e) => setSearchType(e.target.value)}
+                    variant="outlined"
+                  >
+                    <MenuItem value="전체">전체</MenuItem>
+                    <MenuItem value="이름">이름</MenuItem>
+                    <MenuItem value="이메일">이메일</MenuItem>
+                    <MenuItem value="권한">권한</MenuItem>
+                  </Select>
+                </FormControl>
+                
+                <TextField
+                  placeholder="검색어를 입력해주세요."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  variant="outlined"
+                  size="small"
+                  className="search-input-field"
+                />
+                
+                <Button 
+                  variant="outlined"
+                  onClick={handleSearch}
                   sx={{ 
-                    height: '36px',
-                    borderRadius: 0,
-                    '& .MuiOutlinedInput-notchedOutline': {
-                      border: 'none'},
-                    '&:hover .MuiOutlinedInput-notchedOutline': {
-                      border: 'none'},
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                      border: 'none'}}}
+                    ml: 1,
+                    bgcolor: 'primary.main',
+                    color: 'white',
+                    borderColor: 'primary.main',
+                    '&:hover': { 
+                      bgcolor: 'primary.dark',
+                      borderColor: 'primary.dark'
+                    }
+                  }}
                 >
-                  <MenuItem value="name">이름</MenuItem>
-                  <MenuItem value="email">이메일</MenuItem>
-                </Select>
-              </FormControl>
-              <Box sx={{ 
-                width: '1px', 
-                height: '24px' 
-              }} />
-              <TextField
-                size="small"
-                placeholder="검색어를 입력하세요"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                sx={{ 
-                  width: { xs: '100%', sm: 200 },
-                  '& .MuiOutlinedInput-root': {
-                    height: '36px',
-                    borderRadius: 0,
-                    '& fieldset': {
-                      border: 'none'},
-                    '&:hover fieldset': {
-                      border: 'none'},
-                    '&.Mui-focused fieldset': {
-                      border: 'none'}}}}
-              />
-            </Box>
-            <Button 
-              variant="text"
-              color="primary" 
-              size="small"
-              sx={{ 
-                height: '36px',
-                minWidth: '60px'
-              }}
-            >
-              검색
-            </Button>
-          </Box>
-        </Box>
-      </Box>
+                  조회
+                </Button>
+                
+                <ButtonGroup variant="outlined" size="medium" sx={{ ml: 1 }}>
+                  <Button 
+                    onClick={handleBulkDelete}
+                    sx={{ 
+                      color: 'error.main', 
+                      borderColor: 'error.main',
+                      '&:hover': { 
+                        bgcolor: 'error.light',
+                        color: 'white',
+                        borderColor: 'error.main'
+                      }
+                    }}
+                  >
+                    삭제
+                  </Button>
+                  <Button 
+                    onClick={handleBulkEdit}
+                    sx={{ 
+                      color: 'primary.main',
+                      borderColor: 'primary.main',
+                      '&:hover': { 
+                        bgcolor: 'primary.light',
+                        color: 'white',
+                        borderColor: 'primary.main'
+                      }
+                    }}
+                  >
+                    수정
+                  </Button>
+                  <Button 
+                    onClick={handleCreateUser}
+                    sx={{ 
+                      color: 'success.main', 
+                      borderColor: 'success.main',
+                      '&:hover': { 
+                        bgcolor: 'success.light',
+                        color: 'white',
+                        borderColor: 'success.main'
+                      }
+                    }}
+                  >
+                    생성
+                  </Button>
+                </ButtonGroup>
+              </div>
+            </div>
+          </div>
 
-      {/* 테이블 */}
-      <TableContainer component={Paper} sx={{ width: '100%' }}>
-        <Table sx={{ width: '100%', tableLayout: 'fixed' }}>
-          <TableHead>
-            <TableRow>
-              <TableCell sx={{ width: { xs: '25%', sm: '20%' } }}>이름</TableCell>
-              <TableCell sx={{ display: { xs: 'none', md: 'table-cell' }, width: '30%' }}>이메일</TableCell>
-              <TableCell sx={{ width: { xs: '35%', sm: '25%' } }}>권한</TableCell>
-              <TableCell sx={{ display: { xs: 'none', lg: 'table-cell' }, width: '15%' }}>접속상태</TableCell>
-              <TableCell sx={{ width: { xs: '25%', sm: '20%' } }}>최종 로그인</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {userData.map((user, index) => (
-              <TableRow key={index}>
-                <TableCell sx={{ 
-                  overflow: 'hidden', 
-                  textOverflow: 'ellipsis', 
-                  whiteSpace: 'nowrap',
-                  fontSize: { xs: '12px', sm: '14px' }
-                }}>
-                  {user.name}
-                </TableCell>
-                <TableCell sx={{ 
-                  display: { xs: 'none', md: 'table-cell' },
-                  overflow: 'hidden', 
-                  textOverflow: 'ellipsis', 
-                  whiteSpace: 'nowrap',
-                  fontSize: '14px'
-                }}>
-                  {user.email}
-                </TableCell>
-                <TableCell>
-                  <FormControl size="small" sx={{ minWidth: { xs: 100, sm: 120 }, width: '100%' }}>
-                    <Select value={user.permission}>
-                      <MenuItem value="회의관리자">회의관리자</MenuItem>
-                      <MenuItem value="로고관리자">로고관리자</MenuItem>
-                      <MenuItem value="사용자관리자">사용자관리자</MenuItem>
-                      <MenuItem value="통계관리자">통계관리자</MenuItem>
-                      <MenuItem value="컨텐츠관리자">컨텐츠관리자</MenuItem>
-                    </Select>
-                  </FormControl>
-                </TableCell>
-                <TableCell sx={{ display: { xs: 'none', lg: 'table-cell' } }}>
-                  <Chip 
-                    label={user.status === 'online' ? '온라인' : '오프라인'}
-                    color={user.status === 'online' ? 'success' : 'default'}
-                    size="small"
-                  />
-                </TableCell>
-                <TableCell sx={{ 
-                  fontSize: { xs: '12px', sm: '14px' },
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap'
-                }}>
-                  {user.lastLogin}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Box>
+          <div className="table-container">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th><CustomCheckbox size="small" /></th>
+                  <th>순번</th>
+                  <th>이름</th>
+                  <th>이메일</th>
+                  <th>권한</th>
+                  <th>상태</th>
+                  <th>비밀번호</th>
+                  <th>관리</th>
+                </tr>
+              </thead>
+              <tbody>
+                {userData.map((user, index) => (
+                  <tr key={user.id}>
+                    <td>
+                      <CustomCheckbox 
+                        size="small"
+                      />
+                    </td>
+                    <td>{index + 1}</td>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>
+                      <div className="permission-select-wrapper">
+                        <FormControl size="small" className="permission-select">
+                          <Select
+                            value={user.permission}
+                            onChange={(e) => handlePermissionChange(user.id, e.target.value)}
+                            variant="outlined"
+                          >
+                            <MenuItem value="회의관리자">회의관리자</MenuItem>
+                            <MenuItem value="로고관리자">로고관리자</MenuItem>
+                            <MenuItem value="사용자관리자">사용자관리자</MenuItem>
+                            <MenuItem value="통계관리자">통계관리자</MenuItem>
+                            <MenuItem value="컨텐츠관리자">컨텐츠관리자</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </div>
+                    </td>
+                    <td>
+                      <span className={`status ${user.status}`}>
+                        {user.status === 'online' ? '온라인' : '오프라인'}
+                      </span>
+                    </td>
+                    <td>
+                      <Button 
+                        variant="outlined"
+                        size="small"
+                        onClick={() => handlePasswordReset(user.id, user.name)}
+                        sx={{ 
+                          color: 'text.secondary', 
+                          fontSize: '12px',
+                          borderColor: 'grey.400',
+                          '&:hover': { 
+                            bgcolor: 'grey.100',
+                            borderColor: 'grey.400'
+                          }
+                        }}
+                      >
+                        초기화
+                      </Button>
+                    </td>
+                    <td>
+                      <Button 
+                        variant="outlined"
+                        size="small"
+                        onClick={() => handleDeleteUser(user.id, user.name)}
+                        sx={{ 
+                          color: 'error.main', 
+                          borderColor: 'error.main', 
+                          fontSize: '12px',
+                          '&:hover': { 
+                            bgcolor: 'error.light',
+                            color: 'white',
+                            borderColor: 'error.main'
+                          }
+                        }}
+                      >
+                        삭제
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </Layout>
   )
 }
 

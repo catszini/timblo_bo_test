@@ -44,9 +44,10 @@
         <h3>전체 시스템 관리</h3>
         <ul>
           <li><a href="workspace.html">워크스페이스 관리</a></li>
-          <li><a href="menu_setting.html">시스템 메뉴 관리</a></li>
-          <li><a href="system_user.html">관리자 지정</a></li>
-          <li><a href="group_setting.html">관리자 접근권한</a></li>
+          <li><a href="menu_setting.html">전체 메뉴 관리</a></li>
+          <li><a href="system_user.html">사용자 관리</a></li>
+          <li><a href="group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="system_setting_history.html">설정변경 이력</a></li>
           <li><a href="system_stats_usage.html" class="active">전체 시스템 사용 통계</a></li>
           <li><a href="system_stats_user.html">사용자별 사용 통계</a></li>
         </ul>
@@ -57,9 +58,10 @@
           <h3>워크스페이스 설정</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html">메뉴/정책 관리</a></li>
-          <li><a href="workspace_group_setting.html">메뉴 권한 설정</a></li>
-          <li><a href="user.html">사용자 조회</a></li>
+          <li><a href="workspace_permission.html">FO기능정책관리</a></li>
+          <li><a href="content_retention.html">컨텐츠 보존 관리</a></li>
+          <li><a href="workspace_group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 관리</a></li>
         </ul>
       </div>
@@ -93,25 +95,34 @@
         </ul>
       </div>
     </div>
-
     <div class="content">
       <div class="content-header">
-        <h1 class="breadcrumb">사용량 통계</h1>
+        <h1 class="breadcrumb">전체 시스템 사용 통계</h1>
       </div>
-
       <div class="content-body">
         <div class="search-section">
           <div class="">
             <div class="tb-left">
-              <div class="stats-head stats-head-row" style="margin-bottom: 7px;">
-                <div class="stats-title stats-title-bold">전체 AI 사용량 (시스템 전체)</div>
+
+              <div class="workspace-filter-row"
+                style="margin-bottom: 15px; display: flex; align-items: center; gap: 15px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <select class="condition-select" id="workspace-filter">
+                    <option value="all" selected>전체 워크스페이스</option>
+                    <option value="sk-telecom">SK Telecom</option>
+                    <option value="sk-hynix">SK Hynix</option>
+                    <option value="sk-es">SK E&S</option>
+                    <option value="sk-cc">SK C&C</option>
+                    <option value="sk-innovation">SK Innovation</option>
+                    <option value="sk-networks">SK Networks</option>
+                  </select>
+                </div>
                 <div class="stats-tabs period-toggle-wrap">
                   <button class="tab active period-toggle-active">월간</button>
                   <button class="tab period-toggle-inactive">연간</button>
                 </div>
               </div>
               <div class="period-row period-row-flex">
-                <span class="period-label">기간</span>
                 <select class="condition-select" id="su2-y1">
                   <option selected>2024년</option>
                   <option>2025년</option>
@@ -165,131 +176,295 @@
             </div>
 
           </div>
-          <div id="su2-result-text" class="result-text">2024년 08월 ~ 2025년 08월 시스템 전체 통계 결과</div>
+          <div id="su2-result-text" class="result-text">2024년 08월 ~ 2025년 08월 워크스페이스별 월간 통계 결과</div>
         </div>
 
-
-        <div class="table-container">
+        <!-- 월간 테이블 -->
+        <div class="table-container" id="monthly-table">
           <table>
             <thead>
               <tr>
+                <th>워크스페이스</th>
                 <th>월</th>
-                <th>STT 요청 건</th>
+                <th>STT 요청 건수</th>
                 <th>STT 요청 시간</th>
-                <th>STT 성공 건</th>
+                <th>STT 성공 건수</th>
                 <th>STT 성공 시간</th>
-                <th>STT 실패 건</th>
+                <th>STT 실패 건수</th>
                 <th>STT 실패 시간</th>
-                <th>LLM 요청 건</th>
+                <th>LLM 요청 건수</th>
                 <th>LLM 요청 Token</th>
-                <th>LLM 성공 건</th>
-                <th>LLM 실패 건</th>
+                <th>LLM 성공 건수</th>
+                <th>LLM 실패 건수</th>
               </tr>
             </thead>
             <tbody>
+              <!-- SK Telecom -->
               <tr>
-                <td>2025.08</td>
-                <td>128</td>
-                <td>143:11:14</td>
-                <td>84</td>
-                <td>107:50:24</td>
-                <td style="color:#EF4444;">44</td>
-                <td>35:20:50</td>
-                <td>130</td>
-                <td>7,496,816</td>
-                <td>130</td>
-                <td class="text-red">0</td>
+                <td rowspan="6">
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-teal">S</div>
+                    <span>SK Telecom</span>
+                  </div>
+                </td>
+                <td><strong>2024.08</strong></td>
+                <td>32건</td>
+                <td>12:30:45</td>
+                <td>30건</td>
+                <td>11:45:20</td>
+                <td>2건</td>
+                <td>0:45:25</td>
+                <td>28건</td>
+                <td>45,230</td>
+                <td>26건</td>
+                <td>2건</td>
               </tr>
               <tr>
-                <td>2025.07</td>
-                <td>226</td>
-                <td>115:29:48</td>
-                <td>170</td>
-                <td>107:46:28</td>
-                <td style="color:#EF4444;">56</td>
-                <td>07:43:20</td>
-                <td>178</td>
-                <td>8,150,898</td>
-                <td>178</td>
-                <td class="text-red">0</td>
+                <td><strong>2024.09</strong></td>
+                <td>45건</td>
+                <td>18:22:33</td>
+                <td>42건</td>
+                <td>17:30:18</td>
+                <td>3건</td>
+                <td>0:52:15</td>
+                <td>38건</td>
+                <td>62,480</td>
+                <td>35건</td>
+                <td>3건</td>
               </tr>
               <tr>
-                <td>2025.06</td>
-                <td>222</td>
-                <td>91:06:28</td>
-                <td>182</td>
-                <td>71:53:12</td>
-                <td style="color:#EF4444;">40</td>
-                <td>19:13:16</td>
-                <td>210</td>
-                <td>6,541,818</td>
-                <td>210</td>
-                <td class="text-red">0</td>
+                <td><strong>2024.10</strong></td>
+                <td>28건</td>
+                <td>15:45:12</td>
+                <td>26건</td>
+                <td>14:58:47</td>
+                <td>2건</td>
+                <td>0:46:25</td>
+                <td>24건</td>
+                <td>41,670</td>
+                <td>22건</td>
+                <td>2건</td>
               </tr>
               <tr>
-                <td>2025.05</td>
-                <td>214</td>
-                <td>136:58:14</td>
-                <td>204</td>
-                <td>133:02:34</td>
-                <td style="color:#EF4444;">10</td>
-                <td>03:55:40</td>
-                <td>210</td>
-                <td>11,865,258</td>
-                <td>210</td>
-                <td class="text-red">0</td>
+                <td><strong>2024.11</strong></td>
+                <td>56건</td>
+                <td>22:18:50</td>
+                <td>53건</td>
+                <td>21:25:35</td>
+                <td>3건</td>
+                <td>0:53:15</td>
+                <td>48건</td>
+                <td>78,920</td>
+                <td>45건</td>
+                <td>3건</td>
               </tr>
               <tr>
-                <td>2025.04</td>
-                <td>576</td>
-                <td>227:30:10</td>
-                <td>484</td>
-                <td>220:34:28</td>
-                <td style="color:#EF4444;">92</td>
-                <td>06:55:42</td>
-                <td>526</td>
-                <td>19,528,274</td>
-                <td>526</td>
-                <td class="text-red">0</td>
+                <td><strong>2024.12</strong></td>
+                <td>72건</td>
+                <td>28:45:23</td>
+                <td>68건</td>
+                <td>27:30:18</td>
+                <td>4건</td>
+                <td>1:15:05</td>
+                <td>62건</td>
+                <td>98,750</td>
+                <td>58건</td>
+                <td>4건</td>
               </tr>
               <tr>
-                <td>2025.03</td>
-                <td>1080</td>
-                <td>766:17:04</td>
-                <td>1032</td>
-                <td>744:11:22</td>
-                <td style="color:#EF4444;">46</td>
-                <td>18:55:12</td>
-                <td>1190</td>
-                <td>53,547,966</td>
-                <td>1190</td>
-                <td class="text-red">0</td>
+                <td><strong>2025.01</strong></td>
+                <td>38건</td>
+                <td>16:22:18</td>
+                <td>36건</td>
+                <td>15:45:43</td>
+                <td>2건</td>
+                <td>0:36:35</td>
+                <td>32건</td>
+                <td>52,840</td>
+                <td>30건</td>
+                <td>2건</td>
+              </tr>
+
+              <!-- SK Hynix -->
+              <tr>
+                <td rowspan="6">
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-indigo">S</div>
+                    <span>SK Hynix</span>
+                  </div>
+                </td>
+                <td><strong>2024.08</strong></td>
+                <td>18건</td>
+                <td>8:15:30</td>
+                <td>17건</td>
+                <td>7:45:15</td>
+                <td>1건</td>
+                <td>0:30:15</td>
+                <td>16건</td>
+                <td>28,450</td>
+                <td>15건</td>
+                <td>1건</td>
               </tr>
               <tr>
-                <td>2025.02</td>
-                <td>868</td>
-                <td>418:00:36</td>
-                <td>820</td>
-                <td>396:02:20</td>
-                <td style="color:#EF4444;">34</td>
-                <td>10:05:56</td>
-                <td>874</td>
-                <td>32,955,182</td>
-                <td>874</td>
-                <td class="text-red">0</td>
+                <td><strong>2024.09</strong></td>
+                <td>25건</td>
+                <td>12:45:22</td>
+                <td>24건</td>
+                <td>12:15:10</td>
+                <td>1건</td>
+                <td>0:30:12</td>
+                <td>22건</td>
+                <td>38,750</td>
+                <td>21건</td>
+                <td>1건</td>
               </tr>
               <tr>
-                <td>2025.01</td>
-                <td>218</td>
-                <td>132:49:26</td>
-                <td>204</td>
-                <td>132:45:12</td>
-                <td style="color:#EF4444;">14</td>
-                <td>00:04:14</td>
-                <td>72</td>
-                <td>4,876,518</td>
-                <td>72</td>
-                <td class="text-red">0</td>
+                <td><strong>2024.10</strong></td>
+                <td>42건</td>
+                <td>18:30:45</td>
+                <td>40건</td>
+                <td>17:45:30</td>
+                <td>2건</td>
+                <td>0:45:15</td>
+                <td>38건</td>
+                <td>62,180</td>
+                <td>36건</td>
+                <td>2건</td>
+              </tr>
+              <tr>
+                <td><strong>2024.11</strong></td>
+                <td>38건</td>
+                <td>16:22:33</td>
+                <td>36건</td>
+                <td>15:50:18</td>
+                <td>2건</td>
+                <td>0:32:15</td>
+                <td>34건</td>
+                <td>55,920</td>
+                <td>32건</td>
+                <td>2건</td>
+              </tr>
+              <tr>
+                <td><strong>2024.12</strong></td>
+                <td>54건</td>
+                <td>22:18:45</td>
+                <td>51건</td>
+                <td>21:30:22</td>
+                <td>3건</td>
+                <td>0:48:23</td>
+                <td>48건</td>
+                <td>78,640</td>
+                <td>45건</td>
+                <td>3건</td>
+              </tr>
+              <tr>
+                <td><strong>2025.01</strong></td>
+                <td>29건</td>
+                <td>13:45:20</td>
+                <td>28건</td>
+                <td>13:20:05</td>
+                <td>1건</td>
+                <td>0:25:15</td>
+                <td>26건</td>
+                <td>42,380</td>
+                <td>25건</td>
+                <td>1건</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 연간 테이블 -->
+        <div class="table-container" id="yearly-table" style="display: none;">
+          <table>
+            <thead>
+              <tr>
+                <th>워크스페이스</th>
+                <th>연도</th>
+                <th>STT 요청 건수</th>
+                <th>STT 요청 시간</th>
+                <th>STT 성공 건수</th>
+                <th>STT 성공 시간</th>
+                <th>STT 실패 건수</th>
+                <th>STT 실패 시간</th>
+                <th>LLM 요청 건수</th>
+                <th>LLM 요청 Token</th>
+                <th>LLM 성공 건수</th>
+                <th>LLM 실패 건수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- SK Telecom -->
+              <tr>
+                <td rowspan="5">
+                  <div class="workspace-name">
+                    <div class="workspace-icon color-teal">S</div>
+                    <span>SK Telecom</span>
+                  </div>
+                </td>
+                <td><strong>2021년</strong></td>
+                <td>486건</td>
+                <td>298:45:30</td>
+                <td>462건</td>
+                <td>285:20:15</td>
+                <td>24건</td>
+                <td>13:25:15</td>
+                <td>420건</td>
+                <td>685,470</td>
+                <td>395건</td>
+                <td>25건</td>
+              </tr>
+              <tr>
+                <td><strong>2022년</strong></td>
+                <td>642건</td>
+                <td>386:22:18</td>
+                <td>612건</td>
+                <td>368:45:12</td>
+                <td>30건</td>
+                <td>17:37:06</td>
+                <td>580건</td>
+                <td>948,750</td>
+                <td>548건</td>
+                <td>32건</td>
+              </tr>
+              <tr>
+                <td><strong>2023년</strong></td>
+                <td>758건</td>
+                <td>452:30:45</td>
+                <td>720건</td>
+                <td>430:15:30</td>
+                <td>38건</td>
+                <td>22:15:15</td>
+                <td>685건</td>
+                <td>1,124,680</td>
+                <td>652건</td>
+                <td>33건</td>
+              </tr>
+              <tr>
+                <td><strong>2024년</strong></td>
+                <td>824건</td>
+                <td>512:18:22</td>
+                <td>785건</td>
+                <td>487:30:18</td>
+                <td>39건</td>
+                <td>24:48:04</td>
+                <td>748건</td>
+                <td>1,224,970</td>
+                <td>712건</td>
+                <td>36건</td>
+              </tr>
+              <tr>
+                <td><strong>2025년</strong></td>
+                <td>994건</td>
+                <td>624:30:18</td>
+                <td>948건</td>
+                <td>594:15:45</td>
+                <td>46건</td>
+                <td>30:14:33</td>
+                <td>902건</td>
+                <td>1,478,620</td>
+                <td>860건</td>
+                <td>42건</td>
               </tr>
             </tbody>
           </table>
@@ -306,12 +481,92 @@
   </div>
 
   <script>
-    // 엑셀 다운로드 버튼 기능
+    // 탭 전환 및 엑셀 다운로드 기능
     document.addEventListener('DOMContentLoaded', function () {
+      // 탭 버튼들
+      const monthlyTab = document.querySelector('.workspace-filter-row .tab.active');
+      const yearlyTab = document.querySelector('.workspace-filter-row .tab.period-toggle-inactive');
+      const monthlyTable = document.getElementById('monthly-table');
+      const yearlyTable = document.getElementById('yearly-table');
+      const monthSelect = document.getElementById('su2-m1');
+      const monthSelect2 = document.getElementById('su2-m2');
+      const resultText = document.getElementById('su2-result-text');
+
+      // 월간 탭 클릭
+      monthlyTab.addEventListener('click', function () {
+        // 탭 활성화 상태 변경
+        monthlyTab.classList.add('active', 'period-toggle-active');
+        monthlyTab.classList.remove('period-toggle-inactive');
+        yearlyTab.classList.remove('active', 'period-toggle-active');
+        yearlyTab.classList.add('period-toggle-inactive');
+
+        // 테이블 전환
+        monthlyTable.style.display = 'block';
+        yearlyTable.style.display = 'none';
+
+        // 월 선택 필드 표시
+        monthSelect.style.display = 'inline-block';
+        monthSelect2.style.display = 'inline-block';
+
+        // 결과 텍스트 업데이트
+        resultText.textContent = '2024년 08월 ~ 2025년 08월 워크스페이스별 월간 통계 결과';
+      });
+
+      // 연간 탭 클릭
+      yearlyTab.addEventListener('click', function () {
+        // 탭 활성화 상태 변경
+        yearlyTab.classList.add('active', 'period-toggle-active');
+        yearlyTab.classList.remove('period-toggle-inactive');
+        monthlyTab.classList.remove('active', 'period-toggle-active');
+        monthlyTab.classList.add('period-toggle-inactive');
+
+        // 테이블 전환
+        monthlyTable.style.display = 'none';
+        yearlyTable.style.display = 'block';
+
+        // 월 선택 필드 숨기기
+        monthSelect.style.display = 'none';
+        monthSelect2.style.display = 'none';
+
+        // 결과 텍스트 업데이트
+        resultText.textContent = '2021년 ~ 2025년 워크스페이스별 연간 통계 결과';
+      });
+
+      // 워크스페이스 필터 기능
+      const workspaceFilter = document.getElementById('workspace-filter');
+      workspaceFilter.addEventListener('change', function () {
+        const selectedValue = this.value;
+        const rows = document.querySelectorAll('#monthly-table tbody tr, #yearly-table tbody tr');
+
+        rows.forEach(row => {
+          if (selectedValue === 'all') {
+            row.style.display = '';
+          } else {
+            const workspaceName = row.querySelector('.workspace-name span');
+            if (workspaceName) {
+              const name = workspaceName.textContent.toLowerCase();
+              const shouldShow = (
+                (selectedValue === 'sk-telecom' && name.includes('sk telecom')) ||
+                (selectedValue === 'sk-hynix' && name.includes('sk hynix')) ||
+                (selectedValue === 'sk-es' && name.includes('sk e&s')) ||
+                (selectedValue === 'sk-cc' && name.includes('sk c&c')) ||
+                (selectedValue === 'sk-innovation' && name.includes('sk innovation')) ||
+                (selectedValue === 'sk-networks' && name.includes('sk networks'))
+              );
+              row.style.display = shouldShow ? '' : 'none';
+            }
+          }
+        });
+      });
+
+      // 엑셀 다운로드 버튼 기능
       const excelBtn = document.querySelector('.btn[style*="color: #10B981"]');
       if (excelBtn && excelBtn.textContent.includes('엑셀 다운로드')) {
         excelBtn.addEventListener('click', function () {
-          alert('시스템 전체 사용량 통계 데이터를 엑셀로 다운로드합니다.');
+          const isMonthly = monthlyTable.style.display !== 'none';
+          const period = isMonthly ? '월간' : '연간';
+          const workspace = workspaceFilter.options[workspaceFilter.selectedIndex].text;
+          alert(`${workspace} ${period} 사용량 통계 데이터를 엑셀로 다운로드합니다.`);
           // 실제 다운로드 로직은 여기에 구현
         });
       }

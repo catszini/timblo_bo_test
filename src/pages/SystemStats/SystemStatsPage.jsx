@@ -1,481 +1,262 @@
 import React, { useState } from 'react'
 import {
-  Box,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Chip,
   FormControl,
   Select,
   MenuItem,
   TextField,
-  Button,
-  Avatar,
-  LinearProgress,
-  Pagination
+  Button
 } from '@mui/material'
+import Layout from '../../components/Layout/Layout'
 
 const systemStatsData = [
   {
     id: 1,
-    userName: '김태현',
-    email: 'taehyun.kim@sktelecom.com',
-    workspace: 'SK Telecom',
-    workspaceColor: '#14B8A6',
-    role: '시스템관리자',
-    loginCount: 142,
-    lastLogin: '2024-01-15 14:32',
-    meetingCount: 89,
-    meetingMinutes: 1340,
-    downloadCount: 45,
-    createdTemplates: 12,
-    usageScore: 95.2,
-    period: '2024-01'
+    order: 1,
+    workspace: '개발팀',
+    user: '김개발',
+    userInitial: '김',
+    userColor: 'color-blue',
+    newCount: 45,
+    editCount: 23,
+    deleteCount: 5,
+    totalCount: 73,
+    lastActivity: '25-01-15 14:30'
   },
   {
     id: 2,
-    userName: '이정우',
-    email: 'jungwoo.lee@skhynix.com',
-    workspace: 'SK Hynix',
-    workspaceColor: '#6366F1',
-    role: '운영자',
-    loginCount: 98,
-    lastLogin: '2024-01-15 11:20',
-    meetingCount: 67,
-    meetingMinutes: 980,
-    downloadCount: 23,
-    createdTemplates: 8,
-    usageScore: 78.5,
-    period: '2024-01'
+    order: 2,
+    workspace: '디자인팀',
+    user: '이디자인',
+    userInitial: '이',
+    userColor: 'color-green',
+    newCount: 38,
+    editCount: 19,
+    deleteCount: 3,
+    totalCount: 60,
+    lastActivity: '25-01-14 16:45'
   },
   {
     id: 3,
-    userName: '박서현',
-    email: 'seohyun.park@skcc.com',
-    workspace: 'SK C&C',
-    workspaceColor: '#F43F5E',
-    role: '담당자',
-    loginCount: 76,
-    lastLogin: '2024-01-15 09:15',
-    meetingCount: 34,
-    meetingMinutes: 456,
-    downloadCount: 15,
-    createdTemplates: 3,
-    usageScore: 65.8,
-    period: '2024-01'
+    order: 3,
+    workspace: '기획팀',
+    user: '박기획',
+    userInitial: '박',
+    userColor: 'color-orange',
+    newCount: 31,
+    editCount: 15,
+    deleteCount: 2,
+    totalCount: 48,
+    lastActivity: '25-01-13 11:20'
   },
   {
     id: 4,
-    userName: '최민준',
-    email: 'minjun.choi@skinnovation.com',
-    workspace: 'SK Innovation',
-    workspaceColor: '#10B981',
-    role: '개발자',
-    loginCount: 156,
-    lastLogin: '2024-01-15 16:45',
-    meetingCount: 123,
-    meetingMinutes: 2145,
-    downloadCount: 89,
-    createdTemplates: 25,
-    usageScore: 88.9,
-    period: '2024-01'
-  },
-  {
-    id: 5,
-    userName: '정유진',
-    email: 'jung.analyst@sknetworks.com',
-    workspace: 'SK Networks',
-    workspaceColor: '#F59E0B',
-    role: '분석가',
-    loginCount: 112,
-    lastLogin: '2024-01-15 13:10',
-    meetingCount: 78,
-    meetingMinutes: 1567,
-    downloadCount: 156,
-    createdTemplates: 15,
-    usageScore: 82.3,
-    period: '2024-01'
-  },
-  {
-    id: 6,
-    userName: '강마케팅',
-    email: 'kang.marketing@skbiopharm.com',
-    workspace: 'SK Biopharm',
-    workspaceColor: '#EC4899',
-    role: '마케팅',
-    loginCount: 87,
-    lastLogin: '2024-01-15 12:45',
-    meetingCount: 56,
-    meetingMinutes: 823,
-    downloadCount: 34,
-    createdTemplates: 7,
-    usageScore: 74.6,
-    period: '2024-01'
-  },
-  {
-    id: 7,
-    userName: '임재료',
-    email: 'lim.materials@skmaterials.com',
-    workspace: 'SK Materials',
-    workspaceColor: '#84CC16',
-    role: '연구원',
-    loginCount: 134,
-    lastLogin: '2024-01-15 14:15',
-    meetingCount: 92,
-    meetingMinutes: 1456,
-    downloadCount: 67,
-    createdTemplates: 18,
-    usageScore: 91.7,
-    period: '2024-01'
-  },
-  {
-    id: 8,
-    userName: '오보안',
-    email: 'oh.security@skshieldus.com',
-    workspace: 'SK Shieldus',
-    workspaceColor: '#F97316',
-    role: '보안전문가',
-    loginCount: 203,
-    lastLogin: '2024-01-15 17:30',
-    meetingCount: 145,
-    meetingMinutes: 2789,
-    downloadCount: 98,
-    createdTemplates: 31,
-    usageScore: 96.8,
-    period: '2024-01'
-  },
-  {
-    id: 9,
-    userName: '신기획',
-    email: 'shin.planning@sktelecom.com',
-    workspace: 'SK Telecom',
-    workspaceColor: '#14B8A6',
-    role: '기획자',
-    loginCount: 91,
-    lastLogin: '2024-01-15 11:50',
-    meetingCount: 62,
-    meetingMinutes: 934,
-    downloadCount: 28,
-    createdTemplates: 9,
-    usageScore: 79.4,
-    period: '2024-01'
-  },
-  {
-    id: 10,
-    userName: '유품질',
-    email: 'yu.quality@skhynix.com',
-    workspace: 'SK Hynix',
-    workspaceColor: '#6366F1',
-    role: '품질관리',
-    loginCount: 118,
-    lastLogin: '2024-01-15 15:40',
-    meetingCount: 83,
-    meetingMinutes: 1245,
-    downloadCount: 52,
-    createdTemplates: 14,
-    usageScore: 85.1,
-    period: '2024-01'
+    order: 4,
+    workspace: '개발팀',
+    user: '최개발자',
+    userInitial: '최',
+    userColor: 'color-purple',
+    newCount: 28,
+    editCount: 12,
+    deleteCount: 4,
+    totalCount: 44,
+    lastActivity: '25-01-12 09:15'
   }
 ]
 
-function SystemStatsPage() {
+const SystemStatsPage = () => {
+  const [stats, setStats] = useState(systemStatsData)
+  const [dateRange, setDateRange] = useState('')
+  const [workspaceFilter, setWorkspaceFilter] = useState('전체 워크스페이스')
+  const [activityFilter, setActivityFilter] = useState('전체 활동')
+  const [searchType, setSearchType] = useState('전체')
   const [searchTerm, setSearchTerm] = useState('')
-  const [pageSize, setPageSize] = useState(10)
-  const [roleFilter, setRoleFilter] = useState('전체')
-  const [workspaceFilter, setWorkspaceFilter] = useState('전체')
+  const [pageSize, setPageSize] = useState('10개씩 보기')
 
-  const formatTime = (minutes) => {
-    const hours = Math.floor(minutes / 60)
-    const mins = Math.floor(minutes % 60)
-    return `${hours}시간 ${mins}분`
+  const handleSearch = () => {
+    console.log('Search:', { dateRange, workspaceFilter, activityFilter, searchType, searchTerm })
   }
 
-  const getScoreColor = (score) => {
-    if (score >= 90) return '#10B981'
-    if (score >= 80) return '#F59E0B'
-    if (score >= 70) return '#EF4444'
-    return '#6B7280'
+  const handleExcelDownload = () => {
+    console.log('Excel download')
   }
 
   return (
-    <Box>
-      <Typography variant="h5" component="h1" gutterBottom>
-        사용자별 통계
-      </Typography>
+    <Layout className="page-system-stats stats-page">
+      <div className="content">
+        <div className="content-header">
+          <h1 className="breadcrumb">통계</h1>
+        </div>
 
-      {/* 검색 툴바 */}
-      <Box sx={{ mb: 2 }}>
-        <Box sx={{ 
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '12px',
-          width: '100%'
-        }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography sx={{ 
-              fontSize: '16px', 
-              fontWeight: 600, 
-              color: '#292A2B',
-              whiteSpace: 'nowrap'
-            }}>
-              총 {systemStatsData.length}개
-            </Typography>
-            <FormControl size="small" sx={{ minWidth: 80 }}>
-              <Select
-                value={pageSize}
-                onChange={(e) => setPageSize(e.target.value)}
-                sx={{ height: '36px' }}
-              >
-                <MenuItem value={10}>10개</MenuItem>
-                <MenuItem value={20}>20개</MenuItem>
-                <MenuItem value={50}>50개</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl size="small" sx={{ minWidth: 120 }}>
-              <Select
-                value={workspaceFilter}
-                onChange={(e) => setWorkspaceFilter(e.target.value)}
-                sx={{ height: '36px' }}
-              >
-                <MenuItem value="전체">전체</MenuItem>
-                <MenuItem value="SK Telecom">SK Telecom</MenuItem>
-                <MenuItem value="SK Hynix">SK Hynix</MenuItem>
-                <MenuItem value="SK C&C">SK C&C</MenuItem>
-                <MenuItem value="SK Innovation">SK Innovation</MenuItem>
-                <MenuItem value="SK Networks">SK Networks</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl size="small" sx={{ minWidth: 120 }}>
-              <Select
-                value={roleFilter}
-                onChange={(e) => setRoleFilter(e.target.value)}
-                sx={{ height: '36px' }}
-              >
-                <MenuItem value="전체">전체</MenuItem>
-                <MenuItem value="시스템관리자">시스템관리자</MenuItem>
-                <MenuItem value="운영자">운영자</MenuItem>
-                <MenuItem value="담당자">담당자</MenuItem>
-                <MenuItem value="개발자">개발자</MenuItem>
-                <MenuItem value="분석가">분석가</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-          
-          <Box sx={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 1,
-            marginLeft: 'auto'
-          }}>
-            <Button 
-              variant="text"
-              color="primary"
-              size="small"
-              sx={{ 
-                height: '36px'
-              }}
-            >
-              데이터 내보내기
-            </Button>
-            <Box sx={{ 
-              display: 'flex',
-              alignItems: 'center',
-              border: '1px solid #E5E5E5',
-              borderRadius: '8px',
-              overflow: 'hidden'
-            }}>
-              <FormControl size="small" sx={{ minWidth: 120 }}>
-                <Select
-                  value="userName"
-                  sx={{ 
-                    height: '36px',
-                    borderRadius: 0,
-                    '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&:hover .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
-                >
-                  <MenuItem value="userName">사용자명</MenuItem>
-                  <MenuItem value="email">이메일</MenuItem>
-                  <MenuItem value="workspace">워크스페이스</MenuItem>
-                </Select>
-              </FormControl>
-              <Box sx={{ width: '1px', height: '24px' }} />
-              <TextField
-                size="small"
-                placeholder="검색어를 입력하세요"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                sx={{ 
-                  width: 200,
-                  '& .MuiOutlinedInput-root': {
-                    height: '36px',
-                    borderRadius: 0,
-                    '& fieldset': { border: 'none' },
-                    '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' }}}}
-              />
-            </Box>
-            <Button 
-              variant="text"
-              color="primary" 
-              size="small"
-              sx={{ 
-                height: '36px',
-                minWidth: '60px'
-              }}
-            >
-              검색
-            </Button>
-          </Box>
-        </Box>
-      </Box>
-
-      {/* 테이블 */}
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>사용자</TableCell>
-              <TableCell>워크스페이스</TableCell>
-              <TableCell>역할</TableCell>
-              <TableCell>로그인 횟수</TableCell>
-              <TableCell>최종 로그인</TableCell>
-              <TableCell>회의 참석</TableCell>
-              <TableCell>회의 시간</TableCell>
-              <TableCell>다운로드</TableCell>
-              <TableCell>템플릿 생성</TableCell>
-              <TableCell>활용도</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {systemStatsData.map((stats) => (
-              <TableRow key={stats.id}>
-                <TableCell>
-                  <Box>
-                    <Typography sx={{ fontWeight: 500, fontSize: '14px' }}>
-                      {stats.userName}
-                    </Typography>
-                    <Typography sx={{ fontSize: '12px', color: '#6B7280' }}>
-                      {stats.email}
-                    </Typography>
-                  </Box>
-                </TableCell>
-                <TableCell>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Avatar 
-                      sx={{ 
-                        width: 24, 
-                        height: 24, 
-                        backgroundColor: stats.workspaceColor,
-                        fontSize: '12px',
-                        fontWeight: 600
-                      }}
-                    >
-                      S
-                    </Avatar>
-                    <Typography sx={{ fontSize: '14px', fontWeight: 500 }}>
-                      {stats.workspace}
-                    </Typography>
-                  </Box>
-                </TableCell>
-                <TableCell>
-                  <Chip 
-                    label={stats.role}
+        <div className="content-body">
+          {/* 검색 영역 */}
+          <div className="search-section">
+            <div className="common-topbar">
+              <div className="tb-left">
+                <div className="date-range-wrap">
+                  <span className="calendar-icon">📅</span>
+                  <TextField
+                    id="stats-range"
+                    className="date-range"
+                    placeholder="날짜 범위를 선택하세요"
+                    value={dateRange}
+                    onChange={(e) => setDateRange(e.target.value)}
+                    variant="outlined"
                     size="small"
-                    sx={{ 
-                      backgroundColor: 
-                        stats.role === '시스템관리자' ? '#fee2e2' :
-                        stats.role === '운영자' ? '#fef3c7' :
-                        stats.role === '개발자' ? '#dcfce7' :
-                        stats.role === '분석가' ? '#dbeafe' : '#f3f4f6',
-                      color: 
-                        stats.role === '시스템관리자' ? '#dc2626' :
-                        stats.role === '운영자' ? '#d97706' :
-                        stats.role === '개발자' ? '#16a34a' :
-                        stats.role === '분석가' ? '#2563eb' : '#6b7280'
-                    }}
+                    InputProps={{ readOnly: true }}
                   />
-                </TableCell>
-                <TableCell>
-                  <Typography sx={{ fontSize: '14px', fontWeight: 600 }}>
-                    {stats.loginCount}회
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography sx={{ fontSize: '14px' }}>
-                    {stats.lastLogin}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography sx={{ fontSize: '14px', fontWeight: 600 }}>
-                    {stats.meetingCount}회
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography sx={{ fontSize: '14px' }}>
-                    {formatTime(stats.meetingMinutes)}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography sx={{ fontSize: '14px', fontWeight: 600 }}>
-                    {stats.downloadCount}회
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography sx={{ fontSize: '14px', fontWeight: 600 }}>
-                    {stats.createdTemplates}개
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, width: 120 }}>
-                    <Typography sx={{ 
-                      fontSize: '14px', 
-                      fontWeight: 600, 
-                      minWidth: 45,
-                      color: getScoreColor(stats.usageScore)
-                    }}>
-                      {stats.usageScore}점
-                    </Typography>
-                    <Box sx={{ flexGrow: 1 }}>
-                      <LinearProgress 
-                        variant="determinate" 
-                        value={stats.usageScore} 
-                        sx={{
-                          height: 6,
-                          borderRadius: 3,
-                          '& .MuiLinearProgress-bar': {
-                            backgroundColor: getScoreColor(stats.usageScore)}}}
-                      />
-                    </Box>
-                  </Box>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                  <div className="range-panel" id="stats-panel">
+                    <div className="calendar-range">
+                      <div className="calendar" id="stats-cal-start"></div>
+                      <div className="calendar" id="stats-cal-end"></div>
+                    </div>
+                    <div className="range-panel-info">
+                      <span id="stats-picked">-</span>
+                      <div className="range-actions">
+                        <button className="btn-outline" id="stats-cancel">취소</button>
+                        <button className="btn-submit" id="stats-apply">적용</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <FormControl size="small" className="condition-select">
+                  <Select
+                    value={workspaceFilter}
+                    onChange={(e) => setWorkspaceFilter(e.target.value)}
+                    variant="outlined"
+                  >
+                    <MenuItem value="전체 워크스페이스">전체 워크스페이스</MenuItem>
+                    <MenuItem value="개발팀">개발팀</MenuItem>
+                    <MenuItem value="디자인팀">디자인팀</MenuItem>
+                    <MenuItem value="기획팀">기획팀</MenuItem>
+                  </Select>
+                </FormControl>
+                
+                <FormControl size="small" className="condition-select">
+                  <Select
+                    value={activityFilter}
+                    onChange={(e) => setActivityFilter(e.target.value)}
+                    variant="outlined"
+                  >
+                    <MenuItem value="전체 활동">전체 활동</MenuItem>
+                    <MenuItem value="신규 생성">신규 생성</MenuItem>
+                    <MenuItem value="변경">변경</MenuItem>
+                    <MenuItem value="삭제">삭제</MenuItem>
+                  </Select>
+                </FormControl>
+                
+                <FormControl size="small" className="condition-select">
+                  <Select
+                    value={searchType}
+                    onChange={(e) => setSearchType(e.target.value)}
+                    variant="outlined"
+                  >
+                    <MenuItem value="전체">전체</MenuItem>
+                    <MenuItem value="사용자명">사용자명</MenuItem>
+                    <MenuItem value="이메일">이메일</MenuItem>
+                  </Select>
+                </FormControl>
+                
+                <TextField
+                  placeholder="검색어를 입력해주세요."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  variant="outlined"
+                  size="small"
+                  className="search-input-field"
+                />
+                
+                <Button 
+                  variant="contained"
+                  onClick={handleSearch}
+                  className="search-btn"
+                >
+                  조회
+                </Button>
+              </div>
+              
+              <div className="tb-right tb-right-full">
+                <div className="right-tail">
+                  <button 
+                    className="btn"
+                    style={{
+                      backgroundColor: '#10B981',
+                      color: 'white',
+                      border: '1px solid #10B981',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}
+                    onClick={handleExcelDownload}
+                  >
+                    엑셀 다운로드
+                  </button>
+                  
+                  <FormControl size="small" className="condition-select">
+                    <Select
+                      value={pageSize}
+                      onChange={(e) => setPageSize(e.target.value)}
+                      variant="outlined"
+                    >
+                      <MenuItem value="10개씩 보기">10개씩 보기</MenuItem>
+                      <MenuItem value="20개씩 보기">20개씩 보기</MenuItem>
+                      <MenuItem value="50개씩 보기">50개씩 보기</MenuItem>
+                    </Select>
+                  </FormControl>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      {/* 페이지네이션 */}
-      <Box sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        mt: 3 
-      }}>
-        <Pagination 
-          count={5} 
-          page={1} 
-          shape="rounded"
-          showFirstButton={false}
-          showLastButton={false}
-        />
-      </Box>
-    </Box>
+          {/* 테이블 */}
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>순번</th>
+                  <th>워크스페이스</th>
+                  <th>사용자</th>
+                  <th>신규 생성</th>
+                  <th>변경</th>
+                  <th>삭제</th>
+                  <th>총 활동</th>
+                  <th>최근 활동일</th>
+                </tr>
+              </thead>
+              <tbody>
+                {stats.map((stat) => (
+                  <tr key={stat.id}>
+                    <td>{stat.order}</td>
+                    <td>
+                      <span className="workspace-badge">{stat.workspace}</span>
+                    </td>
+                    <td>
+                      <div className="user-icon">
+                        <div className={`user-initial ${stat.userColor}`}>{stat.userInitial}</div>
+                        <span>{stat.user}</span>
+                      </div>
+                    </td>
+                    <td>
+                      <span className="stats-count new">{stat.newCount}</span>
+                    </td>
+                    <td>
+                      <span className="stats-count edit">{stat.editCount}</span>
+                    </td>
+                    <td>
+                      <span className="stats-count delete">{stat.deleteCount}</span>
+                    </td>
+                    <td>
+                      <span className="stats-count total">{stat.totalCount}</span>
+                    </td>
+                    <td>{stat.lastActivity}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </Layout>
   )
 }
 

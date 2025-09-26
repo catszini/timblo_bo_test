@@ -4,10 +4,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>시스템관리 - 권한 관리 - 메뉴관리</title>
+  <title>시스템관리 - 권한 관리 - 메뉴 관리</title>
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
   <style>
+    /* 탭 스타일 */
+    .tab-container {
+      border-bottom: 1px solid #e5e7eb;
+      margin-bottom: 20px;
+    }
+
+    .tab-list {
+      display: flex;
+      gap: 0;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .tab-button {
+      padding: 12px 24px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: #6b7280;
+      transition: all 0.2s ease;
+    }
+
+    .tab-button.active {
+      color: #1976d2;
+      border-bottom-color: #1976d2;
+    }
+
+    .tab-button:hover {
+      color: #1976d2;
+      background: rgba(25, 118, 210, 0.04);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
     /* 메뉴 테이블 스타일 */
     .menu-table .menu-action-buttons {
       justify-content: center;
@@ -250,9 +294,10 @@
         <h3>전체 시스템 관리</h3>
         <ul>
           <li><a href="workspace.html">워크스페이스 관리</a></li>
-          <li><a href="menu_setting.html" class="active">시스템 메뉴 관리</a></li>
-          <li><a href="system_user.html">관리자 지정</a></li>
-          <li><a href="group_setting.html">관리자 접근권한</a></li>
+          <li><a href="menu_setting.html" class="active">전체 메뉴 관리</a></li>
+          <li><a href="system_user.html">사용자 관리</a></li>
+          <li><a href="group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="system_setting_history.html">설정변경 이력</a></li>
           <li><a href="system_stats_usage.html">전체 시스템 사용 통계</a></li>
           <li><a href="system_stats_user.html">사용자별 사용 통계</a></li>
         </ul>
@@ -263,9 +308,10 @@
           <h3>워크스페이스 설정</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html">메뉴/정책 관리</a></li>
-          <li><a href="workspace_group_setting.html">메뉴 권한 설정</a></li>
-          <li><a href="user.html">사용자 조회</a></li>
+          <li><a href="workspace_permission.html">FO기능정책관리</a></li>
+          <li><a href="content_retention.html">컨텐츠 보존 관리</a></li>
+          <li><a href="workspace_group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 관리</a></li>
         </ul>
       </div>
@@ -304,394 +350,549 @@
     <div class="content menu-setting-page">
       <div class="content-header">
         <h1 class="breadcrumb">
-          메뉴 생성 관리
+          전체 메뉴 관리
         </h1>
       </div>
       <div class="content-body">
-        <!-- 메뉴 관리 헤더 -->
-        <div class="menu-title-header">
-          <div class="menu-title-section">
-            <h3 class="menu-subtitle">메뉴 관리</h3>
-            <div class="workspace-selector">
-              <div class="combo-select">
-                <select id="workspaceSelect" class="workspace-select">
-                  <option value="all">전체 워크스페이스</option>
-                  <option value="sk-telecom">SK Telecom</option>
-                  <option value="sk-hynix">SK Hynix</option>
-                  <option value="sk-on">SK On</option>
-                  <option value="timbel-mk">Timbel_Mk</option>
-                  <option value="timbel-sol">Timbel_sol</option>
-                </select>
-                <img src="../asset/select-arrow.svg" alt="선택" class="select-arrow">
-              </div>
+        <!-- 탭 네비게이션 -->
+        <div class="tab-container">
+          <ul class="tab-list">
+            <li>
+              <button class="tab-button" data-tab="system-menu">시스템 메뉴 관리</button>
+            </li>
+            <li>
+              <button class="tab-button active" data-tab="workspace-menu">워크스페이스 메뉴 관리</button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 전체 메뉴 관리 탭 -->
+        <div id="system-menu" class="tab-content">
+          <div class="menu-title-header">
+            <div class="menu-title-section">
+              <h3 class="menu-subtitle">시스템 메뉴 관리</h3>
+              <span class="menu-count">총 6개 메뉴</span>
+            </div>
+            <div class="menu-action-buttons">
+              <button class="delete-btn">삭제</button>
+              <button class="edit-btn">수정</button>
+              <button class="new-button">생성</button>
             </div>
           </div>
-          <div class="menu-action-section">
-            <div class="menu-action-buttons">
-              <button class="btn-reset">초기화</button>
-              <button class="btn-save">저장</button>
-              <button class="btn-submit" id="newMenuBtn">+ 새 메뉴</button>
-            </div>
+
+          <div class="table-container">
+            <table class="menu-table">
+              <thead>
+                <tr>
+                  <th><input type="checkbox" class="select-all"></th>
+                  <th>메뉴명</th>
+                  <th>URL</th>
+                  <th>순서</th>
+                  <th>사용여부</th>
+                  <th>관리</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td>워크스페이스 관리</td>
+                  <td>workspace.html</td>
+                  <td>1</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>
+                    <button class="edit-btn small">수정</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td>전체 메뉴 관리</td>
+                  <td>menu_setting.html</td>
+                  <td>2</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>
+                    <button class="edit-btn small">수정</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td>사용자 관리</td>
+                  <td>system_user.html</td>
+                  <td>3</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>
+                    <button class="edit-btn small">수정</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td>메뉴 권한 관리</td>
+                  <td>group_setting.html</td>
+                  <td>4</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>
+                    <button class="edit-btn small">수정</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td>전체 시스템 사용 통계</td>
+                  <td>system_stats_usage.html</td>
+                  <td>5</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>
+                    <button class="edit-btn small">수정</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td>사용자별 사용 통계</td>
+                  <td>system_stats_user.html</td>
+                  <td>6</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>
+                    <button class="edit-btn small">수정</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
-        <!-- 메뉴 테이블 -->
-        <div class="table-container">
-          <table class="menu-table">
-            <thead>
-              <tr>
-                <th width="300">메뉴명</th>
-                <th width="100">사용여부</th>
-                <th width="350">URL</th>
-                <th width="140">수정/삭제</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- 워크스페이스 메뉴들 -->
-              <tr>
-                <td>기능 권한 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>workspace_permission.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>메뉴리스트 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>workspace_menu_setting.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>메뉴 권한 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>workspace_group_setting.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>사용자 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>user.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>로고 이미지 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>logo.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>회의 템플릿 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>meet_template.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>프롬프트 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>prompt.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>동의서 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>consent.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>캘린더 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>calendar.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>사용자 접속 이력</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>login_history.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>다운로드 이력</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>download_history.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>사용자 동의 이력</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>user_consent_history.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>설정변경 이력</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>setting_change_history.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>회의록 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>meeting.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>사전 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>dictionary.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>공지사항 관리</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>notice.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>사용량 통계</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>stats_usage.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>사용자별 통계</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
-                <td>stats_user.html</td>
-                <td>
-                  <div class="menu-action-buttons">
-                    <button class="btn-edit">수정</button>
-                    <button class="btn-delete">삭제</button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- 워크스페이스 메뉴 관리 탭 -->
+        <div id="workspace-menu" class="tab-content active">
+          <!-- 메뉴 관리 헤더 -->
+          <div class="menu-title-header">
+            <div class="menu-title-section">
+              <h3 class="menu-subtitle">메뉴 관리</h3>
+              <div class="workspace-selector">
+                <div class="combo-select">
+                  <select id="workspaceSelect" class="workspace-select">
+                    <option value="all">워크스페이스 목록</option>
+                    <option value="sk-telecom">SK Telecom</option>
+                    <option value="sk-hynix">SK Hynix</option>
+                    <option value="sk-on">SK On</option>
+                    <option value="timbel-mk">Timbel_Mk</option>
+                    <option value="timbel-sol">Timbel_sol</option>
+                  </select>
+                  <img src="../asset/select-arrow.svg" alt="선택" class="select-arrow">
+                </div>
+              </div>
+            </div>
+            <div class="menu-action-section">
+              <div class="menu-action-buttons">
+                <button class="btn-reset">초기화</button>
+                <button class="btn-save">저장</button>
+                <button class="btn-submit" id="newMenuBtn">+ 새 메뉴</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 메뉴 테이블 -->
+          <div class="table-container">
+            <table class="menu-table">
+              <thead>
+                <tr>
+                  <th width="300">메뉴명</th>
+                  <th width="100">사용여부</th>
+                  <th width="350">URL</th>
+                  <th width="140">수정/삭제</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- 워크스페이스 메뉴들 -->
+                <tr>
+                  <td>기능 권한 관리</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>workspace_permission.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>메뉴리스트 관리</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>workspace_menu_setting.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>메뉴 권한 관리</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>workspace_group_setting.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>사용자 관리</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>user.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>로고 이미지 관리</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>logo.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>회의 템플릿 관리</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>meet_template.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>프롬프트 관리</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>prompt.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>동의서 관리</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>consent.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>캘린더 관리</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>calendar.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>사용자 접속 이력</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>login_history.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>다운로드 이력</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>download_history.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>사용자 동의 이력</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>user_consent_history.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>설정변경 이력</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>setting_change_history.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>회의록 관리</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>meeting.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>사전 관리</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>dictionary.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>공지사항 관리</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>notice.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>사용량 통계</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>stats_usage.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>사용자별 통계</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>stats_user.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 메뉴 정보 모달 -->
+    <div class="modal-overlay modal-overlay-hidden" id="menuInfoModal">
+      <div class="modal-container" style="width: 600px; max-width: 90vw; min-height: 500px;">
+        <div class="modal-header">
+          <div class="header-content">
+            <div class="header-text">
+              <h3 style="font-size: 18px; margin: 0;">새메뉴</h3>
+            </div>
+            <button class="btn-close" id="menuModalClose">
+              <img src="../asset/close-icon.svg" alt="닫기">
+            </button>
+          </div>
+        </div>
+        <div class="modal-content" style="padding: 32px;">
+          <div class="form-row" style="margin-bottom: 24px;">
+            <div class="form-group" style="margin-right: 16px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600;">메뉴명</label>
+              <input type="text" class="form-input" placeholder="메뉴명을 입력하세요" style="width: 100%; padding: 12px;" />
+            </div>
+
+          </div>
+          <div class="form-row" style="margin-bottom: 24px;">
+            <div class="form-group full-width">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600;">링크 URL</label>
+              <input type="text" class="form-input" style="width: 100%; padding: 12px;"
+                placeholder="페이지 경로 또는 URL을 입력하세요 (예: /admin/workspace.html, https://example.com)" />
+            </div>
+          </div>
+          <div class="form-row" style="margin-bottom: 24px;">
+            <div class="form-group full-width">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600;">그룹 설정</label>
+              <div class="combo-select" style="width: 100%;">
+                <div>
+                  <select id="groupSelect"
+                    style="width: 100%; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; background-color: white;">
+                    <option value="">그룹을 선택하세요</option>
+                    <option value="workspace-setting">워크스페이스 설정</option>
+                    <option value="feature-management">세부 기능 관리</option>
+                    <option value="history-stats">이력/통계 관리</option>
+                  </select>
+                  <img src="../asset/select-arrow.svg" alt="선택 화살표" class="select-arrow">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row" style="margin-bottom: 24px;">
+            <div class="form-group">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600;">정렬 순서</label>
+              <input type="number" class="form-input" placeholder="1" min="1" style="width: 100%; padding: 12px;" />
+            </div>
+          </div>
+          <div class="form-row" style="margin-bottom: 24px;">
+            <div class="form-group full-width">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600;">사용 여부</label>
+              <div class="toggle-buttons">
+                <button class="toggle-btn active">사용</button>
+                <button class="toggle-btn">미사용</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer" style="padding: 24px 32px 32px 32px; display: flex; gap: 16px;">
+          <button class="btn-cancel" id="menuModalCancel" style="flex: 1; padding: 12px; font-size: 16px;">취소</button>
+          <button class="btn-submit" id="menuModalSave" style="flex: 1; padding: 12px; font-size: 16px;">저장</button>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- 메뉴 정보 모달 -->
-  <div class="modal-overlay modal-overlay-hidden" id="menuInfoModal">
-    <div class="modal-container" style="width: 600px; max-width: 90vw; min-height: 500px;">
-      <div class="modal-header">
-        <div class="header-content">
-          <div class="header-text">
-            <h3 style="font-size: 18px; margin: 0;">새메뉴</h3>
-          </div>
-          <button class="btn-close" id="menuModalClose">
-            <img src="../asset/close-icon.svg" alt="닫기">
-          </button>
-        </div>
-      </div>
-      <div class="modal-content" style="padding: 32px;">
-        <div class="form-row" style="margin-bottom: 24px;">
-          <div class="form-group" style="margin-right: 16px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600;">메뉴명</label>
-            <input type="text" class="form-input" placeholder="메뉴명을 입력하세요" style="width: 100%; padding: 12px;" />
-          </div>
-
-        </div>
-        <div class="form-row" style="margin-bottom: 24px;">
-          <div class="form-group full-width">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600;">링크 URL</label>
-            <input type="text" class="form-input" style="width: 100%; padding: 12px;"
-              placeholder="페이지 경로 또는 URL을 입력하세요 (예: /admin/workspace.html, https://example.com)" />
-          </div>
-        </div>
-        <div class="form-row" style="margin-bottom: 24px;">
-          <div class="form-group">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600;">정렬 순서</label>
-            <input type="number" class="form-input" placeholder="1" min="1" style="width: 100%; padding: 12px;" />
-          </div>
-        </div>
-        <div class="form-row" style="margin-bottom: 24px;">
-          <div class="form-group full-width">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600;">사용 여부</label>
-            <div class="toggle-buttons">
-              <button class="toggle-btn active">사용</button>
-              <button class="toggle-btn">미사용</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer" style="padding: 24px 32px 32px 32px; display: flex; gap: 16px;">
-        <button class="btn-cancel" id="menuModalCancel" style="flex: 1; padding: 12px; font-size: 16px;">취소</button>
-        <button class="btn-submit" id="menuModalSave" style="flex: 1; padding: 12px; font-size: 16px;">저장</button>
-      </div>
-    </div>
   </div>
 
   <script>
@@ -801,6 +1002,26 @@
             row.remove();
             alert('메뉴가 삭제되었습니다.');
           }
+        });
+      });
+
+      // 탭 전환 기능
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const targetTab = button.getAttribute('data-tab');
+
+          // 모든 탭 버튼에서 active 클래스 제거
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          // 클릭된 버튼에 active 클래스 추가
+          button.classList.add('active');
+
+          // 모든 탭 콘텐츠 숨기기
+          tabContents.forEach(content => content.classList.remove('active'));
+          // 선택된 탭 콘텐츠 보이기
+          document.getElementById(targetTab).classList.add('active');
         });
       });
     });

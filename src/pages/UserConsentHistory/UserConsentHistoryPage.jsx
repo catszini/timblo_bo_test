@@ -1,309 +1,86 @@
 import React, { useState } from 'react'
 import {
-  Box,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Chip,
   FormControl,
   Select,
   MenuItem,
   TextField,
-  Button,
-  Avatar,
-  Pagination
+  Button
 } from '@mui/material'
+import Layout from '../../components/Layout/Layout'
 
-const userConsentHistoryData = [
-  {
-    id: 1,
-    userName: '서원준',
-    email: 'wonjun.seo@sktelecom.com',
-    workspace: 'SK Telecom',
-    workspaceColor: '#14B8A6',
-    consentTitle: '개인정보 수집 및 이용 동의서',
-    consentVersion: 'v2.1',
-    consentType: '필수',
-    action: '동의',
-    actionTime: '2024-01-15 14:32:15',
-    ipAddress: '192.168.1.101',
-    device: 'Chrome (Windows)'
-  },
-  {
-    id: 2,
-    userName: '한소율',
-    email: 'soyul.han@skhynix.com',
-    workspace: 'SK Hynix',
-    workspaceColor: '#6366F1',
-    consentTitle: '마케팅 정보 수신 동의서',
-    consentVersion: 'v1.3',
-    consentType: '선택',
-    action: '거부',
-    actionTime: '2024-01-15 11:20:44',
-    ipAddress: '192.168.1.205',
-    device: 'Safari (macOS)'
-  },
-  {
-    id: 3,
-    userName: '오준혁',
-    email: 'junhyuk.oh@skcc.com',
-    workspace: 'SK C&C',
-    workspaceColor: '#F43F5E',
-    consentTitle: '위치 정보 활용 동의서',
-    consentVersion: 'v1.0',
-    consentType: '선택',
-    action: '동의철회',
-    actionTime: '2024-01-15 09:15:22',
-    ipAddress: '192.168.1.78',
-    device: 'Edge (Windows)'
-  },
-  {
-    id: 4,
-    userName: '남예은',
-    email: 'yeeun.nam@skinnovation.com',
-    workspace: 'SK Innovation',
-    workspaceColor: '#10B981',
-    consentTitle: '제3자 정보 제공 동의서',
-    consentVersion: 'v2.0',
-    consentType: '필수',
-    action: '재동의',
-    actionTime: '2024-01-14 16:45:33',
-    ipAddress: '192.168.1.156',
-    device: 'Firefox (Linux)'
-  }
-]
-
-function UserConsentHistoryPage() {
+const UserConsentHistoryPage = () => {
   const [searchTerm, setSearchTerm] = useState('')
-  const [pageSize, setPageSize] = useState(10)
-  const [actionFilter, setActionFilter] = useState('전체')
+  const [dateRange, setDateRange] = useState('')
 
   return (
-    <Box>
-      <Typography variant="h5" component="h1" gutterBottom>
-        사용자 동의 이력
-      </Typography>
-
-      {/* 검색 툴바 */}
-      <Box sx={{ mb: 2 }}>
-        <Box sx={{ 
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '12px',
-          width: '100%'
-        }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography sx={{ 
-              fontSize: '16px', 
-              fontWeight: 600, 
-              color: '#292A2B',
-              whiteSpace: 'nowrap'
-            }}>
-              총 {userConsentHistoryData.length}개
-            </Typography>
-            <FormControl size="small" sx={{ minWidth: 80 }}>
-              <Select
-                value={pageSize}
-                onChange={(e) => setPageSize(e.target.value)}
-                sx={{ height: '36px' }}
-              >
-                <MenuItem value={10}>10개</MenuItem>
-                <MenuItem value={20}>20개</MenuItem>
-                <MenuItem value={50}>50개</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl size="small" sx={{ minWidth: 120 }}>
-              <Select
-                value={actionFilter}
-                onChange={(e) => setActionFilter(e.target.value)}
-                sx={{ height: '36px' }}
-              >
-                <MenuItem value="전체">전체</MenuItem>
-                <MenuItem value="동의">동의</MenuItem>
-                <MenuItem value="거부">거부</MenuItem>
-                <MenuItem value="동의철회">동의철회</MenuItem>
-                <MenuItem value="재동의">재동의</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-          
-          <Box sx={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 1,
-            marginLeft: 'auto'
-          }}>
-            <Box sx={{ 
-              display: 'flex',
-              alignItems: 'center',
-              border: '1px solid #E5E5E5',
-              borderRadius: '8px',
-              overflow: 'hidden'
-            }}>
-              <FormControl size="small" sx={{ minWidth: 120 }}>
-                <Select
-                  value="userName"
-                  sx={{ 
-                    height: '36px',
-                    borderRadius: 0,
-                    '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&:hover .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
-                >
-                  <MenuItem value="userName">사용자명</MenuItem>
-                  <MenuItem value="email">이메일</MenuItem>
-                  <MenuItem value="consentTitle">동의서명</MenuItem>
-                </Select>
-              </FormControl>
-              <Box sx={{ width: '1px', height: '24px' }} />
-              <TextField
-                size="small"
-                placeholder="검색어를 입력하세요"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                sx={{ 
-                  width: 200,
-                  '& .MuiOutlinedInput-root': {
-                    height: '36px',
-                    borderRadius: 0,
-                    '& fieldset': { border: 'none' },
-                    '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' }}}}
-              />
-            </Box>
-            <Button 
-              variant="text"
-              color="primary" 
-              size="small"
-              sx={{ 
-                height: '36px',
-                minWidth: '60px'
-              }}
-            >
-              검색
-            </Button>
-          </Box>
-        </Box>
-      </Box>
-
-      {/* 테이블 */}
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>사용자</TableCell>
-              <TableCell>워크스페이스</TableCell>
-              <TableCell>동의서</TableCell>
-              <TableCell>버전</TableCell>
-              <TableCell>유형</TableCell>
-              <TableCell>행동</TableCell>
-              <TableCell>처리 시간</TableCell>
-              <TableCell>IP 주소</TableCell>
-              <TableCell>디바이스</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {userConsentHistoryData.map((history) => (
-              <TableRow key={history.id}>
-                <TableCell>
-                  <Box>
-                    <Typography sx={{ fontWeight: 500, fontSize: '14px' }}>
-                      {history.userName}
-                    </Typography>
-                    <Typography sx={{ fontSize: '12px', color: '#6B7280' }}>
-                      {history.email}
-                    </Typography>
-                  </Box>
-                </TableCell>
-                <TableCell>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Avatar 
-                      sx={{ 
-                        width: 24, 
-                        height: 24, 
-                        backgroundColor: history.workspaceColor,
-                        fontSize: '12px',
-                        fontWeight: 600
-                      }}
-                    >
-                      S
-                    </Avatar>
-                    <Typography sx={{ fontSize: '14px', fontWeight: 500 }}>
-                      {history.workspace}
-                    </Typography>
-                  </Box>
-                </TableCell>
-                <TableCell>
-                  <Typography sx={{ fontSize: '14px', fontWeight: 500 }}>
-                    {history.consentTitle}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Chip 
-                    label={history.consentVersion}
+    <Layout className="page-user-consent-history">
+      <div className="content">
+        <div className="content-header">
+          <h1 className="breadcrumb">사용자 동의 이력</h1>
+        </div>
+        <div className="content-body">
+          <div className="search-section">
+            <div className="common-topbar">
+              <div className="tb-left">
+                <div className="date-range-wrap">
+                  <span className="calendar-icon">📅</span>
+                  <TextField
+                    className="date-range"
+                    placeholder="날짜 범위를 선택하세요"
+                    value={dateRange}
+                    onChange={(e) => setDateRange(e.target.value)}
+                    variant="outlined"
                     size="small"
-                    sx={{ color: '#0066FF' }}
+                    InputProps={{ readOnly: true }}
                   />
-                </TableCell>
-                <TableCell>
-                  <Chip 
-                    label={history.consentType}
-                    color={history.consentType === '필수' ? 'error' : 'default'}
-                    size="small"
-                  />
-                </TableCell>
-                <TableCell>
-                  <Chip 
-                    label={history.action}
-                    color={
-                      history.action === '동의' || history.action === '재동의' ? 'success' : 
-                      history.action === '거부' || history.action === '동의철회' ? 'error' : 'default'
-                    }
-                    size="small"
-                  />
-                </TableCell>
-                <TableCell>
-                  <Typography sx={{ fontSize: '14px' }}>
-                    {history.actionTime}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography sx={{ fontSize: '14px', fontFamily: 'monospace' }}>
-                    {history.ipAddress}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography sx={{ fontSize: '14px' }}>
-                    {history.device}
-                  </Typography>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      {/* 페이지네이션 */}
-      <Box sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        mt: 3 
-      }}>
-        <Pagination 
-          count={5} 
-          page={1} 
-          shape="rounded"
-          showFirstButton={false}
-          showLastButton={false}
-        />
-      </Box>
-    </Box>
+                </div>
+              </div>
+              <div className="tb-right">
+                <FormControl size="small">
+                  <Select variant="outlined" defaultValue="전체">
+                    <MenuItem value="전체">전체</MenuItem>
+                    <MenuItem value="사용자">사용자</MenuItem>
+                    <MenuItem value="동의서">동의서</MenuItem>
+                  </Select>
+                </FormControl>
+                <TextField
+                  placeholder="검색어를 입력해주세요."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  variant="outlined"
+                  size="small"
+                />
+                <Button variant="contained">조회</Button>
+              </div>
+            </div>
+          </div>
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>사용자</th>
+                  <th>이메일</th>
+                  <th>동의서명</th>
+                  <th>동의 상태</th>
+                  <th>동의 시간</th>
+                  <th>IP 주소</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>김철수</td>
+                  <td>kim@sktelecom.com</td>
+                  <td>개인정보 수집 이용 동의</td>
+                  <td>동의</td>
+                  <td>2024-03-20 09:15:30</td>
+                  <td>192.168.1.100</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </Layout>
   )
 }
 

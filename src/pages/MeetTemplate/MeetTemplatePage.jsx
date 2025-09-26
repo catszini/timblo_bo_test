@@ -1,16 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import {
-  Box,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Chip,
   FormControl,
   Select,
   MenuItem,
@@ -21,702 +10,582 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  Grid,
-  Divider,
-  IconButton,
-  Card,
-  CardContent,
-  Pagination
+  ButtonGroup
 } from '@mui/material'
-import { Close, Add, Edit, Delete, Visibility } from '@mui/icons-material'
+import Layout from '../../components/Layout/Layout'
 
-const templateData = [
-  {
-    id: 1,
-    category: '업무',
-    title: '주간 업무 보고 템플릿',
-    usageCount: 120,
-    status: '사용중',
-    modifier: '김철수',
-    lastModified: '2024-01-10'
-  },
-  {
-    id: 2,
-    category: '기획',
-    title: '신규 프로젝트 기획 템플릿',
-    usageCount: 85,
-    status: '사용중',
-    modifier: '이영희',
-    lastModified: '2024-01-08'
-  },
-  {
-    id: 3,
-    category: '회의',
-    title: '정기 회의록 템플릿',
-    usageCount: 200,
-    status: '사용중',
-    modifier: '박민수',
-    lastModified: '2024-01-12'
-  },
-  {
-    id: 4,
-    category: '교육',
-    title: '신입 사원 교육 템플릿',
-    usageCount: 30,
-    status: '미사용',
-    modifier: '최지영',
-    lastModified: '2023-12-20'
-  },
-  {
-    id: 5,
-    category: '기술',
-    title: '기술 스택 검토 템플릿',
-    usageCount: 50,
-    status: '사용중',
-    modifier: '정현우',
-    lastModified: '2024-01-05'
-  },
-  {
-    id: 6,
-    category: '마케팅',
-    title: '마케팅 캠페인 기획 템플릿',
-    usageCount: 75,
-    status: '사용중',
-    modifier: '강마케팅',
-    lastModified: '2024-01-09'
-  },
-  {
-    id: 7,
-    category: '인사',
-    title: '인사평가 회의 템플릿',
-    usageCount: 90,
-    status: '사용중',
-    modifier: '오인사',
-    lastModified: '2024-01-11'
-  },
-  {
-    id: 8,
-    category: '재무',
-    title: '예산 검토 회의 템플릿',
-    usageCount: 40,
-    status: '미사용',
-    modifier: '임재무',
-    lastModified: '2023-12-15'
-  },
-  {
-    id: 9,
-    category: '법무',
-    title: '계약 검토 회의 템플릿',
-    usageCount: 25,
-    status: '사용중',
-    modifier: '한법무',
-    lastModified: '2024-01-03'
-  },
-  {
-    id: 10,
-    category: '운영',
-    title: '운영 리뷰 회의 템플릿',
-    usageCount: 110,
-    status: '사용중',
-    modifier: '신운영',
-    lastModified: '2024-01-13'
-  }
-]
-
-function MeetTemplatePage() {
-  const navigate = useNavigate()
+const MeetTemplatePage = () => {
+  const [dateRange, setDateRange] = useState('')
+  const [itemsPerPage, setItemsPerPage] = useState('10')
+  const [searchCategory, setSearchCategory] = useState('전체')
   const [searchTerm, setSearchTerm] = useState('')
-  const [pageSize, setPageSize] = useState(10)
-  const [categoryFilter, setCategoryFilter] = useState('전체')
-  const [createDialogOpen, setCreateDialogOpen] = useState(false)
-  const [editDialogOpen, setEditDialogOpen] = useState(false)
-  const [previewDialogOpen, setPreviewDialogOpen] = useState(false)
-  const [selectedTemplate, setSelectedTemplate] = useState(null)
-  const [newTemplate, setNewTemplate] = useState({
-    id: '',
-    version: '',
-    category: '일반회의',
-    title: '',
-    description: ''
-  })
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [newCategory, setNewCategory] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('일반회의')
+  const [templateName, setTemplateName] = useState('')
+  const [templateDescription, setTemplateDescription] = useState('')
+  const [previewText, setPreviewText] = useState('미리보기입니다. 템플릿팩 업로드 후 내용을 확인하세요.')
 
-  const filteredTemplates = templateData.filter(template => {
-    const matchesSearch = template.title.includes(searchTerm) ||
-                          template.modifier.includes(searchTerm)
-    const matchesCategory = categoryFilter === '전체' || template.category === categoryFilter
-    return matchesSearch && matchesCategory
-  })
+  // 템플릿 데이터
+  const templates = [
+    { 
+      id: 'DEF-001-SK', 
+      enabled: true, 
+      category: '회의', 
+      name: '일반 회의록 템플릿', 
+      lastModified: '2024-02-28 14:30', 
+      modifier: '김철수', 
+      version: 'v1.2' 
+    },
+    { 
+      id: 'DEF-002-SK', 
+      enabled: true, 
+      category: '세미나', 
+      name: '주간 업무 보고 템플릿', 
+      lastModified: '2024-02-27 11:20', 
+      modifier: '이영희', 
+      version: 'v2.0' 
+    },
+    { 
+      id: 'DEF-003-SK', 
+      enabled: false, 
+      category: '상담', 
+      name: '프로젝트 킥오프 템플릿', 
+      lastModified: '2024-02-26 09:15', 
+      modifier: '박지민', 
+      version: 'v1.0' 
+    },
+    { 
+      id: 'DEF-004-SK', 
+      enabled: true, 
+      category: '의료', 
+      name: '1:1 면담 템플릿', 
+      lastModified: '2024-02-25 16:45', 
+      modifier: '최동훈', 
+      version: 'v1.5' 
+    },
+    { 
+      id: 'DEF-005-SK', 
+      enabled: true, 
+      category: '보고서', 
+      name: '고객 미팅 템플릿', 
+      lastModified: '2024-02-24 13:10', 
+      modifier: '정미경', 
+      version: 'v2.1' 
+    },
+    { 
+      id: 'DEF-006-SK', 
+      enabled: true, 
+      category: '회의', 
+      name: '월간 보고 템플릿', 
+      lastModified: '2024-02-23 10:30', 
+      modifier: '강민수', 
+      version: 'v1.3' 
+    },
+    { 
+      id: 'DEF-007-SK', 
+      enabled: true, 
+      category: '세미나', 
+      name: '팀 미팅 템플릿', 
+      lastModified: '2024-02-22 15:20', 
+      modifier: '윤서연', 
+      version: 'v1.1' 
+    },
+    { 
+      id: 'DEF-008-SK', 
+      enabled: false, 
+      category: '상담', 
+      name: '이사회 템플릿', 
+      lastModified: '2024-02-21 09:45', 
+      modifier: '조현우', 
+      version: 'v2.2' 
+    },
+    { 
+      id: 'DEF-009-SK', 
+      enabled: true, 
+      category: '의료', 
+      name: '부서장 회의 템플릿', 
+      lastModified: '2024-02-20 16:15', 
+      modifier: '한지원', 
+      version: 'v1.4' 
+    },
+    { 
+      id: 'DEF-010-SK', 
+      enabled: true, 
+      category: '보고서', 
+      name: '외부 미팅 템플릿', 
+      lastModified: '2024-02-19 11:00', 
+      modifier: '임수진', 
+      version: 'v1.0' 
+    }
+  ]
 
-  const handleCreate = () => {
-    setNewTemplate({
-      id: '',
-      version: '',
-      category: '일반회의',
-      title: '',
-      description: ''
+  const categories = ['일반회의', '세미나', '상담진료', '고객']
+
+  const handleSearch = () => {
+    console.log('검색:', { searchCategory, searchTerm, dateRange, itemsPerPage })
+  }
+
+  const handleNewTemplate = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleSwitchChange = (templateId) => {
+    console.log(`템플릿 ${templateId} 사용여부 변경`)
+  }
+
+  const handleRowClick = (template) => {
+    if (template.id === 'DEF-001-SK') {
+      // 첫 번째 행 클릭 시 상세 페이지로 이동
+      window.location.href = '/meet-template-detail'
+    }
+  }
+
+  const handleFileSelect = () => {
+    console.log('파일 선택')
+  }
+
+  const handleCategoryEdit = () => {
+    setIsDropdownOpen(!isDropdownOpen)
+  }
+
+  const handleNewCategory = () => {
+    setIsDropdownOpen(false)
+    setIsCategoryModalOpen(true)
+  }
+
+  const handleCategoryCreate = () => {
+    console.log('새 카테고리 생성:', newCategory)
+    setIsCategoryModalOpen(false)
+    setNewCategory('')
+  }
+
+  const handleCancel = () => {
+    setIsModalOpen(false)
+    setTemplateName('')
+    setTemplateDescription('')
+    setPreviewText('미리보기입니다. 템플릿팩 업로드 후 내용을 확인하세요.')
+  }
+
+  const handleSave = () => {
+    console.log('템플릿 저장:', { 
+      selectedCategory, 
+      templateName, 
+      templateDescription 
     })
-    setCreateDialogOpen(true)
-  }
-
-  const handleEdit = (template) => {
-    setSelectedTemplate(template)
-    setEditDialogOpen(true)
-  }
-
-  const handlePreview = (template) => {
-    setSelectedTemplate(template)
-    setPreviewDialogOpen(true)
-  }
-
-  const handleDetail = (template) => {
-    navigate(`/meet-template/${template.id}`)
-  }
-
-  const handleSaveTemplate = () => {
-    // 템플릿 저장 로직
-    setCreateDialogOpen(false)
-    setEditDialogOpen(false)
+    setIsModalOpen(false)
   }
 
   return (
-    <Box>
-      <Typography variant="h5" component="h1" gutterBottom>
-        회의 템플릿 관리
-      </Typography>
-
-      {/* 검색 툴바 */}
-      <Box sx={{ mb: 2 }}>
-        <Box sx={{ 
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '12px',
-          width: '100%'
-        }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography sx={{ 
-              fontSize: '16px', 
-              fontWeight: 600, 
-              color: '#292A2B',
-              whiteSpace: 'nowrap'
-            }}>
-              총 {filteredTemplates.length}개
-            </Typography>
-            <FormControl size="small" sx={{ minWidth: 80 }}>
-              <Select
-                value={pageSize}
-                onChange={(e) => setPageSize(e.target.value)}
-                sx={{ height: '36px' }}
-              >
-                <MenuItem value={10}>10개</MenuItem>
-                <MenuItem value={20}>20개</MenuItem>
-                <MenuItem value={50}>50개</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-          
-          <Box sx={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 1,
-            marginLeft: 'auto'
-          }}>
-            <FormControl size="small" sx={{ minWidth: 120 }}>
-              <Select
-                value={categoryFilter}
-                onChange={(e) => setCategoryFilter(e.target.value)}
-                sx={{ height: '36px' }}
-              >
-                <MenuItem value="전체">전체</MenuItem>
-                <MenuItem value="업무">업무</MenuItem>
-                <MenuItem value="기획">기획</MenuItem>
-                <MenuItem value="회의">회의</MenuItem>
-                <MenuItem value="교육">교육</MenuItem>
-                <MenuItem value="기술">기술</MenuItem>
-              </Select>
-            </FormControl>
-            <Box sx={{ 
-              display: 'flex',
-              alignItems: 'center',
-              border: '1px solid #E5E5E5',
-              borderRadius: '8px',
-              overflow: 'hidden'
-            }}>
-              <TextField
-                size="small"
-                placeholder="검색어를 입력하세요"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                sx={{ 
-                  width: 200,
-                  '& .MuiOutlinedInput-root': {
-                    height: '36px',
-                    borderRadius: 0,
-                    '& fieldset': { border: 'none' },
-                    '&:hover fieldset': { border: 'none' },
-                    '&.Mui-focused fieldset': { border: 'none' }}}}
-              />
-            </Box>
-            <Button 
-              variant="text"
-              color="primary" 
-              size="small"
-              sx={{ 
-                height: '36px',
-                minWidth: '60px'
-              }}
-            >
-              검색
-            </Button>
-            <Button 
-              variant="text" 
-              size="small"
-              startIcon={<Add />}
-              onClick={handleCreate}
-              sx={{ 
-                height: '36px'
-              }}
-            >
-              템플릿 생성
-            </Button>
-          </Box>
-        </Box>
-      </Box>
-
-      {/* 테이블 */}
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>카테고리</TableCell>
-              <TableCell>템플릿명</TableCell>
-              <TableCell>사용횟수</TableCell>
-              <TableCell>상태</TableCell>
-              <TableCell>수정자</TableCell>
-              <TableCell>최종 수정일</TableCell>
-              <TableCell>관리</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredTemplates.map((template) => (
-              <TableRow 
-                key={template.id}
-                sx={{ 
-                  cursor: 'pointer',
-                  '&:hover': {
-                    backgroundColor: '#F3F4F6'
-                  }
-                }}
-                onClick={() => handleDetail(template)}
-              >
-                <TableCell>{template.category}</TableCell>
-                <TableCell>{template.title}</TableCell>
-                <TableCell>{template.usageCount}</TableCell>
-                <TableCell>
-                  <Chip 
-                    label={template.status}
-                    color={template.status === '사용중' ? 'success' : 'default'}
+    <Layout className="template-list-page">
+      <div className="content">
+        <div className="content-header">
+          <h1 className="breadcrumb">회의 템플릿 관리</h1>
+        </div>
+        <div className="content-body">
+          <div className="search-section">
+            <div className="common-topbar">
+              <div className="tb-left">
+                <div className="date-range-wrap">
+                  <TextField
+                    placeholder="날짜 범위를 선택하세요"
+                    value={dateRange}
+                    onChange={(e) => setDateRange(e.target.value)}
+                    variant="outlined"
                     size="small"
+                    sx={{ width: '200px' }}
+                    InputProps={{ 
+                      readOnly: true,
+                      startAdornment: (
+                        <div style={{ 
+                          marginRight: '8px', 
+                          display: 'flex', 
+                          alignItems: 'center',
+                          width: '16px',
+                          height: '16px',
+                          backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'none\'%3E%3Cpath d=\'M6.75 3V5.25M17.25 3V5.25M3 18.75V7.5C3 6.90326 3.23705 6.33097 3.65901 5.90901C4.08097 5.48705 4.65326 5.25 5.25 5.25H18.75C19.3467 5.25 19.919 5.48705 20.341 5.90901C20.7629 6.33097 21 6.90326 21 7.5V18.75M3 18.75C3 19.3467 3.23705 19.919 3.65901 20.341C4.08097 20.7629 4.65326 21 5.25 21H18.75C19.3467 21 19.919 20.7629 20.341 20.341C20.7629 19.919 21 19.3467 21 18.75M3 18.75V11.25C3 10.6533 3.23705 10.081 3.65901 9.65901C4.08097 9.23705 4.65326 9 5.25 9H18.75C19.3467 9 19.919 9.23705 20.341 9.65901C20.7629 10.081 21 10.6533 21 11.25V18.75\' stroke=\'%23666666\' stroke-width=\'1.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/%3E%3C/svg%3E")',
+                          backgroundSize: '16px 16px',
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'center'
+                        }} />
+                      )
+                    }}
                   />
-                </TableCell>
-                <TableCell>{template.modifier}</TableCell>
-                <TableCell>{template.lastModified}</TableCell>
-                <TableCell>
-                  <Box sx={{ display: 'flex', gap: 1 }}>
-                    <IconButton 
-                      size="small" 
-                      color="primary" 
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        handlePreview(template)
-                      }}
+                </div>
+              </div>
+              <div className="tb-right tb-right-full">
+                <div className="right-tail">
+                  <FormControl size="small" sx={{ minWidth: 120, mr: 1 }}>
+                    <Select
+                      value={itemsPerPage}
+                      onChange={(e) => setItemsPerPage(e.target.value)}
+                      variant="outlined"
                     >
-                      <Visibility fontSize="small" />
-                    </IconButton>
-                    <IconButton 
-                      size="small" 
-                      color="primary"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        handleEdit(template)
-                      }}
+                      <MenuItem value="10">10개씩 보기</MenuItem>
+                      <MenuItem value="20">20개씩 보기</MenuItem>
+                      <MenuItem value="50">50개씩 보기</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <FormControl size="small" sx={{ minWidth: 100, mr: 1 }}>
+                    <Select
+                      value={searchCategory}
+                      onChange={(e) => setSearchCategory(e.target.value)}
+                      variant="outlined"
                     >
-                      <Edit fontSize="small" />
-                    </IconButton>
-                    <IconButton 
-                      size="small" 
-                      color="error"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Delete fontSize="small" />
-                    </IconButton>
-                  </Box>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                      <MenuItem value="전체">전체</MenuItem>
+                      <MenuItem value="템플릿명">템플릿명</MenuItem>
+                      <MenuItem value="작성자">작성자</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <TextField
+                    placeholder="검색어를 입력해주세요."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    variant="outlined"
+                    size="small"
+                    sx={{ width: '200px', mr: 1 }}
+                  />
+                  <Button 
+                    variant="outlined"
+                    onClick={handleSearch}
+                    sx={{ 
+                      mr: 1,
+                      bgcolor: 'primary.main',
+                      color: 'white',
+                      borderColor: 'primary.main',
+                      '&:hover': { 
+                        bgcolor: 'primary.dark',
+                        borderColor: 'primary.dark'
+                      }
+                    }}
+                  >
+                    조회
+                  </Button>
+                </div>
+                <Button 
+                  variant="outlined"
+                  onClick={handleNewTemplate}
+                  sx={{ 
+                    bgcolor: 'success.main',
+                    color: 'white',
+                    borderColor: 'success.main',
+                    '&:hover': { 
+                      bgcolor: 'success.dark',
+                      borderColor: 'success.dark'
+                    }
+                  }}
+                >
+                  파일업로드
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th className="sortable">사용여부 <span className="sort-icon" aria-hidden="true"></span></th>
+                  <th>카테고리</th>
+                  <th>템플릿명</th>
+                  <th>최근수정일</th>
+                  <th>수정자</th>
+                  <th>버전</th>
+                </tr>
+              </thead>
+              <tbody>
+                {templates.map((template, index) => (
+                  <tr 
+                    key={template.id} 
+                    onClick={() => handleRowClick(template)}
+                    style={{ cursor: index === 0 ? 'pointer' : 'default' }}
+                  >
+                    <td>{template.id}</td>
+                    <td>
+                      <Switch
+                        checked={template.enabled}
+                        onChange={() => handleSwitchChange(template.id)}
+                        size="small"
+                        color="primary"
+                        onClick={(e) => e.stopPropagation()}
+                      />
+                    </td>
+                    <td>{template.category}</td>
+                    <td>{template.name}</td>
+                    <td>{template.lastModified}</td>
+                    <td>{template.modifier}</td>
+                    <td>{template.version}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-      {/* 페이지네이션 */}
-      <Box sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        mt: 3 
-      }}>
-        <Pagination 
-          count={5} 
-          page={1} 
-          shape="rounded"
-          showFirstButton={false}
-          showLastButton={false}
-        />
-      </Box>
+          {/* 페이징 */}
+          <div className="pagination">
+            <ButtonGroup variant="outlined" size="small">
+              <Button disabled>‹</Button>
+              <Button variant="contained">1</Button>
+              <Button>2</Button>
+              <Button>3</Button>
+              <Button>›</Button>
+            </ButtonGroup>
+          </div>
+        </div>
+      </div>
 
-      {/* 템플릿 생성 다이얼로그 */}
+      {/* 템플릿 생성 모달 */}
       <Dialog 
-        open={createDialogOpen} 
-        onClose={() => setCreateDialogOpen(false)} 
+        open={isModalOpen} 
+        onClose={handleCancel} 
         maxWidth="lg" 
         fullWidth
         PaperProps={{
-          sx: { 
-            borderRadius: 0,
+          sx: {
             height: '90vh',
             maxHeight: '90vh'
           }
         }}
       >
-        <Box sx={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center', 
-          p: 2, 
-          borderBottom: '1px solid #E5E7EB' 
-        }}>
-          <Typography variant="h6" sx={{ fontWeight: 600 }}>
-            템플릿 생성하기
-          </Typography>
-          <IconButton 
-            onClick={() => setCreateDialogOpen(false)}
-            size="small"
-            sx={{ p: 0.5 }}
-          >
-            <Close fontSize="small" />
-          </IconButton>
-        </Box>
-        
-        <DialogContent sx={{ p: 3, flex: 1, overflowY: 'auto' }}>
-          <Grid container spacing={3}>
-            {/* 파일 업로드 영역 */}
-            <Grid item xs={6}>
-              <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500, color: '#374151' }}>
-                템플릿편집 업로드하기
-              </Typography>
-              <Box sx={{
-                border: '2px dashed #D1D5DB',
-                borderRadius: 1,
-                p: 3,
-                textAlign: 'center',
-                backgroundColor: '#F9FAFB',
-                minHeight: '590px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}>
-                <Typography sx={{ color: '#6B7280', fontSize: '14px', mb: 1 }}>
-                  미리보기가입니다.
-                </Typography>
-                <Typography sx={{ color: '#6B7280', fontSize: '14px' }}>
-                  템플릿을 업로드를 해 내용을 확인하세요.
-                </Typography>
-              </Box>
-            </Grid>
+        <DialogTitle>
+          <div className="header-text">
+            <h2>템플릿 생성하기</h2>
+            <p className="modal-subtitle">탬플릿 파일을 업로드해주세요</p>
+          </div>
+        </DialogTitle>
+        <DialogContent sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+          <div className="modal-split" style={{ display: 'flex', gap: '24px', height: 'calc(100% - 20px)', minHeight: '600px' }}>
+            {/* 왼쪽: 템플릿팩 업로드 영역 */}
+            <div className="modal-left" style={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <div className="form-group" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                <div className="upload-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                  <label style={{ fontWeight: '500' }}>템플릿팩 업로드하기</label>
+                  <Button 
+                    variant="outlined" 
+                    onClick={handleFileSelect}
+                    size="small"
+                  >
+                    파일 선택
+                  </Button>
+                </div>
+                <div 
+                  className="upload-box template-preview" 
+                  style={{ 
+                    border: '2px dashed #E5E5E5', 
+                    borderRadius: '8px',
+                    padding: '24px',
+                    flex: 1,
+                    minHeight: '500px',
+                    backgroundColor: '#F9F9F9',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    overflow: 'auto'
+                  }}
+                >
+                  <div className="preview-content preview-content-center" style={{ textAlign: 'center', color: '#666' }}>
+                    {previewText}
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            {/* 파일 선택 영역 */}
-            <Grid item xs={6}>
-              <Typography sx={{ mb: 2, fontSize: '14px', fontWeight: 500, color: '#374151' }}>
-                파일 선택
-              </Typography>
-              
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                {/* ID */}
-                <Box>
-                  <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500, color: '#374151' }}>
-                    ID
-                  </Typography>
-                  <Typography sx={{ 
-                    fontSize: '14px', 
-                    color: '#374151',
-                    mb: 1
-                  }}>
-                    TMPL_001
-                  </Typography>
-                </Box>
+            {/* 오른쪽: 입력 폼 영역 */}
+            <div className="modal-right" style={{ flex: 1, overflow: 'auto', maxHeight: '100%' }}>
+              <div className="form-group" style={{ marginBottom: '16px' }}>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>ID</label>
+                <div className="form-value" style={{ padding: '8px', backgroundColor: '#F5F5F5', borderRadius: '4px' }}>
+                  자동 생성됩니다
+                </div>
+              </div>
 
-                {/* 버전정보 */}
-                <Box>
-                  <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500, color: '#374151' }}>
-                    버전정보
-                  </Typography>
-                  <Typography sx={{ 
-                    fontSize: '14px', 
-                    color: '#374151',
-                    mb: 1
-                  }}>
-                    v1.0.0
-                  </Typography>
-                </Box>
+              <div className="form-group" style={{ marginBottom: '16px' }}>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>버전정보</label>
+                <div className="form-value" style={{ padding: '8px', backgroundColor: '#F5F5F5', borderRadius: '4px' }}>
+                  v1.0
+                </div>
+              </div>
 
-                {/* 카테고리 */}
-                <Box>
-                  <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500, color: '#374151' }}>
-                    카테고리
-                  </Typography>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <FormControl fullWidth size="small">
-                      <Select
-                        value={newTemplate.category}
-                        onChange={(e) => setNewTemplate({...newTemplate, category: e.target.value})}
-                        sx={{ 
-                          '& .MuiSelect-select': { 
-                            fontSize: '14px' 
-                          },
-                          height: '40px'
-                        }}
-                      >
-                        <MenuItem value="일반회의">일반회의</MenuItem>
-                        <MenuItem value="업무회의">업무회의</MenuItem>
-                        <MenuItem value="기획회의">기획회의</MenuItem>
-                        <MenuItem value="교육회의">교육회의</MenuItem>
-                      </Select>
-                    </FormControl>
+              <div className="form-group" style={{ marginBottom: '16px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                  <label style={{ fontWeight: '500' }}>카테고리</label>
+                  <div className="edit-wrapper" style={{ position: 'relative' }}>
                     <Button 
                       variant="outlined" 
                       size="small"
-                      sx={{ 
-                        minWidth: '60px',
-                        fontSize: '12px',
-                        height: '40px'
-                      }}
+                      onClick={handleCategoryEdit}
                     >
                       편집
                     </Button>
-                  </Box>
-                </Box>
+                    {isDropdownOpen && (
+                      <div 
+                        className="dropdown-menu" 
+                        style={{
+                          position: 'absolute',
+                          top: '100%',
+                          right: 0,
+                          backgroundColor: 'white',
+                          border: '1px solid #E5E5E5',
+                          borderRadius: '4px',
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                          zIndex: 1000,
+                          minWidth: '200px'
+                        }}
+                      >
+                        <ul style={{ margin: 0, padding: '8px 0', listStyle: 'none' }}>
+                          {categories.map((category) => (
+                            <li key={category} className="dropdown-item" style={{ padding: '8px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                              <span>{category}</span>
+                              <div className="item-actions">
+                                <ButtonGroup variant="outlined" size="small">
+                                  <Button sx={{ minWidth: 'auto', p: 0.5 }}>✏️</Button>
+                                  <Button sx={{ minWidth: 'auto', p: 0.5 }}>🗑️</Button>
+                                </ButtonGroup>
+                              </div>
+                            </li>
+                          ))}
+                          <li style={{ borderTop: '1px solid #E5E5E5', margin: '8px 0' }}></li>
+                          <li 
+                            className="dropdown-item new-category" 
+                            style={{ padding: '8px 16px', cursor: 'pointer' }}
+                            onClick={handleNewCategory}
+                          >
+                            <span>새 카테고리 생성</span>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <FormControl fullWidth size="small">
+                  <Select
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    variant="outlined"
+                  >
+                    {categories.map((category) => (
+                      <MenuItem key={category} value={category}>{category}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
 
-                {/* 템플릿명 */}
-                <Box>
-                  <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500, color: '#374151' }}>
-                    템플릿명
-                  </Typography>
-                  <TextField
-                    fullWidth
-                    size="small"
-                    placeholder="템플릿 이름을 입력하세요"
-                    value={newTemplate.title}
-                    onChange={(e) => setNewTemplate({...newTemplate, title: e.target.value})}
-                    inputProps={{ maxLength: 10 }}
-                    sx={{ 
-                      '& .MuiOutlinedInput-root': { 
-                        fontSize: '14px',
-                        height: '40px'
-                      } 
-                    }}
-                  />
-                  <Typography sx={{ fontSize: '11px', color: '#9CA3AF', textAlign: 'right', mt: 0.5 }}>
-                    {newTemplate.title.length}/10자
-                  </Typography>
-                </Box>
+              <div className="form-group" style={{ marginBottom: '16px' }}>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>템플릿명</label>
+                <TextField
+                  fullWidth
+                  size="small"
+                  variant="outlined"
+                  placeholder="템플릿 이름을 입력하세요"
+                  value={templateName}
+                  onChange={(e) => setTemplateName(e.target.value)}
+                />
+                <div className="input-counter" style={{ textAlign: 'right', fontSize: '12px', color: '#666', marginTop: '4px' }}>
+                  {templateName.length}/10자
+                </div>
+              </div>
 
-                {/* 템플릿 설명 */}
-                <Box sx={{ flex: 1 }}>
-                  <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500, color: '#374151' }}>
-                    템플릿 설명
-                  </Typography>
-                  <Box
-                    component="textarea"
-                    placeholder="템플릿에 대한 설명을 입력하세요"
-                    value={newTemplate.description}
-                    onChange={(e) => setNewTemplate({...newTemplate, description: e.target.value})}
-                    maxLength={100}
-                    sx={{
-                      width: '100%',
-                      minHeight: '180px',
-                      padding: '12px',
-                      fontSize: '14px',
-                      border: '1px solid #E5E7EB',
-                      borderRadius: 0,
-                      resize: 'none',
-                      fontFamily: 'inherit',
-                      outline: 'none',
-                      '&:focus': {
-                        borderColor: '#3B82F6'
-                      },
-                      '&::placeholder': {
-                        color: '#9CA3AF'
-                      }
-                    }}
-                  />
-                  <Typography sx={{ fontSize: '11px', color: '#9CA3AF', textAlign: 'right', mt: 0.5 }}>
-                    {newTemplate.description.length}/100자
-                  </Typography>
-                </Box>
-              </Box>
-            </Grid>
-          </Grid>
+              <div className="form-group" style={{ marginBottom: '16px' }}>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>템플릿 설명</label>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={4}
+                  size="small"
+                  variant="outlined"
+                  placeholder="사용자에게 템플릿을 소개할 수 있는 설명을 입력하세요"
+                  value={templateDescription}
+                  onChange={(e) => setTemplateDescription(e.target.value)}
+                />
+                <div className="input-counter" style={{ textAlign: 'right', fontSize: '12px', color: '#666', marginTop: '4px' }}>
+                  {templateDescription.length}/100자
+                </div>
+              </div>
+            </div>
+          </div>
         </DialogContent>
-        
-        <DialogActions sx={{ p: 2, borderTop: '1px solid #E5E7EB', justifyContent: 'flex-end', gap: 1 }}>
-          <Button 
-            onClick={() => setCreateDialogOpen(false)}
+        <DialogActions>
+          <ButtonGroup variant="outlined" size="medium">
+            <Button 
+              onClick={handleCancel}
+              sx={{ 
+                color: 'text.secondary',
+                borderColor: 'grey.400',
+                '&:hover': { 
+                  bgcolor: 'grey.100',
+                  borderColor: 'grey.400'
+                }
+              }}
+            >
+              취소
+            </Button>
+            <Button 
+              onClick={handleSave}
+              sx={{ 
+                bgcolor: 'primary.main',
+                color: 'white',
+                borderColor: 'primary.main',
+                '&:hover': { 
+                  bgcolor: 'primary.dark',
+                  borderColor: 'primary.dark'
+                }
+              }}
+            >
+              저장
+            </Button>
+          </ButtonGroup>
+        </DialogActions>
+      </Dialog>
+
+      {/* 새 카테고리 생성 모달 */}
+      <Dialog open={isCategoryModalOpen} onClose={() => setIsCategoryModalOpen(false)} maxWidth="sm" fullWidth>
+        <DialogTitle>새 카테고리 생성</DialogTitle>
+        <DialogContent>
+          <TextField
+            fullWidth
+            size="small"
             variant="outlined"
-            sx={{ minWidth: '80px' }}
-          >
-            취소
-          </Button>
-          <Button 
-            variant="contained" 
-            onClick={handleSaveTemplate}
-            sx={{ minWidth: '80px' }}
-          >
-            저장
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-      {/* 템플릿 수정 다이얼로그 */}
-      <Dialog open={editDialogOpen} onClose={() => setEditDialogOpen(false)} maxWidth="md" fullWidth>
-        <DialogTitle>템플릿 수정 - {selectedTemplate?.title}</DialogTitle>
-        <DialogContent>
-          <Grid container spacing={2} sx={{ mt: 1 }}>
-            <Grid item xs={6}>
-              <FormControl fullWidth>
-                <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500 }}>카테고리</Typography>
-                <Select
-                  value={selectedTemplate?.category || ''}
-                  size="small"
-                >
-                  <MenuItem value="업무">업무</MenuItem>
-                  <MenuItem value="기획">기획</MenuItem>
-                  <MenuItem value="회의">회의</MenuItem>
-                  <MenuItem value="교육">교육</MenuItem>
-                  <MenuItem value="기술">기술</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={6}>
-              <FormControl fullWidth>
-                <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500 }}>상태</Typography>
-                <Select
-                  value={selectedTemplate?.status || ''}
-                  size="small"
-                >
-                  <MenuItem value="사용중">사용중</MenuItem>
-                  <MenuItem value="미사용">미사용</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500 }}>템플릿명</Typography>
-              <TextField
-                fullWidth
-                size="small"
-                value={selectedTemplate?.title || ''}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Typography sx={{ mb: 1, fontSize: '14px', fontWeight: 500 }}>템플릿 내용</Typography>
-              <TextField
-                fullWidth
-                multiline
-                rows={12}
-                defaultValue="## 회의 정보\n- 날짜: \n- 시간: \n- 참석자: \n\n## 안건\n1. \n2. \n3. \n\n## 논의 사항\n\n## 결정 사항\n\n## 액션 아이템\n- [ ] \n- [ ] \n- [ ] "
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    fontFamily: 'monospace',
-                    fontSize: '14px'
-                  }
-                }}
-              />
-            </Grid>
-          </Grid>
+            placeholder="새 카테고리 이름을 입력해주세요"
+            value={newCategory}
+            onChange={(e) => setNewCategory(e.target.value)}
+            sx={{ mt: 1 }}
+          />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setEditDialogOpen(false)}>취소</Button>
-          <Button variant="text" onClick={handleSaveTemplate}>저장</Button>
+          <ButtonGroup variant="outlined" size="medium">
+            <Button 
+              onClick={() => setIsCategoryModalOpen(false)}
+              sx={{ 
+                color: 'text.secondary',
+                borderColor: 'grey.400',
+                '&:hover': { 
+                  bgcolor: 'grey.100',
+                  borderColor: 'grey.400'
+                }
+              }}
+            >
+              취소
+            </Button>
+            <Button 
+              onClick={handleCategoryCreate}
+              sx={{ 
+                bgcolor: 'primary.main',
+                color: 'white',
+                borderColor: 'primary.main',
+                '&:hover': { 
+                  bgcolor: 'primary.dark',
+                  borderColor: 'primary.dark'
+                }
+              }}
+            >
+              저장
+            </Button>
+          </ButtonGroup>
         </DialogActions>
       </Dialog>
-
-      {/* 템플릿 미리보기 다이얼로그 */}
-      <Dialog open={previewDialogOpen} onClose={() => setPreviewDialogOpen(false)} maxWidth="md" fullWidth>
-        <DialogTitle>템플릿 미리보기 - {selectedTemplate?.title}</DialogTitle>
-        <DialogContent>
-          <Box sx={{ mb: 2 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <Typography variant="body2" sx={{ fontWeight: 500 }}>카테고리</Typography>
-                <Typography variant="body2" color="text.secondary">{selectedTemplate?.category}</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2" sx={{ fontWeight: 500 }}>사용횟수</Typography>
-                <Typography variant="body2" color="text.secondary">{selectedTemplate?.usageCount}회</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2" sx={{ fontWeight: 500 }}>수정자</Typography>
-                <Typography variant="body2" color="text.secondary">{selectedTemplate?.modifier}</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2" sx={{ fontWeight: 500 }}>최종 수정일</Typography>
-                <Typography variant="body2" color="text.secondary">{selectedTemplate?.lastModified}</Typography>
-              </Grid>
-            </Grid>
-          </Box>
-          
-          <Divider sx={{ my: 2 }} />
-          
-          <Typography variant="h6" sx={{ mb: 2 }}>템플릿 내용</Typography>
-          <Paper sx={{ p: 2, border: '1px solid #E5E5E5' }}>
-            <Typography component="pre" sx={{ 
-              fontFamily: 'monospace', 
-              fontSize: '14px', 
-              whiteSpace: 'pre-wrap',
-              margin: 0
-            }}>
-{`## 회의 정보
-- 날짜: 
-- 시간: 
-- 참석자: 
-
-## 안건
-1. 
-2. 
-3. 
-
-## 논의 사항
-
-## 결정 사항
-
-## 액션 아이템
-- [ ] 
-- [ ] 
-- [ ] `}
-            </Typography>
-          </Paper>
-        </DialogContent>
-        <DialogActions>
-          <Button startIcon={<Edit />} onClick={() => {
-            setPreviewDialogOpen(false)
-            handleEdit(selectedTemplate)
-          }}>
-            수정
-          </Button>
-          <Button onClick={() => setPreviewDialogOpen(false)}>닫기</Button>
-        </DialogActions>
-      </Dialog>
-
-    </Box>
+    </Layout>
   )
 }
 

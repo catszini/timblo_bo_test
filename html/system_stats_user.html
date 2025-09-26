@@ -85,9 +85,10 @@
         <h3>전체 시스템 관리</h3>
         <ul>
           <li><a href="workspace.html">워크스페이스 관리</a></li>
-          <li><a href="menu_setting.html">시스템 메뉴 관리</a></li>
-          <li><a href="system_user.html">관리자 지정</a></li>
-          <li><a href="group_setting.html">관리자 접근권한</a></li>
+          <li><a href="menu_setting.html">전체 메뉴 관리</a></li>
+          <li><a href="system_user.html">사용자 관리</a></li>
+          <li><a href="group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="system_setting_history.html">설정변경 이력</a></li>
           <li><a href="system_stats_usage.html">전체 시스템 사용 통계</a></li>
           <li><a href="system_stats_user.html" class="active">사용자별 사용 통계</a></li>
         </ul>
@@ -98,9 +99,10 @@
           <h3>워크스페이스 설정</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html">메뉴/정책 관리</a></li>
-          <li><a href="workspace_group_setting.html">메뉴 권한 설정</a></li>
-          <li><a href="user.html">사용자 조회</a></li>
+          <li><a href="workspace_permission.html">FO기능정책관리</a></li>
+          <li><a href="content_retention.html">컨텐츠 보존 관리</a></li>
+          <li><a href="workspace_group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 관리</a></li>
         </ul>
       </div>
@@ -146,6 +148,20 @@
         <div class="search-section">
           <div class="common-topbar">
             <div class="tb-left">
+              <div class="combo-select" style="margin-right: 8px;">
+                <div>
+                  <select id="workspace-filter">
+                    <option value="all" selected>전체 워크스페이스</option>
+                    <option value="sk-telecom">SK Telecom</option>
+                    <option value="sk-hynix">SK Hynix</option>
+                    <option value="sk-es">SK E&S</option>
+                    <option value="sk-cc">SK C&C</option>
+                    <option value="sk-innovation">SK Innovation</option>
+                    <option value="sk-networks">SK Networks</option>
+                  </select>
+
+                </div>
+              </div>
               <div class="date-range-wrap">
                 <span class="calendar-icon">📅</span>
                 <input type="text" id="su-range" class="date-range" placeholder="날짜 범위를 선택하세요" readonly />

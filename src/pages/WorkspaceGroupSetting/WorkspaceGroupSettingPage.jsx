@@ -1,545 +1,578 @@
 import React, { useState } from 'react'
 import {
-  Box,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
+  FormControl,
+  Select,
+  MenuItem,
+  TextField,
   Button,
   Checkbox,
-  Grid
+  ButtonGroup,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  styled
 } from '@mui/material'
+import Layout from '../../components/Layout/Layout'
+
+// 커스텀 체크박스 스타일
+const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
+  '& .MuiSvgIcon-root': {
+    width: 16,
+    height: 16,
+    border: '1.5px solid #97c3f0',
+    borderRadius: '3px',
+    backgroundColor: 'white', // 미체크 상태는 흰색 배경
+    '& path': {
+      display: 'none', // 체크 아이콘 숨김
+    },
+  },
+  '&.Mui-checked .MuiSvgIcon-root': {
+    backgroundColor: 'rgba(199, 223, 247, 0.8)', // 체크된 상태만 파란색 배경
+    borderColor: '#97c3f0',
+  },
+  '&.MuiCheckbox-indeterminate .MuiSvgIcon-root': {
+    backgroundColor: 'rgba(199, 223, 247, 0.8)', // indeterminate 상태도 파란색 배경
+    borderColor: '#97c3f0',
+  },
+  '&:hover .MuiSvgIcon-root': {
+    borderColor: '#a5cef3',
+    backgroundColor: 'white', // 미체크 호버 시에도 흰색 유지
+  },
+  '&.Mui-checked:hover .MuiSvgIcon-root': {
+    backgroundColor: 'rgba(199, 223, 247, 0.9)', // 체크된 상태 호버 시만 파란색
+    borderColor: '#a5cef3',
+  },
+}))
 
 const permissionData = [
   {
     id: 1,
-    name: '김민수',
-    email: 'minsu.kim@sktelecom.com',
-    permission: 'meeting-admin',
-    permissionName: '회의관리자'
+    order: 1,
+    name: '박영수',
+    permissionName: '회의관리자',
+    description: '회의록 및 템플릿 관리',
+    permissionType: 'meeting-admin'
   },
   {
     id: 2,
-    name: '이영희',
-    email: 'younghee.lee@sktelecom.com',
-    permission: 'logo-admin',
-    permissionName: '로고관리자'
+    order: 2,
+    name: '김철수',
+    permissionName: '로고관리자',
+    description: '로고 이미지 관리',
+    permissionType: 'logo-admin'
   },
   {
     id: 3,
-    name: '박철수',
-    email: 'chulsoo.park@sktelecom.com',
-    permission: 'user-admin',
-    permissionName: '사용자관리자'
+    order: 3,
+    name: '이민수',
+    permissionName: '사용자관리자',
+    description: '사용자 관리 및 접속 이력',
+    permissionType: 'user-admin'
   },
   {
     id: 4,
-    name: '정수진',
-    email: 'sujin.jung@sktelecom.com',
-    permission: 'stats-admin',
-    permissionName: '통계관리자'
+    order: 4,
+    name: '최지영',
+    permissionName: '통계관리자',
+    description: '사용량 및 사용자별 통계',
+    permissionType: 'stats-admin'
   },
   {
     id: 5,
-    name: '홍지훈',
-    email: 'jihoon.hong@sktelecom.com',
-    permission: 'content-admin',
-    permissionName: '컨텐츠관리자'
+    order: 5,
+    name: '정수현',
+    permissionName: '컨텐츠관리자',
+    description: '공지사항 및 사전 관리',
+    permissionType: 'content-admin'
   }
 ]
 
 const permissionMenus = {
   'meeting-admin': {
-    system: {
-      name: '시스템',
-      checked: true,
-      children: [
-        { name: '워크스페이스 관리', checked: true },
-        { name: '사용자 관리', checked: true },
-        { name: '메뉴 생성 관리', checked: true },
-        { name: '메뉴 권한 관리', checked: true },
-        { name: '사용량 통계', checked: true },
-        { name: '사용자별 통계', checked: true }
-      ]
-    },
-    workspace: {
-      name: '워크스페이스',
-      checked: true,
-      children: [
-        { name: '기능 권한 관리', checked: true },
-        { name: '메뉴 권한 관리', checked: true },
-        { name: '사용자 관리', checked: false },
-        { name: '로고 이미지 관리', checked: false },
-        { name: '회의 템플릿 관리', checked: true },
-        { name: '프롬프트 관리', checked: true },
-        { name: '동의서 관리', checked: false },
-        { name: '캘린더 관리', checked: false },
-        { name: '사용자 접속 이력', checked: false },
-        { name: '다운로드 이력', checked: false },
-        { name: '사용자 동의 이력', checked: false },
-        { name: '설정변경 이력', checked: false },
-        { name: '회의록 관리', checked: true },
-        { name: '사전 관리', checked: false },
-        { name: '공지사항 관리', checked: false },
-        { name: '사용량 통계', checked: false },
-        { name: '사용자별 통계', checked: false }
-      ]
-    }
+    title: '워크스페이스',
+    menus: [
+      { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
+      { id: '메뉴 권한 관리', name: '메뉴 권한 관리', checked: false },
+      { id: '사용자 관리', name: '사용자 관리', checked: false },
+      { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
+      { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: true },
+      { id: '프롬프트 관리', name: '프롬프트 관리', checked: false },
+      { id: '동의서 관리', name: '동의서 관리', checked: false },
+      { id: '캘린더 관리', name: '캘린더 관리', checked: true },
+      { id: '사용자 접속 이력', name: '사용자 접속 이력', checked: false },
+      { id: '다운로드 이력', name: '다운로드 이력', checked: false },
+      { id: '사용자 동의 이력', name: '사용자 동의 이력', checked: false },
+      { id: '설정변경 이력', name: '설정변경 이력', checked: false },
+      { id: '회의록 관리', name: '회의록 관리', checked: true },
+      { id: '사전 관리', name: '사전 관리', checked: false },
+      { id: '공지사항 관리', name: '공지사항 관리', checked: false },
+      { id: '사용량 통계', name: '사용량 통계', checked: false },
+      { id: '사용자별 통계', name: '사용자별 통계', checked: false }
+    ]
   },
   'logo-admin': {
-    system: {
-      name: '시스템',
-      checked: false,
-      children: [
-        { name: '워크스페이스 관리', checked: false },
-        { name: '사용자 관리', checked: false },
-        { name: '메뉴 생성 관리', checked: false },
-        { name: '메뉴 권한 관리', checked: false },
-        { name: '사용량 통계', checked: false },
-        { name: '사용자별 통계', checked: false }
-      ]
-    },
-    workspace: {
-      name: '워크스페이스',
-      checked: false,
-      children: [
-        { name: '기능 권한 관리', checked: false },
-        { name: '메뉴 권한 관리', checked: false },
-        { name: '사용자 관리', checked: false },
-        { name: '로고 이미지 관리', checked: true },
-        { name: '회의 템플릿 관리', checked: false },
-        { name: '프롬프트 관리', checked: false },
-        { name: '동의서 관리', checked: false },
-        { name: '캘린더 관리', checked: false },
-        { name: '사용자 접속 이력', checked: false },
-        { name: '다운로드 이력', checked: false },
-        { name: '사용자 동의 이력', checked: false },
-        { name: '설정변경 이력', checked: false },
-        { name: '회의록 관리', checked: false },
-        { name: '사전 관리', checked: false },
-        { name: '공지사항 관리', checked: false },
-        { name: '사용량 통계', checked: false },
-        { name: '사용자별 통계', checked: false }
-      ]
-    }
+    title: '워크스페이스',
+    menus: [
+      { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
+      { id: '메뉴 권한 관리', name: '메뉴 권한 관리', checked: false },
+      { id: '사용자 관리', name: '사용자 관리', checked: false },
+      { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: true },
+      { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: false },
+      { id: '프롬프트 관리', name: '프롬프트 관리', checked: false },
+      { id: '동의서 관리', name: '동의서 관리', checked: false },
+      { id: '캘린더 관리', name: '캘린더 관리', checked: false },
+      { id: '사용자 접속 이력', name: '사용자 접속 이력', checked: false },
+      { id: '다운로드 이력', name: '다운로드 이력', checked: false },
+      { id: '사용자 동의 이력', name: '사용자 동의 이력', checked: false },
+      { id: '설정변경 이력', name: '설정변경 이력', checked: false },
+      { id: '회의록 관리', name: '회의록 관리', checked: false },
+      { id: '사전 관리', name: '사전 관리', checked: false },
+      { id: '공지사항 관리', name: '공지사항 관리', checked: false },
+      { id: '사용량 통계', name: '사용량 통계', checked: false },
+      { id: '사용자별 통계', name: '사용자별 통계', checked: false }
+    ]
   },
   'user-admin': {
-    system: {
-      name: '시스템',
-      checked: false,
-      children: [
-        { name: '워크스페이스 관리', checked: false },
-        { name: '사용자 관리', checked: false },
-        { name: '메뉴 생성 관리', checked: false },
-        { name: '메뉴 권한 관리', checked: false },
-        { name: '사용량 통계', checked: false },
-        { name: '사용자별 통계', checked: false }
-      ]
-    },
-    workspace: {
-      name: '워크스페이스',
-      checked: false,
-      children: [
-        { name: '기능 권한 관리', checked: false },
-        { name: '메뉴 권한 관리', checked: false },
-        { name: '사용자 관리', checked: true },
-        { name: '로고 이미지 관리', checked: false },
-        { name: '회의 템플릿 관리', checked: false },
-        { name: '프롬프트 관리', checked: false },
-        { name: '동의서 관리', checked: false },
-        { name: '캘린더 관리', checked: false },
-        { name: '사용자 접속 이력', checked: false },
-        { name: '다운로드 이력', checked: false },
-        { name: '사용자 동의 이력', checked: false },
-        { name: '설정변경 이력', checked: false },
-        { name: '회의록 관리', checked: false },
-        { name: '사전 관리', checked: false },
-        { name: '공지사항 관리', checked: false },
-        { name: '사용량 통계', checked: false },
-        { name: '사용자별 통계', checked: false }
-      ]
-    }
+    title: '워크스페이스',
+    menus: [
+      { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
+      { id: '메뉴 권한 관리', name: '메뉴 권한 관리', checked: false },
+      { id: '사용자 관리', name: '사용자 관리', checked: true },
+      { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
+      { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: false },
+      { id: '프롬프트 관리', name: '프롬프트 관리', checked: false },
+      { id: '동의서 관리', name: '동의서 관리', checked: false },
+      { id: '캘린더 관리', name: '캘린더 관리', checked: false },
+      { id: '사용자 접속 이력', name: '사용자 접속 이력', checked: true },
+      { id: '다운로드 이력', name: '다운로드 이력', checked: true },
+      { id: '사용자 동의 이력', name: '사용자 동의 이력', checked: true },
+      { id: '설정변경 이력', name: '설정변경 이력', checked: true },
+      { id: '회의록 관리', name: '회의록 관리', checked: false },
+      { id: '사전 관리', name: '사전 관리', checked: false },
+      { id: '공지사항 관리', name: '공지사항 관리', checked: false },
+      { id: '사용량 통계', name: '사용량 통계', checked: false },
+      { id: '사용자별 통계', name: '사용자별 통계', checked: false }
+    ]
   },
   'stats-admin': {
-    system: {
-      name: '시스템',
-      checked: false,
-      children: [
-        { name: '워크스페이스 관리', checked: false },
-        { name: '사용자 관리', checked: false },
-        { name: '메뉴 생성 관리', checked: false },
-        { name: '메뉴 권한 관리', checked: false },
-        { name: '사용량 통계', checked: false },
-        { name: '사용자별 통계', checked: false }
-      ]
-    },
-    workspace: {
-      name: '워크스페이스',
-      checked: false,
-      children: [
-        { name: '기능 권한 관리', checked: false },
-        { name: '메뉴 권한 관리', checked: false },
-        { name: '사용자 관리', checked: false },
-        { name: '로고 이미지 관리', checked: false },
-        { name: '회의 템플릿 관리', checked: false },
-        { name: '프롬프트 관리', checked: false },
-        { name: '동의서 관리', checked: false },
-        { name: '캘린더 관리', checked: false },
-        { name: '사용자 접속 이력', checked: false },
-        { name: '다운로드 이력', checked: false },
-        { name: '사용자 동의 이력', checked: false },
-        { name: '설정변경 이력', checked: false },
-        { name: '회의록 관리', checked: false },
-        { name: '사전 관리', checked: false },
-        { name: '공지사항 관리', checked: false },
-        { name: '사용량 통계', checked: true },
-        { name: '사용자별 통계', checked: true }
-      ]
-    }
+    title: '워크스페이스',
+    menus: [
+      { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
+      { id: '메뉴 권한 관리', name: '메뉴 권한 관리', checked: false },
+      { id: '사용자 관리', name: '사용자 관리', checked: false },
+      { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
+      { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: false },
+      { id: '프롬프트 관리', name: '프롬프트 관리', checked: false },
+      { id: '동의서 관리', name: '동의서 관리', checked: false },
+      { id: '캘린더 관리', name: '캘린더 관리', checked: false },
+      { id: '사용자 접속 이력', name: '사용자 접속 이력', checked: false },
+      { id: '다운로드 이력', name: '다운로드 이력', checked: false },
+      { id: '사용자 동의 이력', name: '사용자 동의 이력', checked: false },
+      { id: '설정변경 이력', name: '설정변경 이력', checked: false },
+      { id: '회의록 관리', name: '회의록 관리', checked: false },
+      { id: '사전 관리', name: '사전 관리', checked: false },
+      { id: '공지사항 관리', name: '공지사항 관리', checked: false },
+      { id: '사용량 통계', name: '사용량 통계', checked: true },
+      { id: '사용자별 통계', name: '사용자별 통계', checked: true }
+    ]
   },
   'content-admin': {
-    system: {
-      name: '시스템',
-      checked: false,
-      children: [
-        { name: '워크스페이스 관리', checked: false },
-        { name: '사용자 관리', checked: false },
-        { name: '메뉴 생성 관리', checked: false },
-        { name: '메뉴 권한 관리', checked: false },
-        { name: '사용량 통계', checked: false },
-        { name: '사용자별 통계', checked: false }
-      ]
-    },
-    workspace: {
-      name: '워크스페이스',
-      checked: true,
-      children: [
-        { name: '기능 권한 관리', checked: false },
-        { name: '메뉴 권한 관리', checked: false },
-        { name: '사용자 관리', checked: false },
-        { name: '로고 이미지 관리', checked: false },
-        { name: '회의 템플릿 관리', checked: true },
-        { name: '프롬프트 관리', checked: true },
-        { name: '동의서 관리', checked: true },
-        { name: '캘린더 관리', checked: false },
-        { name: '사용자 접속 이력', checked: false },
-        { name: '다운로드 이력', checked: false },
-        { name: '사용자 동의 이력', checked: false },
-        { name: '설정변경 이력', checked: false },
-        { name: '회의록 관리', checked: true },
-        { name: '사전 관리', checked: true },
-        { name: '공지사항 관리', checked: true },
-        { name: '사용량 통계', checked: false },
-        { name: '사용자별 통계', checked: false }
-      ]
-    }
+    title: '워크스페이스',
+    menus: [
+      { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
+      { id: '메뉴 권한 관리', name: '메뉴 권한 관리', checked: false },
+      { id: '사용자 관리', name: '사용자 관리', checked: false },
+      { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
+      { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: false },
+      { id: '프롬프트 관리', name: '프롬프트 관리', checked: true },
+      { id: '동의서 관리', name: '동의서 관리', checked: false },
+      { id: '캘린더 관리', name: '캘린더 관리', checked: false },
+      { id: '사용자 접속 이력', name: '사용자 접속 이력', checked: false },
+      { id: '다운로드 이력', name: '다운로드 이력', checked: false },
+      { id: '사용자 동의 이력', name: '사용자 동의 이력', checked: false },
+      { id: '설정변경 이력', name: '설정변경 이력', checked: false },
+      { id: '회의록 관리', name: '회의록 관리', checked: false },
+      { id: '사전 관리', name: '사전 관리', checked: true },
+      { id: '공지사항 관리', name: '공지사항 관리', checked: true },
+      { id: '사용량 통계', name: '사용량 통계', checked: false },
+      { id: '사용자별 통계', name: '사용자별 통계', checked: false }
+    ]
   }
 }
 
-function WorkspaceGroupSettingPage() {
-  const [selectedPermission, setSelectedPermission] = useState(permissionData[0])
+const WorkspaceGroupSettingPage = () => {
+  const [selectedPermission, setSelectedPermission] = useState(null)
+  const [selectedMenus, setSelectedMenus] = useState({})
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [newPermission, setNewPermission] = useState({
+    workspaceName: 'SK Telecom',
+    permissionName: '',
+    description: ''
+  })
 
-  const handlePermissionSelect = (permission) => {
+  const handleRowClick = (permission) => {
     setSelectedPermission(permission)
+    const menuData = permissionMenus[permission.permissionType]
+    if (menuData) {
+      const initialMenus = {}
+      menuData.menus.forEach(menu => {
+        initialMenus[menu.id] = menu.checked
+      })
+      setSelectedMenus(initialMenus)
+    }
   }
 
-  const currentMenus = permissionMenus[selectedPermission.permission] || { system: { children: [] }, workspace: { children: [] } }
+  const handleMenuCheck = (menuId, checked) => {
+    setSelectedMenus(prev => ({
+      ...prev,
+      [menuId]: checked
+    }))
+  }
+
+  const handleWorkspaceCheck = (checked) => {
+    const menuData = permissionMenus[selectedPermission?.permissionType]
+    if (menuData) {
+      const updatedMenus = {}
+      menuData.menus.forEach(menu => {
+        updatedMenus[menu.id] = checked
+      })
+      setSelectedMenus(updatedMenus)
+    }
+  }
+
+  const handleReset = () => {
+    if (selectedPermission) {
+      const menuData = permissionMenus[selectedPermission.permissionType]
+      if (menuData) {
+        const initialMenus = {}
+        menuData.menus.forEach(menu => {
+          initialMenus[menu.id] = menu.checked
+        })
+        setSelectedMenus(initialMenus)
+        alert('권한이 초기화되었습니다.')
+      }
+    } else {
+      alert('초기화할 권한을 선택해주세요.')
+    }
+  }
+
+  const handleSave = () => {
+    if (selectedPermission) {
+      alert(`${selectedPermission.name}의 권한이 저장되었습니다.`)
+    } else {
+      alert('권한을 수정할 사용자를 선택해주세요.')
+    }
+  }
+
+  const handleCreatePermission = () => {
+    if (!newPermission.permissionName.trim()) {
+      alert('권한명을 입력해주세요.')
+      return
+    }
+    if (!newPermission.description.trim()) {
+      alert('구분을 입력해주세요.')
+      return
+    }
+    alert('권한이 생성되었습니다.')
+    setIsModalOpen(false)
+    setNewPermission({
+      workspaceName: 'SK Telecom',
+      permissionName: '',
+      description: ''
+    })
+  }
+
+  const handleDelete = () => {
+    // 삭제 로직
+    console.log('삭제')
+  }
+
+  const handleEdit = () => {
+    // 수정 로직
+    console.log('수정')
+  }
+
+  const handleCreate = () => {
+    setIsModalOpen(true)
+  }
+
+  const getCheckedMenusCount = () => {
+    return Object.values(selectedMenus).filter(checked => checked).length
+  }
+
+  const getTotalMenusCount = () => {
+    const menuData = permissionMenus[selectedPermission?.permissionType]
+    return menuData ? menuData.menus.length : 0
+  }
+
+  const isWorkspaceChecked = () => {
+    const checkedCount = getCheckedMenusCount()
+    const totalCount = getTotalMenusCount()
+    return checkedCount === totalCount && totalCount > 0
+  }
+
+  const isWorkspaceIndeterminate = () => {
+    const checkedCount = getCheckedMenusCount()
+    const totalCount = getTotalMenusCount()
+    return checkedCount > 0 && checkedCount < totalCount
+  }
 
   return (
-    <Box sx={{ width: '100%', maxWidth: '100%' }}>
-      <Typography variant="h5" component="h1" gutterBottom>
-        메뉴 권한 관리
-      </Typography>
-
-      <Grid container spacing={{ xs: 2, md: 3 }} sx={{ width: '100%' }}>
-        {/* 왼쪽: 권한 정보 */}
-        <Grid item xs={12} lg={6}>
-          <Paper sx={{ p: 0, borderRadius: 0 }}>
-            <Box sx={{ 
-              display: 'flex', 
-              flexDirection: { xs: 'column', sm: 'row' },
-              justifyContent: 'space-between', 
-              alignItems: { xs: 'stretch', sm: 'center' }, 
-              gap: { xs: 2, sm: 0 },
-              mb: 2,
-              pb: 1,
-              p: { xs: 1.5, sm: 2 },
-              borderBottom: '1px solid #E5E5E5'
-            }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Typography variant="h6" sx={{ fontSize: { xs: '14px', sm: '16px' }, fontWeight: 600 }}>
-                  권한 정보
-                </Typography>
-                <Typography sx={{ fontSize: { xs: '14px', sm: '16px' }, fontWeight: 600, color: '#292A2B' }}>
-                  총 {permissionData.length}개
-                </Typography>
-              </Box>
-              <Box sx={{ 
-                display: 'flex', 
-                gap: 1,
-                flexWrap: 'wrap'
-              }}>
-                <Button 
-                  variant="outlined" 
-                  size="small"
-                  sx={{ 
-                    height: '32px',
-                    fontSize: { xs: '11px', sm: '12px' },
-                    borderColor: '#E5E5E5',
-                    color: '#4D5256',
-                    flex: { xs: '1', sm: 'auto' },
-                    minWidth: { xs: 'auto', sm: '60px' }
-                  }}
-                >
-                  삭제
-                </Button>
-                <Button 
-                  variant="outlined" 
-                  size="small"
-                  sx={{ 
-                    height: '32px',
-                    fontSize: { xs: '11px', sm: '12px' },
-                    borderColor: '#E5E5E5',
-                    color: '#4D5256',
-                    flex: { xs: '1', sm: 'auto' },
-                    minWidth: { xs: 'auto', sm: '60px' }
-                  }}
-                >
-                  수정
-                </Button>
-                <Button 
-                  variant="text"
-              color="primary" 
-                  size="small"
-                  sx={{ 
-                    height: '32px',
-                    fontSize: { xs: '11px', sm: '12px' },
-                    flex: { xs: '1', sm: 'auto' },
-                    minWidth: { xs: 'auto', sm: '60px' }
-                  }}
-                >
-                  생성
-                </Button>
-              </Box>
-            </Box>
-
-            <TableContainer sx={{ width: '100%', borderRadius: 0 }}>
-              <Table size="small" sx={{ width: '100%', tableLayout: 'fixed' }}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell 
-                      padding="checkbox" 
+    <Layout className="page-group-setting">
+      <div className="content user-page group-setting-page">
+        <div className="content-header">
+          <h1 className="breadcrumb">메뉴 권한 관리</h1>
+        </div>
+        <div className="content-body">
+          <div className="group-setting-container">
+            <div className="group-setting-layout tree-visible">
+              <div className="group-setting-left-panel">
+                {/* 권한정보 헤더와 버튼들 */}
+                <div className="group-info-header">
+                  <div className="group-info-title-section">
+                    <h3 className="group-info-subtitle">권한 정보</h3>
+                    <span className="group-total-count">총 {permissionData.length}개</span>
+                  </div>
+                  <ButtonGroup variant="outlined" size="medium">
+                    <Button 
+                      onClick={handleDelete}
                       sx={{ 
-                        width: { xs: '40px', sm: '50px' },
-                        padding: { xs: '4px', sm: '8px' }
+                        color: 'error.main', 
+                        borderColor: 'error.main',
+                        '&:hover': { 
+                          bgcolor: 'error.light',
+                          color: 'white',
+                          borderColor: 'error.main'
+                        }
                       }}
                     >
-                      <Checkbox size="small" />
-                    </TableCell>
-                    <TableCell sx={{ 
-                      width: { xs: '50%', sm: '40%' },
-                      fontSize: { xs: '12px', sm: '14px' },
-                      fontWeight: 600
-                    }}>
-                      이름
-                    </TableCell>
-                    <TableCell sx={{ 
-                      width: { xs: '50%', sm: '60%' },
-                      fontSize: { xs: '12px', sm: '14px' },
-                      fontWeight: 600
-                    }}>
-                      권한
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {permissionData.map((permission) => (
-                    <TableRow 
-                      key={permission.id}
-                      selected={selectedPermission.id === permission.id}
-                      hover
-                      sx={{ cursor: 'pointer' }}
-                      onClick={() => handlePermissionSelect(permission)}
+                      삭제
+                    </Button>
+                    <Button 
+                      onClick={handleEdit}
+                      sx={{ 
+                        color: 'primary.main',
+                        borderColor: 'primary.main',
+                        '&:hover': { 
+                          bgcolor: 'primary.light',
+                          color: 'white',
+                          borderColor: 'primary.main'
+                        }
+                      }}
                     >
-                      <TableCell 
-                        padding="checkbox"
-                        sx={{ 
-                          padding: { xs: '4px', sm: '8px' }
-                        }}
-                      >
-                        <Checkbox size="small" />
-                      </TableCell>
-                      <TableCell sx={{ 
-                        fontSize: { xs: '12px', sm: '14px' },
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap'
-                      }}>
-                        {permission.name}
-                      </TableCell>
-                      <TableCell sx={{ 
-                        fontSize: { xs: '12px', sm: '14px' },
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap'
-                      }}>
-                        {permission.permissionName}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Paper>
-        </Grid>
+                      수정
+                    </Button>
+                    <Button 
+                      onClick={handleCreate}
+                      sx={{ 
+                        color: 'success.main', 
+                        borderColor: 'success.main',
+                        '&:hover': { 
+                          bgcolor: 'success.light',
+                          color: 'white',
+                          borderColor: 'success.main'
+                        }
+                      }}
+                    >
+                      생성
+                    </Button>
+                  </ButtonGroup>
+                </div>
 
-        {/* 오른쪽: 권한 미리보기 */}
-        <Grid item xs={12} lg={6}>
-          <Paper sx={{ p: { xs: 1.5, sm: 2 } }}>
-            <Typography variant="h6" sx={{ fontSize: { xs: '14px', sm: '16px' }, fontWeight: 600, mb: 2 }}>
-              권한 미리보기
-            </Typography>
+                {/* 권한 정보 테이블 */}
+                <div className="group-setting-table-container">
+                  <table className="group-setting-table">
+                    <thead>
+                      <tr>
+                        <th><CustomCheckbox size="small" /></th>
+                        <th>순번</th>
+                        <th>이름</th>
+                        <th>권한명</th>
+                        <th>설명</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {permissionData.map((permission) => (
+                        <tr 
+                          key={permission.id}
+                          className={selectedPermission?.id === permission.id ? 'selected' : ''}
+                          onClick={() => handleRowClick(permission)}
+                          style={{ cursor: 'pointer' }}
+                        >
+                          <td>
+                            <CustomCheckbox 
+                              size="small"
+                              onClick={(e) => e.stopPropagation()}
+                            />
+                          </td>
+                          <td>{permission.order}</td>
+                          <td>{permission.name}</td>
+                          <td>{permission.permissionName}</td>
+                          <td>{permission.description}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
 
-            <Box sx={{ mb: 2 }}>
-              <Typography sx={{ 
-                fontSize: { xs: '12px', sm: '14px' }, 
-                fontWeight: 500, 
-                color: '#292A2B', 
-                mb: 1,
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap'
-              }}>
-                선택된 사용자: {selectedPermission.name} ({selectedPermission.permissionName})
-              </Typography>
-            </Box>
+              <div className="group-setting-tree-panel">
+                <div className="tree-header">
+                  <h4>권한 미리보기</h4>
+                </div>
+                
+                {!selectedPermission ? (
+                  <div className="no-data-area">
+                    <div className="no-data-icon">
+                      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M20 16H44C46.2091 16 48 17.7909 48 20V44C48 46.2091 46.2091 48 44 48H20C17.7909 48 16 46.2091 16 44V20C16 17.7909 17.7909 16 20 16Z"
+                          fill="#E5E7EB" stroke="#D1D5DB" strokeWidth="2" />
+                        <path d="M28 28H36M28 32H36M28 36H32" stroke="#9CA3AF" strokeWidth="2" strokeLinecap="round" />
+                      </svg>
+                    </div>
+                    <p className="no-data-text">권한 항목 미리보기가 가능합니다.</p>
+                  </div>
+                ) : (
+                  <div className="tree-menu">
+                    <div className="tree-item">
+                      <CustomCheckbox
+                        checked={isWorkspaceChecked()}
+                        indeterminate={isWorkspaceIndeterminate()}
+                        onChange={(e) => handleWorkspaceCheck(e.target.checked)}
+                        size="small"
+                      />
+                      <label>워크스페이스</label>
+                      <div className="tree-children">
+                        {permissionMenus[selectedPermission.permissionType]?.menus.map(menu => (
+                          <div key={menu.id} className="tree-item">
+                            <CustomCheckbox
+                              checked={selectedMenus[menu.id] || false}
+                              onChange={(e) => handleMenuCheck(menu.id, e.target.checked)}
+                              size="small"
+                            />
+                            <label>{menu.name}</label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
 
-            {/* 메뉴 트리 - 기존 HTML과 완전 동일한 구조 */}
-            <Box sx={{ 
-              '& .tree-item': {
-                display: 'flex',
-                alignItems: 'center',
-                gap: 1,
-                py: 0.5,
-                fontSize: { xs: '12px', sm: '14px' }
-              },
-              '& .tree-children': {
-                pl: 3,
-                borderLeft: '1px solid #E5E5E5',
-                ml: 1
-              },
-              '& .MuiCheckbox-root': {
-                padding: '4px'
-              }
-            }}>
-              {/* 시스템 섹션 */}
-              <Box className="tree-item">
-                <Checkbox 
-                  size="small"
-                  checked={currentMenus.system?.checked || false}
-                  onChange={() => {}}
-                />
-                <Typography sx={{ 
-                  fontSize: { xs: '12px', sm: '14px' },
-                  fontWeight: 600,
-                  color: '#292A2B'
-                }}>
-                  시스템
-                </Typography>
-              </Box>
-              
-              <Box className="tree-children">
-                {currentMenus.system?.children?.map((menu, index) => (
-                  <Box key={`system-${index}`} className="tree-item">
-                    <Checkbox 
-                      size="small"
-                      checked={menu.checked}
-                      onChange={() => {}}
-                    />
-                    <Typography sx={{ 
-                      fontSize: { xs: '12px', sm: '14px' },
-                      fontWeight: menu.checked ? 500 : 400,
-                      color: menu.checked ? '#292A2B' : '#6B7280'
-                    }}>
-                      {menu.name}
-                    </Typography>
-                  </Box>
-                ))}
-              </Box>
+        {/* 권한 미리보기 하단 버튼들 */}
+        <div className="preview-actions-external">
+          <ButtonGroup variant="outlined" size="medium">
+            <Button 
+              onClick={handleReset}
+              sx={{ 
+                color: 'text.secondary',
+                borderColor: 'grey.400',
+                '&:hover': { 
+                  bgcolor: 'grey.100',
+                  borderColor: 'grey.400'
+                }
+              }}
+            >
+              초기화
+            </Button>
+            <Button 
+              onClick={handleSave}
+              sx={{ 
+                color: 'success.main', 
+                borderColor: 'success.main',
+                '&:hover': { 
+                  bgcolor: 'success.light',
+                  color: 'white',
+                  borderColor: 'success.main'
+                }
+              }}
+            >
+              저장
+            </Button>
+          </ButtonGroup>
+        </div>
+      </div>
 
-              {/* 워크스페이스 섹션 */}
-              <Box className="tree-item" sx={{ mt: 1 }}>
-                <Checkbox 
-                  size="small"
-                  checked={currentMenus.workspace?.checked || false}
-                  onChange={() => {}}
-                />
-                <Typography sx={{ 
-                  fontSize: { xs: '12px', sm: '14px' },
-                  fontWeight: 600,
-                  color: '#292A2B'
-                }}>
-                  워크스페이스
-                </Typography>
-              </Box>
-              
-              <Box className="tree-children">
-                {currentMenus.workspace?.children?.map((menu, index) => (
-                  <Box key={`workspace-${index}`} className="tree-item">
-                    <Checkbox 
-                      size="small"
-                      checked={menu.checked}
-                      onChange={() => {}}
-                    />
-                    <Typography sx={{ 
-                      fontSize: { xs: '12px', sm: '14px' },
-                      fontWeight: menu.checked ? 500 : 400,
-                      color: menu.checked ? '#292A2B' : '#6B7280'
-                    }}>
-                      {menu.name}
-                    </Typography>
-                  </Box>
-                ))}
-              </Box>
-            </Box>
+      {/* 권한 생성 모달 */}
+      <Dialog 
+        open={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+        maxWidth="sm" 
+        fullWidth
+      >
+        <DialogTitle>권한 생성</DialogTitle>
+        <DialogContent>
+          <div style={{ paddingTop: '8px' }}>
+            <div style={{ marginBottom: '16px' }}>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>워크스페이스</label>
+              <FormControl fullWidth size="small">
+                <Select
+                  value={newPermission.workspaceName}
+                  onChange={(e) => setNewPermission(prev => ({ ...prev, workspaceName: e.target.value }))}
+                  variant="outlined"
+                >
+                  <MenuItem value="SK Telecom">SK Telecom</MenuItem>
+                  <MenuItem value="SK Hynix">SK Hynix</MenuItem>
+                  <MenuItem value="KT">KT</MenuItem>
+                  <MenuItem value="LG U+">LG U+</MenuItem>
+                  <MenuItem value="Timbel_Mk">Timbel_Mk</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
 
-            <Box sx={{ 
-              mt: 3, 
-              display: 'flex', 
-              justifyContent: { xs: 'center', sm: 'flex-end' },
-              gap: 1,
-              width: '100%'
-            }}>
-              <Button 
+            <div style={{ marginBottom: '16px' }}>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>권한명</label>
+              <TextField
+                fullWidth
+                size="small"
                 variant="outlined"
-                sx={{ 
-                  borderColor: '#E5E5E5',
-                  color: '#4D5256',
-                  width: { xs: '48%', sm: 'auto' },
-                  minWidth: { sm: '80px' }
-                }}
-              >
-                초기화
-              </Button>
-              <Button 
-                variant="text"
-              color="primary"
-                sx={{
-                  width: { xs: '48%', sm: 'auto' },
-                  minWidth: { sm: '80px' }
-                }}
-              >
-                저장
-              </Button>
-            </Box>
-          </Paper>
-        </Grid>
-      </Grid>
-    </Box>
+                placeholder="권한명을 입력하세요"
+                value={newPermission.permissionName}
+                onChange={(e) => setNewPermission(prev => ({ ...prev, permissionName: e.target.value }))}
+              />
+            </div>
+
+            <div style={{ marginBottom: '16px' }}>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>권한 설명</label>
+              <TextField
+                fullWidth
+                size="small"
+                variant="outlined"
+                placeholder="권한 설명을 입력하세요"
+                value={newPermission.description}
+                onChange={(e) => setNewPermission(prev => ({ ...prev, description: e.target.value }))}
+              />
+            </div>
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button 
+            onClick={() => setIsModalOpen(false)}
+            sx={{ 
+              color: 'text.secondary',
+              '&:hover': { bgcolor: 'grey.100' }
+            }}
+          >
+            취소
+          </Button>
+          <Button 
+            onClick={handleCreatePermission}
+            variant="contained"
+            sx={{ 
+              bgcolor: 'primary.main',
+              '&:hover': { bgcolor: 'primary.dark' }
+            }}
+          >
+            생성
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Layout>
   )
 }
 

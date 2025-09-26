@@ -39,9 +39,10 @@
         <h3>전체 시스템 관리</h3>
         <ul>
           <li><a href="workspace.html">워크스페이스 관리</a></li>
-          <li><a href="menu_setting.html">시스템 메뉴 관리</a></li>
-          <li><a href="system_user.html">관리자 지정</a></li>
-          <li><a href="group_setting.html">관리자 접근권한</a></li>
+          <li><a href="menu_setting.html">전체 메뉴 관리</a></li>
+          <li><a href="system_user.html">사용자 관리</a></li>
+          <li><a href="group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="system_setting_history.html">설정변경 이력</a></li>
           <li><a href="system_stats_usage.html">전체 시스템 사용 통계</a></li>
           <li><a href="system_stats_user.html">사용자별 사용 통계</a></li>
         </ul>
@@ -52,9 +53,10 @@
           <h3>워크스페이스 설정</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html" class="active">메뉴/정책 관리</a></li>
-          <li><a href="workspace_group_setting.html">메뉴 권한 설정</a></li>
-          <li><a href="user.html">사용자 조회</a></li>
+          <li><a href="workspace_permission.html" class="active">FO기능정책관리</a></li>
+          <li><a href="content_retention.html">컨텐츠 보존 관리</a></li>
+          <li><a href="workspace_group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 관리</a></li>
         </ul>
       </div>
@@ -292,63 +294,6 @@
                       <span class="checkmark"></span>
                       HWP 다운로드
                     </label>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="feature-name">영상/음성 파일 보존기간</td>
-                <td class="feature-description">녹음된 음성파일이나 업로드된 미디어의 원본파일의 보존 기간을 설정합니다.</td>
-                <td class="feature-setting">
-                  <div class="setting-combo-wrapper">
-                    <div class="combo-select">
-                      <select class="setting-select" id="content-retention-select">
-                        <option value="90일">90일</option>
-                        <option value="180일" selected>180일</option>
-                        <option value="1년">1년</option>
-                        <option value="3년">3년</option>
-                        <option value="custom">직접 입력</option>
-                      </select>
-                    </div>
-                    <input type="text" class="custom-input" id="content-retention-input" style="display: none;">
-                    <span class="input-unit" style="display: none;">일 후</span>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="feature-name">영상/음성 전사기록 보존기간</td>
-                <td class="feature-description">음성 전사된 컨텐츠에 대한 보존기간을 설정합니다.</td>
-                <td class="feature-setting">
-                  <div class="setting-combo-wrapper">
-                    <div class="combo-select">
-                      <select class="setting-select" id="voice-retention-select">
-                        <option value="영구" selected>영구</option>
-                        <option value="1년">1년</option>
-                        <option value="2년">2년</option>
-                        <option value="3년">3년</option>
-                        <option value="custom">직접 입력</option>
-                      </select>
-                    </div>
-                    <input type="text" class="custom-input" id="voice-retention-input" style="display: none;">
-                    <span class="input-unit" style="display: none;">일 후</span>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="feature-name">AI 요약 보존 기간</td>
-                <td class="feature-description">LLM에 의해 요약된 컨텐츠에 대한 보존기간을 설정합니다.</td>
-                <td class="feature-setting">
-                  <div class="setting-combo-wrapper">
-                    <div class="combo-select">
-                      <select class="setting-select" id="ai-retention-select">
-                        <option value="영구" selected>영구</option>
-                        <option value="1년">1년</option>
-                        <option value="2년">2년</option>
-                        <option value="3년">3년</option>
-                        <option value="custom">직접 입력</option>
-                      </select>
-                    </div>
-                    <input type="text" class="custom-input" id="ai-retention-input" style="display: none;">
-                    <span class="input-unit" style="display: none;">일 후</span>
                   </div>
                 </td>
               </tr>

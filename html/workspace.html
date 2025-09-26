@@ -124,9 +124,10 @@
         <h3>전체 시스템 관리</h3>
         <ul>
           <li><a href="workspace.html" class="active">워크스페이스 관리</a></li>
-          <li><a href="menu_setting.html">시스템 메뉴 관리</a></li>
-          <li><a href="system_user.html">관리자 지정</a></li>
-          <li><a href="group_setting.html">관리자 접근권한</a></li>
+          <li><a href="menu_setting.html">전체 메뉴 관리</a></li>
+          <li><a href="system_user.html">사용자 관리</a></li>
+          <li><a href="group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="system_setting_history.html">설정변경 이력</a></li>
           <li><a href="system_stats_usage.html">전체 시스템 사용 통계</a></li>
           <li><a href="system_stats_user.html">사용자별 사용 통계</a></li>
         </ul>
@@ -137,9 +138,10 @@
           <h3>워크스페이스 설정</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html">메뉴/정책 관리</a></li>
-          <li><a href="workspace_group_setting.html">메뉴 권한 설정</a></li>
-          <li><a href="user.html">사용자 조회</a></li>
+          <li><a href="workspace_permission.html">FO기능정책관리</a></li>
+          <li><a href="content_retention.html">컨텐츠 보존 관리</a></li>
+          <li><a href="workspace_group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 관리</a></li>
         </ul>
       </div>
@@ -186,8 +188,8 @@
           <div class="common-topbar">
             <div class="tb-left" style="width: 50%;">
               <div class="license-info">
-                <p>라이센스 적용 가능한 인원 : 무제한</p>
-                <p>라이센스 사용 중인 인원 : 83명</p>
+                <p>총 워크 스페이스 갯수 : 9개</p>
+                <p>라이센스 사용 인원 : 83명 / 무제한</p>
               </div>
               <button class="new-button">라이센스 업로드 </button>
             </div>
@@ -234,9 +236,6 @@
                 <th>구성원</th>
                 <th>사용자 현황</th>
                 <th>생성일</th>
-                <th>비활성일</th>
-                <th class="sortable" data-sort-key="enabled">사용여부 <span class="sort-icon" aria-hidden="true"></span>
-                </th>
               </tr>
             </thead>
             <tbody>
@@ -263,18 +262,11 @@
                   <div class="user-status">
                     <div class="user-total">총 1명</div>
                     <div class="user-roles">
-                      <span class="role-item owner">소유자 1</span>
+                      <span class="role-item owner">관리자 1</span>
                     </div>
                   </div>
                 </td>
                 <td>2025-09-01</td>
-                <td>-</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -299,20 +291,12 @@
                   <div class="user-status">
                     <div class="user-total">총 8명</div>
                     <div class="user-roles">
-                      <span class="role-item owner">소유자 2</span><span class="role-separator">/</span><span
-                        class="role-item admin">관리자 1</span><span class="role-separator">/</span><span
+                      <span class="role-item admin">관리자 1</span><span class="role-separator">/</span><span
                         class="role-item member">구성원 5</span>
                     </div>
                   </div>
                 </td>
                 <td>2025-08-15</td>
-                <td>2025-12-31</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                  </label>
-                </td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -337,19 +321,11 @@
                   <div class="user-status">
                     <div class="user-total">총 3명</div>
                     <div class="user-roles">
-                      <span class="role-item owner">소유자 1</span><span class="role-separator">/</span><span
-                        class="role-item member">구성원 2</span>
+                      <span class="role-item member">구성원 2</span>
                     </div>
                   </div>
                 </td>
                 <td>2025-07-20</td>
-                <td>2025-11-15</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                  </label>
-                </td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -374,20 +350,12 @@
                   <div class="user-status">
                     <div class="user-total">총 15명</div>
                     <div class="user-roles">
-                      <span class="role-item owner">소유자 1</span><span class="role-separator">/</span><span
-                        class="role-item admin">관리자 3</span><span class="role-separator">/</span><span
+                      <span class="role-item admin">관리자 3</span><span class="role-separator">/</span><span
                         class="role-item member">구성원 11</span>
                     </div>
                   </div>
                 </td>
                 <td>2025-09-05</td>
-                <td>-</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -412,19 +380,11 @@
                   <div class="user-status">
                     <div class="user-total">총 2명</div>
                     <div class="user-roles">
-                      <span class="role-item owner">소유자 1</span><span class="role-separator">/</span><span
-                        class="role-item member">구성원 1</span>
+                      <span class="role-item member">구성원 1</span>
                     </div>
                   </div>
                 </td>
                 <td>2025-08-30</td>
-                <td>-</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -449,18 +409,11 @@
                   <div class="user-status">
                     <div class="user-total">총 1명</div>
                     <div class="user-roles">
-                      <span class="role-item owner">소유자 1</span>
+                      <span class="role-item admin">관리자 1</span>
                     </div>
                   </div>
                 </td>
                 <td>2025-06-10</td>
-                <td>2026-01-20</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                  </label>
-                </td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -485,18 +438,11 @@
                   <div class="user-status">
                     <div class="user-total">총 1명</div>
                     <div class="user-roles">
-                      <span class="role-item owner">소유자 1</span>
+                      <span class="role-item admin">관리자 1</span>
                     </div>
                   </div>
                 </td>
                 <td>2025-09-01</td>
-                <td>2025-10-01</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -521,18 +467,11 @@
                   <div class="user-status">
                     <div class="user-total">총 1명</div>
                     <div class="user-roles">
-                      <span class="role-item owner">소유자 1</span>
+                      <span class="role-item admin">관리자 1</span>
                     </div>
                   </div>
                 </td>
                 <td>2025-09-12</td>
-                <td>-</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -557,18 +496,11 @@
                   <div class="user-status">
                     <div class="user-total">총 1명</div>
                     <div class="user-roles">
-                      <span class="role-item owner">소유자 1</span>
+                      <span class="role-item admin">관리자 1</span>
                     </div>
                   </div>
                 </td>
                 <td>2025-05-25</td>
-                <td>2025-10-30</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                  </label>
-                </td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -593,18 +525,11 @@
                   <div class="user-status">
                     <div class="user-total">총 1명</div>
                     <div class="user-roles">
-                      <span class="role-item owner">소유자 1</span>
+                      <span class="role-item admin">관리자 1</span>
                     </div>
                   </div>
                 </td>
                 <td>2025-09-18</td>
-                <td>-</td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                  </label>
-                </td>
               </tr>
             </tbody>
           </table>
@@ -762,29 +687,6 @@
       });
 
       // 사용 여부 정렬 (체크 여부 기준)
-      const table = document.querySelector('.table-container table');
-      const tbody = table && table.querySelector('tbody');
-      const enabledHeader = table && table.querySelector('th[data-sort-key="enabled"]');
-      let enabledSortAsc = true;
-      if (enabledHeader && tbody) {
-        // 초기 아이콘 방향 설정
-        enabledHeader.classList.toggle('asc', enabledSortAsc);
-        enabledHeader.classList.toggle('desc', !enabledSortAsc);
-        enabledHeader.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const rows = Array.from(tbody.querySelectorAll('tr'));
-          rows.sort((a, b) => {
-            const aChecked = !!a.querySelector('td:nth-child(10) input[type="checkbox"]:checked');
-            const bChecked = !!b.querySelector('td:nth-child(10) input[type="checkbox"]:checked');
-            const diff = (aChecked === bChecked) ? 0 : (aChecked ? -1 : 1);
-            return enabledSortAsc ? diff : -diff;
-          });
-          rows.forEach(r => tbody.appendChild(r));
-          enabledSortAsc = !enabledSortAsc;
-          enabledHeader.classList.toggle('asc', enabledSortAsc);
-          enabledHeader.classList.toggle('desc', !enabledSortAsc);
-        });
-      }
     });
   </script>
   <script src="../asset/menu.js"></script>

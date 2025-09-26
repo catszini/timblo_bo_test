@@ -343,7 +343,7 @@
 
 .form-select {
     width: 100%;
-    padding: 10px 36px 10px 12px;
+    padding: 0px 36px 0px 12px;
     border: 1px solid #ddd; /* 기준 색상 */
     border-radius: 6px;
     font-size: 14px;
@@ -506,7 +506,7 @@
 
 .btn-submit {
     padding: 8px 24px;
-    border: 1px solid #0066FF;
+    border: 1px solid #0066FF !important;
     border-radius: 6px;
     background: transparent;
     color: #0066FF;
