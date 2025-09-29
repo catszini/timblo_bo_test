@@ -1907,13 +1907,16 @@ body {
 }
 
 .new-button {
-    padding: 0 20px;
+    padding: 7px 20px;
     background-color: transparent;
     color: #0066ff;
     border: 1px solid #0066ff;
     border-radius: 6px;
     text-decoration: none;
     transition: all 0.2s ease;
+    font-size: 14px;
+    height: 36px;
+
 }
 
 .new-button:hover {
@@ -8751,4 +8754,10 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 .page-workspace-permission .save-permissions:hover {
   background: #0052CC;
   border-color: #0052CC;
+}
+
+/* Template Detail 페이지 스타일 */
+.template-detail-version-table table th,
+.template-detail-version-table table td {
+  padding: 12px !important;
 }
