@@ -6,14 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>통계 - 사용자별 통계</title>
   <link rel="stylesheet" href="../asset/style.css">
-  <style>
-    .btn[style*="color: #10B981"]:hover {
-      background-color: #f0fdf4 !important;
-    }
-  </style>
+  <!-- 내부 스타일을 style.css로 이동했습니다 -->
 </head>
 
-<body>
+<body class="page-stats-user">
   <div class="container">
     <!-- 사이드바 -->
     <div class="sidebar">
@@ -129,11 +125,7 @@
             </div>
             <div class="tb-right tb-right-full">
               <div class="right-tail">
-                <select class="condition-select">
-                  <option>10개씩 보기</option>
-                  <option>20개씩 보기</option>
-                  <option>50개씩 보기</option>
-                </select>
+
                 <div class="combo-search">
                   <div class="combo-field">
                     <select class="combo-select">
@@ -153,7 +145,11 @@
                   style="background-color: transparent; color: #10B981; border: 1px solid #10B981; display: flex; align-items: center; gap: 8px; transition: all 0.2s ease;">
                   엑셀 다운로드
                 </button>
-
+                <select class="condition-select">
+                  <option>10개씩 보기</option>
+                  <option>20개씩 보기</option>
+                  <option>50개씩 보기</option>
+                </select>
               </div>
             </div>
           </div>

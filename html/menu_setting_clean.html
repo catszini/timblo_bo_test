@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" class="menu-ready">
+<html lang="ko">
 
 <head>
   <meta charset="UTF-8">
@@ -94,7 +94,7 @@
     </div>
 
     <!-- 메인 컨텐츠 -->
-    <div class="content">
+    <div class="main-content">
       <div class="content-header">
         <h1 class="breadcrumb">
           전체 메뉴 관리
@@ -228,7 +228,7 @@
               <h3 class="menu-subtitle">메뉴 관리</h3>
               <div class="workspace-selector">
                 <select>
-                  <option>워크스페이스 목록</option>
+                  <option>전체 워크스페이스</option>
                   <option>SK Telecom</option>
                   <option>Samsung Electronics</option>
                   <option>LG Electronics</option>
@@ -243,9 +243,9 @@
               </div>
             </div>
             <div class="menu-action-buttons">
+              <button class="btn-reset">초기화</button>
               <button class="btn-save">저장</button>
-              <button class="new-button">생성</button>
-              <button class="btn-submit btn-apply">적용</button>
+              <button class="btn-submit">적용</button>
             </div>
           </div>
 
@@ -499,79 +499,36 @@
 
   <!-- 새메뉴 생성 모달 -->
   <div class="modal-overlay modal-overlay-hidden" id="newMenuModal">
-    <div class="modal-container" style="width: 600px; max-width: 90vw; min-height: 500px;">
-      <div class="modal-header">
-        <div class="header-content">
-          <div class="header-text">
-            <h3 style="font-size: 18px; margin: 0;" id="modal-title">새메뉴</h3>
+    <div class="modal-container">
+      <div class="modal-content">
+        <h2 class="modal-title">새메뉴</h2>
+        <form class="form">
+          <div class="form-group">
+            <label class="form-label">메뉴명</label>
+            <input type="text" class="form-input" placeholder="메뉴명을 입력하세요">
           </div>
-          <button class="btn-close" id="menuModalClose">
-            <img src="../asset/close-icon.svg" alt="닫기">
-          </button>
-        </div>
-      </div>
-      <div class="modal-content" style="padding: 32px;">
-        <div class="form-row" style="margin-bottom: 24px;">
-          <div class="form-group" style="margin-right: 16px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600;">메뉴명</label>
-            <input type="text" class="form-input" id="menu-name-input" placeholder="메뉴명을 입력하세요"
-              style="width: 100%; padding: 12px;" />
+          <div class="form-group">
+            <label class="form-label">URL</label>
+            <input type="text" class="form-input" placeholder="URL을 입력하세요">
           </div>
-        </div>
-
-        <div class="form-row" style="margin-bottom: 24px;" id="order-section">
-          <div class="form-group" style="margin-right: 16px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600;">순서</label>
-            <input type="number" class="form-input" id="menu-order-input" placeholder="순서를 입력하세요"
-              style="width: 100%; padding: 12px;" />
-          </div>
-        </div>
-
-        <div class="form-row" style="margin-bottom: 24px;">
-          <div class="form-group full-width">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600;">링크 URL</label>
-            <input type="text" class="form-input" id="menu-url-input" style="width: 100%; padding: 12px;"
-              placeholder="페이지 경로 또는 URL을 입력하세요 (예: /admin/workspace.html, https://example.com)" />
-          </div>
-        </div>
-
-        <div class="form-row" style="margin-bottom: 24px;" id="group-section">
-          <div class="form-group full-width">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600;">그룹 설정</label>
-            <div class="combo-select" style="width: 100%;">
-              <div>
-                <select id="groupSelect"
-                  style="width: 100%; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; background-color: white;">
-                  <option value="">그룹을 선택하세요</option>
-                  <option value="workspace-setting">워크스페이스 설정</option>
-                  <option value="feature-management">세부 기능 관리</option>
-                  <option value="history-stats">이력/통계 관리</option>
-                </select>
-                <img src="../asset/select-arrow.svg" alt="선택 화살표" class="select-arrow">
+          <div class="form-group">
+            <label class="form-label">사용 여부</label>
+            <div class="status-radio-group">
+              <div class="radio-option">
+                <input type="radio" id="active" name="status" value="active" checked>
+                <label for="active" class="radio-label active">사용</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="inactive" name="status" value="inactive">
+                <label for="inactive" class="radio-label inactive">미사용</label>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="form-row" style="margin-bottom: 24px;">
-          <div class="form-group full-width">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600;">사용 여부</label>
-            <div class="status-radio-group">
-              <label class="radio-option">
-                <input type="radio" name="menuStatus" value="active" checked>
-                <span class="radio-label active">사용</span>
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="menuStatus" value="inactive">
-                <span class="radio-label inactive">미사용</span>
-              </label>
-            </div>
+          <div class="form-actions">
+            <button type="button" class="btn-cancel">취소</button>
+            <button type="submit" class="btn-confirm">확인</button>
           </div>
-        </div>
-      </div>
-      <div class="modal-footer" style="padding: 24px 32px 32px 32px; display: flex; gap: 16px;">
-        <button class="btn-cancel" id="menuModalCancel" style="flex: 1; padding: 12px; font-size: 16px;">취소</button>
-        <button class="btn-submit" id="menuModalSave" style="flex: 1; padding: 12px; font-size: 16px;">저장</button>
+        </form>
       </div>
     </div>
   </div>
@@ -599,100 +556,22 @@
       });
 
       // 새메뉴 버튼 클릭 시 모달 열기
-      const systemNewBtn = document.querySelector('#system-menu .new-button');
-      const workspaceNewBtn = document.querySelector('#workspace-menu .new-button');
+      const newButtons = document.querySelectorAll('.new-button');
       const modal = document.getElementById('newMenuModal');
-      const modalTitle = document.getElementById('modal-title');
-      const orderSection = document.getElementById('order-section');
-      const groupSection = document.getElementById('group-section');
 
-      let currentMenuType = 'system'; // 'system' 또는 'workspace'
-
-      // 시스템 메뉴 생성 버튼
-      if (systemNewBtn) {
-        systemNewBtn.addEventListener('click', function () {
-          currentMenuType = 'system';
-          modalTitle.textContent = '시스템 메뉴 생성';
-          orderSection.style.display = 'block'; // 순서 필드 보이기
-          groupSection.style.display = 'none';  // 그룹 필드 숨기기
-          clearModalForm();
+      newButtons.forEach(button => {
+        button.addEventListener('click', function () {
           modal.classList.remove('modal-overlay-hidden');
         });
-      }
-
-      // 워크스페이스 메뉴 생성 버튼
-      if (workspaceNewBtn) {
-        workspaceNewBtn.addEventListener('click', function () {
-          currentMenuType = 'workspace';
-          modalTitle.textContent = '워크스페이스 메뉴 생성';
-          orderSection.style.display = 'none';  // 순서 필드 숨기기
-          groupSection.style.display = 'block'; // 그룹 필드 보이기
-          clearModalForm();
-          modal.classList.remove('modal-overlay-hidden');
-        });
-      }
-
-      // 모달 폼 초기화 함수
-      function clearModalForm() {
-        document.getElementById('menu-name-input').value = '';
-        document.getElementById('menu-url-input').value = '';
-        if (document.getElementById('menu-order-input')) {
-          document.getElementById('menu-order-input').value = '';
-        }
-        if (document.getElementById('groupSelect')) {
-          document.getElementById('groupSelect').value = '';
-        }
-        // 라디오 버튼 초기화 (사용으로 설정)
-        document.querySelector('input[name="menuStatus"][value="active"]').checked = true;
-      }
+      });
 
       // 모달 닫기
-      const cancelBtn = document.getElementById('menuModalCancel');
-      const closeBtn = document.getElementById('menuModalClose');
-      const saveBtn = document.getElementById('menuModalSave');
+      const cancelBtn = document.querySelector('.btn-cancel');
       const modalOverlay = document.querySelector('.modal-overlay');
 
-      function closeModal() {
-        modal.classList.add('modal-overlay-hidden');
-      }
-
       if (cancelBtn) {
-        cancelBtn.addEventListener('click', closeModal);
-      }
-
-      if (closeBtn) {
-        closeBtn.addEventListener('click', closeModal);
-      }
-
-      // 저장 버튼 클릭
-      if (saveBtn) {
-        saveBtn.addEventListener('click', function () {
-          const menuName = document.getElementById('menu-name-input').value;
-          const menuUrl = document.getElementById('menu-url-input').value;
-          const menuStatus = document.querySelector('input[name="menuStatus"]:checked').value;
-
-          if (!menuName || !menuUrl) {
-            alert('메뉴명과 URL을 입력해주세요.');
-            return;
-          }
-
-          if (currentMenuType === 'system') {
-            const menuOrder = document.getElementById('menu-order-input').value;
-            if (!menuOrder) {
-              alert('순서를 입력해주세요.');
-              return;
-            }
-            alert(`시스템 메뉴가 생성되었습니다.\n메뉴명: ${menuName}\nURL: ${menuUrl}\n순서: ${menuOrder}\n상태: ${menuStatus === 'active' ? '사용' : '미사용'}`);
-          } else {
-            const selectedGroup = document.getElementById('groupSelect').value;
-            if (!selectedGroup) {
-              alert('그룹을 선택해주세요.');
-              return;
-            }
-            alert(`워크스페이스 메뉴가 생성되었습니다.\n메뉴명: ${menuName}\nURL: ${menuUrl}\n그룹: ${selectedGroup}\n상태: ${menuStatus === 'active' ? '사용' : '미사용'}`);
-          }
-
-          closeModal();
+        cancelBtn.addEventListener('click', function () {
+          modal.classList.add('modal-overlay-hidden');
         });
       }
 
@@ -700,7 +579,7 @@
       if (modalOverlay) {
         modalOverlay.addEventListener('click', function (e) {
           if (e.target === modalOverlay) {
-            closeModal();
+            modal.classList.add('modal-overlay-hidden');
           }
         });
       }

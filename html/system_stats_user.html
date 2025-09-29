@@ -6,54 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>전체 시스템 관리 - 사용자별 통계</title>
   <link rel="stylesheet" href="../asset/style.css">
-  <style>
-    .btn[style*="color: #10B981"]:hover {
-      background-color: #f0fdf4 !important;
-    }
-
-    .table-container table td {
-      padding: 12px 8px;
-    }
-
-    /* 워크스페이스 컬럼 텍스트 오버플로우 처리 */
-    .table-container table td:nth-child(1) {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* 이메일 컬럼 텍스트 오버플로우 처리 */
-    .table-container table td:nth-child(3) {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 0;
-    }
-
-    /* 워크스페이스 이름 영역 스타일 */
-    .workspace-name {
-      display: flex;
-      align-items: center;
-    }
-
-    .workspace-name span {
-      margin-left: 8px;
-    }
-
-    /* 사용자 아이콘 영역은 정상 표시되도록 */
-    .table-container table td .user-icon {
-      display: flex;
-      align-items: center;
-      white-space: nowrap;
-    }
-
-    .table-container table td .user-icon span {
-      margin-left: 8px;
-    }
-  </style>
+  <!-- 내부 스타일을 style.css로 이동했습니다 -->
 </head>
 
-<body>
+<body class="page-system-stats-user">
   <div class="container">
     <!-- 사이드바 -->
     <div class="sidebar">
@@ -200,15 +156,16 @@
                   </div>
                 </div>
 
+
+                <button class="btn"
+                  style="background-color: transparent; color: #10B981; border: 1px solid #10B981; transition: all 0.2s ease;">
+                  엑셀 다운로드
+                </button>
                 <select class="condition-select">
                   <option>10개씩 보기</option>
                   <option>20개씩 보기</option>
                   <option>50개씩 보기</option>
                 </select>
-                <button class="btn"
-                  style="background-color: transparent; color: #10B981; border: 1px solid #10B981; transition: all 0.2s ease;">
-                  엑셀 다운로드
-                </button>
               </div>
             </div>
           </div>

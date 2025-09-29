@@ -43,9 +43,10 @@ const Layout = ({ children, className = '' }) => {
           <h3>전체 시스템 관리</h3>
           <ul>
             <li><a href="/workspace" className={isActive('/workspace')}>워크스페이스 관리</a></li>
-            <li><a href="/menu-setting" className={isActive('/menu-setting')}>시스템 메뉴 관리</a></li>
-            <li><a href="/system-user" className={isActive('/system-user')}>관리자 지정</a></li>
-            <li><a href="/group-setting" className={isActive('/group-setting')}>관리자 접근권한</a></li>
+            <li><a href="/menu-setting" className={isActive('/menu-setting')}>전체 메뉴 관리</a></li>
+            <li><a href="/system-user" className={isActive('/system-user')}>사용자 관리</a></li>
+            <li><a href="/group-setting" className={isActive('/group-setting')}>메뉴 권한 관리</a></li>
+            <li><a href="/system-setting-history" className={isActive('/system-setting-history')}>설정변경 이력</a></li>
             <li><a href="/system-stats-usage" className={isActive('/system-stats-usage')}>전체 시스템 사용 통계</a></li>
             <li><a href="/system-stats-user" className={isActive('/system-stats-user')}>사용자별 사용 통계</a></li>
           </ul>
@@ -57,8 +58,9 @@ const Layout = ({ children, className = '' }) => {
           </div>
           <ul>
             <li><a href="/workspace-permission" className={isActive('/workspace-permission')}>FO기능정책관리</a></li>
-            <li><a href="/workspace-group-setting" className={isActive('/workspace-group-setting')}>메뉴 권한 설정</a></li>
-            <li><a href="/user" className={isActive('/user')}>사용자 조회</a></li>
+            <li><a href="/content-retention" className={isActive('/content-retention')}>컨텐츠 보존 관리</a></li>
+            <li><a href="/workspace-group-setting" className={isActive('/workspace-group-setting')}>메뉴 권한 관리</a></li>
+            <li><a href="/user" className={isActive('/user')}>사용자 관리</a></li>
             <li><a href="/logo" className={isActive('/logo')}>로고 관리</a></li>
           </ul>
         </div>

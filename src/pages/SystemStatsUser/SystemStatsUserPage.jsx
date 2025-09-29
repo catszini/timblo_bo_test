@@ -121,7 +121,7 @@ const SystemStatsUserPage = () => {
     <Layout className="page-system-stats-user">
       <div className="content">
         <div className="content-header">
-          <h1 className="breadcrumb">사용자별 통계</h1>
+          <h1 className="breadcrumb">사용자별 사용 통계</h1>
         </div>
         
         <div className="content-body">

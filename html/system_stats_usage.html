@@ -6,11 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>전체 시스템 관리 - 사용량 통계</title>
   <link rel="stylesheet" href="../asset/style.css">
-  <style>
-    .btn[style*="color: #10B981"]:hover {
-      background-color: #f0fdf4 !important;
-    }
-  </style>
+  <!-- 내부 스타일을 style.css로 이동했습니다 -->
 </head>
 
 <body class="stats-usage-page">
@@ -162,15 +158,15 @@
                 </select>
                 <button class="btn-query" id="su2-run">조회</button>
                 <div class="tb-right">
+                  <button class="btn"
+                    style="background-color: transparent; color: #10B981; border: 1px solid #10B981; margin-right: 8px; transition: all 0.2s ease;">
+                    엑셀 다운로드
+                  </button>
                   <select class="condition-select">
                     <option>10개씩 보기</option>
                     <option>20개씩 보기</option>
                     <option>50개씩 보기</option>
                   </select>
-                  <button class="btn"
-                    style="background-color: transparent; color: #10B981; border: 1px solid #10B981; margin-left: 8px; transition: all 0.2s ease;">
-                    엑셀 다운로드
-                  </button>
                 </div>
               </div>
             </div>
@@ -207,29 +203,42 @@
                     <span>SK Telecom</span>
                   </div>
                 </td>
-                <td><strong>2024.08</strong></td>
-                <td>32건</td>
-                <td>12:30:45</td>
-                <td>30건</td>
-                <td>11:45:20</td>
+                <td><strong>2025.01</strong></td>
+                <td>38건</td>
+                <td>16:22:18</td>
+                <td>36건</td>
+                <td>15:45:43</td>
                 <td>2건</td>
-                <td>0:45:25</td>
-                <td>28건</td>
-                <td>45,230</td>
-                <td>26건</td>
+                <td>0:36:35</td>
+                <td>32건</td>
+                <td>52,840</td>
+                <td>30건</td>
                 <td>2건</td>
               </tr>
               <tr>
-                <td><strong>2024.09</strong></td>
-                <td>45건</td>
-                <td>18:22:33</td>
-                <td>42건</td>
-                <td>17:30:18</td>
+                <td><strong>2024.12</strong></td>
+                <td>72건</td>
+                <td>28:45:23</td>
+                <td>68건</td>
+                <td>27:30:18</td>
+                <td>4건</td>
+                <td>1:15:05</td>
+                <td>62건</td>
+                <td>98,750</td>
+                <td>58건</td>
+                <td>4건</td>
+              </tr>
+              <tr>
+                <td><strong>2024.11</strong></td>
+                <td>56건</td>
+                <td>22:18:50</td>
+                <td>53건</td>
+                <td>21:25:35</td>
                 <td>3건</td>
-                <td>0:52:15</td>
-                <td>38건</td>
-                <td>62,480</td>
-                <td>35건</td>
+                <td>0:53:15</td>
+                <td>48건</td>
+                <td>78,920</td>
+                <td>45건</td>
                 <td>3건</td>
               </tr>
               <tr>
@@ -246,43 +255,43 @@
                 <td>2건</td>
               </tr>
               <tr>
-                <td><strong>2024.11</strong></td>
-                <td>56건</td>
-                <td>22:18:50</td>
-                <td>53건</td>
-                <td>21:25:35</td>
-                <td>3건</td>
-                <td>0:53:15</td>
-                <td>48건</td>
-                <td>78,920</td>
+                <td><strong>2024.09</strong></td>
                 <td>45건</td>
+                <td>18:22:33</td>
+                <td>42건</td>
+                <td>17:30:18</td>
+                <td>3건</td>
+                <td>0:52:15</td>
+                <td>38건</td>
+                <td>62,480</td>
+                <td>35건</td>
                 <td>3건</td>
               </tr>
               <tr>
-                <td><strong>2024.12</strong></td>
-                <td>72건</td>
-                <td>28:45:23</td>
-                <td>68건</td>
-                <td>27:30:18</td>
-                <td>4건</td>
-                <td>1:15:05</td>
-                <td>62건</td>
-                <td>98,750</td>
-                <td>58건</td>
-                <td>4건</td>
-              </tr>
-              <tr>
-                <td><strong>2025.01</strong></td>
-                <td>38건</td>
-                <td>16:22:18</td>
-                <td>36건</td>
-                <td>15:45:43</td>
-                <td>2건</td>
-                <td>0:36:35</td>
+                <td><strong>2024.08</strong></td>
                 <td>32건</td>
-                <td>52,840</td>
+                <td>12:30:45</td>
                 <td>30건</td>
+                <td>11:45:20</td>
                 <td>2건</td>
+                <td>0:45:25</td>
+                <td>28건</td>
+                <td>45,230</td>
+                <td>26건</td>
+                <td>2건</td>
+              </tr>
+              <tr style="background-color: #f8f9fa; font-weight: bold; border-top: 2px solid #dee2e6;">
+                <td colspan="2" style="text-align: center; color: #6c757d;">소계</td>
+                <td>271건</td>
+                <td>123:34:41</td>
+                <td>255건</td>
+                <td>117:25:17</td>
+                <td>16건</td>
+                <td>6:09:24</td>
+                <td>240건</td>
+                <td>383,590</td>
+                <td>225건</td>
+                <td>15건</td>
               </tr>
 
               <!-- SK Hynix -->
@@ -369,6 +378,19 @@
                 <td>42,380</td>
                 <td>25건</td>
                 <td>1건</td>
+              </tr>
+              <tr style="background-color: #f8f9fa; font-weight: bold; border-top: 2px solid #dee2e6;">
+                <td colspan="2" style="text-align: center; color: #6c757d;">소계</td>
+                <td>206건</td>
+                <td>88:07:25</td>
+                <td>196건</td>
+                <td>84:33:00</td>
+                <td>10건</td>
+                <td>3:34:25</td>
+                <td>184건</td>
+                <td>286,320</td>
+                <td>174건</td>
+                <td>10건</td>
               </tr>
             </tbody>
           </table>

@@ -1,259 +1,265 @@
 import React, { useState } from 'react'
-import {
-  TextField,
-  Button,
-  Alert,
-  Snackbar,
-  ButtonGroup
-} from '@mui/material'
 import Layout from '../../components/Layout/Layout'
 
 const LogoManagementPage = () => {
-  const [workspaceName, setWorkspaceName] = useState('SK Telecom')
-  const [isEditingName, setIsEditingName] = useState(false)
-  const [logoPreview, setLogoPreview] = useState(null)
-  const [showAlert, setShowAlert] = useState(false)
-  const [alertMessage, setAlertMessage] = useState('')
-  const [alertSeverity, setAlertSeverity] = useState('success')
+  const [logoImage, setLogoImage] = useState(null)
+  const [workspaceName, setWorkspaceName] = useState('')
+  const [isEditing, setIsEditing] = useState(false)
 
+  // 이미지 업로드 핸들러
   const handleImageUpload = () => {
     const input = document.createElement('input')
     input.type = 'file'
-    input.accept = 'image/*'
-    input.onchange = (e) => {
+    input.accept = 'image/png,image/jpeg,image/jpg'
+    input.style.display = 'none'
+
+    input.addEventListener('change', (e) => {
       const file = e.target.files[0]
       if (file) {
-        if (file.size > 5 * 1024 * 1024) {
-          setAlertMessage('파일 크기는 5MB 이하여야 합니다.')
-          setAlertSeverity('error')
-          setShowAlert(true)
-          return
-        }
-        
         const reader = new FileReader()
         reader.onload = (e) => {
-          setLogoPreview(e.target.result)
-          setAlertMessage('이미지가 성공적으로 업로드되었습니다.')
-          setAlertSeverity('success')
-          setShowAlert(true)
+          setLogoImage(e.target.result)
         }
         reader.readAsDataURL(file)
       }
-    }
+    })
+
+    document.body.appendChild(input)
     input.click()
+    document.body.removeChild(input)
   }
 
+  // 이미지 삭제 핸들러
   const handleImageDelete = () => {
-    if (window.confirm('로고 이미지를 삭제하시겠습니까?')) {
-      setLogoPreview(null)
-      setAlertMessage('로고 이미지가 삭제되었습니다.')
-      setAlertSeverity('info')
-      setShowAlert(true)
-    }
+    setLogoImage(null)
   }
 
+  // 워크스페이스 이름 수정 핸들러
   const handleNameEdit = () => {
-    setIsEditingName(true)
+    setIsEditing(true)
   }
 
-  const handleNameSave = () => {
-    setIsEditingName(false)
-    setAlertMessage('워크스페이스 이름이 저장되었습니다.')
-    setAlertSeverity('success')
-    setShowAlert(true)
+  // 설정 저장 핸들러
+  const handleSave = () => {
+    console.log('로고 설정 저장:', { logoImage, workspaceName })
+    alert('설정이 저장되었습니다.')
+    setIsEditing(false)
   }
 
-  const handleSaveSettings = () => {
-    setAlertMessage('설정이 저장되었습니다.')
-    setAlertSeverity('success')
-    setShowAlert(true)
-  }
-
+  // 취소 핸들러
   const handleCancel = () => {
-    setWorkspaceName('SK Telecom')
-    setLogoPreview(null)
-    setIsEditingName(false)
-    setAlertMessage('변경사항이 취소되었습니다.')
-    setAlertSeverity('info')
-    setShowAlert(true)
+    setIsEditing(false)
+    setWorkspaceName('')
+    setLogoImage(null)
   }
 
   return (
-    <Layout className="page-general general-page">
+    <Layout className="page-logo-management">
       <div className="content">
         <div className="content-header">
-          <h1 className="breadcrumb">로고 이미지 관리</h1>
+          <h1 className="breadcrumb">로고 관리</h1>
         </div>
 
         <div className="content-body">
-          {/* 로고 이미지 카드 */}
-          <div className="card section logo-card">
-            <div><strong>로고 이미지</strong></div>
-            <div className="row">
-              <div 
-                className="logo-box"
-                style={{
-                  backgroundImage: logoPreview ? `url(${logoPreview})` : 'none',
-                  backgroundSize: 'contain',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center'
-                }}
-              >
-                {!logoPreview && '로고 미리보기'}
+          {/* 로고 이미지 섹션 */}
+          <div className="card section logo-card" style={{ 
+            padding: '24px', 
+            marginBottom: '24px', 
+            backgroundColor: 'white', 
+            borderRadius: '8px', 
+            border: '1px solid #E5E7EB' 
+          }}>
+            <div style={{ fontSize: '16px', fontWeight: '600', marginBottom: '16px' }}>
+              <strong>로고 이미지</strong>
+            </div>
+            <div className="row" style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
+              <div className="logo-box" style={{ 
+                width: '200px', 
+                height: '80px', 
+                border: '2px dashed #D1D5DB', 
+                borderRadius: '8px', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                backgroundColor: '#F9FAFB',
+                color: '#6B7280',
+                fontSize: '14px'
+              }}>
+                {logoImage ? (
+                  <img 
+                    src={logoImage} 
+                    alt="로고 미리보기" 
+                    style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} 
+                  />
+                ) : (
+                  '로고 미리보기'
+                )}
               </div>
               <div>
-                <div className="hint">권장 이미지 크기: 168 x 48 픽셀</div>
-                <div className="hint">권장 파일 형식: PNG</div>
-                <div className="row row-margin-top">
-                  <ButtonGroup variant="outlined" size="medium">
-                    <Button 
-                      onClick={handleImageUpload}
-                      sx={{ 
-                        bgcolor: 'primary.main',
-                        color: 'white',
-                        borderColor: 'primary.main',
-                        '&:hover': { 
-                          bgcolor: 'primary.dark',
-                          borderColor: 'primary.dark'
-                        }
-                      }}
-                    >
-                      이미지 등록
-                    </Button>
-                    <Button 
-                      onClick={handleImageDelete}
-                      disabled={!logoPreview}
-                      sx={{ 
-                        color: 'error.main', 
-                        borderColor: 'error.main',
-                        '&:hover': { 
-                          bgcolor: 'error.light',
-                          color: 'white',
-                          borderColor: 'error.main'
-                        },
-                        '&:disabled': {
-                          color: 'grey.400',
-                          borderColor: 'grey.300'
-                        }
-                      }}
-                    >
-                      삭제
-                    </Button>
-                  </ButtonGroup>
+                <div className="hint" style={{ fontSize: '13px', color: '#6B7280', marginBottom: '4px' }}>
+                  권장 이미지 크기: 168 x 48 픽셀
+                </div>
+                <div className="hint" style={{ fontSize: '13px', color: '#6B7280', marginBottom: '16px' }}>
+                  권장 파일 형식: PNG
+                </div>
+                <div className="row row-margin-top" style={{ display: 'flex', gap: '8px' }}>
+                  <button 
+                    className="btn primary"
+                    onClick={handleImageUpload}
+                    style={{
+                      padding: '8px 16px',
+                      background: '#3B82F6',
+                      color: 'white',
+                      border: '1px solid #3B82F6',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '14px'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = '#2563EB'
+                      e.target.style.borderColor = '#2563EB'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = '#3B82F6'
+                      e.target.style.borderColor = '#3B82F6'
+                    }}
+                  >
+                    이미지 등록
+                  </button>
+                  <button 
+                    className="btn danger"
+                    onClick={handleImageDelete}
+                    style={{
+                      padding: '8px 16px',
+                      background: 'transparent',
+                      color: '#DC2626',
+                      border: '1px solid #DC2626',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '14px'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = '#fef2f2'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = 'transparent'
+                    }}
+                  >
+                    삭제
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* 워크스페이스 이름 카드 */}
-          <div className="card section name-card">
-            <div className="ws-title"><strong>워크스페이스 이름</strong></div>
-            <div className="name-row">
-              {isEditingName ? (
-                <TextField
-                  placeholder="이름을 입력해주세요"
-                  value={workspaceName}
-                  onChange={(e) => setWorkspaceName(e.target.value)}
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  sx={{ 
-                    flex: 1,
-                    '& .MuiOutlinedInput-root': {
-                      '& fieldset': {
-                        borderColor: '#E5E5E5'
-                      },
-                      '&:hover fieldset': {
-                        borderColor: '#9CA3AF'
-                      },
-                      '&.Mui-focused fieldset': {
-                        borderColor: '#0066FF'
-                      }
-                    }
-                  }}
-                />
-              ) : (
-                <TextField
-                  value={workspaceName}
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  InputProps={{ readOnly: true }}
-                  sx={{ 
-                    flex: 1,
-                    '& .MuiOutlinedInput-root': {
-                      '& fieldset': {
-                        borderColor: '#E5E5E5'
-                      },
-                      '&:hover fieldset': {
-                        borderColor: '#E5E5E5'
-                      },
-                      '&.Mui-focused fieldset': {
-                        borderColor: '#E5E5E5'
-                      }
-                    }
-                  }}
-                />
-              )}
-              <Button 
+          {/* 워크스페이스 이름 섹션 */}
+          <div className="card section name-card" style={{ 
+            padding: '24px', 
+            marginBottom: '32px', 
+            backgroundColor: 'white', 
+            borderRadius: '8px', 
+            border: '1px solid #E5E7EB' 
+          }}>
+            <div className="ws-title" style={{ fontSize: '16px', fontWeight: '600', marginBottom: '16px' }}>
+              <strong>워크스페이스 이름</strong>
+            </div>
+            <div className="name-row" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+              <input 
+                type="text" 
+                className="form-input" 
+                placeholder="이름을 입력해주세요"
+                value={workspaceName}
+                onChange={(e) => setWorkspaceName(e.target.value)}
+                disabled={!isEditing}
+                style={{
+                  flex: 1,
+                  padding: '10px 16px',
+                  border: '1px solid #D1D5DB',
+                  borderRadius: '6px',
+                  fontSize: '14px',
+                  backgroundColor: isEditing ? 'white' : '#F9FAFB',
+                  color: isEditing ? '#111827' : '#6B7280'
+                }}
+              />
+              <button 
                 className="btn"
-                variant="outlined"
-                onClick={isEditingName ? handleNameSave : handleNameEdit}
+                onClick={handleNameEdit}
+                style={{
+                  padding: '10px 20px',
+                  background: 'transparent',
+                  color: '#6B7280',
+                  border: '1px solid #D1D5DB',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '14px'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = '#F9FAFB'
+                  e.target.style.borderColor = '#9CA3AF'
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'transparent'
+                  e.target.style.borderColor = '#D1D5DB'
+                }}
               >
-                {isEditingName ? '저장' : '수정'}
-              </Button>
+                수정
+              </button>
             </div>
           </div>
 
           {/* 저장 버튼 */}
-          <div className="section-actions">
-            <ButtonGroup variant="outlined" size="medium">
-              <Button 
-                onClick={handleCancel}
-                sx={{ 
-                  color: 'text.secondary',
-                  borderColor: 'grey.400',
-                  '&:hover': { 
-                    bgcolor: 'grey.100',
-                    borderColor: 'grey.400'
-                  }
-                }}
-              >
-                취소
-              </Button>
-              <Button 
-                onClick={handleSaveSettings}
-                sx={{ 
-                  bgcolor: 'primary.main',
-                  color: 'white',
-                  borderColor: 'primary.main',
-                  '&:hover': { 
-                    bgcolor: 'primary.dark',
-                    borderColor: 'primary.dark'
-                  }
-                }}
-              >
-                설정 저장
-              </Button>
-            </ButtonGroup>
+          <div className="section-actions" style={{ textAlign: 'center' }}>
+            <button 
+              className="btn primary"
+              onClick={handleSave}
+              style={{
+                padding: '12px 32px',
+                marginRight: '12px',
+                background: '#3B82F6',
+                color: 'white',
+                border: '1px solid #3B82F6',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                fontWeight: '500'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = '#2563EB'
+                e.target.style.borderColor = '#2563EB'
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = '#3B82F6'
+                e.target.style.borderColor = '#3B82F6'
+              }}
+            >
+              설정 저장
+            </button>
+            <button 
+              className="btn outline"
+              onClick={handleCancel}
+              style={{
+                padding: '12px 32px',
+                background: 'transparent',
+                color: '#6B7280',
+                border: '1px solid #D1D5DB',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '14px'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = '#F9FAFB'
+                e.target.style.borderColor = '#9CA3AF'
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = 'transparent'
+                e.target.style.borderColor = '#D1D5DB'
+              }}
+            >
+              취소
+            </button>
           </div>
         </div>
       </div>
-
-      <Snackbar
-        open={showAlert}
-        autoHideDuration={3000}
-        onClose={() => setShowAlert(false)}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      >
-        <Alert 
-          onClose={() => setShowAlert(false)} 
-          severity={alertSeverity}
-          variant="filled"
-        >
-          {alertMessage}
-        </Alert>
-      </Snackbar>
     </Layout>
   )
 }

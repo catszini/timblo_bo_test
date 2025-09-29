@@ -55,6 +55,7 @@ const systemUserData = [
     name: '김민수',
     status: 'online',
     permission: '시스템관리자',
+    createdAt: '2024-01-10',
     isSelected: false
   },
   {
@@ -67,7 +68,8 @@ const systemUserData = [
     email: 'manager@skhynix.com',
     name: '박지영',
     status: 'online',
-    permission: '워크스페이스관리자',
+    permission: '구성원',
+    createdAt: '2024-02-15',
     isSelected: false
   },
   {
@@ -80,7 +82,8 @@ const systemUserData = [
     email: 'energy@skens.com',
     name: '이상훈',
     status: 'offline',
-    permission: '메뉴관리자',
+    permission: '구성원',
+    createdAt: '2024-03-08',
     isSelected: false
   },
   {
@@ -94,6 +97,7 @@ const systemUserData = [
     name: '최은정',
     status: 'online',
     permission: '통계관리자',
+    createdAt: '2024-04-12',
     isSelected: false
   },
   {
@@ -251,14 +255,14 @@ const SystemUserPage = () => {
     <Layout className="page-system-user user-page member-page">
       <div className="content user-page member-page user-page-custom">
         <div className="content-header">
-          <h1 className="breadcrumb">관리자 지정</h1>
+          <h1 className="breadcrumb">사용자 관리</h1>
         </div>
         
         <div className="content-body">
           <div className="search-toolbar">
             <div className="common-topbar">
               <div className="tb-left">
-                <span className="total-count">총 {users.length}개</span>
+                <span className="total-count">총 9개</span>
                 <FormControl size="small" className="condition-select">
                   <Select
                     value={selectedWorkspace}
@@ -377,111 +381,845 @@ const SystemUserPage = () => {
             <table>
               <thead>
                 <tr>
-                  <th>
-                    <CustomCheckbox
-                      className="select-all"
-                      checked={selectAll}
-                      onChange={handleSelectAll}
-                      size="small"
-                    />
-                  </th>
+                  <th><input type="checkbox" className="select-all" checked={selectAll} onChange={handleSelectAll} /></th>
                   <th>워크스페이스</th>
                   <th>이메일</th>
                   <th>이름</th>
-                  <th>권한</th>
+                  <th>메뉴권한</th>
+                  <th>생성일</th>
                   <th>비밀번호 초기화</th>
                   <th>삭제</th>
                 </tr>
               </thead>
               <tbody>
-                {users.map((user) => (
-                  <tr key={user.id}>
-                    <td>
-                      <CustomCheckbox
-                        checked={user.isSelected}
-                        onChange={(e) => handleSelectUser(user.id, e.target.checked)}
-                        size="small"
-                      />
-                    </td>
-                    <td>
-                      <div className="workspace-name">
-                        <div className={`workspace-icon ${user.workspace.iconColor}`}>
-                          {user.workspace.icon}
-                        </div>
-                        <span>{user.workspace.name}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <Link 
-                        href={`mailto:${user.email}`} 
-                        className="email-link"
-                        underline="none"
-                      >
-                        {user.email}
-                      </Link>
-                    </td>
-                    <td>
-                      <div className="user-profile">
-                        <span className={`user-status ${user.status}`}>
-                          {user.name}
-                        </span>
-                      </div>
-                    </td>
-                    <td>
-                      <FormControl size="small" className="permission-select">
-                        <Select
-                          value={user.permission}
-                          onChange={(e) => handlePermissionChange(user.id, e.target.value)}
-                          variant="outlined"
-                        >
-                          <MenuItem value="시스템관리자">시스템관리자</MenuItem>
-                          <MenuItem value="워크스페이스관리자">워크스페이스관리자</MenuItem>
-                          <MenuItem value="메뉴관리자">메뉴관리자</MenuItem>
-                          <MenuItem value="통계관리자">통계관리자</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </td>
-                    <td>
-                      <Button 
-                        variant="outlined"
-                        size="small"
-                        onClick={() => handlePasswordReset(user.id, user.name)}
-                        sx={{ 
-                          color: 'text.secondary', 
-                          fontSize: '12px',
-                          borderColor: 'grey.400',
-                          '&:hover': { 
-                            bgcolor: 'grey.100',
-                            borderColor: 'grey.400'
-                          }
-                        }}
-                      >
-                        초기화
-                      </Button>
-                    </td>
-                    <td>
-                      <Button 
-                        variant="outlined"
-                        size="small"
-                        onClick={() => handleDeleteUser(user.id, user.name)}
-                        sx={{ 
-                          color: 'error.main', 
-                          borderColor: 'error.main', 
-                          fontSize: '12px',
-                          '&:hover': { 
-                            bgcolor: 'error.light',
-                            color: 'white',
-                            borderColor: 'error.main'
-                          }
-                        }}
-                      >
-                        삭제
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div className="workspace-name">
+                      <div className="workspace-icon color-teal">S</div>
+                      <span>SK Telecom</span>
+                    </div>
+                  </td>
+                  <td><a href="mailto:admin@sktelecom.com" className="email-link">admin@sktelecom.com</a></td>
+                  <td>
+                    <div className="user-profile">
+                      <span className="user-status online">김민수</span>
+                    </div>
+                  </td>
+                  <td>
+                    <select className="permission-select">
+                      <option selected>시스템관리자</option>
+                      <option>워크스페이스관리자</option>
+                      <option>메뉴관리자</option>
+                      <option>통계관리자</option>
+                      <option>구성원</option>
+                    </select>
+                  </td>
+                  <td>2024-01-10</td>
+                  <td>
+                    <button 
+                      className="btn-outline btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '60px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#6B7280',
+                        border: '1px solid #D1D5DB',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#F9FAFB';
+                        e.target.style.borderColor = '#9CA3AF';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#D1D5DB';
+                      }}
+                    >
+                      초기화
+                    </button>
+                  </td>
+                  <td>
+                    <button 
+                      className="btn-danger btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '50px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#DC2626',
+                        border: '1px solid #DC2626',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#fef2f2';
+                        e.target.style.borderColor = '#B91C1C';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#DC2626';
+                      }}
+                    >
+                      삭제
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div className="workspace-name">
+                      <div className="workspace-icon color-indigo">S</div>
+                      <span>SK Hynix</span>
+                    </div>
+                  </td>
+                  <td><a href="mailto:manager@skhynix.com" className="email-link">manager@skhynix.com</a></td>
+                  <td>
+                    <div className="user-profile">
+                      <span className="user-status online">박지영</span>
+                    </div>
+                  </td>
+                  <td>
+                    <select className="permission-select">
+                      <option>시스템관리자</option>
+                      <option>워크스페이스관리자</option>
+                      <option>메뉴관리자</option>
+                      <option>통계관리자</option>
+                      <option selected>구성원</option>
+                    </select>
+                  </td>
+                  <td>2024-02-15</td>
+                  <td>
+                    <button 
+                      className="btn-outline btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '60px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#6B7280',
+                        border: '1px solid #D1D5DB',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#F9FAFB';
+                        e.target.style.borderColor = '#9CA3AF';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#D1D5DB';
+                      }}
+                    >
+                      초기화
+                    </button>
+                  </td>
+                  <td>
+                    <button 
+                      className="btn-danger btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '50px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#DC2626',
+                        border: '1px solid #DC2626',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#fef2f2';
+                        e.target.style.borderColor = '#B91C1C';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#DC2626';
+                      }}
+                    >
+                      삭제
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div className="workspace-name">
+                      <div className="workspace-icon color-violet">S</div>
+                      <span>SK E&S</span>
+                    </div>
+                  </td>
+                  <td><a href="mailto:energy@skens.com" className="email-link">energy@skens.com</a></td>
+                  <td>
+                    <div className="user-profile">
+                      <span className="user-status offline">이상훈</span>
+                    </div>
+                  </td>
+                  <td>
+                    <select className="permission-select">
+                      <option>시스템관리자</option>
+                      <option>워크스페이스관리자</option>
+                      <option>메뉴관리자</option>
+                      <option>통계관리자</option>
+                      <option selected>구성원</option>
+                    </select>
+                  </td>
+                  <td>2024-03-08</td>
+                  <td>
+                    <button 
+                      className="btn-outline btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '60px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#6B7280',
+                        border: '1px solid #D1D5DB',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#F9FAFB';
+                        e.target.style.borderColor = '#9CA3AF';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#D1D5DB';
+                      }}
+                    >
+                      초기화
+                    </button>
+                  </td>
+                  <td>
+                    <button 
+                      className="btn-danger btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '50px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#DC2626',
+                        border: '1px solid #DC2626',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#fef2f2';
+                        e.target.style.borderColor = '#B91C1C';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#DC2626';
+                      }}
+                    >
+                      삭제
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div className="workspace-name">
+                      <div className="workspace-icon color-blue">S</div>
+                      <span>SK C&C</span>
+                    </div>
+                  </td>
+                  <td><a href="mailto:admin@skcc.com" className="email-link">admin@skcc.com</a></td>
+                  <td>
+                    <div className="user-profile">
+                      <span className="user-status online">최은정</span>
+                    </div>
+                  </td>
+                  <td>
+                    <select className="permission-select">
+                      <option>시스템관리자</option>
+                      <option>워크스페이스관리자</option>
+                      <option>메뉴관리자</option>
+                      <option selected>통계관리자</option>
+                      <option>구성원</option>
+                    </select>
+                  </td>
+                  <td>2024-04-12</td>
+                  <td>
+                    <button 
+                      className="btn-outline btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '60px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#6B7280',
+                        border: '1px solid #D1D5DB',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#F9FAFB';
+                        e.target.style.borderColor = '#9CA3AF';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#D1D5DB';
+                      }}
+                    >
+                      초기화
+                    </button>
+                  </td>
+                  <td>
+                    <button 
+                      className="btn-danger btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '50px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#DC2626',
+                        border: '1px solid #DC2626',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#fef2f2';
+                        e.target.style.borderColor = '#B91C1C';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#DC2626';
+                      }}
+                    >
+                      삭제
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div className="workspace-name">
+                      <div className="workspace-icon color-emerald">S</div>
+                      <span>SK Innovation</span>
+                    </div>
+                  </td>
+                  <td><a href="mailto:innovation@skinnovation.com" className="email-link">innovation@skinnovation.com</a></td>
+                  <td>
+                    <div className="user-profile">
+                      <span className="user-status online">김태호</span>
+                    </div>
+                  </td>
+                  <td>
+                    <select className="permission-select">
+                      <option>시스템관리자</option>
+                      <option>워크스페이스관리자</option>
+                      <option>메뉴관리자</option>
+                      <option>통계관리자</option>
+                      <option selected>구성원</option>
+                    </select>
+                  </td>
+                  <td>2024-05-22</td>
+                  <td>
+                    <button 
+                      className="btn-outline btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '60px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#6B7280',
+                        border: '1px solid #D1D5DB',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#F9FAFB';
+                        e.target.style.borderColor = '#9CA3AF';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#D1D5DB';
+                      }}
+                    >
+                      초기화
+                    </button>
+                  </td>
+                  <td>
+                    <button 
+                      className="btn-danger btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '50px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#DC2626',
+                        border: '1px solid #DC2626',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#fef2f2';
+                        e.target.style.borderColor = '#B91C1C';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#DC2626';
+                      }}
+                    >
+                      삭제
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div className="workspace-name">
+                      <div className="workspace-icon color-amber">S</div>
+                      <span>SK Networks</span>
+                    </div>
+                  </td>
+                  <td><a href="mailto:networks@sknetworks.com" className="email-link">networks@sknetworks.com</a></td>
+                  <td>
+                    <div className="user-profile">
+                      <span className="user-status offline">윤서연</span>
+                    </div>
+                  </td>
+                  <td>
+                    <select className="permission-select">
+                      <option>시스템관리자</option>
+                      <option>워크스페이스관리자</option>
+                      <option>메뉴관리자</option>
+                      <option>통계관리자</option>
+                      <option selected>구성원</option>
+                    </select>
+                  </td>
+                  <td>2024-06-14</td>
+                  <td>
+                    <button 
+                      className="btn-outline btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '60px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#6B7280',
+                        border: '1px solid #D1D5DB',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#F9FAFB';
+                        e.target.style.borderColor = '#9CA3AF';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#D1D5DB';
+                      }}
+                    >
+                      초기화
+                    </button>
+                  </td>
+                  <td>
+                    <button 
+                      className="btn-danger btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '50px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#DC2626',
+                        border: '1px solid #DC2626',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#fef2f2';
+                        e.target.style.borderColor = '#B91C1C';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#DC2626';
+                      }}
+                    >
+                      삭제
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div className="workspace-name">
+                      <div className="workspace-icon color-rose">S</div>
+                      <span>SK Biopharm</span>
+                    </div>
+                  </td>
+                  <td><a href="mailto:bio@skbiopharm.com" className="email-link">bio@skbiopharm.com</a></td>
+                  <td>
+                    <div className="user-profile">
+                      <span className="user-status online">정민호</span>
+                    </div>
+                  </td>
+                  <td>
+                    <select className="permission-select">
+                      <option>시스템관리자</option>
+                      <option>워크스페이스관리자</option>
+                      <option>메뉴관리자</option>
+                      <option>통계관리자</option>
+                      <option selected>구성원</option>
+                    </select>
+                  </td>
+                  <td>2024-07-03</td>
+                  <td>
+                    <button 
+                      className="btn-outline btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '60px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#6B7280',
+                        border: '1px solid #D1D5DB',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#F9FAFB';
+                        e.target.style.borderColor = '#9CA3AF';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#D1D5DB';
+                      }}
+                    >
+                      초기화
+                    </button>
+                  </td>
+                  <td>
+                    <button 
+                      className="btn-danger btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '50px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#DC2626',
+                        border: '1px solid #DC2626',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#fef2f2';
+                        e.target.style.borderColor = '#B91C1C';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#DC2626';
+                      }}
+                    >
+                      삭제
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div className="workspace-name">
+                      <div className="workspace-icon color-rose">S</div>
+                      <span>SK Materials</span>
+                    </div>
+                  </td>
+                  <td><a href="mailto:materials@skmaterials.com" className="email-link">materials@skmaterials.com</a></td>
+                  <td>
+                    <div className="user-profile">
+                      <span className="user-status online">송하늘</span>
+                    </div>
+                  </td>
+                  <td>
+                    <select className="permission-select">
+                      <option>시스템관리자</option>
+                      <option>워크스페이스관리자</option>
+                      <option>메뉴관리자</option>
+                      <option>통계관리자</option>
+                      <option selected>구성원</option>
+                    </select>
+                  </td>
+                  <td>2024-08-19</td>
+                  <td>
+                    <button 
+                      className="btn-outline btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '60px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#6B7280',
+                        border: '1px solid #D1D5DB',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#F9FAFB';
+                        e.target.style.borderColor = '#9CA3AF';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#D1D5DB';
+                      }}
+                    >
+                      초기화
+                    </button>
+                  </td>
+                  <td>
+                    <button 
+                      className="btn-danger btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '50px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#DC2626',
+                        border: '1px solid #DC2626',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#fef2f2';
+                        e.target.style.borderColor = '#B91C1C';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#DC2626';
+                      }}
+                    >
+                      삭제
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div className="workspace-name">
+                      <div className="workspace-icon color-cyan">S</div>
+                      <span>SK Shieldus</span>
+                    </div>
+                  </td>
+                  <td><a href="mailto:security@skshieldus.com" className="email-link">security@skshieldus.com</a></td>
+                  <td>
+                    <div className="user-profile">
+                      <span className="user-status offline">한지우</span>
+                    </div>
+                  </td>
+                  <td>
+                    <select className="permission-select">
+                      <option>시스템관리자</option>
+                      <option>워크스페이스관리자</option>
+                      <option>메뉴관리자</option>
+                      <option>통계관리자</option>
+                      <option selected>구성원</option>
+                    </select>
+                  </td>
+                  <td>2024-09-11</td>
+                  <td>
+                    <button 
+                      className="btn-outline btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '60px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#6B7280',
+                        border: '1px solid #D1D5DB',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#F9FAFB';
+                        e.target.style.borderColor = '#9CA3AF';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#D1D5DB';
+                      }}
+                    >
+                      초기화
+                    </button>
+                  </td>
+                  <td>
+                    <button 
+                      className="btn-danger btn-sm"
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '13px',
+                        height: '32px',
+                        minWidth: '50px',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        color: '#DC2626',
+                        border: '1px solid #DC2626',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = '#fef2f2';
+                        e.target.style.borderColor = '#B91C1C';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'transparent';
+                        e.target.style.borderColor = '#DC2626';
+                      }}
+                    >
+                      삭제
+                    </button>
+                  </td>
+                </tr>
               </tbody>
             </table>
+          </div>
+          
+          {/* 페이지네이션 */}
+          <div className="pagination" style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            marginTop: '20px',
+            gap: '4px'
+          }}>
+            <button 
+              className="page-btn prev" 
+              disabled
+              style={{
+                padding: '8px 12px',
+                border: '1px solid #ddd',
+                background: '#f5f5f5',
+                color: '#999',
+                borderRadius: '4px',
+                cursor: 'not-allowed'
+              }}
+            >
+              ‹
+            </button>
+            <button 
+              className="page-btn active"
+              style={{
+                padding: '8px 12px',
+                border: '1px solid #2196F3',
+                background: '#2196F3',
+                color: 'white',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                minWidth: '36px'
+              }}
+            >
+              1
+            </button>
+            <button 
+              className="page-btn"
+              style={{
+                padding: '8px 12px',
+                border: '1px solid #ddd',
+                background: 'white',
+                color: '#333',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                minWidth: '36px'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = '#f0f0f0';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = 'white';
+              }}
+            >
+              2
+            </button>
+            <button 
+              className="page-btn"
+              style={{
+                padding: '8px 12px',
+                border: '1px solid #ddd',
+                background: 'white',
+                color: '#333',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                minWidth: '36px'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = '#f0f0f0';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = 'white';
+              }}
+            >
+              3
+            </button>
+            <button 
+              className="page-btn next"
+              style={{
+                padding: '8px 12px',
+                border: '1px solid #ddd',
+                background: 'white',
+                color: '#333',
+                borderRadius: '4px',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = '#f0f0f0';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = 'white';
+              }}
+            >
+              ›
+            </button>
           </div>
         </div>
       </div>

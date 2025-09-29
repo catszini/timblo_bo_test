@@ -33,6 +33,7 @@ import DownloadHistoryPage from './pages/DownloadHistory/DownloadHistoryPage'
 import UserConsentHistoryPage from './pages/UserConsentHistory/UserConsentHistoryPage'
 import SettingChangeHistoryPage from './pages/SettingChangeHistory/SettingChangeHistoryPage'
 import StatsUserPage from './pages/StatsUser/StatsUserPage'
+import ContentRetentionPage from './pages/ContentRetention/ContentRetentionPage'
 import TestPage from './pages/Test/TestPage'
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
       <Router>
         <div className="App">
           <Routes>
-            <Route path="/" element={<LogoManagementPage />} />
+            <Route path="/" element={<WorkspacePage />} />
             <Route path="/test" element={<TestPage />} />
             <Route path="/logo" element={<LogoManagementPage />} />
             <Route path="/user" element={<UserPage />} />
@@ -69,6 +70,8 @@ function App() {
             <Route path="/user-consent-history" element={<UserConsentHistoryPage />} />
             <Route path="/setting-change-history" element={<SettingChangeHistoryPage />} />
             <Route path="/stats-user" element={<StatsUserPage />} />
+            <Route path="/system-setting-history" element={<SettingChangeHistoryPage />} />
+            <Route path="/content-retention" element={<ContentRetentionPage />} />
           </Routes>
         </div>
       </Router>
