@@ -88,6 +88,153 @@
         font-size: 13px;
       }
     }
+
+    /* 워크스페이스 생성 모달 스타일 */
+    .workspace-create-modal {
+      width: 480px;
+      max-width: 90vw;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+    }
+
+    .workspace-create-modal .modal-content {
+      padding: 32px;
+      text-align: center;
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #111827;
+      margin: 0 0 24px 0;
+    }
+
+    .workspace-icon-section {
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .workspace-icon-large {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: #F59E0B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 600;
+      color: white;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-section {
+      text-align: left;
+      margin-bottom: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #D1D5DB;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #111827;
+      background: white;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      box-sizing: border-box;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #3B82F6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #D1D5DB;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #111827;
+      background: white;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      box-sizing: border-box;
+      min-height: 80px;
+      resize: none;
+      font-family: inherit;
+    }
+
+    .form-textarea:focus {
+      outline: none;
+      border-color: #3B82F6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-error {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #EF4444;
+      font-weight: 400;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .btn-cancel {
+      flex: 1;
+      padding: 12px 24px;
+      border: 1px solid #D1D5DB;
+      border-radius: 8px;
+      background: white;
+      color: #374151;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-cancel:hover {
+      background: #F9FAFB;
+      border-color: #9CA3AF;
+    }
+
+    .btn-confirm {
+      flex: 1;
+      padding: 12px 24px;
+      border: 1px solid #3B82F6;
+      border-radius: 8px;
+      background: #3B82F6;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-confirm:hover {
+      background: #2563EB;
+      border-color: #2563EB;
+    }
   </style>
 
 </head>
@@ -548,36 +695,36 @@
   </div>
 
   <!-- 워크스페이스 생성 모달 -->
-  <div class="modal-overlay modal-overlay-hidden">
-    <div class="modal-container workspace-modal">
-      <div class="modal-header">
-        <div class="header-content">
-          <h2>워크스페이스 생성</h2>
-          <button class="btn-close" id="workspace-modal-close">
-            <img src="../asset/close-icon.svg" alt="닫기">
-          </button>
-        </div>
-      </div>
+  <div class="modal-overlay modal-overlay-hidden" id="workspaceModal">
+    <div class="modal-container workspace-create-modal">
       <div class="modal-content">
-        <div class="workspace-preview">
-          <div class="workspace-icon-preview" id="workspace-icon-preview">W</div>
+        <h2 class="modal-title">워크스페이스 생성</h2>
+
+        <div class="workspace-icon-section">
+          <div class="workspace-icon-large" id="workspace-icon-preview">W</div>
         </div>
 
-        <div class="form-group">
-          <label>이름</label>
-          <input type="text" class="form-input" placeholder="워크스페이스 이름을 입력하세요">
+        <div class="form-section">
+          <div class="form-group">
+            <label class="form-label">이름</label>
+            <input type="text" class="form-input" id="workspaceName" placeholder="">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">도메인</label>
+            <input type="text" class="form-input" id="workspaceDomain" placeholder="">
+            <div class="form-error">필수 입력 항목입니다.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">비고</label>
+            <textarea class="form-textarea" id="workspaceNote" placeholder=""></textarea>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label>도메인</label>
-          <input type="text" class="form-input" placeholder="도메인을 입력하세요">
-          <div class="form-note">필수 입력 항목입니다.</div>
-        </div>
-
-
-        <div class="modal-footer">
-          <button class="btn-cancel">취소</button>
-          <button class="btn-submit">생성</button>
+        <div class="modal-buttons">
+          <button class="btn-cancel" id="workspace-cancel-btn">취소</button>
+          <button class="btn-confirm" id="workspace-confirm-btn">확인</button>
         </div>
       </div>
     </div>
@@ -586,42 +733,75 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // 워크스페이스 아이콘 색상 배열
-      const workspaceColors = [
-        'color-teal', 'color-indigo', 'color-rose', 'color-amber',
-        'color-emerald', 'color-violet', 'color-cyan', 'color-lime',
-        'color-fuchsia', 'color-slate'
+      const workspaceIconColors = [
+        '#F59E0B', '#3B82F6', '#EF4444', '#10B981',
+        '#8B5CF6', '#F97316', '#06B6D4', '#84CC16',
+        '#EC4899', '#6B7280'
       ];
 
       // 랜덤 색상 선택 및 아이콘 설정
       function setRandomWorkspaceIcon() {
         const iconPreview = document.getElementById('workspace-icon-preview');
-        const randomColor = workspaceColors[Math.floor(Math.random() * workspaceColors.length)];
-        iconPreview.className = `workspace-icon-preview ${randomColor}`;
+        const randomColor = workspaceIconColors[Math.floor(Math.random() * workspaceIconColors.length)];
+        iconPreview.style.background = randomColor;
+      }
+
+      // 모달 관련 요소들
+      const modal = document.getElementById('workspaceModal');
+      const createBtn = document.querySelector('.ws-actions .new-button');
+      const cancelBtn = document.getElementById('workspace-cancel-btn');
+      const confirmBtn = document.getElementById('workspace-confirm-btn');
+      const nameInput = document.getElementById('workspaceName');
+      const domainInput = document.getElementById('workspaceDomain');
+      const noteTextarea = document.getElementById('workspaceNote');
+
+      // 모달 열기
+      function openModal() {
+        setRandomWorkspaceIcon();
+        // 입력 필드 초기화
+        nameInput.value = '';
+        domainInput.value = '';
+        noteTextarea.value = '';
+        modal.classList.remove('modal-overlay-hidden');
+      }
+
+      // 모달 닫기
+      function closeModal() {
+        modal.classList.add('modal-overlay-hidden');
       }
 
       // 생성 버튼 클릭 시 모달 표시
-      document.querySelector('.new-button').addEventListener('click', () => {
-        setRandomWorkspaceIcon();
-        document.querySelector('.modal-overlay').style.display = 'flex';
-      });
+      if (createBtn) {
+        createBtn.addEventListener('click', openModal);
+      }
 
-      // 모달 닫기 기능
-      document.querySelector('#workspace-modal-close').addEventListener('click', () => {
-        document.querySelector('.modal-overlay').style.display = 'none';
-      });
+      // 취소 버튼 클릭
+      if (cancelBtn) {
+        cancelBtn.addEventListener('click', closeModal);
+      }
 
-      document.querySelector('.modal-overlay .btn-cancel').addEventListener('click', () => {
-        document.querySelector('.modal-overlay').style.display = 'none';
-      });
+      // 확인 버튼 클릭
+      if (confirmBtn) {
+        confirmBtn.addEventListener('click', () => {
+          const name = nameInput.value.trim();
+          const domain = domainInput.value.trim();
+          const note = noteTextarea.value.trim();
 
-      document.querySelector('.modal-overlay .btn-submit').addEventListener('click', () => {
-        document.querySelector('.modal-overlay').style.display = 'none';
-      });
+          if (!name || !domain) {
+            alert('이름과 도메인은 필수 입력 항목입니다.');
+            return;
+          }
+
+          // 여기에 실제 워크스페이스 생성 로직 추가
+          alert(`워크스페이스 "${name}"이 생성되었습니다.`);
+          closeModal();
+        });
+      }
 
       // 모달 외부 클릭 시 닫기
-      document.querySelector('.modal-overlay').addEventListener('click', (e) => {
-        if (e.target === e.currentTarget) {
-          document.querySelector('.modal-overlay').style.display = 'none';
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
         }
       });
 

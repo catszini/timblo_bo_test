@@ -11,12 +11,12 @@
     /* 탭 스타일 */
     .tab-container {
       border-bottom: 1px solid #e5e7eb;
-      margin-bottom: 20px;
+      margin-bottom: 0;
     }
 
     .tab-list {
       display: flex;
-      gap: 0;
+      gap: 5px;
       list-style: none;
       padding: 0;
       margin: 0;
@@ -31,12 +31,14 @@
       font-size: 14px;
       font-weight: 500;
       color: #6b7280;
+      background-color: #F8F9FA;
       transition: all 0.2s ease;
+      border-radius: 8px 8px 0 0;
     }
 
     .tab-button.active {
-      color: #1976d2;
-      border-bottom-color: #1976d2;
+      background-color: #1976d2;
+      color: #fff;
     }
 
     .tab-button:hover {
@@ -46,10 +48,53 @@
 
     .tab-content {
       display: none;
+      border: 0px;
+      padding: 20px 0;
     }
 
     .tab-content.active {
       display: block;
+    }
+
+    /* 버튼 스타일 통일 */
+    .delete-btn,
+    .edit-btn,
+    .new-button {
+      height: 36px;
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid;
+      background: transparent;
+    }
+
+    .delete-btn {
+      color: #DC2626;
+      border-color: #DC2626;
+    }
+
+    .delete-btn:hover {
+      background-color: #FEF2F2;
+    }
+
+    .edit-btn {
+      color: #059669;
+      border-color: #059669;
+    }
+
+    .edit-btn:hover {
+      background-color: #F0FDF4;
+    }
+
+    .new-button {
+      color: #0066FF;
+      border-color: #0066FF;
+    }
+
+    .new-button:hover {
+      background-color: #F0F7FF;
     }
 
     /* 메뉴 테이블 스타일 */
@@ -258,6 +303,98 @@
       width: 140px;
       text-align: center;
     }
+
+    /* 섹션 헤더 스타일 */
+    .menu-table .section-header {
+      background: #F8FAFC;
+    }
+
+    .menu-table .section-title {
+      font-weight: 600;
+      color: #1E40AF;
+      font-size: 14px;
+      padding: 12px 16px;
+      border-left: 4px solid #3B82F6;
+      background: linear-gradient(90deg, #F8FAFC 0%, #EFF6FF 100%);
+    }
+
+    /* 모달 내 라디오 버튼 스타일 */
+    .status-radio-group {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .radio-option input[type="radio"] {
+      display: none;
+    }
+
+    .radio-label {
+      display: flex;
+      align-items: center;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      transition: all 0.2s ease;
+      border: 1px solid #E5E7EB;
+      background: #F9FAFB;
+      color: #6B7280;
+      position: relative;
+      min-width: 80px;
+      justify-content: center;
+    }
+
+    .radio-label.active {
+      border-color: #A7F3D0;
+      background: #F0FDF4;
+      color: #166534;
+    }
+
+    .radio-label.inactive {
+      border-color: #FECACA;
+      background: #FEF2F2;
+      color: #B91C1C;
+    }
+
+    .radio-option input[type="radio"]:checked+.radio-label {
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.05);
+      transform: none;
+    }
+
+    .radio-option input[type="radio"]:checked+.radio-label.active {
+      border-color: #6EE7B7;
+      background: #ECFDF5;
+      color: #047857;
+    }
+
+    .radio-option input[type="radio"]:checked+.radio-label.inactive {
+      border-color: #FCA5A5;
+      background: #FEF2F2;
+      color: #DC2626;
+    }
+
+    .radio-label:hover {
+      background: #F3F4F6;
+      border-color: #D1D5DB;
+    }
+
+    .radio-option input[type="radio"]:checked+.radio-label.active:hover {
+      background: #ECFDF5;
+      border-color: #6EE7B7;
+    }
+
+    .radio-option input[type="radio"]:checked+.radio-label.inactive:hover {
+      background: #FEF2F2;
+      border-color: #FCA5A5;
+    }
   </style>
 
 </head>
@@ -358,16 +495,16 @@
         <div class="tab-container">
           <ul class="tab-list">
             <li>
-              <button class="tab-button" data-tab="system-menu">시스템 메뉴 관리</button>
+              <button class="tab-button active" data-tab="system-menu">시스템 메뉴 관리</button>
             </li>
             <li>
-              <button class="tab-button active" data-tab="workspace-menu">워크스페이스 메뉴 관리</button>
+              <button class="tab-button" data-tab="workspace-menu">워크스페이스 메뉴 관리</button>
             </li>
           </ul>
         </div>
 
         <!-- 전체 메뉴 관리 탭 -->
-        <div id="system-menu" class="tab-content">
+        <div id="system-menu" class="tab-content active">
           <div class="menu-title-header">
             <div class="menu-title-section">
               <h3 class="menu-subtitle">시스템 메뉴 관리</h3>
@@ -489,7 +626,7 @@
         </div>
 
         <!-- 워크스페이스 메뉴 관리 탭 -->
-        <div id="workspace-menu" class="tab-content active">
+        <div id="workspace-menu" class="tab-content">
           <!-- 메뉴 관리 헤더 -->
           <div class="menu-title-header">
             <div class="menu-title-section">
@@ -529,9 +666,12 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- 워크스페이스 메뉴들 -->
+                <!-- 워크스페이스 설정 그룹 -->
+                <tr class="section-header">
+                  <td colspan="4" class="section-title">워크스페이스 설정</td>
+                </tr>
                 <tr>
-                  <td>기능 권한 관리</td>
+                  <td>FO기능정책관리</td>
                   <td>
                     <label class="switch">
                       <input type="checkbox" checked>
@@ -547,14 +687,14 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>메뉴리스트 관리</td>
+                  <td>컨텐츠 보존 관리</td>
                   <td>
                     <label class="switch">
                       <input type="checkbox" checked>
                       <span class="slider"></span>
                     </label>
                   </td>
-                  <td>workspace_menu_setting.html</td>
+                  <td>content_retention.html</td>
                   <td>
                     <div class="menu-action-buttons">
                       <button class="btn-edit">수정</button>
@@ -595,7 +735,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>로고 이미지 관리</td>
+                  <td>로고 관리</td>
                   <td>
                     <label class="switch">
                       <input type="checkbox" checked>
@@ -610,8 +750,13 @@
                     </div>
                   </td>
                 </tr>
+
+                <!-- 세부 기능 관리 그룹 -->
+                <tr class="section-header">
+                  <td colspan="4" class="section-title">세부 기능 관리</td>
+                </tr>
                 <tr>
-                  <td>회의 템플릿 관리</td>
+                  <td>템플릿 관리 (회의록, 공통 템플릿)</td>
                   <td>
                     <label class="switch">
                       <input type="checkbox" checked>
@@ -659,7 +804,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>캘린더 관리</td>
+                  <td>캘린더 관리/설정</td>
                   <td>
                     <label class="switch">
                       <input type="checkbox" checked>
@@ -673,6 +818,43 @@
                       <button class="btn-delete">삭제</button>
                     </div>
                   </td>
+                </tr>
+                <tr>
+                  <td>사전 관리</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>dictionary.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>공지사항 관리</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>notice.html</td>
+                  <td>
+                    <div class="menu-action-buttons">
+                      <button class="btn-edit">수정</button>
+                      <button class="btn-delete">삭제</button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- 이력/통계 관리 그룹 -->
+                <tr class="section-header">
+                  <td colspan="4" class="section-title">이력/통계 관리</td>
                 </tr>
                 <tr>
                   <td>사용자 접속 이력</td>
@@ -723,7 +905,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>설정변경 이력</td>
+                  <td>설정 변경 이력</td>
                   <td>
                     <label class="switch">
                       <input type="checkbox" checked>
@@ -739,7 +921,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>회의록 관리</td>
+                  <td>회의록 이력</td>
                   <td>
                     <label class="switch">
                       <input type="checkbox" checked>
@@ -755,39 +937,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>사전 관리</td>
-                  <td>
-                    <label class="switch">
-                      <input type="checkbox" checked>
-                      <span class="slider"></span>
-                    </label>
-                  </td>
-                  <td>dictionary.html</td>
-                  <td>
-                    <div class="menu-action-buttons">
-                      <button class="btn-edit">수정</button>
-                      <button class="btn-delete">삭제</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>공지사항 관리</td>
-                  <td>
-                    <label class="switch">
-                      <input type="checkbox" checked>
-                      <span class="slider"></span>
-                    </label>
-                  </td>
-                  <td>notice.html</td>
-                  <td>
-                    <div class="menu-action-buttons">
-                      <button class="btn-edit">수정</button>
-                      <button class="btn-delete">삭제</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>사용량 통계</td>
+                  <td>워크스페이스 사용 통계</td>
                   <td>
                     <label class="switch">
                       <input type="checkbox" checked>
@@ -803,7 +953,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>사용자별 통계</td>
+                  <td>사용자별 사용 통계</td>
                   <td>
                     <label class="switch">
                       <input type="checkbox" checked>
@@ -871,17 +1021,17 @@
             </div>
           </div>
           <div class="form-row" style="margin-bottom: 24px;">
-            <div class="form-group">
-              <label style="display: block; margin-bottom: 8px; font-weight: 600;">정렬 순서</label>
-              <input type="number" class="form-input" placeholder="1" min="1" style="width: 100%; padding: 12px;" />
-            </div>
-          </div>
-          <div class="form-row" style="margin-bottom: 24px;">
             <div class="form-group full-width">
               <label style="display: block; margin-bottom: 8px; font-weight: 600;">사용 여부</label>
-              <div class="toggle-buttons">
-                <button class="toggle-btn active">사용</button>
-                <button class="toggle-btn">미사용</button>
+              <div class="status-radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="menuStatus" value="active" checked>
+                  <span class="radio-label active">사용</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="menuStatus" value="inactive">
+                  <span class="radio-label inactive">미사용</span>
+                </label>
               </div>
             </div>
           </div>

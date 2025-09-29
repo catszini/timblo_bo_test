@@ -820,6 +820,54 @@ table td {
   background: #fef2f2;
 }
 
+/* 그룹 설정 페이지 - 워크스페이스 셀렉터 스타일 */
+.page-group-setting .workspace-selector-section {
+  margin-bottom: 8px;
+}
+
+
+
+.page-group-setting .workspace-selector-section .combo-select {
+  position: relative;
+  display: inline-block;
+  width: 20%;
+}
+
+.page-group-setting .workspace-selector {
+  width: 100%;
+  padding: 8px 40px 8px 16px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  color: #374151;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.page-group-setting .workspace-selector:focus {
+  outline: none;
+  border-color: #3B82F6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.page-group-setting .workspace-selector:hover {
+  border-color: #9CA3AF;
+}
+
+.page-group-setting .workspace-selector-section .combo-select img {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 16px;
+  height: 16px;
+}
+
 /* 그룹 설정 페이지 - 그룹정보 헤더 스타일 */
 .page-group-setting .group-info-header {
   display: flex;
@@ -4809,7 +4857,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .group-setting-tree-panel {
-  width: 45%;
+  width: 40%;
   border: 1px solid #E5E5E5;
   border-radius: 8px;
   background: #fff;

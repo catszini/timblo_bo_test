@@ -105,6 +105,27 @@
         <div class="group-setting-container">
           <div class="group-setting-layout tree-visible">
             <div class="group-setting-left-panel">
+              <!-- 워크스페이스 목록 셀렉트 박스 -->
+              <div class="workspace-selector-section">
+
+                <div class="combo-select">
+                  <select id="workspaceSelect" class="workspace-selector">
+                    <option value="all">전체 워크스페이스</option>
+                    <option value="sk-telecom">SK Telecom</option>
+                    <option value="sk-hynix">SK Hynix</option>
+                    <option value="sk-on">SK On</option>
+                    <option value="sk-cc">SK C&C</option>
+                    <option value="sk-innovation">SK Innovation</option>
+                    <option value="sk-networks">SK Networks</option>
+                    <option value="sk-materials">SK Materials</option>
+                    <option value="sk-biopharm">SK Biopharm</option>
+                    <option value="sk-es">SK E&S</option>
+                    <option value="sk-shieldus">SK Shieldus</option>
+                  </select>
+                  <img src="../asset/select-arrow.svg" alt="">
+                </div>
+              </div>
+
               <!-- 권한정보 헤더와 버튼들 -->
               <div class="group-info-header">
                 <div class="group-info-title-section">
@@ -211,59 +232,78 @@
                 <p class="no-data-text">권한 항목 미리보기가 가능합니다.</p>
               </div>
               <div class="tree-menu" id="treeMenu" style="display: none;">
+                <!-- 전체 시스템 관리 -->
                 <div class="tree-item">
-                  <input type="checkbox" id="시스템" checked>
-                  <label for="시스템">시스템</label>
+                  <input type="checkbox" id="전체시스템관리" checked>
+                  <label for="전체시스템관리">전체 시스템 관리</label>
                   <div class="tree-children">
                     <div class="tree-item">
                       <input type="checkbox" id="워크스페이스관리" checked>
                       <label for="워크스페이스관리">워크스페이스 관리</label>
                     </div>
                     <div class="tree-item">
+                      <input type="checkbox" id="전체메뉴관리" checked>
+                      <label for="전체메뉴관리">전체 메뉴 관리</label>
+                    </div>
+                    <div class="tree-item">
                       <input type="checkbox" id="시스템사용자관리" checked>
                       <label for="시스템사용자관리">사용자 관리</label>
                     </div>
                     <div class="tree-item">
-                      <input type="checkbox" id="시스템메뉴생성관리" checked>
-                      <label for="시스템메뉴생성관리">메뉴 생성 관리</label>
+                      <input type="checkbox" id="시스템메뉴권한관리" checked>
+                      <label for="시스템메뉴권한관리">메뉴 권한 관리</label>
                     </div>
                     <div class="tree-item">
-                      <input type="checkbox" id="시스템메뉴 권한 관리" checked>
-                      <label for="시스템메뉴 권한 관리">메뉴 권한 관리</label>
+                      <input type="checkbox" id="시스템설정변경이력" checked>
+                      <label for="시스템설정변경이력">설정변경 이력</label>
                     </div>
                     <div class="tree-item">
-                      <input type="checkbox" id="시스템사용량통계" checked>
-                      <label for="시스템사용량통계">사용량 통계</label>
+                      <input type="checkbox" id="전체시스템사용통계" checked>
+                      <label for="전체시스템사용통계">전체 시스템 사용 통계</label>
                     </div>
                     <div class="tree-item">
                       <input type="checkbox" id="시스템사용자별통계" checked>
-                      <label for="시스템사용자별통계">사용자별 통계</label>
+                      <label for="시스템사용자별통계">사용자별 사용 통계</label>
                     </div>
                   </div>
                 </div>
+
+                <!-- 워크스페이스 설정 -->
                 <div class="tree-item">
-                  <input type="checkbox" id="워크스페이스" checked>
-                  <label for="워크스페이스">워크스페이스</label>
+                  <input type="checkbox" id="워크스페이스설정" checked>
+                  <label for="워크스페이스설정">워크스페이스 설정</label>
                   <div class="tree-children">
                     <div class="tree-item">
-                      <input type="checkbox" id="기능 권한 관리" checked>
-                      <label for="기능 권한 관리">기능 권한 관리</label>
+                      <input type="checkbox" id="FO기능정책관리" checked>
+                      <label for="FO기능정책관리">FO기능정책관리</label>
                     </div>
                     <div class="tree-item">
-                      <input type="checkbox" id="메뉴 권한 관리" checked>
-                      <label for="메뉴 권한 관리">메뉴 권한 관리</label>
+                      <input type="checkbox" id="컨텐츠보존관리" checked>
+                      <label for="컨텐츠보존관리">컨텐츠 보존 관리</label>
                     </div>
                     <div class="tree-item">
-                      <input type="checkbox" id="사용자관리" checked>
-                      <label for="사용자관리">사용자 관리</label>
+                      <input type="checkbox" id="워크스페이스메뉴권한관리" checked>
+                      <label for="워크스페이스메뉴권한관리">메뉴 권한 관리</label>
                     </div>
                     <div class="tree-item">
-                      <input type="checkbox" id="로고이미지관리" checked>
-                      <label for="로고이미지관리">로고 이미지 관리</label>
+                      <input type="checkbox" id="워크스페이스사용자관리" checked>
+                      <label for="워크스페이스사용자관리">사용자 관리</label>
                     </div>
                     <div class="tree-item">
-                      <input type="checkbox" id="회의템플릿관리" checked>
-                      <label for="회의템플릿관리">회의 템플릿 관리</label>
+                      <input type="checkbox" id="로고관리" checked>
+                      <label for="로고관리">로고 관리</label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 세부 기능 관리 -->
+                <div class="tree-item">
+                  <input type="checkbox" id="세부기능관리" checked>
+                  <label for="세부기능관리">세부 기능 관리</label>
+                  <div class="tree-children">
+                    <div class="tree-item">
+                      <input type="checkbox" id="템플릿관리" checked>
+                      <label for="템플릿관리">템플릿 관리 (회의록, 공통 템플릿)</label>
                     </div>
                     <div class="tree-item">
                       <input type="checkbox" id="프롬프트관리" checked>
@@ -274,9 +314,25 @@
                       <label for="동의서관리">동의서 관리</label>
                     </div>
                     <div class="tree-item">
-                      <input type="checkbox" id="캘린더관리" checked>
-                      <label for="캘린더관리">캘린더 관리</label>
+                      <input type="checkbox" id="캘린더관리설정" checked>
+                      <label for="캘린더관리설정">캘린더 관리/설정</label>
                     </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="사전관리" checked>
+                      <label for="사전관리">사전 관리</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="공지사항관리" checked>
+                      <label for="공지사항관리">공지사항 관리</label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 이력/통계 관리 -->
+                <div class="tree-item">
+                  <input type="checkbox" id="이력통계관리" checked>
+                  <label for="이력통계관리">이력/통계 관리</label>
+                  <div class="tree-children">
                     <div class="tree-item">
                       <input type="checkbox" id="사용자접속이력" checked>
                       <label for="사용자접속이력">사용자 접속 이력</label>
@@ -291,27 +347,19 @@
                     </div>
                     <div class="tree-item">
                       <input type="checkbox" id="설정변경이력" checked>
-                      <label for="설정변경이력">설정변경 이력</label>
+                      <label for="설정변경이력">설정 변경 이력</label>
                     </div>
                     <div class="tree-item">
-                      <input type="checkbox" id="회의록관리" checked>
-                      <label for="회의록관리">회의록 관리</label>
+                      <input type="checkbox" id="회의록이력" checked>
+                      <label for="회의록이력">회의록 이력</label>
                     </div>
                     <div class="tree-item">
-                      <input type="checkbox" id="사전관리" checked>
-                      <label for="사전관리">사전 관리</label>
+                      <input type="checkbox" id="워크스페이스사용통계" checked>
+                      <label for="워크스페이스사용통계">워크스페이스 사용 통계</label>
                     </div>
                     <div class="tree-item">
-                      <input type="checkbox" id="공지사항관리" checked>
-                      <label for="공지사항관리">공지사항 관리</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="사용량통계" checked>
-                      <label for="사용량통계">사용량 통계</label>
-                    </div>
-                    <div class="tree-item">
-                      <input type="checkbox" id="사용자별통계" checked>
-                      <label for="사용자별통계">사용자별 통계</label>
+                      <input type="checkbox" id="사용자별사용통계" checked>
+                      <label for="사용자별사용통계">사용자별 사용 통계</label>
                     </div>
                   </div>
                 </div>
@@ -337,6 +385,8 @@
       const tableRows = document.querySelectorAll('.group-setting-table tbody tr');
       const noDataArea = document.getElementById('noDataArea');
       const treeMenu = document.getElementById('treeMenu');
+      const workspaceSelect = document.getElementById('workspaceSelect');
+      const totalCountSpan = document.querySelector('.group-total-count');
 
       // 테이블 행 클릭 이벤트
       tableRows.forEach(row => {
@@ -372,41 +422,114 @@
 
         // 권한별 메뉴 활성화
         switch (permissionType) {
-          case '시스템관리자':
-            // 시스템관리자는 모든 권한
+          case '최고관리자 - 모든 시스템 권한':
+          case '전체관리자':
+            // 전체관리자는 모든 권한
             systemCheckboxes.forEach(cb => cb.checked = true);
             break;
 
+          case '워크스페이스 전체 관리':
           case '워크스페이스관리자':
-            // 워크스페이스 관련 모든 권한
-            document.getElementById('워크스페이스').checked = true;
-            ['기능 권한 관리', '메뉴 권한 관리', '사용자관리', '로고이미지관리',
-              '회의템플릿관리', '프롬프트관리', '동의서관리', '캘린더관리'].forEach(id => {
-                const checkbox = document.getElementById(id);
-                if (checkbox) checkbox.checked = true;
-              });
+            // 워크스페이스 설정 관련 모든 권한
+            document.getElementById('워크스페이스설정').checked = true;
+            ['FO기능정책관리', '컨텐츠보존관리', '워크스페이스메뉴권한관리', '워크스페이스사용자관리', '로고관리'].forEach(id => {
+              const checkbox = document.getElementById(id);
+              if (checkbox) checkbox.checked = true;
+            });
+            // 세부 기능 관리도 포함
+            document.getElementById('세부기능관리').checked = true;
+            ['템플릿관리', '프롬프트관리', '동의서관리', '캘린더관리설정', '사전관리', '공지사항관리'].forEach(id => {
+              const checkbox = document.getElementById(id);
+              if (checkbox) checkbox.checked = true;
+            });
+            // 이력/통계 관리도 포함
+            document.getElementById('이력통계관리').checked = true;
+            ['사용자접속이력', '다운로드이력', '사용자동의이력', '설정변경이력', '회의록이력', '워크스페이스사용통계', '사용자별사용통계'].forEach(id => {
+              const checkbox = document.getElementById(id);
+              if (checkbox) checkbox.checked = true;
+            });
             break;
 
-          case '메뉴관리자':
-            // 시스템 메뉴 관련 권한만 (워크스페이스 메뉴 권한 관리 제외)
-            document.getElementById('시스템').checked = true;
-            document.getElementById('시스템메뉴생성관리').checked = true;
-            document.getElementById('시스템메뉴 권한 관리').checked = true;
+          case '메뉴 생성/권한 관리':
+          case '시스템 메뉴관리자':
+            // 전체 시스템 관리의 메뉴 관련 권한만
+            document.getElementById('전체시스템관리').checked = true;
+            document.getElementById('전체메뉴관리').checked = true;
+            document.getElementById('시스템메뉴권한관리').checked = true;
+            // 워크스페이스의 메뉴 권한 관리도 포함
+            document.getElementById('워크스페이스설정').checked = true;
+            document.getElementById('워크스페이스메뉴권한관리').checked = true;
             break;
 
+          case '사용량/통계 분석 관리':
           case '통계관리자':
-            // 통계 관련 권한만 (워크스페이스 메뉴 권한 관리 제외)
-            document.getElementById('시스템').checked = true;
-            document.getElementById('시스템사용량통계').checked = true;
+            // 전체 시스템 관리의 통계 관련 권한
+            document.getElementById('전체시스템관리').checked = true;
+            document.getElementById('전체시스템사용통계').checked = true;
             document.getElementById('시스템사용자별통계').checked = true;
-            document.getElementById('워크스페이스').checked = true;
-            document.getElementById('사용량통계').checked = true;
-            document.getElementById('사용자별통계').checked = true;
+            // 이력/통계 관리의 통계 관련 권한
+            document.getElementById('이력통계관리').checked = true;
+            document.getElementById('워크스페이스사용통계').checked = true;
+            document.getElementById('사용자별사용통계').checked = true;
             break;
         }
 
         // 부모 체크박스 상태 업데이트
         updateParentCheckboxState();
+      }
+
+      // 워크스페이스 필터링 기능
+      if (workspaceSelect) {
+        workspaceSelect.addEventListener('change', function () {
+          const selectedWorkspace = this.value;
+          let visibleRowCount = 0;
+
+          tableRows.forEach(row => {
+            const workspaceCell = row.querySelector('td:nth-child(2) .workspace-name span');
+            if (!workspaceCell) return;
+
+            const workspaceName = workspaceCell.textContent.trim();
+            let shouldShow = false;
+
+            if (selectedWorkspace === 'all') {
+              shouldShow = true;
+            } else {
+              // 워크스페이스 이름과 value 매핑
+              const workspaceMapping = {
+                'sk-telecom': 'SK Telecom',
+                'sk-hynix': 'SK Hynix',
+                'sk-on': 'SK On',
+                'sk-cc': 'SK C&C',
+                'sk-innovation': 'SK Innovation',
+                'sk-networks': 'SK Networks',
+                'sk-materials': 'SK Materials',
+                'sk-biopharm': 'SK Biopharm',
+                'sk-es': 'SK E&S',
+                'sk-shieldus': 'SK Shieldus'
+              };
+
+              shouldShow = workspaceName === workspaceMapping[selectedWorkspace];
+            }
+
+            if (shouldShow) {
+              row.style.display = '';
+              visibleRowCount++;
+            } else {
+              row.style.display = 'none';
+              // 숨겨진 행이 선택되어 있다면 선택 해제
+              if (row.classList.contains('selected')) {
+                row.classList.remove('selected');
+                noDataArea.style.display = 'block';
+                treeMenu.style.display = 'none';
+              }
+            }
+          });
+
+          // 총 개수 업데이트
+          if (totalCountSpan) {
+            totalCountSpan.textContent = `총 ${visibleRowCount}개`;
+          }
+        });
       }
 
       // 체크박스 전체 선택 기능
@@ -441,13 +564,15 @@
       });
 
       // 섹션별 전체 선택 기능
-      const systemSectionCheckbox = document.getElementById('시스템');
-      const workspaceSectionCheckbox = document.getElementById('워크스페이스');
+      const systemSectionCheckbox = document.getElementById('전체시스템관리');
+      const workspaceSectionCheckbox = document.getElementById('워크스페이스설정');
+      const featureSectionCheckbox = document.getElementById('세부기능관리');
+      const historySectionCheckbox = document.getElementById('이력통계관리');
 
+      // 전체 시스템 관리 섹션
       if (systemSectionCheckbox) {
         systemSectionCheckbox.addEventListener('change', function () {
           const isChecked = this.checked;
-          // 시스템 섹션의 모든 하위 체크박스 선택/해제
           const systemParent = this.closest('.tree-item');
           const systemChildren = systemParent.querySelectorAll('.tree-children input[type="checkbox"]');
           systemChildren.forEach(checkbox => {
@@ -456,10 +581,10 @@
         });
       }
 
+      // 워크스페이스 설정 섹션
       if (workspaceSectionCheckbox) {
         workspaceSectionCheckbox.addEventListener('change', function () {
           const isChecked = this.checked;
-          // 워크스페이스 섹션의 모든 하위 체크박스 선택/해제
           const workspaceParent = this.closest('.tree-item');
           const workspaceChildren = workspaceParent.querySelectorAll('.tree-children input[type="checkbox"]');
           workspaceChildren.forEach(checkbox => {
@@ -468,41 +593,109 @@
         });
       }
 
+      // 세부 기능 관리 섹션
+      if (featureSectionCheckbox) {
+        featureSectionCheckbox.addEventListener('change', function () {
+          const isChecked = this.checked;
+          const featureParent = this.closest('.tree-item');
+          const featureChildren = featureParent.querySelectorAll('.tree-children input[type="checkbox"]');
+          featureChildren.forEach(checkbox => {
+            checkbox.checked = isChecked;
+          });
+        });
+      }
+
+      // 이력/통계 관리 섹션
+      if (historySectionCheckbox) {
+        historySectionCheckbox.addEventListener('change', function () {
+          const isChecked = this.checked;
+          const historyParent = this.closest('.tree-item');
+          const historyChildren = historyParent.querySelectorAll('.tree-children input[type="checkbox"]');
+          historyChildren.forEach(checkbox => {
+            checkbox.checked = isChecked;
+          });
+        });
+      }
+
       // 하위 체크박스 변경 시 부모 체크박스 상태 업데이트 함수
       function updateParentCheckboxState() {
-        // 시스템 섹션 체크박스 상태 업데이트
-        const systemParentItem = document.getElementById('시스템').parentElement;
-        const systemChildren = systemParentItem.querySelectorAll('.tree-children input[type="checkbox"]');
-        const systemCheckedCount = Array.from(systemChildren).filter(cb => cb.checked).length;
+        // 전체 시스템 관리 섹션 체크박스 상태 업데이트
+        const systemParentItem = document.getElementById('전체시스템관리')?.parentElement;
+        if (systemParentItem) {
+          const systemChildren = systemParentItem.querySelectorAll('.tree-children input[type="checkbox"]');
+          const systemCheckedCount = Array.from(systemChildren).filter(cb => cb.checked).length;
 
-        if (systemSectionCheckbox) {
-          if (systemCheckedCount === 0) {
-            systemSectionCheckbox.checked = false;
-            systemSectionCheckbox.indeterminate = false;
-          } else if (systemCheckedCount === systemChildren.length) {
-            systemSectionCheckbox.checked = true;
-            systemSectionCheckbox.indeterminate = false;
-          } else {
-            systemSectionCheckbox.checked = false;
-            systemSectionCheckbox.indeterminate = true;
+          if (systemSectionCheckbox) {
+            if (systemCheckedCount === 0) {
+              systemSectionCheckbox.checked = false;
+              systemSectionCheckbox.indeterminate = false;
+            } else if (systemCheckedCount === systemChildren.length) {
+              systemSectionCheckbox.checked = true;
+              systemSectionCheckbox.indeterminate = false;
+            } else {
+              systemSectionCheckbox.checked = false;
+              systemSectionCheckbox.indeterminate = true;
+            }
           }
         }
 
-        // 워크스페이스 섹션 체크박스 상태 업데이트
-        const workspaceParentItem = document.getElementById('워크스페이스').parentElement;
-        const workspaceChildren = workspaceParentItem.querySelectorAll('.tree-children input[type="checkbox"]');
-        const workspaceCheckedCount = Array.from(workspaceChildren).filter(cb => cb.checked).length;
+        // 워크스페이스 설정 섹션 체크박스 상태 업데이트
+        const workspaceParentItem = document.getElementById('워크스페이스설정')?.parentElement;
+        if (workspaceParentItem) {
+          const workspaceChildren = workspaceParentItem.querySelectorAll('.tree-children input[type="checkbox"]');
+          const workspaceCheckedCount = Array.from(workspaceChildren).filter(cb => cb.checked).length;
 
-        if (workspaceSectionCheckbox) {
-          if (workspaceCheckedCount === 0) {
-            workspaceSectionCheckbox.checked = false;
-            workspaceSectionCheckbox.indeterminate = false;
-          } else if (workspaceCheckedCount === workspaceChildren.length) {
-            workspaceSectionCheckbox.checked = true;
-            workspaceSectionCheckbox.indeterminate = false;
-          } else {
-            workspaceSectionCheckbox.checked = false;
-            workspaceSectionCheckbox.indeterminate = true;
+          if (workspaceSectionCheckbox) {
+            if (workspaceCheckedCount === 0) {
+              workspaceSectionCheckbox.checked = false;
+              workspaceSectionCheckbox.indeterminate = false;
+            } else if (workspaceCheckedCount === workspaceChildren.length) {
+              workspaceSectionCheckbox.checked = true;
+              workspaceSectionCheckbox.indeterminate = false;
+            } else {
+              workspaceSectionCheckbox.checked = false;
+              workspaceSectionCheckbox.indeterminate = true;
+            }
+          }
+        }
+
+        // 세부 기능 관리 섹션 체크박스 상태 업데이트
+        const featureParentItem = document.getElementById('세부기능관리')?.parentElement;
+        if (featureParentItem) {
+          const featureChildren = featureParentItem.querySelectorAll('.tree-children input[type="checkbox"]');
+          const featureCheckedCount = Array.from(featureChildren).filter(cb => cb.checked).length;
+
+          if (featureSectionCheckbox) {
+            if (featureCheckedCount === 0) {
+              featureSectionCheckbox.checked = false;
+              featureSectionCheckbox.indeterminate = false;
+            } else if (featureCheckedCount === featureChildren.length) {
+              featureSectionCheckbox.checked = true;
+              featureSectionCheckbox.indeterminate = false;
+            } else {
+              featureSectionCheckbox.checked = false;
+              featureSectionCheckbox.indeterminate = true;
+            }
+          }
+        }
+
+        // 이력/통계 관리 섹션 체크박스 상태 업데이트
+        const historyParentItem = document.getElementById('이력통계관리')?.parentElement;
+        if (historyParentItem) {
+          const historyChildren = historyParentItem.querySelectorAll('.tree-children input[type="checkbox"]');
+          const historyCheckedCount = Array.from(historyChildren).filter(cb => cb.checked).length;
+
+          if (historySectionCheckbox) {
+            if (historyCheckedCount === 0) {
+              historySectionCheckbox.checked = false;
+              historySectionCheckbox.indeterminate = false;
+            } else if (historyCheckedCount === historyChildren.length) {
+              historySectionCheckbox.checked = true;
+              historySectionCheckbox.indeterminate = false;
+            } else {
+              historySectionCheckbox.checked = false;
+              historySectionCheckbox.indeterminate = true;
+            }
           }
         }
       }
@@ -634,5 +827,7 @@
     </div>
   </div>
 </body>
+
+</html>
 
 </html>

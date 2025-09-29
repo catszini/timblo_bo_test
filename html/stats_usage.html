@@ -303,12 +303,294 @@
   </div>
 
   <script>
-    // 엑셀 다운로드 버튼 기능
     document.addEventListener('DOMContentLoaded', function () {
+      // 탭 기능
+      const monthlyTab = document.querySelector('.tab.active');
+      const yearlyTab = document.querySelector('.tab.period-toggle-inactive');
+      const monthSelects = document.querySelectorAll('#su2-m1, #su2-m2');
+      const tableContainer = document.querySelector('.table-container');
+      const resultText = document.getElementById('su2-result-text');
+
+      // 월간 탭 클릭
+      monthlyTab.addEventListener('click', function () {
+        if (!this.classList.contains('active')) {
+          // 탭 활성화 상태 변경
+          this.classList.add('active');
+          this.classList.remove('period-toggle-inactive');
+          this.classList.add('period-toggle-active');
+
+          yearlyTab.classList.remove('active');
+          yearlyTab.classList.add('period-toggle-inactive');
+          yearlyTab.classList.remove('period-toggle-active');
+
+          // 월 선택 필드 보이기
+          monthSelects.forEach(select => {
+            select.style.display = 'inline-block';
+          });
+
+          // 월간 테이블 보이기
+          showMonthlyTable();
+          updateResultText('monthly');
+        }
+      });
+
+      // 연간 탭 클릭
+      yearlyTab.addEventListener('click', function () {
+        if (!this.classList.contains('active')) {
+          // 탭 활성화 상태 변경
+          this.classList.add('active');
+          this.classList.remove('period-toggle-inactive');
+          this.classList.add('period-toggle-active');
+
+          monthlyTab.classList.remove('active');
+          monthlyTab.classList.add('period-toggle-inactive');
+          monthlyTab.classList.remove('period-toggle-active');
+
+          // 월 선택 필드 숨기기
+          monthSelects.forEach(select => {
+            select.style.display = 'none';
+          });
+
+          // 연간 테이블 보이기
+          showYearlyTable();
+          updateResultText('yearly');
+        }
+      });
+
+      // 월간 테이블 표시
+      function showMonthlyTable() {
+        tableContainer.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>월</th>
+                <th>STT 요청 건</th>
+                <th>STT 요청 시간</th>
+                <th>STT 성공 건</th>
+                <th>STT 성공 시간</th>
+                <th>STT 실패 건</th>
+                <th>STT 실패 시간</th>
+                <th>LLM 요청 건</th>
+                <th>LLM 요청 Token</th>
+                <th>LLM 성공 건</th>
+                <th>LLM 실패 건</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2025.08</td>
+                <td>64</td>
+                <td>71:35:37</td>
+                <td>42</td>
+                <td>53:55:12</td>
+                <td style="color:#EF4444;">22</td>
+                <td>17:40:25</td>
+                <td>65</td>
+                <td>3,748,408</td>
+                <td>65</td>
+                <td class="text-red">0</td>
+              </tr>
+              <tr>
+                <td>2025.07</td>
+                <td>113</td>
+                <td>57:44:54</td>
+                <td>85</td>
+                <td>53:53:14</td>
+                <td style="color:#EF4444;">28</td>
+                <td>03:51:40</td>
+                <td>89</td>
+                <td>4,075,449</td>
+                <td>89</td>
+                <td class="text-red">0</td>
+              </tr>
+              <tr>
+                <td>2025.06</td>
+                <td>111</td>
+                <td>45:33:14</td>
+                <td>91</td>
+                <td>35:56:36</td>
+                <td style="color:#EF4444;">20</td>
+                <td>09:36:38</td>
+                <td>105</td>
+                <td>3,270,909</td>
+                <td>105</td>
+                <td class="text-red">0</td>
+              </tr>
+              <tr>
+                <td>2025.05</td>
+                <td>107</td>
+                <td>68:29:07</td>
+                <td>102</td>
+                <td>66:31:17</td>
+                <td style="color:#EF4444;">5</td>
+                <td>01:57:49</td>
+                <td>105</td>
+                <td>5,932,629</td>
+                <td>105</td>
+                <td class="text-red">0</td>
+              </tr>
+              <tr>
+                <td>2025.04</td>
+                <td>288</td>
+                <td>113:45:05</td>
+                <td>242</td>
+                <td>110:17:14</td>
+                <td style="color:#EF4444;">46</td>
+                <td>03:27:51</td>
+                <td>263</td>
+                <td>9,764,137</td>
+                <td>263</td>
+                <td class="text-red">0</td>
+              </tr>
+              <tr>
+                <td>2025.03</td>
+                <td>540</td>
+                <td>383:08:32</td>
+                <td>516</td>
+                <td>372:05:41</td>
+                <td style="color:#EF4444;">23</td>
+                <td>09:27:36</td>
+                <td>595</td>
+                <td>26,773,983</td>
+                <td>595</td>
+                <td class="text-red">0</td>
+              </tr>
+              <tr>
+                <td>2025.02</td>
+                <td>434</td>
+                <td>209:00:18</td>
+                <td>410</td>
+                <td>198:01:10</td>
+                <td style="color:#EF4444;">17</td>
+                <td>05:02:58</td>
+                <td>437</td>
+                <td>16,477,591</td>
+                <td>437</td>
+                <td class="text-red">0</td>
+              </tr>
+              <tr>
+                <td>2025.01</td>
+                <td>109</td>
+                <td>66:24:43</td>
+                <td>102</td>
+                <td>66:22:36</td>
+                <td style="color:#EF4444;">7</td>
+                <td>00:02:07</td>
+                <td>36</td>
+                <td>2,438,259</td>
+                <td>36</td>
+                <td class="text-red">0</td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+      }
+
+      // 연간 테이블 표시
+      function showYearlyTable() {
+        tableContainer.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>연도</th>
+                <th>STT 요청 건</th>
+                <th>STT 요청 시간</th>
+                <th>STT 성공 건</th>
+                <th>STT 성공 시간</th>
+                <th>STT 실패 건</th>
+                <th>STT 실패 시간</th>
+                <th>LLM 요청 건</th>
+                <th>LLM 요청 Token</th>
+                <th>LLM 성공 건</th>
+                <th>LLM 실패 건</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2025년</td>
+                <td>1,766</td>
+                <td>1,015:01:30</td>
+                <td>1,590</td>
+                <td>956:22:24</td>
+                <td style="color:#EF4444;">176</td>
+                <td>58:39:06</td>
+                <td>1,695</td>
+                <td>72,481,356</td>
+                <td>1,695</td>
+                <td class="text-red">0</td>
+              </tr>
+              <tr>
+                <td>2024년</td>
+                <td>3,245</td>
+                <td>1,823:14:52</td>
+                <td>2,987</td>
+                <td>1,734:56:18</td>
+                <td style="color:#EF4444;">258</td>
+                <td>88:18:34</td>
+                <td>3,156</td>
+                <td>135,672,849</td>
+                <td>3,142</td>
+                <td class="text-red">14</td>
+              </tr>
+              <tr>
+                <td>2023년</td>
+                <td>2,891</td>
+                <td>1,634:28:45</td>
+                <td>2,673</td>
+                <td>1,572:12:33</td>
+                <td style="color:#EF4444;">218</td>
+                <td>62:16:12</td>
+                <td>2,834</td>
+                <td>98,345,672</td>
+                <td>2,820</td>
+                <td class="text-red">14</td>
+              </tr>
+              <tr>
+                <td>2022년</td>
+                <td>1,456</td>
+                <td>892:37:21</td>
+                <td>1,378</td>
+                <td>845:23:09</td>
+                <td style="color:#EF4444;">78</td>
+                <td>47:14:12</td>
+                <td>1,523</td>
+                <td>52,189,334</td>
+                <td>1,515</td>
+                <td class="text-red">8</td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+      }
+
+      // 결과 텍스트 업데이트
+      function updateResultText(type) {
+        const year1 = document.getElementById('su2-y1').value;
+        const year2 = document.getElementById('su2-y2').value;
+
+        if (type === 'monthly') {
+          const month1 = document.getElementById('su2-m1').value;
+          const month2 = document.getElementById('su2-m2').value;
+          resultText.textContent = `${year1} ${month1} ~ ${year2} ${month2} 통계 결과`;
+        } else {
+          resultText.textContent = `${year1} ~ ${year2} 연간 통계 결과`;
+        }
+      }
+
+      // 조회 버튼 기능
+      const queryBtn = document.getElementById('su2-run');
+      queryBtn.addEventListener('click', function () {
+        const isYearly = yearlyTab.classList.contains('active');
+        updateResultText(isYearly ? 'yearly' : 'monthly');
+      });
+
+      // 엑셀 다운로드 버튼 기능
       const excelBtn = document.querySelector('.btn[style*="background-color: #10B981"]');
       if (excelBtn && excelBtn.textContent.includes('엑셀 다운로드')) {
         excelBtn.addEventListener('click', function () {
-          alert('사용량 통계 데이터를 엑셀로 다운로드합니다.');
+          const isYearly = yearlyTab.classList.contains('active');
+          const period = isYearly ? '연간' : '월간';
+          alert(`${period} 사용량 통계 데이터를 엑셀로 다운로드합니다.`);
           // 실제 다운로드 로직은 여기에 구현
         });
       }

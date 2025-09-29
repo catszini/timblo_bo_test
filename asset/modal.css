@@ -487,7 +487,6 @@
     display: flex;
     justify-content: flex-end;
     gap: 8px;
-    margin-top: 32px;
     padding-top: 16px;
     border-top: 1px solid #E5E5E5;
     flex-shrink: 0;
