@@ -7134,7 +7134,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .page-workspace-menu-setting .permission-table td.submenu-indent:before {
-  content: "??;
+  content: "";
   position: absolute;
   left: 20px;
   color: #999;
@@ -7344,7 +7344,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 
 
-/* Workspace Permission ?�이지 ?��???*/
+/* Workspace Permission */
 .page-workspace-permission .permission-management-container {
   padding: 20px;
 }
@@ -7443,7 +7443,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .page-workspace-permission .permission-list li:before {
-  content: "??;
+  content: "";
   color: #3498db;
   position: absolute;
   left: 0;
