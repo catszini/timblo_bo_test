@@ -386,7 +386,7 @@ const SystemUserPage = () => {
                   <th>이메일</th>
                   <th>이름</th>
                   <th>메뉴권한</th>
-                  <th>생성일</th>
+                  <th>생성시간</th>
                   <th>비밀번호 초기화</th>
                   <th>삭제</th>
                 </tr>
@@ -415,7 +415,7 @@ const SystemUserPage = () => {
                       <option>구성원</option>
                     </select>
                   </td>
-                  <td>2024-01-10</td>
+                  <td>2024-01-10 09:15:32</td>
                   <td>
                     <button 
                       className="btn-outline btn-sm"
@@ -496,7 +496,7 @@ const SystemUserPage = () => {
                       <option selected>구성원</option>
                     </select>
                   </td>
-                  <td>2024-02-15</td>
+                  <td>2024-02-15 14:22:18</td>
                   <td>
                     <button 
                       className="btn-outline btn-sm"
@@ -577,7 +577,7 @@ const SystemUserPage = () => {
                       <option selected>구성원</option>
                     </select>
                   </td>
-                  <td>2024-03-08</td>
+                  <td>2024-03-08 11:47:25</td>
                   <td>
                     <button 
                       className="btn-outline btn-sm"
@@ -658,7 +658,7 @@ const SystemUserPage = () => {
                       <option>구성원</option>
                     </select>
                   </td>
-                  <td>2024-04-12</td>
+                  <td>2024-04-12 16:33:41</td>
                   <td>
                     <button 
                       className="btn-outline btn-sm"
@@ -739,7 +739,7 @@ const SystemUserPage = () => {
                       <option selected>구성원</option>
                     </select>
                   </td>
-                  <td>2024-05-22</td>
+                  <td>2024-05-22 10:12:07</td>
                   <td>
                     <button 
                       className="btn-outline btn-sm"
@@ -820,7 +820,7 @@ const SystemUserPage = () => {
                       <option selected>구성원</option>
                     </select>
                   </td>
-                  <td>2024-06-14</td>
+                  <td>2024-06-14 13:28:54</td>
                   <td>
                     <button 
                       className="btn-outline btn-sm"
@@ -901,7 +901,7 @@ const SystemUserPage = () => {
                       <option selected>구성원</option>
                     </select>
                   </td>
-                  <td>2024-07-03</td>
+                  <td>2024-07-03 15:41:29</td>
                   <td>
                     <button 
                       className="btn-outline btn-sm"
@@ -982,7 +982,7 @@ const SystemUserPage = () => {
                       <option selected>구성원</option>
                     </select>
                   </td>
-                  <td>2024-08-19</td>
+                  <td>2024-08-19 08:56:13</td>
                   <td>
                     <button 
                       className="btn-outline btn-sm"
@@ -1063,7 +1063,7 @@ const SystemUserPage = () => {
                       <option selected>구성원</option>
                     </select>
                   </td>
-                  <td>2024-09-11</td>
+                  <td>2024-09-11 12:19:46</td>
                   <td>
                     <button 
                       className="btn-outline btn-sm"

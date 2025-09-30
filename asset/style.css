@@ -1,15 +1,15 @@
-/* CSS 네임스페이스 전략 가이드
-   각 페이지는 고유한 클래스를 가져야 합니다:
-   - .page-user (사용자 관리)
-   - .page-group-setting (그룹 설정)  
-   - .page-member-register (권한 등록)
-   - .page-general (일반 설정)
-   - .page-workspace (워크스페이스)
-   - .page-download-history (다운로드 이력)
-   - .page-template-detail (템플릿 상세)
+/* CSS ?�임?�페?�스 ?�략 가?�드
+   �??�이지??고유???�래?��? 가?�야 ?�니??
+   - .page-user (?�용??관�?
+   - .page-group-setting (그룹 ?�정)  
+   - .page-member-register (권한 ?�록)
+   - .page-general (?�반 ?�정)
+   - .page-workspace (?�크?�페?�스)
+   - .page-download-history (?�운로드 ?�력)
+   - .page-template-detail (?�플�??�세)
 
    
-   전역 충돌을 방지하려면 스타일을 다음과 같이 작성:
+   ?�역 충돌??방�??�려�??��??�을 ?�음�?같이 ?�성:
    .page-specific .common-class { ... }
 */
 
@@ -52,7 +52,7 @@ p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
 }
 
-/* 로고 미리보기 스타일 */
+/* 로고 미리보기 ?��???*/
 .logo-preview {
     width: 200px;
     height: 120px;
@@ -66,13 +66,13 @@ p, h1, h2, h3, h4, h5, h6 {
     background-color: #ffffff;
 }
 
-/* 유틸리티 클래스 */
+/* ?�틸리티 ?�래??*/
 .mb-1 { margin-bottom: 8px; }
 .mb-2 { margin-bottom: 16px; }
 .mb-3 { margin-bottom: 24px; }
 .flex-1 { flex: 1; }
 
-/* 검색 툴바 스타일 */
+/* 검???�바 ?��???*/
 .search-toolbar {
     display: flex;
     flex-direction: row;
@@ -110,7 +110,7 @@ p, h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* 추가 유틸리티 클래스들 */
+/* 추�? ?�틸리티 ?�래?�들 */
 .mt-1 { margin-top: 8px; }
 .mt-2 { margin-top: 16px; }
 .mt-3 { margin-top: 24px; }
@@ -156,7 +156,7 @@ p, h1, h2, h3, h4, h5, h6 {
 .w-full { width: 100%; }
 .h-full { height: 100%; }
 
-/* 검색 입력 그룹 */
+/* 검???�력 그룹 */
 .search-input-group {
     display: flex;
     align-items: center;
@@ -185,7 +185,7 @@ p, h1, h2, h3, h4, h5, h6 {
     border-radius: 0;
 }
 
-/* 반응형 숨김 클래스 */
+/* 반응???��? ?�래??*/
 @media (max-width: 768px) {
     .hidden-mobile {
         display: none !important;
@@ -198,20 +198,20 @@ p, h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* 텍스트 줄임 */
+/* ?�스??줄임 */
 .text-truncate {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-/* 추가 레이아웃 클래스들 */
+/* 추�? ?�이?�웃 ?�래?�들 */
 .p-2 { padding: 16px; }
 .p-3 { padding: 24px; }
 .ml-auto { margin-left: auto; }
 .mt-3 { margin-top: 24px; }
 
-/* 공지사항 내용 스타일 */
+/* 공�??�항 ?�용 ?��???*/
 .notice-content {
     font-size: 16px;
     line-height: 1.8;
@@ -251,7 +251,7 @@ p, h1, h2, h3, h4, h5, h6 {
     margin-bottom: 4px;
 }
 
-/* 전역 버튼 높이 통일 */
+/* ?�역 버튼 ?�이 ?�일 */
 button {
     height: 36px;
     display: inline-flex;
@@ -261,7 +261,7 @@ button {
     line-height: 1;
 }
 
-/* 전역 셀렉트 박스 높이 통일 */
+/* ?�역 ?�?�트 박스 ?�이 ?�일 */
 select {
     height: 36px;
     padding: 6px 32px 6px 12px;
@@ -284,7 +284,7 @@ select:focus {
     border-color: #0066FF;
 }
 
-/* 통합 검색 컴포넌트 스타일 - 기존 구조와 동일하게 */
+/* ?�합 검??컴포?�트 ?��???- 기존 구조?� ?�일?�게 */
 .search-toolbar {
     margin-bottom: 16px;
 }
@@ -423,10 +423,10 @@ select:focus {
     background: #0F6BFF;
 }
 
-/* 초기 로드 시 메뉴 깜빡임 방지: JS가 준비되기 전까지 사이드바 비가시화(공간 유지) */
+/* 초기 로드 ??메뉴 깜빡??방�?: JS가 준비되�??�까지 ?�이?�바 비�??�화(공간 ?��?) */
 html:not(.menu-ready) .sidebar { visibility: hidden; }
 
-/* 동의서 제목 링크 스타일 */
+/* ?�의???�목 링크 ?��???*/
 .consent-title-link {
   color: #292A2B;
   text-decoration: none;
@@ -439,7 +439,7 @@ html:not(.menu-ready) .sidebar { visibility: hidden; }
   text-decoration: none;
 }
 
-/* 테이블 행 호버 효과 */
+/* ?�이�????�버 ?�과 */
 tbody tr:hover {
   background-color: #F8F9FA;
 }
@@ -448,7 +448,7 @@ tbody tr:hover td {
   background-color: #F8F9FA;
 }
 
-/* 전역 테이블 스타일 통일 */
+/* ?�역 ?�이�??��????�일 */
 table th {
   padding: 12px 16px;
   background: #f8f9fa;
@@ -467,7 +467,7 @@ table td {
 
 }
 
-/* Breadcrumb 링크 스타일 */
+/* Breadcrumb 링크 ?��???*/
 .breadcrumb a,
 .breadcrumb-link {
   color: #292A2B;
@@ -481,7 +481,7 @@ table td {
   text-decoration: underline;
 }
 
-/* 동의서 상세페이지 전용 스타일 */
+/* ?�의???�세?�이지 ?�용 ?��???*/
 .consent-detail-page .consent-detail-form {
   background: #FFFFFF;
   border: 1px solid #E5E5E5;
@@ -645,7 +645,7 @@ table td {
   align-items: center;
 }
 
-/* 버튼 기본 스타일 */
+/* 버튼 기본 ?��???*/
 .consent-detail-page .btn {
   padding: 8px 16px;
   border-radius: 6px;
@@ -660,7 +660,7 @@ table td {
   transition: all 0.2s ease;
 }
 
-/* 기본 버튼 (회색 테두리) */
+/* 기본 버튼 (?�색 ?�두�? */
 .consent-detail-page .btn-outline {
   background: white;
   color: #666;
@@ -672,7 +672,7 @@ table td {
   border-color: #D1D5DB;
 }
 
-/* 주요 버튼 (파란색) */
+/* 주요 버튼 (?��??? */
 .consent-detail-page .btn-primary {
   background: transparent;
   color: #0066FF;
@@ -684,7 +684,7 @@ table td {
   border-color: #0066FF;
 }
 
-/* 위험 버튼 (빨간색) */
+/* ?�험 버튼 (빨간?? */
 .consent-detail-page .btn-danger {
   background: transparent;
   color: #DC2626;
@@ -750,9 +750,9 @@ table td {
   margin-bottom: 0;
 }
 
-/* 워크스페이스 관리 - 테이블 헤더와 내용 가운데 정렬 */
+/* ?�크?�페?�스 관�?- ?�이�??�더?� ?�용 가?�데 ?�렬 */
 
-/* 워크스페이스 관리 - 사용자 현황 아이콘 스타일 (겹침 효과) */
+/* ?�크?�페?�스 관�?- ?�용???�황 ?�이�??��???(겹침 ?�과) */
 .user-status-icons {
   display: flex;
   align-items: center;
@@ -788,7 +788,7 @@ table td {
   z-index: 1;
 }
 
-/* 시스템 사용자 관리 페이지 - 검색 영역 스타일 */
+/* ?�스???�용??관�??�이지 - 검???�역 ?��???*/
 
 .page-system-user .tb-right {
   display: flex;
@@ -796,7 +796,7 @@ table td {
   gap: 12px;
 }
 
-/* 사용자 관리 페이지 테이블 간격 통일 */
+/* ?�용??관�??�이지 ?�이�?간격 ?�일 */
 
 .page-system-user .total-count {
   font-size: 16px;
@@ -820,7 +820,7 @@ table td {
   background: #fef2f2;
 }
 
-/* 그룹 설정 페이지 - 워크스페이스 셀렉터 스타일 */
+/* 그룹 ?�정 ?�이지 - ?�크?�페?�스 ?�?�터 ?��???*/
 .page-group-setting .workspace-selector-section {
   margin-bottom: 8px;
 }
@@ -868,7 +868,7 @@ table td {
   height: 16px;
 }
 
-/* 그룹 설정 페이지 - 그룹정보 헤더 스타일 */
+/* 그룹 ?�정 ?�이지 - 그룹?�보 ?�더 ?��???*/
 .page-group-setting .group-info-header {
   display: flex;
   justify-content: space-between;
@@ -948,7 +948,7 @@ table td {
   border-color: #D1D5DB;
 }
 
-/* 그룹 설정 페이지 - 노데이터 영역 스타일 */
+/* 그룹 ?�정 ?�이지 - ?�데?�터 ?�역 ?��???*/
 .page-group-setting .no-data-area {
   display: flex;
   flex-direction: column;
@@ -969,7 +969,7 @@ table td {
   margin: 0;
 }
 
-/* 권한 정보 테이블 행 클릭 효과 */
+/* 권한 ?�보 ?�이�????�릭 ?�과 */
 .page-group-setting .group-setting-table tbody tr {
   cursor: pointer;
   transition: background-color 0.2s ease;
@@ -984,7 +984,7 @@ table td {
   border-left: 3px solid #0066FF;
 }
 
-/* 권한 미리보기 외곽선 밖 하단 버튼 스타일 */
+/* 권한 미리보기 ?�곽??�??�단 버튼 ?��???*/
 .page-group-setting .preview-actions-external {
   display: flex;
   justify-content: flex-end;
@@ -992,7 +992,7 @@ table td {
   margin-top: 8px;
 }
 
-/* 권한 생성 모달 스타일 */
+/* 권한 ?�성 모달 ?��???*/
 .permission-modal {
   width: 400px !important;
 }
@@ -1108,7 +1108,7 @@ table td {
   margin-bottom: 4px;
 }
 
-/* 워크스페이스 메뉴관리 - 간단한 메뉴 구조 스타일 */
+/* ?�크?�페?�스 메뉴관�?- 간단??메뉴 구조 ?��???*/
 
 
 .page-workspace-menu-setting .menu-section-title {
@@ -1119,7 +1119,7 @@ table td {
   padding-left: 0;
 }
 
-/* 메뉴 트리의 섹션 제목 스타일 */
+/* 메뉴 ?�리???�션 ?�목 ?��???*/
 .menu-tree-content .menu-section-title {
   font-size: 18px;
   font-weight: 600;
@@ -1183,7 +1183,7 @@ table td {
   cursor: grabbing;
 }
 
-/* 구분선 추가 버튼 스타일 */
+/* 구분??추�? 버튼 ?��???*/
 .page-workspace-menu-setting .btn-add-separator {
   padding: 8px 16px;
   background: transparent;
@@ -1201,7 +1201,7 @@ table td {
   border-color: #6c757d;
 }
 
-/* 메뉴 구분선 스타일 */
+/* 메뉴 구분???��???*/
 .page-workspace-menu-setting .menu-separator {
 
 
@@ -1236,7 +1236,7 @@ table td {
   background: #fef2f2;
 }
 
-/* 드래그 상태 스타일 */
+/* ?�래�??�태 ?��???*/
 .page-workspace-menu-setting .menu-item.dragging {
   opacity: 0.5;
   transform: rotate(2deg);
@@ -1248,7 +1248,7 @@ table td {
   box-shadow: 0 4px 8px rgba(0,102,255,0.2);
 }
 
-/* 반응형 레이아웃 */
+/* 반응???�이?�웃 */
 @media (max-width: 768px) {
   .consent-detail-page .form-row {
     flex-direction: column;
@@ -1275,7 +1275,7 @@ table td {
   }
 }
 
-/* General 페이지 - 탭 네비게이션 스타일 (사용자 관리와 동일) */
+/* General ?�이지 - ???�비게이???��???(?�용??관리�? ?�일) */
 .page-general .tab-navigation {
   display: flex;
   margin-bottom: 0;
@@ -1321,7 +1321,7 @@ table td {
   display: block;
 }
 
-/* General 페이지 탭 내용의 첫 번째 섹션 상단 여백 제거 */
+/* General ?�이지 ???�용??�?번째 ?�션 ?�단 ?�백 ?�거 */
 .page-general .tab-content .section:first-child {
   margin-top: 0;
 }
@@ -1344,7 +1344,7 @@ body {
     min-height: 100vh;
 }
 
-/* 사이드바 스타일링 */
+/* ?�이?�바 ?��??�링 */
 .sidebar {
     width: 280px;
     background-color: #fff;
@@ -1354,7 +1354,7 @@ body {
     flex-shrink: 0;
     position: sticky;
     top: 0;
-    /* 스크롤바 숨기기 */
+    /* ?�크롤바 ?�기�?*/
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE/Edge */
 }
@@ -1363,7 +1363,7 @@ body {
     display: none; /* Chrome, Safari, Opera */
 }
 
-/* 사이드바 높이 동적 조정 */
+/* ?�이?�바 ?�이 ?�적 조정 */
 .sidebar.auto-height {
     max-height: 100vh;
 }
@@ -1374,7 +1374,7 @@ body {
 }
 
 .logo {
-    padding: 0 0 24px 0; /* 상단 0, 좌우 0, 하단 24px */
+    padding: 0 0 24px 0; /* ?�단 0, 좌우 0, ?�단 24px */
     margin-bottom: 0;
     display: flex;
     align-items: center;
@@ -1411,12 +1411,12 @@ body {
     color: #666;
 }
 
-/* 로그아웃 버튼 (사이드바 상단 우측) */
+/* 로그?�웃 버튼 (?�이?�바 ?�단 ?�측) */
 .logout-btn {
     margin-left: auto;
     width: 32px;
     height: 32px;
-    border: none; /* 원형 선 제거 */
+    border: none; /* ?�형 ???�거 */
     border-radius: 50%;
     background: none;
     display: flex;
@@ -1501,30 +1501,30 @@ body {
     margin-right: 12px;
 }
 
-/* 로고 스플래시(루트 index.html) 반응형 최적화 */
+/* 로고 ?�플?�시(루트 index.html) 반응??최적??*/
 @media (max-width: 480px) {
     body > picture img {
         max-width: 80% !important;
     }
 }
 
-/* 서브메뉴 스타일링 */
-/* 서브메뉴 기본 접힘 */
+/* ?�브메뉴 ?��??�링 */
+/* ?�브메뉴 기본 ?�힘 */
 .submenu {
     list-style: none;
     margin-left: 32px;
     display: none;
 }
 
-/* 클릭(open 클래스) 또는 활성(현재 페이지)에서만 펼침 */
+/* ?�릭(open ?�래?? ?�는 ?�성(?�재 ?�이지)?�서�??�침 */
 .menu-section li.open > .submenu {
     display: block;
 }
 
-/* 2뎁스 화살표 아이콘 */
+/* 2?�스 ?�살???�이�?*/
 .menu-section li:has(> .submenu) > a {
   position: relative;
-  padding-right: 32px; /* 화살표 영역 확보 */
+  padding-right: 32px; /* ?�살???�역 ?�보 */
 }
 
 .menu-arrow {
@@ -1540,28 +1540,28 @@ body {
 
 
 
-/* 펼쳐진 상태에서 화살표 위로 회전 */
+/* ?�쳐�??�태?�서 ?�살???�로 ?�전 */
 .menu-section li.open > a > .menu-arrow {
   transform: translateY(-50%) rotate(180deg);
 }
 
-/* 서브메뉴가 열려있을 때 표시 */
+/* ?�브메뉴가 ?�려?�을 ???�시 */
 .menu-section li.open > .submenu {
   display: block !important;
 }
 
-/* 현재 페이지가 서브메뉴에 있을 때 자동으로 열림 */
+/* ?�재 ?�이지가 ?�브메뉴???�을 ???�동?�로 ?�림 */
 .menu-section li:has(> .submenu a.active) > .submenu {
   display: block !important;
 }
 
-/* 현재 페이지가 서브메뉴에 있을 때 화살표도 회전 */
+/* ?�재 ?�이지가 ?�브메뉴???�을 ???�살?�도 ?�전 */
 .menu-section li:has(> .submenu a.active) > a > .menu-arrow,
 .menu-section li.has-active-child > a > .menu-arrow {
   transform: translateY(-50%) rotate(180deg);
 }
 
-/* CSS :has() 미지원 브라우저를 위한 폴백 */
+/* CSS :has() 미�???브라?��?�??�한 ?�백 */
 .menu-section li.has-active-child > .submenu {
   display: block !important;
 }
@@ -1571,7 +1571,7 @@ body {
     padding: 8px 12px;
 }
 
-/* 콘텐츠 영역 스타일링 */
+/* 콘텐�??�역 ?��??�링 */
 .content {
     flex: 1;
     padding: 30px;
@@ -1594,7 +1594,7 @@ body {
     margin-bottom: 16px;
 }
 
-/* 공통 상단 검색/필터 바 */
+/* 공통 ?�단 검???�터 �?*/
 .search-section .common-topbar {
     display: flex;
     align-items: center;
@@ -1633,7 +1633,7 @@ body {
 .btn-query:hover { background:#f0f7ff; border-color:#1677FF; }
 .btn-query:active { background:#e6f2ff; border-color:#1677FF; }
 
-/* 셀렉트+인풋 결합형 검색 컴포넌트 */
+/* ?�?�트+?�풋 결합??검??컴포?�트 */
 .search-section .combo-search { display:flex; align-items:center; gap:8px; }
 .search-section .combo-search.combo-search-inline { 
   width: auto; 
@@ -1707,7 +1707,7 @@ body {
 .search-section .combo-search .append-btn:active{ background:#0F6BFF; }
 
 
-/* 멤버 관리 페이지 전용 검색 영역 스타일 */
+/* 멤버 관�??�이지 ?�용 검???�역 ?��???*/
 .user-page.member-page .top-section {
     display: flex;
     flex-direction: row;
@@ -1924,8 +1924,8 @@ body {
 }
 
 .condition-select {
-    padding: 6px 36px 6px 12px; /* 오른쪽 여백 확보 */
-    border: 1px solid #E5E5E5; /* 인풋박스와 동일 색상으로 통일 */
+    padding: 6px 36px 6px 12px; /* ?�른�??�백 ?�보 */
+    border: 1px solid #E5E5E5; /* ?�풋박스?� ?�일 ?�상?�로 ?�일 */
     border-radius: 8px;
     background-color: white;
     min-width: 120px;
@@ -1939,7 +1939,7 @@ body {
     cursor: pointer;
 }
 
-/* 단일 입력 날짜 범위 피커 */
+/* ?�일 ?�력 ?�짜 범위 ?�커 */
 .date-range-wrap {
     position: relative;
 }
@@ -1947,14 +1947,14 @@ body {
 .date-range {
     height: 36px;
     padding: 6px 12px;
-    border: 1px solid #E5E5E5; /* 인풋박스와 동일 색상으로 통일 */
+    border: 1px solid #E5E5E5; /* ?�풋박스?� ?�일 ?�상?�로 ?�일 */
     border-radius: 8px;
     background: #fff;
     min-width: 220px;
     cursor: pointer;
 }
 
-/* 달력 아이콘 표시용 */
+/* ?�력 ?�이�??�시??*/
 .date-range-wrap .calendar-icon {
     position: absolute;
     left: 10px;
@@ -1992,7 +1992,7 @@ body {
     margin-left: 8px;
 }
 
-/* 날짜 범위 버튼 – 미니 프라이머리/아웃라인 */
+/* ?�짜 범위 버튼 ??미니 ?�라?�머�??�웃?�인 */
 .range-actions .btn-outline,
 .range-actions .btn-submit {
     display: inline-flex;
@@ -2031,7 +2031,7 @@ body {
     border-color: #1677FF;
 }
 
-/* 위험 버튼 (삭제 등) */
+/* ?�험 버튼 (??�� ?? */
 .btn-danger {
     display: inline-flex;
     align-items: center;
@@ -2060,7 +2060,7 @@ body {
     border-color: #DC2626;
 }
 
-/* 달력 UI */
+/* ?�력 UI */
 .calendar-range { display: flex; gap: 12px; align-items: flex-start; }
 .calendar { width: 280px; }
 .cal-header {
@@ -2084,7 +2084,7 @@ body {
     text-align: center;
 }
 
-/* 양쪽 끝 버튼만 보이도록 중앙 버튼 숨김 */
+/* ?�쪽 ??버튼�?보이?�록 중앙 버튼 ?��? */
 .calendar-range .calendar:first-child .cal-next { display: none; }
 .calendar-range .calendar:last-child .cal-prev { display: none; }
 .cal-grid {
@@ -2109,11 +2109,11 @@ body {
 .cal-day.selected { background: #0066FF; color: #fff; }
 .cal-day.in-range { background: #E8F1FF; }
 
-/* 중복 제거: .right-group 여백 규칙 제거 (페이지별로 지정) */
+/* 중복 ?�거: .right-group ?�백 규칙 ?�거 (?�이지별로 지?? */
 
-/* 중복 제거: 전역 검색 인풋 구형 정의 제거 (최신 정의는 하단 632라인 근처) */
+/* 중복 ?�거: ?�역 검???�풋 구형 ?�의 ?�거 (최신 ?�의???�단 632?�인 근처) */
 
-/* 조회 버튼을 아이콘-only, 셀렉트와 높이/스타일 정렬 */
+/* 조회 버튼???�이�?only, ?�?�트?� ?�이/?��????�렬 */
 .search-button {
     display: inline-flex;
     align-items: center;
@@ -2134,7 +2134,7 @@ body {
 }
 .search-button svg { width: 20px; height: 20px; }
 
-/* 인풋/셀렉트 박스 내부에 아이콘 버튼 삽입용 래퍼 */
+/* ?�풋/?�?�트 박스 ?��????�이�?버튼 ?�입???�퍼 */
 .search-control { position: relative; display: inline-block; }
 .search-control .search-input,
 .search-control .condition-select { padding-right: 40px; }
@@ -2151,7 +2151,7 @@ body {
 }
 .search-control .search-button svg { display: none; }
 
-/* 왼쪽에 돋보기 아이콘이 들어가는 단일 입력형 */
+/* ?�쪽???�보�??�이콘이 ?�어가???�일 ?�력??*/
 .search-control.icon-left { position: relative; display:inline-block; flex: 0 0 auto; height:36px; }
 .search-control.icon-left .mag-icon{
     position:absolute; left:12px; top:50%; transform:translateY(-50%);
@@ -2167,7 +2167,7 @@ body {
     box-shadow: none;
 }
 
-/* 일반 페이지 권한 테이블 여백/폭 약간 축소 */
+/* ?�반 ?�이지 권한 ?�이�??�백/???�간 축소 */
 .general-page .perm-table-narrow table th,
 .general-page .perm-table-narrow table td {
     padding: 10px 12px;
@@ -2176,41 +2176,41 @@ body {
 .general-page .perm-table-narrow table td:first-child {
     width: 100px;
 }
-/* 첫 번째 열(구분) 텍스트 가운데 정렬 */
+/* �?번째 ??구분) ?�스??가?�데 ?�렬 */
 .general-page .perm-table-narrow table td:first-child {
     text-align: center;
     vertical-align: middle;
 }
 
-/* 일반 페이지 권한 테이블 가로 폭 축소 및 내부 랩 처리 */
+/* ?�반 ?�이지 권한 ?�이�?가�???축소 �??��? ??처리 */
 .general-page .perm-table-narrow {
     width: 100%;
-    max-width: 900px; /* 전체 폭보다 좁게 */
+    max-width: 900px; /* ?�체 ??��??좁게 */
 }
 .general-page .perm-table-narrow table {
     width: 100%;
-    table-layout: fixed; /* 좁은 폭에서도 균등하게 */
+    table-layout: fixed; /* 좁�? ??��?�도 균등?�게 */
 }
 .general-page .perm-table-narrow table,
 .general-page .perm-table-narrow table th,
 .general-page .perm-table-narrow table td {
-    border: 1px solid #E5E5E5; /* 셀 사이사이 외곽선 */
+    border: 1px solid #E5E5E5; /* ?� ?�이?�이 ?�곽??*/
 }
 .general-page .perm-table-narrow table th {
-    text-align: center; /* 헤더 텍스트 가운데 정렬 */
+    text-align: center; /* ?�더 ?�스??가?�데 ?�렬 */
 }
 .general-page .perm-table-narrow .toggle-group {
-    flex-wrap: wrap; /* 좁아지면 다음 줄로 */
-    gap: 16px;      /* 가로 간격 소폭 축소 */
-    justify-content: center; /* 셀 중앙 정렬 */
+    flex-wrap: wrap; /* 좁아지�??�음 줄로 */
+    gap: 16px;      /* 가�?간격 ?�폭 축소 */
+    justify-content: center; /* ?� 중앙 ?�렬 */
     width: 100%;
 }
 .general-page .perm-table-narrow .toggle-item {
-    min-width: 160px; /* 줄바꿈 단위 확보 */
+    min-width: 160px; /* 줄바�??�위 ?�보 */
 }
 .general-page .perm-table-narrow .toggle-item { justify-content: center; }
 
-/* 공통 빈 상태 표시 */
+/* 공통 �??�태 ?�시 */
 .empty-state {
     display: flex;
     align-items: center;
@@ -2240,7 +2240,7 @@ th, td {
     border-bottom: 1px solid #eee;
 }
 
-/* 테이블 마지막 열(삭제 열) 가운데 정렬 */
+/* ?�이�?마�?�?????�� ?? 가?�데 ?�렬 */
 .table-container table th:last-child,
 .table-container table td:last-child {
     text-align: center;
@@ -2256,7 +2256,7 @@ th {
     color: #333;
 }
 
-/* 토글 스위치 스타일 */
+/* ?��? ?�위�??��???*/
 .switch {
     position: relative;
     display: inline-block;
@@ -2318,7 +2318,7 @@ input:checked + .slider:before {
     display: block;
 }
 
-/* 테이블용 채움형 삭제 버튼 (회의록/사전 관리용) */
+/* ?�이블용 채�?????�� 버튼 (?�의�??�전 관리용) */
 .delete-btn--filled {
     background-color: transparent;
     border: 1px solid #FF4444;
@@ -2333,7 +2333,7 @@ input:checked + .slider:before {
     filter: none;
 }
 
-/* 사용자 관리 페이지 스타일 */
+/* ?�용??관�??�이지 ?��???*/
 .user-profile {
     display: flex;
     align-items: center;
@@ -2341,7 +2341,7 @@ input:checked + .slider:before {
 }
 
 
-/* 멤버 관리 페이지 새로운 스타일 */
+/* 멤버 관�??�이지 ?�로???��???*/
 .top-section {
     display: flex;
     gap: 24px;
@@ -2422,7 +2422,7 @@ input:checked + .slider:before {
     min-height: 36px;
 }
 
-/* 멤버 관리 페이지 버튼 스타일 */
+/* 멤버 관�??�이지 버튼 ?��???*/
 .user-page.member-page .btn-submit {
     padding: 8px 16px;
     background: transparent;
@@ -2432,7 +2432,7 @@ input:checked + .slider:before {
     font-size: 12px;
     font-weight: 500;
     cursor: pointer;
-    min-width: 60px;
+    min-width: 100px;
     height: 32px;
     margin-right: 12px;
     display: flex;
@@ -2530,7 +2530,7 @@ input:checked + .slider:before {
     padding: 24px;
 }
 
-/* 멤버 관리 페이지 테이블 스타일 개선 */
+/* 멤버 관�??�이지 ?�이�??��???개선 */
 .user-page.member-page .table-container {
     margin-top: 20px;
 }
@@ -2540,7 +2540,7 @@ input:checked + .slider:before {
     background: #F9FAFB;
 }
 
-/* 체크박스 스타일 */
+/* 체크박스 ?��???*/
 .user-page.member-page .table-container th:first-child,
 .user-page.member-page .table-container td:first-child {
     width: 40px;
@@ -2630,7 +2630,7 @@ input:checked + .slider:before {
 }
 
 
-/* user 페이지 휴면회원 섹션 버튼 스타일 */
+/* user ?�이지 ?�면?�원 ?�션 버튼 ?��???*/
 .user-page.member-page .btn-activate {
   padding: 6px 12px;
   background: #fff;
@@ -2669,7 +2669,7 @@ input:checked + .slider:before {
   color: #DC2626;
 }
 
-/* user 페이지 상태 배지 스타일 */
+/* user ?�이지 ?�태 배�? ?��???*/
 .user-page.member-page .status-badge {
   padding: 4px 8px;
   border-radius: 12px;
@@ -2690,7 +2690,7 @@ input:checked + .slider:before {
 }
 
 
-/* 통계와 상세정보 섹션 */
+/* ?�계?� ?�세?�보 ?�션 */
 .stats-and-detail-section {
   display: flex;
   gap: 24px;
@@ -2705,7 +2705,7 @@ input:checked + .slider:before {
   flex: 1;
 }
 
-/* 상세 폼 섹션 */
+/* ?�세 ???�션 */
 .detail-form-section {
   background: #fff;
   border: 1px solid #E5E5E5;
@@ -2741,7 +2741,7 @@ input:checked + .slider:before {
   margin-right: 8px;
 }
 
-/* 검색 영역 버튼 스타일 */
+/* 검???�역 버튼 ?��???*/
 .search-right .btn-orange {
   display: flex;
   align-items: center;
@@ -2805,7 +2805,7 @@ input:checked + .slider:before {
   background: #fef2f2;
 }
 
-/* 사용자 관리 액션 섹션 */
+/* ?�용??관�??�션 ?�션 */
 .user-action-section {
   margin-top: 24px;
 }
@@ -2881,7 +2881,7 @@ input:checked + .slider:before {
   background: #fef2f2;
 }
 
-/* 폼 내용 */
+/* ???�용 */
 .detail-form-content {
   display: flex;
   flex-direction: column;
@@ -2923,7 +2923,7 @@ input:checked + .slider:before {
   padding: 8px 32px 8px 12px;
 }
 
-/* 그룹 설정 페이지 토글 버튼 */
+/* 그룹 ?�정 ?�이지 ?��? 버튼 */
 .page-group-setting .toggle-buttons {
   display: flex;
   gap: 2px;
@@ -2960,7 +2960,7 @@ input:checked + .slider:before {
   background: #0052CC;
 }
 
-/* 다른 페이지 토글 버튼 (기본) */
+/* ?�른 ?�이지 ?��? 버튼 (기본) */
 .toggle-buttons {
   display: flex;
   gap: 2px;
@@ -2997,12 +2997,12 @@ input:checked + .slider:before {
   background: #0052CC;
 }
 
-/* 탭 컨테이너 */
+/* ??컨테?�너 */
 .tab-container {
   margin-bottom: 24px;
 }
 
-/* 탭 네비게이션 */
+/* ???�비게이??*/
 .tab-nav {
   display: flex;
   border-bottom: 1px solid #E5E5E5;
@@ -3041,7 +3041,7 @@ input:checked + .slider:before {
   z-index: 1;
 }
 
-/* 탭 내용 */
+/* ???�용 */
 .tab-content {
   display: none;
   background: #fff;
@@ -3055,7 +3055,7 @@ input:checked + .slider:before {
   display: block;
 }
 
-/* 탭 내 리스트 섹션 마진 조정 */
+/* ????리스???�션 마진 조정 */
 .tab-content .list-section {
   margin-top: 0;
   border: none;
@@ -3064,12 +3064,12 @@ input:checked + .slider:before {
 }
 
 
-/* 탈퇴회원 섹션 스타일 */
+/* ?�퇴?�원 ?�션 ?��???*/
 .user-page.member-page .withdrawn-members-section {
   margin-top: 16px;
 }
 
-/* 메뉴 관리 페이지 전용 스타일 */
+/* 메뉴 관�??�이지 ?�용 ?��???*/
 .page-menu-setting .menu-management-container {
   background: #fff;
   border-radius: 8px;
@@ -3082,7 +3082,7 @@ input:checked + .slider:before {
   min-height: 600px;
 }
 
-/* 메뉴 트리 패널 */
+/* 메뉴 ?�리 ?�널 */
 .page-menu-setting .menu-tree-panel {
   flex: 1;
   background: #fff;
@@ -3119,7 +3119,7 @@ input:checked + .slider:before {
   min-width: auto;
 }
 
-/* 메뉴 트리 아이템 */
+/* 메뉴 ?�리 ?�이??*/
 .page-menu-setting .menu-tree-content {
   max-height: 500px;
   overflow-y: auto;
@@ -3187,7 +3187,7 @@ input:checked + .slider:before {
   opacity: 1;
 }
 
-/* 메뉴 트리 버튼 스타일 - 기존 페이지와 일관성 */
+/* 메뉴 ?�리 버튼 ?��???- 기존 ?�이지?� ?��???*/
 .page-menu-setting .btn-edit {
   padding: 6px 12px;
   background: transparent;
@@ -3221,7 +3221,7 @@ input:checked + .slider:before {
   background: #fef2f2;
 }
 
-/* 메뉴 자식 요소 들여쓰기 */
+/* 메뉴 ?�식 ?�소 ?�여?�기 */
 .page-menu-setting .menu-children {
   margin-left: 20px;
   border-left: 2px solid #F1F3F4;
@@ -3243,7 +3243,7 @@ input:checked + .slider:before {
   color: #6B7280;
 }
 
-/* 메뉴 편집 패널 */
+/* 메뉴 ?�집 ?�널 */
 .page-menu-setting .menu-edit-panel {
   flex: 0 0 400px;
   background: #fff;
@@ -3273,7 +3273,7 @@ input:checked + .slider:before {
   gap: 8px;
 }
 
-/* 메뉴 편집 폼 */
+/* 메뉴 ?�집 ??*/
 .page-menu-setting .menu-edit-form {
   display: flex;
   flex-direction: column;
@@ -3325,7 +3325,7 @@ input:checked + .slider:before {
   border-color: #0066FF;
 }
 
-/* 드래그 앤 드롭 스타일 */
+/* ?�래�????�롭 ?��???*/
 .page-menu-setting .menu-tree-item.dragging {
   opacity: 0.5;
 }
@@ -3335,7 +3335,7 @@ input:checked + .slider:before {
   border: 2px dashed #3B82F6;
 }
 
-/* 워크스페이스 섹션 헤더 */
+/* ?�크?�페?�스 ?�션 ?�더 */
 .menu-section-header {
   display: flex;
   justify-content: space-between;
@@ -3370,10 +3370,10 @@ input:checked + .slider:before {
   height: 16px;
 }
 
-/* 워크스페이스 상세 페이지 스타일 */
-/* 기존 스타일과 일관성 유지 */
+/* ?�크?�페?�스 ?�세 ?�이지 ?��???*/
+/* 기존 ?��??�과 ?��????��? */
 
-/* 카드 스타일 - 기존 스타일 활용 */
+/* 카드 ?��???- 기존 ?��????�용 */
 .page-workspace-detail .card {
   background: white;
   border: 1px solid #E5E5E5;
@@ -3432,7 +3432,7 @@ input:checked + .slider:before {
   margin-bottom: 4px;
 }
 
-/* 워크스페이스 정보 타이틀과 상태 스위치 */
+/* ?�크?�페?�스 ?�보 ?�?��?�??�태 ?�위�?*/
 .page-workspace-detail .ws-title-with-status {
   display: flex;
   justify-content: space-between;
@@ -3500,7 +3500,7 @@ input:checked + .slider:before {
   margin-top: 32px;
 }
 
-/* 권한 설정 섹션 스타일 - 기존 스타일 활용 */
+/* 권한 ?�정 ?�션 ?��???- 기존 ?��????�용 */
 .page-workspace-detail .perm-title {
   font-size: 16px;
   font-weight: 600;
@@ -3575,7 +3575,7 @@ input:checked + .slider:before {
   min-width: 120px;
 }
 
-/* 구성원 관리 스타일 */
+/* 구성??관�??��???*/
 .page-workspace-detail .members-header {
   display: flex;
   justify-content: space-between;
@@ -3598,7 +3598,7 @@ input:checked + .slider:before {
   font-size: 14px;
 }
 
-/* 구성원 섹션 구분 스타일 */
+/* 구성???�션 구분 ?��???*/
 .page-workspace-detail .member-section {
   margin-bottom: 24px;
 }
@@ -3634,17 +3634,17 @@ input:checked + .slider:before {
   min-height: 40px;
 }
 
-/* 관리자 섹션 스타일 */
+/* 관리자 ?�션 ?��???*/
 .page-workspace-detail .admin-badges:empty::before {
-  content: '관리자가 없습니다.';
+  content: '관리자가 ?�습?�다.';
   color: #6B7280;
   font-style: italic;
   font-size: 14px;
 }
 
-/* 일반 구성원 섹션 스타일 */
+/* ?�반 구성???�션 ?��???*/
 .page-workspace-detail .general-badges:empty::before {
-  content: '일반 구성원이 없습니다.';
+  content: '?�반 구성?�이 ?�습?�다.';
   color: #6B7280;
   font-style: italic;
   font-size: 14px;
@@ -3662,7 +3662,7 @@ input:checked + .slider:before {
   border: 1px solid transparent;
 }
 
-/* 역할별 배지 색상 */
+/* ??���?배�? ?�상 */
 .page-workspace-detail .member-badge[data-role="admin"] {
   background: #FEF3C7;
   color: #92400E;
@@ -3713,7 +3713,7 @@ input:checked + .slider:before {
   transform: scale(1.1);
 }
 
-/* 구성원 추가 모달 스타일 */
+/* 구성??추�? 모달 ?��???*/
 .member-modal-overlay {
   position: fixed;
   top: 0;
@@ -3824,7 +3824,7 @@ input:checked + .slider:before {
   min-width: 120px;
 }
 
-/* workspace-detail 페이지 변경사항 저장 버튼 스타일 */
+/* workspace-detail ?�이지 변경사???�??버튼 ?��???*/
 .workspace-detail-page .btn.primary.large {
   background-color: #10B981;
   border-color: #10B981;
@@ -3842,12 +3842,12 @@ input:checked + .slider:before {
 }
 
 
-/* 휴면회원 섹션 페이징 오른쪽 정렬 */
+/* ?�면?�원 ?�션 ?�이�??�른�??�렬 */
 .user-page.member-page .inactive-members-section .list-footer {
   justify-content: flex-end;
 }
 
-/* 탈퇴회원 버튼 스타일 */
+/* ?�퇴?�원 버튼 ?��???*/
 .user-page.member-page .btn-restore {
   padding: 6px 12px;
   background: #fff;
@@ -3916,7 +3916,7 @@ input:checked + .slider:before {
     background: #F0F7FF;
 }
 
-/* 멤버 관리 페이지 날짜 범위 선택 스타일 */
+/* 멤버 관�??�이지 ?�짜 범위 ?�택 ?��???*/
 .user-page.member-page .date-range-wrap {
     display: flex;
     align-items: center;
@@ -3994,23 +3994,23 @@ input:checked + .slider:before {
     min-height: 32px;
 }
 
-/* 상태 배지 (테이블용) */
+/* ?�태 배�? (?�이블용) */
 .status-pill {
     display: inline-flex;
     align-items: center;
-    padding: 6px 12px; /* 배지 크기 확대 */
+    padding: 6px 12px; /* 배�? ?�기 ?��? */
     border-radius: 9999px;
     font-size: 13px;
     font-weight: 600;
     line-height: 1;
-    min-height: 26px; /* 높이 보장 */
+    min-height: 26px; /* ?�이 보장 */
 }
 .status-pill.draft { /* 초안 */
-    background: #FFD84D; /* 밝은 노랑 */
+    background: #FFD84D; /* 밝�? ?�랑 */
     color: #292A2B;
 }
-.status-pill.archived { /* 보관됨 */
-    background: #E5E7EB; /* 연그레이 */
+.status-pill.archived { /* 보�???*/
+    background: #E5E7EB; /* ?�그?�이 */
     color: #4B5563;
 }
 
@@ -4026,9 +4026,9 @@ input:checked + .slider:before {
     color: #999;
 }
 
-/* 중복 제거: min-width는 상단 .condition-select에 존재 */
+/* 중복 ?�거: min-width???�단 .condition-select??존재 */
 
-/* 콘텐츠 타이틀 스타일 */
+/* 콘텐�??�?��? ?��???*/
 .content-title {
     display: flex;
     align-items: center;
@@ -4046,7 +4046,7 @@ input:checked + .slider:before {
     color: #666;
 }
 
-/* 워크스페이스 관리 전용 스타일 */
+/* ?�크?�페?�스 관�??�용 ?��???*/
 .workspace-page .search-input {
     width: 400px;
     padding: 10px 12px;
@@ -4121,7 +4121,7 @@ input:checked + .slider:before {
     color: white;
 }
 
-/* 워크스페이스 아이콘 색상 (네모) */
+/* ?�크?�페?�스 ?�이�??�상 (?�모) */
 .workspace-icon.color-teal { background-color: #14B8A6; }
 .workspace-icon.color-indigo { background-color: #6366F1; }
 .workspace-icon.color-rose { background-color: #F43F5E; }
@@ -4137,17 +4137,17 @@ input:checked + .slider:before {
 .count-spinner {
     position: relative;
     display: inline-block;
-    width: 60px;
+    width: auto;
 }
 
 .count-input {
     width: 100%;
     height: 30px;
-    padding: 0 20px 0 8px;
+    padding: 0 20px 0 5px;
     border: 1px solid #E5E5E5;
     border-radius: 8px;
     font-size: 15px;
-    text-align: center;
+    text-align: left;
     appearance: textfield;
     -moz-appearance: textfield;
     box-sizing: border-box;
@@ -4246,7 +4246,7 @@ input:checked + .slider:before {
     color: #666;
 }
 
-/* 테이블 정렬 가능한 헤더 및 아이콘 */
+/* ?�이�??�렬 가?�한 ?�더 �??�이�?*/
 th.sortable { cursor: pointer; user-select: none; }
 th .sort-icon {
     display: inline-block;
@@ -4260,9 +4260,9 @@ th .sort-icon {
 th.sortable.asc .sort-icon { transform: rotate(180deg); }
 th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
-/* 워크스페이스 페이지 전용 스타일 */
+/* ?�크?�페?�스 ?�이지 ?�용 ?��???*/
 
-/* 워크스페이스 생성 모달 스타일 */
+/* ?�크?�페?�스 ?�성 모달 ?��???*/
 .workspace-modal {
     width: 500px !important;
 }
@@ -4273,7 +4273,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .workspace-icon-preview {
-    width: 60px;
+    width: 100px;
     height: 60px;
     border-radius: 8px;
     display: inline-flex;
@@ -4285,7 +4285,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     margin: 0 auto;
 }
 
-/* 워크스페이스 프리뷰 아이콘 색상 */
+/* ?�크?�페?�스 ?�리�??�이�??�상 */
 .workspace-icon-preview.color-teal { background-color: #14B8A6; }
 .workspace-icon-preview.color-indigo { background-color: #6366F1; }
 .workspace-icon-preview.color-rose { background-color: #F43F5E; }
@@ -4303,7 +4303,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     margin-top: 4px;
 }
 
-/* HTML 인라인 스타일을 위한 새로운 클래스들 */
+/* HTML ?�라???��??�을 ?�한 ?�로???�래?�들 */
 .range-panel-info {
     margin-top: 8px;
     font-size: 12px;
@@ -4313,7 +4313,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     justify-content: space-between;
 }
 
-/* combo-search 컴포넌트 크기 통일 */
+/* combo-search 컴포?�트 ?�기 ?�일 */
 .combo-search,
 .combo-search-wide {
     width: 520px;
@@ -4412,7 +4412,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     color: #1F6BFF;
 }
 
-/* 탭 기본 스타일 */
+/* ??기본 ?��???*/
 .tab {
     border: none;
     background: transparent;
@@ -4543,7 +4543,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     color: #0066ff;
 }
 
-/* 권한 등록 페이지 전용 스타일 */
+/* 권한 ?�록 ?�이지 ?�용 ?��???*/
 .member-register-page {
   background-color: #F8FAFC;
   padding: 0;
@@ -4732,7 +4732,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .member-register-password-icons .member-register-password-icon:first-child {
-  position: relative; /* 첫 번째 아이콘 (눈 아이콘들)의 컨테이너 */
+  position: relative; /* �?번째 ?�이�?(???�이콘들)??컨테?�너 */
 }
 
 #eye-closed, #eye-open {
@@ -4747,7 +4747,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .member-register-password-icons .member-register-password-icon:last-child {
-  position: relative; /* X 아이콘은 일반적인 플로우에 따라 배치 */
+  position: relative; /* X ?�이콘�? ?�반?�인 ?�로?�에 ?�라 배치 */
   margin-left: 30px;
 }
 
@@ -4829,7 +4829,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   background: #2563EB;
 }
 
-/* 그룹 설정 페이지 전용 스타일 */
+/* 그룹 ?�정 ?�이지 ?�용 ?��???*/
 .group-setting-page {
   background-color: transparent;
 }
@@ -4860,7 +4860,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .group-setting-tree-panel {
-  width: 40%;
+  width: 30%;
   border: 1px solid #E5E5E5;
   border-radius: 8px;
   background: #fff;
@@ -5034,14 +5034,14 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   width: 55%;
 }
 
-/* 왼쪽 패널 (테이블들) */
+/* ?�쪽 ?�널 (?�이블들) */
 .group-setting-left-panel {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-/* 새로운 그룹 설정 폼 테이블 */
+/* ?�로??그룹 ?�정 ???�이�?*/
 .group-setting-form-container {
   border-top: 1px solid #F3F4F6
 }
@@ -5286,7 +5286,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   border-color: #22C55E;
 }
 
-/* 그룹 설정 모달 스타일 */
+/* 그룹 ?�정 모달 ?��???*/
 .group-setting-modal-overlay {
   position: fixed;
   top: 0;
@@ -5406,7 +5406,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   background: #f0f7ff;
 }
 
-/* 템플릿 디테일 페이지 전용 스타일 */
+/* ?�플�??�테???�이지 ?�용 ?��???*/
 .template-detail-page .modal-container {
   width: auto !important;
   max-width: none !important;
@@ -5426,7 +5426,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 
 
-/* 다운로드 히스토리 페이지 전용 스타일 */
+/* ?�운로드 ?�스?�리 ?�이지 ?�용 ?��???*/
 
 .download-history-page .table-container table th:first-child,
 .download-history-page .table-container table td:first-child {
@@ -5490,13 +5490,13 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   text-overflow: ellipsis;
 }
 
-/* 워크스페이스 페이지 전용 스타일 */
+/* ?�크?�페?�스 ?�이지 ?�용 ?��???*/
 .workspace-page .common-topbar {
   align-items: center;
   width: 100%;
 }
 
-/* 사용량 통계 페이지 전용 스타일 */
+/* ?�용???�계 ?�이지 ?�용 ?��???*/
 .stats-usage-page .search-section .common-topbar {
   justify-content: flex-start;
 }
@@ -5529,7 +5529,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   gap: 8px;
 }
 
-/* 일반 페이지 전용 스타일 */
+/* ?�반 ?�이지 ?�용 ?��???*/
 .general-page .card {
   background: #F7FAFD;
   border: 1px solid #E5EAF0;
@@ -5630,7 +5630,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   line-height: 1.6;
 }
 
-/* workspace_detail 페이지 자동삭제 설명 텍스트 여백 */
+/* workspace_detail ?�이지 ?�동??�� ?�명 ?�스???�백 */
 .page-workspace-detail .auto-delete-desc {
   margin: 16px 0 20px 0;
 }
@@ -5639,9 +5639,9 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 
 
-/* switch-large 스타일 제거 - 기본 switch 사용 */
+/* switch-large ?��????�거 - 기본 switch ?�용 */
 
-/* 사용자 설정 카드 스타일 */
+/* ?�용???�정 카드 ?��???*/
 .user-settings-card {
   margin-bottom: 24px;
 }
@@ -5660,7 +5660,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .general-page .count-input.small {
-  width: 60px;
+  width: 100px;
 }
 
 .general-page .condition-select.small {
@@ -5718,19 +5718,19 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   padding: 0;
 }
 
-/* 사용자 페이지 전용 스타일 */
+/* ?�용???�이지 ?�용 ?��???*/
 .user-page-custom .table-container table th:last-child,
 .user-page-custom .table-container table td:last-child {
   text-align: center !important;
   vertical-align: middle;
 }
 
-/* 권한 관리 페이지 버튼 간격 */
+/* 권한 관�??�이지 버튼 간격 */
 .user-page-custom .table-container td .btn-detail {
   margin-right: 4px;
 }
 
-/* 권한 관리 페이지 체크된 행 스타일 */
+/* 권한 관�??�이지 체크?????��???*/
 .user-page-custom .table-container tbody tr.selected {
   background-color: #EFF6FF !important;
 }
@@ -5739,7 +5739,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   background-color: #DBEAFE !important;
 }
 
-/* 비활성 멤버 페이지 전용 스타일 */
+/* 비활??멤버 ?�이지 ?�용 ?��???*/
 .inactive-members-page .table-container table {
   width: 100%;
   border-collapse: collapse;
@@ -5770,7 +5770,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 
-/* 시스템 사용자 페이지 버튼 스타일 개선 */
+/* ?�스???�용???�이지 버튼 ?��???개선 */
 .page-system-user.user-page.member-page .btn-submit {
   padding: 6px 16px;
   font-size: 14px;
@@ -5779,7 +5779,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   min-width: auto;
 }
 
-/* 시스템 사용자 페이지 워크스페이스 셀렉트 박스 크기 조정 */
+/* ?�스???�용???�이지 ?�크?�페?�스 ?�?�트 박스 ?�기 조정 */
 .page-system-user .condition-select {
   min-width: 180px !important;
   width: 180px;
@@ -5798,7 +5798,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   border-color: #EF4444;
 }
 
-/* 시스템 사용자 페이지 검색 박스 내 조회 버튼 */
+/* ?�스???�용???�이지 검??박스 ??조회 버튼 */
 .page-system-user.user-page.member-page .combo-field .append-btn {
   height: 100%;
   border: none;
@@ -5826,12 +5826,12 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 
-/* 시스템 사용자 페이지 테이블 내 버튼 스타일 */
+/* ?�스???�용???�이지 ?�이�???버튼 ?��???*/
 .page-system-user.user-page.member-page .table-container .btn-outline {
   padding: 6px 12px;
   font-size: 13px;
   height: 32px;
-  min-width: 60px;
+  min-width: 100px;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
@@ -5849,7 +5849,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   justify-content: center;
 }
 
-/* 시스템 사용자 페이지 테이블 텍스트 줄바꿈 방지 */
+/* ?�스???�용???�이지 ?�이�??�스??줄바�?방�? */
 .page-system-user.user-page.member-page .table-container td {
   white-space: nowrap;
 }
@@ -5873,18 +5873,18 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   vertical-align: middle;
 }
 
-/* 시스템 사용자 페이지 페이지네이션 중앙 정렬 */
+/* ?�스???�용???�이지 ?�이지?�이??중앙 ?�렬 */
 .page-system-user.user-page.member-page .list-footer {
   justify-content: center;
 }
 
 
-/* 시스템 사용자 페이지 검색/액션 버튼 텍스트 보호 */
+/* ?�스???�용???�이지 검???�션 버튼 ?�스??보호 */
 .page-system-user.user-page.member-page .tb-right .btn-submit {
   white-space: nowrap;
 }
 
-/* 시스템 사용자 페이지 권한 셀렉트 박스 커스텀 */
+/* ?�스???�용???�이지 권한 ?�?�트 박스 커스?� */
 .page-system-user.user-page.member-page .table-container .permission-select {
   width: 140px;
   height: 32px;
@@ -5914,7 +5914,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 
-/* 비활성 멤버 페이지 버튼 스타일 - 외곽선 스타일 */
+/* 비활??멤버 ?�이지 버튼 ?��???- ?�곽???��???*/
 .inactive-members-page .btn-activate {
   padding: 6px 12px;
   background: #fff;
@@ -5953,7 +5953,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   color: #DC2626;
 }
 
-/* 상태 배지 스타일 */
+/* ?�태 배�? ?��???*/
 .status-badge {
   padding: 4px 8px;
   border-radius: 12px;
@@ -5968,7 +5968,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 
-/* 비활성 멤버 페이지 검색 영역 - 기존 디자인 시스템에 맞춤 */
+/* 비활??멤버 ?�이지 검???�역 - 기존 ?�자???�스?�에 맞춤 */
 .inactive-search {
   background: #fff;
   padding: 20px;
@@ -6061,10 +6061,10 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   background-color: #fef2f2;
 }
 
-/* 전역 스타일 충돌 방지 예시 */
-/* 만약 .btn 클래스가 페이지마다 다르게 스타일링되어야 한다면: */
+/* ?�역 ?��???충돌 방�? ?�시 */
+/* 만약 .btn ?�래?��? ?�이지마다 ?�르�??��??�링?�어???�다�? */
 
-/* 기본 전역 스타일 (모든 페이지 공통) */
+/* 기본 ?�역 ?��???(모든 ?�이지 공통) */
 .btn {
   padding: 0 16px;
   border: 1px solid #E5E5E5;
@@ -6081,7 +6081,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 
-/* 특정 버튼 타입들도 페이지별로 제한 가능 */
+/* ?�정 버튼 ?�?�들???�이지별로 ?�한 가??*/
 .page-user .btn.primary {
   background: transparent;
   color: #0066FF;
@@ -6153,7 +6153,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     text-align: center;
 }
 
-/* 회의록 템플릿 관리 페이지 전용 스타일 */
+/* ?�의�??�플�?관�??�이지 ?�용 ?��???*/
 .template-list-page .table-container table tbody tr {
     transition: background-color 0.15s ease;
 }
@@ -6186,7 +6186,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     transform: rotate(0deg);
 }
 
-/* 로딩 페이지 스타일 */
+/* 로딩 ?�이지 ?��???*/
 .loading-page {
     margin: 0;
     height: 100vh;
@@ -6201,7 +6201,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     display: block;
 }
 
-/* 워크스페이스 관리 페이지 체크박스 행 선택 스타일 */
+/* ?�크?�페?�스 관�??�이지 체크박스 ???�택 ?��???*/
 .page-workspace .table-container table tbody tr {
     transition: background-color 0.15s ease;
 }
@@ -6218,7 +6218,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     background-color: #D6E8FF;
 }
 
-/* 사용자 관리 페이지 체크박스 행 선택 스타일 */
+/* ?�용??관�??�이지 체크박스 ???�택 ?��???*/
 .page-user .table-container table tbody tr {
     transition: background-color 0.15s ease;
 }
@@ -6235,7 +6235,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     background-color: #D6E8FF;
 }
 
-/* 메뉴 설정 페이지 드래그 앤 드롭 스타일 */
+/* 메뉴 ?�정 ?�이지 ?�래�????�롭 ?��???*/
 .page-workspace-menu-setting .menu-tree-item {
     transition: all 0.2s ease;
     cursor: grab;
@@ -6301,14 +6301,14 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     border-radius: 8px;
 }
 
-/* 드래그 중 메뉴 아이템 스타일 */
+/* ?�래�?�?메뉴 ?�이???��???*/
 .page-workspace-menu-setting .menu-tree-item.dragging .menu-item-header {
     background: #f8f9fa;
     border: 1px solid #dee2e6;
     border-radius: 8px;
 }
 
-/* 메뉴 토글 버튼 스타일 개선 */
+/* 메뉴 ?��? 버튼 ?��???개선 */
 .page-workspace-menu-setting .menu-toggle {
     display: inline-block;
     width: 16px;
@@ -6327,7 +6327,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     color: #374151;
 }
 
-/* 메뉴 아이템 헤더 패딩 조정 */
+/* 메뉴 ?�이???�더 ?�딩 조정 */
 .page-workspace-menu-setting .menu-item-header {
     display: flex;
     align-items: center;
@@ -6336,13 +6336,13 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     transition: all 0.2s ease;
 }
 
-/* 메뉴 아이콘 스타일 */
+/* 메뉴 ?�이�??��???*/
 .page-workspace-menu-setting .menu-icon {
     margin-right: 8px;
     font-size: 16px;
 }
 
-/* 메뉴 제목 스타일 */
+/* 메뉴 ?�목 ?��???*/
 .page-workspace-menu-setting .menu-title {
     font-size: 14px;
     font-weight: 500;
@@ -6350,13 +6350,13 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     user-select: none;
 }
 
-/* 드래그 비활성화 상태 */
+/* ?�래�?비활?�화 ?�태 */
 .page-workspace-menu-setting .menu-tree-item[draggable="false"] {
     cursor: default;
     opacity: 0.6;
 }
 
-/* 메뉴 레벨별 들여쓰기 */
+/* 메뉴 ?�벨�??�여?�기 */
 .page-workspace-menu-setting .menu-tree-item[data-level="1"] {
     margin-left: 0;
 }
@@ -6369,7 +6369,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     margin-left: 40px;
 }
 
-/* 메뉴 접기/펼치기 애니메이션 */
+/* 메뉴 ?�기/?�치�??�니메이??*/
 .page-workspace-menu-setting .menu-children {
     transition: all 0.3s ease;
     overflow: hidden;
@@ -6380,7 +6380,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     opacity: 0;
 }
 
-/* 드래그 앤 드롭 가이드 텍스트 */
+/* ?�래�????�롭 가?�드 ?�스??*/
 .page-workspace-menu-setting .drag-guide {
     position: absolute;
     top: 50%;
@@ -6401,7 +6401,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     opacity: 1;
 }
 
-/* 메뉴 트리 컨테이너 스타일 개선 */
+/* 메뉴 ?�리 컨테?�너 ?��???개선 */
 .page-workspace-menu-setting .menu-tree-content {
     position: relative;
     min-height: 400px;
@@ -6411,9 +6411,9 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     background: #FAFBFC;
 }
 
-/* 빈 메뉴 트리 상태 */
+/* �?메뉴 ?�리 ?�태 */
 .page-workspace-menu-setting .menu-tree-content:empty::before {
-    content: '메뉴를 드래그하여 순서를 변경하거나 "새 메뉴" 버튼을 클릭하여 메뉴를 추가하세요.';
+    content: '메뉴�??�래그하???�서�?변경하거나 "??메뉴" 버튼???�릭?�여 메뉴�?추�??�세??';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -6423,7 +6423,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   text-align: center;
 }
 
-/* 설정변경 이력 페이지 CSS */
+/* ?�정변�??�력 ?�이지 CSS */
 .detail-section-title {
   margin-top: 8px;
   margin-bottom: 8px;
@@ -6505,7 +6505,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   font-weight: 500;
 }
 
-/* 사전관리 페이지 분리된 검색 요소 스타일 */
+/* ?�전관�??�이지 분리??검???�소 ?��???*/
 .search-section .search-input-wrap {
   position: relative;
   display: flex;
@@ -6563,7 +6563,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   background: #0F6BFF;
 }
 
-/* 템플릿 상세 페이지 상단 버튼 레이아웃 */
+/* ?�플�??�세 ?�이지 ?�단 버튼 ?�이?�웃 */
 .content-header:has(.template-detail-actions) {
   display: flex;
   justify-content: space-between;
@@ -6623,7 +6623,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   background: #2B85FF;
 }
 
-/* 사용자 동의 이력 페이지 페이징 가운데 정렬 */
+/* ?�용???�의 ?�력 ?�이지 ?�이�?가?�데 ?�렬 */
 .consent-history-pagination {
   justify-content: center;
   margin-top: 20px;
@@ -6631,7 +6631,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 
-/* 설정변경 이력 페이지 날짜 범위 선택기 크기 조정 */
+/* ?�정변�??�력 ?�이지 ?�짜 범위 ?�택�??�기 조정 */
 .setting-change-details .date-range-wrap .date-range,
 .search-section .date-range-wrap .date-range {
   min-width: 280px;
@@ -6645,7 +6645,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   min-width: 280px;
 }
 
-/* 설정변경 이력 페이지 페이징 가운데 정렬 */
+/* ?�정변�??�력 ?�이지 ?�이�?가?�데 ?�렬 */
 .setting-history-pagination {
   justify-content: center;
   margin-top: 20px;
@@ -6653,8 +6653,8 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 
-/* 시스템 통계 페이지 CSS */
-/* 통계 페이지 전용 워크스페이스 배지 스타일 */
+/* ?�스???�계 ?�이지 CSS */
+/* ?�계 ?�이지 ?�용 ?�크?�페?�스 배�? ?��???*/
 .page-system-stats .workspace-badge {
   display: inline-block;
   padding: 4px 8px;
@@ -6664,10 +6664,10 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   background: #10B981;
   color: #fff;
   text-align: center;
-  min-width: 60px;
+  min-width: 100px;
 }
 
-/* 통계 페이지 전용 통계 카운트 배지 스타일 */
+/* ?�계 ?�이지 ?�용 ?�계 카운??배�? ?��???*/
 .page-system-stats .stats-count {
   display: inline-block;
   padding: 4px 8px;
@@ -6697,9 +6697,9 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   background: #E0E7FF;
   color: #3730A3;
 }
-/* 시스템 통계 페이지 CSS 끝 */
+/* ?�스???�계 ?�이지 CSS ??*/
 
-/* System Menu Setting 페이지 스타일 */
+/* System Menu Setting ?�이지 ?��???*/
 .page-menu-setting .menu-management-container {
   gap: 30px;
   height: 100%;
@@ -6914,8 +6914,8 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   background-color: #f8f4ff;
 }
 
-  /* Workspace Menu Setting 페이지 스타일 */
-  /* 워크스페이스 선택 섹션 */
+  /* Workspace Menu Setting ?�이지 ?��???*/
+  /* ?�크?�페?�스 ?�택 ?�션 */
   .page-workspace-menu-setting .workspace-selection-section {
     background: white;
     border: 1px solid #e1e8ed;
@@ -6994,7 +6994,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   color: #7f8c8d;
 }
 
-/* 체크박스 메뉴 트리 스타일 */
+/* 체크박스 메뉴 ?�리 ?��???*/
 .page-workspace-menu-setting .menu-tree-checkbox {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -7099,7 +7099,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   resize: none;
 }
 
-/* 권한그룹 관리 테이블 스타일 */
+/* 권한그룹 관�??�이�??��???*/
 .page-workspace-menu-setting .permission-table {
   width: 100%;
   border-collapse: collapse;
@@ -7134,7 +7134,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .page-workspace-menu-setting .permission-table td.submenu-indent:before {
-  content: "└";
+  content: "??;
   position: absolute;
   left: 20px;
   color: #999;
@@ -7159,7 +7159,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   font-size: 12px;
 }
 
-/* 권한그룹 테이블 분리 스타일 */
+/* 권한그룹 ?�이�?분리 ?��???*/
 .page-workspace-menu-setting .permission-tables {
   display: flex;
   gap: 25px;
@@ -7182,7 +7182,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   color: #2c3e50;
 }
 
-/* 메뉴 관리 버튼 스타일 */
+/* 메뉴 관�?버튼 ?��???*/
 .page-workspace-menu-setting .form-actions {
   position: absolute;
   bottom: 20px;
@@ -7211,7 +7211,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   background: #eaf4fd;
 }
 
-/* 권한그룹 관리 별도 섹션 스타일 */
+/* 권한그룹 관�?별도 ?�션 ?��???*/
 .page-workspace-menu-setting .permission-group-section {
   margin-top: 25px;
   background: white;
@@ -7344,7 +7344,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 
 
-/* Workspace Permission 페이지 스타일 */
+/* Workspace Permission ?�이지 ?��???*/
 .page-workspace-permission .permission-management-container {
   padding: 20px;
 }
@@ -7443,7 +7443,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .page-workspace-permission .permission-list li:before {
-  content: "•";
+  content: "??;
   color: #3498db;
   position: absolute;
   left: 0;
@@ -7596,7 +7596,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   line-height: 1.4;
 }
 
-/* 캘린더 관리 페이지 스타일 */
+/* 캘린??관�??�이지 ?��???*/
 .calendar-settings-section {
   margin-bottom: 40px;
   padding: 24px;
@@ -7663,7 +7663,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   color: #374151;
 }
 
-/* 캘린더 관리 페이지 커스텀 셀렉트 박스 */
+/* 캘린??관�??�이지 커스?� ?�?�트 박스 */
 .calendar-settings-section .combo-select {
   position: relative;
   display: inline-block;
@@ -7698,7 +7698,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   height: 16px;
 }
 
-/* 공지사항 관리 페이지 스타일 */
+/* 공�??�항 관�??�이지 ?��???*/
 .notice-page .search-section {
 
   margin-bottom: 20px;
@@ -7810,7 +7810,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   color: #0066FF;
 }
 
-/* 공지사항 테이블 스타일 */
+/* 공�??�항 ?�이�??��???*/
 .notice-page .table-container {
   background: white;
 
@@ -7884,7 +7884,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   flex-shrink: 0;
 }
 
-/* 공지사항 테이블 액션 버튼 스타일 */
+/* 공�??�항 ?�이�??�션 버튼 ?��???*/
 .notice-page .action-buttons {
   display: flex;
   gap: 4px;
@@ -7914,7 +7914,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   height: 14px;
 }
 
-/* 테이블과 하단 액션 영역 간격 조정 */
+/* ?�이블과 ?�단 ?�션 ?�역 간격 조정 */
 .notice-page .table-actions {
   margin-top: 20px;
   display: flex;
@@ -7951,7 +7951,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   font-weight: 500;
 }
 
-/* 우선순위 배지 스타일 */
+/* ?�선?�위 배�? ?��???*/
 .notice-page .priority-badge {
   padding: 4px 8px;
   border-radius: 12px;
@@ -7974,7 +7974,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   color: #16A34A;
 }
 
-/* 상태 배지 스타일 */
+/* ?�태 배�? ?��???*/
 .notice-page .status-badge {
   padding: 4px 8px;
   border-radius: 12px;
@@ -8002,7 +8002,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   color: #DC2626;
 }
 
-/* 공지사항 제목 링크 스타일 */
+/* 공�??�항 ?�목 링크 ?��???*/
 .notice-page .notice-title-link {
   color: #292A2B;
   text-decoration: none;
@@ -8015,7 +8015,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   text-decoration: underline;
 }
 
-/* 팝업 배지 스타일 */
+/* ?�업 배�? ?��???*/
 .notice-page .popup-badge {
   padding: 4px 8px;
   border-radius: 12px;
@@ -8034,7 +8034,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 
-/* 공지사항 페이지 하단 영역 스타일 */
+/* 공�??�항 ?�이지 ?�단 ?�역 ?��???*/
 .notice-page .table-actions {
   margin-top: 16px;
   display: flex;
@@ -8054,7 +8054,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 
-/* 공지사항 페이지 반응형 */
+/* 공�??�항 ?�이지 반응??*/
 @media (max-width: 1200px) {
   .notice-page .tb-left {
     flex-wrap: wrap;
@@ -8104,7 +8104,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   }
 }
 
-/* 공지사항 상세 페이지 스타일 */
+/* 공�??�항 ?�세 ?�이지 ?��???*/
 .notice-detail-page .combo-select {
   position: relative;
   display: inline-block;
@@ -8368,7 +8368,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   gap: 12px;
 }
 
-/* 공지사항 상세 페이지 버튼 스타일 */
+/* 공�??�항 ?�세 ?�이지 버튼 ?��???*/
 .notice-detail-page .btn {
   padding: 10px 20px;
   border-radius: 8px;
@@ -8413,7 +8413,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   border-color: #0066FF;
 }
 
-/* 팝업 설정 스타일 */
+/* ?�업 ?�정 ?��???*/
 .notice-detail-page .popup-settings {
   background: #f8f9fa;
   border: 1px solid #e9ecef;
@@ -8475,7 +8475,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   font-weight: 500;
 }
 
-/* 사이드바 메뉴 구분선 스타일 */
+/* ?�이?�바 메뉴 구분???��???*/
 .menu-separator {
   height: 1px;
   background: transparent;
@@ -8485,14 +8485,14 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   border-top: 1px dashed #d1d5db;
 }
 
-/* 통계 페이지 tb-right 스타일 */
+/* ?�계 ?�이지 tb-right ?��???*/
 .stats-usage-page .period-row-flex .tb-right {
   margin-left: auto;
   display: flex;
   align-items: center;
 }
 
-/* 기능 권한 관리 페이지 스타일 */
+/* 기능 권한 관�??�이지 ?��???*/
 .page-workspace-permission .permission-table-container {
   background: white;
   border: 1px solid #E5E5E5;
@@ -8551,7 +8551,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   line-height: 1.5;
 }
 
-/* 토글 스위치 스타일 */
+/* ?��? ?�위�??��???*/
 .page-workspace-permission .toggle-switch {
   position: relative;
   display: inline-block;
@@ -8597,7 +8597,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   transform: translateX(20px);
 }
 
-/* 설정 입력 필드 */
+/* ?�정 ?�력 ?�드 */
 .page-workspace-permission .setting-input {
   width: 100%;
   padding: 8px 12px;
@@ -8654,7 +8654,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);
 }
 
-/* 커스텀 입력 필드 스타일 */
+/* 커스?� ?�력 ?�드 ?��???*/
 .page-workspace-permission .custom-input {
   width: 120px;
   padding: 8px 12px;
@@ -8679,7 +8679,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 
-/* 체크박스 그룹 스타일 */
+/* 체크박스 그룹 ?��???*/
 .page-workspace-permission .checkbox-group-horizontal {
   display: flex;
   flex-wrap: nowrap;
@@ -8692,7 +8692,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   text-align: left;
 }
 
-/* 체크박스 아이템 스타일 */
+/* 체크박스 ?�이???��???*/
 .page-workspace-permission .checkbox-item {
   display: flex;
   align-items: center;
@@ -8711,9 +8711,9 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   cursor: pointer;
 }
 
-/* 체크박스 커스텀 스타일이 필요한 경우 여기에 추가 */
+/* 체크박스 커스?� ?��??�이 ?�요??경우 ?�기??추�? */
 
-/* 폼 액션 버튼 */
+/* ???�션 버튼 */
 .page-workspace-permission .form-actions {
   margin-top: 24px;
   display: flex;
@@ -8756,15 +8756,15 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   border-color: #0052CC;
 }
 
-/* Template Detail 페이지 스타일 */
+/* Template Detail ?�이지 ?��???*/
 .template-detail-version-table table th,
 .template-detail-version-table table td {
   padding: 12px !important;
 }
 
-/* React 페이지 공통 스타일 - 인라인 스타일 대체 */
+/* React ?�이지 공통 ?��???- ?�라???��????��?*/
 
-/* MenuSetting 페이지 스타일 */
+/* MenuSetting ?�이지 ?��???*/
 .menu-setting-tab-container {
   border-bottom: 1px solid #e5e7eb;
   margin-bottom: 0;
@@ -8891,7 +8891,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   letter-spacing: 0.3px;
 }
 
-/* WorkspacePermission 페이지 스타일 */
+/* WorkspacePermission ?�이지 ?��???*/
 .workspace-permission-table {
   width: 100%;
   border-collapse: collapse;
@@ -8995,7 +8995,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   border-top: 1px solid #E5E7EB;
 }
 
-/* LogoManagement 페이지 스타일 */
+/* LogoManagement ?�이지 ?��???*/
 .logo-management-card {
   padding: 24px;
   margin-bottom: 24px;
@@ -9062,7 +9062,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   text-align: center;
 }
 
-/* ContentRetention 페이지 스타일 */
+/* ContentRetention ?�이지 ?��???*/
 .content-retention-table {
   width: 100%;
   border-collapse: collapse;
@@ -9149,7 +9149,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   color: #6B7280;
 }
 
-/* StatsUsage 페이지 스타일 */
+/* StatsUsage ?�이지 ?��???*/
 .stats-usage-tab-container {
   margin-bottom: 24px;
   border-bottom: 1px solid #E5E7EB;
@@ -9304,7 +9304,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   color: #6B7280;
 }
 
-/* 공통 버튼 스타일 */
+/* 공통 버튼 ?��???*/
 .btn-primary-react {
   background: #3B82F6;
   color: white;
@@ -9361,8 +9361,8 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   border-color: #059669;
 }
 
-/* Workspace HTML 페이지 내부 스타일 */
-/* 사용자 현황 컬럼 스타일 */
+/* Workspace HTML ?�이지 ?��? ?��???*/
+/* ?�용???�황 컬럼 ?��???*/
 .page-workspace .user-status {
   line-height: 1.4;
   font-size: 13px;
@@ -9410,7 +9410,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   margin: 0 8px;
 }
 
-/* 라이센스 정보 스타일 */
+/* ?�이?�스 ?�보 ?��???*/
 .page-workspace .license-info {
   margin-bottom: 12px;
 }
@@ -9422,7 +9422,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   font-weight: 500;
 }
 
-/* 모바일 대응 */
+/* 모바???�??*/
 @media (max-width: 768px) {
   .page-workspace .user-status {
     font-size: 11px;
@@ -9443,12 +9443,12 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   }
 }
 
-/* Stats User HTML 페이지 스타일 */
+/* Stats User HTML ?�이지 ?��???*/
 .btn[style*="color: #10B981"]:hover {
   background-color: #f0fdf4 !important;
 }
 
-/* System Stats User HTML 페이지 스타일 */
+/* System Stats User HTML ?�이지 ?��???*/
 .page-system-stats-user .table-container table td {
   padding: 12px 8px;
 }
@@ -9466,15 +9466,15 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   max-width: 0;
 }
 
-/* .workspace-name은 이미 공통 스타일에 정의되어 있음 (4105줄) */
+/* .workspace-name?� ?��? 공통 ?��??�에 ?�의?�어 ?�음 (4105�? */
 
-/* System Stats Usage HTML 페이지 스타일 */
-/* .search-section은 이미 공통 스타일에 정의되어 있음 (1593줄) */
+/* System Stats Usage HTML ?�이지 ?��???*/
+/* .search-section?� ?��? 공통 ?��??�에 ?�의?�어 ?�음 (1593�? */
 
-/* Prompt HTML 페이지 스타일 */
-/* 버튼 호버 효과는 이미 공통 스타일에 정의되어 있음 (9447줄) */
+/* Prompt HTML ?�이지 ?��???*/
+/* 버튼 ?�버 ?�과???��? 공통 ?��??�에 ?�의?�어 ?�음 (9447�? */
 
-/* Menu Setting HTML 페이지 전체 스타일 */
+/* Menu Setting HTML ?�이지 ?�체 ?��???*/
 .page-menu-setting .menu-tab-container {
   border-bottom: 1px solid #e5e7eb;
   margin-bottom: 0;
@@ -9522,7 +9522,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   display: block;
 }
 
-/* 버튼 스타일 통일 */
+/* 버튼 ?��????�일 */
 .page-menu-setting .delete-btn,
 .page-menu-setting .edit-btn,
 .page-menu-setting .new-button {
@@ -9566,7 +9566,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   background-color: #F0F7FF !important;
 }
 
-/* 메뉴 테이블 스타일 */
+/* 메뉴 ?�이�??��???*/
 .page-menu-setting .menu-table .menu-action-buttons {
   justify-content: center;
 }
@@ -9595,7 +9595,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .page-menu-setting .menu-table th:first-child {
-  width: 60px;
+  width: 100px;
   text-align: center;
 }
 
@@ -9623,7 +9623,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   text-align: center;
 }
 
-/* 섹션 헤더 스타일 */
+/* ?�션 ?�더 ?��???*/
 .page-menu-setting .section-header {
   background-color: #EBF8FF !important;
 }
@@ -9664,7 +9664,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   background-image: url('../asset/chart.svg');
 }
 
-/* 토글 스위치 스타일 */
+/* ?��? ?�위�??��???*/
 .page-menu-setting .switch {
   position: relative;
   display: inline-block;
@@ -9718,7 +9718,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   transform: translateX(20px);
 }
 
-/* 메뉴 관리 제목 헤더 스타일 */
+/* 메뉴 관�??�목 ?�더 ?��???*/
 .page-menu-setting .menu-title-header {
   display: flex;
   justify-content: space-between;
@@ -9737,7 +9737,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   gap: 8px;
 }
 
-/* 워크스페이스 셀렉트 스타일 */
+/* ?�크?�페?�스 ?�?�트 ?��???*/
 .page-menu-setting .workspace-selector {
   position: relative;
 }
@@ -9767,7 +9767,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   pointer-events: none;
 }
 
-/* 초기화, 저장, 적용 버튼 스타일 */
+/* 초기?? ?�?? ?�용 버튼 ?��???*/
 .page-menu-setting .btn-reset {
   padding: 8px 16px !important;
   font-size: 14px !important;
@@ -9815,7 +9815,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   border-color: #2563EB !important;
 }
 
-/* 워크스페이스 탭의 적용 버튼 스타일 */
+/* ?�크?�페?�스 ??�� ?�용 버튼 ?��???*/
 .page-menu-setting .btn-apply {
   background: transparent !important;
   color: #8B5CF6 !important;
@@ -9828,7 +9828,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   color: #7C3AED !important;
 }
 
-/* 모달 - 라디오 버튼 그룹 스타일 */
+/* 모달 - ?�디??버튼 그룹 ?��???*/
 .page-menu-setting .status-radio-group {
   display: flex;
   gap: 12px;

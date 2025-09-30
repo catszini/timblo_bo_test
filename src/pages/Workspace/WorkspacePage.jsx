@@ -20,7 +20,7 @@ const WorkspacePage = () => {
       creator: '홍길동',
       memberCount: 1000,
       userStatus: { total: 1, admin: 1, member: 0 },
-      createdDate: '2025-09-01'
+      createdDate: '2025-09-01 14:30:15'
     },
     {
       id: 2,
@@ -29,7 +29,7 @@ const WorkspacePage = () => {
       creator: '홍길동',
       memberCount: 1000,
       userStatus: { total: 8, admin: 1, member: 5 },
-      createdDate: '2025-08-15'
+      createdDate: '2025-08-15 09:22:43'
     },
     {
       id: 3,
@@ -38,7 +38,7 @@ const WorkspacePage = () => {
       creator: '홍길동',
       memberCount: 1000,
       userStatus: { total: 3, admin: 0, member: 2 },
-      createdDate: '2025-07-20'
+      createdDate: '2025-07-20 16:45:28'
     },
     {
       id: 4,
@@ -47,7 +47,7 @@ const WorkspacePage = () => {
       creator: 'jwpark12',
       memberCount: 1000,
       userStatus: { total: 15, admin: 1, member: 10 },
-      createdDate: '2025-06-10'
+      createdDate: '2025-06-10 08:42:17'
     },
     {
       id: 5,
@@ -56,7 +56,7 @@ const WorkspacePage = () => {
       creator: '홍길동',
       memberCount: 1000,
       userStatus: { total: 5, admin: 1, member: 3 },
-      createdDate: '2025-05-25'
+      createdDate: '2025-05-25 12:55:41'
     },
     {
       id: 6,
@@ -65,7 +65,7 @@ const WorkspacePage = () => {
       creator: '홍길동',
       memberCount: 1000,
       userStatus: { total: 7, admin: 1, member: 4 },
-      createdDate: '2025-04-18'
+      createdDate: '2025-04-18 11:33:29'
     }
   ]
 
@@ -271,11 +271,11 @@ const WorkspacePage = () => {
                     />
                   </th>
                   <th>워크스페이스명</th>
-                  <th>도메인</th>
+                  <th>조직</th>
                   <th>생성자</th>
                   <th>구성원</th>
                   <th>사용자 현황</th>
-                  <th>생성일</th>
+                  <th>생성시간</th>
                 </tr>
               </thead>
               <tbody>

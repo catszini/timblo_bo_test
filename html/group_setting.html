@@ -56,7 +56,7 @@
           <h3>워크스페이스 설정</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html">FO기능정책관리</a></li>
+          <li><a href="workspace_permission.html">FO기능 정책 관리</a></li>
           <li><a href="content_retention.html">컨텐츠 보존 관리</a></li>
           <li><a href="workspace_group_setting.html">메뉴 권한 관리</a></li>
           <li><a href="user.html">사용자 관리</a></li>
@@ -148,8 +148,8 @@
                       <th>권한 생성자</th>
                       <th>권한명</th>
                       <th>설명</th>
-                      <th>생성일</th>
-                      <th>최종수정일</th>
+                      <th>생성시간</th>
+                      <th>최종수정시간</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -164,8 +164,8 @@
                       <td>김민수</td>
                       <td>전체관리자</td>
                       <td>최고관리자 - 모든 시스템 권한</td>
-                      <td>2024-01-15</td>
-                      <td>2024-03-20</td>
+                      <td>2024-01-15 10:30:25</td>
+                      <td>2024-03-20 14:45:18</td>
                     </tr>
                     <tr>
                       <td><input type="checkbox"></td>
@@ -178,8 +178,8 @@
                       <td>이영희</td>
                       <td>워크스페이스관리자</td>
                       <td>워크스페이스 전체 관리</td>
-                      <td>2024-02-08</td>
-                      <td>2024-03-15</td>
+                      <td>2024-02-08 09:15:42</td>
+                      <td>2024-03-15 16:22:37</td>
                     </tr>
                     <tr>
                       <td><input type="checkbox"></td>
@@ -192,8 +192,8 @@
                       <td>박철수</td>
                       <td>시스템 메뉴관리자</td>
                       <td>메뉴 생성/권한 관리</td>
-                      <td>2024-01-25</td>
-                      <td>2024-03-18</td>
+                      <td>2024-01-25 13:28:51</td>
+                      <td>2024-03-18 11:33:29</td>
                     </tr>
                     <tr>
                       <td><input type="checkbox"></td>
@@ -206,8 +206,8 @@
                       <td>정수진</td>
                       <td>통계관리자</td>
                       <td>사용량/통계 분석 관리</td>
-                      <td>2024-03-05</td>
-                      <td>2024-03-25</td>
+                      <td>2024-03-05 15:41:07</td>
+                      <td>2024-03-25 08:56:44</td>
                     </tr>
 
                   </tbody>
@@ -274,8 +274,8 @@
                   <label for="워크스페이스설정">워크스페이스 설정</label>
                   <div class="tree-children">
                     <div class="tree-item">
-                      <input type="checkbox" id="FO기능정책관리" checked>
-                      <label for="FO기능정책관리">FO기능정책관리</label>
+                      <input type="checkbox" id="FO기능 정책 관리" checked>
+                      <label for="FO기능 정책 관리">FO기능 정책 관리</label>
                     </div>
                     <div class="tree-item">
                       <input type="checkbox" id="컨텐츠보존관리" checked>
@@ -432,7 +432,7 @@
           case '워크스페이스관리자':
             // 워크스페이스 설정 관련 모든 권한
             document.getElementById('워크스페이스설정').checked = true;
-            ['FO기능정책관리', '컨텐츠보존관리', '워크스페이스메뉴권한관리', '워크스페이스사용자관리', '로고관리'].forEach(id => {
+            ['FO기능 정책 관리', '컨텐츠보존관리', '워크스페이스메뉴권한관리', '워크스페이스사용자관리', '로고관리'].forEach(id => {
               const checkbox = document.getElementById(id);
               if (checkbox) checkbox.checked = true;
             });
