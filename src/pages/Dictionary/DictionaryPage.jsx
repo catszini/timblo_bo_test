@@ -15,8 +15,8 @@ const dictionaryData = [
     id: 1,
     beforeWord: 'AI',
     afterWord: '인공지능',
-    createdAt: '25-08-10 09:15:21',
-    modifiedAt: '25-08-10 09:20:05',
+    createdAt: '2025-08-10 09:15:21',
+    modifiedAt: '2025-08-10 09:20:05',
     user: '김하늘',
     isActive: true
   },
@@ -24,8 +24,8 @@ const dictionaryData = [
     id: 2,
     beforeWord: 'MTG',
     afterWord: '미팅',
-    createdAt: '25-08-10 08:42:10',
-    modifiedAt: '25-08-10 08:42:10',
+    createdAt: '2025-08-10 08:42:10',
+    modifiedAt: '2025-08-10 08:42:10',
     user: '박서준',
     isActive: true
   },
@@ -33,8 +33,8 @@ const dictionaryData = [
     id: 3,
     beforeWord: 'KR',
     afterWord: '대한민국',
-    createdAt: '25-08-09 18:11:33',
-    modifiedAt: '25-08-09 19:05:40',
+    createdAt: '2025-08-09 18:11:33',
+    modifiedAt: '2025-08-09 19:05:40',
     user: '이수지',
     isActive: false
   },
@@ -42,8 +42,8 @@ const dictionaryData = [
     id: 4,
     beforeWord: 'Mgr',
     afterWord: '매니저',
-    createdAt: '25-08-09 14:03:27',
-    modifiedAt: '25-08-09 14:10:12',
+    createdAt: '2025-08-09 14:03:27',
+    modifiedAt: '2025-08-09 14:10:12',
     user: '정윤호',
     isActive: true
   },
@@ -51,8 +51,8 @@ const dictionaryData = [
     id: 5,
     beforeWord: 'ETA',
     afterWord: '도착예정시간',
-    createdAt: '25-08-09 10:55:06',
-    modifiedAt: '25-08-09 10:55:06',
+    createdAt: '2025-08-09 10:55:06',
+    modifiedAt: '2025-08-09 10:55:06',
     user: '최민수',
     isActive: true
   }

@@ -42,7 +42,7 @@ const MeetTemplateDetailPage = () => {
       registeredDate: '2025-07-18 14:30:25',
       registeredBy: '김철수',
       modifiedBy: '박지민',
-      modifiedDate: '2025-08-08 16:45:12'
+      modifiedDate: '202025-08-08 16:45:12'
     },
     {
       id: 'DEF-001-SK',
@@ -186,7 +186,7 @@ const MeetTemplateDetailPage = () => {
                           <strong>환자명:</strong> 김○○ &nbsp;&nbsp; <strong>성별/나이:</strong> F / 52세 &nbsp;&nbsp;
                           <strong>차트번호:</strong> 2025-001234<br />
                           <strong>진료과:</strong> 내과 &nbsp;&nbsp; <strong>담당의:</strong> 홍길동 &nbsp;&nbsp;
-                          <strong>방문일시:</strong> 2025-08-08 10:30
+                          <strong>방문일시:</strong> 202025-08-08 10:30
                         </div>
                         
                         <h4>📄 기존 진료 이력</h4>
