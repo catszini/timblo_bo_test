@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>?�체 ?�스??관�?- 권한 관�?/title>
+  <link rel="stylesheet" href="../asset/style.css">
+  <link rel="stylesheet" href="../asset/modal.css">
+
+</head>
+
+<body class="page-group-setting">
+  <div class="container">
+    <!-- ?�쪽 메뉴�?-->
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">Timbel</div>
+          <div class="logo-url">
+            <select class="condition-select">
+
+              <option>SK Telecom</option>
+              <option>SK Hynix</option>
+              <option>SK E&S</option>
+              <option>SK C&C</option>
+              <option>SK Innovation</option>
+              <option>SK Networks</option>
+              <option>SK Biopharm</option>
+              <option>SK Materials</option>
+              <option>SK Shieldus</option>
+            </select>
+          </div>
+        </div>
+        <button class="logout-btn" title="로그?�웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>?�체 ?�스??관�?/h3>
+        <ul>
+          <li><a href="workspace.html">?�크?�페?�스 관�?/a></li>
+          <li><a href="menu_setting.html">?�체 메뉴 관�?/a></li>
+          <li><a href="system_user.html">?�용??관�?/a></li>
+          <li><a href="group_setting.html" class="active">메뉴 권한 관�?/a></li>
+          <li><a href="system_setting_history.html">?�정변�??�력</a></li>
+          <li><a href="system_stats_usage.html">?�체 ?�스???�용 ?�계</a></li>
+          <li><a href="system_stats_user.html">?�용?�별 ?�용 ?�계</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-header">
+          <h3>?�크?�페?�스 ?�정</h3>
+        </div>
+        <ul>
+          <li><a href="workspace_permission.html">FO기능 ?�책 관�?/a></li>
+          <li><a href="content_retention.html">컨텐�?보존 관�?/a></li>
+          <li><a href="workspace_group_setting.html">메뉴 권한 관�?/a></li>
+          <li><a href="user.html">?�용??관�?/a></li>
+          <li><a href="logo.html">로고 관�?/a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-header">
+          <h3>?��? 기능 관�?/h3>
+        </div>
+        <ul>
+          <li><a href="meet_template.html">?�플�?관�?(?�의�? 공통 ?�플�?</a></li>
+          <li><a href="prompt.html">?�롬?�트 관�?/a></li>
+          <li><a href="consent.html">?�의??관�?/a></li>
+          <li><a href="calendar.html">캘린??관�??�정</a></li>
+          <li><a href="dictionary.html">?�전 관�?/a></li>
+          <li><a href="notice.html">공�??�항 관�?/a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-header">
+          <h3>?�력/?�계 관�?/h3>
+        </div>
+        <ul>
+          <li><a href="login_history.html">?�용???�속 ?�력</a></li>
+          <li><a href="download_history.html">?�운로드 ?�력</a></li>
+          <li><a href="user_consent_history.html">?�용???�의 ?�력</a></li>
+          <li><a href="setting_change_history.html">?�정 변�??�력</a></li>
+          <li><a href="meeting.html">?�의�??�력</a></li>
+          <li><a href="stats_usage.html">?�크?�페?�스 ?�용 ?�계</a></li>
+          <li><a href="stats_user.html">?�용?�별 ?�용 ?�계</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ?�른�?콘텐�??�역 -->
+    <div class="content user-page group-setting-page">
+      <div class="content-header">
+        <h1 class="breadcrumb">
+          메뉴 권한 관�?        </h1>
+      </div>
+      <div class="content-body">
+        <div class="group-setting-container">
+          <div class="group-setting-layout tree-visible">
+            <div class="group-setting-left-panel">
+              <!-- ?�크?�페?�스 목록 ?�?�트 박스 -->
+              <div class="workspace-selector-section">
+
+                <div class="combo-select">
+                  <select id="workspaceSelect" class="workspace-selector">
+                    <option value="all">?�체 ?�크?�페?�스</option>
+                    <option value="sk-telecom">SK Telecom</option>
+                    <option value="sk-hynix">SK Hynix</option>
+                    <option value="sk-on">SK On</option>
+                    <option value="sk-cc">SK C&C</option>
+                    <option value="sk-innovation">SK Innovation</option>
+                    <option value="sk-networks">SK Networks</option>
+                    <option value="sk-materials">SK Materials</option>
+                    <option value="sk-biopharm">SK Biopharm</option>
+                    <option value="sk-es">SK E&S</option>
+                    <option value="sk-shieldus">SK Shieldus</option>
+                  </select>
+                  <img src="../asset/images/select-arrow.svg" alt="">
+                </div>
+              </div>
+
+              <!-- 권한?�보 ?�더?� 버튼??-->
+              <div class="group-info-header">
+                <div class="group-info-title-section">
+                  <h3 class="group-info-subtitle">?�성??권한</h3>
+                  <span class="group-total-count">�?4�?/span>
+                </div>
+                <div class="group-info-buttons">
+                  <button class="btn-form-delete">??��</button>
+                  <button class="btn-form-edit">?�정</button>
+                  <button class="group-setting-btn-add-group" id="createPermissionBtn">?�성</button>
+                </div>
+              </div>
+              <!-- 권한 ?�보 ?�이�?-->
+              <div class="group-setting-table-container" id="tableContainer">
+                <table class="group-setting-table">
+                  <thead>
+                    <tr>
+                      <th><input type="checkbox" class="select-all"></th>
+                      <th>?�크?�페?�스</th>
+                      <th>권한 ?�성??/th>
+                      <th>권한�?/th>
+                      <th>?�명</th>
+                      <th>?�성?�간</th>
+                      <th>최종?�정?�간</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-teal">S</div>
+                          <span>SK Telecom</span>
+                        </div>
+                      </td>
+                      <td>김민수</td>
+                      <td>?�체관리자</td>
+                      <td>최고관리자 - 모든 ?�스??권한</td>
+                      <td>2024-01-15 10:30:25</td>
+                      <td>2024-03-20 14:45:18</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-indigo">S</div>
+                          <span>SK Hynix</span>
+                        </div>
+                      </td>
+                      <td>?�영??/td>
+                      <td>?�크?�페?�스관리자</td>
+                      <td>?�크?�페?�스 ?�체 관�?/td>
+                      <td>2024-02-08 09:15:42</td>
+                      <td>2024-03-15 16:22:37</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-rose">S</div>
+                          <span>SK C&C</span>
+                        </div>
+                      </td>
+                      <td>박철??/td>
+                      <td>?�스??메뉴관리자</td>
+                      <td>메뉴 ?�성/권한 관�?/td>
+                      <td>2024-01-25 13:28:51</td>
+                      <td>2024-03-18 11:33:29</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-amber">S</div>
+                          <span>SK Innovation</span>
+                        </div>
+                      </td>
+                      <td>?�수�?/td>
+                      <td>?�계관리자</td>
+                      <td>?�용???�계 분석 관�?/td>
+                      <td>2024-03-05 15:41:07</td>
+                      <td>2024-03-25 08:56:44</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+
+            </div>
+            <div class="group-setting-tree-panel" id="treePanel">
+              <div class="tree-header">
+                <h4>권한 미리보기</h4>
+              </div>
+              <div class="no-data-area" id="noDataArea">
+                <div class="no-data-icon">
+                  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M20 16H44C46.2091 16 48 17.7909 48 20V44C48 46.2091 46.2091 48 44 48H20C17.7909 48 16 46.2091 16 44V20C16 17.7909 17.7909 16 20 16Z"
+                      fill="#E5E7EB" stroke="#D1D5DB" stroke-width="2" />
+                    <path d="M28 28H36M28 32H36M28 36H32" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                </div>
+                <p class="no-data-text">권한 ??�� 미리보기가 가?�합?�다.</p>
+              </div>
+              <div class="tree-menu" id="treeMenu" style="display: none;">
+                <!-- ?�체 ?�스??관�?-->
+                <div class="tree-item">
+                  <input type="checkbox" id="?�체?�스?��?�? checked>
+                  <label for="?�체?�스?��?�?>?�체 ?�스??관�?/label>
+                  <div class="tree-children">
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�크?�페?�스관�? checked>
+                      <label for="?�크?�페?�스관�?>?�크?�페?�스 관�?/label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�체메뉴관�? checked>
+                      <label for="?�체메뉴관�?>?�체 메뉴 관�?/label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�스?�사?�자관�? checked>
+                      <label for="?�스?�사?�자관�?>?�용??관�?/label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�스?�메?�권?��?�? checked>
+                      <label for="?�스?�메?�권?��?�?>메뉴 권한 관�?/label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�스?�설?��?경이?? checked>
+                      <label for="?�스?�설?��?경이??>?�정변�??�력</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�체?�스?�사?�통�? checked>
+                      <label for="?�체?�스?�사?�통�?>?�체 ?�스???�용 ?�계</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�스?�사?�자별통�? checked>
+                      <label for="?�스?�사?�자별통�?>?�용?�별 ?�용 ?�계</label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ?�크?�페?�스 ?�정 -->
+                <div class="tree-item">
+                  <input type="checkbox" id="?�크?�페?�스?�정" checked>
+                  <label for="?�크?�페?�스?�정">?�크?�페?�스 ?�정</label>
+                  <div class="tree-children">
+                    <div class="tree-item">
+                      <input type="checkbox" id="FO기능 ?�책 관�? checked>
+                      <label for="FO기능 ?�책 관�?>FO기능 ?�책 관�?/label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="컨텐츠보존�?�? checked>
+                      <label for="컨텐츠보존�?�?>컨텐�?보존 관�?/label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�크?�페?�스메뉴권한관�? checked>
+                      <label for="?�크?�페?�스메뉴권한관�?>메뉴 권한 관�?/label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�크?�페?�스?�용?��?�? checked>
+                      <label for="?�크?�페?�스?�용?��?�?>?�용??관�?/label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="로고관�? checked>
+                      <label for="로고관�?>로고 관�?/label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ?��? 기능 관�?-->
+                <div class="tree-item">
+                  <input type="checkbox" id="?��?기능관�? checked>
+                  <label for="?��?기능관�?>?��? 기능 관�?/label>
+                  <div class="tree-children">
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�플릿�?�? checked>
+                      <label for="?�플릿�?�?>?�플�?관�?(?�의�? 공통 ?�플�?</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�롬?�트관�? checked>
+                      <label for="?�롬?�트관�?>?�롬?�트 관�?/label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�의?��?�? checked>
+                      <label for="?�의?��?�?>?�의??관�?/label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="캘린?��?리설?? checked>
+                      <label for="캘린?��?리설??>캘린??관�??�정</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�전관�? checked>
+                      <label for="?�전관�?>?�전 관�?/label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="공�??�항관�? checked>
+                      <label for="공�??�항관�?>공�??�항 관�?/label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ?�력/?�계 관�?-->
+                <div class="tree-item">
+                  <input type="checkbox" id="?�력?�계관�? checked>
+                  <label for="?�력?�계관�?>?�력/?�계 관�?/label>
+                  <div class="tree-children">
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�용?�접?�이?? checked>
+                      <label for="?�용?�접?�이??>?�용???�속 ?�력</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�운로드?�력" checked>
+                      <label for="?�운로드?�력">?�운로드 ?�력</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�용?�동?�이?? checked>
+                      <label for="?�용?�동?�이??>?�용???�의 ?�력</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�정변경이?? checked>
+                      <label for="?�정변경이??>?�정 변�??�력</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�의록이?? checked>
+                      <label for="?�의록이??>?�의�??�력</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�크?�페?�스?�용?�계" checked>
+                      <label for="?�크?�페?�스?�용?�계">?�크?�페?�스 ?�용 ?�계</label>
+                    </div>
+                    <div class="tree-item">
+                      <input type="checkbox" id="?�용?�별?�용?�계" checked>
+                      <label for="?�용?�별?�용?�계">?�용?�별 ?�용 ?�계</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 권한 미리보기 ?�단 버튼??(?�곽??�? -->
+        <div class="preview-actions-external">
+          <button class="btn-reset">초기??/button>
+          <button class="btn-save">?�??/button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const tableRows = document.querySelectorAll('.group-setting-table tbody tr');
+      const noDataArea = document.getElementById('noDataArea');
+      const treeMenu = document.getElementById('treeMenu');
+      const workspaceSelect = document.getElementById('workspaceSelect');
+      const totalCountSpan = document.querySelector('.group-total-count');
+
+      // ?�이�????�릭 ?�벤??      tableRows.forEach(row => {
+        row.addEventListener('click', function (e) {
+          // 체크박스 ?�릭?� ?�외
+          if (e.target.type === 'checkbox') return;
+
+          // 기존 ?�택?????�제
+          tableRows.forEach(r => r.classList.remove('selected'));
+
+          // ?�재 ???�택
+          this.classList.add('selected');
+
+          // ?�데?�터 ?�역 ?�기�??�리 메뉴 ?�시
+          noDataArea.style.display = 'none';
+          treeMenu.style.display = 'block';
+
+          // ?�택??권한???�라 ?�른 메뉴 ?�시
+          const permissionType = this.querySelector('td:nth-child(5)').textContent;
+          console.log('?�택??권한:', permissionType);
+
+          // 권한�?메뉴 ?�리 ?�데?�트
+          updateMenuTreeByPermission(permissionType);
+        });
+      });
+
+      // 권한�?메뉴 ?�리 ?�데?�트 ?�수
+      function updateMenuTreeByPermission(permissionType) {
+        const systemCheckboxes = document.querySelectorAll('#treeMenu .tree-item input[type="checkbox"]');
+
+        // 모든 체크박스 초기??        systemCheckboxes.forEach(cb => cb.checked = false);
+
+        // 권한�?메뉴 ?�성??        switch (permissionType) {
+          case '최고관리자 - 모든 ?�스??권한':
+          case '?�체관리자':
+            // ?�체관리자??모든 권한
+            systemCheckboxes.forEach(cb => cb.checked = true);
+            break;
+
+          case '워크스페이스 전체 관리':
+          case '?�크?�페?�스관리자':
+            // ?�크?�페?�스 ?�정 관??모든 권한
+            document.getElementById('?�크?�페?�스?�정').checked = true;
+            ['FO기능 ?�책 관�?, '컨텐츠보존�?�?, '?�크?�페?�스메뉴권한관�?, '?�크?�페?�스?�용?��?�?, '로고관�?].forEach(id => {
+              const checkbox = document.getElementById(id);
+              if (checkbox) checkbox.checked = true;
+            });
+            // ?��? 기능 관리도 ?�함
+            document.getElementById('?��?기능관�?).checked = true;
+            ['?�플릿�?�?, '?�롬?�트관�?, '?�의?��?�?, '캘린?��?리설??, '?�전관�?, '공�??�항관�?].forEach(id => {
+              const checkbox = document.getElementById(id);
+              if (checkbox) checkbox.checked = true;
+            });
+            // ?�력/?�계 관리도 ?�함
+            document.getElementById('?�력?�계관�?).checked = true;
+            ['?�용?�접?�이??, '?�운로드?�력', '?�용?�동?�이??, '?�정변경이??, '?�의록이??, '?�크?�페?�스?�용?�계', '?�용?�별?�용?�계'].forEach(id => {
+              const checkbox = document.getElementById(id);
+              if (checkbox) checkbox.checked = true;
+            });
+            break;
+
+          case '메뉴 ?�성/권한 관�?:
+          case '?�스??메뉴관리자':
+            // ?�체 ?�스??관리의 메뉴 관??권한�?            document.getElementById('?�체?�스?��?�?).checked = true;
+            document.getElementById('?�체메뉴관�?).checked = true;
+            document.getElementById('?�스?�메?�권?��?�?).checked = true;
+            // ?�크?�페?�스??메뉴 권한 관리도 ?�함
+            document.getElementById('?�크?�페?�스?�정').checked = true;
+            document.getElementById('?�크?�페?�스메뉴권한관�?).checked = true;
+            break;
+
+          case '?�용???�계 분석 관�?:
+          case '?�계관리자':
+            // ?�체 ?�스??관리의 ?�계 관??권한
+            document.getElementById('?�체?�스?��?�?).checked = true;
+            document.getElementById('?�체?�스?�사?�통�?).checked = true;
+            document.getElementById('?�스?�사?�자별통�?).checked = true;
+            // ?�력/?�계 관리의 ?�계 관??권한
+            document.getElementById('?�력?�계관�?).checked = true;
+            document.getElementById('?�크?�페?�스?�용?�계').checked = true;
+            document.getElementById('?�용?�별?�용?�계').checked = true;
+            break;
+        }
+
+        // 부�?체크박스 ?�태 ?�데?�트
+        updateParentCheckboxState();
+      }
+
+      // ?�크?�페?�스 ?�터�?기능
+      if (workspaceSelect) {
+        workspaceSelect.addEventListener('change', function () {
+          const selectedWorkspace = this.value;
+          let visibleRowCount = 0;
+
+          tableRows.forEach(row => {
+            const workspaceCell = row.querySelector('td:nth-child(2) .workspace-name span');
+            if (!workspaceCell) return;
+
+            const workspaceName = workspaceCell.textContent.trim();
+            let shouldShow = false;
+
+            if (selectedWorkspace === 'all') {
+              shouldShow = true;
+            } else {
+              // ?�크?�페?�스 ?�름�?value 매핑
+              const workspaceMapping = {
+                'sk-telecom': 'SK Telecom',
+                'sk-hynix': 'SK Hynix',
+                'sk-on': 'SK On',
+                'sk-cc': 'SK C&C',
+                'sk-innovation': 'SK Innovation',
+                'sk-networks': 'SK Networks',
+                'sk-materials': 'SK Materials',
+                'sk-biopharm': 'SK Biopharm',
+                'sk-es': 'SK E&S',
+                'sk-shieldus': 'SK Shieldus'
+              };
+
+              shouldShow = workspaceName === workspaceMapping[selectedWorkspace];
+            }
+
+            if (shouldShow) {
+              row.style.display = '';
+              visibleRowCount++;
+            } else {
+              row.style.display = 'none';
+              // ?�겨�??�이 ?�택?�어 ?�다�??�택 ?�제
+              if (row.classList.contains('selected')) {
+                row.classList.remove('selected');
+                noDataArea.style.display = 'block';
+                treeMenu.style.display = 'none';
+              }
+            }
+          });
+
+          // �?개수 ?�데?�트
+          if (totalCountSpan) {
+            totalCountSpan.textContent = `�?${visibleRowCount}�?;
+          }
+        });
+      }
+
+      // 체크박스 ?�체 ?�택 기능
+      const selectAllCheckbox = document.querySelector('.select-all');
+      const rowCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+
+      if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', function () {
+          const isChecked = this.checked;
+          rowCheckboxes.forEach(checkbox => {
+            checkbox.checked = isChecked;
+          });
+        });
+      }
+
+      // 개별 체크박스 변�????�체 ?�택 체크박스 ?�태 ?�데?�트
+      rowCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+          const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
+
+          if (checkedCount === 0) {
+            selectAllCheckbox.checked = false;
+            selectAllCheckbox.indeterminate = false;
+          } else if (checkedCount === rowCheckboxes.length) {
+            selectAllCheckbox.checked = true;
+            selectAllCheckbox.indeterminate = false;
+          } else {
+            selectAllCheckbox.checked = false;
+            selectAllCheckbox.indeterminate = true;
+          }
+        });
+      });
+
+      // ?�션�??�체 ?�택 기능
+      const systemSectionCheckbox = document.getElementById('?�체?�스?��?�?);
+      const workspaceSectionCheckbox = document.getElementById('?�크?�페?�스?�정');
+      const featureSectionCheckbox = document.getElementById('?��?기능관�?);
+      const historySectionCheckbox = document.getElementById('?�력?�계관�?);
+
+      // ?�체 ?�스??관�??�션
+      if (systemSectionCheckbox) {
+        systemSectionCheckbox.addEventListener('change', function () {
+          const isChecked = this.checked;
+          const systemParent = this.closest('.tree-item');
+          const systemChildren = systemParent.querySelectorAll('.tree-children input[type="checkbox"]');
+          systemChildren.forEach(checkbox => {
+            checkbox.checked = isChecked;
+          });
+        });
+      }
+
+      // ?�크?�페?�스 ?�정 ?�션
+      if (workspaceSectionCheckbox) {
+        workspaceSectionCheckbox.addEventListener('change', function () {
+          const isChecked = this.checked;
+          const workspaceParent = this.closest('.tree-item');
+          const workspaceChildren = workspaceParent.querySelectorAll('.tree-children input[type="checkbox"]');
+          workspaceChildren.forEach(checkbox => {
+            checkbox.checked = isChecked;
+          });
+        });
+      }
+
+      // ?��? 기능 관�??�션
+      if (featureSectionCheckbox) {
+        featureSectionCheckbox.addEventListener('change', function () {
+          const isChecked = this.checked;
+          const featureParent = this.closest('.tree-item');
+          const featureChildren = featureParent.querySelectorAll('.tree-children input[type="checkbox"]');
+          featureChildren.forEach(checkbox => {
+            checkbox.checked = isChecked;
+          });
+        });
+      }
+
+      // ?�력/?�계 관�??�션
+      if (historySectionCheckbox) {
+        historySectionCheckbox.addEventListener('change', function () {
+          const isChecked = this.checked;
+          const historyParent = this.closest('.tree-item');
+          const historyChildren = historyParent.querySelectorAll('.tree-children input[type="checkbox"]');
+          historyChildren.forEach(checkbox => {
+            checkbox.checked = isChecked;
+          });
+        });
+      }
+
+      // ?�위 체크박스 변�???부�?체크박스 ?�태 ?�데?�트 ?�수
+      function updateParentCheckboxState() {
+        // ?�체 ?�스??관�??�션 체크박스 ?�태 ?�데?�트
+        const systemParentItem = document.getElementById('?�체?�스?��?�?)?.parentElement;
+        if (systemParentItem) {
+          const systemChildren = systemParentItem.querySelectorAll('.tree-children input[type="checkbox"]');
+          const systemCheckedCount = Array.from(systemChildren).filter(cb => cb.checked).length;
+
+          if (systemSectionCheckbox) {
+            if (systemCheckedCount === 0) {
+              systemSectionCheckbox.checked = false;
+              systemSectionCheckbox.indeterminate = false;
+            } else if (systemCheckedCount === systemChildren.length) {
+              systemSectionCheckbox.checked = true;
+              systemSectionCheckbox.indeterminate = false;
+            } else {
+              systemSectionCheckbox.checked = false;
+              systemSectionCheckbox.indeterminate = true;
+            }
+          }
+        }
+
+        // ?�크?�페?�스 ?�정 ?�션 체크박스 ?�태 ?�데?�트
+        const workspaceParentItem = document.getElementById('?�크?�페?�스?�정')?.parentElement;
+        if (workspaceParentItem) {
+          const workspaceChildren = workspaceParentItem.querySelectorAll('.tree-children input[type="checkbox"]');
+          const workspaceCheckedCount = Array.from(workspaceChildren).filter(cb => cb.checked).length;
+
+          if (workspaceSectionCheckbox) {
+            if (workspaceCheckedCount === 0) {
+              workspaceSectionCheckbox.checked = false;
+              workspaceSectionCheckbox.indeterminate = false;
+            } else if (workspaceCheckedCount === workspaceChildren.length) {
+              workspaceSectionCheckbox.checked = true;
+              workspaceSectionCheckbox.indeterminate = false;
+            } else {
+              workspaceSectionCheckbox.checked = false;
+              workspaceSectionCheckbox.indeterminate = true;
+            }
+          }
+        }
+
+        // ?��? 기능 관�??�션 체크박스 ?�태 ?�데?�트
+        const featureParentItem = document.getElementById('?��?기능관�?)?.parentElement;
+        if (featureParentItem) {
+          const featureChildren = featureParentItem.querySelectorAll('.tree-children input[type="checkbox"]');
+          const featureCheckedCount = Array.from(featureChildren).filter(cb => cb.checked).length;
+
+          if (featureSectionCheckbox) {
+            if (featureCheckedCount === 0) {
+              featureSectionCheckbox.checked = false;
+              featureSectionCheckbox.indeterminate = false;
+            } else if (featureCheckedCount === featureChildren.length) {
+              featureSectionCheckbox.checked = true;
+              featureSectionCheckbox.indeterminate = false;
+            } else {
+              featureSectionCheckbox.checked = false;
+              featureSectionCheckbox.indeterminate = true;
+            }
+          }
+        }
+
+        // ?�력/?�계 관�??�션 체크박스 ?�태 ?�데?�트
+        const historyParentItem = document.getElementById('?�력?�계관�?)?.parentElement;
+        if (historyParentItem) {
+          const historyChildren = historyParentItem.querySelectorAll('.tree-children input[type="checkbox"]');
+          const historyCheckedCount = Array.from(historyChildren).filter(cb => cb.checked).length;
+
+          if (historySectionCheckbox) {
+            if (historyCheckedCount === 0) {
+              historySectionCheckbox.checked = false;
+              historySectionCheckbox.indeterminate = false;
+            } else if (historyCheckedCount === historyChildren.length) {
+              historySectionCheckbox.checked = true;
+              historySectionCheckbox.indeterminate = false;
+            } else {
+              historySectionCheckbox.checked = false;
+              historySectionCheckbox.indeterminate = true;
+            }
+          }
+        }
+      }
+
+      // 모든 ?�위 체크박스???�벤??리스??추�?
+      const allTreeCheckboxes = document.querySelectorAll('#treeMenu .tree-children input[type="checkbox"]');
+      allTreeCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateParentCheckboxState);
+      });
+
+      // ?�단 버튼 기능
+      const resetBtn = document.querySelector('.btn-reset');
+      const saveBtn = document.querySelector('.btn-save');
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+          // 모든 체크박스 초기??          const treeCheckboxes = document.querySelectorAll('#treeMenu input[type="checkbox"]');
+          treeCheckboxes.forEach(cb => cb.checked = false);
+          alert('권한??초기?�되?�습?�다.');
+        });
+      }
+
+      if (saveBtn) {
+        saveBtn.addEventListener('click', function () {
+          // 권한 ?�??로직
+          const selectedRow = document.querySelector('.group-setting-table tbody tr.selected');
+          if (selectedRow) {
+            const userName = selectedRow.querySelector('td:nth-child(4)').textContent.trim();
+            alert(`${userName}??권한???�?�되?�습?�다.`);
+          } else {
+            alert('권한???�정???�용?��? ?�택?�주?�요.');
+          }
+        });
+      }
+
+      // 권한 ?�성 모달 기능
+      const createPermissionBtn = document.getElementById('createPermissionBtn');
+      const permissionModal = document.getElementById('permissionModal');
+      const permissionCancel = document.getElementById('permissionCancel');
+      const permissionCreate = document.getElementById('permissionCreate');
+
+      // ?�성 버튼 ?�릭 ??모달 ?�기
+      if (createPermissionBtn) {
+        createPermissionBtn.addEventListener('click', function () {
+          permissionModal.classList.remove('modal-overlay-hidden');
+        });
+      }
+
+      // 모달 ?�기 기능??      if (permissionCancel) {
+        permissionCancel.addEventListener('click', function () {
+          permissionModal.classList.add('modal-overlay-hidden');
+        });
+      }
+
+      // 모달 ?��? ?�릭 ???�기
+      if (permissionModal) {
+        permissionModal.addEventListener('click', function (e) {
+          if (e.target === permissionModal) {
+            permissionModal.classList.add('modal-overlay-hidden');
+          }
+        });
+      }
+
+      // ?�성 버튼 ?�릭
+      if (permissionCreate) {
+        permissionCreate.addEventListener('click', function () {
+          const permissionName = document.getElementById('permissionName').value.trim();
+          const permissionType = document.getElementById('permissionType').value.trim();
+
+          if (!permissionName) {
+            alert('권한명을 ?�력?�주?�요.');
+            return;
+          }
+
+          if (!permissionType) {
+            alert('구분???�력?�주?�요.');
+            return;
+          }
+
+          alert('권한???�성?�었?�니??');
+          permissionModal.classList.add('modal-overlay-hidden');
+
+          // ??초기??          document.getElementById('permissionName').value = '';
+          document.getElementById('permissionType').value = '';
+        });
+      }
+    });
+  </script>
+  <script src="../asset/menu.js"></script>
+  <script src="../asset/main.js"></script>
+
+  <!-- 권한 ?�성 모달 -->
+  <div class="modal-overlay modal-overlay-hidden" id="permissionModal">
+    <div class="modal-container permission-modal">
+      <div class="modal-header">
+        <h2>권한 ?�성</h2>
+      </div>
+      <div class="modal-content">
+        <div class="form-group">
+          <label for="workspaceName">?�크?�페?�스</label>
+          <div class="combo-select">
+            <select id="workspaceName" class="form-select">
+              <option>SK Telecom</option>
+              <option>SK Hynix</option>
+              <option>KT</option>
+              <option>LG U+</option>
+              <option>Timbel_Mk</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="permissionName">권한�?/label>
+          <input type="text" id="permissionName" class="form-input" placeholder="권한명을 ?�력?�세??>
+        </div>
+
+        <div class="form-group">
+          <label for="permissionType">권한 ?�명</label>
+          <input type="text" id="permissionType" class="form-input" placeholder="권한 ?�명???�력?�세??>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" id="permissionCancel">취소</button>
+        <button class="btn-submit" id="permissionCreate">?�성</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+
+</html>
