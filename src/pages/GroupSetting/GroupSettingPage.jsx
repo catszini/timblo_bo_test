@@ -82,7 +82,7 @@ const GroupSettingPage = () => {
         { id: 'workspace-management', name: '워크스페이스 관리', checked: true },
         { id: 'menu-management', name: '전체 메뉴 관리', checked: true },
         { id: 'user-management', name: '사용자 관리', checked: true },
-        { id: 'permission-management', name: '메뉴 권한 관리', checked: true },
+        { id: 'permission-management', name: '역할 관리', checked: true },
         { id: 'system-settings', name: '설정변경 이력', checked: true },
         { id: 'system-stats', name: '전체 시스템 사용 통계', checked: true },
         { id: 'user-stats', name: '사용자별 사용 통계', checked: true }
@@ -93,7 +93,7 @@ const GroupSettingPage = () => {
       menus: [
         { id: 'fo-policy', name: '기능 권한 관리', checked: true },
         { id: 'content-retention', name: '컨텐츠 보존 관리', checked: true },
-        { id: 'workspace-permission', name: '메뉴 권한 관리', checked: true },
+        { id: 'workspace-permission', name: '역할 관리', checked: true },
         { id: 'workspace-user', name: '사용자 관리', checked: true },
         { id: 'logo-management', name: '로고 관리', checked: true },
         { id: 'template-management', name: '템플릿 관리', checked: false },
@@ -106,7 +106,7 @@ const GroupSettingPage = () => {
         { id: 'workspace-management', name: '워크스페이스 관리', checked: false },
         { id: 'menu-management', name: '전체 메뉴 관리', checked: true },
         { id: 'user-management', name: '사용자 관리', checked: false },
-        { id: 'permission-management', name: '메뉴 권한 관리', checked: true },
+        { id: 'permission-management', name: '역할 관리', checked: true },
         { id: 'system-settings', name: '설정변경 이력', checked: false },
         { id: 'system-stats', name: '전체 시스템 사용 통계', checked: false },
         { id: 'user-stats', name: '사용자별 사용 통계', checked: false }
@@ -117,7 +117,7 @@ const GroupSettingPage = () => {
       menus: [
         { id: 'fo-policy', name: '기능 권한 관리', checked: false },
         { id: 'content-retention', name: '컨텐츠 보존 관리', checked: false },
-        { id: 'workspace-permission', name: '메뉴 권한 관리', checked: false },
+        { id: 'workspace-permission', name: '역할 관리', checked: false },
         { id: 'workspace-user', name: '사용자 관리', checked: true },
         { id: 'logo-management', name: '로고 관리', checked: false },
         { id: 'login-history', name: '사용자 접속 이력', checked: true },
@@ -259,7 +259,7 @@ const GroupSettingPage = () => {
     <Layout>
       <div className="content">
         <div className="content-header">
-          <h1 className="breadcrumb">메뉴 권한 관리</h1>
+          <h1 className="breadcrumb">역할 관리</h1>
         </div>
         <div className="content-body">
           <div className="group-setting-container">

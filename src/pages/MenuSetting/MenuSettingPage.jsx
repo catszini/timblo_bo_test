@@ -13,7 +13,7 @@ const MenuSettingPage = () => {
     { id: 1, name: '워크스페이스 관리', url: '/workspace', order: 1, isActive: true },
     { id: 2, name: '전체 메뉴 관리', url: '/menu-setting', order: 2, isActive: true },
     { id: 3, name: '사용자 관리', url: '/user-management', order: 3, isActive: true },
-    { id: 4, name: '메뉴 권한 관리', url: '/group-setting', order: 4, isActive: true },
+    { id: 4, name: '역할 관리', url: '/group-setting', order: 4, isActive: true },
     { id: 5, name: '설정변경 이력', url: '/setting-history', order: 5, isActive: true },
     { id: 6, name: '전체 시스템 사용 통계', url: '/system-stats', order: 6, isActive: true }
   ]
@@ -23,7 +23,7 @@ const MenuSettingPage = () => {
     // 워크스페이스 설정
     { id: 'ws-1', name: '기능 권한 관리', url: '/workspace-permission', category: '워크스페이스 설정', isActive: true },
     { id: 'ws-2', name: '컨텐츠 보존 관리', url: '/content-retention', category: '워크스페이스 설정', isActive: true },
-    { id: 'ws-3', name: '메뉴 권한 관리', url: '/workspace-group-setting', category: '워크스페이스 설정', isActive: true },
+    { id: 'ws-3', name: '역할 관리', url: '/workspace-group-setting', category: '워크스페이스 설정', isActive: true },
     { id: 'ws-4', name: '사용자 관리', url: '/user', category: '워크스페이스 설정', isActive: true },
     { id: 'ws-5', name: '로고 관리', url: '/logo', category: '워크스페이스 설정', isActive: true },
     

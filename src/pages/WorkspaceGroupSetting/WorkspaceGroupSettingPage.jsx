@@ -73,7 +73,7 @@ const WorkspaceGroupSettingPage = () => {
       title: '워크스페이스',
       menus: [
         { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
-        { id: '메뉴 권한 관리', name: '메뉴 권한 관리', checked: false },
+        { id: '역할 관리', name: '역할 관리', checked: false },
         { id: '사용자 관리', name: '사용자 관리', checked: false },
         { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
         { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: true },
@@ -95,7 +95,7 @@ const WorkspaceGroupSettingPage = () => {
       title: '워크스페이스',
       menus: [
         { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
-        { id: '메뉴 권한 관리', name: '메뉴 권한 관리', checked: false },
+        { id: '역할 관리', name: '역할 관리', checked: false },
         { id: '사용자 관리', name: '사용자 관리', checked: false },
         { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: true },
         { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: false },
@@ -117,7 +117,7 @@ const WorkspaceGroupSettingPage = () => {
       title: '워크스페이스',
       menus: [
         { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
-        { id: '메뉴 권한 관리', name: '메뉴 권한 관리', checked: false },
+        { id: '역할 관리', name: '역할 관리', checked: false },
         { id: '사용자 관리', name: '사용자 관리', checked: true },
         { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
         { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: false },
@@ -139,7 +139,7 @@ const WorkspaceGroupSettingPage = () => {
       title: '워크스페이스',
       menus: [
         { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
-        { id: '메뉴 권한 관리', name: '메뉴 권한 관리', checked: false },
+        { id: '역할 관리', name: '역할 관리', checked: false },
         { id: '사용자 관리', name: '사용자 관리', checked: false },
         { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
         { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: false },
@@ -161,7 +161,7 @@ const WorkspaceGroupSettingPage = () => {
       title: '워크스페이스',
       menus: [
         { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
-        { id: '메뉴 권한 관리', name: '메뉴 권한 관리', checked: false },
+        { id: '역할 관리', name: '역할 관리', checked: false },
         { id: '사용자 관리', name: '사용자 관리', checked: false },
         { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
         { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: false },
@@ -298,7 +298,7 @@ const WorkspaceGroupSettingPage = () => {
     <Layout>
       <div className="content">
         <div className="content-header">
-          <h1 className="breadcrumb">메뉴 권한 관리</h1>
+          <h1 className="breadcrumb">역할 관리</h1>
         </div>
         <div className="content-body">
           <div className="group-setting-container">
