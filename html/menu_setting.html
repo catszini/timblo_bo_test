@@ -740,6 +740,40 @@
         });
       });
     });
+
+    // URL 파라미터로 탭 제어 기능 추가
+    document.addEventListener('DOMContentLoaded', function () {
+      // URL에서 tab 파라미터 읽기
+      const urlParams = new URLSearchParams(window.location.search);
+      const tabParam = urlParams.get('tab');
+
+      if (tabParam) {
+        // 기존 active 클래스 제거
+        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+        // 파라미터에 해당하는 탭 활성화
+        const targetButton = document.querySelector(`[data-tab="${tabParam}"]`);
+        const targetContent = document.getElementById(tabParam);
+
+        if (targetButton && targetContent) {
+          targetButton.classList.add('active');
+          targetContent.classList.add('active');
+        }
+      }
+
+      // 탭 버튼 클릭 시 URL 업데이트
+      document.querySelectorAll('.tab-button').forEach(button => {
+        button.addEventListener('click', function () {
+          const tabId = this.getAttribute('data-tab');
+
+          // URL 파라미터 업데이트 (페이지 새로고침 없이)
+          const newUrl = new URL(window.location);
+          newUrl.searchParams.set('tab', tabId);
+          window.history.pushState({}, '', newUrl);
+        });
+      });
+    });
   </script>
 </body>
 

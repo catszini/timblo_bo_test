@@ -605,6 +605,59 @@
         });
       }
     });
+
+    // URL 파라미터로 탭 제어 기능 추가
+    document.addEventListener('DOMContentLoaded', function () {
+      // URL에서 period 파라미터 읽기
+      const urlParams = new URLSearchParams(window.location.search);
+      const periodParam = urlParams.get('period');
+
+      if (periodParam === 'yearly') {
+        // 연간 탭 활성화
+        const monthlyTab = document.querySelector('.tab.active');
+        const yearlyTab = document.querySelector('.tab.period-toggle-inactive');
+        const monthSelects = document.querySelectorAll('#su2-m1, #su2-m2');
+
+        if (monthlyTab && yearlyTab) {
+          // 탭 상태 변경
+          monthlyTab.classList.remove('active', 'period-toggle-active');
+          monthlyTab.classList.add('period-toggle-inactive');
+          yearlyTab.classList.add('active', 'period-toggle-active');
+          yearlyTab.classList.remove('period-toggle-inactive');
+
+          // 월 선택 숨기기
+          monthSelects.forEach(select => {
+            if (select) select.style.display = 'none';
+          });
+
+          // 결과 텍스트 업데이트
+          const resultText = document.getElementById('su2-result-text');
+          if (resultText) {
+            resultText.textContent = '2024년 연간 사용량 통계';
+          }
+        }
+      }
+
+      // 탭 버튼 클릭 시 URL 업데이트
+      const monthlyTabBtn = document.querySelector('.tab.active, .tab.period-toggle-active');
+      const yearlyTabBtn = document.querySelector('.tab.period-toggle-inactive');
+
+      if (monthlyTabBtn) {
+        monthlyTabBtn.addEventListener('click', function () {
+          const newUrl = new URL(window.location);
+          newUrl.searchParams.set('period', 'monthly');
+          window.history.pushState({}, '', newUrl);
+        });
+      }
+
+      if (yearlyTabBtn) {
+        yearlyTabBtn.addEventListener('click', function () {
+          const newUrl = new URL(window.location);
+          newUrl.searchParams.set('period', 'yearly');
+          window.history.pushState({}, '', newUrl);
+        });
+      }
+    });
   </script>
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
