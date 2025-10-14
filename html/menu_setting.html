@@ -599,6 +599,23 @@
     </div>
   </div>
 
+  <!-- 메뉴 삭제 확인 모달 -->
+  <div class="modal-overlay modal-overlay-hidden" id="deleteMenuModal">
+    <div class="modal-container simple-confirm-modal">
+      <div class="modal-content">
+        <div class="simple-message">
+          <h3>삭제하시겠습니까?</h3>
+          <p>확인 후에는 되돌릴 수 없습니다.</p>
+        </div>
+
+        <div class="simple-buttons">
+          <button class="btn-cancel" id="deleteMenuCancel">취소</button>
+          <button class="btn-confirm" id="deleteMenuConfirm">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // 탭 전환 기능
@@ -772,6 +789,127 @@
           newUrl.searchParams.set('tab', tabId);
           window.history.pushState({}, '', newUrl);
         });
+      });
+    });
+
+    // 메뉴 삭제 기능 추가
+    document.addEventListener('DOMContentLoaded', function () {
+      const deleteModal = document.getElementById('deleteMenuModal');
+      const deleteCancel = document.getElementById('deleteMenuCancel');
+      const deleteConfirm = document.getElementById('deleteMenuConfirm');
+
+      // 시스템 메뉴와 워크스페이스 메뉴 삭제 버튼
+      const systemDeleteBtn = document.querySelector('#system-menu .delete-btn');
+      const workspaceDeleteBtn = document.querySelector('#workspace-menu .delete-btn');
+
+      let selectedMenus = [];
+      let currentTabType = '';
+
+      // 삭제 버튼 클릭 이벤트 (시스템 메뉴)
+      if (systemDeleteBtn) {
+        systemDeleteBtn.addEventListener('click', function () {
+          handleDeleteClick('system');
+        });
+      }
+
+      // 삭제 버튼 클릭 이벤트 (워크스페이스 메뉴)
+      if (workspaceDeleteBtn) {
+        workspaceDeleteBtn.addEventListener('click', function () {
+          handleDeleteClick('workspace');
+        });
+      }
+
+      // 삭제 처리 함수
+      function handleDeleteClick(tabType) {
+        currentTabType = tabType;
+        const activeTab = document.getElementById(tabType === 'system' ? 'system-menu' : 'workspace-menu');
+        const checkedBoxes = activeTab.querySelectorAll('tbody input[type="checkbox"]:checked');
+
+        if (checkedBoxes.length === 0) {
+          alert('삭제할 메뉴를 선택해주세요.');
+          return;
+        }
+
+        // 선택된 메뉴 정보 수집
+        selectedMenus = [];
+        checkedBoxes.forEach(checkbox => {
+          const row = checkbox.closest('tr');
+          // 섹션 헤더는 제외
+          if (!row.classList.contains('section-header')) {
+            const menuName = row.querySelector('td:nth-child(2)').textContent.trim();
+            const menuUrl = row.querySelector('td:nth-child(3)').textContent.trim();
+            selectedMenus.push({
+              name: menuName,
+              url: menuUrl,
+              row: row
+            });
+          }
+        });
+
+        if (selectedMenus.length === 0) {
+          alert('삭제할 수 있는 메뉴가 선택되지 않았습니다.');
+          return;
+        }
+
+        // 모달 표시
+        deleteModal.classList.remove('modal-overlay-hidden');
+      }
+
+      // 취소 버튼 클릭
+      if (deleteCancel) {
+        deleteCancel.addEventListener('click', function () {
+          deleteModal.classList.add('modal-overlay-hidden');
+          selectedMenus = [];
+        });
+      }
+
+      // 확인 버튼 클릭
+      if (deleteConfirm) {
+        deleteConfirm.addEventListener('click', function () {
+          if (selectedMenus.length > 0) {
+            // 선택된 메뉴들을 테이블에서 제거
+            selectedMenus.forEach(menu => {
+              menu.row.remove();
+            });
+
+            // 모달 닫기
+            deleteModal.classList.add('modal-overlay-hidden');
+
+            // 성공 메시지
+            const menuNames = selectedMenus.map(menu => menu.name).join(', ');
+            alert(`선택한 메뉴가 삭제되었습니다: ${menuNames}`);
+
+            // 선택 초기화
+            selectedMenus = [];
+
+            // 전체 선택 체크박스 해제
+            const activeTab = document.getElementById(currentTabType === 'system' ? 'system-menu' : 'workspace-menu');
+            const selectAllCheckbox = activeTab.querySelector('.select-all');
+            if (selectAllCheckbox) {
+              selectAllCheckbox.checked = false;
+            }
+          }
+        });
+      }
+
+      // 모달 오버레이 클릭 시 닫기
+      if (deleteModal) {
+        deleteModal.addEventListener('click', function (e) {
+          if (e.target === deleteModal) {
+            deleteModal.classList.add('modal-overlay-hidden');
+            selectedMenus = [];
+          }
+        });
+      }
+
+      // ESC 키로 모달 닫기
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          if (!deleteModal.classList.contains('modal-overlay-hidden')) {
+            deleteModal.classList.add('modal-overlay-hidden');
+            selectedMenus = [];
+          }
+        }
       });
     });
   </script>

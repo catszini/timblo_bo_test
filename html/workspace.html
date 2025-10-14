@@ -512,6 +512,46 @@
     </div>
   </div>
 
+  <!-- 워크스페이스 삭제 확인 모달 -->
+  <div class="modal-overlay modal-overlay-hidden" id="deleteWorkspaceModal">
+    <div class="modal-container workspace-delete-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">워크스페이스 삭제</h2>
+        </div>
+
+        <div class="workspace-delete-info">
+          <div class="workspace-info-card">
+            <div class="workspace-icon-large" id="deleteWorkspaceIcon">W</div>
+            <div class="workspace-details">
+              <div class="workspace-name-large" id="deleteWorkspaceName">테스트</div>
+              <div class="workspace-domain" id="deleteWorkspaceDomain">www.test.co.kr</div>
+              <div class="workspace-subtitle">테스트입니다</div>
+            </div>
+          </div>
+
+          <div class="delete-warning-text">
+            삭제를 원하시면 워크스페이스의 이름을 입력해주세요.
+          </div>
+
+          <div class="form-group">
+            <label for="confirmWorkspaceName">이름</label>
+            <input type="text" id="confirmWorkspaceName" class="form-input" placeholder="테스트">
+          </div>
+
+          <div class="delete-notice">
+            <p>워크스페이스를 삭제하면 <span class="highlight">모든 콘텐츠가 영구적으로 삭제되며 복구가 불가능</span>합니다.</p>
+          </div>
+        </div>
+
+        <div class="modal-buttons">
+          <button class="btn-cancel" id="deleteWorkspaceCancel">취소</button>
+          <button class="btn-delete" id="deleteWorkspaceConfirm" disabled>삭제</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // 워크스페이스 아이콘 색상 배열
@@ -646,6 +686,136 @@
             }
           }
         });
+      });
+
+      // 워크스페이스 삭제 모달 관련 요소들
+      const deleteModal = document.getElementById('deleteWorkspaceModal');
+      const deleteBtn = document.querySelector('.ws-actions .delete-btn');
+      const deleteCancel = document.getElementById('deleteWorkspaceCancel');
+      const deleteConfirm = document.getElementById('deleteWorkspaceConfirm');
+      const confirmNameInput = document.getElementById('confirmWorkspaceName');
+      const deleteWorkspaceIcon = document.getElementById('deleteWorkspaceIcon');
+      const deleteWorkspaceName = document.getElementById('deleteWorkspaceName');
+      const deleteWorkspaceDomain = document.getElementById('deleteWorkspaceDomain');
+
+      let selectedWorkspaces = [];
+
+      // 삭제 버튼 클릭 시 모달 표시
+      if (deleteBtn) {
+        deleteBtn.addEventListener('click', function () {
+          // 선택된 워크스페이스 확인
+          const checkedBoxes = Array.from(rowCheckboxes).filter(cb => cb.checked);
+
+          if (checkedBoxes.length === 0) {
+            alert('삭제할 워크스페이스를 선택해주세요.');
+            return;
+          }
+
+          if (checkedBoxes.length > 1) {
+            alert('한 번에 하나의 워크스페이스만 삭제할 수 있습니다.');
+            return;
+          }
+
+          // 선택된 워크스페이스 정보 가져오기
+          const selectedRow = checkedBoxes[0].closest('tr');
+          const workspaceNameElement = selectedRow.querySelector('.workspace-name span');
+          const workspaceDomainElement = selectedRow.querySelector('td:nth-child(3)');
+          const workspaceIconElement = selectedRow.querySelector('.workspace-icon');
+
+          const workspaceName = workspaceNameElement.textContent.trim();
+          const workspaceDomain = workspaceDomainElement.textContent.trim();
+          const workspaceIconText = workspaceIconElement.textContent.trim();
+          const workspaceIconColor = window.getComputedStyle(workspaceIconElement).backgroundColor;
+
+          // 모달에 워크스페이스 정보 설정
+          deleteWorkspaceName.textContent = workspaceName;
+          deleteWorkspaceDomain.textContent = workspaceDomain;
+          deleteWorkspaceIcon.textContent = workspaceIconText;
+          deleteWorkspaceIcon.style.backgroundColor = workspaceIconColor;
+
+          // 입력 필드 초기화 및 플레이스홀더 설정
+          confirmNameInput.value = '';
+          confirmNameInput.placeholder = workspaceName;
+
+          // 삭제 버튼 비활성화
+          deleteConfirm.disabled = true;
+          deleteConfirm.classList.add('disabled');
+
+          // 선택된 워크스페이스 정보 저장
+          selectedWorkspaces = [{ name: workspaceName, row: selectedRow }];
+
+          // 모달 표시
+          deleteModal.classList.remove('modal-overlay-hidden');
+        });
+      }
+
+      // 워크스페이스 이름 입력 시 삭제 버튼 활성화/비활성화
+      if (confirmNameInput) {
+        confirmNameInput.addEventListener('input', function () {
+          const inputValue = this.value.trim();
+          const targetName = selectedWorkspaces.length > 0 ? selectedWorkspaces[0].name : '';
+
+          if (inputValue === targetName) {
+            deleteConfirm.disabled = false;
+            deleteConfirm.classList.remove('disabled');
+          } else {
+            deleteConfirm.disabled = true;
+            deleteConfirm.classList.add('disabled');
+          }
+        });
+      }
+
+      // 삭제 취소 버튼 클릭
+      if (deleteCancel) {
+        deleteCancel.addEventListener('click', function () {
+          deleteModal.classList.add('modal-overlay-hidden');
+          selectedWorkspaces = [];
+        });
+      }
+
+      // 삭제 확인 버튼 클릭
+      if (deleteConfirm) {
+        deleteConfirm.addEventListener('click', function () {
+          if (this.disabled) return;
+
+          if (selectedWorkspaces.length > 0) {
+            const workspaceName = selectedWorkspaces[0].name;
+            const workspaceRow = selectedWorkspaces[0].row;
+
+            // 워크스페이스 삭제 (실제로는 서버 요청)
+            console.log(`워크스페이스 "${workspaceName}" 삭제 요청`);
+
+            // 테이블에서 행 제거
+            workspaceRow.remove();
+
+            // 모달 닫기
+            deleteModal.classList.add('modal-overlay-hidden');
+            selectedWorkspaces = [];
+
+            // 성공 메시지
+            alert(`워크스페이스 "${workspaceName}"가 삭제되었습니다.`);
+          }
+        });
+      }
+
+      // 모달 오버레이 클릭 시 닫기
+      if (deleteModal) {
+        deleteModal.addEventListener('click', function (e) {
+          if (e.target === deleteModal) {
+            deleteModal.classList.add('modal-overlay-hidden');
+            selectedWorkspaces = [];
+          }
+        });
+      }
+
+      // ESC 키로 모달 닫기
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          if (!deleteModal.classList.contains('modal-overlay-hidden')) {
+            deleteModal.classList.add('modal-overlay-hidden');
+            selectedWorkspaces = [];
+          }
+        }
       });
 
       // 사용 여부 정렬 (체크 여부 기준)
