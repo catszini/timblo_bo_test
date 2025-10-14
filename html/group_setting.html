@@ -163,7 +163,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr data-user-id="user001" data-permission-code="super-admin">
                       <td><input type="checkbox"></td>
                       <td>
                         <div class="workspace-name">
@@ -177,7 +177,7 @@
                       <td>2024-01-15 10:30:25</td>
                       <td>2024-03-20 14:45:18</td>
                     </tr>
-                    <tr>
+                    <tr data-user-id="user002" data-permission-code="workspace-admin">
                       <td><input type="checkbox"></td>
                       <td>
                         <div class="workspace-name">
@@ -191,7 +191,7 @@
                       <td>2024-02-08 09:15:42</td>
                       <td>2024-03-15 16:22:37</td>
                     </tr>
-                    <tr>
+                    <tr data-user-id="user003" data-permission-code="menu-admin">
                       <td><input type="checkbox"></td>
                       <td>
                         <div class="workspace-name">
@@ -205,7 +205,7 @@
                       <td>2024-01-25 13:28:51</td>
                       <td>2024-03-18 11:33:29</td>
                     </tr>
-                    <tr>
+                    <tr data-user-id="user004" data-permission-code="stats-admin">
                       <td><input type="checkbox"></td>
                       <td>
                         <div class="workspace-name">
@@ -398,6 +398,45 @@
       const workspaceSelect = document.getElementById('workspaceSelect');
       const totalCountSpan = document.querySelector('.group-total-count');
 
+      // URL 파라미터로 특정 권한 미리보기 표시
+      const urlParams = new URLSearchParams(window.location.search);
+      const userIdParam = urlParams.get('userId');
+      const permissionCodeParam = urlParams.get('permissionCode');
+
+      // 페이지 로드 시 URL 파라미터가 있으면 해당 행 선택
+      if (userIdParam || permissionCodeParam) {
+        let targetRow = null;
+
+        tableRows.forEach(row => {
+          const userId = row.getAttribute('data-user-id');
+          const permissionCode = row.getAttribute('data-permission-code');
+
+          if ((userIdParam && userId === userIdParam) ||
+            (permissionCodeParam && permissionCode === permissionCodeParam)) {
+            targetRow = row;
+          }
+        });
+
+        if (targetRow) {
+          // 기존 선택 해제
+          tableRows.forEach(r => r.classList.remove('selected'));
+
+          // 대상 행 선택
+          targetRow.classList.add('selected');
+
+          // 권한 미리보기 표시
+          noDataArea.style.display = 'none';
+          treeMenu.style.display = 'block';
+
+          // 권한별 메뉴 트리 업데이트
+          const permissionType = targetRow.querySelector('td:nth-child(5)').textContent;
+          updateMenuTreeByPermission(permissionType);
+
+          // 선택된 행으로 스크롤
+          targetRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+
       // 테이블 행 클릭 이벤트
       tableRows.forEach(row => {
         row.addEventListener('click', function (e) {
@@ -417,6 +456,14 @@
           // 선택된 권한에 따라 다른 메뉴 표시
           const permissionType = this.querySelector('td:nth-child(5)').textContent;
           console.log('선택된 권한:', permissionType);
+
+          // URL 파라미터 업데이트
+          const userId = this.getAttribute('data-user-id');
+          const permissionCode = this.getAttribute('data-permission-code');
+          const newUrl = new URL(window.location);
+          newUrl.searchParams.set('userId', userId);
+          newUrl.searchParams.set('permissionCode', permissionCode);
+          window.history.pushState({}, '', newUrl);
 
           // 권한별 메뉴 트리 업데이트
           updateMenuTreeByPermission(permissionType);
