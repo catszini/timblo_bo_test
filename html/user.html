@@ -17,8 +17,18 @@
       <div class="logo">
         <div class="logo-icon">T</div>
         <div class="logo-text">
-          <div class="logo-title">Timbel</div>
-          <div class="logo-url">timbel.net</div>
+          <div class="logo-title">홍길동</div>
+          <div class="logo-url">
+            <select class="condition-select" id="workspace-filter">
+              <option value="Timbel" selected>Timbel</option>
+              <option value="sk-telecom">SK Telecom</option>
+              <option value="sk-hynix">SK Hynix</option>
+              <option value="sk-es">SK E&S</option>
+              <option value="sk-cc">SK C&C</option>
+              <option value="sk-innovation">SK Innovation</option>
+              <option value="sk-networks">SK Networks</option>
+            </select>
+          </div>
         </div>
         <button class="logout-btn" title="로그아웃">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +54,7 @@
           <li><a href="workspace.html">워크스페이스 관리</a></li>
           <li><a href="menu_setting.html">전체 메뉴 관리</a></li>
           <li><a href="system_user.html">사용자 관리</a></li>
-          <li><a href="group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="group_setting.html">역할 관리</a></li>
           <li><a href="system_setting_history.html">설정변경 이력</a></li>
           <li><a href="system_stats_usage.html">전체 시스템 사용 통계</a></li>
           <li><a href="system_stats_user.html">사용자별 사용 통계</a></li>
@@ -56,7 +66,7 @@
           <h3>워크스페이스 설정</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html">FO기능 정책 관리</a></li>
+          <li><a href="workspace_permission.html">기능 권한 관리</a></li>
           <li><a href="content_retention.html">컨텐츠 보존 관리</a></li>
           <li><a href="workspace_group_setting.html">메뉴 권한 관리</a></li>
           <li><a href="user.html" class="active">사용자 관리</a></li>
@@ -164,7 +174,7 @@
                 </td>
                 <td><a href="mailto:lee.jw@sktelecom.com" class="email-link">lee.jw@sktelecom.com</a></td>
                 <td>
-                  <div class="combo-select">
+                  <div class="">
                     <select class="permission-select">
                       <option>회의관리자</option>
                       <option>로고관리자</option>
@@ -188,7 +198,7 @@
                 </td>
                 <td><a href="mailto:song.he@sktelecom.com" class="email-link">song.he@sktelecom.com</a></td>
                 <td>
-                  <div class="combo-select">
+                  <div class="">
                     <select class="permission-select">
                       <option>회의관리자</option>
                       <option>로고관리자</option>
@@ -212,7 +222,7 @@
                 </td>
                 <td><a href="mailto:song.hj@sktelecom.com" class="email-link">song.hj@sktelecom.com</a></td>
                 <td>
-                  <div class="combo-select">
+                  <div class="">
                     <select class="permission-select">
                       <option>회의관리자</option>
                       <option>로고관리자</option>
@@ -236,7 +246,7 @@
                 </td>
                 <td><a href="mailto:kang.mh@sktelecom.com" class="email-link">kang.mh@sktelecom.com</a></td>
                 <td>
-                  <div class="combo-select">
+                  <div class="">
                     <select class="permission-select">
                       <option selected>회의관리자</option>
                       <option>로고관리자</option>
@@ -260,7 +270,7 @@
                 </td>
                 <td><a href="mailto:jung.sh@sktelecom.com" class="email-link">jung.sh@sktelecom.com</a></td>
                 <td>
-                  <div class="combo-select">
+                  <div class="">
                     <select class="permission-select">
                       <option>회의관리자</option>
                       <option>로고관리자</option>
@@ -284,7 +294,7 @@
                 </td>
                 <td><a href="mailto:choi.jy@sktelecom.com" class="email-link">choi.jy@sktelecom.com</a></td>
                 <td>
-                  <div class="combo-select">
+                  <div class="">
                     <select class="permission-select">
                       <option>회의관리자</option>
                       <option>로고관리자</option>
@@ -308,7 +318,7 @@
                 </td>
                 <td><a href="mailto:lee.ms@sktelecom.com" class="email-link">lee.ms@sktelecom.com</a></td>
                 <td>
-                  <div class="combo-select">
+                  <div class="">
                     <select class="permission-select">
                       <option>회의관리자</option>
                       <option>로고관리자</option>
@@ -332,7 +342,7 @@
                 </td>
                 <td><a href="mailto:kim.cs@sktelecom.com" class="email-link">kim.cs@sktelecom.com</a></td>
                 <td>
-                  <div class="combo-select">
+                  <div class="">
                     <select class="permission-select">
                       <option>회의관리자</option>
                       <option selected>로고관리자</option>
@@ -356,7 +366,7 @@
                 </td>
                 <td><a href="mailto:kim.cs@sktelecom.com" class="email-link">kim.cs@sktelecom.com</a></td>
                 <td>
-                  <div class="combo-select">
+                  <div class="">
                     <select class="permission-select">
                       <option selected>회의관리자</option>
                       <option>로고관리자</option>

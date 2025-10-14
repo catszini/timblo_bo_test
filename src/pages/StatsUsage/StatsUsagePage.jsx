@@ -1,336 +1,398 @@
 import React, { useState } from 'react'
+import {
+  FormControl,
+  Select,
+  MenuItem,
+  Button,
+  ButtonGroup,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Typography,
+  Box
+} from '@mui/material'
 import Layout from '../../components/Layout/Layout'
 
 const StatsUsagePage = () => {
-  const [periodType, setPeriodType] = useState('monthly')
-  const [selectedMonth, setSelectedMonth] = useState('2024-10')
-  const [selectedYear, setSelectedYear] = useState('2024')
+  const [periodType, setPeriodType] = useState('monthly') // 'monthly' or 'yearly'
+  const [startYear, setStartYear] = useState('2024')
+  const [startMonth, setStartMonth] = useState('8')
+  const [endYear, setEndYear] = useState('2025')
+  const [endMonth, setEndMonth] = useState('8')
+  const [itemsPerPage, setItemsPerPage] = useState('10')
 
-  // 월간 데이터
-  const monthlyData = [
-    { date: '2024-10-01', sessions: 245, users: 156, duration: '02:34:12' },
-    { date: '2024-10-02', sessions: 198, users: 132, duration: '01:58:43' },
-    { date: '2024-10-03', sessions: 287, users: 178, duration: '03:12:56' },
-    { date: '2024-10-04', sessions: 165, users: 98, duration: '01:23:45' },
-    { date: '2024-10-05', sessions: 234, users: 145, duration: '02:45:31' }
+  // HTML과 완전히 동일한 통계 데이터
+  const monthlyStatsData = [
+    {
+      month: '2025.08',
+      sttRequests: 64,
+      sttRequestTime: '71:35:37',
+      sttSuccess: 42,
+      sttSuccessTime: '53:55:12',
+      sttFail: 22,
+      sttFailTime: '17:40:25',
+      llmRequests: 65,
+      llmTokens: '3,748,408',
+      llmSuccess: 65,
+      llmFail: 0
+    },
+    {
+      month: '2025.07',
+      sttRequests: 113,
+      sttRequestTime: '57:44:54',
+      sttSuccess: 85,
+      sttSuccessTime: '53:53:14',
+      sttFail: 28,
+      sttFailTime: '03:51:40',
+      llmRequests: 89,
+      llmTokens: '4,075,449',
+      llmSuccess: 89,
+      llmFail: 0
+    },
+    {
+      month: '2025.06',
+      sttRequests: 111,
+      sttRequestTime: '45:33:14',
+      sttSuccess: 91,
+      sttSuccessTime: '35:56:36',
+      sttFail: 20,
+      sttFailTime: '09:36:38',
+      llmRequests: 105,
+      llmTokens: '3,270,909',
+      llmSuccess: 105,
+      llmFail: 0
+    },
+    {
+      month: '2025.05',
+      sttRequests: 107,
+      sttRequestTime: '68:29:07',
+      sttSuccess: 102,
+      sttSuccessTime: '66:31:17',
+      sttFail: 5,
+      sttFailTime: '01:57:49',
+      llmRequests: 105,
+      llmTokens: '5,932,629',
+      llmSuccess: 105,
+      llmFail: 0
+    },
+    {
+      month: '2025.04',
+      sttRequests: 288,
+      sttRequestTime: '113:45:05',
+      sttSuccess: 242,
+      sttSuccessTime: '110:17:14',
+      sttFail: 46,
+      sttFailTime: '03:27:51',
+      llmRequests: 263,
+      llmTokens: '9,764,137',
+      llmSuccess: 263,
+      llmFail: 0
+    },
+    {
+      month: '2025.03',
+      sttRequests: 324,
+      sttRequestTime: '145:22:18',
+      sttSuccess: 298,
+      sttSuccessTime: '140:15:33',
+      sttFail: 26,
+      sttFailTime: '05:06:45',
+      llmRequests: 312,
+      llmTokens: '11,245,672',
+      llmSuccess: 312,
+      llmFail: 0
+    },
+    {
+      month: '2025.02',
+      sttRequests: 198,
+      sttRequestTime: '89:14:27',
+      sttSuccess: 185,
+      sttSuccessTime: '84:22:11',
+      sttFail: 13,
+      sttFailTime: '04:52:16',
+      llmRequests: 201,
+      llmTokens: '7,892,345',
+      llmSuccess: 201,
+      llmFail: 0
+    },
+    {
+      month: '2025.01',
+      sttRequests: 156,
+      sttRequestTime: '67:43:52',
+      sttSuccess: 142,
+      sttSuccessTime: '62:18:34',
+      sttFail: 14,
+      sttFailTime: '05:25:18',
+      llmRequests: 167,
+      llmTokens: '6,234,891',
+      llmSuccess: 167,
+      llmFail: 0
+    },
+    {
+      month: '2024.12',
+      sttRequests: 278,
+      sttRequestTime: '124:36:15',
+      sttSuccess: 251,
+      sttSuccessTime: '118:42:33',
+      sttFail: 27,
+      sttFailTime: '05:53:42',
+      llmRequests: 289,
+      llmTokens: '10,567,234',
+      llmSuccess: 289,
+      llmFail: 0
+    },
+    {
+      month: '2024.11',
+      sttRequests: 203,
+      sttRequestTime: '91:28:41',
+      sttSuccess: 189,
+      sttSuccessTime: '86:15:22',
+      sttFail: 14,
+      sttFailTime: '05:13:19',
+      llmRequests: 215,
+      llmTokens: '8,123,456',
+      llmSuccess: 215,
+      llmFail: 0
+    },
+    {
+      month: '2024.10',
+      sttRequests: 234,
+      sttRequestTime: '105:17:28',
+      sttSuccess: 218,
+      sttSuccessTime: '99:42:15',
+      sttFail: 16,
+      sttFailTime: '05:35:13',
+      llmRequests: 245,
+      llmTokens: '9,345,678',
+      llmSuccess: 245,
+      llmFail: 0
+    },
+    {
+      month: '2024.09',
+      sttRequests: 189,
+      sttRequestTime: '84:52:37',
+      sttSuccess: 175,
+      sttSuccessTime: '79:18:22',
+      sttFail: 14,
+      sttFailTime: '05:34:15',
+      llmRequests: 198,
+      llmTokens: '7,456,789',
+      llmSuccess: 198,
+      llmFail: 0
+    },
+    {
+      month: '2024.08',
+      sttRequests: 167,
+      sttRequestTime: '75:23:14',
+      sttSuccess: 154,
+      sttSuccessTime: '70:45:33',
+      sttFail: 13,
+      sttFailTime: '04:37:41',
+      llmRequests: 178,
+      llmTokens: '6,789,123',
+      llmSuccess: 178,
+      llmFail: 0
+    }
   ]
 
-  // 연간 데이터
-  const yearlyData = [
-    { month: '1월', sessions: 2450, users: 1560, duration: '254:12:34' },
-    { month: '2월', sessions: 2198, users: 1320, duration: '198:43:21' },
-    { month: '3월', sessions: 2870, users: 1780, duration: '312:56:45' },
-    { month: '4월', sessions: 1650, users: 980, duration: '123:45:12' },
-    { month: '5월', sessions: 2340, users: 1450, duration: '245:31:56' }
+  // 년도 옵션
+  const yearOptions = ['2024년', '2025년']
+  
+  // 월 옵션
+  const monthOptions = [
+    '1월', '2월', '3월', '4월', '5월', '6월',
+    '7월', '8월', '9월', '10월', '11월', '12월'
   ]
 
-  // 탭 전환 핸들러
+  // 탭 변경 핸들러
   const handleTabChange = (type) => {
     setPeriodType(type)
   }
 
   // 조회 핸들러
-  const handleSearch = () => {
-    console.log(`${periodType} 데이터 조회:`, periodType === 'monthly' ? selectedMonth : selectedYear)
+  const handleQuery = () => {
+    console.log('조회 실행:', { periodType, startYear, startMonth, endYear, endMonth })
   }
 
   // 엑셀 다운로드 핸들러
   const handleExcelDownload = () => {
-    alert(`${periodType === 'monthly' ? '월간' : '연간'} 사용 통계 데이터를 다운로드합니다.`)
+    alert('엑셀 다운로드를 시작합니다.')
+  }
+
+  // 결과 텍스트 생성
+  const getResultText = () => {
+    if (periodType === 'monthly') {
+      return `${startYear}년 ${String(startMonth).padStart(2, '0')}월 ~ ${endYear}년 ${String(endMonth).padStart(2, '0')}월 통계 결과`
+    } else {
+      return `${startYear}년 ~ ${endYear}년 통계 결과`
+    }
   }
 
   return (
     <Layout className="page-stats-usage">
       <div className="content">
         <div className="content-header">
-          <h1 className="breadcrumb">워크스페이스 사용 통계</h1>
+          <h1 className="breadcrumb">사용량 통계</h1>
         </div>
 
         <div className="content-body">
-          {/* 기간 선택 탭 */}
-          <div className="period-tabs" style={{ marginBottom: '24px' }}>
-            <div style={{ borderBottom: '1px solid #E5E7EB' }}>
-              <div style={{ display: 'flex', gap: '2px' }}>
-                <button 
-                  className={`tab-button ${periodType === 'monthly' ? 'active' : ''}`}
+          <div className="search-section">
+            <Box className="stats-head stats-head-row" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', mb: 1 }}>
+              <Typography variant="h6" className="stats-title stats-title-bold" sx={{ fontWeight: 'bold' }}>
+                전체 AI 사용량
+              </Typography>
+              <Box className="stats-tabs period-toggle-wrap" sx={{ display: 'inline-flex', ml: 2 }}>
+                <ButtonGroup variant="outlined" size="small">
+                  <Button 
+                    variant={periodType === 'monthly' ? 'contained' : 'outlined'}
                   onClick={() => handleTabChange('monthly')}
-                  style={{
-                    padding: '12px 24px',
-                    background: periodType === 'monthly' ? '#1976d2' : '#F8F9FA',
-                    border: 'none',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: periodType === 'monthly' ? '#fff' : '#6b7280',
-                    borderRadius: '8px 8px 0 0',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    if (periodType !== 'monthly') {
-                      e.target.style.color = '#1976d2'
-                      e.target.style.background = 'rgba(25, 118, 210, 0.04)'
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (periodType !== 'monthly') {
-                      e.target.style.color = '#6b7280'
-                      e.target.style.background = '#F8F9FA'
-                    }
-                  }}
-                >
-                  월간
-                </button>
-                <button 
-                  className={`tab-button ${periodType === 'yearly' ? 'active' : ''}`}
+                    sx={{ minWidth: '60px' }}
+                  >
+                    월간
+                  </Button>
+                  <Button 
+                    variant={periodType === 'yearly' ? 'contained' : 'outlined'}
                   onClick={() => handleTabChange('yearly')}
-                  style={{
-                    padding: '12px 24px',
-                    background: periodType === 'yearly' ? '#1976d2' : '#F8F9FA',
-                    border: 'none',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: periodType === 'yearly' ? '#fff' : '#6b7280',
-                    borderRadius: '8px 8px 0 0',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    if (periodType !== 'yearly') {
-                      e.target.style.color = '#1976d2'
-                      e.target.style.background = 'rgba(25, 118, 210, 0.04)'
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (periodType !== 'yearly') {
-                      e.target.style.color = '#6b7280'
-                      e.target.style.background = '#F8F9FA'
-                    }
-                  }}
+                    sx={{ minWidth: '60px' }}
+                  >
+                    연간
+                  </Button>
+                </ButtonGroup>
+              </Box>
+            </Box>
+            
+            <Box className="period-row period-row-flex" sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+              <Typography variant="body2" className="period-label" sx={{ mr: 0.5 }}>기간</Typography>
+              <FormControl size="small">
+                <Select
+                  value={startYear + '년'}
+                  onChange={(e) => setStartYear(e.target.value.replace('년', ''))}
+                  variant="outlined"
                 >
-                  연간
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* 검색 조건 */}
-          <div className="search-section" style={{ 
-            padding: '20px', 
-            backgroundColor: '#F8F9FA', 
-            borderRadius: '8px', 
-            marginBottom: '24px' 
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <span style={{ fontSize: '14px', fontWeight: '500', color: '#374151' }}>기간:</span>
-              
-              {periodType === 'monthly' ? (
-                <input 
-                  type="month"
-                  value={selectedMonth}
-                  onChange={(e) => setSelectedMonth(e.target.value)}
-                  style={{
-                    padding: '8px 12px',
-                    border: '1px solid #D1D5DB',
-                    borderRadius: '6px',
-                    fontSize: '14px'
-                  }}
-                />
-              ) : (
-                <select 
-                  value={selectedYear}
-                  onChange={(e) => setSelectedYear(e.target.value)}
-                  style={{
-                    padding: '8px 12px',
-                    border: '1px solid #D1D5DB',
-                    borderRadius: '6px',
-                    fontSize: '14px'
-                  }}
-                >
-                  <option value="2024">2024년</option>
-                  <option value="2023">2023년</option>
-                  <option value="2022">2022년</option>
-                </select>
+                  {yearOptions.map((year) => (
+                    <MenuItem key={year} value={year}>{year}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              {periodType === 'monthly' && (
+                <FormControl size="small">
+                  <Select
+                    value={startMonth + '월'}
+                    onChange={(e) => setStartMonth(e.target.value.replace('월', ''))}
+                    variant="outlined"
+                  >
+                    {monthOptions.map((month, index) => (
+                      <MenuItem key={month} value={month}>{month}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
               )}
-
-              <button 
-                className="search-btn"
-                onClick={handleSearch}
-                style={{
-                  padding: '8px 16px',
-                  background: '#3B82F6',
-                  color: 'white',
-                  border: '1px solid #3B82F6',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                  fontSize: '14px'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = '#2563EB'
-                  e.target.style.borderColor = '#2563EB'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = '#3B82F6'
-                  e.target.style.borderColor = '#3B82F6'
-                }}
+              <Typography variant="body2" className="period-separator" sx={{ mx: 0.5 }}>~</Typography>
+              <FormControl size="small">
+                <Select
+                  value={endYear + '년'}
+                  onChange={(e) => setEndYear(e.target.value.replace('년', ''))}
+                  variant="outlined"
+                >
+                  {yearOptions.map((year) => (
+                    <MenuItem key={year} value={year}>{year}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              {periodType === 'monthly' && (
+                <FormControl size="small">
+                  <Select
+                    value={endMonth + '월'}
+                    onChange={(e) => setEndMonth(e.target.value.replace('월', ''))}
+                    variant="outlined"
+                  >
+                    {monthOptions.map((month, index) => (
+                      <MenuItem key={month} value={month}>{month}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+              <Button 
+                variant="contained" 
+                className="btn-query" 
+                onClick={handleQuery}
+                sx={{ ml: 1, borderRadius: 2 }}
               >
                 조회
-              </button>
-
-              <button 
-                className="excel-btn"
+              </Button>
+              
+              <FormControl size="small" sx={{ ml: 'auto' }}>
+                <Select
+                  value={itemsPerPage + '개씩 보기'}
+                  onChange={(e) => setItemsPerPage(e.target.value.replace('개씩 보기', ''))}
+                  variant="outlined"
+                >
+                  <MenuItem value="10개씩 보기">10개씩 보기</MenuItem>
+                  <MenuItem value="20개씩 보기">20개씩 보기</MenuItem>
+                  <MenuItem value="50개씩 보기">50개씩 보기</MenuItem>
+                </Select>
+              </FormControl>
+              <Button 
+                variant="outlined"
+                className="btn" 
                 onClick={handleExcelDownload}
-                style={{
-                  padding: '8px 16px',
-                  background: '#10B981',
-                  color: 'white',
-                  border: '1px solid #10B981',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                  fontSize: '14px'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = '#059669'
-                  e.target.style.borderColor = '#059669'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = '#10B981'
-                  e.target.style.borderColor = '#10B981'
+                sx={{ 
+                  ml: 1,
+                  color: '#10B981',
+                  borderColor: '#10B981',
+                  '&:hover': {
+                    backgroundColor: '#10B981',
+                    color: 'white'
+                  }
                 }}
               >
-                Excel 다운로드
-              </button>
-            </div>
+                엑셀 다운로드
+              </Button>
+            </Box>
+            
+            <Typography variant="body2" className="result-text" sx={{ mb: 2 }}>
+              {getResultText()}
+            </Typography>
           </div>
 
-          {/* 결과 텍스트 */}
-          <div className="result-text" style={{ marginBottom: '16px', fontSize: '14px', color: '#6B7280' }}>
-            {periodType === 'monthly' 
-              ? `${selectedMonth.replace('-', '년 ')}월 사용 통계`
-              : `${selectedYear}년 사용 통계`
-            }
-          </div>
-
-          {/* 통계 테이블 */}
           <div className="table-container">
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <table>
               <thead>
-                <tr style={{ backgroundColor: '#F8F9FA' }}>
-                  <th style={{ 
-                    padding: '12px 16px', 
-                    textAlign: 'left', 
-                    borderBottom: '2px solid #E5E7EB',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    color: '#374151'
-                  }}>
-                    {periodType === 'monthly' ? '날짜' : '월'}
-                  </th>
-                  <th style={{ 
-                    padding: '12px 16px', 
-                    textAlign: 'center', 
-                    borderBottom: '2px solid #E5E7EB',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    color: '#374151'
-                  }}>
-                    세션 수
-                  </th>
-                  <th style={{ 
-                    padding: '12px 16px', 
-                    textAlign: 'center', 
-                    borderBottom: '2px solid #E5E7EB',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    color: '#374151'
-                  }}>
-                    사용자 수
-                  </th>
-                  <th style={{ 
-                    padding: '12px 16px', 
-                    textAlign: 'center', 
-                    borderBottom: '2px solid #E5E7EB',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    color: '#374151'
-                  }}>
-                    총 사용 시간
-                  </th>
+                <tr>
+                  <th>월</th>
+                  <th>STT 요청 건</th>
+                  <th>STT 요청 시간</th>
+                  <th>STT 성공 건</th>
+                  <th>STT 성공 시간</th>
+                  <th>STT 실패 건</th>
+                  <th>STT 실패 시간</th>
+                  <th>LLM 요청 건</th>
+                  <th>LLM 요청 Token</th>
+                  <th>LLM 성공 건</th>
+                  <th>LLM 실패 건</th>
                 </tr>
               </thead>
               <tbody>
-                {(periodType === 'monthly' ? monthlyData : yearlyData).map((item, index) => (
-                  <tr key={index} style={{ borderBottom: '1px solid #E5E7EB' }}>
-                    <td style={{ 
-                      padding: '12px 16px', 
-                      fontSize: '14px', 
-                      color: '#111827'
-                    }}>
-                      {periodType === 'monthly' ? item.date : item.month}
-                    </td>
-                    <td style={{ 
-                      padding: '12px 16px', 
-                      textAlign: 'center', 
-                      fontSize: '14px', 
-                      color: '#111827'
-                    }}>
-                      {item.sessions.toLocaleString()}
-                    </td>
-                    <td style={{ 
-                      padding: '12px 16px', 
-                      textAlign: 'center', 
-                      fontSize: '14px', 
-                      color: '#111827'
-                    }}>
-                      {item.users.toLocaleString()}
-                    </td>
-                    <td style={{ 
-                      padding: '12px 16px', 
-                      textAlign: 'center', 
-                      fontSize: '14px', 
-                      color: '#111827'
-                    }}>
-                      {item.duration}
-                    </td>
+                {monthlyStatsData.slice(0, parseInt(itemsPerPage)).map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.month}</td>
+                    <td>{item.sttRequests}</td>
+                    <td>{item.sttRequestTime}</td>
+                    <td>{item.sttSuccess}</td>
+                    <td>{item.sttSuccessTime}</td>
+                    <td className="stt-fail-cell">{item.sttFail}</td>
+                    <td>{item.sttFailTime}</td>
+                    <td>{item.llmRequests}</td>
+                    <td>{item.llmTokens}</td>
+                    <td>{item.llmSuccess}</td>
+                    <td className="text-red">{item.llmFail}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
-
-          {/* 요약 통계 */}
-          <div className="summary-stats" style={{ 
-            marginTop: '32px', 
-            padding: '24px', 
-            backgroundColor: '#F8F9FA', 
-            borderRadius: '8px' 
-          }}>
-            <h3 style={{ marginBottom: '16px', fontSize: '16px', fontWeight: '600', color: '#111827' }}>
-              통계 요약
-            </h3>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '24px', fontWeight: '700', color: '#3B82F6', marginBottom: '4px' }}>
-                  {(periodType === 'monthly' ? monthlyData : yearlyData)
-                    .reduce((sum, item) => sum + item.sessions, 0)
-                    .toLocaleString()}
-                </div>
-                <div style={{ fontSize: '14px', color: '#6B7280' }}>총 세션</div>
-              </div>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '24px', fontWeight: '700', color: '#10B981', marginBottom: '4px' }}>
-                  {(periodType === 'monthly' ? monthlyData : yearlyData)
-                    .reduce((sum, item) => sum + item.users, 0)
-                    .toLocaleString()}
-                </div>
-                <div style={{ fontSize: '14px', color: '#6B7280' }}>총 사용자</div>
-              </div>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '24px', fontWeight: '700', color: '#F59E0B', marginBottom: '4px' }}>
-                  {periodType === 'monthly' ? '12:34:56' : '1,234:56:78'}
-                </div>
-                <div style={{ fontSize: '14px', color: '#6B7280' }}>평균 사용시간</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

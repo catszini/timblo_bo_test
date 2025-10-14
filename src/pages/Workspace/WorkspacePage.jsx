@@ -1,4 +1,31 @@
 import React, { useState } from 'react'
+import {
+  TextField,
+  Button,
+  ButtonGroup,
+  Select,
+  MenuItem,
+  FormControl,
+  Checkbox,
+  InputLabel,
+  Box,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Chip,
+  IconButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Typography,
+  Pagination
+} from '@mui/material'
+import { Search, Add } from '@mui/icons-material'
 import Layout from '../../components/Layout/Layout'
 
 const WorkspacePage = () => {
@@ -11,7 +38,7 @@ const WorkspacePage = () => {
     description: ''
   })
 
-  // 워크스페이스 데이터 (HTML과 완전히 일치)
+  // 워크스페이스 데이터 (HTML 최신 버전과 일치)
   const workspaceData = [
     {
       id: 1,
@@ -46,26 +73,62 @@ const WorkspacePage = () => {
       domain: 'www.skcc.com',
       creator: 'jwpark12',
       memberCount: 1000,
-      userStatus: { total: 15, admin: 1, member: 10 },
-      createdDate: '2025-06-10 08:42:17'
+      userStatus: { total: 15, admin: 3, member: 11 },
+      createdDate: '2025-09-05 11:18:52'
     },
     {
       id: 5,
-      workspace: { name: 'Timbel_Mk', icon: 'T', color: 'color-green' },
-      domain: 'www.timbel.ai',
+      workspace: { name: 'SK Innovation', icon: 'S', color: 'color-blue' },
+      domain: 'www.skinnovation.com',
       creator: '홍길동',
       memberCount: 1000,
-      userStatus: { total: 5, admin: 1, member: 3 },
-      createdDate: '2025-05-25 12:55:41'
+      userStatus: { total: 2, admin: 0, member: 1 },
+      createdDate: '2025-08-30 13:07:19'
     },
     {
       id: 6,
-      workspace: { name: 'Timbel_sol', icon: 'T', color: 'color-purple' },
-      domain: 'www.timbelsol.co.kr',
+      workspace: { name: 'SK Networks', icon: 'S', color: 'color-emerald' },
+      domain: 'www.sknetworks.co.kr',
       creator: '홍길동',
       memberCount: 1000,
-      userStatus: { total: 7, admin: 1, member: 4 },
-      createdDate: '2025-04-18 11:33:29'
+      userStatus: { total: 1, admin: 1, member: 0 },
+      createdDate: '2025-06-10 08:42:17'
+    },
+    {
+      id: 7,
+      workspace: { name: 'SK Materials', icon: 'S', color: 'color-violet' },
+      domain: 'www.skmaterials.com',
+      creator: '홍길동',
+      memberCount: 1000,
+      userStatus: { total: 1, admin: 1, member: 0 },
+      createdDate: '2025-09-01 10:15:33'
+    },
+    {
+      id: 8,
+      workspace: { name: 'SK Biopharm', icon: 'S', color: 'color-rose' },
+      domain: 'www.skbiopharm.com',
+      creator: '김영희',
+      memberCount: 120,
+      userStatus: { total: 1, admin: 1, member: 0 },
+      createdDate: '2025-09-12 15:28:04'
+    },
+    {
+      id: 9,
+      workspace: { name: 'SK E&S', icon: 'S', color: 'color-cyan' },
+      domain: 'www.skens.com',
+      creator: '이민준',
+      memberCount: 1000,
+      userStatus: { total: 1, admin: 1, member: 0 },
+      createdDate: '2025-05-25 12:55:41'
+    },
+    {
+      id: 10,
+      workspace: { name: 'SK Shieldus', icon: 'S', color: 'color-lime' },
+      domain: 'www.skshieldus.com',
+      creator: '박서준',
+      memberCount: 1000,
+      userStatus: { total: 1, admin: 1, member: 0 },
+      createdDate: '2025-09-18 17:33:26'
     }
   ]
 
@@ -128,7 +191,7 @@ const WorkspacePage = () => {
     }
 
     return (
-      <div className="user-status">
+      <div className="user-status-display">
         <div className="user-total">총 {userStatus.total}명</div>
         {roles.length > 0 && (
           <div className="user-roles">
@@ -150,536 +213,265 @@ const WorkspacePage = () => {
       <div className="content">
         <div className="content-header">
           <h1 className="breadcrumb">워크스페이스 관리</h1>
-          <div className="header-actions">
-            <div className="search-container">
-              <input 
-                type="text" 
-                placeholder="검색어를 입력하세요" 
-                className="search-input"
-                style={{
-                  padding: '8px 16px',
-                  border: '1px solid #D1D5DB',
-                  borderRadius: '6px',
-                  fontSize: '14px',
-                  width: '250px'
-                }}
-              />
-              <button 
-                className="search-btn"
-                style={{
-                  padding: '8px 16px',
-                  marginLeft: '8px',
-                  background: '#F3F4F6',
-                  border: '1px solid #D1D5DB',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                  fontSize: '14px'
-                }}
-              >
-                검색
-              </button>
-            </div>
-            <button 
-              className="btn-primary"
-              onClick={handleCreateClick}
-              style={{
-                padding: '8px 16px',
-                marginLeft: '16px',
-                background: '#3B82F6',
-                color: 'white',
-                border: '1px solid #3B82F6',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '14px'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#2563EB'
-                e.target.style.borderColor = '#2563EB'
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = '#3B82F6'
-                e.target.style.borderColor = '#3B82F6'
-              }}
-            >
-              + 생성
-            </button>
-          </div>
         </div>
 
         <div className="content-body">
-          <div className="table-header">
-            <div className="table-info">
-              <span className="total-count">총 {workspaceData.length}개</span>
-            </div>
-            <div className="table-actions">
-              <button 
-                className="btn-bulk-action"
-                style={{
-                  padding: '6px 12px',
-                  background: 'transparent',
-                  color: '#DC2626',
-                  border: '1px solid #DC2626',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontSize: '13px',
-                  marginRight: '8px'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = '#fef2f2'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = 'transparent'
-                }}
-              >
-                삭제
-              </button>
-              <button 
-                className="btn-bulk-action"
-                style={{
-                  padding: '6px 12px',
-                  background: 'transparent',
-                  color: '#6B7280',
-                  border: '1px solid #D1D5DB',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontSize: '13px'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = '#F9FAFB'
-                  e.target.style.borderColor = '#9CA3AF'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = 'transparent'
-                  e.target.style.borderColor = '#D1D5DB'
-                }}
-              >
-                수정
-              </button>
-            </div>
-          </div>
+          <Box sx={{ mb: 3 }}>
+            <Paper sx={{ p: 2, mb: 2 }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flex: 1 }}>
+                  <Box>
+                    <Typography variant="body2" color="text.secondary">
+                      총 워크 스페이스 갯수 : {workspaceData.length}개
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      라이센스 사용 인원 : 83명 / 무제한
+                    </Typography>
+                  </Box>
+                  <Button 
+                    variant="contained" 
+                    size="small"
+                    sx={{ ml: 2 }}
+                  >
+                    라이선스 업로드
+                  </Button>
+                </Box>
+                
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <FormControl sx={{ minWidth: 120 }}>
+                    <Select defaultValue="전체" variant="outlined">
+                      <MenuItem value="전체">전체</MenuItem>
+                      <MenuItem value="워크스페이스명">워크스페이스명</MenuItem>
+                      <MenuItem value="도메인">도메인</MenuItem>
+                      <MenuItem value="생성자">생성자</MenuItem>
+                    </Select>
+                  </FormControl>
+                  
+                  <TextField
+                    placeholder="검색어를 입력해주세요."
+                    variant="outlined"
+                    sx={{ minWidth: 250 }}
+                    InputProps={{
+                      startAdornment: <Search sx={{ color: 'text.secondary', mr: 1 }} />
+                    }}
+                  />
+                  
+                  <Button variant="contained">
+                    조회
+                  </Button>
+                  
+                  <ButtonGroup variant="outlined" sx={{ ml: 1 }}>
+                    <Button 
+                      color="error"
+                    >
+                      삭제
+                    </Button>
+                    
+                    <Button>
+                      수정
+                    </Button>
+                    
+                    <Button 
+                      variant="contained"
+                      onClick={handleCreateClick}
+                    >
+                      생성
+                    </Button>
+                  </ButtonGroup>
+                  
+                  <FormControl sx={{ minWidth: 120, ml: 1 }}>
+                    <Select defaultValue="10개씩 보기" variant="outlined">
+                      <MenuItem value="10개씩 보기">10개씩 보기</MenuItem>
+                      <MenuItem value="20개씩 보기">20개씩 보기</MenuItem>
+                      <MenuItem value="50개씩 보기">50개씩 보기</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+              </Box>
+            </Paper>
+          </Box>
 
-          <div className="table-container">
-            <table className="workspace-table">
-              <thead>
-                <tr>
-                  <th style={{ textAlign: 'center', width: '50px' }}>
-                    <input 
-                      type="checkbox"
-                      className="select-all"
+          <TableContainer component={Paper}>
+            <Table size="small">
+              <TableHead>
+                <TableRow>
+                  <TableCell padding="checkbox">
+                    <Checkbox
                       checked={selectAll}
                       onChange={handleSelectAll}
+                      size="small"
                     />
-                  </th>
-                  <th>워크스페이스명</th>
-                  <th>조직</th>
-                  <th>생성자</th>
-                  <th>구성원</th>
-                  <th>사용자 현황</th>
-                  <th>생성시간</th>
-                </tr>
-              </thead>
-              <tbody>
+                  </TableCell>
+                  <TableCell>워크스페이스명</TableCell>
+                  <TableCell>조직</TableCell>
+                  <TableCell>생성자</TableCell>
+                  <TableCell>구성원</TableCell>
+                  <TableCell>사용자 현황</TableCell>
+                  <TableCell>생성시간</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
                 {workspaceData.map((item) => (
-                  <tr key={item.id}>
-                    <td>
-                      <input 
-                        type="checkbox"
+                  <TableRow 
+                    key={item.id}
+                    hover
+                    selected={selectedRows.includes(item.id)}
+                  >
+                    <TableCell padding="checkbox">
+                      <Checkbox
                         checked={selectedRows.includes(item.id)}
                         onChange={() => handleRowSelect(item.id)}
+                        size="small"
                       />
-                    </td>
-                    <td>
-                      <div className="workspace-name">
-                        <div className={`workspace-icon ${item.workspace.color}`}>
-                          {item.workspace.icon}
-                        </div>
-                        <span>{item.workspace.name}</span>
-                      </div>
-                    </td>
-                    <td>{item.domain}</td>
-                    <td>{item.creator}</td>
-                    <td>
-                      <div className="count-spinner">
-                        <input 
-                          type="number" 
-                          className="count-input" 
-                          defaultValue={item.memberCount}
-                          min="0"
-                          onChange={(e) => handleSpinnerChange(item.id, e.target.value)}
-                          style={{
-                            width: '80px',
-                            padding: '4px 8px',
-                            border: '1px solid #D1D5DB',
-                            borderRadius: '4px',
-                            fontSize: '13px',
-                            textAlign: 'center'
+                    </TableCell>
+                    <TableCell>
+                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Box 
+                          className={`workspace-icon ${item.workspace.color}`}
+                          sx={{ 
+                            width: 32, 
+                            height: 32, 
+                            borderRadius: 2,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: 'white',
+                            fontWeight: 600,
+                            mr: 1.5
                           }}
+                        >
+                          {item.workspace.icon}
+                        </Box>
+                        <Typography variant="body2">
+                          {item.workspace.name}
+                        </Typography>
+                      </Box>
+                    </TableCell>
+                    <TableCell>{item.domain}</TableCell>
+                    <TableCell>{item.creator}</TableCell>
+                    <TableCell>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                        <TextField
+                          type="number"
+                          size="small"
+                          value={item.memberCount}
+                          onChange={(e) => handleSpinnerChange(item.id, e.target.value)}
+                          sx={{ width: 80 }}
+                          inputProps={{ min: 0 }}
                         />
-                        <div className="spinner-buttons" style={{ marginLeft: '4px' }}>
-                          <button 
-                            className="spinner-btn spinner-up"
-                            style={{
-                              display: 'block',
-                              width: '20px',
-                              height: '15px',
-                              border: '1px solid #D1D5DB',
-                              background: '#F9FAFB',
-                              cursor: 'pointer',
-                              borderRadius: '2px',
-                              marginBottom: '1px'
-                            }}
-                            onClick={() => {
-                              const input = document.querySelector(`input[data-id="${item.id}"]`)
-                              if (input) {
-                                const newValue = parseInt(input.value) + 1
-                                input.value = newValue
-                                handleSpinnerChange(item.id, newValue)
-                              }
-                            }}
-                          >
-                            <img src="../asset/spinner-up.svg" alt="증가" style={{ width: '10px', height: '6px' }} />
-                          </button>
-                          <button 
-                            className="spinner-btn spinner-down"
-                            style={{
-                              display: 'block',
-                              width: '20px',
-                              height: '15px',
-                              border: '1px solid #D1D5DB',
-                              background: '#F9FAFB',
-                              cursor: 'pointer',
-                              borderRadius: '2px'
-                            }}
-                            onClick={() => {
-                              const input = document.querySelector(`input[data-id="${item.id}"]`)
-                              if (input) {
-                                const newValue = Math.max(0, parseInt(input.value) - 1)
-                                input.value = newValue
-                                handleSpinnerChange(item.id, newValue)
-                              }
-                            }}
-                          >
-                            <img src="../asset/spinner-down.svg" alt="감소" style={{ width: '10px', height: '6px' }} />
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                    <td>{renderUserStatus(item.userStatus)}</td>
-                    <td>{item.createdDate}</td>
-                  </tr>
+                      </Box>
+                    </TableCell>
+                    <TableCell>
+                      {renderUserStatus(item.userStatus)}
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="body2" color="text.secondary">
+                        {item.createdDate}
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
-          </div>
+              </TableBody>
+            </Table>
+          </TableContainer>
 
           {/* 페이지네이션 */}
-          <div className="pagination" style={{ 
-            display: 'flex', 
-            justifyContent: 'center', 
-            alignItems: 'center', 
-            marginTop: '20px',
-            gap: '4px'
-          }}>
-            <button 
-              className="page-btn prev" 
-              disabled
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #ddd',
-                background: '#f5f5f5',
-                color: '#999',
-                borderRadius: '4px',
-                cursor: 'not-allowed'
-              }}
-            >
-              ‹
-            </button>
-            <button 
-              className="page-btn active"
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #2196F3',
-                background: '#2196F3',
-                color: 'white',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                minWidth: '36px'
-              }}
-            >
-              1
-            </button>
-            <button 
-              className="page-btn"
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #ddd',
-                background: 'white',
-                color: '#333',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                minWidth: '36px'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#f0f0f0'
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'white'
-              }}
-            >
-              2
-            </button>
-            <button 
-              className="page-btn"
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #ddd',
-                background: 'white',
-                color: '#333',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                minWidth: '36px'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#f0f0f0'
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'white'
-              }}
-            >
-              3
-            </button>
-            <button 
-              className="page-btn next"
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #ddd',
-                background: 'white',
-                color: '#333',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#f0f0f0'
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'white'
-              }}
-            >
-              ›
-            </button>
-          </div>
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+            <Pagination 
+              count={3} 
+              page={1} 
+              variant="outlined" 
+              shape="rounded"
+            />
+          </Box>
         </div>
       </div>
 
       {/* 워크스페이스 생성 모달 */}
-      {isCreateModalOpen && (
-        <div className="modal-overlay" style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 1000
-        }}>
-          <div className="modal-container workspace-create-modal" style={{
-            background: 'white',
-            borderRadius: '12px',
-            width: '500px',
-            maxWidth: '90vw',
-            maxHeight: '90vh',
-            overflow: 'auto'
-          }}>
-            <div className="modal-content" style={{ padding: '32px', textAlign: 'center' }}>
-              <h2 className="modal-title" style={{ 
-                fontSize: '20px', 
-                fontWeight: '600', 
-                color: '#111827', 
-                margin: '0 0 24px 0' 
-              }}>
-                워크스페이스 생성
-              </h2>
-              
-              {/* 워크스페이스 아이콘 */}
-              <div className="workspace-icon-section" style={{ marginBottom: '32px', display: 'flex', justifyContent: 'center' }}>
-                <div 
-                  className="workspace-icon-large"
-                  style={{ 
-                    width: '80px', 
-                    height: '80px', 
-                    borderRadius: '20px',
-                    background: getRandomIconColor(),
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center',
-                    fontSize: '32px',
-                    fontWeight: '600',
-                    color: 'white',
-                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-                  }}
-                >
-                  {newWorkspace.name ? newWorkspace.name.charAt(0).toUpperCase() : 'W'}
-                </div>
-              </div>
+      <Dialog 
+        open={isCreateModalOpen} 
+        onClose={handleModalClose}
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogTitle sx={{ textAlign: 'center', pb: 2 }}>
+          워크스페이스 생성
+        </DialogTitle>
+        
+        <DialogContent>
+          {/* 워크스페이스 아이콘 */}
+          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
+            <Box
+              sx={{
+                width: 80,
+                height: 80,
+                borderRadius: 5,
+                background: getRandomIconColor(),
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '32px',
+                fontWeight: 600,
+                color: 'white',
+                boxShadow: 2
+              }}
+            >
+              {newWorkspace.name ? newWorkspace.name.charAt(0).toUpperCase() : 'W'}
+            </Box>
+          </Box>
 
-              {/* 폼 섹션 */}
-              <div className="form-section" style={{ textAlign: 'left', marginBottom: '32px' }}>
-                {/* 이름 입력 */}
-                <div className="form-group" style={{ marginBottom: '20px' }}>
-                  <label className="form-label" style={{ 
-                    display: 'block', 
-                    fontSize: '14px', 
-                    fontWeight: '500', 
-                    color: '#374151', 
-                    marginBottom: '8px' 
-                  }}>
-                    이름
-                  </label>
-                  <input
-                    type="text"
-                    className="form-input"
-                    value={newWorkspace.name}
-                    onChange={(e) => setNewWorkspace(prev => ({ ...prev, name: e.target.value }))}
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      border: '1px solid #D1D5DB',
-                      borderRadius: '8px',
-                      fontSize: '14px',
-                      color: '#111827',
-                      background: 'white',
-                      boxSizing: 'border-box'
-                    }}
-                  />
-                </div>
+          {/* 폼 섹션 */}
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+            <TextField
+              label="이름"
+              value={newWorkspace.name}
+              onChange={(e) => setNewWorkspace(prev => ({ ...prev, name: e.target.value }))}
+              fullWidth
+              variant="outlined"
+              size="small"
+            />
 
-                {/* 도메인 입력 */}
-                <div className="form-group" style={{ marginBottom: '20px' }}>
-                  <label className="form-label" style={{ 
-                    display: 'block', 
-                    fontSize: '14px', 
-                    fontWeight: '500', 
-                    color: '#374151', 
-                    marginBottom: '8px' 
-                  }}>
-                    도메인
-                  </label>
-                  <input
-                    type="text"
-                    className="form-input"
-                    value={newWorkspace.domain}
-                    onChange={(e) => setNewWorkspace(prev => ({ ...prev, domain: e.target.value }))}
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      border: '1px solid #D1D5DB',
-                      borderRadius: '8px',
-                      fontSize: '14px',
-                      color: '#111827',
-                      background: 'white',
-                      boxSizing: 'border-box'
-                    }}
-                  />
-                  <div className="form-error" style={{ 
-                    marginTop: '6px', 
-                    fontSize: '12px', 
-                    color: '#EF4444' 
-                  }}>
-                    필수 입력 항목입니다.
-                  </div>
-                </div>
+            <TextField
+              label="도메인"
+              value={newWorkspace.domain}
+              onChange={(e) => setNewWorkspace(prev => ({ ...prev, domain: e.target.value }))}
+              fullWidth
+              variant="outlined"
+              size="small"
+              helperText="필수 입력 항목입니다."
+              error={!newWorkspace.domain}
+            />
 
-                {/* 비고 입력 */}
-                <div className="form-group" style={{ marginBottom: '20px' }}>
-                  <label className="form-label" style={{ 
-                    display: 'block', 
-                    fontSize: '14px', 
-                    fontWeight: '500', 
-                    color: '#374151', 
-                    marginBottom: '8px' 
-                  }}>
-                    비고
-                  </label>
-                  <textarea
-                    className="form-textarea"
-                    rows={3}
-                    value={newWorkspace.description}
-                    onChange={(e) => setNewWorkspace(prev => ({ ...prev, description: e.target.value }))}
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      border: '1px solid #D1D5DB',
-                      borderRadius: '8px',
-                      fontSize: '14px',
-                      color: '#111827',
-                      background: 'white',
-                      boxSizing: 'border-box',
-                      minHeight: '80px',
-                      resize: 'none',
-                      fontFamily: 'inherit'
-                    }}
-                  />
-                </div>
-              </div>
-
-              {/* 모달 버튼 */}
-              <div className="modal-buttons" style={{ display: 'flex', gap: '16px' }}>
-                <button 
-                  className="btn-cancel"
-                  onClick={handleModalClose}
-                  style={{
-                    flex: 1,
-                    padding: '12px',
-                    fontSize: '16px',
-                    border: '1px solid #D1D5DB',
-                    borderRadius: '8px',
-                    background: 'white',
-                    color: '#374151',
-                    cursor: 'pointer'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background = '#F9FAFB'
-                    e.target.style.borderColor = '#9CA3AF'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background = 'white'
-                    e.target.style.borderColor = '#D1D5DB'
-                  }}
-                >
-                  취소
-                </button>
-                <button 
-                  className="btn-confirm"
-                  onClick={handleCreateWorkspace}
-                  style={{
-                    flex: 1,
-                    padding: '12px',
-                    fontSize: '16px',
-                    border: '1px solid #3B82F6',
-                    borderRadius: '8px',
-                    background: '#3B82F6',
-                    color: 'white',
-                    cursor: 'pointer'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background = '#2563EB'
-                    e.target.style.borderColor = '#2563EB'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background = '#3B82F6'
-                    e.target.style.borderColor = '#3B82F6'
-                  }}
-                >
-                  확인
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+            <TextField
+              label="비고"
+              value={newWorkspace.description}
+              onChange={(e) => setNewWorkspace(prev => ({ ...prev, description: e.target.value }))}
+              fullWidth
+              multiline
+              rows={3}
+              variant="outlined"
+              size="small"
+            />
+          </Box>
+        </DialogContent>
+        
+        <DialogActions sx={{ p: 3, gap: 2 }}>
+          <Button 
+            onClick={handleModalClose}
+            variant="outlined"
+            fullWidth
+          >
+            취소
+          </Button>
+          <Button 
+            onClick={handleCreateWorkspace}
+            variant="contained"
+            fullWidth
+          >
+            확인
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Layout>
   )
 }

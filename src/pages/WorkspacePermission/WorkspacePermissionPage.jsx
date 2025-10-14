@@ -302,9 +302,9 @@ const WorkspacePermissionPage = () => {
         <div className="content-body">
           {/* 기능 권한 관리 테이블 */}
           <div className="permission-table-container">
-            <table className="permission-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <table className="permission-table">
               <thead>
-                <tr style={{ backgroundColor: '#F8F9FA' }}>
+                <tr className="table-header">
                   <th style={{ 
                     width: '250px', 
                     padding: '12px 16px', 
@@ -341,7 +341,7 @@ const WorkspacePermissionPage = () => {
               </thead>
               <tbody>
                 {featureData.map((feature, index) => (
-                  <tr key={feature.id} style={{ borderBottom: '1px solid #E5E7EB' }}>
+                  <tr key={feature.id} className="table-row">
                     <td className="feature-name" style={{ 
                       padding: '16px', 
                       fontSize: '14px', 

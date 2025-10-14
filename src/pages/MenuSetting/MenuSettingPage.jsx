@@ -1,186 +1,166 @@
 import React, { useState } from 'react'
-import {
-  FormControl,
-  Select,
-  MenuItem,
-  Switch,
-  FormControlLabel,
-  Button,
-  ButtonGroup,
-  Box
-} from '@mui/material'
 import Layout from '../../components/Layout/Layout'
 
-const menuData = [
-  {
-    id: 1,
-    name: '기능 권한 관리',
-    url: 'workspace_permission.html',
-    isEnabled: true
-  },
-  {
-    id: 2,
-    name: '메뉴 관리',
-    url: 'workspace_menu_setting.html',
-    isEnabled: true
-  },
-  {
-    id: 3,
-    name: '메뉴 권한 관리',
-    url: 'workspace_group_setting.html',
-    isEnabled: true
-  },
-  {
-    id: 4,
-    name: '사용자 관리',
-    url: 'user.html',
-    isEnabled: true
-  },
-  {
-    id: 5,
-    name: '로고 이미지 관리',
-    url: 'logo.html',
-    isEnabled: true
-  },
-  {
-    id: 6,
-    name: '회의 템플릿 관리',
-    url: 'meet_template.html',
-    isEnabled: true
-  },
-  {
-    id: 7,
-    name: '프롬프트 관리',
-    url: 'prompt.html',
-    isEnabled: true
-  },
-  {
-    id: 8,
-    name: '동의서 관리',
-    url: 'consent.html',
-    isEnabled: true
-  },
-  {
-    id: 9,
-    name: '캘린더 관리',
-    url: 'calendar.html',
-    isEnabled: true
-  },
-  {
-    id: 10,
-    name: '사용자 접속 이력',
-    url: 'login_history.html',
-    isEnabled: true
-  },
-  {
-    id: 11,
-    name: '다운로드 이력',
-    url: 'download_history.html',
-    isEnabled: true
-  },
-  {
-    id: 12,
-    name: '사용자 동의 이력',
-    url: 'user_consent_history.html',
-    isEnabled: true
-  },
-  {
-    id: 13,
-    name: '설정변경 이력',
-    url: 'setting_change_history.html',
-    isEnabled: true
-  },
-  {
-    id: 14,
-    name: '회의록 관리',
-    url: 'meeting.html',
-    isEnabled: true
-  },
-  {
-    id: 15,
-    name: '사전 관리',
-    url: 'dictionary.html',
-    isEnabled: true
-  },
-  {
-    id: 16,
-    name: '공지사항 관리',
-    url: 'notice.html',
-    isEnabled: true
-  },
-  {
-    id: 17,
-    name: '사용량 통계',
-    url: 'stats_usage.html',
-    isEnabled: true
-  },
-  {
-    id: 18,
-    name: '사용자별 통계',
-    url: 'stats_user.html',
-    isEnabled: true
-  }
-]
-
 const MenuSettingPage = () => {
-  const [menus, setMenus] = useState(menuData)
-  const [selectedWorkspace, setSelectedWorkspace] = useState('all')
-  const [activeTab, setActiveTab] = useState('system-menu') // 시스템 메뉴가 기본 활성
+  const [activeTab, setActiveTab] = useState('system-menu')
+  const [selectedWorkspace, setSelectedWorkspace] = useState('워크스페이스 목록')
+  const [isNewMenuModalOpen, setIsNewMenuModalOpen] = useState(false)
+  const [selectAll, setSelectAll] = useState(false)
+  const [selectedRows, setSelectedRows] = useState([])
 
-  const handleMenuToggle = (id, newStatus) => {
-    setMenus(menus.map(menu =>
-      menu.id === id ? { ...menu, isEnabled: newStatus } : menu
-    ))
+  // 시스템 메뉴 데이터
+  const systemMenuData = [
+    { id: 1, name: '워크스페이스 관리', url: '/workspace', order: 1, isActive: true },
+    { id: 2, name: '전체 메뉴 관리', url: '/menu-setting', order: 2, isActive: true },
+    { id: 3, name: '사용자 관리', url: '/user-management', order: 3, isActive: true },
+    { id: 4, name: '메뉴 권한 관리', url: '/group-setting', order: 4, isActive: true },
+    { id: 5, name: '설정변경 이력', url: '/setting-history', order: 5, isActive: true },
+    { id: 6, name: '전체 시스템 사용 통계', url: '/system-stats', order: 6, isActive: true }
+  ]
+
+  // 워크스페이스 메뉴 데이터
+  const workspaceMenuData = [
+    // 워크스페이스 설정
+    { id: 'ws-1', name: '기능 권한 관리', url: '/workspace-permission', category: '워크스페이스 설정', isActive: true },
+    { id: 'ws-2', name: '컨텐츠 보존 관리', url: '/content-retention', category: '워크스페이스 설정', isActive: true },
+    { id: 'ws-3', name: '메뉴 권한 관리', url: '/workspace-group-setting', category: '워크스페이스 설정', isActive: true },
+    { id: 'ws-4', name: '사용자 관리', url: '/user', category: '워크스페이스 설정', isActive: true },
+    { id: 'ws-5', name: '로고 관리', url: '/logo', category: '워크스페이스 설정', isActive: true },
+    
+    // 세부 기능 관리
+    { id: 'df-1', name: '템플릿 관리', url: '/meet-template', category: '세부 기능 관리', isActive: true },
+    { id: 'df-2', name: '프롬프트 관리', url: '/prompt', category: '세부 기능 관리', isActive: true },
+    { id: 'df-3', name: '동의서 관리', url: '/consent', category: '세부 기능 관리', isActive: true },
+    { id: 'df-4', name: '캘린더 관리/설정', url: '/calendar', category: '세부 기능 관리', isActive: true },
+    { id: 'df-5', name: '사전 관리', url: '/dictionary', category: '세부 기능 관리', isActive: true },
+    { id: 'df-6', name: '공지사항 관리', url: '/notice', category: '세부 기능 관리', isActive: true },
+    
+    // 이력/통계 관리
+    { id: 'hs-1', name: '사용자 접속 이력', url: '/login-history', category: '이력/통계 관리', isActive: true },
+    { id: 'hs-2', name: '다운로드 이력', url: '/download-history', category: '이력/통계 관리', isActive: true },
+    { id: 'hs-3', name: '사용자 동의 이력', url: '/user-consent-history', category: '이력/통계 관리', isActive: true },
+    { id: 'hs-4', name: '설정 변경 이력', url: '/setting-change-history', category: '이력/통계 관리', isActive: true },
+    { id: 'hs-5', name: '회의록 이력', url: '/meeting', category: '이력/통계 관리', isActive: true },
+    { id: 'hs-6', name: '워크스페이스 사용 통계', url: '/stats-usage', category: '이력/통계 관리', isActive: true },
+    { id: 'hs-7', name: '사용자별 사용 통계', url: '/stats-user', category: '이력/통계 관리', isActive: true }
+  ]
+
+  // 워크스페이스 목록
+  const workspaceList = [
+    '워크스페이스 목록', 'SK Telecom', 'Samsung Electronics', 'LG Electronics', 
+    'Hyundai Motor', 'KT Corporation', 'POSCO', 'Naver Corporation', 
+    'Kakao Corp', 'Coupang', 'Krafton'
+  ]
+
+  // 탭 변경 핸들러
+  const handleTabChange = (tab) => {
+    setActiveTab(tab)
+    // 탭 변경 시 선택 상태 초기화
+    setSelectAll(false)
+    setSelectedRows([])
   }
 
-  const handleEdit = (id) => {
-    console.log('Edit menu:', id)
+  // 워크스페이스 선택 핸들러
+  const handleWorkspaceChange = (e) => {
+    setSelectedWorkspace(e.target.value)
   }
 
-  const handleDelete = (id) => {
-    if (window.confirm('이 메뉴를 삭제하시겠습니까?')) {
-      setMenus(prev => prev.filter(menu => menu.id !== id))
+  // 전체 선택 핸들러
+  const handleSelectAll = (e) => {
+    const isChecked = e.target.checked
+    setSelectAll(isChecked)
+    if (isChecked) {
+      const currentData = activeTab === 'system-menu' ? systemMenuData : workspaceMenuData
+      setSelectedRows(currentData.map(item => item.id))
+    } else {
+      setSelectedRows([])
     }
   }
 
-  const handleReset = () => {
-    if (window.confirm('메뉴 설정을 초기화하시겠습니까?')) {
-      setMenus(menuData)
+  // 개별 선택 핸들러
+  const handleRowSelect = (id) => {
+    if (selectedRows.includes(id)) {
+      setSelectedRows(selectedRows.filter(rowId => rowId !== id))
+    } else {
+      setSelectedRows([...selectedRows, id])
     }
+  }
+
+  // 토글 스위치 핸들러
+  const handleToggle = (id) => {
+    // 토글 로직 구현
+    console.log('Toggle menu:', id)
+  }
+
+  // 버튼 핸들러들
+  const handleDelete = () => {
+    if (selectedRows.length === 0) {
+      alert('삭제할 항목을 선택해주세요.')
+      return
+    }
+    alert(`${selectedRows.length}개 항목이 삭제되었습니다.`)
+  }
+
+  const handleEdit = () => {
+    if (selectedRows.length !== 1) {
+      alert('수정할 항목을 하나만 선택해주세요.')
+      return
+    }
+    alert('수정 기능을 구현해주세요.')
+  }
+
+  const handleNew = () => {
+    setIsNewMenuModalOpen(true)
   }
 
   const handleSave = () => {
-    alert('메뉴 설정이 저장되었습니다.')
-    console.log('Save menus:', menus)
+    alert('저장되었습니다.')
   }
 
-  const handleNewMenu = () => {
-    console.log('Create new menu')
+  const handleApply = () => {
+    alert('적용되었습니다.')
+  }
+
+  // 모달 닫기
+  const handleModalClose = () => {
+    setIsNewMenuModalOpen(false)
+  }
+
+  // 카테고리별 메뉴 그룹화
+  const getGroupedWorkspaceMenus = () => {
+    const groups = {}
+    workspaceMenuData.forEach(menu => {
+      if (!groups[menu.category]) {
+        groups[menu.category] = []
+      }
+      groups[menu.category].push(menu)
+    })
+    return groups
   }
 
   return (
     <Layout className="page-menu-setting">
-      <div className="content menu-setting-page">
+      <div className="content">
         <div className="content-header">
           <h1 className="breadcrumb">전체 메뉴 관리</h1>
         </div>
         
         <div className="content-body">
         {/* 탭 네비게이션 */}
-        <div className="menu-setting-tab-container">
-          <ul className="menu-setting-tab-list">
+          <div className="menu-tab-container">
+            <ul className="tab-list">
               <li>
                 <button 
-                  className={`menu-setting-tab-button ${activeTab === 'system-menu' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('system-menu')}
+                    className={`tab-button ${activeTab === 'system-menu' ? 'active' : ''}`}
+                    onClick={() => handleTabChange('system-menu')}
                 >
                   시스템 메뉴 관리
                 </button>
               </li>
               <li>
                 <button 
-                  className={`menu-setting-tab-button ${activeTab === 'workspace-menu' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('workspace-menu')}
+                    className={`tab-button ${activeTab === 'workspace-menu' ? 'active' : ''}`}
+                    onClick={() => handleTabChange('workspace-menu')}
                 >
                   워크스페이스 메뉴 관리
                 </button>
@@ -190,24 +170,30 @@ const MenuSettingPage = () => {
 
           {/* 시스템 메뉴 관리 탭 */}
           {activeTab === 'system-menu' && (
-            <div id="system-menu" className="menu-setting-tab-content">
+            <div className="tab-content active">
           <div className="menu-title-header">
             <div className="menu-title-section">
                   <h3 className="menu-subtitle">시스템 메뉴 관리</h3>
-                  <span className="menu-count">총 6개 메뉴</span>
+                  <span className="menu-count">총 {systemMenuData.length}개 메뉴</span>
                 </div>
                 <div className="menu-action-buttons">
-                  <button className="delete-btn">삭제</button>
-                  <button className="edit-btn">수정</button>
-                  <button className="new-button">생성</button>
+                  <button className="delete-btn" onClick={handleDelete}>삭제</button>
+                  <button className="edit-btn" onClick={handleEdit}>수정</button>
+                  <button className="new-button" onClick={handleNew}>생성</button>
                 </div>
           </div>
 
-              <div className="table-container">
                 <table className="menu-table">
                   <thead>
                     <tr>
-                      <th><input type="checkbox" className="select-all" /></th>
+                    <th>
+                      <input 
+                        type="checkbox" 
+                        className="select-all"
+                        checked={selectAll}
+                        onChange={handleSelectAll}
+                      />
+                    </th>
                       <th>메뉴명</th>
                       <th>URL</th>
                       <th>순서</th>
@@ -216,579 +202,180 @@ const MenuSettingPage = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td><input type="checkbox" /></td>
-                      <td>워크스페이스 관리</td>
-                      <td>workspace.html</td>
-                      <td>1</td>
+                  {systemMenuData.map(menu => (
+                    <tr key={menu.id}>
+                      <td>
+                        <input 
+                          type="checkbox"
+                          checked={selectedRows.includes(menu.id)}
+                          onChange={() => handleRowSelect(menu.id)}
+                        />
+                      </td>
+                      <td>{menu.name}</td>
+                      <td>{menu.url}</td>
+                      <td>{menu.order}</td>
                       <td>
                         <label className="switch">
-                          <input type="checkbox" defaultChecked />
+                          <input 
+                            type="checkbox" 
+                            checked={menu.isActive}
+                            onChange={() => handleToggle(menu.id)}
+                          />
                           <span className="slider"></span>
                         </label>
                       </td>
                       <td>
-                        <button className="edit-btn small">수정</button>
+                        <button className="edit-btn">수정</button>
                       </td>
                     </tr>
-                    <tr>
-                      <td><input type="checkbox" /></td>
-                      <td>전체 메뉴 관리</td>
-                      <td>menu_setting.html</td>
-                      <td>2</td>
-                      <td>
-                        <label className="switch">
-                          <input type="checkbox" defaultChecked />
-                          <span className="slider"></span>
-                        </label>
-                      </td>
-                      <td>
-                        <button className="edit-btn small">수정</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" /></td>
-                      <td>사용자 관리</td>
-                      <td>system_user.html</td>
-                      <td>3</td>
-                      <td>
-                        <label className="switch">
-                          <input type="checkbox" defaultChecked />
-                          <span className="slider"></span>
-                        </label>
-                      </td>
-                      <td>
-                        <button className="edit-btn small">수정</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" /></td>
-                      <td>메뉴 권한 관리</td>
-                      <td>group_setting.html</td>
-                      <td>4</td>
-                      <td>
-                        <label className="switch">
-                          <input type="checkbox" defaultChecked />
-                          <span className="slider"></span>
-                        </label>
-                      </td>
-                      <td>
-                        <button className="edit-btn small">수정</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" /></td>
-                      <td>전체 시스템 사용 통계</td>
-                      <td>system_stats_usage.html</td>
-                      <td>5</td>
-                      <td>
-                        <label className="switch">
-                          <input type="checkbox" defaultChecked />
-                          <span className="slider"></span>
-                        </label>
-                      </td>
-                      <td>
-                        <button className="edit-btn small">수정</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" /></td>
-                      <td>사용자별 사용 통계</td>
-                      <td>system_stats_user.html</td>
-                      <td>6</td>
-                      <td>
-                        <label className="switch">
-                          <input type="checkbox" defaultChecked />
-                          <span className="slider"></span>
-                        </label>
-                      </td>
-                      <td>
-                        <button className="edit-btn small">수정</button>
-                      </td>
-                    </tr>
+                  ))}
                   </tbody>
                 </table>
-              </div>
             </div>
           )}
 
           {/* 워크스페이스 메뉴 관리 탭 */}
           {activeTab === 'workspace-menu' && (
-            <div id="workspace-menu" className="menu-setting-tab-content">
-              <div className="menu-setting-title-header">
-                <div className="menu-setting-title-section">
+            <div className="tab-content active">
+              <div className="menu-title-header">
+                <div className="menu-title-section">
               <h3 className="menu-subtitle">메뉴 관리</h3>
               <div className="workspace-selector">
-                    <FormControl size="small" className="combo-select menu-setting-workspace-selector">
-                    <Select
-                      value={selectedWorkspace}
-                      onChange={(e) => setSelectedWorkspace(e.target.value)}
-                      variant="outlined"
-                        sx={{ 
-                          width: '100%',
-                          fontSize: '14px',
-                          height: '40px',
-                          '& .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#ddd',
-                            borderRadius: '8px'
-                          },
-                          '&:hover .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#999'
-                          },
-                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#0066FF',
-                            borderWidth: '2px',
-                            boxShadow: '0 0 0 2px rgba(0, 102, 255, 0.1)'
-                          },
-                          '& .MuiSelect-select': {
-                            padding: '8px 32px 8px 12px',
-                            fontSize: '14px',
-                            lineHeight: '1.5'
-                          },
-                          '& .MuiSvgIcon-root': {
-                            right: '8px',
-                            color: '#666'
-                          }
-                        }}
-                      >
-                        <MenuItem value="all">워크스페이스 목록</MenuItem>
-                      <MenuItem value="sk-telecom">SK Telecom</MenuItem>
-                      <MenuItem value="sk-hynix">SK Hynix</MenuItem>
-                      <MenuItem value="sk-on">SK On</MenuItem>
-                      <MenuItem value="timbel-mk">Timbel_Mk</MenuItem>
-                      <MenuItem value="timbel-sol">Timbel_sol</MenuItem>
-                    </Select>
-                  </FormControl>
+                    <select value={selectedWorkspace} onChange={handleWorkspaceChange}>
+                      {workspaceList.map((workspace, index) => (
+                        <option key={index} value={workspace}>{workspace}</option>
+                      ))}
+                    </select>
               </div>
             </div>
-            <div className="menu-action-section">
-                  <div className="menu-action-buttons" style={{ display: 'flex', gap: '8px' }}>
-                    <button 
-                      className="btn-reset"
-                      style={{
-                        padding: '8px 16px',
-                        fontSize: '14px',
-                        background: '#fff',
-                        color: '#6B7280',
-                        border: '1px solid #D1D5DB',
-                        borderRadius: '6px',
-                        cursor: 'pointer'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.background = '#F9FAFB';
-                        e.target.style.borderColor = '#9CA3AF';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.background = '#fff';
-                        e.target.style.borderColor = '#D1D5DB';
-                    }}
-                  >
-                    초기화
-                    </button>
-                    <button 
-                      className="btn-save"
-                      style={{
-                        padding: '8px 16px',
-                        fontSize: '14px',
-                        background: 'transparent',
-                        color: '#10B981',
-                        border: '1px solid #10B981',
-                        borderRadius: '6px',
-                        cursor: 'pointer'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.background = '#f0fdf4';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.background = 'transparent';
-                    }}
-                  >
-                    저장
-                    </button>
-                    <button 
-                      className="btn-submit"
-                      style={{
-                        padding: '8px 16px',
-                        fontSize: '14px',
-                        background: '#3B82F6',
-                    color: 'white',
-                        border: '1px solid #3B82F6',
-                        borderRadius: '6px',
-                        cursor: 'pointer'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.background = '#2563EB';
-                        e.target.style.borderColor = '#2563EB';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.background = '#3B82F6';
-                        e.target.style.borderColor = '#3B82F6';
-                  }}
-                >
-                  + 새 메뉴
-                    </button>
-                  </div>
+                <div className="menu-action-buttons">
+                  <button className="btn-save" onClick={handleSave}>저장</button>
+                  <button className="new-button" onClick={handleNew}>생성</button>
+                  <button className="btn-submit btn-apply" onClick={handleApply}>적용</button>
             </div>
           </div>
 
-              {/* 워크스페이스 메뉴 테이블 */}
-          <div className="table-container">
             <table className="menu-table">
               <thead>
                 <tr>
-                  <th width="300">메뉴명</th>
-                  <th width="100">사용여부</th>
-                  <th width="350">URL</th>
-                  <th width="140">수정/삭제</th>
+                    <th>
+                      <input 
+                        type="checkbox" 
+                        className="select-all"
+                        checked={selectAll}
+                        onChange={handleSelectAll}
+                      />
+                    </th>
+                    <th>메뉴명</th>
+                    <th>URL</th>
+                    <th>사용여부</th>
+                    <th>관리</th>
                 </tr>
               </thead>
               <tbody>
-                    {/* 워크스페이스 설정 그룹 */}
-                    <tr className="section-header" style={{ background: '#EBF8FF' }}>
-                      <td 
-                        colSpan={4} 
-                        className="section-title"
-                        style={{
-                          fontWeight: '600',
-                          color: '#1E40AF',
-                          padding: '12px 16px',
-                          borderBottom: '1px solid #BFDBFE',
-                          textAlign: 'left',
-                          fontSize: '14px',
-                          letterSpacing: '0.3px'
-                        }}
-                      >
-                        📁 워크스페이스 설정
+                  {Object.entries(getGroupedWorkspaceMenus()).map(([category, menus]) => (
+                    <React.Fragment key={category}>
+                      <tr className="section-header">
+                        <td colSpan="5" className={`section-title ${category.replace(/[^a-zA-Z]/g, '').toLowerCase()}`}>
+                          {category}
                       </td>
                     </tr>
-                    <tr>
-                      <td>FO기능정책관리</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
+                      {menus.map(menu => (
+                        <tr key={menu.id}>
+                          <td>
+                            <input 
+                              type="checkbox"
+                              checked={selectedRows.includes(menu.id)}
+                              onChange={() => handleRowSelect(menu.id)}
                         />
                       </td>
-                      <td>workspace_permission.html</td>
+                          <td>{menu.name}</td>
+                          <td>{menu.url}</td>
+                          <td>
+                            <label className="switch">
+                              <input 
+                                type="checkbox" 
+                                checked={menu.isActive}
+                                onChange={() => handleToggle(menu.id)}
+                              />
+                              <span className="slider"></span>
+                            </label>
+                      </td>
                       <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
+                            <button className="edit-btn">수정</button>
                       </td>
                     </tr>
-                    <tr>
-                      <td>컨텐츠 보존 관리</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>content_retention.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>메뉴 권한 관리</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>workspace_group_setting.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>사용자 관리</td>
-                    <td>
-                      <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>user.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>로고 관리</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                        label=""
-                      />
-                    </td>
-                      <td>logo.html</td>
-                    <td>
-                      <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-
-                    {/* 세부 기능 관리 그룹 */}
-                    <tr className="section-header" style={{ background: '#EBF8FF' }}>
-                      <td 
-                        colSpan={4} 
-                        className="section-title"
-                        style={{
-                          fontWeight: '600',
-                          color: '#1E40AF',
-                          padding: '12px 16px',
-                          borderBottom: '1px solid #BFDBFE',
-                          textAlign: 'left',
-                          fontSize: '14px',
-                          letterSpacing: '0.3px'
-                        }}
-                      >
-                        ⚙️ 세부 기능 관리
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>템플릿 관리 (회의록, 공통 템플릿)</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>meet_template.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>프롬프트 관리</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>prompt.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>동의서 관리</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>consent.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>캘린더 관리/설정</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>calendar.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>사전 관리</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>dictionary.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>공지사항 관리</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>notice.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-
-                    {/* 이력/통계 관리 그룹 */}
-                    <tr className="section-header" style={{ background: '#EBF8FF' }}>
-                      <td 
-                        colSpan={4} 
-                        className="section-title"
-                        style={{
-                          fontWeight: '600',
-                          color: '#1E40AF',
-                          padding: '12px 16px',
-                          borderBottom: '1px solid #BFDBFE',
-                          textAlign: 'left',
-                          fontSize: '14px',
-                          letterSpacing: '0.3px'
-                        }}
-                      >
-                        📊 이력/통계 관리
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>사용자 접속 이력</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>login_history.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>다운로드 이력</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>download_history.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>사용자 동의 이력</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>user_consent_history.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>설정 변경 이력</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>setting_change_history.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>회의록 이력</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>meeting.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>워크스페이스 사용 통계</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>stats_usage.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                        </ButtonGroup>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>사용자별 사용 통계</td>
-                      <td>
-                        <FormControlLabel
-                          control={<Switch defaultChecked size="small" />}
-                          label=""
-                        />
-                      </td>
-                      <td>stats_user.html</td>
-                      <td>
-                        <ButtonGroup variant="outlined" size="small">
-                          <Button sx={{ color: 'primary.main', fontSize: '12px' }}>수정</Button>
-                          <Button sx={{ color: 'error.main', fontSize: '12px' }}>삭제</Button>
-                      </ButtonGroup>
-                    </td>
-                  </tr>
+                      ))}
+                    </React.Fragment>
+                  ))}
               </tbody>
             </table>
+            </div>
+          )}
+
+          {/* 새 메뉴 생성 모달 */}
+          {isNewMenuModalOpen && (
+            <div className="modal-overlay">
+              <div className="modal-container">
+                <div className="modal-header">
+                  <div className="header-content">
+                    <h3 className="header-text">새 메뉴</h3>
+                    <button className="btn-close" onClick={handleModalClose}>×</button>
+                  </div>
+                </div>
+                <div className="modal-body">
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label>메뉴명</label>
+                      <input type="text" className="form-input" placeholder="메뉴명을 입력하세요" />
+                    </div>
+                  </div>
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label>URL</label>
+                      <input type="text" className="form-input" placeholder="URL을 입력하세요" />
+                    </div>
+                  </div>
+                  {activeTab === 'system-menu' && (
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label>순서</label>
+                        <input type="number" className="form-input" placeholder="순서를 입력하세요" />
+                      </div>
+                    </div>
+                  )}
+                  {activeTab === 'workspace-menu' && (
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label>카테고리</label>
+                        <select className="form-input">
+                          <option>워크스페이스 설정</option>
+                          <option>세부 기능 관리</option>
+                          <option>이력/통계 관리</option>
+                        </select>
+                      </div>
+                    </div>
+                  )}
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label>사용여부</label>
+                      <div className="status-radio-group">
+                        <div className="radio-option">
+                          <input type="radio" id="active" name="status" value="active" defaultChecked />
+                          <label htmlFor="active" className="radio-label active">사용</label>
+                        </div>
+                        <div className="radio-option">
+                          <input type="radio" id="inactive" name="status" value="inactive" />
+                          <label htmlFor="inactive" className="radio-label inactive">미사용</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="modal-footer">
+                  <button className="btn-cancel" onClick={handleModalClose}>취소</button>
+                  <button className="btn-submit" onClick={handleModalClose}>생성</button>
+                </div>
           </div>
             </div>
           )}

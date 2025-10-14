@@ -5,7 +5,13 @@ import { CssBaseline } from '@mui/material'
 
 // Theme & Components
 import theme from './theme'
-// import LicenseCheck from './components/LicenseCheck'
+import LicenseCheck from './components/LicenseCheck'
+
+// MUI License Setup
+import { setupMuiLicense } from './utils/muiLicense'
+
+// Styles
+import './assets/react-styles.css'
 
 // Pages
 import LogoManagementPage from './pages/LogoManagement/LogoManagementPage'
@@ -23,6 +29,7 @@ import SystemStatsUsagePage from './pages/SystemStatsUsage/SystemStatsUsagePage'
 import MenuSettingPage from './pages/MenuSetting/MenuSettingPage'
 import GroupSettingPage from './pages/GroupSetting/GroupSettingPage'
 import WorkspacePermissionPage from './pages/WorkspacePermission/WorkspacePermissionPage'
+import WorkspaceMenuSettingPage from './pages/WorkspaceMenuSetting/WorkspaceMenuSettingPage'
 import WorkspaceGroupSettingPage from './pages/WorkspaceGroupSetting/WorkspaceGroupSettingPage'
 import MeetTemplatePage from './pages/MeetTemplate/MeetTemplatePage'
 import MeetTemplateDetailPage from './pages/MeetTemplate/MeetTemplateDetailPage'
@@ -37,44 +44,52 @@ import ContentRetentionPage from './pages/ContentRetention/ContentRetentionPage'
 import TestPage from './pages/Test/TestPage'
 
 function App() {
+  // MUI X 라이센스 키 설정
+  React.useEffect(() => {
+    setupMuiLicense()
+  }, [])
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<WorkspacePage />} />
-            <Route path="/test" element={<TestPage />} />
-            <Route path="/logo" element={<LogoManagementPage />} />
-            <Route path="/user" element={<UserPage />} />
-            <Route path="/notice" element={<NoticePage />} />
-            <Route path="/dictionary" element={<DictionaryPage />} />
-            <Route path="/meeting" element={<MeetingPage />} />
-            <Route path="/prompt" element={<PromptPage />} />
-            <Route path="/stats-usage" element={<StatsUsagePage />} />
-            <Route path="/system-stats" element={<SystemStatsPage />} />
-            <Route path="/workspace" element={<WorkspacePage />} />
-            <Route path="/system-user" element={<SystemUserPage />} />
-            <Route path="/system-stats-user" element={<SystemStatsUserPage />} />
-            <Route path="/system-stats-usage" element={<SystemStatsUsagePage />} />
-            <Route path="/menu-setting" element={<MenuSettingPage />} />
-            <Route path="/group-setting" element={<GroupSettingPage />} />
-            <Route path="/workspace-permission" element={<WorkspacePermissionPage />} />
-            <Route path="/workspace-group-setting" element={<WorkspaceGroupSettingPage />} />
-            <Route path="/meet-template" element={<MeetTemplatePage />} />
-            <Route path="/meet-template-detail" element={<MeetTemplateDetailPage />} />
-            <Route path="/consent" element={<ConsentPage />} />
-            <Route path="/calendar" element={<CalendarPage />} />
-            <Route path="/login-history" element={<LoginHistoryPage />} />
-            <Route path="/download-history" element={<DownloadHistoryPage />} />
-            <Route path="/user-consent-history" element={<UserConsentHistoryPage />} />
-            <Route path="/setting-change-history" element={<SettingChangeHistoryPage />} />
-            <Route path="/stats-user" element={<StatsUserPage />} />
-            <Route path="/system-setting-history" element={<SettingChangeHistoryPage />} />
-            <Route path="/content-retention" element={<ContentRetentionPage />} />
-          </Routes>
-        </div>
-      </Router>
+      <LicenseCheck>
+        <Router>
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<WorkspacePage />} />
+              <Route path="/test" element={<TestPage />} />
+              <Route path="/logo" element={<LogoManagementPage />} />
+              <Route path="/user" element={<UserPage />} />
+              <Route path="/notice" element={<NoticePage />} />
+              <Route path="/dictionary" element={<DictionaryPage />} />
+              <Route path="/meeting" element={<MeetingPage />} />
+              <Route path="/prompt" element={<PromptPage />} />
+              <Route path="/stats-usage" element={<StatsUsagePage />} />
+              <Route path="/system-stats" element={<SystemStatsPage />} />
+              <Route path="/workspace" element={<WorkspacePage />} />
+              <Route path="/system-user" element={<SystemUserPage />} />
+              <Route path="/system-stats-user" element={<SystemStatsUserPage />} />
+              <Route path="/system-stats-usage" element={<SystemStatsUsagePage />} />
+              <Route path="/menu-setting" element={<MenuSettingPage />} />
+              <Route path="/group-setting" element={<GroupSettingPage />} />
+              <Route path="/workspace-permission" element={<WorkspacePermissionPage />} />
+              <Route path="/workspace-menu-setting" element={<WorkspaceMenuSettingPage />} />
+              <Route path="/workspace-group-setting" element={<WorkspaceGroupSettingPage />} />
+              <Route path="/meet-template" element={<MeetTemplatePage />} />
+              <Route path="/meet-template-detail" element={<MeetTemplateDetailPage />} />
+              <Route path="/consent" element={<ConsentPage />} />
+              <Route path="/calendar" element={<CalendarPage />} />
+              <Route path="/login-history" element={<LoginHistoryPage />} />
+              <Route path="/download-history" element={<DownloadHistoryPage />} />
+              <Route path="/user-consent-history" element={<UserConsentHistoryPage />} />
+              <Route path="/setting-change-history" element={<SettingChangeHistoryPage />} />
+              <Route path="/stats-user" element={<StatsUserPage />} />
+              <Route path="/system-setting-history" element={<SettingChangeHistoryPage />} />
+              <Route path="/content-retention" element={<ContentRetentionPage />} />
+            </Routes>
+          </div>
+        </Router>
+      </LicenseCheck>
     </ThemeProvider>
   )
 }

@@ -261,7 +261,7 @@ button {
     line-height: 1;
 }
 
-/* 역 트 박스 이 일 */
+/* MUI 사용으로 기본 select 스타일 비활성화
 select {
     height: 36px;
     padding: 6px 32px 6px 12px;
@@ -283,6 +283,7 @@ select:focus {
     outline: none;
     border-color: #0066FF;
 }
+*/
 
 /* 합 검컴포트 - 기존 구조 일게 */
 .search-toolbar {
@@ -341,6 +342,7 @@ select:focus {
     min-width: 400px;
 }
 
+/* MUI 사용으로 search-toolbar 스타일 비활성화 - react-styles.css에서 새로 정의
 .search-toolbar .combo-select {
     height: 100%;
     border: none;
@@ -387,6 +389,7 @@ select:focus {
 .search-toolbar .combo-input::placeholder {
     color: #9AA0A6;
 }
+*/
 
 .search-toolbar .mag-icon {
     position: absolute;
@@ -520,6 +523,7 @@ table td {
   color: #292A2B;
 }
 
+/* MUI 사용으로 consent-detail-page form 스타일 비활성화
 .consent-detail-page .form-input {
   padding: 10px 12px;
   border: 1px solid #ddd;
@@ -538,7 +542,9 @@ table td {
   background-color: #F8F9FA;
   color: #666;
 }
+*/
 
+/* MUI 사용으로 combo-select 스타일 비활성화
 .consent-detail-page .combo-select {
   position: relative;
   display: inline-block;
@@ -565,6 +571,7 @@ table td {
   background-color: #F8F9FA;
   color: #666;
 }
+*/
 
 .consent-detail-page .combo-select .select-arrow {
   position: absolute;
@@ -645,7 +652,7 @@ table td {
   align-items: center;
 }
 
-/* 버튼 기본 */
+/* MUI 사용으로 버튼 스타일 비활성화
 .consent-detail-page .btn {
   padding: 8px 16px;
   border-radius: 6px;
@@ -660,7 +667,6 @@ table td {
   transition: all 0.2s ease;
 }
 
-/* 기본 버튼 (색 두 */
 .consent-detail-page .btn-outline {
   background: white;
   color: #666;
@@ -671,6 +677,7 @@ table td {
   background: #F8F9FA;
   border-color: #D1D5DB;
 }
+*/
 
 /* 주요 버튼 ( */
 .consent-detail-page .btn-primary {
@@ -788,15 +795,109 @@ table td {
   z-index: 1;
 }
 
-/* 스용관이지 - 검역 */
+/* 시스템관리자 페이지 - 검색 영역 */
 
 .page-system-user .tb-right {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: nowrap;
 }
 
-/* 용관이지 이간격 일 */
+.page-system-user .tb-right-full {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex: 1;
+}
+
+.page-system-user .right-tail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.page-system-user .ws-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* 시스템 사용자 페이지 콤보 검색 박스 */
+.page-system-user .combo-search-wide {
+  min-width: 400px;
+  flex: 1;
+}
+
+.page-system-user .combo-field {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+  width: 100%;
+}
+
+.page-system-user .combo-select {
+  height: 100%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: #fff;
+  padding: 0 32px 0 12px;
+  font-size: 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('../asset/select-arrow.svg');
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px 16px;
+  min-width: 120px;
+}
+
+.page-system-user .divider {
+  width: 1px;
+  height: 20px;
+  background: #E5E5E5;
+}
+
+.page-system-user .combo-input-wrap {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.page-system-user .combo-input {
+  border: none;
+  outline: none;
+  height: 100%;
+  padding: 0 12px 0 32px;
+  font-size: 14px;
+  width: 100%;
+  background: #fff;
+}
+
+.page-system-user .combo-input::placeholder {
+  color: #9AA0A6;
+}
+
+.page-system-user .mag-icon {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 16px;
+  color: #9AA0A6;
+}
 
 .page-system-user .total-count {
   font-size: 16px;
@@ -1378,7 +1479,7 @@ body {
     margin-bottom: 0;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
     border-bottom: 1px solid #E5E5E5;
 }
 
@@ -1398,11 +1499,12 @@ body {
 .logo-text {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 }
 
 .logo-title {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     color: #292A2B;
 }
 
@@ -1411,11 +1513,34 @@ body {
     color: #666;
 }
 
+/* 로고 영역 셀렉트 박스 */
+.logo-url .workspace-select {
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 11px;
+    color: #9CA3AF;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.logo-url .workspace-select:hover {
+    color: #6B7280;
+}
+
+.logo-url .workspace-select option {
+    background: white;
+    color: #333;
+    padding: 4px 8px;
+}
+
 /* 로그웃 버튼 (이바 단 측) */
 .logout-btn {
     margin-left: auto;
-    width: 32px;
-    height: 32px;
+    width: 20px;
+    height: 20px;
     border: none; /* 형 거 */
     border-radius: 50%;
     background: none;
@@ -1926,6 +2051,7 @@ body {
 .condition-select {
     padding: 6px 36px 6px 12px; /* 른백 보 */
     border: 1px solid #E5E5E5; /* 풋박스 일 상로 일 */
+    font-size: 14px;
     border-radius: 8px;
     background-color: white;
     min-width: 120px;
@@ -5779,12 +5905,12 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   min-width: auto;
 }
 
-/* 스용이지 크페스 트 박스 기 조정 */
+/* 시스템 사용자 페이지 워크스페이스 셀렉트 박스 크기 조정 
 .page-system-user .condition-select {
   min-width: 180px !important;
   width: 180px;
 }
-
+*/
 .page-system-user.user-page.member-page .tb-right .btn-submit {
   background: transparent;
   border: 1px solid #EF4444;

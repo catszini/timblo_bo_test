@@ -51,7 +51,7 @@ const LoginHistoryPage = () => {
                   size="small"
                 />
                 <Button variant="contained">조회</Button>
-                <Button variant="outlined" style={{ color: '#10B981', borderColor: '#10B981' }}>
+                <Button variant="outlined" className="export-btn">
                   엑셀 다운로드
                 </Button>
               </div>

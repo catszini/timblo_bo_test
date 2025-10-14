@@ -17,8 +17,18 @@
       <div class="logo">
         <div class="logo-icon">T</div>
         <div class="logo-text">
-          <div class="logo-title">Timbel</div>
-          <div class="logo-url">timbel.net</div>
+          <div class="logo-title">홍길동</div>
+          <div class="logo-url">
+            <select class="condition-select" id="workspace-filter">
+              <option value="Timbel" selected>Timbel</option>
+              <option value="sk-telecom">SK Telecom</option>
+              <option value="sk-hynix">SK Hynix</option>
+              <option value="sk-es">SK E&S</option>
+              <option value="sk-cc">SK C&C</option>
+              <option value="sk-innovation">SK Innovation</option>
+              <option value="sk-networks">SK Networks</option>
+            </select>
+          </div>
         </div>
         <button class="logout-btn" title="로그아웃">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +54,7 @@
           <li><a href="workspace.html">워크스페이스 관리</a></li>
           <li><a href="menu_setting.html">전체 메뉴 관리</a></li>
           <li><a href="system_user.html" class="active">사용자 관리</a></li>
-          <li><a href="group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="group_setting.html">역할 관리</a></li>
           <li><a href="system_setting_history.html">설정변경 이력</a></li>
           <li><a href="system_stats_usage.html">전체 시스템 사용 통계</a></li>
           <li><a href="system_stats_user.html">사용자별 사용 통계</a></li>
@@ -56,7 +66,7 @@
           <h3>워크스페이스 설정</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html">FO기능 정책 관리</a></li>
+          <li><a href="workspace_permission.html">기능 권한 관리</a></li>
           <li><a href="content_retention.html">컨텐츠 보존 관리</a></li>
           <li><a href="workspace_group_setting.html">메뉴 권한 관리</a></li>
           <li><a href="user.html">사용자 관리</a></li>
@@ -120,13 +130,12 @@
                 <option>SK Shieldus</option>
               </select>
             </div>
+
             <div class="tb-right">
               <div class="right-tail">
-
                 <div class="combo-search">
                   <div class="combo-field">
                     <select class="combo-select">
-
                       <option>워크스페이스</option>
                       <option>이메일</option>
                       <option>이름</option>
@@ -134,21 +143,23 @@
                     <div class="divider"></div>
                     <div class="combo-input-wrap">
                       <span class="mag-icon">🔍</span>
-                      <input type="text" class="combo-input" placeholder="검색어를 입력해주세요.">
+                      <input type="text" class="combo-input" placeholder="검색어를 입력해주세요." />
                     </div>
                     <button class="append-btn">조회</button>
                   </div>
                 </div>
 
+              </div>
+              <div class="ws-actions">
                 <button class="delete-btn">삭제</button>
                 <button class="edit-btn">수정</button>
                 <button class="new-button">생성</button>
-                <select class="condition-select">
-                  <option>10개씩 보기</option>
-                  <option>20개씩 보기</option>
-                  <option>50개씩 보기</option>
-                </select>
               </div>
+              <select class="condition-select">
+                <option>10개씩 보기</option>
+                <option>20개씩 보기</option>
+                <option>50개씩 보기</option>
+              </select>
             </div>
           </div>
         </div>
@@ -423,6 +434,185 @@
         </div>
       </div>
     </div>
+
+    <!-- 사용자 생성 모달 -->
+    <div class="modal-overlay modal-overlay-hidden" id="userCreateModal">
+      <div class="modal-container user-create-modal">
+        <div class="modal-content">
+          <h2 class="modal-title">사용자 생성</h2>
+
+          <div class="form-section">
+            <div class="form-group">
+              <label class="form-label">워크스페이스</label>
+              <select class="form-select" id="userWorkspace" required>
+                <option value="">워크스페이스를 선택하세요</option>
+                <option value="sk-telecom">SK Telecom</option>
+                <option value="sk-hynix">SK Hynix</option>
+                <option value="sk-es">SK E&S</option>
+                <option value="sk-cc">SK C&C</option>
+                <option value="sk-innovation">SK Innovation</option>
+                <option value="sk-networks">SK Networks</option>
+                <option value="sk-biopharm">SK Biopharm</option>
+                <option value="sk-materials">SK Materials</option>
+                <option value="sk-shieldus">SK Shieldus</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">이름</label>
+              <input type="text" class="form-input" id="userName" placeholder="사용자 이름을 입력하세요" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">이메일</label>
+              <input type="email" class="form-input" id="userEmail" placeholder="이메일을 입력하세요" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">비밀번호</label>
+              <input type="password" class="form-input" id="userPassword" placeholder="비밀번호를 입력하세요" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">메뉴권한</label>
+              <select class="form-select" id="userPermission" required>
+                <option value="">메뉴권한을 선택하세요</option>
+                <option value="system-admin">시스템관리자</option>
+                <option value="workspace-admin">워크스페이스관리자</option>
+                <option value="menu-admin">메뉴관리자</option>
+                <option value="stats-admin">통계관리자</option>
+                <option value="member">구성원</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-buttons">
+            <button class="btn-cancel" id="user-cancel-btn">취소</button>
+            <button class="btn-confirm" id="user-create-btn">생성</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // 모달 관련 요소들
+        const modal = document.getElementById('userCreateModal');
+        const createBtn = document.querySelector('.ws-actions .new-button');
+        const cancelBtn = document.getElementById('user-cancel-btn');
+        const confirmBtn = document.getElementById('user-create-btn');
+
+        // 폼 요소들
+        const workspaceSelect = document.getElementById('userWorkspace');
+        const nameInput = document.getElementById('userName');
+        const emailInput = document.getElementById('userEmail');
+        const passwordInput = document.getElementById('userPassword');
+        const permissionSelect = document.getElementById('userPermission');
+
+        // 모달 열기
+        function openModal() {
+          // 입력 필드 초기화
+          workspaceSelect.value = '';
+          nameInput.value = '';
+          emailInput.value = '';
+          passwordInput.value = '';
+          permissionSelect.value = '';
+          modal.classList.remove('modal-overlay-hidden');
+        }
+
+        // 모달 닫기
+        function closeModal() {
+          modal.classList.add('modal-overlay-hidden');
+        }
+
+        // 생성 버튼 클릭 시 모달 표시
+        if (createBtn) {
+          createBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal();
+          });
+        }
+
+        // 취소 버튼 클릭
+        if (cancelBtn) {
+          cancelBtn.addEventListener('click', closeModal);
+        }
+
+        // 생성 버튼 클릭
+        if (confirmBtn) {
+          confirmBtn.addEventListener('click', () => {
+            const workspace = workspaceSelect.value.trim();
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            const permission = permissionSelect.value.trim();
+
+            // 유효성 검사
+            if (!workspace) {
+              alert('워크스페이스를 선택해주세요.');
+              workspaceSelect.focus();
+              return;
+            }
+
+            if (!name) {
+              alert('이름을 입력해주세요.');
+              nameInput.focus();
+              return;
+            }
+
+            if (!email) {
+              alert('이메일을 입력해주세요.');
+              emailInput.focus();
+              return;
+            }
+
+            // 이메일 형식 검사
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+              alert('올바른 이메일 형식을 입력해주세요.');
+              emailInput.focus();
+              return;
+            }
+
+            if (!password) {
+              alert('비밀번호를 입력해주세요.');
+              passwordInput.focus();
+              return;
+            }
+
+            if (password.length < 6) {
+              alert('비밀번호는 6자 이상 입력해주세요.');
+              passwordInput.focus();
+              return;
+            }
+
+            if (!permission) {
+              alert('메뉴권한을 선택해주세요.');
+              permissionSelect.focus();
+              return;
+            }
+
+            // 여기에 실제 사용자 생성 로직 추가
+            alert(`사용자 "${name}"이 생성되었습니다.`);
+            closeModal();
+          });
+        }
+
+        // 모달 외부 클릭 시 닫기
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !modal.classList.contains('modal-overlay-hidden')) {
+            closeModal();
+          }
+        });
+      });
+    </script>
 
     <script src="../asset/menu.js"></script>
     <script src="../asset/main.js"></script>

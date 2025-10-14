@@ -253,7 +253,7 @@ const SystemUserPage = () => {
 
   return (
     <Layout className="page-system-user user-page member-page">
-      <div className="content user-page member-page user-page-custom">
+      <div className="content">
         <div className="content-header">
           <h1 className="breadcrumb">사용자 관리</h1>
         </div>

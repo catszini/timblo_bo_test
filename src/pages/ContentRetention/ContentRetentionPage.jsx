@@ -1,4 +1,20 @@
 import React, { useState } from 'react'
+import {
+  FormControl,
+  Select,
+  MenuItem,
+  TextField,
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Typography,
+  Box
+} from '@mui/material'
 import Layout from '../../components/Layout/Layout'
 
 const ContentRetentionPage = () => {
@@ -77,9 +93,9 @@ const ContentRetentionPage = () => {
         <div className="content-body">
           {/* 컨텐츠 보존 관리 테이블 */}
           <div className="permission-table-container">
-            <table className="permission-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <table className="permission-table">
               <thead>
-                <tr style={{ backgroundColor: '#F8F9FA' }}>
+                <tr className="table-header">
                   <th style={{ 
                     width: '250px', 
                     padding: '12px 16px', 
@@ -116,7 +132,7 @@ const ContentRetentionPage = () => {
               </thead>
               <tbody>
                 {/* 영상/음성 파일 보존기간 */}
-                <tr style={{ borderBottom: '1px solid #E5E7EB' }}>
+                <tr className="table-row">
                   <td className="feature-name" style={{ 
                     padding: '16px', 
                     fontSize: '14px', 
@@ -139,56 +155,41 @@ const ContentRetentionPage = () => {
                     padding: '16px', 
                     verticalAlign: 'top'
                   }}>
-                    <div className="setting-combo-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <div className="combo-select" style={{ position: 'relative', display: 'inline-block' }}>
-                        <select 
-                          className="setting-select"
+                    <Box className="setting-combo-wrapper" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <FormControl size="small" sx={{ minWidth: 120 }}>
+                        <Select
                           value={contentRetentionPeriod}
                           onChange={(e) => handleContentRetentionChange(e.target.value)}
-                            style={{
-                              padding: '8px 32px 8px 12px',
-                              border: '1px solid #D1D5DB',
-                              borderRadius: '6px',
-                              fontSize: '14px',
-                              minWidth: '120px',
-                              appearance: 'none',
-                              background: 'white url("../asset/select-arrow.svg") no-repeat right 8px center',
-                              backgroundSize: '12px 12px',
-                              cursor: 'pointer'
-                            }}
+                          variant="outlined"
                         >
-                          <option value="90일">90일</option>
-                          <option value="180일">180일</option>
-                          <option value="1년">1년</option>
-                          <option value="3년">3년</option>
-                          <option value="custom">직접 입력</option>
-                        </select>
-                      </div>
+                          <MenuItem value="90일">90일</MenuItem>
+                          <MenuItem value="180일">180일</MenuItem>
+                          <MenuItem value="1년">1년</MenuItem>
+                          <MenuItem value="3년">3년</MenuItem>
+                          <MenuItem value="custom">직접 입력</MenuItem>
+                        </Select>
+                      </FormControl>
                       {contentRetentionPeriod === 'custom' && (
                         <>
-                          <input 
+                          <TextField
                             type="text" 
                             className="custom-input"
                             value={customContentValue}
                             onChange={(e) => setCustomContentValue(e.target.value)}
                             placeholder="숫자 입력"
-                            style={{
-                              padding: '8px 12px',
-                              border: '1px solid #D1D5DB',
-                              borderRadius: '6px',
-                              fontSize: '14px',
-                              width: '80px'
-                            }}
+                            size="small"
+                            sx={{ width: 80 }}
+                            variant="outlined"
                           />
-                          <span className="input-unit" style={{ fontSize: '14px', color: '#6B7280' }}>일 후</span>
+                          <Typography variant="body2" className="input-unit" sx={{ color: '#6B7280' }}>일 후</Typography>
                         </>
                       )}
-                    </div>
+                    </Box>
                   </td>
                 </tr>
 
                 {/* 영상/음성 전사기록 보존기간 */}
-                <tr style={{ borderBottom: '1px solid #E5E7EB' }}>
+                <tr className="table-row">
                   <td className="feature-name" style={{ 
                     padding: '16px', 
                     fontSize: '14px', 
@@ -211,51 +212,36 @@ const ContentRetentionPage = () => {
                     padding: '16px', 
                     verticalAlign: 'top'
                   }}>
-                    <div className="setting-combo-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <div className="combo-select" style={{ position: 'relative' }}>
-                        <select 
-                          className="setting-select"
+                    <Box className="setting-combo-wrapper" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <FormControl size="small" sx={{ minWidth: 120 }}>
+                        <Select
                           value={voiceRetentionPeriod}
                           onChange={(e) => handleVoiceRetentionChange(e.target.value)}
-                            style={{
-                              padding: '8px 32px 8px 12px',
-                              border: '1px solid #D1D5DB',
-                              borderRadius: '6px',
-                              fontSize: '14px',
-                              minWidth: '120px',
-                              appearance: 'none',
-                              background: 'white url("../asset/select-arrow.svg") no-repeat right 8px center',
-                              backgroundSize: '12px 12px',
-                              cursor: 'pointer'
-                            }}
+                          variant="outlined"
                         >
-                          <option value="영구">영구</option>
-                          <option value="1년">1년</option>
-                          <option value="2년">2년</option>
-                          <option value="3년">3년</option>
-                          <option value="custom">직접 입력</option>
-                        </select>
-                      </div>
+                          <MenuItem value="영구">영구</MenuItem>
+                          <MenuItem value="1년">1년</MenuItem>
+                          <MenuItem value="2년">2년</MenuItem>
+                          <MenuItem value="3년">3년</MenuItem>
+                          <MenuItem value="custom">직접 입력</MenuItem>
+                        </Select>
+                      </FormControl>
                       {voiceRetentionPeriod === 'custom' && (
                         <>
-                          <input 
+                          <TextField
                             type="text" 
                             className="custom-input"
                             value={customVoiceValue}
                             onChange={(e) => setCustomVoiceValue(e.target.value)}
                             placeholder="숫자 입력"
-                            style={{
-                              padding: '8px 12px',
-                              border: '1px solid #D1D5DB',
-                              borderRadius: '6px',
-                              fontSize: '14px',
-                              width: '80px'
-                            }}
+                            size="small"
+                            sx={{ width: 80 }}
+                            variant="outlined"
                           />
-                          <span className="input-unit" style={{ fontSize: '14px', color: '#6B7280' }}>일 후</span>
+                          <Typography variant="body2" className="input-unit" sx={{ color: '#6B7280' }}>일 후</Typography>
                         </>
                       )}
-                    </div>
+                    </Box>
                   </td>
                 </tr>
               </tbody>

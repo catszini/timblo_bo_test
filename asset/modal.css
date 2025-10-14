@@ -9,6 +9,11 @@
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    transition: opacity 0.2s ease;
+}
+
+.modal-overlay-hidden {
+    display: none;
 }
 
 .modal-container {
@@ -633,10 +638,256 @@
     max-height: 80vh;
 }
 
-/* 워크스페이스 생성 모달 전용 크기 */
-.workspace-modal {
+/* 사용자 생성 모달 전용 크기 */
+.user-create-modal {
     width: 500px !important;
-    max-height: 560px !important;
+    max-height: 700px !important;
+}
+
+/* 사용자 생성 모달 타이틀 */
+.user-create-modal .modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #292A2B;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+/* 폼 섹션 */
+.user-create-modal .form-section {
+    margin-bottom: 24px;
+}
+
+.user-create-modal .form-group {
+    margin-bottom: 20px;
+}
+
+.user-create-modal .form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #292A2B;
+    margin-bottom: 8px;
+}
+
+.user-create-modal .form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #E5E5E5;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    background: white;
+    box-sizing: border-box;
+}
+
+.user-create-modal .form-input:focus {
+    outline: none;
+    border-color: #0066FF;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+.user-create-modal .form-select {
+    width: 100%;
+    padding: 12px 36px 12px 12px;
+    border: 1px solid #E5E5E5;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    background: white;
+    appearance: none;
+    background-image: url('../asset/select-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px 16px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.user-create-modal .form-select:focus {
+    outline: none;
+    border-color: #0066FF;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+/* 모달 버튼들 */
+.user-create-modal .modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 32px;
+}
+
+.user-create-modal .btn-cancel {
+    padding: 12px 24px;
+    border: 1px solid #E5E5E5;
+    border-radius: 6px;
+    background: white;
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.user-create-modal .btn-cancel:hover {
+    background: #F8F9FA;
+    border-color: #D1D5DB;
+}
+
+.user-create-modal .btn-confirm {
+    padding: 12px 24px;
+    border: 1px solid #0066FF;
+    border-radius: 6px;
+    background: #0066FF;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.user-create-modal .btn-confirm:hover {
+    background: #0052CC;
+    border-color: #0052CC;
+}
+
+/* 워크스페이스 생성 모달 전용 크기 */
+.workspace-create-modal {
+    width: 500px !important;
+    max-height: 600px !important;
+}
+
+/* 워크스페이스 생성 모달 타이틀 */
+.workspace-create-modal .modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #292A2B;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+/* 워크스페이스 아이콘 섹션 */
+.workspace-icon-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.workspace-icon-large {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    background: #0066FF;
+}
+
+/* 폼 섹션 */
+.workspace-create-modal .form-section {
+    margin-bottom: 24px;
+}
+
+.workspace-create-modal .form-group {
+    margin-bottom: 20px;
+}
+
+.workspace-create-modal .form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #292A2B;
+    margin-bottom: 8px;
+}
+
+.workspace-create-modal .form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #E5E5E5;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    background: white;
+    box-sizing: border-box;
+}
+
+.workspace-create-modal .form-input:focus {
+    outline: none;
+    border-color: #0066FF;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+.workspace-create-modal .form-textarea {
+    width: 100%;
+    height: 80px;
+    padding: 12px;
+    border: 1px solid #E5E5E5;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    background: white;
+    resize: none;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.workspace-create-modal .form-textarea:focus {
+    outline: none;
+    border-color: #0066FF;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+.workspace-create-modal .form-error {
+    font-size: 12px;
+    color: #FF4444;
+    margin-top: 4px;
+    display: none;
+}
+
+/* 모달 버튼들 */
+.workspace-create-modal .modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 32px;
+}
+
+.workspace-create-modal .btn-cancel {
+    padding: 12px 24px;
+    border: 1px solid #E5E5E5;
+    border-radius: 6px;
+    background: white;
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.workspace-create-modal .btn-cancel:hover {
+    background: #F8F9FA;
+    border-color: #D1D5DB;
+}
+
+.workspace-create-modal .btn-confirm {
+    padding: 12px 24px;
+    border: 1px solid #0066FF;
+    border-radius: 6px;
+    background: #0066FF;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.workspace-create-modal .btn-confirm:hover {
+    background: #0052CC;
+    border-color: #0052CC;
 }
 
 /* 버전 정보 셀렉트 박스 폭 축소 (템플릿 모달/상세 전용) */

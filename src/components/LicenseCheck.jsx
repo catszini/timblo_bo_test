@@ -7,12 +7,25 @@ const LicenseCheck = ({ children }) => {
   const [showLicenseForm, setShowLicenseForm] = useState(false)
 
   useEffect(() => {
+    // 하드코딩된 라이센스 키 우선 확인
+    const HARDCODED_LICENSE = '7fa2d890358b98e3ddd012724ee5fa02Tz0xMTg3MDksRT0xNzg4NzM5MTk5MDAwLFM9cHJvLExNPXN1YnNjcmlwdGlvbixQVj1RMy0yMDI0LEtWPTI='
+    
+    if (HARDCODED_LICENSE && HARDCODED_LICENSE !== 'YOUR_LICENSE_KEY_HERE') {
+      LicenseInfo.setLicenseKey(HARDCODED_LICENSE)
+      localStorage.setItem('mui_license_key', HARDCODED_LICENSE)
+      setIsLicenseSet(true)
+      setLicenseKey(HARDCODED_LICENSE)
+      console.log('MUI X License key (hardcoded) has been set successfully')
+      return
+    }
+
     // 로컬 스토리지에서 라이센스 키 확인
     const savedLicense = localStorage.getItem('mui_license_key')
     if (savedLicense && savedLicense !== 'YOUR_LICENSE_KEY_HERE') {
       LicenseInfo.setLicenseKey(savedLicense)
       setIsLicenseSet(true)
       setLicenseKey(savedLicense)
+      console.log('MUI X License key (from localStorage) has been set successfully')
     } else {
       setShowLicenseForm(true)
     }
@@ -61,8 +74,8 @@ const LicenseCheck = ({ children }) => {
           maxWidth: '500px',
           width: '90%'
         }}>
-          <h2 style={{ marginBottom: '20px' }}>MUI X 라이센스 키 등록</h2>
-          <p style={{ marginBottom: '20px', color: '#666' }}>
+          <h2 className="license-title">MUI X 라이센스 키 등록</h2>
+          <p className="license-description">
             MUI X 컴포넌트를 사용하기 위해 라이센스 키를 입력해주세요.
           </p>
           <form onSubmit={handleLicenseSubmit}>
@@ -71,14 +84,7 @@ const LicenseCheck = ({ children }) => {
               value={licenseKey}
               onChange={(e) => setLicenseKey(e.target.value)}
               placeholder="라이센스 키를 입력하세요"
-              style={{
-                width: '100%',
-                padding: '10px',
-                marginBottom: '20px',
-                border: '1px solid #ddd',
-                borderRadius: '4px',
-                fontSize: '14px'
-              }}
+              className="license-input"
             />
             <div style={{ display: 'flex', gap: '10px' }}>
               <button
@@ -110,7 +116,7 @@ const LicenseCheck = ({ children }) => {
               </button>
             </div>
           </form>
-          <p style={{ marginTop: '15px', fontSize: '12px', color: '#999' }}>
+          <p className="license-note">
             라이센스 키 없이도 사용할 수 있지만, 일부 컴포넌트에 워터마크가 표시됩니다.
           </p>
         </div>

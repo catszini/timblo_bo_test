@@ -66,12 +66,12 @@ const TestPage = () => {
         <div style={{ marginBottom: '20px' }}>
           <h1 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '10px' }}>테스트 페이지</h1>
         </div>
-        <div style={{ backgroundColor: '#fff', padding: '20px', border: '1px solid #e5e7eb', borderRadius: '8px' }}>
-          <h2 style={{ color: '#059669', marginBottom: '15px' }}>✅ 사이드바가 보입니다!</h2>
-          <p style={{ marginBottom: '10px' }}>이제 왼쪽에 사이드바가 인라인 스타일로 표시됩니다.</p>
-          <p style={{ marginBottom: '15px' }}>CSS 파일 로딩에 문제가 있었던 것 같습니다.</p>
+        <div className="test-container">
+          <h2 className="test-title">✅ 사이드바가 보입니다!</h2>
+          <p className="test-description">이제 왼쪽에 사이드바가 인라인 스타일로 표시됩니다.</p>
+          <p className="test-description">CSS 파일 로딩에 문제가 있었던 것 같습니다.</p>
           
-          <div style={{ marginTop: '20px', padding: '15px', backgroundColor: '#f3f4f6', borderRadius: '6px' }}>
+          <div className="test-info">
             <h3 style={{ marginBottom: '10px' }}>테스트 링크:</h3>
             <ul>
               <li><a href="/logo" style={{ color: '#0066FF' }}>로고 관리 페이지</a></li>

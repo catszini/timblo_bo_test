@@ -16,8 +16,18 @@
       <div class="logo">
         <div class="logo-icon">T</div>
         <div class="logo-text">
-          <div class="logo-title">Timbel</div>
-          <div class="logo-url">timbel.net</div>
+          <div class="logo-title">홍길동</div>
+          <div class="logo-url">
+            <select class="condition-select" id="workspace-filter">
+              <option value="Timbel" selected>Timbel</option>
+              <option value="sk-telecom">SK Telecom</option>
+              <option value="sk-hynix">SK Hynix</option>
+              <option value="sk-es">SK E&S</option>
+              <option value="sk-cc">SK C&C</option>
+              <option value="sk-innovation">SK Innovation</option>
+              <option value="sk-networks">SK Networks</option>
+            </select>
+          </div>
         </div>
         <button class="logout-btn" title="로그아웃">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +53,7 @@
           <li><a href="workspace.html">워크스페이스 관리</a></li>
           <li><a href="menu_setting.html">전체 메뉴 관리</a></li>
           <li><a href="system_user.html">사용자 관리</a></li>
-          <li><a href="group_setting.html">메뉴 권한 관리</a></li>
+          <li><a href="group_setting.html">역할 관리</a></li>
           <li><a href="system_setting_history.html">설정변경 이력</a></li>
           <li><a href="system_stats_usage.html">전체 시스템 사용 통계</a></li>
           <li><a href="system_stats_user.html">사용자별 사용 통계</a></li>
@@ -55,7 +65,7 @@
           <h3>워크스페이스 설정</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html">FO기능 정책 관리</a></li>
+          <li><a href="workspace_permission.html">기능 권한 관리</a></li>
           <li><a href="content_retention.html">컨텐츠 보존 관리</a></li>
           <li><a href="workspace_group_setting.html">메뉴 권한 관리</a></li>
           <li><a href="user.html">사용자 관리</a></li>
@@ -125,12 +135,12 @@
             </div>
             <div class="tb-right">
 
-              <select class="condition-select">
+              <select class="condition-select" id="cons-type">
                 <option>전체</option>
                 <option>개인정보</option>
                 <option>유의사항</option>
               </select>
-              <select class="condition-select">
+              <select class="condition-select" id="cons-status">
                 <option>전체</option>
                 <option>초안</option>
                 <option>보관됨</option>
@@ -138,7 +148,7 @@
               </select>
               <div class="combo-search">
                 <div class="combo-field">
-                  <select class="combo-select">
+                  <select class="combo-select" id="cons-search-type">
                     <option>전체</option>
                     <option>제목</option>
                     <option>생성자</option>
@@ -152,7 +162,7 @@
                 </div>
               </div>
               <a class="new-button" href="consent_new.html">신규 등록</a>
-              <select class="condition-select">
+              <select class="condition-select" id="cons-page-size">
                 <option>10개씩 보기</option>
                 <option>20개씩 보기</option>
                 <option>50개씩 보기</option>

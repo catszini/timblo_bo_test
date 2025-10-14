@@ -396,14 +396,14 @@ const MeetTemplatePage = () => {
             <div className="modal-right" style={{ flex: 1, overflow: 'auto', maxHeight: '100%' }}>
               <div className="form-group" style={{ marginBottom: '16px' }}>
                 <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>ID</label>
-                <div className="form-value" style={{ padding: '8px', backgroundColor: '#F5F5F5', borderRadius: '4px' }}>
+                <div className="form-value">
                   자동 생성됩니다
                 </div>
               </div>
 
               <div className="form-group" style={{ marginBottom: '16px' }}>
                 <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>버전정보</label>
-                <div className="form-value" style={{ padding: '8px', backgroundColor: '#F5F5F5', borderRadius: '4px' }}>
+                <div className="form-value">
                   v1.0
                 </div>
               </div>
@@ -446,7 +446,7 @@ const MeetTemplatePage = () => {
                               </div>
                             </li>
                           ))}
-                          <li style={{ borderTop: '1px solid #E5E5E5', margin: '8px 0' }}></li>
+                          <li className="divider-line"></li>
                           <li 
                             className="dropdown-item new-category" 
                             style={{ padding: '8px 16px', cursor: 'pointer' }}

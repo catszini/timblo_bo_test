@@ -174,7 +174,7 @@ const SystemStatsUserPage = () => {
                           <MenuItem value="워크스페이스">워크스페이스</MenuItem>
                         </Select>
                       </FormControl>
-                      <div className="divider"></div>
+                      
                       <div className="combo-input-wrap">
                         <span className="mag-icon">🔍</span>
                         <TextField

@@ -1,4 +1,22 @@
 import React, { useState } from 'react'
+import {
+  FormControl,
+  Select,
+  MenuItem,
+  TextField,
+  Button,
+  Checkbox,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Typography,
+  Box,
+  Chip
+} from '@mui/material'
 import Layout from '../../components/Layout/Layout'
 
 const UserPage = () => {
@@ -8,70 +26,79 @@ const UserPage = () => {
   const [searchKeyword, setSearchKeyword] = useState('')
   const [itemsPerPage, setItemsPerPage] = useState('10개씩 보기')
 
-  // 사용자 데이터 (HTML과 완전히 일치)
+  // 사용자 데이터 (HTML 최신 버전과 일치)
   const userData = [
     {
       id: 1,
-      name: '박영수',
-      email: 'park.ys@sktelecom.com',
-      permission: '회의관리자',
-      status: 'online'
+      name: '이지우',
+      email: 'lee.jw@sktelecom.com',
+      permission: '컨텐츠관리자',
+      status: 'online',
+      createdDate: '2024-03-28 14:30:15'
     },
     {
       id: 2,
-      name: '김철수',
-      email: 'kim.cs@sktelecom.com',
-      permission: '로고관리자',
-      status: 'online'
+      name: '송하은',
+      email: 'song.he@sktelecom.com',
+      permission: '컨텐츠관리자',
+      status: 'online',
+      createdDate: '2024-03-20 09:22:43'
     },
     {
       id: 3,
-      name: '이민수',
-      email: 'lee.ms@sktelecom.com',
-      permission: '사용자관리자',
-      status: 'online'
+      name: '송현지',
+      email: 'song.hj@sktelecom.com',
+      permission: '컨텐츠관리자',
+      status: 'online',
+      createdDate: '2024-03-12 16:45:28'
     },
     {
       id: 4,
-      name: '최지영',
-      email: 'choi.jy@sktelecom.com',
-      permission: '통계관리자',
-      status: 'online'
+      name: '강민호',
+      email: 'kang.mh@sktelecom.com',
+      permission: '회의관리자',
+      status: 'offline',
+      createdDate: '2024-03-05 11:18:52'
     },
     {
       id: 5,
       name: '정수현',
       email: 'jung.sh@sktelecom.com',
       permission: '컨텐츠관리자',
-      status: 'online'
+      status: 'online',
+      createdDate: '2024-02-25 13:07:19'
     },
     {
       id: 6,
-      name: '강민호',
-      email: 'kang.mh@sktelecom.com',
-      permission: '회의관리자',
-      status: 'offline'
+      name: '최지영',
+      email: 'choi.jy@sktelecom.com',
+      permission: '통계관리자',
+      status: 'online',
+      createdDate: '2024-02-18 08:42:17'
     },
     {
       id: 7,
-      name: '송현지',
-      email: 'song.hj@sktelecom.com',
-      permission: '통계관리자',
-      status: 'online'
+      name: '이민수',
+      email: 'lee.ms@sktelecom.com',
+      permission: '사용자관리자',
+      status: 'online',
+      createdDate: '2024-02-10 15:28:04'
     },
     {
       id: 8,
-      name: '윤서준',
-      email: 'yoon.sj@sktelecom.com',
+      name: '김철수',
+      email: 'kim.cs@sktelecom.com',
       permission: '로고관리자',
-      status: 'online'
+      status: 'online',
+      createdDate: '2024-02-03 12:55:41'
     },
     {
       id: 9,
-      name: '한도윤',
-      email: 'han.dy@sktelecom.com',
-      permission: '컨텐츠관리자',
-      status: 'offline'
+      name: '박영수',
+      email: 'kim.cs@sktelecom.com',
+      permission: '회의관리자',
+      status: 'online',
+      createdDate: '2024-01-22 17:33:26'
     }
   ]
 
@@ -137,7 +164,7 @@ const UserPage = () => {
 
   return (
     <Layout className="page-user">
-      <div className="content user-page">
+      <div className="content">
         <div className="content-header">
           <h1 className="breadcrumb">사용자 관리</h1>
         </div>
@@ -146,170 +173,112 @@ const UserPage = () => {
           <div className="search-toolbar">
             <div className="common-topbar">
               <div className="tb-left">
-                <span className="total-count">총 {userData.length}개</span>
+                <Typography variant="body2" className="total-count">총 {userData.length}개</Typography>
               </div>
               <div className="tb-right">
-                <div className="right-tail" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                   {/* 개수 선택 */}
-                  <select 
-                    className="condition-select"
-                    value={itemsPerPage}
-                    onChange={(e) => setItemsPerPage(e.target.value)}
-                    style={{
-                      padding: '6px 12px',
-                      border: '1px solid #D1D5DB',
-                      borderRadius: '4px',
-                      fontSize: '14px'
-                    }}
-                  >
-                    <option>10개씩 보기</option>
-                    <option>20개씩 보기</option>
-                    <option>50개씩 보기</option>
-                  </select>
+                  <FormControl size="small" sx={{ minWidth: 120 }}>
+                    <Select
+                      value={itemsPerPage}
+                      onChange={(e) => setItemsPerPage(e.target.value)}
+                      variant="outlined"
+                    >
+                      <MenuItem value="10개씩 보기">10개씩 보기</MenuItem>
+                      <MenuItem value="20개씩 보기">20개씩 보기</MenuItem>
+                      <MenuItem value="50개씩 보기">50개씩 보기</MenuItem>
+                    </Select>
+                  </FormControl>
 
                   {/* 검색 조합 */}
-                  <div className="combo-search">
-                    <div className="combo-field" style={{ 
-                      display: 'flex', 
-                      alignItems: 'center',
-                      border: '1px solid #D1D5DB',
-                      borderRadius: '4px',
-                      overflow: 'hidden'
-                    }}>
-                      <select 
-                        className="combo-select"
+                  <Box className="combo-search" sx={{ display: 'flex', alignItems: 'center', border: '1px solid #D1D5DB', borderRadius: 1, overflow: 'hidden' }}>
+                    <FormControl size="small" sx={{ minWidth: 100 }}>
+                      <Select
                         value={searchCondition}
                         onChange={(e) => setSearchCondition(e.target.value)}
-                        style={{
-                          padding: '8px 12px',
-                          border: 'none',
-                          fontSize: '14px',
-                          background: '#F9FAFB'
+                        variant="outlined"
+                        sx={{ 
+                          '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
+                          backgroundColor: '#F9FAFB'
                         }}
                       >
-                        <option>생성자</option>
-                        <option>전체</option>
-                        <option>이름</option>
-                        <option>이메일</option>
-                      </select>
-                      <div className="divider" style={{ 
-                        width: '1px', 
-                        height: '24px', 
-                        background: '#D1D5DB' 
-                      }}></div>
-                      <div className="combo-input-wrap" style={{ 
-                        display: 'flex', 
-                        alignItems: 'center',
-                        flex: 1
-                      }}>
-                        <span className="mag-icon" style={{ padding: '0 8px', color: '#6B7280' }}>🔍</span>
-                        <input 
-                          type="text" 
-                          className="combo-input" 
-                          placeholder="검색어를 입력해주세요."
-                          value={searchKeyword}
-                          onChange={(e) => setSearchKeyword(e.target.value)}
-                          style={{
-                            border: 'none',
-                            padding: '8px 0',
-                            fontSize: '14px',
-                            flex: 1,
-                            outline: 'none'
-                          }}
-                        />
-                      </div>
-                      <button 
-                        className="append-btn"
-                        onClick={handleSearch}
-                        style={{
-                          padding: '8px 16px',
-                          background: '#3B82F6',
-                          color: 'white',
-                          border: 'none',
-                          cursor: 'pointer',
-                          fontSize: '14px'
+                        <MenuItem value="생성자">생성자</MenuItem>
+                        <MenuItem value="전체">전체</MenuItem>
+                        <MenuItem value="이름">이름</MenuItem>
+                        <MenuItem value="이메일">이메일</MenuItem>
+                      </Select>
+                    </FormControl>
+                    <Box sx={{ width: 1, height: 24, backgroundColor: '#D1D5DB' }} />
+                    <Box className="search-input-wrapper" sx={{ display: 'flex', alignItems: 'center', flex: 1, position: 'relative' }}>
+                      <Typography variant="body2" sx={{ position: 'absolute', left: 8, color: '#6B7280', pointerEvents: 'none', zIndex: 1 }}>
+                        🔍
+                      </Typography>
+                      <TextField
+                        placeholder="검색어를 입력해주세요."
+                        value={searchKeyword}
+                        onChange={(e) => setSearchKeyword(e.target.value)}
+                        variant="outlined"
+                        size="small"
+                        sx={{
+                          flex: 1,
+                          '& .MuiOutlinedInput-root': {
+                            '& fieldset': { border: 'none' },
+                            paddingLeft: '32px'
+                          }
                         }}
-                        onMouseEnter={(e) => {
-                          e.target.style.background = '#2563EB'
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.background = '#3B82F6'
-                        }}
-                      >
-                        조회
-                      </button>
-                    </div>
-                  </div>
+                      />
+                    </Box>
+                    <Button 
+                      variant="contained"
+                      onClick={handleSearch}
+                      sx={{ borderRadius: 0, minWidth: 'auto', px: 2 }}
+                    >
+                      조회
+                    </Button>
+                  </Box>
 
                   {/* 액션 버튼들 */}
-                  <button 
-                    className="delete-btn"
+                  <Button 
+                    variant="outlined"
                     onClick={handleDelete}
-                    style={{
-                      padding: '8px 16px',
-                      background: 'transparent',
+                    sx={{
                       color: '#DC2626',
-                      border: '1px solid #DC2626',
-                      borderRadius: '4px',
-                      cursor: 'pointer',
-                      fontSize: '14px'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.background = '#fef2f2'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background = 'transparent'
+                      borderColor: '#DC2626',
+                      '&:hover': {
+                        backgroundColor: '#fef2f2',
+                        borderColor: '#DC2626'
+                      }
                     }}
                   >
                     삭제
-                  </button>
-                  <button 
-                    className="edit-btn"
+                  </Button>
+                  <Button 
+                    variant="outlined"
                     onClick={handleEdit}
-                    style={{
-                      padding: '8px 16px',
-                      background: 'transparent',
+                    sx={{
                       color: '#6B7280',
-                      border: '1px solid #D1D5DB',
-                      borderRadius: '4px',
-                      cursor: 'pointer',
-                      fontSize: '14px'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.background = '#F9FAFB'
-                      e.target.style.borderColor = '#9CA3AF'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background = 'transparent'
-                      e.target.style.borderColor = '#D1D5DB'
+                      borderColor: '#D1D5DB',
+                      '&:hover': {
+                        backgroundColor: '#F9FAFB',
+                        borderColor: '#9CA3AF'
+                      }
                     }}
                   >
                     수정
-                  </button>
-                  <button 
-                    className="new-button"
+                  </Button>
+                  <Button 
+                    variant="contained"
                     onClick={handleCreate}
-                    style={{
-                      padding: '8px 16px',
-                      background: '#3B82F6',
-                      color: 'white',
-                      border: '1px solid #3B82F6',
-                      borderRadius: '4px',
-                      cursor: 'pointer',
-                      fontSize: '14px'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.background = '#2563EB'
-                      e.target.style.borderColor = '#2563EB'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background = '#3B82F6'
-                      e.target.style.borderColor = '#3B82F6'
+                    sx={{
+                      backgroundColor: '#3B82F6',
+                      '&:hover': {
+                        backgroundColor: '#2563EB'
+                      }
                     }}
                   >
                     생성
-                  </button>
-                </div>
+                  </Button>
+                </Box>
               </div>
             </div>
           </div>
@@ -332,6 +301,7 @@ const UserPage = () => {
                   <th>권한</th>
                   <th>비밀번호 초기화</th>
                   <th>삭제</th>
+                  <th>생성시간</th>
                 </tr>
               </thead>
               <tbody>
@@ -430,6 +400,7 @@ const UserPage = () => {
                         삭제
                       </button>
                     </td>
+                    <td>{user.createdDate}</td>
                   </tr>
                 ))}
               </tbody>
