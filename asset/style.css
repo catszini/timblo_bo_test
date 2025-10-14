@@ -2051,13 +2051,13 @@ body {
 }
 
 .condition-select {
-    padding: 10px 36px 10px 12px; /* 른백 보 */
-    border: 1px solid #E5E5E5; /* 풋박스 일 상로 일 */
+    padding: 10px 36px 10px 12px;
+    border: 1px solid #E5E5E5;
     font-size: 14px;
     border-radius: 8px;
     background-color: white;
     min-width: 120px;
-    width: 100%;
+    max-width: 200px;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -6195,7 +6195,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 /* 기본 역 (모든 이지 공통) */
 .btn {
-  padding: 0 16px;
+  padding: 10px 16px;
   border: 1px solid #E5E5E5;
   background: #fff;
   cursor: pointer;
@@ -6206,7 +6206,9 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  line-height: 1;
+  line-height: 1.2;
+  white-space: nowrap;
+  min-height: 38px;
 }
 
 
@@ -9572,12 +9574,43 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   }
 }
 
-/* Stats User HTML 이지 */
+/* Stats User HTML 이지 - 엑셀 다운로드 버튼 스타일 개선 */
+.btn[style*="color: #10B981"] {
+  white-space: nowrap !important;
+  padding: 10px 16px !important;
+  min-width: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  border-radius: 6px !important;
+}
+
 .btn[style*="color: #10B981"]:hover {
   background-color: #f0fdf4 !important;
 }
 
 /* System Stats User HTML 이지 */
+.page-system-stats-user .condition-select {
+  min-width: 140px !important;
+  max-width: 180px !important;
+}
+
+.page-system-stats-user .search-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.page-system-stats-user .search-section .tb-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
 .page-system-stats-user .table-container table td {
   padding: 12px 8px;
 }

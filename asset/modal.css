@@ -1088,42 +1088,52 @@
   gap: 8px;
 }
 
-.simple-buttons .btn-cancel {
+.simple-confirm-modal .simple-buttons .btn-cancel {
   flex: 1;
-  padding: 16px 20px;
-  border: 1px solid #E5E7EB;
-  border-radius: 8px;
-  background: #F9FAFB;
-  color: #374151;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  min-height: 48px;
+  padding: 16px 20px !important;
+  border: 1px solid #E5E7EB !important;
+  border-radius: 8px !important;
+  background: #F9FAFB !important;
+  color: #374151 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  line-height: 1.2 !important;
 }
 
-.simple-buttons .btn-cancel:hover {
-  background: #F3F4F6;
-  border-color: #D1D5DB;
+.simple-confirm-modal .simple-buttons .btn-cancel:hover {
+  background: #F3F4F6 !important;
+  border-color: #D1D5DB !important;
 }
 
-.simple-buttons .btn-confirm {
+.simple-confirm-modal .simple-buttons .btn-confirm {
   flex: 1;
-  padding: 16px 20px;
-  border: 1px solid #2563EB;
-  border-radius: 8px;
-  background: #2563EB;
-  color: white;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  min-height: 48px;
+  padding: 16px 20px !important;
+  border: 1px solid #2563EB !important;
+  border-radius: 8px !important;
+  background: #2563EB !important;
+  color: white !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  line-height: 1.2 !important;
 }
 
-.simple-buttons .btn-confirm:hover {
-  background: #1D4ED8;
-  border-color: #1D4ED8;
+.simple-confirm-modal .simple-buttons .btn-confirm:hover {
+  background: #1D4ED8 !important;
+  border-color: #1D4ED8 !important;
 }
 
 /* 버전 정보 셀렉트 박스 폭 축소 (템플릿 모달/상세 전용) */
