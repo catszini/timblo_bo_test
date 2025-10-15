@@ -394,6 +394,345 @@
       </div>
     </div>
 
+    <!-- 비밀번호 초기화 모달 -->
+    <div class="modal-overlay modal-overlay-hidden" id="passwordResetModal">
+      <div class="modal-container password-reset-modal">
+        <div class="modal-title">비밀번호 초기화</div>
+        <div class="modal-content">
+          <p class="reset-description">아래 사용자 계정의 비밀번호를 초기화합니다.</p>
+          <div class="user-info">
+            <div class="user-name" id="resetUserName">tester</div>
+            <div class="user-email" id="resetUserEmail">dev-test@timbel.net</div>
+          </div>
+          <div class="reset-notice">
+            <span class="notice-icon">⚠</span>
+            <span class="notice-text">초기화 비밀번호는 '<span class="temp-password">0000</span>' 입니다.</span>
+          </div>
+        </div>
+        <div class="modal-buttons">
+          <button type="button" class="btn-cancel" id="passwordResetCancel">취소</button>
+          <button type="button" class="btn-confirm" id="passwordResetConfirm">초기화</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 사용자 삭제 확인 모달 (선택 삭제) -->
+    <div class="modal-overlay modal-overlay-hidden" id="deleteUserModal">
+      <div class="modal-container simple-confirm-modal">
+        <div class="modal-content">
+          <div class="simple-message">
+            <h3>삭제하시겠습니까?</h3>
+            <p>확인 후에는 되돌릴 수 없습니다.</p>
+            <div class="delete-user-list">
+              <p class="delete-count">총 <span id="deleteCount">0</span>명의 사용자를 삭제합니다.</p>
+              <ul id="deleteUserNames"></ul>
+            </div>
+          </div>
+
+          <div class="simple-buttons">
+            <button class="btn-cancel" id="deleteUserCancel">취소</button>
+            <button class="btn-confirm" id="deleteUserConfirm">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 개별 사용자 삭제 확인 모달 -->
+    <div class="modal-overlay modal-overlay-hidden" id="deleteSingleUserModal">
+      <div class="modal-container simple-confirm-modal">
+        <div class="modal-content">
+          <div class="simple-message">
+            <h3>삭제하시겠습니까?</h3>
+            <p>확인 후에는 되돌릴 수 없습니다.</p>
+            <div class="delete-user-info">
+              <p><strong id="singleUserName"></strong> (<span id="singleUserEmail"></span>) 사용자를 삭제합니다.</p>
+            </div>
+          </div>
+
+          <div class="simple-buttons">
+            <button class="btn-cancel" id="deleteSingleUserCancel">취소</button>
+            <button class="btn-confirm" id="deleteSingleUserConfirm">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // 비밀번호 초기화 모달 요소들
+        const passwordResetModal = document.getElementById('passwordResetModal');
+        const passwordResetCancel = document.getElementById('passwordResetCancel');
+        const passwordResetConfirm = document.getElementById('passwordResetConfirm');
+        const resetUserName = document.getElementById('resetUserName');
+        const resetUserEmail = document.getElementById('resetUserEmail');
+
+        // 비밀번호 초기화 버튼 클릭 이벤트
+        document.addEventListener('click', (e) => {
+          if (e.target.textContent === '초기화' && e.target.classList.contains('btn-outline')) {
+            const row = e.target.closest('tr');
+            const userName = row.querySelector('.user-status').textContent.trim();
+            const userEmail = row.querySelector('.email-link').textContent.trim();
+
+            // 모달에 사용자 정보 설정
+            resetUserName.textContent = userName;
+            resetUserEmail.textContent = userEmail;
+
+            // 모달 표시
+            passwordResetModal.classList.remove('modal-overlay-hidden');
+          }
+        });
+
+        // 취소 버튼 클릭
+        passwordResetCancel.addEventListener('click', () => {
+          passwordResetModal.classList.add('modal-overlay-hidden');
+        });
+
+        // 초기화 버튼 클릭
+        passwordResetConfirm.addEventListener('click', () => {
+          // 여기에 실제 비밀번호 초기화 로직을 추가할 수 있습니다
+          alert('비밀번호가 초기화되었습니다.');
+          passwordResetModal.classList.add('modal-overlay-hidden');
+        });
+
+        // 모달 외부 클릭 시 닫기
+        passwordResetModal.addEventListener('click', (e) => {
+          if (e.target === passwordResetModal) {
+            passwordResetModal.classList.add('modal-overlay-hidden');
+          }
+        });
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !passwordResetModal.classList.contains('modal-overlay-hidden')) {
+            passwordResetModal.classList.add('modal-overlay-hidden');
+          }
+        });
+
+        // 전체 선택 기능
+        const selectAllCheckbox = document.querySelector('.select-all');
+        const rowCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+
+        // 전체 선택/해제 기능
+        if (selectAllCheckbox) {
+          selectAllCheckbox.addEventListener('change', function () {
+            const isChecked = this.checked;
+            rowCheckboxes.forEach(checkbox => {
+              checkbox.checked = isChecked;
+              const row = checkbox.closest('tr');
+              if (row) {
+                row.classList.toggle('selected', isChecked);
+              }
+            });
+          });
+        }
+
+        // 개별 체크박스 변경 시 행 스타일 변경 및 전체 선택 체크박스 상태 업데이트
+        rowCheckboxes.forEach(checkbox => {
+          checkbox.addEventListener('change', function () {
+            const row = this.closest('tr');
+            if (row) {
+              row.classList.toggle('selected', this.checked);
+            }
+
+            // 전체 선택 체크박스 상태 업데이트
+            if (selectAllCheckbox) {
+              const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
+              const totalCount = rowCheckboxes.length;
+
+              if (checkedCount === 0) {
+                selectAllCheckbox.checked = false;
+                selectAllCheckbox.indeterminate = false;
+              } else if (checkedCount === totalCount) {
+                selectAllCheckbox.checked = true;
+                selectAllCheckbox.indeterminate = false;
+              } else {
+                selectAllCheckbox.checked = false;
+                selectAllCheckbox.indeterminate = true;
+              }
+            }
+          });
+        });
+
+        // 사용자 삭제 기능
+        const deleteModal = document.getElementById('deleteUserModal');
+        const deleteCancel = document.getElementById('deleteUserCancel');
+        const deleteConfirm = document.getElementById('deleteUserConfirm');
+        const deleteBtn = document.querySelector('.delete-btn');
+
+        // 개별 삭제 모달
+        const deleteSingleModal = document.getElementById('deleteSingleUserModal');
+        const deleteSingleCancel = document.getElementById('deleteSingleUserCancel');
+        const deleteSingleConfirm = document.getElementById('deleteSingleUserConfirm');
+
+        let selectedUsers = [];
+        let singleUserToDelete = null;
+
+        // 개별 삭제 버튼 클릭 이벤트
+        document.addEventListener('click', (e) => {
+          if (e.target.classList.contains('btn-danger') && e.target.textContent.trim() === '삭제') {
+            const row = e.target.closest('tr');
+            const userName = row.querySelector('.user-status').textContent.trim();
+            const userEmail = row.querySelector('.email-link').textContent.trim();
+
+            // 개별 삭제할 사용자 정보 설정
+            singleUserToDelete = {
+              name: userName,
+              email: userEmail,
+              row: row
+            };
+
+            // 모달에 사용자 정보 표시
+            document.getElementById('singleUserName').textContent = userName;
+            document.getElementById('singleUserEmail').textContent = userEmail;
+
+            // 개별 삭제 모달 표시
+            deleteSingleModal.classList.remove('modal-overlay-hidden');
+          }
+        });
+
+        // 개별 삭제 취소 버튼
+        if (deleteSingleCancel) {
+          deleteSingleCancel.addEventListener('click', function () {
+            deleteSingleModal.classList.add('modal-overlay-hidden');
+            singleUserToDelete = null;
+          });
+        }
+
+        // 개별 삭제 확인 버튼
+        if (deleteSingleConfirm) {
+          deleteSingleConfirm.addEventListener('click', function () {
+            if (singleUserToDelete) {
+              // 사용자 행 제거
+              singleUserToDelete.row.remove();
+
+              // 모달 닫기
+              deleteSingleModal.classList.add('modal-overlay-hidden');
+
+              // 성공 메시지
+              alert(`${singleUserToDelete.name} 사용자가 삭제되었습니다.`);
+
+              // 초기화
+              singleUserToDelete = null;
+            }
+          });
+        }
+
+        // 선택 삭제 버튼 클릭 이벤트
+        if (deleteBtn) {
+          deleteBtn.addEventListener('click', function () {
+            const checkedBoxes = document.querySelectorAll('tbody input[type="checkbox"]:checked');
+
+            if (checkedBoxes.length === 0) {
+              alert('삭제할 사용자를 선택해주세요.');
+              return;
+            }
+
+            // 선택된 사용자 정보 수집
+            selectedUsers = [];
+            checkedBoxes.forEach(checkbox => {
+              const row = checkbox.closest('tr');
+              const userName = row.querySelector('.user-status').textContent.trim();
+              const userEmail = row.querySelector('.email-link').textContent.trim();
+              selectedUsers.push({
+                name: userName,
+                email: userEmail,
+                row: row
+              });
+            });
+
+            if (selectedUsers.length === 0) {
+              alert('삭제할 수 있는 사용자가 선택되지 않았습니다.');
+              return;
+            }
+
+            // 모달에 삭제 대상 명단 표시
+            document.getElementById('deleteCount').textContent = selectedUsers.length;
+            const userNamesList = document.getElementById('deleteUserNames');
+            userNamesList.innerHTML = '';
+            selectedUsers.forEach(user => {
+              const li = document.createElement('li');
+              li.textContent = `${user.name} (${user.email})`;
+              userNamesList.appendChild(li);
+            });
+
+            // 모달 표시
+            deleteModal.classList.remove('modal-overlay-hidden');
+          });
+        }
+
+        // 취소 버튼 클릭
+        if (deleteCancel) {
+          deleteCancel.addEventListener('click', function () {
+            deleteModal.classList.add('modal-overlay-hidden');
+            selectedUsers = [];
+          });
+        }
+
+        // 확인 버튼 클릭
+        if (deleteConfirm) {
+          deleteConfirm.addEventListener('click', function () {
+            if (selectedUsers.length > 0) {
+              // 선택된 사용자들을 테이블에서 제거
+              selectedUsers.forEach(user => {
+                user.row.remove();
+              });
+
+              // 모달 닫기
+              deleteModal.classList.add('modal-overlay-hidden');
+
+              // 성공 메시지
+              const userNames = selectedUsers.map(user => user.name).join(', ');
+              alert(`선택한 사용자가 삭제되었습니다: ${userNames}`);
+
+              // 선택 초기화
+              selectedUsers = [];
+
+              // 전체 선택 체크박스 해제
+              const selectAllCheckbox = document.querySelector('.select-all');
+              if (selectAllCheckbox) {
+                selectAllCheckbox.checked = false;
+                selectAllCheckbox.indeterminate = false;
+              }
+            }
+          });
+        }
+
+        // 모달 오버레이 클릭 시 닫기
+        if (deleteModal) {
+          deleteModal.addEventListener('click', function (e) {
+            if (e.target === deleteModal) {
+              deleteModal.classList.add('modal-overlay-hidden');
+              selectedUsers = [];
+            }
+          });
+        }
+
+        // 개별 삭제 모달 오버레이 클릭 시 닫기
+        if (deleteSingleModal) {
+          deleteSingleModal.addEventListener('click', function (e) {
+            if (e.target === deleteSingleModal) {
+              deleteSingleModal.classList.add('modal-overlay-hidden');
+              singleUserToDelete = null;
+            }
+          });
+        }
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') {
+            if (!deleteModal.classList.contains('modal-overlay-hidden')) {
+              deleteModal.classList.add('modal-overlay-hidden');
+              selectedUsers = [];
+            }
+            if (!deleteSingleModal.classList.contains('modal-overlay-hidden')) {
+              deleteSingleModal.classList.add('modal-overlay-hidden');
+              singleUserToDelete = null;
+            }
+          }
+        });
+      });
+    </script>
+
     <script src="../asset/menu.js"></script>
     <script src="../asset/main.js"></script>
 </body>

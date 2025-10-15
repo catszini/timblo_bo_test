@@ -1141,3 +1141,165 @@
 .template-detail-page .version-group .version-input {
     flex: 0 0 180px;
 }
+
+/* 비밀번호 초기화 모달 */
+.password-reset-modal {
+  width: 400px;
+  max-width: 90vw;
+  padding: 24px;
+}
+
+.password-reset-modal .modal-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.password-reset-modal .modal-content {
+  text-align: center;
+  padding: 0;
+}
+
+.password-reset-modal .reset-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.password-reset-modal .user-info {
+  margin-bottom: 20px;
+}
+
+.password-reset-modal .user-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.password-reset-modal .user-email {
+  font-size: 14px;
+  color: #666;
+}
+
+.password-reset-modal .reset-notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 4px;
+  margin-bottom: 24px;
+}
+
+.password-reset-modal .notice-icon {
+  color: #856404;
+  font-size: 16px;
+}
+
+.password-reset-modal .notice-text {
+  font-size: 14px;
+  color: #856404;
+}
+
+.password-reset-modal .temp-password {
+  font-weight: 600;
+  color: #d63384;
+}
+
+.password-reset-modal .modal-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.password-reset-modal .btn-cancel,
+.password-reset-modal .btn-confirm {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-width: 80px;
+}
+
+.password-reset-modal .btn-cancel {
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+
+.password-reset-modal .btn-cancel:hover {
+  background: #e9ecef;
+}
+
+.password-reset-modal .btn-confirm {
+  background: #4285f4;
+  color: white;
+}
+
+.password-reset-modal .btn-confirm:hover {
+  background: #3367d6;
+}
+
+/* 삭제 모달 사용자 명단 스타일 */
+.delete-user-list {
+  margin-top: 16px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+}
+
+.delete-count {
+  font-weight: 600;
+  color: #495057;
+  margin: 0 0 8px 0;
+  font-size: 14px;
+}
+
+.delete-user-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.delete-user-list li {
+  padding: 4px 0;
+  font-size: 13px;
+  color: #6c757d;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.delete-user-list li:last-child {
+  border-bottom: none;
+}
+
+.delete-user-info {
+  margin-top: 16px;
+  padding: 12px;
+  background: #fff3cd;
+  border-radius: 6px;
+  border: 1px solid #ffeaa7;
+}
+
+.delete-user-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #856404;
+}
+
+.delete-user-info strong {
+  color: #495057;
+}

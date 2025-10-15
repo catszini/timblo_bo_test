@@ -1,17 +1,23 @@
-/* CSS 임페스 략 가드
-   이지고유래 가야 니
-   - .page-user (용관
-   - .page-group-setting (그룹 정)  
-   - .page-member-register (권한 록)
-   - .page-general (반 정)
-   - .page-workspace (크페스)
-   - .page-download-history (운로드 력)
-   - .page-template-detail (플세)
+/* CSS 네임스페이스 전략 가이드
+   페이지별 고유 클래스 사용해야 함
+   - .page-user (사용자 관리)
+   - .page-group-setting (그룹 설정)  
+   - .page-member-register (권한 등록)
+   - .page-general (일반 설정)
+   - .page-workspace (워크스페이스)
+   - .page-download-history (다운로드 이력)
+   - .page-template-detail (템플릿 상세)
 
    
-   역 충돌방려을 음같이 성:
+   글로벌 충돌 방지를 위해 다음과 같이 작성:
    .page-specific .common-class { ... }
 */
+
+/* 기본 스타일 및 유틸리티 클래스 */
+@import url('./base.css');
+
+/* 공통 컴포넌트 스타일 */
+@import url('./components.css');
 
 /* HTML 기본 리셋 */
 *,
@@ -66,13 +72,13 @@ p, h1, h2, h3, h4, h5, h6 {
     background-color: #ffffff;
 }
 
-/* 틸리티 래*/
+/* 유틸리티 클래스 */
 .mb-1 { margin-bottom: 8px; }
 .mb-2 { margin-bottom: 16px; }
 .mb-3 { margin-bottom: 24px; }
 .flex-1 { flex: 1; }
 
-/* 검바 */
+/* 검색 툴바 */
 .search-toolbar {
     display: flex;
     flex-direction: row;
@@ -110,7 +116,7 @@ p, h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* 추 틸리티 래들 */
+/* 추가 유틸리티 클래스들 */
 .mt-1 { margin-top: 8px; }
 .mt-2 { margin-top: 16px; }
 .mt-3 { margin-top: 24px; }
@@ -156,7 +162,7 @@ p, h1, h2, h3, h4, h5, h6 {
 .w-full { width: 100%; }
 .h-full { height: 100%; }
 
-/* 검력 그룹 */
+/* 검색 입력 그룹 */
 .search-input-group {
     display: flex;
     align-items: center;
@@ -185,7 +191,7 @@ p, h1, h2, h3, h4, h5, h6 {
     border-radius: 0;
 }
 
-/* 반응 래*/
+/* 반응형 클래스 */
 @media (max-width: 768px) {
     .hidden-mobile {
         display: none !important;
@@ -198,20 +204,20 @@ p, h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* 스줄임 */
+/* 텍스트 줄임표 */
 .text-truncate {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-/* 추 이웃 래들 */
+/* 추가 레이아웃 클래스들 */
 .p-2 { padding: 16px; }
 .p-3 { padding: 24px; }
 .ml-auto { margin-left: auto; }
 .mt-3 { margin-top: 24px; }
 
-/* 공항 용 */
+/* 공지사항 내용 */
 .notice-content {
     font-size: 16px;
     line-height: 1.8;
@@ -251,7 +257,7 @@ p, h1, h2, h3, h4, h5, h6 {
     margin-bottom: 4px;
 }
 
-/* 역 버튼 이 일 */
+/* 글로벌 버튼 높이 통일 */
 button {
     height: 36px;
     display: inline-flex;
@@ -286,7 +292,7 @@ select:focus {
 }
 */
 
-/* 합 검컴포트 - 기존 구조 일게 */
+/* 통합 검색 컴포넌트 - 기존 구조 유지하게 */
 .search-toolbar {
     margin-bottom: 16px;
 }
@@ -427,10 +433,10 @@ select:focus {
     background: #0F6BFF;
 }
 
-/* 초기 로드 메뉴 깜빡방: JS가 준비되까지 이바 비화(공간 ) */
+/* 초기 로드 메뉴 깜빡임 방지: JS가 준비될때까지 사이드바 비표시(공간 예약) */
 html:not(.menu-ready) .sidebar { visibility: hidden; }
 
-/* 의목 링크 */
+/* 동의서 제목 링크 */
 .consent-title-link {
   color: #292A2B;
   text-decoration: none;
@@ -443,7 +449,7 @@ html:not(.menu-ready) .sidebar { visibility: hidden; }
   text-decoration: none;
 }
 
-/* 이버 과 */
+/* 테이블 호버 효과 */
 tbody tr:hover {
   background-color: #F8F9FA;
 }
@@ -452,7 +458,7 @@ tbody tr:hover td {
   background-color: #F8F9FA;
 }
 
-/* 역 이일 */
+/* 글로벌 테이블 스타일 */
 table th {
   padding: 12px 16px;
   background: #f8f9fa;
@@ -485,7 +491,7 @@ table td {
   text-decoration: underline;
 }
 
-/* 의세이지 용 */
+/* 동의서 상세 페이지 전용 */
 .consent-detail-page .consent-detail-form,
 .consent-new-page .consent-detail-form {
   background: #FFFFFF;
@@ -759,9 +765,9 @@ table td {
   margin-bottom: 0;
 }
 
-/* 크페스 관- 이더 용 가데 렬 */
+/* 워크스페이스 관리 - 헤더 전용 사용자 아이콘 정렬 */
 
-/* 크페스 관- 용황 이(겹침 과) */
+/* 워크스페이스 관리 - 사용자 상태 아이콘(겹침 효과) */
 .user-status-icons {
   display: flex;
   align-items: center;
@@ -923,7 +929,7 @@ table td {
   background: #fef2f2;
 }
 
-/* 그룹 정 이지 - 크페스 터 */
+/* 그룹 설정 페이지 - 워크스페이스 셀렉터 */
 .page-group-setting .workspace-selector-section {
   margin-bottom: 8px;
 }
@@ -971,7 +977,7 @@ table td {
   height: 16px;
 }
 
-/* 그룹 정 이지 - 그룹보 더 */
+/* 그룹 설정 페이지 - 그룹 정보 헤더 */
 .page-group-setting .group-info-header {
   display: flex;
   justify-content: space-between;
@@ -1635,8 +1641,8 @@ body {
     }
 }
 
-/* 브메뉴 링 */
-/* 브메뉴 기본 힘 */
+/* 브레드크럼 링크 */
+/* 브레드크럼 기본 단순함 */
 .submenu {
     list-style: none;
     margin-left: 32px;
@@ -2068,7 +2074,7 @@ body {
     cursor: pointer;
 }
 
-/* 일 력 짜 범위 커 */
+/* 달력 날짜 범위 커서 */
 .date-range-wrap {
     position: relative;
 }
@@ -2076,14 +2082,14 @@ body {
 .date-range {
     height: 36px;
     padding: 6px 12px;
-    border: 1px solid #E5E5E5; /* 풋박스 일 상로 일 */
+    border: 1px solid #E5E5E5; /* 입력박스 기본 스타일 */
     border-radius: 8px;
     background: #fff;
     min-width: 220px;
     cursor: pointer;
 }
 
-/* 력 이시*/
+/* 달력 아이콘 스타일 */
 .date-range-wrap .calendar-icon {
     position: absolute;
     left: 10px;
@@ -2121,7 +2127,7 @@ body {
     margin-left: 8px;
 }
 
-/* 짜 범위 버튼 미니 라머웃인 */
+/* 날짜 범위 버튼 미니 레이아웃 */
 .range-actions .btn-outline,
 .range-actions .btn-submit {
     display: inline-flex;
@@ -2160,7 +2166,7 @@ body {
     border-color: #1677FF;
 }
 
-/* 험 버튼 (  */
+/* 위험 버튼 (빨간색) */
 .btn-danger {
     display: inline-flex;
     align-items: center;
@@ -2189,7 +2195,7 @@ body {
     border-color: #DC2626;
 }
 
-/* 력 UI */
+/* 달력 UI */
 .calendar-range { display: flex; gap: 12px; align-items: flex-start; }
 .calendar { width: 280px; }
 .cal-header {
@@ -2213,7 +2219,7 @@ body {
     text-align: center;
 }
 
-/* 쪽 버튼보이록 중앙 버튼  */
+/* 양쪽 버튼 보이도록 중앙 버튼 숨김 */
 .calendar-range .calendar:first-child .cal-next { display: none; }
 .calendar-range .calendar:last-child .cal-prev { display: none; }
 .cal-grid {
@@ -2238,11 +2244,11 @@ body {
 .cal-day.selected { background: #0066FF; color: #fff; }
 .cal-day.in-range { background: #E8F1FF; }
 
-/* 중복 거: .right-group 백 규칙 거 (이지별로 지 */
+/* 중복 제거: .right-group 스타일 규칙 제거 (페이지별로 정의) */
 
-/* 중복 거: 역 검풋 구형 의 거 (최신 의단 632인 근처) */
+/* 중복 제거: 검색 영역 구조 변경으로 인한 제거 (최신 스타일은 632라인 근처) */
 
-/* 조회 버튼이only, 트 이/렬 */
+/* 조회 버튼 스타일 - 아이콘 전용, 텍스트 없음/정렬 */
 .search-button {
     display: inline-flex;
     align-items: center;
@@ -2263,7 +2269,7 @@ body {
 }
 .search-button svg { width: 20px; height: 20px; }
 
-/* 풋/트 박스 이버튼 입퍼 */
+/* 입력/텍스트 박스 안의 버튼 아이콘 스타일 */
 .search-control { position: relative; display: inline-block; }
 .search-control .search-input,
 .search-control .condition-select { padding-right: 40px; }
@@ -2280,7 +2286,7 @@ body {
 }
 .search-control .search-button svg { display: none; }
 
-/* 쪽보이콘이 어가일 력*/
+/* 왼쪽 보기 아이콘이 있는 경우의 스타일 */
 .search-control.icon-left { position: relative; display:inline-block; flex: 0 0 auto; height:36px; }
 .search-control.icon-left .mag-icon{
     position:absolute; left:12px; top:50%; transform:translateY(-50%);
@@ -2296,7 +2302,7 @@ body {
     box-shadow: none;
 }
 
-/* 반 이지 권한 이백/간 축소 */
+/* 일반 페이지 권한 테이블 패딩/간격 축소 */
 .general-page .perm-table-narrow table th,
 .general-page .perm-table-narrow table td {
     padding: 10px 12px;
@@ -2305,41 +2311,41 @@ body {
 .general-page .perm-table-narrow table td:first-child {
     width: 100px;
 }
-/* 번째 구분) 스가데 렬 */
+/* 첫번째 컬럼 (구분) 텍스트 가운데 정렬 */
 .general-page .perm-table-narrow table td:first-child {
     text-align: center;
     vertical-align: middle;
 }
 
-/* 반 이지 권한 이가축소  처리 */
+/* 일반 페이지 권한 테이블 너비 축소 반응형 처리 */
 .general-page .perm-table-narrow {
     width: 100%;
-    max-width: 900px; /* 체 좁게 */
+    max-width: 900px; /* 전체 너비 좁게 */
 }
 .general-page .perm-table-narrow table {
     width: 100%;
-    table-layout: fixed; /* 좁 도 균등게 */
+    table-layout: fixed; /* 좁은 너비도 균등하게 */
 }
 .general-page .perm-table-narrow table,
 .general-page .perm-table-narrow table th,
 .general-page .perm-table-narrow table td {
-    border: 1px solid #E5E5E5; /*  이이 곽*/
+    border: 1px solid #E5E5E5; /* 테이블 테두리 */
 }
 .general-page .perm-table-narrow table th {
-    text-align: center; /* 더 스가데 렬 */
+    text-align: center; /* 헤더 텍스트 가운데 정렬 */
 }
 .general-page .perm-table-narrow .toggle-group {
-    flex-wrap: wrap; /* 좁아지음 줄로 */
-    gap: 16px;      /* 가간격 폭 축소 */
-    justify-content: center; /*  중앙 렬 */
+    flex-wrap: wrap; /* 좁아지면 다음 줄로 */
+    gap: 16px;      /* 아이템 간격 너비 축소 */
+    justify-content: center; /* 항목 중앙 정렬 */
     width: 100%;
 }
 .general-page .perm-table-narrow .toggle-item {
-    min-width: 160px; /* 줄바위 보 */
+    min-width: 160px; /* 줄바꿈시 최소 너비 보장 */
 }
 .general-page .perm-table-narrow .toggle-item { justify-content: center; }
 
-/* 공통 태 시 */
+/* 공통 빈 상태 스타일 */
 .empty-state {
     display: flex;
     align-items: center;
@@ -2369,7 +2375,7 @@ th, td {
     border-bottom: 1px solid #eee;
 }
 
-/* 이마  가데 렬 */
+/* 마지막 컬럼 가운데 정렬 */
 .table-container table th:last-child,
 .table-container table td:last-child {
     text-align: center;
@@ -2385,7 +2391,7 @@ th {
     color: #333;
 }
 
-/*  위*/
+/* 토글 스위치 */
 .switch {
     position: relative;
     display: inline-block;
@@ -2447,7 +2453,7 @@ input:checked + .slider:before {
     display: block;
 }
 
-/* 이블용 채 버튼 (의전 관리용) */
+/* 테이블용 삭제 버튼 (동의서 관리용) */
 .delete-btn--filled {
     background-color: transparent;
     border: 1px solid #FF4444;
@@ -2462,7 +2468,7 @@ input:checked + .slider:before {
     filter: none;
 }
 
-/* 용관이지 */
+/* 사용자 관리 페이지 */
 .user-profile {
     display: flex;
     align-items: center;
@@ -2470,7 +2476,7 @@ input:checked + .slider:before {
 }
 
 
-/* 멤버 관이지 로*/
+/* 멤버 관리 페이지 로딩 */
 .top-section {
     display: flex;
     gap: 24px;
@@ -2659,7 +2665,7 @@ input:checked + .slider:before {
     padding: 24px;
 }
 
-/* 멤버 관이지 이개선 */
+/* 멤버 관리 페이지 UI 개선 */
 .user-page.member-page .table-container {
     margin-top: 20px;
 }
@@ -2759,7 +2765,7 @@ input:checked + .slider:before {
 }
 
 
-/* user 이지 면원 션 버튼 */
+/* user 페이지 비활성 멤버 섹션 버튼 */
 .user-page.member-page .btn-activate {
   padding: 6px 12px;
   background: #fff;
@@ -2798,7 +2804,7 @@ input:checked + .slider:before {
   color: #DC2626;
 }
 
-/* user 이지 태 배 */
+/* user 페이지 상태 배지 */
 .user-page.member-page .status-badge {
   padding: 4px 8px;
   border-radius: 12px;
@@ -2819,7 +2825,7 @@ input:checked + .slider:before {
 }
 
 
-/* 계 세보 션 */
+/* 통계 세부정보 섹션 */
 .stats-and-detail-section {
   display: flex;
   gap: 24px;
@@ -2834,7 +2840,7 @@ input:checked + .slider:before {
   flex: 1;
 }
 
-/* 세 션 */
+/* 세부 폼 섹션 */
 .detail-form-section {
   background: #fff;
   border: 1px solid #E5E5E5;
@@ -3010,7 +3016,7 @@ input:checked + .slider:before {
   background: #fef2f2;
 }
 
-/* 용 */
+/* 폼 내용 */
 .detail-form-content {
   display: flex;
   flex-direction: column;
@@ -3052,7 +3058,7 @@ input:checked + .slider:before {
   padding: 8px 32px 8px 12px;
 }
 
-/* 그룹 정 이지  버튼 */
+/* 그룹 설정 페이지 토글 버튼 */
 .page-group-setting .toggle-buttons {
   display: flex;
   gap: 2px;
@@ -3089,7 +3095,7 @@ input:checked + .slider:before {
   background: #0052CC;
 }
 
-/* 른 이지  버튼 (기본) */
+/* 다른 페이지 토글 버튼 (기본) */
 .toggle-buttons {
   display: flex;
   gap: 2px;
@@ -3126,12 +3132,12 @@ input:checked + .slider:before {
   background: #0052CC;
 }
 
-/* 컨테너 */
+/* 탭 컨테이너 */
 .tab-container {
   margin-bottom: 24px;
 }
 
-/* 비게이*/
+/* 탭 네비게이션 */
 .tab-nav {
   display: flex;
   border-bottom: 1px solid #E5E5E5;
@@ -3170,7 +3176,7 @@ input:checked + .slider:before {
   z-index: 1;
 }
 
-/* 용 */
+/* 탭 내용 */
 .tab-content {
   display: none;
   background: #fff;
@@ -3184,7 +3190,7 @@ input:checked + .slider:before {
   display: block;
 }
 
-/* 리스션 마진 조정 */
+/* 리스트 섹션 마진 조정 */
 .tab-content .list-section {
   margin-top: 0;
   border: none;
@@ -3193,12 +3199,12 @@ input:checked + .slider:before {
 }
 
 
-/* 퇴원 션 */
+/* 탈퇴 멤버 섹션 */
 .user-page.member-page .withdrawn-members-section {
   margin-top: 16px;
 }
 
-/* 메뉴 관이지 용 */
+/* 메뉴 관리 페이지 스타일 */
 .page-menu-setting .menu-management-container {
   background: #fff;
   border-radius: 8px;
@@ -3211,7 +3217,7 @@ input:checked + .slider:before {
   min-height: 600px;
 }
 
-/* 메뉴 리 널 */
+/* 메뉴 트리 패널 */
 .page-menu-setting .menu-tree-panel {
   flex: 1;
   background: #fff;
@@ -3248,7 +3254,7 @@ input:checked + .slider:before {
   min-width: auto;
 }
 
-/* 메뉴 리 이*/
+/* 메뉴 트리 내용 */
 .page-menu-setting .menu-tree-content {
   max-height: 500px;
   overflow-y: auto;
@@ -3262,6 +3268,20 @@ input:checked + .slider:before {
 
 .page-menu-setting .menu-tree-item .menu-item-header:hover {
   background: #F8F9FA;
+}
+
+/* 메뉴 설정 페이지 - 선택된 행 스타일 */
+.page-menu-setting .menu-table tbody tr.selected {
+  background-color: #e3f2fd !important;
+  border-left: 3px solid #2196f3;
+}
+
+.page-menu-setting .menu-table tbody tr.selected:hover {
+  background-color: #bbdefb !important;
+}
+
+.page-menu-setting .menu-table tbody tr.selected td {
+  background-color: transparent;
 }
 
 .page-menu-setting .menu-tree-item.selected .menu-item-header {
@@ -4045,7 +4065,7 @@ input:checked + .slider:before {
     background: #F0F7FF;
 }
 
-/* 멤버 관이지 짜 범위 택 */
+/* 멤버 관리 페이지 날짜 범위 선택 */
 .user-page.member-page .date-range-wrap {
     display: flex;
     align-items: center;
@@ -6554,7 +6574,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   text-align: center;
 }
 
-/* 정변력 이지 CSS */
+/* 설정 변경 이력 페이지 CSS */
 .detail-section-title {
   margin-top: 8px;
   margin-bottom: 8px;
@@ -6762,7 +6782,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 
-/* 정변력 이지 짜 범위 택기 조정 */
+/* 설정 변경 이력 페이지 날짜 범위 선택기 조정 */
 .setting-change-details .date-range-wrap .date-range,
 .search-section .date-range-wrap .date-range {
   min-width: 280px;
