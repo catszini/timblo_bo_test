@@ -3783,17 +3783,17 @@ input:checked + .slider:before {
   min-height: 40px;
 }
 
-/* 관리자 션 */
+/* 관리자 섹션 */
 .page-workspace-detail .admin-badges:empty::before {
-  content: '관리자가 습다.';
+  content: '관리자가 없습니다.';
   color: #6B7280;
   font-style: italic;
   font-size: 14px;
 }
 
-/* 반 구성션 */
+/* 일반 구성원 섹션 */
 .page-workspace-detail .general-badges:empty::before {
-  content: '반 구성이 습다.';
+  content: '일반 구성원이 없습니다.';
   color: #6B7280;
   font-style: italic;
   font-size: 14px;
@@ -4143,23 +4143,23 @@ input:checked + .slider:before {
     min-height: 32px;
 }
 
-/* 태 배 (이블용) */
+/* 상태 배지 (테이블용) */
 .status-pill {
     display: inline-flex;
     align-items: center;
-    padding: 6px 12px; /* 배 기  */
+    padding: 6px 12px; /* 배지 기본 패딩 */
     border-radius: 9999px;
     font-size: 13px;
     font-weight: 600;
     line-height: 1;
-    min-height: 26px; /* 이 보장 */
+    min-height: 26px; /* 높이 보장 */
 }
 .status-pill.draft { /* 초안 */
-    background: #FFD84D; /* 밝 랑 */
+    background: #FFD84D; /* 밝은 노랑 */
     color: #292A2B;
 }
-.status-pill.archived { /* 보*/
-    background: #E5E7EB; /* 그이 */
+.status-pill.archived { /* 보관됨 */
+    background: #E5E7EB; /* 회색 */
     color: #4B5563;
 }
 
@@ -4175,9 +4175,9 @@ input:checked + .slider:before {
     color: #999;
 }
 
-/* 중복 거: min-width단 .condition-select존재 */
+/* 중복 제거: min-width 속성 .condition-select에 이미 존재 */
 
-/* 콘텐 */
+/* 콘텐츠 제목 */
 .content-title {
     display: flex;
     align-items: center;
@@ -4195,7 +4195,7 @@ input:checked + .slider:before {
     color: #666;
 }
 
-/* 크페스 관용 */
+/* 워크스페이스 관리 페이지 스타일 */
 .workspace-page .search-input {
     width: 400px;
     padding: 10px 12px;
@@ -4270,7 +4270,7 @@ input:checked + .slider:before {
     color: white;
 }
 
-/* 크페스 이상 (모) */
+/* 워크스페이스 아이콘 색상 (모든 색상) */
 .workspace-icon.color-teal { background-color: #14B8A6; }
 .workspace-icon.color-indigo { background-color: #6366F1; }
 .workspace-icon.color-rose { background-color: #F43F5E; }
@@ -4409,9 +4409,9 @@ th .sort-icon {
 th.sortable.asc .sort-icon { transform: rotate(180deg); }
 th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
-/* 크페스 이지 용 */
+/* 워크스페이스 페이지 스타일 */
 
-/* 크페스 성 모달 */
+/* 워크스페이스 생성 모달 */
 .workspace-modal {
     width: 500px !important;
 }
@@ -4434,7 +4434,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     margin: 0 auto;
 }
 
-/* 크페스 리이상 */
+/* 워크스페이스 프리뷰 아이콘 색상 */
 .workspace-icon-preview.color-teal { background-color: #14B8A6; }
 .workspace-icon-preview.color-indigo { background-color: #6366F1; }
 .workspace-icon-preview.color-rose { background-color: #F43F5E; }
@@ -4452,7 +4452,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     margin-top: 4px;
 }
 
-/* HTML 라을 한 로래들 */
+/* HTML 파일을 위한 스타일들 */
 .range-panel-info {
     margin-top: 8px;
     font-size: 12px;
@@ -4462,7 +4462,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
     justify-content: space-between;
 }
 
-/* combo-search 컴포트 기 일 */
+/* combo-search 컴포넌트 기본 너비 설정 */
 .combo-search,
 .combo-search-wide {
     width: 520px;
@@ -4881,7 +4881,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .member-register-password-icons .member-register-password-icon:first-child {
-  position: relative; /* 번째 이(이콘들)컨테너 */
+  position: relative; /* 첫번째 아이콘(눈 아이콘들) 컨테이너 */
 }
 
 #eye-closed, #eye-open {
@@ -4896,7 +4896,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 .member-register-password-icons .member-register-password-icon:last-child {
-  position: relative; /* X 이콘 반인 로에 라 배치 */
+  position: relative; /* X 아이콘 일반적인 위치에 따라 배치 */
   margin-left: 30px;
 }
 
@@ -4978,7 +4978,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   background: #2563EB;
 }
 
-/* 그룹 정 이지 용 */
+/* 그룹 설정 페이지 스타일 */
 .group-setting-page {
   background-color: transparent;
 }
@@ -5183,14 +5183,14 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   width: 55%;
 }
 
-/* 쪽 널 (이블들) */
+/* 왼쪽 패널 (테이블들) */
 .group-setting-left-panel {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-/* 로그룹 정 이*/
+/* 새 그룹 설정 폼 스타일 */
 .group-setting-form-container {
   border-top: 1px solid #F3F4F6
 }
@@ -5435,7 +5435,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   border-color: #22C55E;
 }
 
-/* 그룹 정 모달 */
+/* 그룹 설정 모달 */
 .group-setting-modal-overlay {
   position: fixed;
   top: 0;
@@ -5555,7 +5555,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   background: #f0f7ff;
 }
 
-/* 플테이지 용 */
+/* 템플릿 상세 페이지 스타일 */
 .template-detail-page .modal-container {
   width: auto !important;
   max-width: none !important;
@@ -5575,7 +5575,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 
 
-/* 운로드 스리 이지 용 */
+/* 다운로드 히스토리 페이지 스타일 */
 
 .download-history-page .table-container table th:first-child,
 .download-history-page .table-container table td:first-child {
@@ -5678,7 +5678,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   gap: 8px;
 }
 
-/* 반 이지 용 */
+/* 일반 페이지 스타일 */
 .general-page .card {
   background: #F7FAFD;
   border: 1px solid #E5EAF0;
@@ -5779,7 +5779,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   line-height: 1.6;
 }
 
-/* workspace_detail 이지 동 명 스백 */
+/* workspace_detail 페이지 자동 삭제 설명 스타일 */
 .page-workspace-detail .auto-delete-desc {
   margin: 16px 0 20px 0;
 }
@@ -5788,9 +5788,9 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 
 
-/* switch-large 거 - 기본 switch 용 */
+/* switch-large 제거 - 기본 switch 사용 */
 
-/* 용정 카드 */
+/* 사용자 설정 카드 */
 .user-settings-card {
   margin-bottom: 24px;
 }
@@ -5919,7 +5919,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 
-/* 스용이지 버튼 개선 */
+/* 시스템 사용자 페이지 버튼 개선 */
 .page-system-user.user-page.member-page .btn-submit {
   padding: 6px 16px;
   font-size: 14px;
@@ -5947,7 +5947,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   border-color: #EF4444;
 }
 
-/* 스용이지 검박스 조회 버튼 */
+/* 시스템 사용자 페이지 검색박스 조회 버튼 */
 .page-system-user.user-page.member-page .combo-field .append-btn {
   height: 100%;
   border: none;
@@ -5975,7 +5975,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 
-/* 스용이지 이버튼 */
+/* 시스템 사용자 페이지 테이블 버튼 */
 .page-system-user.user-page.member-page .table-container .btn-outline {
   padding: 6px 12px;
   font-size: 13px;
@@ -5998,7 +5998,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   justify-content: center;
 }
 
-/* 스용이지 이스줄바방 */
+/* 시스템 사용자 페이지 테이블 텍스트 줄바꿈 방지 */
 .page-system-user.user-page.member-page .table-container td {
   white-space: nowrap;
 }
@@ -6022,18 +6022,18 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   vertical-align: middle;
 }
 
-/* 스용이지 이지이중앙 렬 */
+/* 시스템 사용자 페이지 페이지네이션 중앙 정렬 */
 .page-system-user.user-page.member-page .list-footer {
   justify-content: center;
 }
 
 
-/* 스용이지 검션 버튼 스보호 */
+/* 시스템 사용자 페이지 검색 섹션 버튼 텍스트 보호 */
 .page-system-user.user-page.member-page .tb-right .btn-submit {
   white-space: nowrap;
 }
 
-/* 스용이지 권한 트 박스 커스 */
+/* 시스템 사용자 페이지 권한 셀렉트 박스 커스텀 */
 .page-system-user.user-page.member-page .table-container .permission-select {
   width: 140px;
   height: 32px;
@@ -6063,7 +6063,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 }
 
 
-/* 비활멤버 이지 버튼 - 곽*/
+/* 비활성 멤버 페이지 버튼 - 테두리 */
 .inactive-members-page .btn-activate {
   padding: 6px 12px;
   background: #fff;
