@@ -789,15 +789,73 @@
         });
       }
 
-      // 권한 생성 모달 기능
+      // 권한 생성/수정 모달 기능
       const createPermissionBtn = document.getElementById('createPermissionBtn');
+      const editPermissionBtn = document.querySelector('.btn-form-edit');
       const permissionModal = document.getElementById('permissionModal');
       const permissionCancel = document.getElementById('permissionCancel');
       const permissionCreate = document.getElementById('permissionCreate');
+      const modalTitle = permissionModal.querySelector('.modal-header h2');
+
+      let currentMode = 'create'; // 'create' 또는 'edit'
+      let currentEditRow = null;
 
       // 생성 버튼 클릭 시 모달 열기
       if (createPermissionBtn) {
         createPermissionBtn.addEventListener('click', function () {
+          currentMode = 'create';
+          currentEditRow = null;
+          modalTitle.textContent = '권한 생성';
+          permissionCreate.textContent = '생성';
+          // 폼 초기화
+          document.getElementById('workspaceName').value = 'SK Telecom';
+          document.getElementById('permissionName').value = '';
+          document.getElementById('permissionType').value = '';
+          permissionModal.classList.remove('modal-overlay-hidden');
+        });
+      }
+
+      // 수정 버튼 클릭 시 모달 열기
+      if (editPermissionBtn) {
+        editPermissionBtn.addEventListener('click', function () {
+          // 선택된 권한 확인
+          const checkedBoxes = Array.from(rowCheckboxes).filter(cb => cb.checked);
+
+          if (checkedBoxes.length === 0) {
+            alert('수정할 권한을 선택해주세요.');
+            return;
+          }
+
+          if (checkedBoxes.length > 1) {
+            alert('한 번에 하나의 권한만 수정할 수 있습니다.');
+            return;
+          }
+
+          // 선택된 권한 정보 가져오기
+          const selectedRow = checkedBoxes[0].closest('tr');
+          const workspaceElement = selectedRow.querySelector('.workspace-name span');
+          const permissionNameElement = selectedRow.querySelector('td:nth-child(4)');
+          const permissionDescElement = selectedRow.querySelector('td:nth-child(5)');
+
+          currentMode = 'edit';
+          currentEditRow = selectedRow;
+          modalTitle.textContent = '권한 수정';
+          permissionCreate.textContent = '수정';
+
+          // 기존 정보로 폼 채우기
+          const workspaceName = workspaceElement.textContent.trim();
+          document.getElementById('permissionName').value = permissionNameElement.textContent.trim();
+          document.getElementById('permissionType').value = permissionDescElement.textContent.trim();
+
+          // 워크스페이스 선택
+          const workspaceSelect = document.getElementById('workspaceName');
+          for (let i = 0; i < workspaceSelect.options.length; i++) {
+            if (workspaceSelect.options[i].text === workspaceName) {
+              workspaceSelect.selectedIndex = i;
+              break;
+            }
+          }
+
           permissionModal.classList.remove('modal-overlay-hidden');
         });
       }
@@ -818,9 +876,10 @@
         });
       }
 
-      // 생성 버튼 클릭
+      // 생성/수정 버튼 클릭
       if (permissionCreate) {
         permissionCreate.addEventListener('click', function () {
+          const workspaceName = document.getElementById('workspaceName').options[document.getElementById('workspaceName').selectedIndex].text;
           const permissionName = document.getElementById('permissionName').value.trim();
           const permissionType = document.getElementById('permissionType').value.trim();
 
@@ -830,11 +889,33 @@
           }
 
           if (!permissionType) {
-            alert('구분을 입력해주세요.');
+            alert('권한 설명을 입력해주세요.');
             return;
           }
 
-          alert('권한이 생성되었습니다.');
+          if (currentMode === 'create') {
+            // 권한 생성 로직
+            alert('권한이 생성되었습니다.');
+          } else if (currentMode === 'edit') {
+            // 권한 수정 로직
+            if (currentEditRow) {
+              // 테이블의 권한 정보 업데이트
+              const workspaceNameElement = currentEditRow.querySelector('.workspace-name span');
+              const permissionNameElement = currentEditRow.querySelector('td:nth-child(4)');
+              const permissionDescElement = currentEditRow.querySelector('td:nth-child(5)');
+
+              workspaceNameElement.textContent = workspaceName;
+              permissionNameElement.textContent = permissionName;
+              permissionDescElement.textContent = permissionType;
+
+              // 최종수정시간 업데이트
+              const now = new Date();
+              const dateString = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+              currentEditRow.querySelector('td:nth-child(7)').textContent = dateString;
+            }
+            alert('권한이 수정되었습니다.');
+          }
+
           permissionModal.classList.add('modal-overlay-hidden');
 
           // 폼 초기화

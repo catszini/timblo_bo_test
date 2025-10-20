@@ -621,14 +621,42 @@
         const passwordInput = document.getElementById('userPassword');
         const permissionSelect = document.getElementById('userPermission');
 
-        // 모달 열기
+        // 현재 모드 추적 (생성/수정)
+        let currentMode = 'create';
+        let currentEditRow = null;
+
+        // 모달 열기 (생성용)
         function openModal() {
+          currentMode = 'create';
+          currentEditRow = null;
           // 입력 필드 초기화
           workspaceSelect.value = '';
           nameInput.value = '';
           emailInput.value = '';
           passwordInput.value = '';
           permissionSelect.value = '';
+          // 모달 타이틀 및 버튼 텍스트 변경
+          document.querySelector('#userCreateModal .modal-title').textContent = '사용자 생성';
+          confirmBtn.textContent = '생성';
+          // 비밀번호 필드 표시
+          passwordInput.closest('.form-group').style.display = 'block';
+          modal.classList.remove('modal-overlay-hidden');
+        }
+
+        // 모달 열기 (수정용)
+        function openEditModal(userData) {
+          currentMode = 'edit';
+          currentEditRow = userData.row;
+          // 기존 사용자 정보 설정
+          workspaceSelect.value = userData.workspaceValue;
+          nameInput.value = userData.name;
+          emailInput.value = userData.email;
+          permissionSelect.value = userData.permissionValue;
+          // 모달 타이틀 및 버튼 텍스트 변경
+          document.querySelector('#userCreateModal .modal-title').textContent = '사용자 수정';
+          confirmBtn.textContent = '수정';
+          // 비밀번호 필드 숨기기 (수정 시에는 비밀번호 변경 불가)
+          passwordInput.closest('.form-group').style.display = 'none';
           modal.classList.remove('modal-overlay-hidden');
         }
 
@@ -645,12 +673,73 @@
           });
         }
 
+        // 수정 버튼 클릭 시 모달 표시
+        const editBtn = document.querySelector('.ws-actions .edit-btn');
+        if (editBtn) {
+          editBtn.addEventListener('click', function () {
+            // 선택된 사용자 확인
+            const checkedBoxes = Array.from(rowCheckboxes).filter(cb => cb.checked);
+
+            if (checkedBoxes.length === 0) {
+              alert('수정할 사용자를 선택해주세요.');
+              return;
+            }
+
+            if (checkedBoxes.length > 1) {
+              alert('한 번에 하나의 사용자만 수정할 수 있습니다.');
+              return;
+            }
+
+            // 선택된 사용자 정보 가져오기
+            const selectedRow = checkedBoxes[0].closest('tr');
+            const workspaceElement = selectedRow.querySelector('.workspace-name span');
+            const nameElement = selectedRow.querySelector('.user-status');
+            const emailElement = selectedRow.querySelector('.email-link');
+            const permissionElement = selectedRow.querySelector('.permission-select');
+
+            // 워크스페이스 value 매핑
+            const workspaceNameToValue = {
+              'SK Telecom': 'sk-telecom',
+              'SK Hynix': 'sk-hynix',
+              'SK E&S': 'sk-es',
+              'SK C&C': 'sk-cc',
+              'SK Innovation': 'sk-innovation',
+              'SK Networks': 'sk-networks',
+              'SK Biopharm': 'sk-biopharm',
+              'SK Materials': 'sk-materials',
+              'SK Shieldus': 'sk-shieldus'
+            };
+
+            // 권한 텍스트를 value로 매핑
+            const permissionTextToValue = {
+              '시스템관리자': 'system-admin',
+              '워크스페이스관리자': 'workspace-admin',
+              '메뉴관리자': 'menu-admin',
+              '통계관리자': 'stats-admin',
+              '구성원': 'member'
+            };
+
+            const workspaceName = workspaceElement.textContent.trim();
+            const permissionText = permissionElement.options[permissionElement.selectedIndex].text;
+
+            const userData = {
+              workspaceValue: workspaceNameToValue[workspaceName] || '',
+              name: nameElement.textContent.trim(),
+              email: emailElement.textContent.trim(),
+              permissionValue: permissionTextToValue[permissionText] || '',
+              row: selectedRow
+            };
+
+            openEditModal(userData);
+          });
+        }
+
         // 취소 버튼 클릭
         if (cancelBtn) {
           cancelBtn.addEventListener('click', closeModal);
         }
 
-        // 생성 버튼 클릭
+        // 생성/수정 버튼 클릭
         if (confirmBtn) {
           confirmBtn.addEventListener('click', () => {
             const workspace = workspaceSelect.value.trim();
@@ -686,16 +775,19 @@
               return;
             }
 
-            if (!password) {
-              alert('비밀번호를 입력해주세요.');
-              passwordInput.focus();
-              return;
-            }
+            // 생성 모드일 때만 비밀번호 검증
+            if (currentMode === 'create') {
+              if (!password) {
+                alert('비밀번호를 입력해주세요.');
+                passwordInput.focus();
+                return;
+              }
 
-            if (password.length < 6) {
-              alert('비밀번호는 6자 이상 입력해주세요.');
-              passwordInput.focus();
-              return;
+              if (password.length < 6) {
+                alert('비밀번호는 6자 이상 입력해주세요.');
+                passwordInput.focus();
+                return;
+              }
             }
 
             if (!permission) {
@@ -704,8 +796,57 @@
               return;
             }
 
-            // 여기에 실제 사용자 생성 로직 추가
-            alert(`사용자 "${name}"이 생성되었습니다.`);
+            if (currentMode === 'create') {
+              // 사용자 생성 로직
+              alert(`사용자 "${name}"이 생성되었습니다.`);
+            } else if (currentMode === 'edit') {
+              // 사용자 수정 로직
+              if (currentEditRow) {
+                // 워크스페이스 value to name 매핑
+                const workspaceValueToName = {
+                  'sk-telecom': 'SK Telecom',
+                  'sk-hynix': 'SK Hynix',
+                  'sk-es': 'SK E&S',
+                  'sk-cc': 'SK C&C',
+                  'sk-innovation': 'SK Innovation',
+                  'sk-networks': 'SK Networks',
+                  'sk-biopharm': 'SK Biopharm',
+                  'sk-materials': 'SK Materials',
+                  'sk-shieldus': 'SK Shieldus'
+                };
+
+                // 권한 value to text 매핑
+                const permissionValueToText = {
+                  'system-admin': '시스템관리자',
+                  'workspace-admin': '워크스페이스관리자',
+                  'menu-admin': '메뉴관리자',
+                  'stats-admin': '통계관리자',
+                  'member': '구성원'
+                };
+
+                // 테이블의 사용자 정보 업데이트
+                const workspaceNameElement = currentEditRow.querySelector('.workspace-name span');
+                const nameElement = currentEditRow.querySelector('.user-status');
+                const emailElement = currentEditRow.querySelector('.email-link');
+                const permissionSelectElement = currentEditRow.querySelector('.permission-select');
+
+                workspaceNameElement.textContent = workspaceValueToName[workspace] || workspace;
+                nameElement.textContent = name;
+                emailElement.textContent = email;
+                emailElement.href = `mailto:${email}`;
+
+                // 권한 셀렉트 업데이트
+                const permissionText = permissionValueToText[permission] || permission;
+                for (let i = 0; i < permissionSelectElement.options.length; i++) {
+                  if (permissionSelectElement.options[i].text === permissionText) {
+                    permissionSelectElement.selectedIndex = i;
+                    break;
+                  }
+                }
+              }
+              alert(`사용자 "${name}"의 정보가 수정되었습니다.`);
+            }
+
             closeModal();
           });
         }

@@ -182,11 +182,6 @@
           </table>
         </div>
 
-        <!-- 저장 버튼 -->
-        <div class="form-actions">
-          <button class="btn btn-outline create-permission">생성</button>
-          <button class="btn btn-primary save-permissions">변경사항 저장</button>
-        </div>
       </div>
     </div>
   </div>
@@ -240,14 +235,6 @@
         }
       }
 
-      // 생성 버튼
-      const createBtn = document.querySelector('.create-permission');
-      createBtn?.addEventListener('click', function () {
-        if (confirm('새로운 보존정책을 생성하시겠습니까?')) {
-          console.log('새 보존정책 생성');
-          alert('새로운 보존정책이 생성되었습니다.');
-        }
-      });
 
       // 저장 버튼
       const saveBtn = document.querySelector('.save-permissions');
