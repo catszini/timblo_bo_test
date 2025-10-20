@@ -10392,12 +10392,13 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 .prompt-switches {
   display: flex;
-  flex-direction: column;
+
   gap: 12px;
 }
 
 .prompt-switch-label {
   display: flex;
+  gap: 8px;
   justify-content: space-between;
   align-items: center;
 }

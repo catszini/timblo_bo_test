@@ -577,13 +577,31 @@
       const domainInput = document.getElementById('workspaceDomain');
       const noteTextarea = document.getElementById('workspaceNote');
 
-      // 모달 열기
+      // 모달 열기 (생성용)
       function openModal() {
         setRandomWorkspaceIcon();
         // 입력 필드 초기화
         nameInput.value = '';
         domainInput.value = '';
         noteTextarea.value = '';
+        // 모달 타이틀 변경
+        document.querySelector('#workspaceModal .modal-title').textContent = '워크스페이스 생성';
+        confirmBtn.textContent = '확인';
+        modal.classList.remove('modal-overlay-hidden');
+      }
+
+      // 모달 열기 (수정용)
+      function openEditModal(workspaceData) {
+        const iconPreview = document.getElementById('workspace-icon-preview');
+        // 기존 워크스페이스 정보 설정
+        nameInput.value = workspaceData.name;
+        domainInput.value = workspaceData.domain;
+        noteTextarea.value = workspaceData.note || '';
+        iconPreview.textContent = workspaceData.iconText;
+        iconPreview.style.background = workspaceData.iconColor;
+        // 모달 타이틀 변경
+        document.querySelector('#workspaceModal .modal-title').textContent = '워크스페이스 수정';
+        confirmBtn.textContent = '수정';
         modal.classList.remove('modal-overlay-hidden');
       }
 
@@ -597,10 +615,69 @@
         createBtn.addEventListener('click', openModal);
       }
 
+      // 수정 버튼 클릭 시 모달 표시
+      const editBtn = document.querySelector('.ws-actions .edit-btn');
+      if (editBtn) {
+        editBtn.addEventListener('click', function () {
+          // 선택된 워크스페이스 확인
+          const checkedBoxes = Array.from(rowCheckboxes).filter(cb => cb.checked);
+
+          if (checkedBoxes.length === 0) {
+            alert('수정할 워크스페이스를 선택해주세요.');
+            return;
+          }
+
+          if (checkedBoxes.length > 1) {
+            alert('한 번에 하나의 워크스페이스만 수정할 수 있습니다.');
+            return;
+          }
+
+          // 선택된 워크스페이스 정보 가져오기
+          const selectedRow = checkedBoxes[0].closest('tr');
+          const workspaceNameElement = selectedRow.querySelector('.workspace-name span');
+          const workspaceDomainElement = selectedRow.querySelector('td:nth-child(3)');
+          const workspaceIconElement = selectedRow.querySelector('.workspace-icon');
+
+          const workspaceData = {
+            name: workspaceNameElement.textContent.trim(),
+            domain: workspaceDomainElement.textContent.trim(),
+            note: '워크스페이스 설명입니다.', // 실제로는 서버에서 가져와야 함
+            iconText: workspaceIconElement.textContent.trim(),
+            iconColor: window.getComputedStyle(workspaceIconElement).backgroundColor,
+            row: selectedRow
+          };
+
+          openEditModal(workspaceData);
+        });
+      }
+
       // 취소 버튼 클릭
       if (cancelBtn) {
         cancelBtn.addEventListener('click', closeModal);
       }
+
+      // 현재 모드 추적 (생성/수정)
+      let currentMode = 'create';
+      let currentEditRow = null;
+
+      // 모달 모드 변경 함수
+      function setModalMode(mode, row = null) {
+        currentMode = mode;
+        currentEditRow = row;
+      }
+
+      // openModal과 openEditModal에서 모드 설정
+      const originalOpenModal = openModal;
+      openModal = function () {
+        setModalMode('create');
+        originalOpenModal();
+      };
+
+      const originalOpenEditModal = openEditModal;
+      openEditModal = function (workspaceData) {
+        setModalMode('edit', workspaceData.row);
+        originalOpenEditModal(workspaceData);
+      };
 
       // 확인 버튼 클릭
       if (confirmBtn) {
@@ -614,8 +691,22 @@
             return;
           }
 
-          // 여기에 실제 워크스페이스 생성 로직 추가
-          alert(`워크스페이스 "${name}"이 생성되었습니다.`);
+          if (currentMode === 'create') {
+            // 워크스페이스 생성 로직
+            alert(`워크스페이스 "${name}"이 생성되었습니다.`);
+          } else if (currentMode === 'edit') {
+            // 워크스페이스 수정 로직
+            if (currentEditRow) {
+              // 테이블의 워크스페이스 정보 업데이트
+              const workspaceNameElement = currentEditRow.querySelector('.workspace-name span');
+              const workspaceDomainElement = currentEditRow.querySelector('td:nth-child(3)');
+
+              workspaceNameElement.textContent = name;
+              workspaceDomainElement.textContent = domain;
+            }
+            alert(`워크스페이스 "${name}"이 수정되었습니다.`);
+          }
+
           closeModal();
         });
       }
