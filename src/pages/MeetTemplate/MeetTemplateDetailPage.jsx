@@ -110,7 +110,7 @@ const MeetTemplateDetailPage = () => {
     <Layout className="page-template-detail template-detail-page">
       <div className="content">
         <div className="content-header">
-          <h1 className="breadcrumb">회의록 템플릿 관리</h1>
+          <h1 className="breadcrumb">템플릿 관리 (회의록, 공통 템플릿)</h1>
           <div className="template-detail-actions">
             <ButtonGroup variant="outlined" size="medium">
               <Button 

@@ -20,7 +20,7 @@ const CalendarPage = () => {
     <Layout className="page-calendar">
       <div className="content">
         <div className="content-header">
-          <h1 className="breadcrumb">캘린더 관리</h1>
+          <h1 className="breadcrumb">캘린더 관리/설정</h1>
         </div>
         <div className="content-body">
           {/* 외부 캘린더 연동 섹션 */}

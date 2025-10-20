@@ -182,7 +182,7 @@ const MeetTemplatePage = () => {
     <Layout className="template-list-page">
       <div className="content">
         <div className="content-header">
-          <h1 className="breadcrumb">회의 템플릿 관리</h1>
+          <h1 className="breadcrumb">템플릿 관리 (회의록, 공통 템플릿)</h1>
         </div>
         <div className="content-body">
           <div className="search-section">

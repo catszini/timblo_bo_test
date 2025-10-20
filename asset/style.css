@@ -10211,3 +10211,399 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   margin: 0;
   cursor: pointer;
 }
+
+/* ==========================================
+   프롬프트 관리 페이지 전용 스타일
+   ========================================== */
+
+/* 프롬프트 전용 클래스 - template_detail.html과 동일한 스타일 */
+.prompt-form-group {
+  margin-bottom: 24px;
+}
+
+.prompt-category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.prompt-category-header label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+}
+
+.prompt-form-value {
+  padding: 12px;
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  color: #6B7280;
+  font-size: 14px;
+}
+
+.prompt-version-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.prompt-version-input {
+  min-width: 150px;
+}
+
+.prompt-edit-wrapper {
+  position: relative;
+}
+
+.prompt-btn-edit {
+  background: #F3F4F6;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: #6B7280;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.prompt-btn-edit:hover {
+  background: #E5E7EB;
+}
+
+.prompt-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  z-index: 1000;
+  display: none;
+}
+
+.prompt-dropdown-menu ul {
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+}
+
+.prompt-dropdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.prompt-dropdown-item:hover {
+  background: #F3F4F6;
+}
+
+.prompt-dropdown-divider {
+  height: 1px;
+  background: #E5E7EB;
+  margin: 8px 0;
+}
+
+.prompt-new-category {
+  color: #3B82F6;
+  font-weight: 500;
+}
+
+.prompt-item-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.prompt-btn-icon {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.prompt-btn-icon:hover {
+  opacity: 1;
+}
+
+.prompt-category-select-group {
+  margin-top: 8px;
+}
+
+.prompt-form-input,
+.prompt-form-select,
+.prompt-form-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.prompt-form-select {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.prompt-form-input:focus,
+.prompt-form-select:focus,
+.prompt-form-textarea:focus {
+  outline: none;
+  border-color: #3B82F6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.prompt-form-textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+  resize: none;
+}
+
+.prompt-input-counter {
+  text-align: right;
+  font-size: 12px;
+  color: #6B7280;
+  margin-top: 4px;
+}
+
+.prompt-switch-group {
+  margin-top: 8px;
+}
+
+.prompt-switches {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prompt-switch-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prompt-switch-text {
+  font-size: 14px;
+  color: #374151;
+}
+
+.prompt-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.prompt-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.prompt-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #CBD5E1;
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.prompt-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked+.prompt-slider {
+  background-color: #3B82F6;
+}
+
+input:checked+.prompt-slider:before {
+  transform: translateX(20px);
+}
+
+/* 카테고리 생성 모달 */
+.prompt-category-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.prompt-category-modal-hidden {
+  display: none;
+}
+
+.prompt-category-modal {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  min-width: 400px;
+  max-width: 500px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.prompt-category-modal h3 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.prompt-category-modal-content {
+  margin-bottom: 24px;
+}
+
+.prompt-category-modal-footer {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.prompt-btn-cancel,
+.prompt-btn-submit {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid;
+  transition: all 0.2s;
+}
+
+.prompt-btn-cancel {
+  background: white;
+  border-color: #D1D5DB;
+  color: #374151;
+}
+
+.prompt-btn-submit {
+  background: #3B82F6;
+  border-color: #3B82F6;
+  color: white;
+}
+
+.prompt-btn-cancel:hover {
+  background: #F3F4F6;
+}
+
+.prompt-btn-submit:hover {
+  background: #2563EB;
+  border-color: #2563EB;
+}
+
+/* 테이블 스타일 */
+.prompt-table-container {
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+
+.prompt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.prompt-table th,
+.prompt-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.prompt-table th {
+  background: #F9FAFB;
+  font-weight: 600;
+  color: #374151;
+  font-size: 13px;
+}
+
+.prompt-table td {
+  color: #111827;
+}
+
+.prompt-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prompt-table tbody tr:hover {
+  background: #F9FAFB;
+}
+
+/* 프롬프트 모달 폭 강제 적용 */
+.modal-container.prompt-modal {
+  width: 1000px !important;
+  max-width: 1000px !important;
+  min-width: 1000px !important;
+}
+
+/* 버전정보 테이블의 변경사항 컬럼 말줄임표 */
+.prompt-table td:nth-child(4) {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 프롬프트 모달 내 커스텀 셀렉트 박스 스타일 */
+.prompt-modal .combo-select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.prompt-modal .combo-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  padding-right: 40px;
+}
+
+.prompt-modal .combo-select img {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 16px;
+  height: 16px;
+}

@@ -78,7 +78,7 @@ const PromptPage = () => {
     <Layout className="page-prompt">
       <div className="content">
         <div className="content-header">
-          <h1 className="breadcrumb">프롬프트관리</h1>
+          <h1 className="breadcrumb">프롬프트 관리</h1>
         </div>
         <div className="content-body">
           <div className="search-section">

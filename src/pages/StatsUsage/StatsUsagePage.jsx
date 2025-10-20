@@ -235,7 +235,7 @@ const StatsUsagePage = () => {
     <Layout className="page-stats-usage">
       <div className="content">
         <div className="content-header">
-          <h1 className="breadcrumb">사용량 통계</h1>
+          <h1 className="breadcrumb">워크스페이스 사용 통계</h1>
         </div>
 
         <div className="content-body">

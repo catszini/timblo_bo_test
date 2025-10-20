@@ -73,7 +73,7 @@ const MeetingPage = () => {
     <Layout className="page-meeting meeting-page">
       <div className="content">
         <div className="content-header">
-          <h1 className="breadcrumb">회의록 관리</h1>
+          <h1 className="breadcrumb">회의록 이력</h1>
         </div>
 
         <div className="content-body">
