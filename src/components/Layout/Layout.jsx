@@ -18,8 +18,18 @@ const Layout = ({ children, className = '' }) => {
         <div className="logo">
           <div className="logo-icon">T</div>
           <div className="logo-text">
-            <div className="logo-title">Timbel</div>
-            <div className="logo-url">timbel.net</div>
+            <div className="logo-title">홍길동</div>
+            <div className="logo-url">
+              <select className="condition-select" id="workspace-filter">
+                <option value="Timbel">Timbel</option>
+                <option value="sk-telecom">SK Telecom</option>
+                <option value="sk-hynix">SK Hynix</option>
+                <option value="sk-es">SK E&S</option>
+                <option value="sk-cc">SK C&C</option>
+                <option value="sk-innovation">SK Innovation</option>
+                <option value="sk-networks">SK Networks</option>
+              </select>
+            </div>
           </div>
           <button className="logout-btn" title="로그아웃">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,7 +67,7 @@ const Layout = ({ children, className = '' }) => {
             <h3>워크스페이스 설정</h3>
           </div>
           <ul>
-            <li><a href="/workspace-permission" className={isActive('/workspace-permission')}>FO기능정책관리</a></li>
+            <li><a href="/workspace-permission" className={isActive('/workspace-permission')}>기능 권한 관리</a></li>
             <li><a href="/content-retention" className={isActive('/content-retention')}>컨텐츠 보존 관리</a></li>
             <li><a href="/workspace-group-setting" className={isActive('/workspace-group-setting')}>역할 관리</a></li>
             <li><a href="/user" className={isActive('/user')}>사용자 관리</a></li>
