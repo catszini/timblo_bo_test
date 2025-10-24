@@ -65,6 +65,8 @@ const Layout = ({ children, className = '' }) => {
             <li><a href="/menu-setting" className={isActive('/menu-setting')}>전체 메뉴 관리</a></li>
             <li><a href="/system-user" className={isActive('/system-user')}>사용자 관리</a></li>
             <li><a href="/group-setting" className={isActive('/group-setting')}>역할 관리</a></li>
+            <li><a href="/terms-of-service" className={isActive('/terms-of-service')}>이용약관 관리</a></li>
+            <li><a href="/terms-consent-history" className={isActive('/terms-consent-history')}>이용약관 동의 이력</a></li>
             <li><a href="/system-setting-history" className={isActive('/system-setting-history')}>설정변경 이력</a></li>
             <li><a href="/system-stats-usage" className={isActive('/system-stats-usage')}>전체 시스템 사용 통계</a></li>
             <li><a href="/system-stats-user" className={isActive('/system-stats-user')}>사용자별 사용 통계</a></li>

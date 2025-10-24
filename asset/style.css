@@ -934,7 +934,29 @@ table td {
   margin-bottom: 8px;
 }
 
+/* 관리자 유형 아이콘 */
+.admin-type-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+  cursor: help;
+}
 
+.admin-type-icon.system {
+  background-color: #DBEAFE;
+  color: #1E40AF;
+}
+
+.admin-type-icon.workspace {
+  background-color: #D1FAE5;
+  color: #065F46;
+}
 
 .page-group-setting .workspace-selector-section .combo-select {
   position: relative;
@@ -2360,6 +2382,39 @@ body {
     width: 40px;
     height: 40px;
     opacity: 0.6;
+}
+
+/* 테이블 No Data 스타일 */
+.table-container tbody tr.no-data-row {
+    background-color: #FAFAFA;
+}
+
+.table-container tbody tr.no-data-row:hover {
+    background-color: #FAFAFA;
+}
+
+.table-container tbody td.no-data-cell {
+    text-align: center;
+    padding: 60px 20px;
+    color: #9AA0A6;
+    font-size: 14px;
+    font-weight: 400;
+    border-bottom: none;
+}
+
+.table-container tbody td.no-data-cell .no-data-icon {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+    opacity: 0.5;
+}
+
+.table-container tbody td.no-data-cell .no-data-text {
+    display: block;
+    font-size: 15px;
+    color: #6B7280;
+    font-weight: 500;
 }
 
 
@@ -5072,6 +5127,17 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 .tree-item > input[type="checkbox"] {
   margin-right: 6px;
   cursor: pointer;
+}
+
+.tree-item > input[type="checkbox"]:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.tree-item > input[type="checkbox"]:disabled + label {
+  color: #9CA3AF;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .tree-children {
@@ -9844,6 +9910,78 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
 
 .page-menu-setting .section-title.history-stats::before {
   background-image: url('../asset/chart.svg');
+}
+
+.page-menu-setting .section-title.custom-menu {
+  color: #111827;
+  border-bottom: 1px solid #BFDBFE;
+}
+
+/* Kebab 메뉴 스타일 */
+.menu-actions {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.kebab-menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.kebab-menu-btn:hover {
+  background-color: #F3F4F6;
+}
+
+.kebab-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  min-width: 120px;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.kebab-dropdown .dropdown-item {
+  width: 100%;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  color: #374151;
+  transition: background-color 0.15s;
+  display: block;
+}
+
+.kebab-dropdown .dropdown-item:hover {
+  background-color: #F9FAFB;
+}
+
+.kebab-dropdown .dropdown-item.edit-menu {
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.kebab-dropdown .dropdown-item.delete-menu {
+  color: #EF4444;
+}
+
+.kebab-dropdown .dropdown-item.delete-menu:hover {
+  background-color: #FEF2F2;
 }
 
 /*  위*/

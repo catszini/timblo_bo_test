@@ -54,6 +54,8 @@
           <li><a href="menu_setting.html" class="active">전체 메뉴 관리</a></li>
           <li><a href="system_user.html">사용자 관리</a></li>
           <li><a href="group_setting.html">역할 관리</a></li>
+          <li><a href="terms_of_service.html">이용약관 관리</a></li>
+          <li><a href="terms_consent_history.html">이용약관 동의 이력</a></li>
           <li><a href="system_setting_history.html">설정변경 이력</a></li>
           <li><a href="system_stats_usage.html">전체 시스템 사용 통계</a></li>
           <li><a href="system_stats_user.html">사용자별 사용 통계</a></li>
@@ -131,8 +133,7 @@
               <span class="menu-count">총 6개 메뉴</span>
             </div>
             <div class="menu-action-buttons">
-              <button class="delete-btn">삭제</button>
-              <button class="new-button">생성</button>
+              <button class="new-button">신규생성</button>
             </div>
           </div>
 
@@ -143,7 +144,7 @@
                 <th>메뉴명</th>
                 <th>URL</th>
                 <th>사용여부</th>
-                <th>관리</th>
+                <th style="width: 60px;"></th>
               </tr>
             </thead>
             <tbody>
@@ -157,7 +158,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -169,7 +170,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -181,7 +182,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -193,7 +194,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -205,7 +206,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -217,7 +218,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -229,7 +230,120 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
+              </tr>
+
+              <!-- 사용자 추가 메뉴 섹션 -->
+              <tr class="section-header">
+                <td colspan="5" class="section-title custom-menu">사용자 추가 메뉴</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>마케팅 대시보드</td>
+                <td>/custom-marketing-dashboard</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <div class="menu-actions">
+                    <button class="kebab-menu-btn" data-menu-name="마케팅 대시보드" data-menu-url="/custom-marketing-dashboard"
+                      data-menu-status="active">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="4" r="1.5" fill="#6B7280" />
+                        <circle cx="10" cy="10" r="1.5" fill="#6B7280" />
+                        <circle cx="10" cy="16" r="1.5" fill="#6B7280" />
+                      </svg>
+                    </button>
+                    <div class="kebab-dropdown" style="display: none;">
+                      <button class="dropdown-item edit-menu">수정</button>
+                      <button class="dropdown-item delete-menu">삭제</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>영업 리포트</td>
+                <td>/custom-sales-report</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <div class="menu-actions">
+                    <button class="kebab-menu-btn" data-menu-name="영업 리포트" data-menu-url="/custom-sales-report"
+                      data-menu-status="inactive">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="4" r="1.5" fill="#6B7280" />
+                        <circle cx="10" cy="10" r="1.5" fill="#6B7280" />
+                        <circle cx="10" cy="16" r="1.5" fill="#6B7280" />
+                      </svg>
+                    </button>
+                    <div class="kebab-dropdown" style="display: none;">
+                      <button class="dropdown-item edit-menu">수정</button>
+                      <button class="dropdown-item delete-menu">삭제</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>재무 분석</td>
+                <td>/custom-financial-analysis</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <div class="menu-actions">
+                    <button class="kebab-menu-btn" data-menu-name="재무 분석" data-menu-url="/custom-financial-analysis"
+                      data-menu-status="active">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="4" r="1.5" fill="#6B7280" />
+                        <circle cx="10" cy="10" r="1.5" fill="#6B7280" />
+                        <circle cx="10" cy="16" r="1.5" fill="#6B7280" />
+                      </svg>
+                    </button>
+                    <div class="kebab-dropdown" style="display: none;">
+                      <button class="dropdown-item edit-menu">수정</button>
+                      <button class="dropdown-item delete-menu">삭제</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>고객 관리</td>
+                <td>/custom-customer-management</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <div class="menu-actions">
+                    <button class="kebab-menu-btn" data-menu-name="고객 관리" data-menu-url="/custom-customer-management"
+                      data-menu-status="active">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="4" r="1.5" fill="#6B7280" />
+                        <circle cx="10" cy="10" r="1.5" fill="#6B7280" />
+                        <circle cx="10" cy="16" r="1.5" fill="#6B7280" />
+                      </svg>
+                    </button>
+                    <div class="kebab-dropdown" style="display: none;">
+                      <button class="dropdown-item edit-menu">수정</button>
+                      <button class="dropdown-item delete-menu">삭제</button>
+                    </div>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -257,8 +371,7 @@
               </div>
             </div>
             <div class="menu-action-buttons">
-              <button class="delete-btn">삭제</button>
-              <button class="new-button">생성</button>
+              <button class="new-button">신규생성</button>
             </div>
           </div>
 
@@ -269,7 +382,7 @@
                 <th>메뉴명</th>
                 <th>URL</th>
                 <th>사용여부</th>
-                <th>관리</th>
+                <th style="width: 60px;"></th>
               </tr>
             </thead>
             <tbody>
@@ -287,7 +400,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -299,7 +412,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -311,7 +424,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -323,7 +436,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -335,7 +448,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
 
               <!-- 세부 기능 관리 -->
@@ -352,7 +465,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -364,7 +477,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -376,7 +489,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -388,7 +501,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -400,7 +513,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -412,7 +525,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
 
               <!-- 이력/통계 관리 -->
@@ -429,7 +542,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -441,7 +554,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -453,7 +566,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -465,7 +578,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -477,7 +590,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -489,7 +602,7 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -501,7 +614,93 @@
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td><button class="edit-btn">수정</button></td>
+                <td></td>
+              </tr>
+
+              <!-- 사용자 추가 메뉴 섹션 -->
+              <tr class="section-header">
+                <td colspan="5" class="section-title custom-menu">사용자 추가 메뉴</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>프로젝트 관리</td>
+                <td>/custom-project-management</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <div class="menu-actions">
+                    <button class="kebab-menu-btn" data-menu-name="프로젝트 관리" data-menu-url="/custom-project-management"
+                      data-menu-status="active">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="4" r="1.5" fill="#6B7280" />
+                        <circle cx="10" cy="10" r="1.5" fill="#6B7280" />
+                        <circle cx="10" cy="16" r="1.5" fill="#6B7280" />
+                      </svg>
+                    </button>
+                    <div class="kebab-dropdown" style="display: none;">
+                      <button class="dropdown-item edit-menu-workspace">수정</button>
+                      <button class="dropdown-item delete-menu-workspace">삭제</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>업무 대시보드</td>
+                <td>/custom-work-dashboard</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <div class="menu-actions">
+                    <button class="kebab-menu-btn" data-menu-name="업무 대시보드" data-menu-url="/custom-work-dashboard"
+                      data-menu-status="active">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="4" r="1.5" fill="#6B7280" />
+                        <circle cx="10" cy="10" r="1.5" fill="#6B7280" />
+                        <circle cx="10" cy="16" r="1.5" fill="#6B7280" />
+                      </svg>
+                    </button>
+                    <div class="kebab-dropdown" style="display: none;">
+                      <button class="dropdown-item edit-menu-workspace">수정</button>
+                      <button class="dropdown-item delete-menu-workspace">삭제</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>팀 협업 공간</td>
+                <td>/custom-team-collaboration</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <div class="menu-actions">
+                    <button class="kebab-menu-btn" data-menu-name="팀 협업 공간" data-menu-url="/custom-team-collaboration"
+                      data-menu-status="inactive">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="4" r="1.5" fill="#6B7280" />
+                        <circle cx="10" cy="10" r="1.5" fill="#6B7280" />
+                        <circle cx="10" cy="16" r="1.5" fill="#6B7280" />
+                      </svg>
+                    </button>
+                    <div class="kebab-dropdown" style="display: none;">
+                      <button class="dropdown-item edit-menu-workspace">수정</button>
+                      <button class="dropdown-item delete-menu-workspace">삭제</button>
+                    </div>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -512,7 +711,7 @@
 
   <!-- 새메뉴 생성 모달 -->
   <div class="modal-overlay modal-overlay-hidden" id="newMenuModal">
-    <div class="modal-container" style="width: 600px; max-width: 90vw; min-height: 500px;">
+    <div class="modal-container" style="width: 600px; max-width: 90vw;">
       <div class="modal-header">
         <div class="header-content">
           <div class="header-text">
@@ -523,8 +722,8 @@
           </button>
         </div>
       </div>
-      <div class="modal-content" style="padding: 32px;">
-        <div class="form-row" style="margin-bottom: 24px;">
+      <div class="modal-content" style="padding: 24px 32px;">
+        <div class="form-row" style="margin-bottom: 20px;">
           <div class="form-group" style="margin-right: 16px;">
             <label style="display: block; margin-bottom: 8px; font-weight: 600;">메뉴명</label>
             <input type="text" class="form-input" id="menu-name-input" placeholder="메뉴명을 입력하세요"
@@ -532,15 +731,7 @@
           </div>
         </div>
 
-        <div class="form-row" style="margin-bottom: 24px;" id="order-section">
-          <div class="form-group" style="margin-right: 16px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600;">순서</label>
-            <input type="number" class="form-input" id="menu-order-input" placeholder="순서를 입력하세요"
-              style="width: 100%; padding: 12px;" />
-          </div>
-        </div>
-
-        <div class="form-row" style="margin-bottom: 24px;">
+        <div class="form-row" style="margin-bottom: 20px;">
           <div class="form-group full-width">
             <label style="display: block; margin-bottom: 8px; font-weight: 600;">링크 URL</label>
             <input type="text" class="form-input" id="menu-url-input" style="width: 100%; padding: 12px;"
@@ -548,7 +739,7 @@
           </div>
         </div>
 
-        <div class="form-row" style="margin-bottom: 24px;" id="group-section">
+        <div class="form-row" style="margin-bottom: 20px;" id="group-section">
           <div class="form-group full-width">
             <label style="display: block; margin-bottom: 8px; font-weight: 600;">그룹 설정</label>
             <div class="combo-select" style="width: 100%;">
@@ -566,7 +757,7 @@
           </div>
         </div>
 
-        <div class="form-row" style="margin-bottom: 24px;">
+        <div class="form-row">
           <div class="form-group full-width">
             <label style="display: block; margin-bottom: 8px; font-weight: 600;">사용 여부</label>
             <div class="status-radio-group">
@@ -582,7 +773,7 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer" style="padding: 24px 32px 32px 32px; display: flex; gap: 16px;">
+      <div class="modal-footer" style="padding: 20px 32px 24px 32px; display: flex; gap: 16px;">
         <button class="btn-cancel" id="menuModalCancel" style="flex: 1; padding: 12px; font-size: 16px;">취소</button>
         <button class="btn-submit" id="menuModalSave" style="flex: 1; padding: 12px; font-size: 16px;">저장</button>
       </div>
@@ -633,7 +824,6 @@
       const workspaceNewBtn = document.querySelector('#workspace-menu .new-button');
       const modal = document.getElementById('newMenuModal');
       const modalTitle = document.getElementById('modal-title');
-      const orderSection = document.getElementById('order-section');
       const groupSection = document.getElementById('group-section');
 
       let currentMenuType = 'system'; // 'system' 또는 'workspace'
@@ -643,7 +833,6 @@
         systemNewBtn.addEventListener('click', function () {
           currentMenuType = 'system';
           modalTitle.textContent = '시스템 메뉴 생성';
-          orderSection.style.display = 'block'; // 순서 필드 보이기
           groupSection.style.display = 'none';  // 그룹 필드 숨기기
           clearModalForm();
           modal.classList.remove('modal-overlay-hidden');
@@ -655,7 +844,6 @@
         workspaceNewBtn.addEventListener('click', function () {
           currentMenuType = 'workspace';
           modalTitle.textContent = '워크스페이스 메뉴 생성';
-          orderSection.style.display = 'none';  // 순서 필드 숨기기
           groupSection.style.display = 'block'; // 그룹 필드 보이기
           clearModalForm();
           modal.classList.remove('modal-overlay-hidden');
@@ -666,9 +854,6 @@
       function clearModalForm() {
         document.getElementById('menu-name-input').value = '';
         document.getElementById('menu-url-input').value = '';
-        if (document.getElementById('menu-order-input')) {
-          document.getElementById('menu-order-input').value = '';
-        }
         if (document.getElementById('groupSelect')) {
           document.getElementById('groupSelect').value = '';
         }
@@ -707,12 +892,7 @@
           }
 
           if (currentMenuType === 'system') {
-            const menuOrder = document.getElementById('menu-order-input').value;
-            if (!menuOrder) {
-              alert('순서를 입력해주세요.');
-              return;
-            }
-            alert(`시스템 메뉴가 생성되었습니다.\n메뉴명: ${menuName}\nURL: ${menuUrl}\n순서: ${menuOrder}\n상태: ${menuStatus === 'active' ? '사용' : '미사용'}`);
+            alert(`시스템 메뉴가 생성되었습니다.\n메뉴명: ${menuName}\nURL: ${menuUrl}\n상태: ${menuStatus === 'active' ? '사용' : '미사용'}`);
           } else {
             const selectedGroup = document.getElementById('groupSelect').value;
             if (!selectedGroup) {
@@ -935,6 +1115,212 @@
             deleteModal.classList.add('modal-overlay-hidden');
             selectedMenus = [];
           }
+        }
+      });
+    });
+
+    // Kebab 메뉴 및 수정/삭제 기능
+    document.addEventListener('DOMContentLoaded', function () {
+      const kebabMenuBtns = document.querySelectorAll('.kebab-menu-btn');
+      const modal = document.getElementById('newMenuModal');
+      const modalTitle = document.getElementById('modal-title');
+      const groupSection = document.getElementById('group-section');
+      let currentEditRow = null;
+      let isEditMode = false;
+
+      // Kebab 메뉴 버튼 클릭
+      kebabMenuBtns.forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+
+          // 다른 열린 드롭다운 닫기
+          document.querySelectorAll('.kebab-dropdown').forEach(dropdown => {
+            if (dropdown !== this.nextElementSibling) {
+              dropdown.style.display = 'none';
+            }
+          });
+
+          // 현재 드롭다운 토글
+          const dropdown = this.nextElementSibling;
+          dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+        });
+      });
+
+      // 수정 버튼 클릭 (시스템 메뉴)
+      document.querySelectorAll('.edit-menu').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+
+          const kebabBtn = this.closest('.menu-actions').querySelector('.kebab-menu-btn');
+          const menuName = kebabBtn.getAttribute('data-menu-name');
+          const menuUrl = kebabBtn.getAttribute('data-menu-url');
+          const menuStatus = kebabBtn.getAttribute('data-menu-status');
+
+          currentEditRow = this.closest('tr');
+          isEditMode = true;
+
+          // 모달 제목 변경
+          modalTitle.textContent = '메뉴 수정';
+
+          // 폼에 기존 값 채우기
+          document.getElementById('menu-name-input').value = menuName;
+          document.getElementById('menu-url-input').value = menuUrl;
+
+          // 사용 여부 라디오 버튼 설정
+          if (menuStatus === 'active') {
+            document.querySelector('input[name="menuStatus"][value="active"]').checked = true;
+          } else {
+            document.querySelector('input[name="menuStatus"][value="inactive"]').checked = true;
+          }
+
+          // 그룹 섹션 숨기기 (시스템 메뉴이므로)
+          groupSection.style.display = 'none';
+
+          // 드롭다운 닫기
+          this.closest('.kebab-dropdown').style.display = 'none';
+
+          // 모달 열기
+          modal.classList.remove('modal-overlay-hidden');
+        });
+      });
+
+      // 수정 버튼 클릭 (워크스페이스 메뉴)
+      document.querySelectorAll('.edit-menu-workspace').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+
+          const kebabBtn = this.closest('.menu-actions').querySelector('.kebab-menu-btn');
+          const menuName = kebabBtn.getAttribute('data-menu-name');
+          const menuUrl = kebabBtn.getAttribute('data-menu-url');
+          const menuStatus = kebabBtn.getAttribute('data-menu-status');
+
+          currentEditRow = this.closest('tr');
+          isEditMode = true;
+
+          // 모달 제목 변경
+          modalTitle.textContent = '메뉴 수정';
+
+          // 폼에 기존 값 채우기
+          document.getElementById('menu-name-input').value = menuName;
+          document.getElementById('menu-url-input').value = menuUrl;
+
+          // 사용 여부 라디오 버튼 설정
+          if (menuStatus === 'active') {
+            document.querySelector('input[name="menuStatus"][value="active"]').checked = true;
+          } else {
+            document.querySelector('input[name="menuStatus"][value="inactive"]').checked = true;
+          }
+
+          // 그룹 섹션 표시 (워크스페이스 메뉴이므로)
+          groupSection.style.display = 'block';
+
+          // 드롭다운 닫기
+          this.closest('.kebab-dropdown').style.display = 'none';
+
+          // 모달 열기
+          modal.classList.remove('modal-overlay-hidden');
+        });
+      });
+
+      // 삭제 버튼 클릭 (시스템 메뉴)
+      document.querySelectorAll('.delete-menu').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+
+          const kebabBtn = this.closest('.menu-actions').querySelector('.kebab-menu-btn');
+          const menuName = kebabBtn.getAttribute('data-menu-name');
+
+          if (confirm(`"${menuName}" 메뉴를 삭제하시겠습니까?`)) {
+            const row = this.closest('tr');
+            row.remove();
+            alert(`"${menuName}" 메뉴가 삭제되었습니다.`);
+          }
+
+          // 드롭다운 닫기
+          this.closest('.kebab-dropdown').style.display = 'none';
+        });
+      });
+
+      // 삭제 버튼 클릭 (워크스페이스 메뉴)
+      document.querySelectorAll('.delete-menu-workspace').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+
+          const kebabBtn = this.closest('.menu-actions').querySelector('.kebab-menu-btn');
+          const menuName = kebabBtn.getAttribute('data-menu-name');
+
+          if (confirm(`"${menuName}" 메뉴를 삭제하시겠습니까?`)) {
+            const row = this.closest('tr');
+            row.remove();
+            alert(`"${menuName}" 메뉴가 삭제되었습니다.`);
+          }
+
+          // 드롭다운 닫기
+          this.closest('.kebab-dropdown').style.display = 'none';
+        });
+      });
+
+      // 문서 클릭 시 모든 드롭다운 닫기
+      document.addEventListener('click', function () {
+        document.querySelectorAll('.kebab-dropdown').forEach(dropdown => {
+          dropdown.style.display = 'none';
+        });
+      });
+
+      // 모달 저장 버튼 수정 (수정 모드 처리 추가)
+      const saveBtn = document.getElementById('menuModalSave');
+      const originalSaveHandler = saveBtn.onclick;
+
+      saveBtn.onclick = function () {
+        const menuName = document.getElementById('menu-name-input').value;
+        const menuUrl = document.getElementById('menu-url-input').value;
+        const menuStatus = document.querySelector('input[name="menuStatus"]:checked').value;
+
+        if (!menuName || !menuUrl) {
+          alert('메뉴명과 URL을 입력해주세요.');
+          return;
+        }
+
+        if (isEditMode && currentEditRow) {
+          // 수정 모드: 기존 행 업데이트
+          const cells = currentEditRow.querySelectorAll('td');
+          cells[1].textContent = menuName;
+          cells[2].textContent = menuUrl;
+
+          // 스위치 상태 업데이트
+          const switchInput = cells[3].querySelector('input[type="checkbox"]');
+          switchInput.checked = (menuStatus === 'active');
+
+          // kebab 버튼의 data 속성 업데이트
+          const kebabBtn = cells[4].querySelector('.kebab-menu-btn');
+          kebabBtn.setAttribute('data-menu-name', menuName);
+          kebabBtn.setAttribute('data-menu-url', menuUrl);
+          kebabBtn.setAttribute('data-menu-status', menuStatus);
+
+          alert(`메뉴가 수정되었습니다.\n메뉴명: ${menuName}\nURL: ${menuUrl}\n상태: ${menuStatus === 'active' ? '사용' : '미사용'}`);
+
+          // 수정 모드 해제
+          isEditMode = false;
+          currentEditRow = null;
+        } else {
+          // 기존 생성 로직 실행
+          alert(`시스템 메뉴가 생성되었습니다.\n메뉴명: ${menuName}\nURL: ${menuUrl}\n상태: ${menuStatus === 'active' ? '사용' : '미사용'}`);
+        }
+
+        // 모달 닫기
+        modal.classList.add('modal-overlay-hidden');
+      };
+
+      // 모달 취소/닫기 시 수정 모드 해제
+      const cancelBtn = document.getElementById('menuModalCancel');
+      const closeBtn = document.getElementById('menuModalClose');
+
+      [cancelBtn, closeBtn].forEach(btn => {
+        if (btn) {
+          btn.addEventListener('click', function () {
+            isEditMode = false;
+            currentEditRow = null;
+          });
         }
       });
     });

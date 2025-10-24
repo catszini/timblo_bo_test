@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이용약관 관리</title>
+  <link rel="stylesheet" href="../asset/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">홍길동</div>
+          <div class="logo-url">
+            <select class="condition-select" id="workspaceSelect">
+              <option value="Timbel" selected>Timbel</option>
+              <option value="sk-telecom">SK Telecom</option>
+              <option value="sk-hynix">SK Hynix</option>
+              <option value="sk-es">SK E&S</option>
+              <option value="sk-cc">SK C&C</option>
+              <option value="sk-innovation">SK Innovation</option>
+              <option value="sk-networks">SK Networks</option>
+            </select>
+          </div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>전체 시스템 관리</h3>
+        <ul>
+          <li><a href="workspace.html">워크스페이스 관리</a></li>
+          <li><a href="menu_setting.html">전체 메뉴 관리</a></li>
+          <li><a href="system_user.html">사용자 관리</a></li>
+          <li><a href="group_setting.html">역할 관리</a></li>
+          <li><a href="terms_of_service.html" class="active">이용약관 관리</a></li>
+          <li><a href="terms_consent_history.html">이용약관 동의 이력</a></li>
+          <li><a href="system_setting_history.html">설정변경 이력</a></li>
+          <li><a href="system_stats_usage.html">전체 시스템 사용 통계</a></li>
+          <li><a href="system_stats_user.html">사용자별 사용 통계</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-header">
+          <h3>워크스페이스 설정</h3>
+        </div>
+        <ul>
+          <li><a href="workspace_permission.html">기능 권한 관리</a></li>
+          <li><a href="content_retention.html">컨텐츠 보존 관리</a></li>
+          <li><a href="workspace_group_setting.html">역할 관리</a></li>
+          <li><a href="user.html">사용자 관리</a></li>
+          <li><a href="logo.html">로고 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-header">
+          <h3>세부 기능 관리</h3>
+        </div>
+        <ul>
+          <li><a href="meet_template.html">템플릿 관리 (회의록, 공통 템플릿)</a></li>
+          <li><a href="prompt.html">프롬프트 관리</a></li>
+          <li><a href="consent.html">동의서 관리</a></li>
+          <li><a href="calendar.html">캘린더 관리/설정</a></li>
+          <li><a href="dictionary.html">사전 관리</a></li>
+          <li><a href="notice.html">공지사항 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-header">
+          <h3>이력/통계 관리</h3>
+        </div>
+        <ul>
+          <li><a href="login_history.html">사용자 접속 이력</a></li>
+          <li><a href="download_history.html">다운로드 이력</a></li>
+          <li><a href="user_consent_history.html">사용자 동의 이력</a></li>
+          <li><a href="setting_change_history.html">설정 변경 이력</a></li>
+          <li><a href="meeting.html">회의록 이력</a></li>
+          <li><a href="stats_usage.html">워크스페이스 사용 통계</a></li>
+          <li><a href="stats_user.html">사용자별 사용 통계</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <div class="content">
+      <div class="content-header">
+        <h1 class="breadcrumb">이용약관 관리</h1>
+      </div>
+
+      <div class="content-body">
+        <!-- 검색 영역 -->
+        <div class="search-section">
+          <div class="common-topbar">
+            <div class="tb-left">
+              <div class="combo-select" style="margin-right: 15px;">
+                <div>
+                  <select class="condition-select" id="typeFilter">
+                    <option>전체</option>
+                    <option>개인정보</option>
+                    <option>이용약관</option>
+                  </select>
+                </div>
+              </div>
+              <div class="combo-select" style="margin-right: 15px;">
+                <div>
+                  <select class="condition-select" id="statusFilter">
+                    <option>전체</option>
+                    <option>사용</option>
+                    <option>미사용</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="tb-right tb-right-full">
+              <div class="right-tail">
+                <div class="combo-search combo-search-wide">
+                  <div class="combo-field">
+                    <select class="combo-select">
+                      <option>전체</option>
+                      <option>제목</option>
+                      <option>생성자</option>
+                    </select>
+                    <div class="divider"></div>
+                    <div class="combo-input-wrap">
+                      <span class="mag-icon">🔍</span>
+                      <input type="text" class="combo-input" placeholder="검색어를 입력해주세요." />
+                    </div>
+                    <button class="append-btn">조회</button>
+                  </div>
+                </div>
+                <span class="total-count">총 62개</span>
+                <button class="new-button">신규 등록</button>
+                <select class="condition-select">
+                  <option>10개씩 보기</option>
+                  <option>20개씩 보기</option>
+                  <option>50개씩 보기</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 테이블 -->
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>제목</th>
+                <th>생성일</th>
+                <th>생성자</th>
+                <th>약관 실행일</th>
+                <th>최종 수정일</th>
+                <th>수정자</th>
+                <th>사용 여부</th>
+                <th>삭제</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>개인정보</td>
+                <td>스타트스</td>
+                <td>25-09-16 14:49:14</td>
+                <td>심승준1</td>
+                <td>25-09-18 02:15:00</td>
+                <td>25-10-23 14:37:19</td>
+                <td>심승준1</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <button class="delete-btn">
+                    <img src="../asset/trash.svg" alt="삭제">
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>이용약관</td>
+                <td>da</td>
+                <td>25-09-04 12:36:36</td>
+                <td>김재광</td>
+                <td>25-09-05 11:15:00</td>
+                <td>25-09-04 13:29:25</td>
+                <td>김재광</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <button class="delete-btn">
+                    <img src="../asset/trash.svg" alt="삭제">
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>개인정보</td>
+                <td>~~test</td>
+                <td>25-09-04 10:14:10</td>
+                <td>Timblo</td>
+                <td>25-09-15 20:15:00</td>
+                <td>25-09-04 13:47:38</td>
+                <td>Timblo</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <button class="delete-btn">
+                    <img src="../asset/trash.svg" alt="삭제">
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>이용약관</td>
+                <td>약관생성</td>
+                <td>25-09-04 09:52:17</td>
+                <td>Timblo</td>
+                <td>25-09-03 17:50:00</td>
+                <td>25-09-04 10:11:39</td>
+                <td>Timblo</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <button class="delete-btn">
+                    <img src="../asset/trash.svg" alt="삭제">
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>개인정보</td>
+                <td>asdasdasdasdasd</td>
+                <td>25-08-08 15:47:04</td>
+                <td>김재광</td>
+                <td>25-08-08 08:00:00</td>
+                <td>25-08-08 15:47:57</td>
+                <td>김재광</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <button class="delete-btn">
+                    <img src="../asset/trash.svg" alt="삭제">
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>개인정보</td>
+                <td>가나다라</td>
+                <td>25-08-08 15:46:43</td>
+                <td>김재광</td>
+                <td>25-08-08 12:00:00</td>
+                <td>25-08-08 15:46:43</td>
+                <td>김재광</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <button class="delete-btn">
+                    <img src="../asset/trash.svg" alt="삭제">
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>개인정보</td>
+                <td>qweqweqweqweqweq</td>
+                <td>25-08-08 15:35:11</td>
+                <td>김재광</td>
+                <td>25-08-08 20:00:00</td>
+                <td>25-08-08 15:35:11</td>
+                <td>김재광</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <button class="delete-btn">
+                    <img src="../asset/trash.svg" alt="삭제">
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>개인정보</td>
+                <td>ㅁㄴㅇㅁㄴㅇ</td>
+                <td>25-08-08 14:37:57</td>
+                <td>김재광</td>
+                <td>25-08-08 19:00:00</td>
+                <td>25-08-08 14:37:57</td>
+                <td>김재광</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <button class="delete-btn">
+                    <img src="../asset/trash.svg" alt="삭제">
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>이용약관</td>
+                <td>테스트 약관</td>
+                <td>25-07-24 02:29:56</td>
+                <td>전찬호</td>
+                <td>25-07-24 18:00:00</td>
+                <td>25-07-24 02:29:56</td>
+                <td>전찬호</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <button class="delete-btn">
+                    <img src="../asset/trash.svg" alt="삭제">
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>이용약관</td>
+                <td>약관 예시</td>
+                <td>25-07-24 02:27:24</td>
+                <td>전찬호</td>
+                <td>25-07-22 09:00:00</td>
+                <td>25-07-24 02:27:24</td>
+                <td>전찬호</td>
+                <td>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <button class="delete-btn">
+                    <img src="../asset/trash.svg" alt="삭제">
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <div class="pagination">
+          <button class="page-btn" disabled>‹</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">4</button>
+          <button class="page-btn">5</button>
+          <button class="page-btn">6</button>
+          <button class="page-btn">7</button>
+          <button class="page-btn">›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../asset/menu.js"></script>
+</body>
+
+</html>

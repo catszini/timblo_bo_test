@@ -1858,7 +1858,7 @@ body {
     align-items: center;
 }
 
-.new-button {
+.new-button { 
     padding: 0 20px;
     background-color: transparent;
     color: #0066ff;

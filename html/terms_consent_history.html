@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>사용자 접속 이력</title>
+  <title>이용약관 동의 이력</title>
   <link rel="stylesheet" href="../asset/style.css" />
 </head>
 
@@ -54,7 +54,7 @@
           <li><a href="system_user.html">사용자 관리</a></li>
           <li><a href="group_setting.html">역할 관리</a></li>
           <li><a href="terms_of_service.html">이용약관 관리</a></li>
-          <li><a href="terms_consent_history.html">이용약관 동의 이력</a></li>
+          <li><a href="terms_consent_history.html" class="active">이용약관 동의 이력</a></li>
           <li><a href="system_setting_history.html">설정변경 이력</a></li>
           <li><a href="system_stats_usage.html">전체 시스템 사용 통계</a></li>
           <li><a href="system_stats_user.html">사용자별 사용 통계</a></li>
@@ -93,7 +93,7 @@
           <h3>이력/통계 관리</h3>
         </div>
         <ul>
-          <li><a href="login_history.html" class="active">사용자 접속 이력</a></li>
+          <li><a href="login_history.html">사용자 접속 이력</a></li>
           <li><a href="download_history.html">다운로드 이력</a></li>
           <li><a href="user_consent_history.html">사용자 동의 이력</a></li>
           <li><a href="setting_change_history.html">설정 변경 이력</a></li>
@@ -104,10 +104,12 @@
       </div>
     </div>
 
-    <!-- 콘텐츠 영역 -->
+    <!-- 메인 콘텐츠 -->
     <div class="content">
       <div class="content-header">
-        <h1 class="breadcrumb">사용자 접속 이력</h1>
+        <h1 class="breadcrumb">
+          이용약관 동의 이력
+        </h1>
       </div>
 
       <div class="content-body">
@@ -115,20 +117,19 @@
         <div class="search-section">
           <div class="common-topbar">
             <div class="tb-left">
-
               <div class="date-range-wrap">
                 <span class="calendar-icon">📅</span>
-                <input type="text" id="lh-range" class="date-range" placeholder="날짜 범위를 선택하세요" readonly />
-                <div class="range-panel" id="lh-panel">
+                <input type="text" id="terms-range" class="date-range" placeholder="날짜 범위를 선택하세요" readonly />
+                <div class="range-panel" id="terms-panel">
                   <div class="calendar-range">
-                    <div class="calendar" id="lh-cal-start"></div>
-                    <div class="calendar" id="lh-cal-end"></div>
+                    <div class="calendar" id="terms-cal-start"></div>
+                    <div class="calendar" id="terms-cal-end"></div>
                   </div>
                   <div class="range-panel-info">
-                    <span id="lh-picked">-</span>
+                    <span id="terms-picked">-</span>
                     <div class="range-actions">
-                      <button class="btn-outline" id="lh-cancel">취소</button>
-                      <button class="btn-submit" id="lh-apply">적용</button>
+                      <button class="btn-outline" id="terms-cancel">취소</button>
+                      <button class="btn-submit" id="terms-apply">적용</button>
                     </div>
                   </div>
                 </div>
@@ -138,34 +139,28 @@
             <div class="tb-right tb-right-full">
               <div class="right-tail">
 
-                <select class="condition-select">
-                  <option>전체</option>
-                </select>
-                <select class="condition-select">
-                  <option>전체</option>
-                </select>
-                <select class="condition-select">
-                  <option>전체</option>
-                </select>
                 <div class="combo-search combo-search-wide">
                   <div class="combo-field">
                     <select class="combo-select">
                       <option>전체</option>
+                      <option>구분</option>
                       <option>이름</option>
                       <option>이메일</option>
-                      <option>IP</option>
+                      <option>제목</option>
+                      <option>버전</option>
                     </select>
                     <div class="divider"></div>
                     <div class="combo-input-wrap">
                       <span class="mag-icon">🔍</span>
-                      <input type="text" class="combo-input" placeholder="검색어를 입력하세요" />
+                      <input type="text" class="combo-input" placeholder="검색어를 입력해주세요." />
                     </div>
                     <button class="append-btn">조회</button>
-
                   </div>
                 </div>
                 <select class="condition-select">
                   <option>10개씩 보기</option>
+                  <option>20개씩 보기</option>
+                  <option>50개씩 보기</option>
                 </select>
               </div>
             </div>
@@ -177,121 +172,114 @@
           <table>
             <thead>
               <tr>
+                <th>구분</th>
                 <th>이름</th>
                 <th>이메일</th>
-                <th>로그인 IP</th>
-                <th>로그인 디바이스</th>
-                <th>로그인 시간</th>
-                <th>로그아웃 시간</th>
-                <th>로그인 성공 여부</th>
+                <th>제목</th>
+                <th>버전</th>
+                <th>동의 일시</th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td>개인정보</td>
                 <td>
-                  한진희
+                  김철수
                 </td>
-                <td>jinhee@timbel.net</td>
-                <td>58.150.204.26</td>
-                <td>PC</td>
-                <td>2025-08-08 15:07:39</td>
-                <td></td>
-                <td>성공</td>
+                <td>kim.cheolsu@timbel.net</td>
+                <td>개인정보 수집 및 이용 동의</td>
+                <td>v1.2</td>
+                <td>2024-03-15 14:30:25</td>
               </tr>
               <tr>
+                <td>이용약관</td>
                 <td>
-                  한진희
+                  이영희
                 </td>
-                <td>jinhee@timbel.net</td>
-                <td>58.150.204.26</td>
-                <td>PC</td>
-                <td>2025-08-08 15:06:45</td>
-                <td></td>
-                <td>성공</td>
+                <td>lee.younghee@timbel.net</td>
+                <td>서비스 이용 약관 동의</td>
+                <td>v2.1</td>
+                <td>2024-03-15 13:45:12</td>
               </tr>
               <tr>
-                <td>박한주</td>
-                <td>indigo83@timbel.net</td>
-                <td>58.76.243.146</td>
-                <td>PC</td>
-                <td>2025-08-08 14:34:30</td>
-                <td></td>
-                <td>성공</td>
-              </tr>
-              <tr>
-                <td>이상우</td>
-                <td>swlee@timbel.net</td>
-                <td>192.168.0.1</td>
-                <td>PC</td>
-                <td>2025-08-08 13:47:53</td>
-                <td></td>
-                <td>성공</td>
-              </tr>
-              <tr>
+                <td>이용약관</td>
                 <td>
-                  june
+                  박지민
                 </td>
-                <td>june@timbel.net</td>
-                <td>192.168.0.1</td>
-                <td>모바일</td>
-                <td>2025-08-08 12:46:50</td>
-                <td>2025-08-08 12:51:19</td>
-                <td>성공</td>
+                <td>park.jimin@timbel.net</td>
+                <td>마케팅 정보 수신 동의</td>
+                <td>v1.0</td>
+                <td>2024-03-15 12:20:45</td>
               </tr>
               <tr>
+                <td>개인정보</td>
                 <td>
-                  june
+                  최동훈
                 </td>
-                <td>june@timbel.net</td>
-                <td>192.168.0.1</td>
-                <td>모바일</td>
-                <td>2025-08-08 12:46:47</td>
-                <td>2025-08-08 12:46:48</td>
-                <td>성공</td>
+                <td>choi.donghun@timbel.net</td>
+                <td>개인정보 제3자 제공 동의</td>
+                <td>v1.5</td>
+                <td>2024-03-15 11:15:30</td>
               </tr>
               <tr>
+                <td>개인정보</td>
                 <td>
-                  june
+                  정미경
                 </td>
-                <td>june@timbel.net</td>
-                <td>192.168.0.1</td>
-                <td>모바일</td>
-                <td>2025-08-08 12:21:31</td>
-                <td></td>
-                <td>성공</td>
+                <td>jung.mikyung@timbel.net</td>
+                <td>위치정보 이용 동의</td>
+                <td>v1.1</td>
+                <td>2024-03-15 10:30:18</td>
               </tr>
               <tr>
+                <td>이용약관</td>
                 <td>
-                  june
+                  강민수
                 </td>
-                <td>june@timbel.net</td>
-                <td>192.168.0.1</td>
-                <td>모바일</td>
-                <td>2025-08-08 12:21:29</td>
-                <td></td>
-                <td>성공</td>
+                <td>kang.minsu@timbel.net</td>
+                <td>쿠키 사용 동의</td>
+                <td>v2.0</td>
+                <td>2024-03-15 09:45:33</td>
               </tr>
               <tr>
+                <td>이용약관</td>
                 <td>
-                  테스트
+                  윤서연
                 </td>
-                <td>eunjin@timbel.net</td>
-                <td>58.150.204.26</td>
-                <td>PC</td>
-                <td>2025-08-08 11:33:57</td>
-                <td></td>
-                <td>성공</td>
+                <td>yoon.seoyeon@timbel.net</td>
+                <td>알림 수신 동의</td>
+                <td>v1.3</td>
+                <td>2024-03-15 08:20:15</td>
               </tr>
               <tr>
+                <td>개인정보</td>
                 <td>
-                  테스트
+                  조현우
                 </td>
-                <td>eunjin@timbel.net</td>
-                <td>58.150.204.26</td>
-                <td>PC</td>
-                <td>2025-08-08 10:39:17</td>
-                <td></td>
-                <td>성공</td>
+                <td>jo.hyunwoo@timbel.net</td>
+                <td>데이터 분석 활용 동의</td>
+                <td>v1.4</td>
+                <td>2024-03-15 07:15:42</td>
+              </tr>
+              <tr>
+                <td>이용약관</td>
+                <td>
+                  한지원
+                </td>
+                <td>han.jiwon@timbel.net</td>
+                <td>광고성 정보 수신 동의</td>
+                <td>v1.0</td>
+                <td>2024-03-15 06:30:28</td>
+              </tr>
+              <tr>
+                <td>개인정보</td>
+                <td>
+                  임수진
+                </td>
+                <td>lim.sujin@timbel.net</td>
+                <td>회의록 데이터 활용 동의</td>
+                <td>v2.2</td>
+                <td>2024-03-15 05:45:55</td>
               </tr>
             </tbody>
           </table>
@@ -308,18 +296,19 @@
       </div>
     </div>
   </div>
+
   <script>
-    // 간단한 날짜 범위 커스텀
+    // 이용약관 동의 이력 - 날짜 범위 피커
     (function () {
       const wrap = document.querySelector('.date-range-wrap');
       if (!wrap) return;
-      const input = document.getElementById('lh-range');
-      const panel = document.getElementById('lh-panel');
-      const calStart = document.getElementById('lh-cal-start');
-      const calEnd = document.getElementById('lh-cal-end');
-      const pickedEl = document.getElementById('lh-picked');
-      const apply = document.getElementById('lh-apply');
-      const cancel = document.getElementById('lh-cancel');
+      const input = document.getElementById('terms-range');
+      const panel = document.getElementById('terms-panel');
+      const calStart = document.getElementById('terms-cal-start');
+      const calEnd = document.getElementById('terms-cal-end');
+      const pickedEl = document.getElementById('terms-picked');
+      const apply = document.getElementById('terms-apply');
+      const cancel = document.getElementById('terms-cancel');
       let startDate = null, endDate = null, viewStart = new Date(), viewEnd = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);
       function fmt(d) { return d.toISOString().slice(0, 10); }
       function renderCalendar(targetEl, view, isStart) {
@@ -328,9 +317,9 @@
         const startIdx = (first.getDay() + 6) % 7;
         let h = '';
         h += '<div class="cal-header">'
-          + `<div class="cal-prev-start"><button class="cal-prev lh-prev" data-side="${isStart ? 'start' : 'end'}">‹</button></div>`
+          + `<div class="cal-prev-start"><button class="cal-prev terms-prev" data-side="${isStart ? 'start' : 'end'}">‹</button></div>`
           + '<div class="cal-month">' + y + '-' + String(m + 1).padStart(2, '0') + '</div>'
-          + `<div class="cal-next-end"><button class="cal-next lh-next" data-side="${isStart ? 'start' : 'end'}">›</button></div>`
+          + `<div class="cal-next-end"><button class=\"cal-next terms-next\" data-side=\"${isStart ? 'start' : 'end'}\">›</button></div>`
           + '</div>';
         h += '<div class="cal-grid">';
         ['월', '화', '수', '목', '금', '토', '일'].forEach(w => h += '<div class="cal-weekday">' + w + '</div>');
@@ -343,14 +332,8 @@
         }
         h += '</div>';
         targetEl.innerHTML = h;
-        targetEl.querySelector('.lh-prev').onclick = (e) => {
-          if (isStart) viewStart.setMonth(viewStart.getMonth() - 1); else viewEnd.setMonth(viewEnd.getMonth() - 1);
-          syncViews();
-        };
-        targetEl.querySelector('.lh-next').onclick = (e) => {
-          if (isStart) viewStart.setMonth(viewStart.getMonth() + 1); else viewEnd.setMonth(viewEnd.getMonth() + 1);
-          syncViews();
-        };
+        targetEl.querySelector('.terms-prev').onclick = () => { if (isStart) viewStart.setMonth(viewStart.getMonth() - 1); else viewEnd.setMonth(viewEnd.getMonth() - 1); syncViews(); };
+        targetEl.querySelector('.terms-next').onclick = () => { if (isStart) viewStart.setMonth(viewStart.getMonth() + 1); else viewEnd.setMonth(viewEnd.getMonth() + 1); syncViews(); };
         targetEl.querySelectorAll('.cal-day[data-day]').forEach(el => {
           el.onclick = () => {
             const d = new Date(el.dataset.day);
@@ -363,7 +346,6 @@
         });
       }
       function syncViews() {
-        // end view는 start view의 다음 달이 되도록 유도(겹치기 가능은 허용)
         renderCalendar(calStart, viewStart, true);
         renderCalendar(calEnd, viewEnd, false);
       }
