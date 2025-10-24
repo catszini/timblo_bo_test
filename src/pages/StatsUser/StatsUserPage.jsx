@@ -1,13 +1,26 @@
 import React, { useState } from 'react'
 import {
+  Container,
+  ButtonGroup,
+  Button,
   FormControl,
-  Select,
+  Select as MuiSelect,
   MenuItem,
   TextField,
-  Button,
-  ButtonGroup
+  Box,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper
 } from '@mui/material'
 import Layout from '../../components/Layout/Layout'
+import Select from '../../components/common/Select'
+import FormField from '../../components/common/FormField'
+import ActionButton from '../../components/common/ActionButton'
 
 const StatsUserPage = () => {
   const [dateRange, setDateRange] = useState('')
@@ -108,18 +121,19 @@ const StatsUserPage = () => {
   }
 
   return (
-    <Layout className="page-stats-user">
-      <div className="content">
-        <div className="content-header">
-          <h1 className="breadcrumb">사용자별 사용 통계</h1>
-        </div>
-        <div className="content-body">
+    <Layout>
+      <Container maxWidth="xl" sx={{ py: 4 }}>
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="h4" sx={{ fontSize: '24px', fontWeight: 600, color: '#111827' }}>
+            사용자별 사용 통계
+          </Typography>
+        </Box>
+        <Box>
           {/* 검색 영역 */}
-          <div className="search-section">
-            <div className="common-topbar">
-              <div className="tb-left">
-                <div className="date-range-wrap">
-                  <span className="calendar-icon"></span>
+          <Box sx={{ mb: 3 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Box>
                   <TextField
                     placeholder="날짜 범위를 선택하세요"
                     value={dateRange}
@@ -144,10 +158,10 @@ const StatsUserPage = () => {
                       )
                     }}
                   />
-                </div>
-              </div>
-              <div className="tb-right tb-right-full">
-                <div className="right-tail">
+                </Box>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <FormControl size="small" sx={{ minWidth: 120, mr: 1 }}>
                     <Select
                       value={itemsPerPage}
@@ -218,50 +232,50 @@ const StatsUserPage = () => {
                   >
                     엑셀 다운로드
                   </Button>
-                </div>
-              </div>
-            </div>
-          </div>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
 
           {/* 테이블 */}
-          <div className="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>이름</th>
-                  <th>이메일</th>
-                  <th>회의록 건수</th>
-                  <th>회의록 시간</th>
-                  <th>LLM 토큰</th>
-                  <th>LLM 요청수</th>
-                </tr>
-              </thead>
-              <tbody>
+          <TableContainer component={Paper} sx={{ boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)', borderRadius: 2 }}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>이름</TableCell>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>이메일</TableCell>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>회의록 건수</TableCell>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>회의록 시간</TableCell>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>LLM 토큰</TableCell>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>LLM 요청수</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
                 {userData.map((user, index) => (
-                  <tr key={index}>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td>{user.meetingCount}</td>
-                    <td>{user.meetingTime}</td>
-                    <td>{user.llmToken}</td>
-                    <td>{user.llmRequests}</td>
-                  </tr>
+                  <TableRow key={index} hover>
+                    <TableCell>{user.name}</TableCell>
+                    <TableCell>{user.email}</TableCell>
+                    <TableCell>{user.meetingCount}</TableCell>
+                    <TableCell>{user.meetingTime}</TableCell>
+                    <TableCell>{user.llmToken}</TableCell>
+                    <TableCell>{user.llmRequests}</TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
-          </div>
+              </TableBody>
+            </Table>
+          </TableContainer>
 
           {/* 페이징 */}
-          <div className="pagination">
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
             <ButtonGroup variant="outlined" size="small">
               <Button disabled>‹</Button>
               <Button variant="contained">1</Button>
               <Button>2</Button>
               <Button>›</Button>
             </ButtonGroup>
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </Container>
     </Layout>
   )
 }

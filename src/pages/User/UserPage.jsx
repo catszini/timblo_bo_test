@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 import {
-  FormControl,
-  Select,
-  MenuItem,
-  TextField,
-  Button,
-  Checkbox,
+  Box,
+  Container,
+  Typography,
   Table,
   TableBody,
   TableCell,
@@ -13,20 +10,28 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Typography,
-  Box,
-  Chip
+  Chip,
+  Avatar,
+  TextField,
+  InputAdornment
 } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search'
 import Layout from '../../components/Layout/Layout'
+import Select from '../../components/common/Select'
+import { SearchButton, DeleteButton, InviteButton, ResetButton } from '../../components/common/CommonButtons'
+import Checkbox from '../../components/common/Checkbox'
+import Pagination from '../../components/common/Pagination'
+import { styles } from './UserPage.styles'
 
 const UserPage = () => {
   const [selectAll, setSelectAll] = useState(false)
   const [selectedRows, setSelectedRows] = useState([])
   const [searchCondition, setSearchCondition] = useState('생성자')
   const [searchKeyword, setSearchKeyword] = useState('')
-  const [itemsPerPage, setItemsPerPage] = useState('10개씩 보기')
+  const [itemsPerPage, setItemsPerPage] = useState('10')
+  const [currentPage, setCurrentPage] = useState(1)
 
-  // 사용자 데이터 (HTML 최신 버전과 일치)
+  // 사용자 데이터
   const userData = [
     {
       id: 1,
@@ -95,416 +100,248 @@ const UserPage = () => {
     {
       id: 9,
       name: '박영수',
-      email: 'kim.cs@sktelecom.com',
+      email: 'park.ys@sktelecom.com',
       permission: '회의관리자',
       status: 'online',
       createdDate: '2024-01-22 17:33:26'
+    },
+    {
+      id: 10,
+      name: '홍길동',
+      email: 'hong.gd@sktelecom.com',
+      permission: '사용자관리자',
+      status: 'offline',
+      createdDate: '2024-01-15 10:20:35'
     }
   ]
 
-  const permissionOptions = [
-    '회의관리자',
-    '로고관리자',
-    '사용자관리자',
-    '통계관리자',
-    '컨텐츠관리자'
+  const searchOptions = [
+    { value: '생성자', label: '생성자' },
+    { value: '이메일', label: '이메일' },
+    { value: '권한', label: '권한' }
   ]
 
-  // 전체 선택 핸들러
+  const itemsPerPageOptions = [
+    { value: '10', label: '10개씩 보기' },
+    { value: '20', label: '20개씩 보기' },
+    { value: '50', label: '50개씩 보기' }
+  ]
+
+  const permissionOptions = [
+    { value: '컨텐츠관리자', label: '컨텐츠관리자' },
+    { value: '회의관리자', label: '회의관리자' },
+    { value: '통계관리자', label: '통계관리자' },
+    { value: '사용자관리자', label: '사용자관리자' },
+    { value: '로고관리자', label: '로고관리자' }
+  ]
+
   const handleSelectAll = (e) => {
-    const checked = e.target.checked
-    setSelectAll(checked)
-    if (checked) {
-      setSelectedRows(userData.map(item => item.id))
+    if (e.target.checked) {
+      setSelectAll(true)
+      setSelectedRows(userData.map(user => user.id))
     } else {
+      setSelectAll(false)
       setSelectedRows([])
     }
   }
 
-  // 개별 행 선택 핸들러
-  const handleRowSelect = (id) => {
-    const newSelectedRows = selectedRows.includes(id) 
-      ? selectedRows.filter(rowId => rowId !== id)
-      : [...selectedRows, id]
-    
-    setSelectedRows(newSelectedRows)
-    setSelectAll(newSelectedRows.length === userData.length)
+  const handleRowCheckbox = (id) => {
+    if (selectedRows.includes(id)) {
+      setSelectedRows(selectedRows.filter(rowId => rowId !== id))
+    } else {
+      setSelectedRows([...selectedRows, id])
+    }
   }
 
-  // 권한 변경 핸들러
-  const handlePermissionChange = (id, newPermission) => {
-    console.log(`사용자 ${id}의 권한이 ${newPermission}로 변경됨`)
+  const handlePermissionChange = (userId, newPermission) => {
+    console.log('권한 변경:', userId, newPermission)
+    alert(`권한이 "${newPermission}"(으)로 변경되었습니다.`)
   }
 
-  // 검색 핸들러
-  const handleSearch = () => {
-    console.log(`${searchCondition}에서 "${searchKeyword}" 검색`)
+  const handleStatusToggle = (userId) => {
+    console.log('상태 토글:', userId)
+    alert('사용자 상태가 변경되었습니다.')
   }
 
-  // 버튼 핸들러들
-  const handleDelete = () => {
-    console.log('선택된 사용자 삭제:', selectedRows)
+  const handlePasswordReset = (userId) => {
+    console.log('비밀번호 초기화:', userId)
+    alert('비밀번호가 초기화되었습니다.')
   }
 
-  const handleEdit = () => {
-    console.log('선택된 사용자 수정:', selectedRows)
+  const handleDeleteUser = (userId) => {
+    console.log('사용자 삭제:', userId)
+    if (window.confirm('정말 삭제하시겠습니까?')) {
+      alert('사용자가 삭제되었습니다.')
+    }
   }
 
-  const handleCreate = () => {
-    console.log('새 사용자 생성')
+  const handleBulkDelete = () => {
+    if (selectedRows.length === 0) {
+      alert('삭제할 사용자를 선택해주세요.')
+      return
+    }
+    if (window.confirm(`선택한 ${selectedRows.length}명의 사용자를 삭제하시겠습니까?`)) {
+      alert(`${selectedRows.length}명의 사용자가 삭제되었습니다.`)
+      setSelectedRows([])
+      setSelectAll(false)
+    }
   }
 
-  const handlePasswordReset = (id) => {
-    console.log(`사용자 ${id} 비밀번호 초기화`)
+  const handleInvite = () => {
+    alert('사용자 초대 기능')
   }
 
-  const handleDeleteUser = (id) => {
-    console.log(`사용자 ${id} 삭제`)
+  const getStatusChip = (status) => {
+    return status === 'online' ? (
+      <Chip label="온라인" color="success" size="small" variant="outlined" />
+    ) : (
+      <Chip label="오프라인" color="default" size="small" variant="outlined" />
+    )
   }
 
   return (
-    <Layout className="page-user">
-      <div className="content">
-        <div className="content-header">
-          <h1 className="breadcrumb">사용자 관리</h1>
-        </div>
-        <div className="content-body">
-          {/* 통합 검색 툴바 */}
-          <div className="search-toolbar">
-            <div className="common-topbar">
-              <div className="tb-left">
-                <Typography variant="body2" className="total-count">총 {userData.length}개</Typography>
-              </div>
-              <div className="tb-right">
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                  {/* 개수 선택 */}
-                  <FormControl size="small" sx={{ minWidth: 120 }}>
-                    <Select
-                      value={itemsPerPage}
-                      onChange={(e) => setItemsPerPage(e.target.value)}
-                      variant="outlined"
-                    >
-                      <MenuItem value="10개씩 보기">10개씩 보기</MenuItem>
-                      <MenuItem value="20개씩 보기">20개씩 보기</MenuItem>
-                      <MenuItem value="50개씩 보기">50개씩 보기</MenuItem>
-                    </Select>
-                  </FormControl>
+    <Layout>
+      <Container maxWidth="xl" sx={styles.container}>
+        <Box sx={styles.header}>
+          <Typography variant="h4" sx={styles.title}>
+            사용자 관리
+          </Typography>
+        </Box>
 
-                  {/* 검색 조합 */}
-                  <Box className="combo-search" sx={{ display: 'flex', alignItems: 'center', border: '1px solid #D1D5DB', borderRadius: 1, overflow: 'hidden' }}>
-                    <FormControl size="small" sx={{ minWidth: 100 }}>
-                      <Select
-                        value={searchCondition}
-                        onChange={(e) => setSearchCondition(e.target.value)}
-                        variant="outlined"
-                        sx={{ 
-                          '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                          backgroundColor: '#F9FAFB'
-                        }}
-                      >
-                        <MenuItem value="생성자">생성자</MenuItem>
-                        <MenuItem value="전체">전체</MenuItem>
-                        <MenuItem value="이름">이름</MenuItem>
-                        <MenuItem value="이메일">이메일</MenuItem>
-                      </Select>
-                    </FormControl>
-                    <Box sx={{ width: 1, height: 24, backgroundColor: '#D1D5DB' }} />
-                    <Box className="search-input-wrapper" sx={{ display: 'flex', alignItems: 'center', flex: 1, position: 'relative' }}>
-                      <Typography variant="body2" sx={{ position: 'absolute', left: 8, color: '#6B7280', pointerEvents: 'none', zIndex: 1 }}>
-                        🔍
-                      </Typography>
-                      <TextField
-                        placeholder="검색어를 입력해주세요."
-                        value={searchKeyword}
-                        onChange={(e) => setSearchKeyword(e.target.value)}
-                        variant="outlined"
-                        size="small"
-                        sx={{
-                          flex: 1,
-                          '& .MuiOutlinedInput-root': {
-                            '& fieldset': { border: 'none' },
-                            paddingLeft: '32px'
-                          }
-                        }}
-                      />
-                    </Box>
-                    <Button 
-                      variant="contained"
-                      onClick={handleSearch}
-                      sx={{ borderRadius: 0, minWidth: 'auto', px: 2 }}
-                    >
-                      조회
-                    </Button>
-                  </Box>
+        {/* 검색 툴바 */}
+        <Box sx={styles.searchToolbar}>
+          <Box sx={styles.leftSection}>
+            <Typography variant="body2" sx={styles.totalCount}>
+              총 {userData.length}개
+            </Typography>
+          </Box>
 
-                  {/* 액션 버튼들 */}
-                  <Button 
-                    variant="outlined"
-                    onClick={handleDelete}
-                    sx={{
-                      color: '#DC2626',
-                      borderColor: '#DC2626',
-                      '&:hover': {
-                        backgroundColor: '#fef2f2',
-                        borderColor: '#DC2626'
-                      }
-                    }}
-                  >
-                    삭제
-                  </Button>
-                  <Button 
-                    variant="outlined"
-                    onClick={handleEdit}
-                    sx={{
-                      color: '#6B7280',
-                      borderColor: '#D1D5DB',
-                      '&:hover': {
-                        backgroundColor: '#F9FAFB',
-                        borderColor: '#9CA3AF'
-                      }
-                    }}
-                  >
-                    수정
-                  </Button>
-                  <Button 
-                    variant="contained"
-                    onClick={handleCreate}
-                    sx={{
-                      backgroundColor: '#3B82F6',
-                      '&:hover': {
-                        backgroundColor: '#2563EB'
-                      }
-                    }}
-                  >
-                    생성
-                  </Button>
-                </Box>
-              </div>
-            </div>
-          </div>
+          <Box sx={styles.rightSection}>
+            {/* 개수 선택 */}
+            <Select
+              value={itemsPerPage}
+              onChange={(e) => setItemsPerPage(e.target.value)}
+              options={itemsPerPageOptions}
+              width="150px"
+            />
 
-          {/* 테이블 */}
-          <div className="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>
-                    <input 
-                      type="checkbox" 
-                      className="select-all"
-                      checked={selectAll}
-                      onChange={handleSelectAll}
+            {/* 검색 */}
+            <Box sx={styles.searchBox}>
+              <Select
+                value={searchCondition}
+                onChange={(e) => setSearchCondition(e.target.value)}
+                options={searchOptions}
+                width="120px"
+                sx={styles.searchSelect}
+              />
+              <Box sx={styles.divider} />
+              <TextField
+                variant="outlined"
+                size="small"
+                placeholder="검색어를 입력하세요"
+                value={searchKeyword}
+                onChange={(e) => setSearchKeyword(e.target.value)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon sx={styles.searchIcon} />
+                    </InputAdornment>
+                  ),
+                }}
+                sx={styles.searchInput}
+              />
+            </Box>
+
+            <SearchButton />
+            <DeleteButton onClick={handleBulkDelete} />
+            <InviteButton onClick={handleInvite} />
+          </Box>
+        </Box>
+
+        {/* 테이블 */}
+        <TableContainer component={Paper} sx={styles.tableContainer}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell padding="checkbox" sx={styles.headerCell}>
+                  <Checkbox checked={selectAll} onChange={handleSelectAll} />
+                </TableCell>
+                <TableCell sx={styles.headerCell}>생성자</TableCell>
+                <TableCell sx={styles.headerCell}>이메일</TableCell>
+                <TableCell sx={styles.headerCell}>권한</TableCell>
+                <TableCell sx={styles.headerCell}>생성시간</TableCell>
+                <TableCell sx={styles.headerCell}>상태</TableCell>
+                <TableCell sx={styles.headerCell}>비밀번호 초기화</TableCell>
+                <TableCell sx={styles.headerCell}>삭제</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {userData.map((user) => (
+                <TableRow key={user.id} hover>
+                  <TableCell padding="checkbox">
+                    <Checkbox
+                      checked={selectedRows.includes(user.id)}
+                      onChange={() => handleRowCheckbox(user.id)}
                     />
-                  </th>
-                  <th>이름</th>
-                  <th>이메일</th>
-                  <th>권한</th>
-                  <th>비밀번호 초기화</th>
-                  <th>삭제</th>
-                  <th>생성시간</th>
-                </tr>
-              </thead>
-              <tbody>
-                {userData.map((user) => (
-                  <tr key={user.id}>
-                    <td>
-                      <input 
-                        type="checkbox"
-                        checked={selectedRows.includes(user.id)}
-                        onChange={() => handleRowSelect(user.id)}
-                      />
-                    </td>
-                    <td>
-                      <div className="user-profile">
-                        <span className={`user-status ${user.status}`}>{user.name}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href={`mailto:${user.email}`} className="email-link">
-                        {user.email}
-                      </a>
-                    </td>
-                    <td>
-                      <div className="combo-select">
-                        <select 
-                          className="permission-select"
-                          defaultValue={user.permission}
-                          onChange={(e) => handlePermissionChange(user.id, e.target.value)}
-                          style={{
-                            padding: '6px 12px',
-                            border: '1px solid #D1D5DB',
-                            borderRadius: '4px',
-                            fontSize: '14px',
-                            background: 'white'
-                          }}
-                        >
-                          {permissionOptions.map(option => (
-                            <option 
-                              key={option} 
-                              value={option}
-                              selected={option === user.permission}
-                            >
-                              {option}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </td>
-                    <td>
-                      <button 
-                        className="btn-outline btn-sm"
-                        onClick={() => handlePasswordReset(user.id)}
-                        style={{
-                          padding: '6px 12px',
-                          fontSize: '13px',
-                          background: 'transparent',
-                          color: '#6B7280',
-                          border: '1px solid #D1D5DB',
-                          borderRadius: '6px',
-                          cursor: 'pointer'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.target.style.background = '#F9FAFB'
-                          e.target.style.borderColor = '#9CA3AF'
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.background = 'transparent'
-                          e.target.style.borderColor = '#D1D5DB'
-                        }}
-                      >
-                        초기화
-                      </button>
-                    </td>
-                    <td>
-                      <button 
-                        className="btn-danger btn-sm"
-                        onClick={() => handleDeleteUser(user.id)}
-                        style={{
-                          padding: '6px 12px',
-                          fontSize: '13px',
-                          background: 'transparent',
-                          color: '#DC2626',
-                          border: '1px solid #DC2626',
-                          borderRadius: '6px',
-                          cursor: 'pointer'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.target.style.background = '#fef2f2'
-                          e.target.style.borderColor = '#B91C1C'
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.background = 'transparent'
-                          e.target.style.borderColor = '#DC2626'
-                        }}
-                      >
-                        삭제
-                      </button>
-                    </td>
-                    <td>{user.createdDate}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                  </TableCell>
+                  <TableCell>
+                    <Box sx={styles.userProfile}>
+                      <Avatar sx={styles.avatar}>{user.name[0]}</Avatar>
+                      <Typography variant="body2">{user.name}</Typography>
+                    </Box>
+                  </TableCell>
+                  <TableCell>
+                    <Typography
+                      component="a"
+                      href={`mailto:${user.email}`}
+                      sx={styles.emailLink}
+                    >
+                      {user.email}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Select
+                      value={user.permission}
+                      onChange={(e) => handlePermissionChange(user.id, e.target.value)}
+                      options={permissionOptions}
+                      width="160px"
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="body2">{user.createdDate}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    {getStatusChip(user.status)}
+                  </TableCell>
+                  <TableCell>
+                    <ResetButton
+                      size="small"
+                      onClick={() => handlePasswordReset(user.id)}
+                    >
+                      초기화
+                    </ResetButton>
+                  </TableCell>
+                  <TableCell>
+                    <DeleteButton
+                      size="small"
+                      onClick={() => handleDeleteUser(user.id)}
+                    />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
 
-          {/* 페이지네이션 */}
-          <div className="pagination" style={{ 
-            display: 'flex', 
-            justifyContent: 'center', 
-            alignItems: 'center', 
-            marginTop: '20px',
-            gap: '4px'
-          }}>
-            <button 
-              className="page-btn prev" 
-              disabled
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #ddd',
-                background: '#f5f5f5',
-                color: '#999',
-                borderRadius: '4px',
-                cursor: 'not-allowed'
-              }}
-            >
-              ‹
-            </button>
-            <button 
-              className="page-btn active"
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #2196F3',
-                background: '#2196F3',
-                color: 'white',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                minWidth: '36px'
-              }}
-            >
-              1
-            </button>
-            <button 
-              className="page-btn"
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #ddd',
-                background: 'white',
-                color: '#333',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                minWidth: '36px'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#f0f0f0'
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'white'
-              }}
-            >
-              2
-            </button>
-            <button 
-              className="page-btn"
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #ddd',
-                background: 'white',
-                color: '#333',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                minWidth: '36px'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#f0f0f0'
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'white'
-              }}
-            >
-              3
-            </button>
-            <button 
-              className="page-btn next"
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #ddd',
-                background: 'white',
-                color: '#333',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#f0f0f0'
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'white'
-              }}
-            >
-              ›
-            </button>
-          </div>
-        </div>
-      </div>
+        {/* 페이지네이션 */}
+        <Box sx={styles.paginationContainer}>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={3}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
+        </Box>
+      </Container>
     </Layout>
   )
 }

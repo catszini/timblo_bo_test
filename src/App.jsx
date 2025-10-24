@@ -23,6 +23,7 @@ import PromptPage from './pages/Prompt/PromptPage'
 import StatsUsagePage from './pages/StatsUsage/StatsUsagePage'
 import SystemStatsPage from './pages/SystemStats/SystemStatsPage'
 import WorkspacePage from './pages/Workspace/WorkspacePage'
+import Workspace2Page from './pages/Workspace/Workspace2Page'
 import SystemUserPage from './pages/SystemUser/SystemUserPage'
 import SystemStatsUserPage from './pages/SystemStatsUser/SystemStatsUserPage'
 import SystemStatsUsagePage from './pages/SystemStatsUsage/SystemStatsUsagePage'
@@ -67,6 +68,7 @@ function App() {
               <Route path="/stats-usage" element={<StatsUsagePage />} />
               <Route path="/system-stats" element={<SystemStatsPage />} />
               <Route path="/workspace" element={<WorkspacePage />} />
+              <Route path="/workspace2" element={<Workspace2Page />} />
               <Route path="/system-user" element={<SystemUserPage />} />
               <Route path="/system-stats-user" element={<SystemStatsUserPage />} />
               <Route path="/system-stats-usage" element={<SystemStatsUsagePage />} />

@@ -1,5 +1,32 @@
 import React, { useState } from 'react'
+import {
+  Box,
+  Container,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Collapse
+} from '@mui/material'
+import FolderIcon from '@mui/icons-material/Folder'
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import ChevronRight from '@mui/icons-material/ChevronRight'
 import Layout from '../../components/Layout/Layout'
+import { CreateButton, SaveButton, ResetButton, EditButton, DeleteButton, CancelButton } from '../../components/common/CommonButtons'
+import ActionButton from '../../components/common/ActionButton'
+import Checkbox from '../../components/common/Checkbox'
+import Modal from '../../components/common/Modal'
+import FormField from '../../components/common/FormField'
+import { styles } from './WorkspaceGroupSettingPage.styles'
 
 const WorkspaceGroupSettingPage = () => {
   const [selectAll, setSelectAll] = useState(false)
@@ -13,7 +40,7 @@ const WorkspaceGroupSettingPage = () => {
     description: ''
   })
 
-  // HTML과 동일한 권한 데이터
+  // 권한 데이터
   const permissionData = [
     {
       id: 1,
@@ -67,7 +94,7 @@ const WorkspaceGroupSettingPage = () => {
     }
   ]
 
-  // HTML과 동일한 권한별 메뉴 구성
+  // 권한별 메뉴 구성
   const permissionMenus = {
     'meeting-admin': {
       title: '워크스페이스',
@@ -127,7 +154,7 @@ const WorkspaceGroupSettingPage = () => {
         { id: '사용자 접속 이력', name: '사용자 접속 이력', checked: true },
         { id: '다운로드 이력', name: '다운로드 이력', checked: true },
         { id: '사용자 동의 이력', name: '사용자 동의 이력', checked: true },
-        { id: '설정변경 이력', name: '설정변경 이력', checked: true },
+        { id: '설정변경 이력', name: '설정변경 이력', checked: false },
         { id: '회의록 관리', name: '회의록 관리', checked: false },
         { id: '사전 관리', name: '사전 관리', checked: false },
         { id: '공지사항 관리', name: '공지사항 관리', checked: false },
@@ -165,8 +192,8 @@ const WorkspaceGroupSettingPage = () => {
         { id: '사용자 관리', name: '사용자 관리', checked: false },
         { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
         { id: '회의 템플릿 관리', name: '회의 템플릿 관리', checked: false },
-        { id: '프롬프트 관리', name: '프롬프트 관리', checked: true },
-        { id: '동의서 관리', name: '동의서 관리', checked: false },
+        { id: '프롬프트 관리', name: '프롬프트 관리', checked: false },
+        { id: '동의서 관리', name: '동의서 관리', checked: true },
         { id: '캘린더 관리', name: '캘린더 관리', checked: false },
         { id: '사용자 접속 이력', name: '사용자 접속 이력', checked: false },
         { id: '다운로드 이력', name: '다운로드 이력', checked: false },
@@ -181,52 +208,44 @@ const WorkspaceGroupSettingPage = () => {
     }
   }
 
-  // 전체 선택 핸들러
   const handleSelectAll = (e) => {
-    const checked = e.target.checked
-    setSelectAll(checked)
-    if (checked) {
+    if (e.target.checked) {
+      setSelectAll(true)
       setSelectedRows(permissionData.map(item => item.id))
     } else {
+      setSelectAll(false)
       setSelectedRows([])
     }
   }
 
-  // 개별 체크박스 선택 핸들러
   const handleRowCheckbox = (id) => {
-    const newSelectedRows = selectedRows.includes(id) 
-      ? selectedRows.filter(rowId => rowId !== id)
-      : [...selectedRows, id]
+    let newSelectedRows
+    if (selectedRows.includes(id)) {
+      newSelectedRows = selectedRows.filter(rowId => rowId !== id)
+    } else {
+      newSelectedRows = [...selectedRows, id]
+    }
     
     setSelectedRows(newSelectedRows)
     setSelectAll(newSelectedRows.length === permissionData.length)
   }
 
-  // 테이블 행 클릭 핸들러 (체크박스 제외)
-  const handleRowClick = (e, item) => {
-    // 체크박스 클릭은 제외
-    if (e.target.type === 'checkbox') return
-
-    // 기존 선택된 행 해제 후 현재 행 선택
+  const handleRowClick = (item) => {
     setSelectedRowId(item.id)
     setSelectedPermission(item.permissionType)
   }
 
-  // 권한 미리보기 트리 렌더링
+  const [expanded, setExpanded] = useState(true)
+
   const renderPermissionTree = () => {
     if (!selectedPermission) {
       return (
-        <div className="no-data-area" id="noDataArea">
-          <div className="no-data-icon">
-            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M20 16H44C46.2091 16 48 17.7909 48 20V44C48 46.2091 46.2091 48 44 48H20C17.7909 48 16 46.2091 16 44V20C16 17.7909 17.7909 16 20 16Z"
-                fill="#E5E7EB" stroke="#D1D5DB" strokeWidth="2" />
-              <path d="M28 28H36M28 32H36M28 36H32" stroke="#9CA3AF" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-          </div>
-          <p className="no-data-text">권한 항목 미리보기가 가능합니다.</p>
-        </div>
+        <Box sx={styles.noDataArea}>
+          <FolderIcon sx={styles.noDataIcon} />
+          <Typography variant="body2" sx={styles.noDataText}>
+            권한 항목 미리보기가 가능합니다.
+          </Typography>
+        </Box>
       )
     }
 
@@ -234,24 +253,32 @@ const WorkspaceGroupSettingPage = () => {
     if (!menuData) return null
 
     return (
-      <div className="tree-menu" id="treeMenu">
-        <div className="tree-item">
-          <input type="checkbox" id="워크스페이스" className="workspace-select-all" />
-          <label htmlFor="워크스페이스">{menuData.title}</label>
-          <div className="tree-children">
-            {menuData.menus.map((menu, index) => (
-              <div className="tree-item" key={index}>
-                <input type="checkbox" id={menu.id} defaultChecked={menu.checked} />
-                <label htmlFor={menu.id}>{menu.name}</label>
-              </div>
+      <List sx={styles.treeView}>
+        <ListItem button onClick={() => setExpanded(!expanded)} sx={styles.treeParent}>
+          <ListItemIcon>
+            {expanded ? <ExpandMore /> : <ChevronRight />}
+          </ListItemIcon>
+          <ListItemIcon>
+            <FolderIcon />
+          </ListItemIcon>
+          <ListItemText primary={menuData.title} />
+        </ListItem>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {menuData.menus.map((menu) => (
+              <ListItem key={menu.id} sx={styles.treeChild}>
+                <ListItemIcon sx={{ minWidth: 40 }}>
+                  <InsertDriveFileIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary={menu.name} />
+              </ListItem>
             ))}
-          </div>
-        </div>
-      </div>
+          </List>
+        </Collapse>
+      </List>
     )
   }
 
-  // 모달 핸들러
   const handleCreateClick = () => {
     setIsCreateModalOpen(true)
   }
@@ -279,12 +306,10 @@ const WorkspaceGroupSettingPage = () => {
     handleModalClose()
   }
 
-  // 초기화 버튼 핸들러
   const handleReset = () => {
     alert('권한이 초기화되었습니다.')
   }
 
-  // 저장 버튼 핸들러
   const handleSave = () => {
     if (selectedRowId) {
       const selectedItem = permissionData.find(item => item.id === selectedRowId)
@@ -296,146 +321,128 @@ const WorkspaceGroupSettingPage = () => {
 
   return (
     <Layout>
-      <div className="content">
-        <div className="content-header">
-          <h1 className="breadcrumb">역할 관리</h1>
-        </div>
-        <div className="content-body">
-          <div className="group-setting-container">
-            <div className="group-setting-layout tree-visible">
-              <div className="group-setting-left-panel">
-                {/* 권한정보 헤더와 버튼들 */}
-                <div className="group-info-header">
-                  <div className="group-info-title-section">
-                    <h3 className="group-info-subtitle">권한 정보</h3>
-                    <span className="group-total-count">총 {permissionData.length}개</span>
-                  </div>
-                  <div className="group-info-buttons">
-                    <button className="btn-form-delete">삭제</button>
-                    <button className="btn-form-edit">수정</button>
-                    <button className="group-setting-btn-add-group" id="createPermissionBtn" onClick={handleCreateClick}>생성</button>
-                  </div>
-                </div>
+      <Container maxWidth="xl" sx={styles.container}>
+        <Box sx={styles.header}>
+          <Typography variant="h4" sx={styles.title}>
+            역할 관리
+          </Typography>
+        </Box>
 
-                {/* 권한 정보 테이블 */}
-                <div className="group-setting-table-container" id="tableContainer">
-                  <table className="group-setting-table">
-                    <thead>
-                      <tr>
-                        <th>
-                          <input 
-                            type="checkbox" 
-                            className="select-all"
-                            checked={selectAll}
-                            onChange={handleSelectAll}
-                          />
-                        </th>
-                        <th>권한</th>
-                        <th>생성자</th>
-                        <th>권한명</th>
-                        <th>설명</th>
-                        <th>생성시간</th>
-                        <th>최종수정시간</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {permissionData.map((item) => (
-                        <tr 
-                          key={item.id}
-                          className={selectedRowId === item.id ? 'selected' : ''}
-                          onClick={(e) => handleRowClick(e, item)}
-                          style={{ cursor: 'pointer' }}
-                          data-permission={item.permissionType}
-                        >
-                          <td>
-                            <input 
-                              type="checkbox"
-                              checked={selectedRows.includes(item.id)}
-                              onChange={() => handleRowCheckbox(item.id)}
-                            />
-                          </td>
-                          <td>{item.permission}</td>
-                          <td>{item.creator}</td>
-                          <td>{item.permissionName}</td>
-                          <td>{item.description}</td>
-                          <td>{item.createdDate}</td>
-                          <td>{item.lastModified}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+        <Box sx={styles.mainLayout}>
+          <Box sx={styles.leftPanel}>
+            {/* 권한정보 헤더 */}
+            <Box sx={styles.infoHeader}>
+              <Box sx={styles.infoTitleSection}>
+                <Typography variant="h6" sx={styles.subtitle}>
+                  생성된 권한
+                </Typography>
+                <Typography variant="body2" sx={styles.count}>
+                  총 {permissionData.length}개
+                </Typography>
+              </Box>
+              <Box sx={styles.buttonGroup}>
+                <ActionButton variant="outlined" color="error">
+                  삭제
+                </ActionButton>
+                <ActionButton variant="outlined">
+                  수정
+                </ActionButton>
+                <CreateButton onClick={handleCreateClick} />
+              </Box>
+            </Box>
 
-              {/* 권한 미리보기 패널 */}
-              <div className="group-setting-tree-panel" id="treePanel">
-                <div className="tree-header">
-                  <h4>권한 미리보기</h4>
-                </div>
-                {renderPermissionTree()}
-              </div>
-            </div>
-          </div>
+            {/* 권한 테이블 */}
+            <TableContainer component={Paper} sx={styles.tableContainer}>
+              <Table size="small">
+                <TableHead>
+                  <TableRow>
+                    <TableCell padding="checkbox">
+                      <Checkbox checked={selectAll} onChange={handleSelectAll} />
+                    </TableCell>
+                    <TableCell>권한명</TableCell>
+                    <TableCell>권한 생성자</TableCell>
+                    <TableCell>설명</TableCell>
+                    <TableCell>생성시간</TableCell>
+                    <TableCell>최종수정시간</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {permissionData.map((item) => (
+                    <TableRow
+                      key={item.id}
+                      hover
+                      selected={selectedRowId === item.id}
+                      onClick={() => handleRowClick(item)}
+                      sx={styles.tableRow}
+                    >
+                      <TableCell padding="checkbox">
+                        <Checkbox
+                          checked={selectedRows.includes(item.id)}
+                          onChange={(e) => {
+                            e.stopPropagation()
+                            handleRowCheckbox(item.id)
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell>{item.permissionName}</TableCell>
+                      <TableCell>{item.creator}</TableCell>
+                      <TableCell>{item.description}</TableCell>
+                      <TableCell>{item.createdDate}</TableCell>
+                      <TableCell>{item.lastModified}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Box>
 
-          {/* 권한 미리보기 하단 버튼들 (외곽선 밖) */}
-          <div className="preview-actions-external">
-            <button className="btn-reset" onClick={handleReset}>초기화</button>
-            <button className="btn-save" onClick={handleSave}>저장</button>
-          </div>
-        </div>
-      </div>
+          {/* 권한 미리보기 패널 */}
+          <Box sx={styles.rightPanel}>
+            <Box sx={styles.treeHeader}>
+              <Typography variant="h6">권한 미리보기</Typography>
+            </Box>
+            <Box sx={styles.treeContent}>
+              {renderPermissionTree()}
+            </Box>
+          </Box>
+        </Box>
+
+        {/* 하단 버튼 */}
+        <Box sx={styles.bottomActions}>
+          <ResetButton onClick={handleReset} />
+          <SaveButton onClick={handleSave} />
+        </Box>
+      </Container>
 
       {/* 권한 생성 모달 */}
-      {isCreateModalOpen && (
-        <div className="modal-overlay" id="permissionModal">
-          <div className="modal-container permission-modal">
-            <div className="modal-header">
-              <h2>권한 생성</h2>
-            </div>
-            <div className="modal-content">
-              <div className="form-group">
-                <label htmlFor="permissionName">권한명</label>
-                <input 
-                  type="text" 
-                  id="permissionName" 
-                  className="form-input" 
-                  placeholder="권한명을 입력하세요"
-                  value={newPermission.permissionName}
-                  onChange={(e) => setNewPermission(prev => ({ ...prev, permissionName: e.target.value }))}
-                />
-              </div>
+      <Modal
+        open={isCreateModalOpen}
+        onClose={handleModalClose}
+        title="권한 생성"
+        maxWidth="sm"
+        actions={
+          <>
+            <CancelButton onClick={handleModalClose} fullWidth />
+            <CreateButton onClick={handleCreatePermission} fullWidth />
+          </>
+        }
+      >
+        <Box sx={styles.modalContent}>
+          <FormField
+            label="권한명"
+            value={newPermission.permissionName}
+            onChange={(e) => setNewPermission({...newPermission, permissionName: e.target.value})}
+            placeholder="권한명을 입력하세요"
+          />
 
-              <div className="form-group">
-                <label htmlFor="creatorName">생성자</label>
-                <input 
-                  type="text" 
-                  id="creatorName" 
-                  className="form-input" 
-                  placeholder="생성자를 입력하세요"
-                  value={newPermission.name}
-                  onChange={(e) => setNewPermission(prev => ({ ...prev, name: e.target.value }))}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="permissionDescription">설명</label>
-                <input 
-                  type="text" 
-                  id="permissionDescription" 
-                  className="form-input" 
-                  placeholder="권한 설명을 입력하세요"
-                  value={newPermission.description}
-                  onChange={(e) => setNewPermission(prev => ({ ...prev, description: e.target.value }))}
-                />
-              </div>
-            </div>
-            <div className="modal-footer">
-              <button className="btn-cancel" onClick={handleModalClose}>취소</button>
-              <button className="btn-submit" onClick={handleCreatePermission}>생성</button>
-            </div>
-          </div>
-        </div>
-      )}
+          <FormField
+            label="설명"
+            value={newPermission.description}
+            onChange={(e) => setNewPermission({...newPermission, description: e.target.value})}
+            placeholder="권한 설명을 입력하세요"
+          />
+        </Box>
+      </Modal>
     </Layout>
   )
 }

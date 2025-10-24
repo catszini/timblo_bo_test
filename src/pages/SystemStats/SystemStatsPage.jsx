@@ -1,12 +1,22 @@
 import React, { useState } from 'react'
 import {
-  FormControl,
-  Select,
-  MenuItem,
+  Container,
+  Box,
+  Typography,
   TextField,
-  Button
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  MenuItem
 } from '@mui/material'
 import Layout from '../../components/Layout/Layout'
+import Select from '../../components/common/Select'
+import { styles } from './SystemStatsPage.styles'
 
 const systemStatsData = [
   {
@@ -15,7 +25,7 @@ const systemStatsData = [
     workspace: '개발팀',
     user: '김개발',
     userInitial: '김',
-    userColor: 'color-blue',
+    userColor: '#3B82F6',
     newCount: 45,
     editCount: 23,
     deleteCount: 5,
@@ -28,7 +38,7 @@ const systemStatsData = [
     workspace: '디자인팀',
     user: '이디자인',
     userInitial: '이',
-    userColor: 'color-green',
+    userColor: '#10B981',
     newCount: 38,
     editCount: 19,
     deleteCount: 3,
@@ -41,7 +51,7 @@ const systemStatsData = [
     workspace: '기획팀',
     user: '박기획',
     userInitial: '박',
-    userColor: 'color-orange',
+    userColor: '#F97316',
     newCount: 31,
     editCount: 15,
     deleteCount: 2,
@@ -54,13 +64,39 @@ const systemStatsData = [
     workspace: '개발팀',
     user: '최개발자',
     userInitial: '최',
-    userColor: 'color-purple',
+    userColor: '#8B5CF6',
     newCount: 28,
     editCount: 12,
     deleteCount: 4,
     totalCount: 44,
     lastActivity: '25-01-12 09:15'
   }
+]
+
+const workspaceOptions = [
+  { value: '전체 워크스페이스', label: '전체 워크스페이스' },
+  { value: '개발팀', label: '개발팀' },
+  { value: '디자인팀', label: '디자인팀' },
+  { value: '기획팀', label: '기획팀' }
+]
+
+const activityOptions = [
+  { value: '전체 활동', label: '전체 활동' },
+  { value: '신규 생성', label: '신규 생성' },
+  { value: '변경', label: '변경' },
+  { value: '삭제', label: '삭제' }
+]
+
+const searchTypeOptions = [
+  { value: '전체', label: '전체' },
+  { value: '사용자명', label: '사용자명' },
+  { value: '이메일', label: '이메일' }
+]
+
+const pageSizeOptions = [
+  { value: '10개씩 보기', label: '10개씩 보기' },
+  { value: '20개씩 보기', label: '20개씩 보기' },
+  { value: '50개씩 보기', label: '50개씩 보기' }
 ]
 
 const SystemStatsPage = () => {
@@ -81,181 +117,158 @@ const SystemStatsPage = () => {
   }
 
   return (
-    <Layout className="page-system-stats stats-page">
-      <div className="content">
-        <div className="content-header">
-          <h1 className="breadcrumb">통계</h1>
-        </div>
+    <Layout>
+      <Container maxWidth="xl" sx={styles.container}>
+        {/* 헤더 */}
+        <Box sx={styles.header}>
+          <Typography variant="h4" sx={styles.title}>
+            통계
+          </Typography>
+        </Box>
 
-        <div className="content-body">
-          {/* 검색 영역 */}
-          <div className="search-section">
-            <div className="common-topbar">
-              <div className="tb-left">
-                <div className="date-range-wrap">
-                  <span className="calendar-icon">📅</span>
-                  <TextField
-                    id="stats-range"
-                    className="date-range"
-                    placeholder="날짜 범위를 선택하세요"
-                    value={dateRange}
-                    onChange={(e) => setDateRange(e.target.value)}
-                    variant="outlined"
-                    size="small"
-                    InputProps={{ readOnly: true }}
-                  />
-                  <div className="range-panel" id="stats-panel">
-                    <div className="calendar-range">
-                      <div className="calendar" id="stats-cal-start"></div>
-                      <div className="calendar" id="stats-cal-end"></div>
-                    </div>
-                    <div className="range-panel-info">
-                      <span id="stats-picked">-</span>
-                      <div className="range-actions">
-                        <button className="btn-outline" id="stats-cancel">취소</button>
-                        <button className="btn-submit" id="stats-apply">적용</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <FormControl size="small" className="condition-select">
-                  <Select
-                    value={workspaceFilter}
-                    onChange={(e) => setWorkspaceFilter(e.target.value)}
-                    variant="outlined"
-                  >
-                    <MenuItem value="전체 워크스페이스">전체 워크스페이스</MenuItem>
-                    <MenuItem value="개발팀">개발팀</MenuItem>
-                    <MenuItem value="디자인팀">디자인팀</MenuItem>
-                    <MenuItem value="기획팀">기획팀</MenuItem>
-                  </Select>
-                </FormControl>
-                
-                <FormControl size="small" className="condition-select">
-                  <Select
-                    value={activityFilter}
-                    onChange={(e) => setActivityFilter(e.target.value)}
-                    variant="outlined"
-                  >
-                    <MenuItem value="전체 활동">전체 활동</MenuItem>
-                    <MenuItem value="신규 생성">신규 생성</MenuItem>
-                    <MenuItem value="변경">변경</MenuItem>
-                    <MenuItem value="삭제">삭제</MenuItem>
-                  </Select>
-                </FormControl>
-                
-                <FormControl size="small" className="condition-select">
-                  <Select
-                    value={searchType}
-                    onChange={(e) => setSearchType(e.target.value)}
-                    variant="outlined"
-                  >
-                    <MenuItem value="전체">전체</MenuItem>
-                    <MenuItem value="사용자명">사용자명</MenuItem>
-                    <MenuItem value="이메일">이메일</MenuItem>
-                  </Select>
-                </FormControl>
-                
+        {/* 검색 영역 */}
+        <Box sx={styles.searchSection}>
+          <Box sx={styles.topBar}>
+            <Box sx={styles.leftSection}>
+              {/* 날짜 범위 선택 */}
+              <Box sx={styles.dateRangeWrap}>
+                <Box sx={styles.calendarIcon}>📅</Box>
                 <TextField
-                  placeholder="검색어를 입력해주세요."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="날짜 범위를 선택하세요"
+                  value={dateRange}
+                  onChange={(e) => setDateRange(e.target.value)}
                   variant="outlined"
                   size="small"
-                  className="search-input-field"
+                  sx={styles.dateInput}
+                  InputProps={{ 
+                    readOnly: true,
+                    sx: { paddingLeft: '36px' }
+                  }}
                 />
-                
-                <Button 
-                  variant="contained"
-                  onClick={handleSearch}
-                  className="search-btn"
-                >
-                  조회
-                </Button>
-              </div>
+              </Box>
               
-              <div className="tb-right tb-right-full">
-                <div className="right-tail">
-                  <button 
-                    className="btn"
-                    style={{
-                      backgroundColor: '#10B981',
-                      color: 'white',
-                      border: '1px solid #10B981',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px'
-                    }}
-                    onClick={handleExcelDownload}
-                  >
-                    엑셀 다운로드
-                  </button>
-                  
-                  <FormControl size="small" className="condition-select">
-                    <Select
-                      value={pageSize}
-                      onChange={(e) => setPageSize(e.target.value)}
-                      variant="outlined"
-                    >
-                      <MenuItem value="10개씩 보기">10개씩 보기</MenuItem>
-                      <MenuItem value="20개씩 보기">20개씩 보기</MenuItem>
-                      <MenuItem value="50개씩 보기">50개씩 보기</MenuItem>
-                    </Select>
-                  </FormControl>
-                </div>
-              </div>
-            </div>
-          </div>
+              {/* 워크스페이스 필터 */}
+              <Select
+                value={workspaceFilter}
+                onChange={(e) => setWorkspaceFilter(e.target.value)}
+                options={workspaceOptions}
+                width="180px"
+              />
+              
+              {/* 활동 필터 */}
+              <Select
+                value={activityFilter}
+                onChange={(e) => setActivityFilter(e.target.value)}
+                options={activityOptions}
+                width="140px"
+              />
+              
+              {/* 검색 타입 */}
+              <Select
+                value={searchType}
+                onChange={(e) => setSearchType(e.target.value)}
+                options={searchTypeOptions}
+                width="120px"
+              />
+              
+              {/* 검색어 입력 */}
+              <TextField
+                placeholder="검색어를 입력해주세요."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                variant="outlined"
+                size="small"
+                sx={styles.searchInput}
+              />
+              
+              {/* 조회 버튼 */}
+              <Button 
+                variant="contained"
+                onClick={handleSearch}
+                sx={styles.searchButton}
+              >
+                조회
+              </Button>
+            </Box>
+            
+            <Box sx={styles.rightSection}>
+              {/* 엑셀 다운로드 버튼 */}
+              <Button 
+                variant="contained"
+                onClick={handleExcelDownload}
+                sx={styles.excelButton}
+              >
+                엑셀 다운로드
+              </Button>
+              
+              {/* 페이지 크기 선택 */}
+              <Select
+                value={pageSize}
+                onChange={(e) => setPageSize(e.target.value)}
+                options={pageSizeOptions}
+                width="140px"
+              />
+            </Box>
+          </Box>
+        </Box>
 
-          {/* 테이블 */}
-          <div className="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>순번</th>
-                  <th>워크스페이스</th>
-                  <th>사용자</th>
-                  <th>신규 생성</th>
-                  <th>변경</th>
-                  <th>삭제</th>
-                  <th>총 활동</th>
-                  <th>최근 활동일</th>
-                </tr>
-              </thead>
-              <tbody>
-                {stats.map((stat) => (
-                  <tr key={stat.id}>
-                    <td>{stat.order}</td>
-                    <td>
-                      <span className="workspace-badge">{stat.workspace}</span>
-                    </td>
-                    <td>
-                      <div className="user-icon">
-                        <div className={`user-initial ${stat.userColor}`}>{stat.userInitial}</div>
-                        <span>{stat.user}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <span className="stats-count new">{stat.newCount}</span>
-                    </td>
-                    <td>
-                      <span className="stats-count edit">{stat.editCount}</span>
-                    </td>
-                    <td>
-                      <span className="stats-count delete">{stat.deleteCount}</span>
-                    </td>
-                    <td>
-                      <span className="stats-count total">{stat.totalCount}</span>
-                    </td>
-                    <td>{stat.lastActivity}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+        {/* 테이블 */}
+        <TableContainer component={Paper} sx={styles.tableContainer}>
+          <Table sx={styles.table}>
+            <TableHead>
+              <TableRow sx={styles.headerRow}>
+                <TableCell sx={styles.headerCell}>순번</TableCell>
+                <TableCell sx={styles.headerCell}>워크스페이스</TableCell>
+                <TableCell sx={styles.headerCell}>사용자</TableCell>
+                <TableCell sx={styles.headerCell}>신규 생성</TableCell>
+                <TableCell sx={styles.headerCell}>변경</TableCell>
+                <TableCell sx={styles.headerCell}>삭제</TableCell>
+                <TableCell sx={styles.headerCell}>총 활동</TableCell>
+                <TableCell sx={styles.headerCell}>최근 활동일</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {stats.map((stat) => (
+                <TableRow key={stat.id} sx={styles.bodyRow}>
+                  <TableCell sx={styles.bodyCell}>{stat.order}</TableCell>
+                  <TableCell sx={styles.bodyCell}>
+                    <Box sx={styles.workspaceBadge}>{stat.workspace}</Box>
+                  </TableCell>
+                  <TableCell sx={styles.bodyCell}>
+                    <Box sx={styles.userIcon}>
+                      <Box sx={{ ...styles.userInitial, bgcolor: stat.userColor }}>
+                        {stat.userInitial}
+                      </Box>
+                      <Typography variant="body2">{stat.user}</Typography>
+                    </Box>
+                  </TableCell>
+                  <TableCell sx={styles.bodyCell}>
+                    <Box sx={{ ...styles.statsCount, ...styles.statsNew }}>
+                      {stat.newCount}
+                    </Box>
+                  </TableCell>
+                  <TableCell sx={styles.bodyCell}>
+                    <Box sx={{ ...styles.statsCount, ...styles.statsEdit }}>
+                      {stat.editCount}
+                    </Box>
+                  </TableCell>
+                  <TableCell sx={styles.bodyCell}>
+                    <Box sx={{ ...styles.statsCount, ...styles.statsDelete }}>
+                      {stat.deleteCount}
+                    </Box>
+                  </TableCell>
+                  <TableCell sx={styles.bodyCell}>
+                    <Box sx={{ ...styles.statsCount, ...styles.statsTotal }}>
+                      {stat.totalCount}
+                    </Box>
+                  </TableCell>
+                  <TableCell sx={styles.bodyCell}>{stat.lastActivity}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
     </Layout>
   )
 }

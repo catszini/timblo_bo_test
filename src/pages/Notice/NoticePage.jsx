@@ -1,11 +1,7 @@
 import React, { useState } from 'react'
 import {
-  FormControl,
-  Select,
-  MenuItem,
+  Container,
   TextField,
-  Button,
-  Checkbox,
   Table,
   TableBody,
   TableCell,
@@ -14,17 +10,22 @@ import {
   TableRow,
   Paper,
   Typography,
-  Box,
-  Chip
+  Box
 } from '@mui/material'
 import Layout from '../../components/Layout/Layout'
+import Select from '../../components/common/Select'
+import FormField from '../../components/common/FormField'
+import { EditButton, DeleteButton } from '../../components/common/CommonButtons'
+import ActionButton from '../../components/common/ActionButton'
+import Checkbox from '../../components/common/Checkbox'
+import SearchBar from '../../components/common/SearchBar'
+import Pagination from '../../components/common/Pagination'
 
 const NoticePage = () => {
   const [selectAll, setSelectAll] = useState(false)
   const [selectedRows, setSelectedRows] = useState([])
   const [dateRange, setDateRange] = useState('')
-  const [searchType, setSearchType] = useState('전체')
-  const [searchTerm, setSearchTerm] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
 
   // 공지사항 데이터 (HTML 최신 버전과 일치)
   const noticeData = [
@@ -144,6 +145,10 @@ const NoticePage = () => {
   }
 
   // 핸들러들
+  const handleSearch = (type, keyword) => {
+    console.log('검색:', { searchType: type, searchTerm: keyword, dateRange })
+  }
+
   const handleEdit = (id) => {
     console.log('공지사항 수정:', id)
   }
@@ -191,17 +196,19 @@ const NoticePage = () => {
   }
 
   return (
-    <Layout className="notice-page">
-      <div className="content">
-        <div className="content-header">
-          <h1 className="breadcrumb">공지사항 관리</h1>
-        </div>
+    <Layout>
+      <Container maxWidth="xl" sx={{ py: 4 }}>
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="h4" sx={{ fontSize: '24px', fontWeight: 600, color: '#111827' }}>
+            공지사항 관리
+          </Typography>
+        </Box>
 
-        <div className="content-body">
+        <Box>
           {/* 검색 영역 */}
-          <div className="search-section">
-            <div className="common-topbar">
-              <div className="tb-left">
+          <Box sx={{ mb: 3 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <Box className="date-range-wrap" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <Typography variant="body2" className="calendar-icon">📅</Typography>
                   <TextField
@@ -216,110 +223,65 @@ const NoticePage = () => {
                     variant="outlined"
                   />
                 </Box>
-              </div>
-              <div className="tb-right">
-                <Box className="right-tail" sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                  <Box className="combo-search combo-search-wide" sx={{ display: 'flex', alignItems: 'center', border: '1px solid #D1D5DB', borderRadius: 1, overflow: 'hidden' }}>
-                    <FormControl size="small" sx={{ minWidth: 100 }}>
-                      <Select
-                        value={searchType}
-                        onChange={(e) => setSearchType(e.target.value)}
-                        variant="outlined"
-                        sx={{ 
-                          '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                          backgroundColor: 'white'
-                        }}
-                      >
-                        <MenuItem value="전체">전체</MenuItem>
-                        <MenuItem value="구분">구분</MenuItem>
-                        <MenuItem value="이름">이름</MenuItem>
-                        <MenuItem value="이메일">이메일</MenuItem>
-                        <MenuItem value="제목">제목</MenuItem>
-                        <MenuItem value="버전">버전</MenuItem>
-                      </Select>
-                    </FormControl>
-                    <Box sx={{ width: 1, height: 24, backgroundColor: '#D1D5DB' }} />
-                    <Box className="search-input-wrapper" sx={{ display: 'flex', alignItems: 'center', flex: 1, position: 'relative' }}>
-                      <Typography variant="body2" sx={{ position: 'absolute', left: 8, color: '#6B7280', pointerEvents: 'none', zIndex: 1 }}>
-                        🔍
-                      </Typography>
-                      <TextField
-                        placeholder="검색어를 입력해주세요."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        variant="outlined"
-                        size="small"
-                        sx={{
-                          flex: 1,
-                          '& .MuiOutlinedInput-root': {
-                            '& fieldset': { border: 'none' },
-                            paddingLeft: '32px'
-                          }
-                        }}
-                      />
-                    </Box>
-                    <Button 
-                      variant="contained"
-                      onClick={handleSearch}
-                      sx={{ borderRadius: 0, minWidth: 'auto', px: 2 }}
-                    >
-                      조회
-                    </Button>
-                  </Box>
-                  <FormControl size="small">
-                    <Select
-                      defaultValue="10개씩 보기"
-                      variant="outlined"
-                    >
-                      <MenuItem value="10개씩 보기">10개씩 보기</MenuItem>
-                      <MenuItem value="20개씩 보기">20개씩 보기</MenuItem>
-                      <MenuItem value="50개씩 보기">50개씩 보기</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Box>
-              </div>
-            </div>
-          </div>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
+                <SearchBar
+                  searchOptions={['전체', '제목', '작성자']}
+                  onSearch={handleSearch}
+                  placeholder="검색어를 입력해주세요."
+                />
+                <Select
+                  value="10개씩 보기"
+                  onChange={() => {}}
+                  options={[
+                    { value: '10개씩 보기', label: '10개씩 보기' },
+                    { value: '20개씩 보기', label: '20개씩 보기' },
+                    { value: '50개씩 보기', label: '50개씩 보기' }
+                  ]}
+                  width="140px"
+                />
+              </Box>
+            </Box>
+          </Box>
 
           {/* 공지사항 테이블 */}
-          <div className="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th width="50">
+          <TableContainer component={Paper} sx={{ boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)', borderRadius: 2 }}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell width="50" sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>
                     <Checkbox
                       id="notice-select-all"
                       checked={selectAll}
                       onChange={handleSelectAll}
                       size="small"
                     />
-                  </th>
-                  <th width="60">번호</th>
-                  <th width="300">제목</th>
-                  <th width="100">작성자</th>
-                  <th width="140">게시기간</th>
-                  <th width="80">상태</th>
-                  <th width="70">팝업</th>
-                  <th width="110">생성시간</th>
-                  <th width="80">관리</th>
-                </tr>
-              </thead>
-              <tbody>
+                  </TableCell>
+                  <TableCell width="60" sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>번호</TableCell>
+                  <TableCell width="300" sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>제목</TableCell>
+                  <TableCell width="100" sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>작성자</TableCell>
+                  <TableCell width="140" sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>게시기간</TableCell>
+                  <TableCell width="80" sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>상태</TableCell>
+                  <TableCell width="70" sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>팝업</TableCell>
+                  <TableCell width="110" sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>생성시간</TableCell>
+                  <TableCell width="80" sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>관리</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
                 {noticeData.map((notice) => (
-                  <tr key={notice.id}>
-                    <td>
+                  <TableRow key={notice.id} hover>
+                    <TableCell>
                       <Checkbox
                         className="notice-checkbox"
                         checked={selectedRows.includes(notice.id)}
                         onChange={() => handleRowSelect(notice.id)}
                         size="small"
                       />
-                    </td>
-                    <td>{notice.number}</td>
-                    <td>
+                    </TableCell>
+                    <TableCell>{notice.number}</TableCell>
+                    <TableCell>
                       <a 
                         href={`notice_detail.html?id=${notice.id}`} 
-                        className="notice-title-link"
                         style={{ 
                           color: '#3B82F6', 
                           textDecoration: 'none' 
@@ -333,242 +295,65 @@ const NoticePage = () => {
                       >
                         {notice.title}
                       </a>
-                    </td>
-                    <td>{notice.author}</td>
-                    <td>{notice.period}</td>
-                    <td>{renderStatusBadge(notice.status)}</td>
-                    <td>{renderPopupBadge(notice.isPopup)}</td>
-                    <td>{notice.createdDate}</td>
-                    <td>
-                      <div className="action-buttons" style={{ display: 'flex', gap: '4px' }}>
-                        <button 
-                          className="btn-icon edit-notice" 
-                          data-id={notice.id} 
-                          title="수정"
+                    </TableCell>
+                    <TableCell>{notice.author}</TableCell>
+                    <TableCell>{notice.period}</TableCell>
+                    <TableCell>{renderStatusBadge(notice.status)}</TableCell>
+                    <TableCell>{renderPopupBadge(notice.isPopup)}</TableCell>
+                    <TableCell>{notice.createdDate}</TableCell>
+                    <TableCell>
+                      <Box sx={{ display: 'flex', gap: 0.5 }}>
+                        <EditButton
+                          size="small"
                           onClick={() => handleEdit(notice.id)}
-                          style={{
-                            padding: '4px',
-                            border: 'none',
-                            background: 'transparent',
-                            cursor: 'pointer',
-                            borderRadius: '4px'
-                          }}
-                          onMouseEnter={(e) => {
-                            e.target.style.background = '#F3F4F6'
-                          }}
-                          onMouseLeave={(e) => {
-                            e.target.style.background = 'transparent'
-                          }}
-                        >
-                          <img src="../asset/edit-icon.svg" alt="수정" width="16" height="16" />
-                        </button>
-                        <button 
-                          className="btn-icon delete-notice" 
-                          data-id={notice.id} 
-                          title="삭제"
+                        />
+                        <DeleteButton
+                          size="small"
                           onClick={() => handleDelete(notice.id)}
-                          style={{
-                            padding: '4px',
-                            border: 'none',
-                            background: 'transparent',
-                            cursor: 'pointer',
-                            borderRadius: '4px'
-                          }}
-                          onMouseEnter={(e) => {
-                            e.target.style.background = '#FEF2F2'
-                          }}
-                          onMouseLeave={(e) => {
-                            e.target.style.background = 'transparent'
-                          }}
-                        >
-                          <img src="../asset/delete-icon.svg" alt="삭제" width="16" height="16" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+                        />
+                      </Box>
+                    </TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
-          </div>
+              </TableBody>
+            </Table>
+          </TableContainer>
 
           {/* 하단 액션 영역 */}
-          <div className="table-actions" style={{ 
-            display: 'flex', 
-            gap: '12px', 
-            marginTop: '16px' 
-          }}>
-            <div className="bulk-actions">
-              <button 
-                className="btn btn-outline" 
-                id="bulk-delete-btn"
-                onClick={handleBulkDelete}
-                style={{
-                  padding: '8px 16px',
-                  background: 'transparent',
-                  color: '#DC2626',
-                  border: '1px solid #DC2626',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  marginRight: '8px'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = '#FEF2F2'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = 'transparent'
-                }}
-              >
-                선택 삭제
-              </button>
-              <button 
-                className="btn btn-outline" 
-                id="bulk-publish-btn"
-                onClick={handleBulkPublish}
-                style={{
-                  padding: '8px 16px',
-                  background: 'transparent',
-                  color: '#059669',
-                  border: '1px solid #059669',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  marginRight: '8px'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = '#F0FDF4'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = 'transparent'
-                }}
-              >
-                선택 게시
-              </button>
-              <button 
-                className="btn btn-outline" 
-                id="bulk-unpublish-btn"
-                onClick={handleBulkUnpublish}
-                style={{
-                  padding: '8px 16px',
-                  background: 'transparent',
-                  color: '#6B7280',
-                  border: '1px solid #D1D5DB',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                  fontSize: '14px'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = '#F9FAFB'
-                  e.target.style.borderColor = '#9CA3AF'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = 'transparent'
-                  e.target.style.borderColor = '#D1D5DB'
-                }}
-              >
-                선택 게시중단
-              </button>
-            </div>
-          </div>
+          <Box sx={{ display: 'flex', gap: 1.5, mt: 2 }}>
+            <ActionButton
+              variant="outlined"
+              color="error"
+              onClick={handleBulkDelete}
+            >
+              선택 삭제
+            </ActionButton>
+            <ActionButton
+              variant="outlined"
+              color="success"
+              onClick={handleBulkPublish}
+            >
+              선택 게시
+            </ActionButton>
+            <ActionButton
+              variant="outlined"
+              color="secondary"
+              onClick={handleBulkUnpublish}
+            >
+              선택 게시중단
+            </ActionButton>
+          </Box>
 
           {/* 페이지네이션 */}
-          <div className="pagination" style={{ 
-            display: 'flex', 
-            justifyContent: 'center', 
-            alignItems: 'center', 
-            marginTop: '20px',
-            gap: '4px'
-          }}>
-            <button 
-              className="page-btn prev" 
-              disabled
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #ddd',
-                background: '#f5f5f5',
-                color: '#999',
-                borderRadius: '4px',
-                cursor: 'not-allowed'
-              }}
-            >
-              ‹
-            </button>
-            <button 
-              className="page-btn active"
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #2196F3',
-                background: '#2196F3',
-                color: 'white',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                minWidth: '36px'
-              }}
-            >
-              1
-            </button>
-            <button 
-              className="page-btn"
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #ddd',
-                background: 'white',
-                color: '#333',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                minWidth: '36px'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#f0f0f0'
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'white'
-              }}
-            >
-              2
-            </button>
-            <button 
-              className="page-btn"
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #ddd',
-                background: 'white',
-                color: '#333',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                minWidth: '36px'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#f0f0f0'
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'white'
-              }}
-            >
-              3
-            </button>
-            <button 
-              className="page-btn next"
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #ddd',
-                background: 'white',
-                color: '#333',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#f0f0f0'
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'white'
-              }}
-            >
-              ›
-            </button>
-          </div>
-        </div>
-      </div>
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={3}
+              onPageChange={(page) => setCurrentPage(page)}
+            />
+          </Box>
+        </Box>
+      </Container>
     </Layout>
   )
 }

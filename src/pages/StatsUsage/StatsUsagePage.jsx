@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import {
-  FormControl,
-  Select,
-  MenuItem,
-  Button,
+  Container,
   ButtonGroup,
+  Button,
+  FormControl,
+  Select as MuiSelect,
+  MenuItem,
   Table,
   TableBody,
   TableCell,
@@ -16,6 +17,8 @@ import {
   Box
 } from '@mui/material'
 import Layout from '../../components/Layout/Layout'
+import Select from '../../components/common/Select'
+import ActionButton from '../../components/common/ActionButton'
 
 const StatsUsagePage = () => {
   const [periodType, setPeriodType] = useState('monthly') // 'monthly' or 'yearly'
@@ -232,14 +235,16 @@ const StatsUsagePage = () => {
   }
 
   return (
-    <Layout className="page-stats-usage">
-      <div className="content">
-        <div className="content-header">
-          <h1 className="breadcrumb">워크스페이스 사용 통계</h1>
-        </div>
+    <Layout>
+      <Container maxWidth="xl" sx={{ py: 4 }}>
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="h4" sx={{ fontSize: '24px', fontWeight: 600, color: '#111827' }}>
+            워크스페이스 사용 통계
+          </Typography>
+        </Box>
 
-        <div className="content-body">
-          <div className="search-section">
+        <Box>
+          <Box sx={{ mb: 3 }}>
             <Box className="stats-head stats-head-row" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', mb: 1 }}>
               <Typography variant="h6" className="stats-title stats-title-bold" sx={{ fontWeight: 'bold' }}>
                 전체 AI 사용량
@@ -267,7 +272,7 @@ const StatsUsagePage = () => {
             <Box className="period-row period-row-flex" sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
               <Typography variant="body2" className="period-label" sx={{ mr: 0.5 }}>기간</Typography>
               <FormControl size="small">
-                <Select
+                <MuiSelect
                   value={startYear + '년'}
                   onChange={(e) => setStartYear(e.target.value.replace('년', ''))}
                   variant="outlined"
@@ -275,11 +280,11 @@ const StatsUsagePage = () => {
                   {yearOptions.map((year) => (
                     <MenuItem key={year} value={year}>{year}</MenuItem>
                   ))}
-                </Select>
+                </MuiSelect>
               </FormControl>
               {periodType === 'monthly' && (
                 <FormControl size="small">
-                  <Select
+                  <MuiSelect
                     value={startMonth + '월'}
                     onChange={(e) => setStartMonth(e.target.value.replace('월', ''))}
                     variant="outlined"
@@ -287,12 +292,12 @@ const StatsUsagePage = () => {
                     {monthOptions.map((month, index) => (
                       <MenuItem key={month} value={month}>{month}</MenuItem>
                     ))}
-                  </Select>
+                  </MuiSelect>
                 </FormControl>
               )}
               <Typography variant="body2" className="period-separator" sx={{ mx: 0.5 }}>~</Typography>
               <FormControl size="small">
-                <Select
+                <MuiSelect
                   value={endYear + '년'}
                   onChange={(e) => setEndYear(e.target.value.replace('년', ''))}
                   variant="outlined"
@@ -300,11 +305,11 @@ const StatsUsagePage = () => {
                   {yearOptions.map((year) => (
                     <MenuItem key={year} value={year}>{year}</MenuItem>
                   ))}
-                </Select>
+                </MuiSelect>
               </FormControl>
               {periodType === 'monthly' && (
                 <FormControl size="small">
-                  <Select
+                  <MuiSelect
                     value={endMonth + '월'}
                     onChange={(e) => setEndMonth(e.target.value.replace('월', ''))}
                     variant="outlined"
@@ -312,7 +317,7 @@ const StatsUsagePage = () => {
                     {monthOptions.map((month, index) => (
                       <MenuItem key={month} value={month}>{month}</MenuItem>
                     ))}
-                  </Select>
+                  </MuiSelect>
                 </FormControl>
               )}
               <Button 
@@ -356,46 +361,46 @@ const StatsUsagePage = () => {
             <Typography variant="body2" className="result-text" sx={{ mb: 2 }}>
               {getResultText()}
             </Typography>
-          </div>
+          </Box>
 
-          <div className="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>월</th>
-                  <th>STT 요청 건</th>
-                  <th>STT 요청 시간</th>
-                  <th>STT 성공 건</th>
-                  <th>STT 성공 시간</th>
-                  <th>STT 실패 건</th>
-                  <th>STT 실패 시간</th>
-                  <th>LLM 요청 건</th>
-                  <th>LLM 요청 Token</th>
-                  <th>LLM 성공 건</th>
-                  <th>LLM 실패 건</th>
-                </tr>
-              </thead>
-              <tbody>
+          <TableContainer component={Paper} sx={{ boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)', borderRadius: 2 }}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>월</TableCell>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>STT 요청 건</TableCell>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>STT 요청 시간</TableCell>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>STT 성공 건</TableCell>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>STT 성공 시간</TableCell>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>STT 실패 건</TableCell>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>STT 실패 시간</TableCell>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>LLM 요청 건</TableCell>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>LLM 요청 Token</TableCell>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>LLM 성공 건</TableCell>
+                  <TableCell sx={{ fontWeight: 600, backgroundColor: '#F9FAFB', color: '#374151' }}>LLM 실패 건</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
                 {monthlyStatsData.slice(0, parseInt(itemsPerPage)).map((item, index) => (
-                  <tr key={index}>
-                    <td>{item.month}</td>
-                    <td>{item.sttRequests}</td>
-                    <td>{item.sttRequestTime}</td>
-                    <td>{item.sttSuccess}</td>
-                    <td>{item.sttSuccessTime}</td>
-                    <td className="stt-fail-cell">{item.sttFail}</td>
-                    <td>{item.sttFailTime}</td>
-                    <td>{item.llmRequests}</td>
-                    <td>{item.llmTokens}</td>
-                    <td>{item.llmSuccess}</td>
-                    <td className="text-red">{item.llmFail}</td>
-                  </tr>
+                  <TableRow key={index} hover>
+                    <TableCell>{item.month}</TableCell>
+                    <TableCell>{item.sttRequests}</TableCell>
+                    <TableCell>{item.sttRequestTime}</TableCell>
+                    <TableCell>{item.sttSuccess}</TableCell>
+                    <TableCell>{item.sttSuccessTime}</TableCell>
+                    <TableCell sx={{ color: '#EF4444' }}>{item.sttFail}</TableCell>
+                    <TableCell>{item.sttFailTime}</TableCell>
+                    <TableCell>{item.llmRequests}</TableCell>
+                    <TableCell>{item.llmTokens}</TableCell>
+                    <TableCell>{item.llmSuccess}</TableCell>
+                    <TableCell sx={{ color: '#EF4444' }}>{item.llmFail}</TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+      </Container>
     </Layout>
   )
 }

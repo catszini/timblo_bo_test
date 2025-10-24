@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import {
-  FormControl,
-  Select,
-  MenuItem,
-  Button,
+  Container,
   ButtonGroup,
+  Button,
+  FormControl,
+  Select as MuiSelect,
+  MenuItem,
   Table,
   TableBody,
   TableCell,
@@ -16,6 +17,8 @@ import {
   Box
 } from '@mui/material'
 import Layout from '../../components/Layout/Layout'
+import Select from '../../components/common/Select'
+import ActionButton from '../../components/common/ActionButton'
 
 // HTML과 동일한 워크스페이스별 월간 데이터
 const monthlyStatsData = [
@@ -194,18 +197,20 @@ const SystemStatsUsagePage = () => {
   }
 
   return (
-    <Layout className="page-system-stats-usage stats-usage-page">
-      <div className="content">
-        <div className="content-header">
-          <h1 className="breadcrumb">전체 시스템 사용 통계</h1>
-        </div>
-        
-        <div className="content-body">
-          <div className="search-section">
+    <Layout>
+      <Container maxWidth="xl" sx={{ py: 4 }}>
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="h4" sx={{ fontSize: '24px', fontWeight: 600, color: '#111827' }}>
+            전체 시스템 사용 통계
+          </Typography>
+        </Box>
+
+        <Box>
+          <Box sx={{ mb: 3 }}>
             <Box className="tb-left">
               <Box className="workspace-filter-row" sx={{ mb: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
                 <FormControl size="small" sx={{ minWidth: 200 }}>
-                  <Select
+                  <MuiSelect
                     value={workspaceFilter}
                     onChange={(e) => setWorkspaceFilter(e.target.value)}
                     variant="outlined"
@@ -217,7 +222,7 @@ const SystemStatsUsagePage = () => {
                     <MenuItem value="sk-cc">SK C&C</MenuItem>
                     <MenuItem value="sk-innovation">SK Innovation</MenuItem>
                     <MenuItem value="sk-networks">SK Networks</MenuItem>
-                  </Select>
+                  </MuiSelect>
                 </FormControl>
                 
                   <ButtonGroup variant="outlined" size="small">
@@ -240,19 +245,19 @@ const SystemStatsUsagePage = () => {
                 
               <Box className="period-row" sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
                 <FormControl size="small">
-                    <Select
+                    <MuiSelect
                     value={startYear + '년'}
                     onChange={(e) => setStartYear(e.target.value.replace('년', ''))}
                       variant="outlined"
                     >
                       <MenuItem value="2024년">2024년</MenuItem>
                       <MenuItem value="2025년">2025년</MenuItem>
-                    </Select>
+                    </MuiSelect>
                   </FormControl>
                   
                 {periodType === 'monthly' && (
                   <FormControl size="small">
-                    <Select
+                    <MuiSelect
                       value={startMonth + '월'}
                       onChange={(e) => setStartMonth(e.target.value.replace('월', ''))}
                       variant="outlined"
@@ -260,26 +265,26 @@ const SystemStatsUsagePage = () => {
                       {['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'].map((month, index) => (
                         <MenuItem key={month} value={month}>{month}</MenuItem>
                       ))}
-                    </Select>
+                    </MuiSelect>
                   </FormControl>
                 )}
                   
                 <Typography variant="body2" sx={{ mx: 1 }}>~</Typography>
                   
                 <FormControl size="small">
-                    <Select
+                    <MuiSelect
                     value={endYear + '년'}
                     onChange={(e) => setEndYear(e.target.value.replace('년', ''))}
                       variant="outlined"
                     >
                       <MenuItem value="2024년">2024년</MenuItem>
                       <MenuItem value="2025년">2025년</MenuItem>
-                    </Select>
+                    </MuiSelect>
                   </FormControl>
                   
                 {periodType === 'monthly' && (
                   <FormControl size="small">
-                    <Select
+                    <MuiSelect
                       value={endMonth + '월'}
                       onChange={(e) => setEndMonth(e.target.value.replace('월', ''))}
                       variant="outlined"
@@ -287,7 +292,7 @@ const SystemStatsUsagePage = () => {
                       {['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'].map((month, index) => (
                         <MenuItem key={month} value={month}>{month}</MenuItem>
                       ))}
-                    </Select>
+                    </MuiSelect>
                   </FormControl>
                 )}
                   
@@ -320,7 +325,7 @@ const SystemStatsUsagePage = () => {
             <Typography variant="body2" className="result-text" sx={{ mb: 2 }}>
               {getResultText()}
             </Typography>
-          </div>
+          </Box>
 
           <TableContainer component={Paper} sx={{ mt: 2 }}>
             <Table>
@@ -407,8 +412,8 @@ const SystemStatsUsagePage = () => {
               </TableBody>
             </Table>
           </TableContainer>
-        </div>
-      </div>
+        </Box>
+      </Container>
     </Layout>
   )
 }

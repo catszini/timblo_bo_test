@@ -1,11 +1,36 @@
 import React, { useState } from 'react'
+import {
+  Box,
+  Container,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper
+} from '@mui/material'
+import UploadIcon from '@mui/icons-material/Upload'
 import Layout from '../../components/Layout/Layout'
+import { FileUploadButton, SaveButton, CancelButton } from '../../components/common/CommonButtons'
+import ActionButton from '../../components/common/ActionButton'
+import Modal from '../../components/common/Modal'
+import FormField from '../../components/common/FormField'
+import Select from '../../components/common/Select'
+import { styles } from './PromptPage.styles'
 
 const PromptPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedPrompt, setSelectedPrompt] = useState(null)
+  const [formData, setFormData] = useState({
+    version: 'V1.0.0',
+    category: '회의록',
+    name: '',
+    description: ''
+  })
 
-  // HTML과 동일한 프롬프트 데이터
+  // 프롬프트 데이터
   const promptData = [
     {
       id: 1,
@@ -59,13 +84,52 @@ const PromptPage = () => {
     }
   ]
 
+  // 버전 이력 데이터
+  const versionHistory = [
+    {
+      id: 'DEF-001-SK',
+      version: 'V1.2.0',
+      type: '텍스트',
+      changes: '의료 용어 사전 최신 반영',
+      createdAt: '2025-07-18 14:30:25',
+      creator: '김철수',
+      modifier: '박지민',
+      modifiedAt: '2025-08-08 16:45:12'
+    },
+    {
+      id: 'DEF-001-SK',
+      version: 'V1.1.0',
+      type: '음성',
+      changes: '녹취 품질 개선 프롬프트 적용',
+      createdAt: '2025-06-02 11:20:15',
+      creator: '박지민',
+      modifier: '김철수',
+      modifiedAt: '2025-07-15 09:30:45'
+    },
+    {
+      id: 'DEF-001-SK',
+      version: 'V1.0.0',
+      type: '텍스트',
+      changes: '초기 배포',
+      createdAt: '2025-05-10 10:15:30',
+      creator: '이영희',
+      modifier: '이영희',
+      modifiedAt: '2025-05-10 10:15:30'
+    }
+  ]
+
   const handleFileUpload = () => {
-    // 파일 업로드 로직
     console.log('파일 업로드')
   }
 
   const handleRowClick = (prompt) => {
     setSelectedPrompt(prompt)
+    setFormData({
+      version: 'V1.0.0',
+      category: prompt.category,
+      name: prompt.name,
+      description: prompt.description
+    })
     setIsModalOpen(true)
   }
 
@@ -74,206 +138,160 @@ const PromptPage = () => {
     setSelectedPrompt(null)
   }
 
+  const handleSave = () => {
+    alert('프롬프트가 저장되었습니다.')
+    handleCloseModal()
+  }
+
   return (
-    <Layout className="page-prompt">
-      <div className="content">
-        <div className="content-header">
-          <h1 className="breadcrumb">프롬프트 관리</h1>
-        </div>
-        <div className="content-body">
-          <div className="search-section">
-            <div className="search-group">
-              <div className="right-group">
-                <button className="new-button" onClick={handleFileUpload}>파일업로드</button>
-              </div>
-            </div>
-          </div>
-          <div className="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>카테고리</th>
-                  <th>KEY</th>
-                  <th>이름</th>
-                  <th>설명</th>
-                  <th>생성시간</th>
-                  <th>생성자</th>
-                  <th>버전</th>
-                </tr>
-              </thead>
-              <tbody>
-                {promptData.map((prompt) => (
-                  <tr key={prompt.id} onClick={() => handleRowClick(prompt)} style={{ cursor: 'pointer' }}>
-                    <td>{prompt.category}</td>
-                    <td>{prompt.key}</td>
-                    <td>{prompt.name}</td>
-                    <td>{prompt.description}</td>
-                    <td>{prompt.createdAt}</td>
-                    <td>{prompt.creator}</td>
-                    <td>{prompt.version}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+    <Layout>
+      <Container maxWidth="xl" sx={styles.container}>
+        <Box sx={styles.header}>
+          <Typography variant="h4" sx={styles.title}>
+            프롬프트 관리
+          </Typography>
+          <FileUploadButton onClick={handleFileUpload} />
+        </Box>
+
+        <TableContainer component={Paper} sx={styles.tableContainer}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell sx={styles.headerCell}>카테고리</TableCell>
+                <TableCell sx={styles.headerCell}>KEY</TableCell>
+                <TableCell sx={styles.headerCell}>이름</TableCell>
+                <TableCell sx={styles.headerCell}>설명</TableCell>
+                <TableCell sx={styles.headerCell}>생성시간</TableCell>
+                <TableCell sx={styles.headerCell}>생성자</TableCell>
+                <TableCell sx={styles.headerCell}>버전</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {promptData.map((prompt) => (
+                <TableRow
+                  key={prompt.id}
+                  hover
+                  onClick={() => handleRowClick(prompt)}
+                  sx={styles.tableRow}
+                >
+                  <TableCell>{prompt.category}</TableCell>
+                  <TableCell>{prompt.key}</TableCell>
+                  <TableCell>{prompt.name}</TableCell>
+                  <TableCell>{prompt.description}</TableCell>
+                  <TableCell>{prompt.createdAt}</TableCell>
+                  <TableCell>{prompt.creator}</TableCell>
+                  <TableCell>{prompt.version}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
 
       {/* 프롬프트 등록/수정 모달 */}
-      {isModalOpen && (
-        <div className="modal-overlay" onClick={handleCloseModal}>
-          <div 
-            className="modal-container prompt-modal"
-            style={{ width: '1000px', maxWidth: '1000px', minWidth: '1000px' }}
-            onClick={(e) => e.stopPropagation()}
+      <Modal
+        open={isModalOpen}
+        onClose={handleCloseModal}
+        title="프롬프트 상세"
+        maxWidth="md"
+        actions={
+          <>
+            <CancelButton onClick={handleCloseModal} fullWidth />
+            <SaveButton onClick={handleSave} fullWidth />
+          </>
+        }
+      >
+        <Box sx={styles.modalContent}>
+          <Box>
+            <Typography variant="body2" sx={styles.modalLabel}>ID</Typography>
+            <Typography variant="body1" sx={styles.modalValue}>
+              {selectedPrompt?.key || 'DEF-001-SK'}
+            </Typography>
+          </Box>
+
+          <FormField
+            label="버전정보"
+            select
+            value={formData.version}
+            onChange={(e) => setFormData({...formData, version: e.target.value})}
+            SelectProps={{
+              native: true
+            }}
           >
-            <div className="modal-content">
-              {/* ID 섹션 */}
-              <div className="prompt-form-group">
-                <div className="prompt-category-header">
-                  <label>ID</label>
-                  <button className="btn-close" onClick={handleCloseModal}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M1.33398 14.6663L14.6673 1.33301M1.33398 1.33301L14.6673 14.6663" stroke="#15191E" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </button>
-                </div>
-                <div className="prompt-form-value">{selectedPrompt?.key || 'DEF-001-SK'}</div>
-              </div>
+            <option>V1.0.0</option>
+            <option>V1.1.0</option>
+            <option>V1.2.0</option>
+            <option>V2.0.0</option>
+          </FormField>
 
-              {/* 버전정보 섹션 */}
-              <div className="prompt-form-group">
-                <div className="prompt-category-header">
-                  <label>버전정보</label>
-                </div>
-                <div className="prompt-version-group">
-                  <div className="prompt-version-input">
-                    <div className="combo-select">
-                      <select className="prompt-form-select">
-                        <option>V1.0.0</option>
-                        <option>V1.1.0</option>
-                        <option>V1.2.0</option>
-                        <option>V2.0.0</option>
-                      </select>
-                      <img src="../asset/select-arrow.svg" alt="" />
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <FormField
+            label="카테고리"
+            select
+            value={formData.category}
+            onChange={(e) => setFormData({...formData, category: e.target.value})}
+            SelectProps={{
+              native: true
+            }}
+          >
+            <option>회의록</option>
+            <option>번역</option>
+            <option>일정</option>
+            <option>분석</option>
+          </FormField>
 
-              {/* 카테고리 섹션 */}
-              <div className="prompt-form-group">
-                <div className="prompt-category-header">
-                  <label>카테고리</label>
-                  <div className="prompt-edit-wrapper">
-                    <button className="prompt-btn-edit">편집</button>
-                  </div>
-                </div>
-                <div className="combo-select">
-                  <select className="prompt-form-select">
-                    <option>{selectedPrompt?.category || '회의록'}</option>
-                    <option>번역</option>
-                    <option>일정</option>
-                    <option>분석</option>
-                  </select>
-                  <img src="../asset/select-arrow.svg" alt="" />
-                </div>
-              </div>
+          <FormField
+            label="프롬프트명"
+            value={formData.name}
+            onChange={(e) => setFormData({...formData, name: e.target.value})}
+            placeholder="프롬프트명을 입력하세요"
+          />
 
-              {/* 프롬프트명 섹션 */}
-              <div className="prompt-form-group">
-                <div className="prompt-category-header">
-                  <label>프롬프트명</label>
-                </div>
-                <input 
-                  type="text" 
-                  className="prompt-form-input" 
-                  defaultValue={selectedPrompt?.name || ''}
-                  placeholder="프롬프트명을 입력하세요"
-                />
-              </div>
+          <FormField
+            label="설명"
+            multiline
+            rows={3}
+            value={formData.description}
+            onChange={(e) => setFormData({...formData, description: e.target.value})}
+            placeholder="프롬프트에 대한 설명을 입력하세요"
+            helperText={`${formData.description.length}/100자`}
+          />
 
-              {/* 설명 섹션 */}
-              <div className="prompt-form-group">
-                <div className="prompt-category-header">
-                  <label>설명</label>
-                </div>
-                <div style={{ position: 'relative' }}>
-                  <textarea 
-                    className="prompt-form-textarea" 
-                    rows="3"
-                    defaultValue={selectedPrompt?.description || ''}
-                    placeholder="프롬프트에 대한 설명을 입력하세요"
-                    style={{ resize: 'none' }}
-                  />
-                  <div className="prompt-input-counter">56/100자</div>
-                </div>
-              </div>
-
-              {/* 버전정보 테이블 섹션 */}
-              <div className="prompt-form-group">
-                <div className="prompt-category-header">
-                  <label>버전정보</label>
-                </div>
-                <div className="prompt-table-container">
-                  <table className="prompt-table">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>버전</th>
-                        <th>유형</th>
-                        <th>변경사항</th>
-                        <th>생성시간</th>
-                        <th>생성자</th>
-                        <th>수정자</th>
-                        <th>수정일자</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>DEF-001-SK</td>
-                        <td>V1.2.0</td>
-                        <td>텍스트</td>
-                        <td title="의료 용어 사전 최신 반영">의료 용어 사전 최신 반영</td>
-                        <td>2025-07-18 14:30:25</td>
-                        <td>김철수</td>
-                        <td>박지민</td>
-                        <td>2025-08-08 16:45:12</td>
-                      </tr>
-                      <tr>
-                        <td>DEF-001-SK</td>
-                        <td>V1.1.0</td>
-                        <td>음성</td>
-                        <td title="녹취 품질 개선 프롬프트 적용">녹취 품질 개선 프롬프트 적용</td>
-                        <td>2025-06-02 11:20:15</td>
-                        <td>박지민</td>
-                        <td>김철수</td>
-                        <td>2025-07-15 09:30:45</td>
-                      </tr>
-                      <tr>
-                        <td>DEF-001-SK</td>
-                        <td>V1.0.0</td>
-                        <td>텍스트</td>
-                        <td title="초기 배포">초기 배포</td>
-                        <td>2025-05-10 10:15:30</td>
-                        <td>이영희</td>
-                        <td>이영희</td>
-                        <td>2025-05-10 10:15:30</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              {/* 모달 푸터 버튼들 */}
-              <div className="modal-footer" style={{ marginTop: '24px', display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
-                <button className="prompt-btn-cancel" onClick={handleCloseModal}>취소</button>
-                <button className="prompt-btn-submit">저장</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+          {/* 버전정보 테이블 */}
+          <Box>
+            <Typography variant="body2" sx={styles.modalLabel}>버전정보</Typography>
+            <TableContainer component={Paper} sx={styles.versionTable}>
+              <Table size="small">
+                <TableHead>
+                  <TableRow>
+                    <TableCell sx={styles.versionHeaderCell}>ID</TableCell>
+                    <TableCell sx={styles.versionHeaderCell}>버전</TableCell>
+                    <TableCell sx={styles.versionHeaderCell}>유형</TableCell>
+                    <TableCell sx={styles.versionHeaderCell}>변경사항</TableCell>
+                    <TableCell sx={styles.versionHeaderCell}>생성시간</TableCell>
+                    <TableCell sx={styles.versionHeaderCell}>생성자</TableCell>
+                    <TableCell sx={styles.versionHeaderCell}>수정자</TableCell>
+                    <TableCell sx={styles.versionHeaderCell}>수정일자</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {versionHistory.map((version, index) => (
+                    <TableRow key={index}>
+                      <TableCell>{version.id}</TableCell>
+                      <TableCell>{version.version}</TableCell>
+                      <TableCell>{version.type}</TableCell>
+                      <TableCell>{version.changes}</TableCell>
+                      <TableCell>{version.createdAt}</TableCell>
+                      <TableCell>{version.creator}</TableCell>
+                      <TableCell>{version.modifier}</TableCell>
+                      <TableCell>{version.modifiedAt}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Box>
+        </Box>
+      </Modal>
     </Layout>
   )
 }

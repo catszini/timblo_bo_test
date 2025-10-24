@@ -1,5 +1,23 @@
 import React, { useState } from 'react'
+import {
+  Box,
+  Container,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Switch,
+  FormControlLabel
+} from '@mui/material'
 import Layout from '../../components/Layout/Layout'
+import FormField from '../../components/common/FormField'
+import { SaveButton } from '../../components/common/CommonButtons'
+import Checkbox from '../../components/common/Checkbox'
+import { styles } from './WorkspacePermissionPage.styles'
 
 const WorkspacePermissionPage = () => {
   const [permissions, setPermissions] = useState({
@@ -31,7 +49,7 @@ const WorkspacePermissionPage = () => {
     }
   })
 
-  // 기능 데이터 (HTML과 완전히 일치)
+  // 기능 데이터
   const featureData = [
     {
       id: 'browserTitle',
@@ -71,7 +89,7 @@ const WorkspacePermissionPage = () => {
     {
       id: 'recording',
       name: '녹음 기능',
-      description: '녹음 관련 기능을 전체적으로 비활성화하지 비활성화합니다.',
+      description: '녹음 관련 기능을 전체적으로 활성화하거나 비활성화합니다.',
       type: 'toggle',
       value: permissions.recording
     },
@@ -99,67 +117,58 @@ const WorkspacePermissionPage = () => {
     {
       id: 'clipboardCopy',
       name: '클립보드 복사',
-      description: 'AI 요약, 음성기록의 클립보드 복사 기능을 활성화합니다.',
+      description: '클립보드 복사 기능을 활성화합니다.',
       type: 'toggle',
       value: permissions.clipboardCopy
     },
     {
       id: 'reSummarize',
-      name: '재요약 기능',
-      description: '음성기록에 대한 재요약 기능을 활성화합니다.',
+      name: '재요약',
+      description: '재요약 기능을 활성화합니다.',
       type: 'toggle',
       value: permissions.reSummarize
     },
     {
       id: 'template',
-      name: '템플릿 기능',
-      description: '노트 탭의 템플릿 기능을 활성화 합니다.',
+      name: '템플릿',
+      description: '템플릿 관련 기능을 활성화합니다.',
       type: 'toggle',
       value: permissions.template
     },
     {
       id: 'documentDownload',
-      name: '문서파일 다운로드',
-      description: '문서 다운로드 관련 기능 진체에 활성화합니다.',
+      name: '회의록 다운로드',
+      description: '회의록 다운로드 기능을 활성화합니다.',
       type: 'toggle',
       value: permissions.documentDownload
     },
     {
       id: 'documentDownloadOptions',
-      name: '문서 파일 다운로드 항목',
-      description: '문서 파일 다운로드 기능을 활성화합니다.',
+      name: '회의록 다운로드 옵션',
+      description: '다운로드 시 포함할 항목을 선택합니다.',
       type: 'checkbox-group',
       options: [
-        { id: 'fullSummary', label: '전체 요약', checked: permissions.documentDownloadOptions.fullSummary },
-        { id: 'separate', label: '별도', checked: permissions.documentDownloadOptions.separate },
+        { id: 'fullSummary', label: '전체요약', checked: permissions.documentDownloadOptions.fullSummary },
+        { id: 'separate', label: '분리요약', checked: permissions.documentDownloadOptions.separate },
         { id: 'highlight', label: '하이라이트', checked: permissions.documentDownloadOptions.highlight },
-        { id: 'note', label: '노트', checked: permissions.documentDownloadOptions.note },
-        { id: 'transcript', label: '음성 기록', checked: permissions.documentDownloadOptions.transcript }
+        { id: 'note', label: '메모', checked: permissions.documentDownloadOptions.note },
+        { id: 'transcript', label: '발화록', checked: permissions.documentDownloadOptions.transcript }
       ]
     },
     {
       id: 'mediaDownloadOptions',
-      name: '영상/음성 파일 다운로드',
-      description: '영상/음성 파일 다운로드 기능을 활성화합니다.',
+      name: '미디어 다운로드 옵션',
+      description: '다운로드 가능한 파일 형식을 선택합니다.',
       type: 'checkbox-group',
       options: [
-        { id: 'txtDownload', label: 'TXT 다운로드', checked: permissions.mediaDownloadOptions.txtDownload },
-        { id: 'pdfDownload', label: 'PDF 다운로드', checked: permissions.mediaDownloadOptions.pdfDownload },
-        { id: 'docxDownload', label: 'DOCX 다운로드', checked: permissions.mediaDownloadOptions.docxDownload },
-        { id: 'hwpDownload', label: 'HWP 다운로드', checked: permissions.mediaDownloadOptions.hwpDownload }
+        { id: 'txtDownload', label: 'TXT', checked: permissions.mediaDownloadOptions.txtDownload },
+        { id: 'pdfDownload', label: 'PDF', checked: permissions.mediaDownloadOptions.pdfDownload },
+        { id: 'docxDownload', label: 'DOCX', checked: permissions.mediaDownloadOptions.docxDownload },
+        { id: 'hwpDownload', label: 'HWP', checked: permissions.mediaDownloadOptions.hwpDownload }
       ]
     }
   ]
 
-  // 입력값 변경 핸들러
-  const handleInputChange = (id, value) => {
-    setPermissions(prev => ({
-      ...prev,
-      [id]: value
-    }))
-  }
-
-  // 토글 변경 핸들러
   const handleToggleChange = (id) => {
     setPermissions(prev => ({
       ...prev,
@@ -167,7 +176,13 @@ const WorkspacePermissionPage = () => {
     }))
   }
 
-  // 체크박스 그룹 변경 핸들러
+  const handleInputChange = (id, value) => {
+    setPermissions(prev => ({
+      ...prev,
+      [id]: value
+    }))
+  }
+
   const handleCheckboxGroupChange = (groupId, optionId) => {
     setPermissions(prev => ({
       ...prev,
@@ -178,303 +193,102 @@ const WorkspacePermissionPage = () => {
     }))
   }
 
-  // 저장 핸들러
   const handleSave = () => {
-    console.log('권한 설정 저장:', permissions)
-    alert('권한 설정이 저장되었습니다.')
+    console.log('저장:', permissions)
+    alert('설정이 저장되었습니다.')
   }
 
-  // 토글 스위치 렌더링
-  const renderToggleSwitch = (id, checked) => (
-    <label className="toggle-switch" style={{ position: 'relative', display: 'inline-block', width: '50px', height: '24px' }}>
-      <input 
-        type="checkbox" 
-        checked={checked}
-        onChange={() => handleToggleChange(id)}
-        style={{ opacity: 0, width: 0, height: 0 }}
-      />
-      <span 
-        className="toggle-slider"
-        style={{
-          position: 'absolute',
-          cursor: 'pointer',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: checked ? '#2196F3' : '#ccc',
-          transition: '0.4s',
-          borderRadius: '24px',
-          '&:before': {
-            position: 'absolute',
-            content: '""',
-            height: '18px',
-            width: '18px',
-            left: checked ? '26px' : '3px',
-            bottom: '3px',
-            backgroundColor: 'white',
-            transition: '0.4s',
-            borderRadius: '50%'
-          }
-        }}
-        onClick={() => handleToggleChange(id)}
-      >
-        <span style={{
-          position: 'absolute',
-          content: '""',
-          height: '18px',
-          width: '18px',
-          left: checked ? '26px' : '3px',
-          bottom: '3px',
-          backgroundColor: 'white',
-          transition: '0.4s',
-          borderRadius: '50%',
-          transform: 'translateY(-50%)',
-          top: '50%'
-        }} />
-      </span>
-    </label>
-  )
+  const renderControl = (feature) => {
+    if (feature.type === 'input') {
+      return (
+        <FormField
+          value={feature.value}
+          onChange={(e) => handleInputChange(feature.id, e.target.value)}
+          size="small"
+          sx={styles.input}
+        />
+      )
+    }
 
-  // 체크박스 그룹 렌더링
-  const renderCheckboxGroup = (groupId, options) => (
-    <div className="checkbox-group-horizontal" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-      {options.map(option => (
-        <label key={option.id} className="checkbox-item" style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-          <input 
-            type="checkbox" 
-            className="feature-checkbox"
-            checked={option.checked}
-            onChange={() => handleCheckboxGroupChange(groupId, option.id)}
-            style={{ display: 'none' }}
-          />
-          <span 
-            className="checkmark"
-            style={{
-              width: '16px',
-              height: '16px',
-              border: '2px solid #97c3f0',
-              borderRadius: '3px',
-              backgroundColor: option.checked ? 'rgba(199, 223, 247, 0.8)' : 'white',
-              marginRight: '8px',
-              transition: 'all 0.2s'
-            }}
-          />
-          {option.label}
-        </label>
-      ))}
-    </div>
-  )
+    if (feature.type === 'toggle') {
+      return (
+        <FormControlLabel
+          control={
+            <Switch
+              checked={feature.value}
+              onChange={() => handleToggleChange(feature.id)}
+              color="primary"
+            />
+          }
+          label=""
+        />
+      )
+    }
+
+    if (feature.type === 'checkbox-group') {
+      return (
+        <Box sx={styles.checkboxGroup}>
+          {feature.options.map(option => (
+            <FormControlLabel
+              key={option.id}
+              control={
+                <Checkbox
+                  checked={option.checked}
+                  onChange={() => handleCheckboxGroupChange(feature.id, option.id)}
+                  size="small"
+                />
+              }
+              label={option.label}
+            />
+          ))}
+        </Box>
+      )
+    }
+
+    return null
+  }
 
   return (
-    <Layout className="page-workspace-permission">
-      <div className="content">
-        <div className="content-header">
-          <h1 className="breadcrumb">FO기능정책관리</h1>
-          <div className="header-actions">
-            <button 
-              className="save-btn"
-              onClick={handleSave}
-              style={{
-                padding: '8px 24px',
-                background: '#3B82F6',
-                color: 'white',
-                border: '1px solid #3B82F6',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '14px',
-                fontWeight: '500'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#2563EB'
-                e.target.style.borderColor = '#2563EB'
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = '#3B82F6'
-                e.target.style.borderColor = '#3B82F6'
-              }}
-            >
-              저장
-            </button>
-          </div>
-        </div>
+    <Layout>
+      <Container maxWidth="xl" sx={styles.container}>
+        <Box sx={styles.header}>
+          <Typography variant="h4" sx={styles.title}>
+            기능 권한 관리
+          </Typography>
+          <SaveButton onClick={handleSave} />
+        </Box>
 
-        <div className="content-body">
-          {/* 기능 권한 관리 테이블 */}
-          <div className="permission-table-container">
-            <table className="permission-table">
-              <thead>
-                <tr className="table-header">
-                  <th style={{ 
-                    width: '250px', 
-                    padding: '12px 16px', 
-                    textAlign: 'left', 
-                    borderBottom: '2px solid #E5E7EB',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    color: '#374151'
-                  }}>
-                    기능
-                  </th>
-                  <th style={{ 
-                    padding: '12px 16px', 
-                    textAlign: 'left', 
-                    borderBottom: '2px solid #E5E7EB',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    color: '#374151'
-                  }}>
-                    권한 설명
-                  </th>
-                  <th style={{ 
-                    width: '300px', 
-                    padding: '12px 16px', 
-                    textAlign: 'left', 
-                    borderBottom: '2px solid #E5E7EB',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    color: '#374151'
-                  }}>
-                    사용 설정
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {featureData.map((feature, index) => (
-                  <tr key={feature.id} className="table-row">
-                    <td className="feature-name" style={{ 
-                      padding: '16px', 
-                      fontSize: '14px', 
-                      fontWeight: '500',
-                      color: '#111827',
-                      verticalAlign: 'top'
-                    }}>
+        <TableContainer component={Paper} sx={styles.tableContainer}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell sx={styles.headerCell}>기능</TableCell>
+                <TableCell sx={styles.headerCell}>권한 설명</TableCell>
+                <TableCell sx={styles.headerCell}>사용 설정</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {featureData.map((feature) => (
+                <TableRow key={feature.id} hover>
+                  <TableCell sx={styles.nameCell}>
+                    <Typography variant="body2" sx={styles.featureName}>
                       {feature.name}
-                    </td>
-                    <td className="feature-description" style={{ 
-                      padding: '16px', 
-                      fontSize: '14px', 
-                      color: '#6B7280',
-                      lineHeight: '1.5',
-                      verticalAlign: 'top'
-                    }}>
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="body2" sx={styles.description}>
                       {feature.description}
-                    </td>
-                    <td className="feature-setting" style={{ 
-                      padding: '16px', 
-                      verticalAlign: 'top'
-                    }}>
-                      {feature.type === 'input' && (
-                        <input 
-                          type="text" 
-                          className="setting-input"
-                          value={feature.value}
-                          onChange={(e) => handleInputChange(feature.id, e.target.value)}
-                          style={{
-                            width: '100%',
-                            padding: '8px 12px',
-                            border: '1px solid #D1D5DB',
-                            borderRadius: '6px',
-                            fontSize: '14px',
-                            maxWidth: '250px'
-                          }}
-                        />
-                      )}
-                      {feature.type === 'toggle' && renderToggleSwitch(feature.id, feature.value)}
-                      {feature.type === 'checkbox-group' && renderCheckboxGroup(feature.id, feature.options)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* 하단 액션 버튼 */}
-          <div className="form-actions" style={{ 
-            marginTop: '32px', 
-            textAlign: 'center', 
-            paddingTop: '24px',
-            borderTop: '1px solid #E5E7EB'
-          }}>
-            <button 
-              className="btn-reset"
-              onClick={() => {
-                setPermissions({
-                  browserTitle: 'AI 회의록 - dev',
-                  consentRequired: true,
-                  thumbnailUpload: false,
-                  nicknameEdit: true,
-                  addressBook: false,
-                  recording: true,
-                  fileUpload: true,
-                  emailNotification: true,
-                  meetingShare: false,
-                  clipboardCopy: false,
-                  reSummarize: true,
-                  template: true,
-                  documentDownload: true,
-                  documentDownloadOptions: {
-                    fullSummary: false,
-                    separate: false,
-                    highlight: false,
-                    note: false,
-                    transcript: false
-                  },
-                  mediaDownloadOptions: {
-                    txtDownload: false,
-                    pdfDownload: false,
-                    docxDownload: false,
-                    hwpDownload: false
-                  }
-                })
-              }}
-              style={{
-                padding: '12px 24px',
-                marginRight: '12px',
-                background: 'transparent',
-                color: '#6B7280',
-                border: '1px solid #D1D5DB',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '14px'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#F9FAFB'
-                e.target.style.borderColor = '#9CA3AF'
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'transparent'
-                e.target.style.borderColor = '#D1D5DB'
-              }}
-            >
-              초기화
-            </button>
-            <button 
-              className="btn-save"
-              onClick={handleSave}
-              style={{
-                padding: '12px 24px',
-                background: '#10B981',
-                color: 'white',
-                border: '1px solid #10B981',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '14px'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#059669'
-                e.target.style.borderColor = '#059669'
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = '#10B981'
-                e.target.style.borderColor = '#10B981'
-              }}
-            >
-              저장
-            </button>
-          </div>
-        </div>
-      </div>
+                    </Typography>
+                  </TableCell>
+                  <TableCell sx={styles.controlCell}>
+                    {renderControl(feature)}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
     </Layout>
   )
 }

@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import Select from '../common/Select'
 
 const Layout = ({ children, className = '' }) => {
   const location = useLocation()
+  const [selectedWorkspace, setSelectedWorkspace] = useState('Timbel')
+  
+  const workspaceOptions = [
+    { value: 'Timbel', label: 'Timbel' },
+    { value: 'sk-telecom', label: 'SK Telecom' },
+    { value: 'sk-hynix', label: 'SK Hynix' },
+    { value: 'sk-es', label: 'SK E&S' },
+    { value: 'sk-cc', label: 'SK C&C' },
+    { value: 'sk-innovation', label: 'SK Innovation' },
+    { value: 'sk-networks', label: 'SK Networks' }
+  ]
   
   const isActive = (path) => {
     // 홈 경로('/') 는 워크스페이스 관리로 리다이렉트되므로
@@ -20,15 +32,12 @@ const Layout = ({ children, className = '' }) => {
           <div className="logo-text">
             <div className="logo-title">홍길동</div>
             <div className="logo-url">
-              <select className="condition-select" id="workspace-filter">
-                <option value="Timbel">Timbel</option>
-                <option value="sk-telecom">SK Telecom</option>
-                <option value="sk-hynix">SK Hynix</option>
-                <option value="sk-es">SK E&S</option>
-                <option value="sk-cc">SK C&C</option>
-                <option value="sk-innovation">SK Innovation</option>
-                <option value="sk-networks">SK Networks</option>
-              </select>
+              <Select
+                value={selectedWorkspace}
+                onChange={(e) => setSelectedWorkspace(e.target.value)}
+                options={workspaceOptions}
+                width="100%"
+              />
             </div>
           </div>
           <button className="logout-btn" title="로그아웃">
