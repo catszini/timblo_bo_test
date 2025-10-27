@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>이용약관 상세</title>
   <link rel="stylesheet" href="../asset/style.css">
+  <link rel="stylesheet" href="../asset/modal.css">
 </head>
 
-<body>
+<body class="consent-new-page">
   <div class="container">
     <!-- 사이드바 -->
     <div class="sidebar">
@@ -67,7 +68,7 @@
         </div>
         <ul>
           <li><a href="workspace_permission.html">기능 권한 관리</a></li>
-          <li><a href="content_retention.html">콘텐츠 보존 관리</a></li>
+          <li><a href="content_retention.html">컨텐츠 보존 관리</a></li>
           <li><a href="workspace_group_setting.html">역할 관리</a></li>
           <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 관리</a></li>
@@ -108,81 +109,59 @@
     <div class="content">
       <div class="content-header">
         <h1 class="breadcrumb">
-          <a href="terms_of_service.html" style="color: #666;">이용약관 관리</a>
-          <span style="margin: 0 8px; color: #666;">›</span>
-          <span>상세</span>
+          <a href="terms_of_service.html" class="breadcrumb-link">이용약관 관리</a> > 상세
         </h1>
       </div>
 
       <div class="content-body">
-        <div class="form-container">
-          <form id="termsForm">
-            <div class="form-section">
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label required">구분</label>
-                  <div class="combo-select">
-                    <div>
-                      <select class="form-select" id="termsType" required>
-                        <option value="">선택하세요</option>
-                        <option value="privacy" selected>개인정보</option>
-                        <option value="terms">이용약관</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label required">제목</label>
-                  <input type="text" class="form-input" id="termsTitle" value="스타트스" required>
-                </div>
+        <!-- 이용약관 상세 폼 -->
+        <div class="consent-detail-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="consentType">구분</label>
+              <div class="combo-select">
+                <select id="consentType" class="condition-select">
+                  <option value="privacy" selected>개인정보</option>
+                  <option value="terms">이용약관</option>
+                </select>
+                <img src="../asset/select-arrow.svg" alt="화살표" class="select-arrow">
               </div>
+            </div>
+          </div>
 
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label">생성일</label>
-                  <input type="text" class="form-input" value="25-09-16 14:49:14" readonly>
-                </div>
+          <div class="form-row">
+            <div class="form-group flex-grow">
+              <label for="consentTitle">제목</label>
+              <input type="text" id="consentTitle" class="form-input" value="스타트스" placeholder="제목을 입력하세요">
+            </div>
+          </div>
 
-                <div class="form-group">
-                  <label class="form-label">생성자</label>
-                  <input type="text" class="form-input" value="심승준1" readonly>
-                </div>
-              </div>
+          <div class="form-row info-row">
+            <div class="info-item">
+              <span class="info-label">생성일</span>
+              <span class="info-value">25-09-16 14:49:14</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">생성자</span>
+              <span class="info-value">심승준1</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">약관 실행일</span>
+              <span class="info-value">25-09-18 02:15:00</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">최종수정일</span>
+              <span class="info-value">25-10-23 14:37:19</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">수정자</span>
+              <span class="info-value">심승준1</span>
+            </div>
+          </div>
 
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label required">약관 실행일</label>
-                  <input type="datetime-local" class="form-input" id="executeDate" value="2025-09-18T02:15" required>
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label">최종 수정일</label>
-                  <input type="text" class="form-input" value="25-10-23 14:37:19" readonly>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label">수정자</label>
-                  <input type="text" class="form-input" value="심승준1" readonly>
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label required">사용 여부</label>
-                  <div style="display: flex; align-items: center; height: 42px;">
-                    <label class="switch">
-                      <input type="checkbox" id="isActive" checked>
-                      <span class="slider"></span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group full-width">
-                  <label class="form-label required">내용</label>
-                  <textarea class="form-textarea" id="termsContent" rows="15" required>제1조 (목적)
+          <div class="form-group">
+            <label for="consentContent">내용</label>
+            <textarea id="consentContent" class="form-textarea" rows="15" placeholder="약관 내용을 입력하세요">제1조 (목적)
 본 약관은 회사가 제공하는 서비스의 이용과 관련하여 회사와 이용자 간의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.
 
 제2조 (정의)
@@ -193,48 +172,84 @@
 제3조 (약관의 효력 및 변경)
 1. 본 약관은 서비스를 이용하고자 하는 모든 이용자에 대하여 그 효력을 발생합니다.
 2. 회사는 필요한 경우 관련 법령을 위배하지 않는 범위에서 본 약관을 변경할 수 있습니다.</textarea>
-                </div>
-              </div>
-            </div>
+          </div>
 
-            <div class="form-actions">
-              <button type="button" class="btn-cancel" onclick="location.href='terms_of_service.html'">목록</button>
-              <button type="button" class="btn-danger" onclick="deleteTerms()">삭제</button>
-              <button type="submit" class="btn-confirm">수정</button>
+          <div class="form-row checkbox-row">
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="activateConsent" checked>
+                <span class="checkmark"></span>
+                저장 후 '사용함'으로 활성화 시 모든 기존 사용자에게 재동의를 요청합니다.
+              </label>
             </div>
-          </form>
+          </div>
+
+          <div class="form-actions-bottom">
+            <div class="left-actions">
+              <a href="terms_of_service.html" class="btn btn-outline">목록으로</a>
+            </div>
+            <div class="right-actions">
+              <button type="button" class="btn btn-outline" id="editBtn">수정</button>
+              <button type="button" class="btn btn-danger" id="deleteBtn">삭제</button>
+              <button type="button" class="btn btn-primary" id="saveBtn">저장</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    document.getElementById('termsForm').addEventListener('submit', function (e) {
-      e.preventDefault();
+    document.addEventListener('DOMContentLoaded', function () {
+      const consentType = document.getElementById('consentType');
+      const consentTitle = document.getElementById('consentTitle');
+      const consentContent = document.getElementById('consentContent');
+      const activateConsent = document.getElementById('activateConsent');
+      const saveBtn = document.getElementById('saveBtn');
+      const deleteBtn = document.getElementById('deleteBtn');
+      const editBtn = document.getElementById('editBtn');
 
-      const termsType = document.getElementById('termsType').value;
-      const termsTitle = document.getElementById('termsTitle').value;
-      const executeDate = document.getElementById('executeDate').value;
-      const termsContent = document.getElementById('termsContent').value;
-      const isActive = document.getElementById('isActive').checked;
+      // 수정 버튼 클릭
+      editBtn.addEventListener('click', function () {
+        // 수정 모드 활성화 로직
+        console.log('수정 모드 활성화');
+      });
 
-      if (!termsType || !termsTitle || !executeDate || !termsContent) {
-        alert('모든 필수 항목을 입력해주세요.');
-        return;
-      }
+      // 삭제 버튼 클릭
+      deleteBtn.addEventListener('click', function () {
+        if (confirm('이용약관을 삭제하시겠습니까?\n삭제 후에는 복구할 수 없습니다.')) {
+          // 여기에 실제 삭제 로직 추가
+          alert('이용약관이 삭제되었습니다.');
+          location.href = 'terms_of_service.html';
+        }
+      });
 
-      // 여기에 실제 수정 로직 추가
-      alert('이용약관이 수정되었습니다.');
-      location.href = 'terms_of_service.html';
-    });
+      // 저장 버튼 클릭
+      saveBtn.addEventListener('click', function () {
+        // 필수 필드 검증
+        if (!consentType.value.trim()) {
+          alert('구분을 선택해주세요.');
+          consentType.focus();
+          return;
+        }
 
-    function deleteTerms() {
-      if (confirm('이용약관을 삭제하시겠습니까?\n삭제 후에는 복구할 수 없습니다.')) {
-        // 여기에 실제 삭제 로직 추가
-        alert('이용약관이 삭제되었습니다.');
+        if (!consentTitle.value.trim()) {
+          alert('제목을 입력해주세요.');
+          consentTitle.focus();
+          return;
+        }
+
+        if (!consentContent.value.trim()) {
+          alert('내용을 입력해주세요.');
+          consentContent.focus();
+          return;
+        }
+
+        // 여기에 실제 수정 로직 추가
+        alert('이용약관이 수정되었습니다.');
         location.href = 'terms_of_service.html';
-      }
-    }
+      });
+    });
   </script>
 
   <script src="../asset/menu.js"></script>
