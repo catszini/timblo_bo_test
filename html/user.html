@@ -396,6 +396,49 @@
       </div>
     </div>
 
+    <!-- 사용자 생성 모달 -->
+    <div class="modal-overlay modal-overlay-hidden" id="userCreateModal">
+      <div class="modal-container user-create-modal">
+        <div class="modal-content">
+          <h2 class="modal-title">사용자 생성</h2>
+
+          <div class="form-section">
+            <div class="form-group">
+              <label class="form-label">이름</label>
+              <input type="text" class="form-input" id="userName" placeholder="사용자 이름을 입력하세요" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">이메일</label>
+              <input type="email" class="form-input" id="userEmail" placeholder="이메일을 입력하세요" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">비밀번호</label>
+              <input type="password" class="form-input" id="userPassword" placeholder="비밀번호를 입력하세요" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">권한</label>
+              <select class="form-select" id="userPermission" required>
+                <option value="">권한을 선택하세요</option>
+                <option value="meeting-admin">회의관리자</option>
+                <option value="logo-admin">로고관리자</option>
+                <option value="user-admin">사용자관리자</option>
+                <option value="stats-admin">통계관리자</option>
+                <option value="content-admin">컨텐츠관리자</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-buttons">
+            <button class="btn-cancel" id="user-cancel-btn">취소</button>
+            <button class="btn-confirm" id="user-create-btn">생성</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 비밀번호 초기화 모달 -->
     <div class="modal-overlay modal-overlay-hidden" id="passwordResetModal">
       <div class="modal-container password-reset-modal">
@@ -461,6 +504,222 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
+        // 사용자 생성 모달 요소들
+        const modal = document.getElementById('userCreateModal');
+        const createBtn = document.querySelector('.new-button');
+        const cancelBtn = document.getElementById('user-cancel-btn');
+        const confirmBtn = document.getElementById('user-create-btn');
+
+        // 폼 요소들
+        const nameInput = document.getElementById('userName');
+        const emailInput = document.getElementById('userEmail');
+        const passwordInput = document.getElementById('userPassword');
+        const permissionSelect = document.getElementById('userPermission');
+
+        // 현재 모드 추적 (생성/수정)
+        let currentMode = 'create';
+        let currentEditRow = null;
+
+        // 모달 열기 (생성용)
+        function openModal() {
+          currentMode = 'create';
+          currentEditRow = null;
+          // 입력 필드 초기화
+          nameInput.value = '';
+          emailInput.value = '';
+          passwordInput.value = '';
+          permissionSelect.value = '';
+          // 모달 타이틀 및 버튼 텍스트 변경
+          document.querySelector('#userCreateModal .modal-title').textContent = '사용자 생성';
+          confirmBtn.textContent = '생성';
+          // 비밀번호 필드 표시
+          passwordInput.closest('.form-group').style.display = 'block';
+          modal.classList.remove('modal-overlay-hidden');
+        }
+
+        // 모달 열기 (수정용)
+        function openEditModal(userData) {
+          currentMode = 'edit';
+          currentEditRow = userData.row;
+          // 기존 사용자 정보 설정
+          nameInput.value = userData.name;
+          emailInput.value = userData.email;
+          permissionSelect.value = userData.permissionValue;
+          // 모달 타이틀 및 버튼 텍스트 변경
+          document.querySelector('#userCreateModal .modal-title').textContent = '사용자 수정';
+          confirmBtn.textContent = '수정';
+          // 비밀번호 필드 숨기기 (수정 시에는 비밀번호 변경 불가)
+          passwordInput.closest('.form-group').style.display = 'none';
+          modal.classList.remove('modal-overlay-hidden');
+        }
+
+        // 모달 닫기
+        function closeModal() {
+          modal.classList.add('modal-overlay-hidden');
+        }
+
+        // 생성 버튼 클릭 시 모달 표시
+        if (createBtn) {
+          createBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal();
+          });
+        }
+
+        // 수정 버튼 클릭 시 모달 표시
+        const editBtn = document.querySelector('.edit-btn');
+        if (editBtn) {
+          editBtn.addEventListener('click', function () {
+            // 선택된 사용자 확인
+            const checkedBoxes = Array.from(rowCheckboxes).filter(cb => cb.checked);
+
+            if (checkedBoxes.length === 0) {
+              alert('수정할 사용자를 선택해주세요.');
+              return;
+            }
+
+            if (checkedBoxes.length > 1) {
+              alert('한 번에 하나의 사용자만 수정할 수 있습니다.');
+              return;
+            }
+
+            // 선택된 사용자 정보 가져오기
+            const selectedRow = checkedBoxes[0].closest('tr');
+            const nameElement = selectedRow.querySelector('.user-status');
+            const emailElement = selectedRow.querySelector('.email-link');
+            const permissionElement = selectedRow.querySelector('.permission-select');
+
+            // 권한 텍스트를 value로 매핑
+            const permissionTextToValue = {
+              '회의관리자': 'meeting-admin',
+              '로고관리자': 'logo-admin',
+              '사용자관리자': 'user-admin',
+              '통계관리자': 'stats-admin',
+              '컨텐츠관리자': 'content-admin'
+            };
+
+            const permissionText = permissionElement.options[permissionElement.selectedIndex].text;
+
+            const userData = {
+              name: nameElement.textContent.trim(),
+              email: emailElement.textContent.trim(),
+              permissionValue: permissionTextToValue[permissionText] || '',
+              row: selectedRow
+            };
+
+            openEditModal(userData);
+          });
+        }
+
+        // 취소 버튼 클릭
+        if (cancelBtn) {
+          cancelBtn.addEventListener('click', closeModal);
+        }
+
+        // 생성/수정 버튼 클릭
+        if (confirmBtn) {
+          confirmBtn.addEventListener('click', () => {
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            const permission = permissionSelect.value.trim();
+
+            // 유효성 검사
+            if (!name) {
+              alert('이름을 입력해주세요.');
+              nameInput.focus();
+              return;
+            }
+
+            if (!email) {
+              alert('이메일을 입력해주세요.');
+              emailInput.focus();
+              return;
+            }
+
+            // 이메일 형식 검사
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+              alert('올바른 이메일 형식을 입력해주세요.');
+              emailInput.focus();
+              return;
+            }
+
+            // 생성 모드일 때만 비밀번호 검증
+            if (currentMode === 'create') {
+              if (!password) {
+                alert('비밀번호를 입력해주세요.');
+                passwordInput.focus();
+                return;
+              }
+
+              if (password.length < 6) {
+                alert('비밀번호는 6자 이상 입력해주세요.');
+                passwordInput.focus();
+                return;
+              }
+            }
+
+            if (!permission) {
+              alert('권한을 선택해주세요.');
+              permissionSelect.focus();
+              return;
+            }
+
+            if (currentMode === 'create') {
+              // 사용자 생성 로직
+              alert(`사용자 "${name}"이 생성되었습니다.`);
+            } else if (currentMode === 'edit') {
+              // 사용자 수정 로직
+              if (currentEditRow) {
+                // 권한 value to text 매핑
+                const permissionValueToText = {
+                  'meeting-admin': '회의관리자',
+                  'logo-admin': '로고관리자',
+                  'user-admin': '사용자관리자',
+                  'stats-admin': '통계관리자',
+                  'content-admin': '컨텐츠관리자'
+                };
+
+                // 테이블의 사용자 정보 업데이트
+                const nameElement = currentEditRow.querySelector('.user-status');
+                const emailElement = currentEditRow.querySelector('.email-link');
+                const permissionSelectElement = currentEditRow.querySelector('.permission-select');
+
+                nameElement.textContent = name;
+                emailElement.textContent = email;
+                emailElement.href = `mailto:${email}`;
+
+                // 권한 셀렉트 업데이트
+                const permissionText = permissionValueToText[permission] || permission;
+                for (let i = 0; i < permissionSelectElement.options.length; i++) {
+                  if (permissionSelectElement.options[i].text === permissionText) {
+                    permissionSelectElement.selectedIndex = i;
+                    break;
+                  }
+                }
+              }
+              alert(`사용자 "${name}"의 정보가 수정되었습니다.`);
+            }
+
+            closeModal();
+          });
+        }
+
+        // 모달 외부 클릭 시 닫기
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !modal.classList.contains('modal-overlay-hidden')) {
+            closeModal();
+          }
+        });
+
         // 비밀번호 초기화 모달 요소들
         const passwordResetModal = document.getElementById('passwordResetModal');
         const passwordResetCancel = document.getElementById('passwordResetCancel');

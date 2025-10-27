@@ -10006,7 +10006,7 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   right: 0;
   bottom: 0;
   background-color: #CBD5E1;
-  -webkit-transition: .4s;
+  -webkit-transition: .4s; 
   transition: .4s;
   border-radius: 24px;
 }
