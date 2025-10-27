@@ -117,7 +117,7 @@ const GroupSettingPage = () => {
       title: '워크스페이스',
       menus: [
         { id: 'fo-policy', name: '기능 권한 관리', checked: true },
-        { id: 'content-retention', name: '컨텐츠 보존 관리', checked: true },
+        { id: 'content-retention', name: '콘텐츠 보존 관리', checked: true },
         { id: 'workspace-permission', name: '역할 관리', checked: true },
         { id: 'workspace-user', name: '사용자 관리', checked: true },
         { id: 'logo-management', name: '로고 관리', checked: true }

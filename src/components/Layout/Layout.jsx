@@ -79,7 +79,7 @@ const Layout = ({ children, className = '' }) => {
           </div>
           <ul>
             <li><a href="/workspace-permission" className={isActive('/workspace-permission')}>기능 권한 관리</a></li>
-            <li><a href="/content-retention" className={isActive('/content-retention')}>컨텐츠 보존 관리</a></li>
+            <li><a href="/content-retention" className={isActive('/content-retention')}>콘텐츠 보존 관리</a></li>
             <li><a href="/workspace-group-setting" className={isActive('/workspace-group-setting')}>역할 관리</a></li>
             <li><a href="/user" className={isActive('/user')}>사용자 관리</a></li>
             <li><a href="/logo" className={isActive('/logo')}>로고 관리</a></li>

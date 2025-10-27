@@ -70,7 +70,7 @@ const ContentRetentionPage = () => {
       <Container maxWidth="xl" sx={styles.container}>
         <Box sx={styles.header}>
           <Typography variant="h4" sx={styles.title}>
-            컨텐츠 보존 관리
+            콘텐츠 보존 관리
           </Typography>
           <SaveButton onClick={handleSave} />
         </Box>

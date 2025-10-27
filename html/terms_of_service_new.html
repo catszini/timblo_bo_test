@@ -4,21 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI 회의록 관리자</title>
+  <title>이용약관 신규 등록</title>
   <link rel="stylesheet" href="../asset/style.css">
-  <link rel="stylesheet" href="../asset/modal.css">
 </head>
 
 <body>
   <div class="container">
-    <!-- 왼쪽 메뉴바 -->
+    <!-- 사이드바 -->
     <div class="sidebar">
       <div class="logo">
         <div class="logo-icon">T</div>
         <div class="logo-text">
           <div class="logo-title">홍길동</div>
           <div class="logo-url">
-            <select class="condition-select" id="workspace-filter">
+            <select class="condition-select" id="workspaceSelect">
               <option value="Timbel" selected>Timbel</option>
               <option value="sk-telecom">SK Telecom</option>
               <option value="sk-hynix">SK Hynix</option>
@@ -54,7 +53,7 @@
           <li><a href="menu_setting.html">전체 메뉴 관리</a></li>
           <li><a href="system_user.html">사용자 관리</a></li>
           <li><a href="group_setting.html">역할 관리</a></li>
-          <li><a href="terms_of_service.html">이용약관 관리</a></li>
+          <li><a href="terms_of_service.html" class="active">이용약관 관리</a></li>
           <li><a href="terms_consent_history.html">이용약관 동의 이력</a></li>
           <li><a href="system_setting_history.html">설정변경 이력</a></li>
           <li><a href="system_stats_usage.html">전체 시스템 사용 통계</a></li>
@@ -83,7 +82,7 @@
           <li><a href="meet_template.html">템플릿 관리 (회의록, 공통 템플릿)</a></li>
           <li><a href="prompt.html">프롬프트 관리</a></li>
           <li><a href="consent.html">동의서 관리</a></li>
-          <li><a href="calendar.html" class="active">캘린더 관리/설정</a></li>
+          <li><a href="calendar.html">캘린더 관리/설정</a></li>
           <li><a href="dictionary.html">사전 관리</a></li>
           <li><a href="notice.html">공지사항 관리</a></li>
         </ul>
@@ -105,72 +104,98 @@
       </div>
     </div>
 
-    <!-- 오른쪽 콘텐츠 영역 -->
+    <!-- 메인 콘텐츠 -->
     <div class="content">
       <div class="content-header">
         <h1 class="breadcrumb">
-          캘린더 관리/설정
+          <a href="terms_of_service.html" style="color: #666;">이용약관 관리</a>
+          <span style="margin: 0 8px; color: #666;">›</span>
+          <span>신규 등록</span>
         </h1>
       </div>
+
       <div class="content-body">
-        <!-- 외부 캘린더 연동 섹션 -->
-        <div class="calendar-settings-section">
-          <h3>외부 캘린더 연동</h3>
-          <p>외부 캘린더를 연동하여 예정된 회의를 자동으로 인식하고 관리합니다. 연동된 정보 정보는 회의 전 및 <strong>회의중</strong> 활용에 사용됩니다.</p>
+        <div class="form-container">
+          <form id="termsForm">
+            <div class="form-section">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label required">구분</label>
+                  <div class="combo-select">
+                    <div>
+                      <select class="form-select" id="termsType" required>
+                        <option value="">선택하세요</option>
+                        <option value="privacy">개인정보</option>
+                        <option value="terms">이용약관</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
 
-          <div class="calendar-integration-list">
-            <div class="calendar-item">
-              <div class="calendar-logo">
-                <img src="../asset/google-calendar-icon.png" alt="Google Calendar">
-                <span>Google 캘린더</span>
+                <div class="form-group">
+                  <label class="form-label required">제목</label>
+                  <input type="text" class="form-input" id="termsTitle" placeholder="제목을 입력하세요" required>
+                </div>
               </div>
-              <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider"></span>
-              </label>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label required">약관 실행일</label>
+                  <input type="datetime-local" class="form-input" id="executeDate" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label required">사용 여부</label>
+                  <div style="display: flex; align-items: center; height: 42px;">
+                    <label class="switch">
+                      <input type="checkbox" id="isActive" checked>
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group full-width">
+                  <label class="form-label required">내용</label>
+                  <textarea class="form-textarea" id="termsContent" rows="15" placeholder="약관 내용을 입력하세요"
+                    required></textarea>
+                </div>
+              </div>
             </div>
 
-            <div class="calendar-item">
-              <div class="calendar-logo">
-                <img src="../asset/outlook-calendar-icon.png" alt="Microsoft Outlook">
-                <span>Microsoft Outlook</span>
-              </div>
-              <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider"></span>
-              </label>
+            <div class="form-actions">
+              <button type="button" class="btn-cancel" onclick="location.href='terms_of_service.html'">취소</button>
+              <button type="submit" class="btn-confirm">등록</button>
             </div>
-
-            <!-- <div class="calendar-item">
-              <div class="calendar-logo">
-                <img src="../asset/icalendar-icon.png" alt="iCalendar">
-                <span>iCalendar</span>
-              </div>
-              <label class="switch">
-                <input type="checkbox">
-                <span class="slider"></span>
-              </label>
-            </div>
-
-            <div class="calendar-item">
-              <div class="calendar-logo">
-                <img src="../asset/naver-calendar-icon.png" alt="네이버 캘린더">
-                <span>네이버 캘린더</span>
-              </div>
-              <label class="switch">
-                <input type="checkbox">
-                <span class="slider"></span>
-              </label>
-            </div> -->
-          </div>
+          </form>
         </div>
-
       </div>
     </div>
   </div>
-  <script src="../asset/menu.js"></script>
-  <script src="../asset/main.js"></script>
 
+  <script>
+    document.getElementById('termsForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const termsType = document.getElementById('termsType').value;
+      const termsTitle = document.getElementById('termsTitle').value;
+      const executeDate = document.getElementById('executeDate').value;
+      const termsContent = document.getElementById('termsContent').value;
+      const isActive = document.getElementById('isActive').checked;
+
+      if (!termsType || !termsTitle || !executeDate || !termsContent) {
+        alert('모든 필수 항목을 입력해주세요.');
+        return;
+      }
+
+      // 여기에 실제 등록 로직 추가
+      alert('이용약관이 등록되었습니다.');
+      location.href = 'terms_of_service.html';
+    });
+  </script>
+
+  <script src="../asset/menu.js"></script>
 </body>
 
 </html>

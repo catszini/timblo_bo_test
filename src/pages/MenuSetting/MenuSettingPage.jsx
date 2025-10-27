@@ -57,7 +57,7 @@ const MenuSettingPage = () => {
   // 워크스페이스 메뉴 데이터
   const [workspaceMenuData, setWorkspaceMenuData] = useState([
     { id: 'ws-1', name: '기능 권한 관리', url: '/workspace-permission', category: '워크스페이스 설정', isActive: true },
-    { id: 'ws-2', name: '컨텐츠 보존 관리', url: '/content-retention', category: '워크스페이스 설정', isActive: true },
+    { id: 'ws-2', name: '콘텐츠 보존 관리', url: '/content-retention', category: '워크스페이스 설정', isActive: true },
     { id: 'ws-3', name: '역할 관리', url: '/workspace-group-setting', category: '워크스페이스 설정', isActive: true },
     { id: 'ws-4', name: '사용자 관리', url: '/user', category: '워크스페이스 설정', isActive: true },
     { id: 'ws-5', name: '로고 관리', url: '/logo', category: '워크스페이스 설정', isActive: true },
