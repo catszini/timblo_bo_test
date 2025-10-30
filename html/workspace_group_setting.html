@@ -68,7 +68,7 @@
           <h3>워크스페이스 설정</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html">기능 권한 관리</a></li>
+          <li><a href="workspace_permission.html">기능 역할 관리</a></li>
           <li><a href="content_retention.html">콘텐츠 보존 관리</a></li>
           <li><a href="workspace_group_setting.html" class="active">역할 관리</a></li>
           <li><a href="user.html">사용자 관리</a></li>
@@ -117,10 +117,10 @@
         <div class="group-setting-container">
           <div class="group-setting-layout tree-visible">
             <div class="group-setting-left-panel">
-              <!-- 권한정보 헤더와 버튼들 -->
+              <!-- 역할정보 헤더와 버튼들 -->
               <div class="group-info-header">
                 <div class="group-info-title-section">
-                  <h3 class="group-info-subtitle">권한 정보</h3>
+                  <h3 class="group-info-subtitle">역할 정보</h3>
                   <span class="group-total-count">총 5개</span>
                 </div>
                 <div class="group-info-buttons">
@@ -129,15 +129,15 @@
                   <button class="group-setting-btn-add-group" id="createPermissionBtn">생성</button>
                 </div>
               </div>
-              <!-- 권한 정보 테이블 -->
+              <!-- 역할 정보 테이블 -->
               <div class="group-setting-table-container" id="tableContainer">
                 <table class="group-setting-table">
                   <thead>
                     <tr>
                       <th><input type="checkbox" class="select-all"></th>
-                      <th>권한</th>
+                      <th>역할</th>
                       <th>생성자</th>
-                      <th>권한명</th>
+                      <th>역할명</th>
                       <th>설명</th>
                       <th>생성시간</th>
                       <th>최종수정시간</th>
@@ -197,7 +197,7 @@
             </div>
             <div class="group-setting-tree-panel" id="treePanel">
               <div class="tree-header">
-                <h4>권한 미리보기</h4>
+                <h4>역할 미리보기</h4>
               </div>
               <div class="no-data-area" id="noDataArea">
                 <div class="no-data-icon">
@@ -208,7 +208,7 @@
                     <path d="M28 28H36M28 32H36M28 36H32" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" />
                   </svg>
                 </div>
-                <p class="no-data-text">권한 항목 미리보기가 가능합니다.</p>
+                <p class="no-data-text">역할 항목 미리보기가 가능합니다.</p>
               </div>
               <div class="tree-menu" id="treeMenu" style="display: none;">
                 <!-- 동적으로 생성됩니다 -->
@@ -219,7 +219,7 @@
         </div>
       </div>
 
-      <!-- 권한 미리보기 하단 버튼들 (외곽선 밖) -->
+      <!-- 역할 미리보기 하단 버튼들 (외곽선 밖) -->
       <div class="preview-actions-external">
         <button class="btn-reset">초기화</button>
         <button class="btn-save">저장</button>
@@ -236,7 +236,7 @@
       const noDataArea = document.getElementById('noDataArea');
       const treeMenu = document.getElementById('treeMenu');
 
-      // URL 파라미터로 특정 권한 미리보기 표시
+      // URL 파라미터로 특정 역할 미리보기 표시
       const urlParams = new URLSearchParams(window.location.search);
       const userIdParam = urlParams.get('userId');
       const permissionCodeParam = urlParams.get('permissionCode');
@@ -262,10 +262,10 @@
           // 대상 행 선택
           targetRow.classList.add('selected');
 
-          // 권한 타입 가져오기
+          // 역할 타입 가져오기
           const permissionType = targetRow.getAttribute('data-permission');
 
-          // 해당 권한에 맞는 트리 메뉴 생성
+          // 해당 역할에 맞는 트리 메뉴 생성
           const treeHTML = createTreeMenu(permissionType);
           treeMenu.innerHTML = treeHTML;
 
@@ -278,12 +278,12 @@
         }
       }
 
-      // 권한별 메뉴 구성 데이터
+      // 역할별 메뉴 구성 데이터
       const permissionMenus = {
         'meeting-admin': {
           title: '워크스페이스',
           menus: [
-            { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
+            { id: '기능 역할 관리', name: '기능 역할 관리', checked: false },
             { id: '역할 관리', name: '역할 관리', checked: false },
             { id: '사용자 관리', name: '사용자 관리', checked: false },
             { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
@@ -305,7 +305,7 @@
         'logo-admin': {
           title: '워크스페이스',
           menus: [
-            { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
+            { id: '기능 역할 관리', name: '기능 역할 관리', checked: false },
             { id: '역할 관리', name: '역할 관리', checked: false },
             { id: '사용자 관리', name: '사용자 관리', checked: false },
             { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: true },
@@ -327,7 +327,7 @@
         'user-admin': {
           title: '워크스페이스',
           menus: [
-            { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
+            { id: '기능 역할 관리', name: '기능 역할 관리', checked: false },
             { id: '역할 관리', name: '역할 관리', checked: false },
             { id: '사용자 관리', name: '사용자 관리', checked: true },
             { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
@@ -349,7 +349,7 @@
         'stats-admin': {
           title: '워크스페이스',
           menus: [
-            { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
+            { id: '기능 역할 관리', name: '기능 역할 관리', checked: false },
             { id: '역할 관리', name: '역할 관리', checked: false },
             { id: '사용자 관리', name: '사용자 관리', checked: false },
             { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
@@ -371,7 +371,7 @@
         'content-admin': {
           title: '워크스페이스',
           menus: [
-            { id: '기능 권한 관리', name: '기능 권한 관리', checked: false },
+            { id: '기능 역할 관리', name: '기능 역할 관리', checked: false },
             { id: '역할 관리', name: '역할 관리', checked: false },
             { id: '사용자 관리', name: '사용자 관리', checked: false },
             { id: '로고 이미지 관리', name: '로고 이미지 관리', checked: false },
@@ -474,7 +474,7 @@
           // 현재 행 선택
           this.classList.add('selected');
 
-          // 권한 타입 가져오기
+          // 역할 타입 가져오기
           const permissionType = this.getAttribute('data-permission');
           const userId = this.getAttribute('data-user-id');
 
@@ -484,7 +484,7 @@
           newUrl.searchParams.set('permissionCode', permissionType);
           window.history.pushState({}, '', newUrl);
 
-          // 해당 권한에 맞는 트리 메뉴 생성
+          // 해당 역할에 맞는 트리 메뉴 생성
           const treeHTML = createTreeMenu(permissionType);
           treeMenu.innerHTML = treeHTML;
 
@@ -495,7 +495,7 @@
           // 워크스페이스 전체 선택 이벤트 바인딩
           bindWorkspaceSelectAllEvent();
 
-          console.log('선택된 권한:', permissionType);
+          console.log('선택된 역할:', permissionType);
         });
       });
 
@@ -536,48 +536,95 @@
 
       if (resetBtn) {
         resetBtn.addEventListener('click', function () {
-          // 현재 선택된 행의 권한 타입 가져오기
+          // 현재 선택된 행의 역할 타입 가져오기
           const selectedRow = document.querySelector('.group-setting-table tbody tr.selected');
           if (selectedRow) {
             const permissionType = selectedRow.getAttribute('data-permission');
 
-            // 해당 권한의 원래 상태로 트리 메뉴 재생성
+            // 해당 역할의 원래 상태로 트리 메뉴 재생성
             const treeHTML = createTreeMenu(permissionType);
             treeMenu.innerHTML = treeHTML;
 
             // 워크스페이스 전체 선택 이벤트 재바인딩
             bindWorkspaceSelectAllEvent();
 
-            alert('권한이 초기화되었습니다.');
+            alert('역할이 초기화되었습니다.');
           } else {
-            alert('초기화할 권한을 선택해주세요.');
+            alert('초기화할 역할을 선택해주세요.');
           }
         });
       }
 
       if (saveBtn) {
         saveBtn.addEventListener('click', function () {
-          // 권한 저장 로직
+          // 역할 저장 로직
           const selectedRow = document.querySelector('.group-setting-table tbody tr.selected');
           if (selectedRow) {
             const userName = selectedRow.querySelector('td:nth-child(3)').textContent.trim();
-            alert(`${userName}의 권한이 저장되었습니다.`);
+            alert(`${userName}의 역할이 저장되었습니다.`);
           } else {
-            alert('권한을 수정할 사용자를 선택해주세요.');
+            alert('역할을 수정할 사용자를 선택해주세요.');
           }
         });
       }
 
 
-      // 권한 생성 모달 기능
+      // 역할 생성/수정 모달 기능
       const createPermissionBtn = document.getElementById('createPermissionBtn');
+      const editPermissionBtn = document.querySelector('.btn-form-edit');
       const permissionModal = document.getElementById('permissionModal');
       const permissionCancel = document.getElementById('permissionCancel');
       const permissionCreate = document.getElementById('permissionCreate');
+      const modalTitle = permissionModal.querySelector('.modal-header h2');
+
+      let currentMode = 'create'; // 'create' 또는 'edit'
+      let currentEditRow = null;
 
       // 생성 버튼 클릭 시 모달 열기
       if (createPermissionBtn) {
         createPermissionBtn.addEventListener('click', function () {
+          currentMode = 'create';
+          currentEditRow = null;
+          modalTitle.textContent = '역할 생성';
+          permissionCreate.textContent = '생성';
+          // 폼 초기화
+          document.getElementById('permissionName').value = '';
+          document.getElementById('permissionType').value = '';
+          permissionModal.classList.remove('modal-overlay-hidden');
+        });
+      }
+
+      // 수정 버튼 클릭 시 모달 열기
+      if (editPermissionBtn) {
+        editPermissionBtn.addEventListener('click', function () {
+          // 선택된 역할 확인
+          const rowCheckboxes = document.querySelectorAll('.group-setting-table tbody input[type="checkbox"]');
+          const checkedBoxes = Array.from(rowCheckboxes).filter(cb => cb.checked);
+
+          if (checkedBoxes.length === 0) {
+            alert('수정할 역할을 선택해주세요.');
+            return;
+          }
+
+          if (checkedBoxes.length > 1) {
+            alert('한 번에 하나의 역할만 수정할 수 있습니다.');
+            return;
+          }
+
+          // 선택된 역할 정보 가져오기
+          const selectedRow = checkedBoxes[0].closest('tr');
+          const permissionNameElement = selectedRow.querySelector('td:nth-child(2)');
+          const permissionTypeElement = selectedRow.querySelector('td:nth-child(3)');
+
+          currentMode = 'edit';
+          currentEditRow = selectedRow;
+          modalTitle.textContent = '역할 수정';
+          permissionCreate.textContent = '수정';
+
+          // 기존 정보로 폼 채우기
+          document.getElementById('permissionName').value = permissionNameElement.textContent.trim();
+          document.getElementById('permissionType').value = permissionTypeElement.textContent.trim();
+
           permissionModal.classList.remove('modal-overlay-hidden');
         });
       }
@@ -598,14 +645,14 @@
         });
       }
 
-      // 생성 버튼 클릭
+      // 생성/수정 버튼 클릭
       if (permissionCreate) {
         permissionCreate.addEventListener('click', function () {
           const permissionName = document.getElementById('permissionName').value.trim();
           const permissionType = document.getElementById('permissionType').value.trim();
 
           if (!permissionName) {
-            alert('권한명을 입력해주세요.');
+            alert('역할명을 입력해주세요.');
             return;
           }
 
@@ -614,7 +661,27 @@
             return;
           }
 
-          alert('권한이 생성되었습니다.');
+          if (currentMode === 'create') {
+            // 역할 생성 로직
+            alert(`역할이 생성되었습니다.\n\n역할명: ${permissionName}\n구분: ${permissionType}`);
+          } else if (currentMode === 'edit') {
+            // 역할 수정 로직
+            if (currentEditRow) {
+              // 테이블의 역할 정보 업데이트
+              const permissionNameElement = currentEditRow.querySelector('td:nth-child(2)');
+              const permissionTypeElement = currentEditRow.querySelector('td:nth-child(3)');
+
+              permissionNameElement.textContent = permissionName;
+              permissionTypeElement.textContent = permissionType;
+
+              // 최종수정시간 업데이트
+              const now = new Date();
+              const dateString = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+              currentEditRow.querySelector('td:nth-child(6)').textContent = dateString;
+            }
+            alert(`역할이 수정되었습니다.\n\n역할명: ${permissionName}\n구분: ${permissionType}`);
+          }
+
           permissionModal.classList.add('modal-overlay-hidden');
 
           // 폼 초기화
@@ -627,34 +694,21 @@
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
 
-  <!-- 권한 생성 모달 -->
+  <!-- 역할 생성 모달 -->
   <div class="modal-overlay modal-overlay-hidden" id="permissionModal">
     <div class="modal-container permission-modal">
       <div class="modal-header">
-        <h2>권한 생성</h2>
+        <h2>역할 생성</h2>
       </div>
       <div class="modal-content">
         <div class="form-group">
-          <label for="workspaceName">워크스페이스</label>
-          <div class="combo-select">
-            <select id="workspaceName" class="condition-select">
-              <option>SK Telecom</option>
-              <option>SK Hynix</option>
-              <option>KT</option>
-              <option>LG U+</option>
-              <option>Timbel_Mk</option>
-            </select>
-          </div>
+          <label for="permissionName">역할명</label>
+          <input type="text" id="permissionName" class="form-input" placeholder="역할명을 입력하세요">
         </div>
 
         <div class="form-group">
-          <label for="permissionName">권한명</label>
-          <input type="text" id="permissionName" class="form-input" placeholder="권한명을 입력하세요">
-        </div>
-
-        <div class="form-group">
-          <label for="permissionType">권한 설명</label>
-          <input type="text" id="permissionType" class="form-input" placeholder="권한 설명을 입력하세요">
+          <label for="permissionType">역할 설명</label>
+          <input type="text" id="permissionType" class="form-input" placeholder="역할 설명을 입력하세요">
         </div>
       </div>
       <div class="modal-footer">

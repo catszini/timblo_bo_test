@@ -68,7 +68,7 @@
           <h3>워크스페이스 설정</h3>
         </div>
         <ul>
-          <li><a href="workspace_permission.html">기능 권한 관리</a></li>
+          <li><a href="workspace_permission.html">기능 역할 관리</a></li>
           <li><a href="content_retention.html">콘텐츠 보존 관리</a></li>
           <li><a href="workspace_group_setting.html">역할 관리</a></li>
           <li><a href="user.html">사용자 관리</a></li>
@@ -138,11 +138,11 @@
                 </div>
               </div>
 
-              <!-- 권한정보 헤더와 버튼들 -->
+              <!-- 역할정보 헤더와 버튼들 -->
               <div class="group-info-header">
                 <div class="group-info-title-section">
-                  <h3 class="group-info-subtitle">생성된 권한</h3>
-                  <span class="group-total-count">총 4개</span>
+                  <h3 class="group-info-subtitle">생성된 역할</h3>
+                  <span class="group-total-count">총 23개</span>
                 </div>
                 <div class="group-info-buttons">
                   <button class="btn-form-delete">삭제</button>
@@ -150,15 +150,15 @@
                   <button class="group-setting-btn-add-group" id="createPermissionBtn">생성</button>
                 </div>
               </div>
-              <!-- 권한 정보 테이블 -->
+              <!-- 역할 정보 테이블 -->
               <div class="group-setting-table-container" id="tableContainer">
                 <table class="group-setting-table">
                   <thead>
                     <tr>
                       <th><input type="checkbox" class="select-all"></th>
                       <th>워크스페이스</th>
-                      <th>권한 생성자</th>
-                      <th>권한명</th>
+                      <th>역할 생성자</th>
+                      <th>역할명</th>
                       <th>설명</th>
                       <th>생성시간</th>
                       <th>최종수정시간</th>
@@ -180,7 +180,7 @@
                           <span>전체관리자</span>
                         </div>
                       </td>
-                      <td>최고관리자 - 모든 시스템 권한</td>
+                      <td>최고관리자 - 모든 시스템 역할</td>
                       <td>2024-01-15 10:30:25</td>
                       <td>2024-03-20 14:45:18</td>
                     </tr>
@@ -218,7 +218,7 @@
                           <span>시스템 메뉴관리자</span>
                         </div>
                       </td>
-                      <td>메뉴 생성/권한 관리</td>
+                      <td>메뉴 생성/역할 관리</td>
                       <td>2024-01-25 13:28:51</td>
                       <td>2024-03-18 11:33:29</td>
                     </tr>
@@ -241,16 +241,385 @@
                       <td>2024-03-05 15:41:07</td>
                       <td>2024-03-25 08:56:44</td>
                     </tr>
+                    <tr data-user-id="user005" data-permission-code="content-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-teal">S</div>
+                          <span>SK Networks</span>
+                        </div>
+                      </td>
+                      <td>최민호</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon workspace" title="워크스페이스 관리자">W</span>
+                          <span>컨텐츠관리자</span>
+                        </div>
+                      </td>
+                      <td>회의록/템플릿 관리</td>
+                      <td>2024-02-10 11:25:33</td>
+                      <td>2024-03-22 10:15:28</td>
+                    </tr>
+                    <tr data-user-id="user006" data-permission-code="user-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-rose">S</div>
+                          <span>SK E&S</span>
+                        </div>
+                      </td>
+                      <td>강지영</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon workspace" title="워크스페이스 관리자">W</span>
+                          <span>사용자관리자</span>
+                        </div>
+                      </td>
+                      <td>사용자 계정 관리</td>
+                      <td>2024-01-20 14:52:19</td>
+                      <td>2024-03-19 09:41:55</td>
+                    </tr>
+                    <tr data-user-id="user007" data-permission-code="calendar-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-indigo">S</div>
+                          <span>SK Materials</span>
+                        </div>
+                      </td>
+                      <td>윤서진</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon workspace" title="워크스페이스 관리자">W</span>
+                          <span>캘린더관리자</span>
+                        </div>
+                      </td>
+                      <td>캘린더 일정 관리</td>
+                      <td>2024-02-28 16:37:42</td>
+                      <td>2024-03-24 13:28:16</td>
+                    </tr>
+                    <tr data-user-id="user008" data-permission-code="prompt-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-amber">S</div>
+                          <span>SK Biopharm</span>
+                        </div>
+                      </td>
+                      <td>임태훈</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon system" title="시스템 관리자">S</span>
+                          <span>프롬프트관리자</span>
+                        </div>
+                      </td>
+                      <td>AI 프롬프트 설정</td>
+                      <td>2024-03-01 10:18:29</td>
+                      <td>2024-03-26 15:44:03</td>
+                    </tr>
+                    <tr data-user-id="user009" data-permission-code="dict-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-teal">S</div>
+                          <span>SK On</span>
+                        </div>
+                      </td>
+                      <td>송미래</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon workspace" title="워크스페이스 관리자">W</span>
+                          <span>사전관리자</span>
+                        </div>
+                      </td>
+                      <td>용어사전 관리</td>
+                      <td>2024-02-15 09:44:51</td>
+                      <td>2024-03-21 11:17:39</td>
+                    </tr>
+                    <tr data-user-id="user010" data-permission-code="notice-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-rose">S</div>
+                          <span>SK Shieldus</span>
+                        </div>
+                      </td>
+                      <td>한수빈</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon workspace" title="워크스페이스 관리자">W</span>
+                          <span>공지사항관리자</span>
+                        </div>
+                      </td>
+                      <td>공지사항 작성/관리</td>
+                      <td>2024-01-18 13:29:47</td>
+                      <td>2024-03-23 14:52:31</td>
+                    </tr>
+                    <tr data-user-id="user011" data-permission-code="history-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-indigo">S</div>
+                          <span>SK Telecom</span>
+                        </div>
+                      </td>
+                      <td>배준석</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon system" title="시스템 관리자">S</span>
+                          <span>이력관리자</span>
+                        </div>
+                      </td>
+                      <td>접속/다운로드 이력 관리</td>
+                      <td>2024-02-22 10:55:14</td>
+                      <td>2024-03-27 09:33:48</td>
+                    </tr>
+                    <tr data-user-id="user012" data-permission-code="consent-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-amber">S</div>
+                          <span>SK Hynix</span>
+                        </div>
+                      </td>
+                      <td>오지훈</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon workspace" title="워크스페이스 관리자">W</span>
+                          <span>동의서관리자</span>
+                        </div>
+                      </td>
+                      <td>동의서 작성/관리</td>
+                      <td>2024-03-03 15:21:36</td>
+                      <td>2024-03-28 16:09:22</td>
+                    </tr>
+                    <tr data-user-id="user013" data-permission-code="logo-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-teal">S</div>
+                          <span>SK C&C</span>
+                        </div>
+                      </td>
+                      <td>안예은</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon workspace" title="워크스페이스 관리자">W</span>
+                          <span>로고관리자</span>
+                        </div>
+                      </td>
+                      <td>워크스페이스 로고 관리</td>
+                      <td>2024-01-30 11:48:25</td>
+                      <td>2024-03-20 13:55:47</td>
+                    </tr>
+                    <tr data-user-id="user014" data-permission-code="retention-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-rose">S</div>
+                          <span>SK Innovation</span>
+                        </div>
+                      </td>
+                      <td>신동욱</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon system" title="시스템 관리자">S</span>
+                          <span>보존정책관리자</span>
+                        </div>
+                      </td>
+                      <td>컨텐츠 보존 정책 관리</td>
+                      <td>2024-02-05 14:16:53</td>
+                      <td>2024-03-25 10:42:19</td>
+                    </tr>
+                    <tr data-user-id="user015" data-permission-code="terms-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-indigo">S</div>
+                          <span>SK Networks</span>
+                        </div>
+                      </td>
+                      <td>홍예린</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon system" title="시스템 관리자">S</span>
+                          <span>이용약관관리자</span>
+                        </div>
+                      </td>
+                      <td>이용약관 관리</td>
+                      <td>2024-01-12 09:33:28</td>
+                      <td>2024-03-18 15:28:54</td>
+                    </tr>
+                    <tr data-user-id="user016" data-permission-code="func-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-amber">S</div>
+                          <span>SK E&S</span>
+                        </div>
+                      </td>
+                      <td>조현우</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon workspace" title="워크스페이스 관리자">W</span>
+                          <span>기능역할관리자</span>
+                        </div>
+                      </td>
+                      <td>기능별 역할 설정</td>
+                      <td>2024-02-18 16:47:12</td>
+                      <td>2024-03-26 11:19:45</td>
+                    </tr>
+                    <tr data-user-id="user017" data-permission-code="download-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-teal">S</div>
+                          <span>SK Materials</span>
+                        </div>
+                      </td>
+                      <td>장서현</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon workspace" title="워크스페이스 관리자">W</span>
+                          <span>다운로드관리자</span>
+                        </div>
+                      </td>
+                      <td>다운로드 역할 관리</td>
+                      <td>2024-03-08 10:22:41</td>
+                      <td>2024-03-29 14:37:26</td>
+                    </tr>
+                    <tr data-user-id="user018" data-permission-code="meeting-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-rose">S</div>
+                          <span>SK Biopharm</span>
+                        </div>
+                      </td>
+                      <td>나윤아</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon workspace" title="워크스페이스 관리자">W</span>
+                          <span>회의록관리자</span>
+                        </div>
+                      </td>
+                      <td>회의록 검토/승인</td>
+                      <td>2024-01-28 13:54:37</td>
+                      <td>2024-03-22 09:48:13</td>
+                    </tr>
+                    <tr data-user-id="user019" data-permission-code="template-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-indigo">S</div>
+                          <span>SK On</span>
+                        </div>
+                      </td>
+                      <td>권민지</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon workspace" title="워크스페이스 관리자">W</span>
+                          <span>템플릿관리자</span>
+                        </div>
+                      </td>
+                      <td>회의록 템플릿 관리</td>
+                      <td>2024-02-12 11:39:58</td>
+                      <td>2024-03-24 16:51:42</td>
+                    </tr>
+                    <tr data-user-id="user020" data-permission-code="system-config-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-amber">S</div>
+                          <span>SK Shieldus</span>
+                        </div>
+                      </td>
+                      <td>유재민</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon system" title="시스템 관리자">S</span>
+                          <span>시스템설정관리자</span>
+                        </div>
+                      </td>
+                      <td>전체 시스템 설정 관리</td>
+                      <td>2024-01-08 15:27:19</td>
+                      <td>2024-03-27 12:14:35</td>
+                    </tr>
+                    <tr data-user-id="user021" data-permission-code="audit-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-teal">S</div>
+                          <span>SK Telecom</span>
+                        </div>
+                      </td>
+                      <td>서지우</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon system" title="시스템 관리자">S</span>
+                          <span>감사관리자</span>
+                        </div>
+                      </td>
+                      <td>시스템 감사 로그 관리</td>
+                      <td>2024-02-25 09:18:44</td>
+                      <td>2024-03-28 10:25:57</td>
+                    </tr>
+                    <tr data-user-id="user022" data-permission-code="backup-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-rose">S</div>
+                          <span>SK Hynix</span>
+                        </div>
+                      </td>
+                      <td>이도현</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon system" title="시스템 관리자">S</span>
+                          <span>백업관리자</span>
+                        </div>
+                      </td>
+                      <td>데이터 백업/복구 관리</td>
+                      <td>2024-03-10 14:43:29</td>
+                      <td>2024-03-29 11:58:16</td>
+                    </tr>
+                    <tr data-user-id="user023" data-permission-code="security-admin">
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div class="workspace-name">
+                          <div class="workspace-icon color-indigo">S</div>
+                          <span>SK C&C</span>
+                        </div>
+                      </td>
+                      <td>문채원</td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                          <span class="admin-type-icon system" title="시스템 관리자">S</span>
+                          <span>보안관리자</span>
+                        </div>
+                      </td>
+                      <td>보안 정책 및 접근 제어</td>
+                      <td>2024-01-22 10:52:31</td>
+                      <td>2024-03-26 15:33:48</td>
+                    </tr>
 
                   </tbody>
                 </table>
               </div>
 
+              <!-- 페이지네이션 -->
+              <div class="pagination" id="paginationContainer">
+                <button class="page-btn prev" id="prevPageBtn">‹</button>
+                <button class="page-btn active" data-page="1">1</button>
+                <button class="page-btn" data-page="2">2</button>
+                <button class="page-btn" data-page="3">3</button>
+                <button class="page-btn next" id="nextPageBtn">›</button>
+              </div>
 
             </div>
             <div class="group-setting-tree-panel" id="treePanel">
               <div class="tree-header">
-                <h4>권한 미리보기</h4>
+                <h4>역할 미리보기</h4>
               </div>
               <div class="no-data-area" id="noDataArea">
                 <div class="no-data-icon">
@@ -261,7 +630,7 @@
                     <path d="M28 28H36M28 32H36M28 36H32" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" />
                   </svg>
                 </div>
-                <p class="no-data-text">권한 항목 미리보기가 가능합니다.</p>
+                <p class="no-data-text">역할 항목 미리보기가 가능합니다.</p>
               </div>
               <div class="tree-menu" id="treeMenu" style="display: none;">
                 <!-- 전체 시스템 관리 -->
@@ -282,8 +651,8 @@
                       <label for="시스템사용자관리">사용자 관리</label>
                     </div>
                     <div class="tree-item">
-                      <input type="checkbox" id="시스템메뉴권한관리" checked>
-                      <label for="시스템메뉴권한관리">역할 관리</label>
+                      <input type="checkbox" id="시스템메뉴역할관리" checked>
+                      <label for="시스템메뉴역할관리">역할 관리</label>
                     </div>
                     <div class="tree-item">
                       <input type="checkbox" id="시스템설정변경이력" checked>
@@ -306,16 +675,16 @@
                   <label for="워크스페이스설정">워크스페이스 설정</label>
                   <div class="tree-children">
                     <div class="tree-item">
-                      <input type="checkbox" id="기능 권한 관리" checked>
-                      <label for="기능 권한 관리">기능 권한 관리</label>
+                      <input type="checkbox" id="기능 역할 관리" checked>
+                      <label for="기능 역할 관리">기능 역할 관리</label>
                     </div>
                     <div class="tree-item">
                       <input type="checkbox" id="컨텐츠보존관리" checked>
                       <label for="컨텐츠보존관리">콘텐츠 보존 관리</label>
                     </div>
                     <div class="tree-item">
-                      <input type="checkbox" id="워크스페이스메뉴권한관리" checked>
-                      <label for="워크스페이스메뉴권한관리">역할 관리</label>
+                      <input type="checkbox" id="워크스페이스메뉴역할관리" checked>
+                      <label for="워크스페이스메뉴역할관리">역할 관리</label>
                     </div>
                     <div class="tree-item">
                       <input type="checkbox" id="워크스페이스사용자관리" checked>
@@ -401,7 +770,7 @@
           </div>
         </div>
 
-        <!-- 권한 미리보기 하단 버튼들 (외곽선 밖) -->
+        <!-- 역할 미리보기 하단 버튼들 (외곽선 밖) -->
         <div class="preview-actions-external">
           <button class="btn-reset">초기화</button>
           <button class="btn-save">저장</button>
@@ -420,7 +789,90 @@
       const workspaceSelect = document.getElementById('workspaceSelect');
       const totalCountSpan = document.querySelector('.group-total-count');
 
-      // URL 파라미터로 특정 권한 미리보기 표시
+      // 페이지네이션 설정
+      const itemsPerPage = 10;
+      let currentPage = 1;
+      let filteredRows = Array.from(tableRows);
+      const totalPages = Math.ceil(filteredRows.length / itemsPerPage);
+
+      // 페이지네이션 함수
+      function showPage(page) {
+        currentPage = page;
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+
+        // 모든 행 숨기기
+        tableRows.forEach(row => {
+          row.style.display = 'none';
+          row.classList.remove('selected');
+        });
+
+        // 현재 페이지의 필터링된 행만 표시
+        filteredRows.slice(start, end).forEach(row => {
+          row.style.display = '';
+        });
+
+        // 선택된 역할 미리보기 숨기기
+        noDataArea.style.display = 'flex';
+        treeMenu.style.display = 'none';
+
+        // 전체 선택 체크박스 초기화
+        const selectAllCheckbox = document.querySelector('.select-all');
+        if (selectAllCheckbox) {
+          selectAllCheckbox.checked = false;
+          selectAllCheckbox.indeterminate = false;
+        }
+
+        // 페이지네이션 버튼 업데이트
+        updatePaginationButtons();
+      }
+
+      function updatePaginationButtons() {
+        const totalFilteredPages = Math.ceil(filteredRows.length / itemsPerPage);
+        const prevBtn = document.getElementById('prevPageBtn');
+        const nextBtn = document.getElementById('nextPageBtn');
+        const paginationContainer = document.getElementById('paginationContainer');
+
+        // 이전/다음 버튼 활성화/비활성화
+        prevBtn.disabled = currentPage === 1;
+        nextBtn.disabled = currentPage >= totalFilteredPages;
+
+        // 기존 페이지 버튼들 제거 (이전/다음 버튼 제외)
+        const existingPageBtns = paginationContainer.querySelectorAll('.page-btn:not(.prev):not(.next)');
+        existingPageBtns.forEach(btn => btn.remove());
+
+        // 페이지 번호 버튼 생성 및 삽입 (다음 버튼 앞에)
+        for (let i = 1; i <= totalFilteredPages; i++) {
+          const pageBtn = document.createElement('button');
+          pageBtn.className = 'page-btn' + (i === currentPage ? ' active' : '');
+          pageBtn.textContent = i;
+          pageBtn.dataset.page = i;
+          pageBtn.addEventListener('click', function () {
+            showPage(i);
+          });
+          paginationContainer.insertBefore(pageBtn, nextBtn);
+        }
+      }
+
+      // 이전/다음 페이지 버튼 이벤트
+      document.getElementById('prevPageBtn').addEventListener('click', function () {
+        if (currentPage > 1) {
+          showPage(currentPage - 1);
+
+        }
+      });
+
+      document.getElementById('nextPageBtn').addEventListener('click', function () {
+        const totalFilteredPages = Math.ceil(filteredRows.length / itemsPerPage);
+        if (currentPage < totalFilteredPages) {
+          showPage(currentPage + 1);
+        }
+      });
+
+      // 초기 페이지 표시
+      showPage(1);
+
+      // URL 파라미터로 특정 역할 미리보기 표시
       const urlParams = new URLSearchParams(window.location.search);
       const userIdParam = urlParams.get('userId');
       const permissionCodeParam = urlParams.get('permissionCode');
@@ -428,34 +880,39 @@
       // 페이지 로드 시 URL 파라미터가 있으면 해당 행 선택
       if (userIdParam || permissionCodeParam) {
         let targetRow = null;
+        let targetRowIndex = -1;
 
-        tableRows.forEach(row => {
+        tableRows.forEach((row, index) => {
           const userId = row.getAttribute('data-user-id');
           const permissionCode = row.getAttribute('data-permission-code');
 
           if ((userIdParam && userId === userIdParam) ||
             (permissionCodeParam && permissionCode === permissionCodeParam)) {
             targetRow = row;
+            targetRowIndex = index;
           }
         });
 
-        if (targetRow) {
-          // 기존 선택 해제
-          tableRows.forEach(r => r.classList.remove('selected'));
+        if (targetRow && targetRowIndex >= 0) {
+          // 해당 행이 있는 페이지로 이동
+          const targetPage = Math.floor(targetRowIndex / itemsPerPage) + 1;
+          showPage(targetPage);
 
           // 대상 행 선택
           targetRow.classList.add('selected');
 
-          // 권한 미리보기 표시
+          // 역할 미리보기 표시
           noDataArea.style.display = 'none';
-          treeMenu.style.display = 'block';
+          treeMenu.style.display = 'flex';
 
-          // 권한별 메뉴 트리 업데이트
+          // 역할별 메뉴 트리 업데이트
           const permissionType = targetRow.querySelector('td:nth-child(5)').textContent;
           updateMenuTreeByPermission(permissionType);
 
           // 선택된 행으로 스크롤
-          targetRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          setTimeout(() => {
+            targetRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 100);
         }
       }
 
@@ -473,11 +930,11 @@
 
           // 노데이터 영역 숨기고 트리 메뉴 표시
           noDataArea.style.display = 'none';
-          treeMenu.style.display = 'block';
+          treeMenu.style.display = 'flex';
 
-          // 선택된 권한에 따라 다른 메뉴 표시
+          // 선택된 역할에 따라 다른 메뉴 표시
           const permissionType = this.querySelector('td:nth-child(5)').textContent;
-          console.log('선택된 권한:', permissionType);
+          console.log('선택된 역할:', permissionType);
 
           // URL 파라미터 업데이트
           const userId = this.getAttribute('data-user-id');
@@ -487,12 +944,12 @@
           newUrl.searchParams.set('permissionCode', permissionCode);
           window.history.pushState({}, '', newUrl);
 
-          // 권한별 메뉴 트리 업데이트
+          // 역할별 메뉴 트리 업데이트
           updateMenuTreeByPermission(permissionType);
         });
       });
 
-      // 권한별 메뉴 트리 업데이트 함수
+      // 역할별 메뉴 트리 업데이트 함수
       function updateMenuTreeByPermission(permissionType) {
         const systemCheckboxes = document.querySelectorAll('#treeMenu .tree-item input[type="checkbox"]');
 
@@ -502,11 +959,11 @@
           cb.disabled = false;
         });
 
-        // 권한별 메뉴 활성화
+        // 역할별 메뉴 활성화
         switch (permissionType) {
-          case '최고관리자 - 모든 시스템 권한':
+          case '최고관리자 - 모든 시스템 역할':
           case '전체관리자':
-            // 전체관리자는 모든 권한
+            // 전체관리자는 모든 역할
             systemCheckboxes.forEach(cb => cb.checked = true);
             break;
 
@@ -522,9 +979,9 @@
               });
             }
 
-            // 워크스페이스 설정 관련 모든 권한
+            // 워크스페이스 설정 관련 모든 역할
             document.getElementById('워크스페이스설정').checked = true;
-            ['기능 권한 관리', '컨텐츠보존관리', '워크스페이스메뉴권한관리', '워크스페이스사용자관리', '로고관리'].forEach(id => {
+            ['기능 역할 관리', '컨텐츠보존관리', '워크스페이스메뉴역할관리', '워크스페이스사용자관리', '로고관리'].forEach(id => {
               const checkbox = document.getElementById(id);
               if (checkbox) checkbox.checked = true;
             });
@@ -542,15 +999,15 @@
             });
             break;
 
-          case '메뉴 생성/권한 관리':
+          case '메뉴 생성/역할 관리':
           case '시스템 메뉴관리자':
-            // 전체 시스템 관리의 메뉴 관련 권한만
+            // 전체 시스템 관리의 메뉴 관련 역할만
             document.getElementById('전체시스템관리').checked = true;
             document.getElementById('전체메뉴관리').checked = true;
-            document.getElementById('시스템메뉴권한관리').checked = true;
+            document.getElementById('시스템메뉴역할관리').checked = true;
             // 워크스페이스의 역할 관리도 포함
             document.getElementById('워크스페이스설정').checked = true;
-            document.getElementById('워크스페이스메뉴권한관리').checked = true;
+            document.getElementById('워크스페이스메뉴역할관리').checked = true;
             break;
 
           case '사용량/통계 분석 관리':
@@ -565,7 +1022,7 @@
               });
             }
 
-            // 이력/통계 관리의 통계 관련 권한
+            // 이력/통계 관리의 통계 관련 역할
             document.getElementById('이력통계관리').checked = true;
             document.getElementById('워크스페이스사용통계').checked = true;
             document.getElementById('사용자별사용통계').checked = true;
@@ -580,17 +1037,16 @@
       if (workspaceSelect) {
         workspaceSelect.addEventListener('change', function () {
           const selectedWorkspace = this.value;
-          let visibleRowCount = 0;
 
-          tableRows.forEach(row => {
+          // 필터링된 행 업데이트
+          filteredRows = Array.from(tableRows).filter(row => {
             const workspaceCell = row.querySelector('td:nth-child(2) .workspace-name span');
-            if (!workspaceCell) return;
+            if (!workspaceCell) return false;
 
             const workspaceName = workspaceCell.textContent.trim();
-            let shouldShow = false;
 
             if (selectedWorkspace === 'all') {
-              shouldShow = true;
+              return true;
             } else {
               // 워크스페이스 이름과 value 매핑
               const workspaceMapping = {
@@ -606,59 +1062,62 @@
                 'sk-shieldus': 'SK Shieldus'
               };
 
-              shouldShow = workspaceName === workspaceMapping[selectedWorkspace];
-            }
-
-            if (shouldShow) {
-              row.style.display = '';
-              visibleRowCount++;
-            } else {
-              row.style.display = 'none';
-              // 숨겨진 행이 선택되어 있다면 선택 해제
-              if (row.classList.contains('selected')) {
-                row.classList.remove('selected');
-                noDataArea.style.display = 'block';
-                treeMenu.style.display = 'none';
-              }
+              return workspaceName === workspaceMapping[selectedWorkspace];
             }
           });
 
           // 총 개수 업데이트
           if (totalCountSpan) {
-            totalCountSpan.textContent = `총 ${visibleRowCount}개`;
+            totalCountSpan.textContent = `총 ${filteredRows.length}개`;
           }
+
+          // 첫 페이지로 이동하고 페이지네이션 업데이트
+          currentPage = 1;
+          showPage(1);
         });
       }
 
       // 체크박스 전체 선택 기능
       const selectAllCheckbox = document.querySelector('.select-all');
-      const rowCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]');
 
       if (selectAllCheckbox) {
         selectAllCheckbox.addEventListener('change', function () {
           const isChecked = this.checked;
-          rowCheckboxes.forEach(checkbox => {
-            checkbox.checked = isChecked;
+          // 현재 페이지에 보이는 행의 체크박스만 선택
+          const visibleCheckboxes = Array.from(filteredRows)
+            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+            .map(row => row.querySelector('input[type="checkbox"]'));
+
+          visibleCheckboxes.forEach(checkbox => {
+            if (checkbox) checkbox.checked = isChecked;
           });
         });
       }
 
       // 개별 체크박스 변경 시 전체 선택 체크박스 상태 업데이트
-      rowCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function () {
-          const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
+      tableRows.forEach(row => {
+        const checkbox = row.querySelector('input[type="checkbox"]');
+        if (checkbox) {
+          checkbox.addEventListener('change', function () {
+            const visibleCheckboxes = Array.from(filteredRows)
+              .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+              .map(row => row.querySelector('input[type="checkbox"]'))
+              .filter(cb => cb);
 
-          if (checkedCount === 0) {
-            selectAllCheckbox.checked = false;
-            selectAllCheckbox.indeterminate = false;
-          } else if (checkedCount === rowCheckboxes.length) {
-            selectAllCheckbox.checked = true;
-            selectAllCheckbox.indeterminate = false;
-          } else {
-            selectAllCheckbox.checked = false;
-            selectAllCheckbox.indeterminate = true;
-          }
-        });
+            const checkedCount = visibleCheckboxes.filter(cb => cb.checked).length;
+
+            if (checkedCount === 0) {
+              selectAllCheckbox.checked = false;
+              selectAllCheckbox.indeterminate = false;
+            } else if (checkedCount === visibleCheckboxes.length) {
+              selectAllCheckbox.checked = true;
+              selectAllCheckbox.indeterminate = false;
+            } else {
+              selectAllCheckbox.checked = false;
+              selectAllCheckbox.indeterminate = true;
+            }
+          });
+        }
       });
 
       // 섹션별 전체 선택 기능
@@ -813,24 +1272,24 @@
           // 모든 체크박스 초기화
           const treeCheckboxes = document.querySelectorAll('#treeMenu input[type="checkbox"]');
           treeCheckboxes.forEach(cb => cb.checked = false);
-          alert('권한이 초기화되었습니다.');
+          alert('역할이 초기화되었습니다.');
         });
       }
 
       if (saveBtn) {
         saveBtn.addEventListener('click', function () {
-          // 권한 저장 로직
+          // 역할 저장 로직
           const selectedRow = document.querySelector('.group-setting-table tbody tr.selected');
           if (selectedRow) {
             const userName = selectedRow.querySelector('td:nth-child(4)').textContent.trim();
-            alert(`${userName}의 권한이 저장되었습니다.`);
+            alert(`${userName}의 역할이 저장되었습니다.`);
           } else {
-            alert('권한을 수정할 사용자를 선택해주세요.');
+            alert('역할을 수정할 사용자를 선택해주세요.');
           }
         });
       }
 
-      // 권한 생성/수정 모달 기능
+      // 역할 생성/수정 모달 기능
       const createPermissionBtn = document.getElementById('createPermissionBtn');
       const editPermissionBtn = document.querySelector('.btn-form-edit');
       const permissionModal = document.getElementById('permissionModal');
@@ -868,10 +1327,9 @@
         createPermissionBtn.addEventListener('click', function () {
           currentMode = 'create';
           currentEditRow = null;
-          modalTitle.textContent = '권한 생성';
+          modalTitle.textContent = '역할 생성';
           permissionCreate.textContent = '생성';
           // 폼 초기화
-          document.getElementById('workspaceName').value = 'SK Telecom';
           document.getElementById('permissionName').value = '';
           document.getElementById('permissionType').value = '';
           // 시스템 관리자로 초기화
@@ -891,42 +1349,40 @@
       // 수정 버튼 클릭 시 모달 열기
       if (editPermissionBtn) {
         editPermissionBtn.addEventListener('click', function () {
-          // 선택된 권한 확인
+          // 선택된 역할 확인
+          const rowCheckboxes = document.querySelectorAll('.group-setting-table tbody input[type="checkbox"]');
           const checkedBoxes = Array.from(rowCheckboxes).filter(cb => cb.checked);
 
           if (checkedBoxes.length === 0) {
-            alert('수정할 권한을 선택해주세요.');
+            alert('수정할 역할을 선택해주세요.');
             return;
           }
 
           if (checkedBoxes.length > 1) {
-            alert('한 번에 하나의 권한만 수정할 수 있습니다.');
+            alert('한 번에 하나의 역할만 수정할 수 있습니다.');
             return;
           }
 
-          // 선택된 권한 정보 가져오기
+          // 선택된 역할 정보 가져오기
           const selectedRow = checkedBoxes[0].closest('tr');
-          const workspaceElement = selectedRow.querySelector('.workspace-name span');
-          const permissionNameElement = selectedRow.querySelector('td:nth-child(4)');
+          const permissionNameCell = selectedRow.querySelector('td:nth-child(4)');
+          const permissionNameElement = permissionNameCell.querySelectorAll('span')[1]; // 두 번째 span이 역할명
           const permissionDescElement = selectedRow.querySelector('td:nth-child(5)');
 
           currentMode = 'edit';
           currentEditRow = selectedRow;
-          modalTitle.textContent = '권한 수정';
+          modalTitle.textContent = '역할 수정';
           permissionCreate.textContent = '수정';
 
           // 기존 정보로 폼 채우기
-          const workspaceName = workspaceElement.textContent.trim();
           document.getElementById('permissionName').value = permissionNameElement.textContent.trim();
           document.getElementById('permissionType').value = permissionDescElement.textContent.trim();
 
-          // 워크스페이스 선택
-          const workspaceSelect = document.getElementById('workspaceName');
-          for (let i = 0; i < workspaceSelect.options.length; i++) {
-            if (workspaceSelect.options[i].text === workspaceName) {
-              workspaceSelect.selectedIndex = i;
-              break;
-            }
+          // 관리자 유형 선택 (역할명 앞의 아이콘으로 판단)
+          const adminTypeIcon = selectedRow.querySelector('.admin-type-icon');
+          if (adminTypeIcon) {
+            const isSystemAdmin = adminTypeIcon.classList.contains('system');
+            document.querySelector(`input[name="adminType"][value="${isSystemAdmin ? 'system' : 'workspace'}"]`).checked = true;
           }
 
           permissionModal.classList.remove('modal-overlay-hidden');
@@ -954,41 +1410,53 @@
         permissionCreate.addEventListener('click', function () {
           const adminType = document.querySelector('input[name="adminType"]:checked').value;
           const adminTypeText = adminType === 'system' ? '시스템 관리자' : '워크스페이스 관리자';
-          const workspaceName = document.getElementById('workspaceName').options[document.getElementById('workspaceName').selectedIndex].text;
           const permissionName = document.getElementById('permissionName').value.trim();
           const permissionType = document.getElementById('permissionType').value.trim();
 
           if (!permissionName) {
-            alert('권한명을 입력해주세요.');
+            alert('역할명을 입력해주세요.');
             return;
           }
 
           if (!permissionType) {
-            alert('권한 설명을 입력해주세요.');
+            alert('역할 설명을 입력해주세요.');
             return;
           }
 
           if (currentMode === 'create') {
-            // 권한 생성 로직
-            alert(`권한이 생성되었습니다.\n\n관리자 유형: ${adminTypeText}\n워크스페이스: ${workspaceName}\n권한명: ${permissionName}\n권한 설명: ${permissionType}`);
+            // 역할 생성 로직
+            alert(`역할이 생성되었습니다.\n\n관리자 유형: ${adminTypeText}\n역할명: ${permissionName}\n역할 설명: ${permissionType}`);
           } else if (currentMode === 'edit') {
-            // 권한 수정 로직
+            // 역할 수정 로직
             if (currentEditRow) {
-              // 테이블의 권한 정보 업데이트
-              const workspaceNameElement = currentEditRow.querySelector('.workspace-name span');
-              const permissionNameElement = currentEditRow.querySelector('td:nth-child(4)');
+              // 테이블의 역할 정보 업데이트
+              const permissionNameCell = currentEditRow.querySelector('td:nth-child(4)');
+              const permissionNameElement = permissionNameCell.querySelectorAll('span')[1]; // 두 번째 span이 역할명
               const permissionDescElement = currentEditRow.querySelector('td:nth-child(5)');
+              const adminTypeIconElement = currentEditRow.querySelector('.admin-type-icon');
 
-              workspaceNameElement.textContent = workspaceName;
               permissionNameElement.textContent = permissionName;
               permissionDescElement.textContent = permissionType;
+
+              // 관리자 유형 아이콘 업데이트
+              if (adminTypeIconElement) {
+                if (adminType === 'system') {
+                  adminTypeIconElement.className = 'admin-type-icon system';
+                  adminTypeIconElement.textContent = 'S';
+                  adminTypeIconElement.title = '시스템 관리자';
+                } else {
+                  adminTypeIconElement.className = 'admin-type-icon workspace';
+                  adminTypeIconElement.textContent = 'W';
+                  adminTypeIconElement.title = '워크스페이스 관리자';
+                }
+              }
 
               // 최종수정시간 업데이트
               const now = new Date();
               const dateString = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
               currentEditRow.querySelector('td:nth-child(7)').textContent = dateString;
             }
-            alert(`권한이 수정되었습니다.\n\n관리자 유형: ${adminTypeText}\n워크스페이스: ${workspaceName}\n권한명: ${permissionName}\n권한 설명: ${permissionType}`);
+            alert(`역할이 수정되었습니다.\n\n관리자 유형: ${adminTypeText}\n역할명: ${permissionName}\n역할 설명: ${permissionType}`);
           }
 
           permissionModal.classList.add('modal-overlay-hidden');
@@ -1004,11 +1472,11 @@
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
 
-  <!-- 권한 생성 모달 -->
+  <!-- 역할 생성 모달 -->
   <div class="modal-overlay modal-overlay-hidden" id="permissionModal">
     <div class="modal-container permission-modal">
       <div class="modal-header">
-        <h2>권한 생성</h2>
+        <h2>역할 생성</h2>
       </div>
       <div class="modal-content">
         <div class="form-group">
@@ -1026,26 +1494,13 @@
         </div>
 
         <div class="form-group">
-          <label for="workspaceName">워크스페이스</label>
-          <div class="combo-select">
-            <select id="workspaceName" class="condition-select">
-              <option>SK Telecom</option>
-              <option>SK Hynix</option>
-              <option>KT</option>
-              <option>LG U+</option>
-              <option>Timbel_Mk</option>
-            </select>
-          </div>
+          <label for="permissionName">역할명</label>
+          <input type="text" id="permissionName" class="form-input" placeholder="역할명을 입력하세요">
         </div>
 
         <div class="form-group">
-          <label for="permissionName">권한명</label>
-          <input type="text" id="permissionName" class="form-input" placeholder="권한명을 입력하세요">
-        </div>
-
-        <div class="form-group">
-          <label for="permissionType">권한 설명</label>
-          <input type="text" id="permissionType" class="form-input" placeholder="권한 설명을 입력하세요">
+          <label for="permissionType">역할 설명</label>
+          <input type="text" id="permissionType" class="form-input" placeholder="역할 설명을 입력하세요">
         </div>
       </div>
       <div class="modal-footer">
