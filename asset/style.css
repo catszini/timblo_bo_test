@@ -9594,28 +9594,28 @@ th.sortable.desc .sort-icon { transform: rotate(0deg); }
   white-space: nowrap;
 }
 
+/* 사용자 현황 컬럼 스타일 */
+.page-workspace th[style*="width: 220px"],
+.page-workspace td:nth-last-child(3) {
+  white-space: nowrap;
+  min-width: 220px;
+  max-width: 220px;
+}
+
 /* 생성시간 컬럼 스타일 */
 .page-workspace th[style*="width: 170px"],
-.page-workspace td:nth-last-child(1) {
+.page-workspace td:nth-last-child(2) {
   white-space: nowrap;
   min-width: 170px;
   max-width: 170px;
 }
 
 /* 비고 컬럼 스타일 */
-.page-workspace td:nth-last-child(2) {
+.page-workspace td:nth-last-child(1) {
   max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-/* 사용자 현황 컬럼 스타일 */
-.page-workspace th[style*="width: 150px"],
-.page-workspace td:nth-last-child(3) {
-  white-space: nowrap;
-  min-width: 150px;
-  max-width: 150px;
 }
 
 .page-workspace .user-total {

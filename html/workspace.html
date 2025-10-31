@@ -165,9 +165,9 @@
                 <th>도메인명</th>
                 <th>생성자</th>
                 <th style="width: 120px;">구성원</th>
-                <th style="width: 150px;">사용자 현황</th>
-                <th>비고</th>
+                <th style="width: 220px;">사용자 현황</th>
                 <th style="width: 170px;">생성시간</th>
+                <th>비고</th>
               </tr>
             </thead>
             <tbody>
@@ -198,8 +198,8 @@
                     </div>
                   </div>
                 </td>
-                <td>SK Telecom의 워크스페이스 입니다</td>
                 <td>2025-09-01 14:30:15</td>
+                <td>SK Telecom의 워크스페이스 입니다</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -229,8 +229,8 @@
                     </div>
                   </div>
                 </td>
-                <td>SK Hynix의 워크스페이스 입니다</td>
                 <td>2025-08-15 09:22:43</td>
+                <td>SK Hynix의 워크스페이스 입니다</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -259,8 +259,8 @@
                     </div>
                   </div>
                 </td>
-                <td>SK On의 워크스페이스 입니다</td>
                 <td>2025-07-20 16:45:28</td>
+                <td>SK On의 워크스페이스 입니다</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -290,8 +290,8 @@
                     </div>
                   </div>
                 </td>
-                <td>SK C&C의 워크스페이스 입니다</td>
                 <td>2025-09-05 11:18:52</td>
+                <td>SK C&C의 워크스페이스 입니다</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -320,8 +320,8 @@
                     </div>
                   </div>
                 </td>
-                <td>SK Innovation의 워크스페이스 입니다</td>
                 <td>2025-08-30 13:07:19</td>
+                <td>SK Innovation의 워크스페이스 입니다</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -350,8 +350,8 @@
                     </div>
                   </div>
                 </td>
-                <td>SK Networks의 워크스페이스 입니다</td>
                 <td>2025-06-10 08:42:17</td>
+                <td>SK Networks의 워크스페이스 입니다</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -380,8 +380,8 @@
                     </div>
                   </div>
                 </td>
-                <td>SK Materials의 워크스페이스 입니다</td>
                 <td>2025-09-01 10:15:33</td>
+                <td>SK Materials의 워크스페이스 입니다</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -410,8 +410,8 @@
                     </div>
                   </div>
                 </td>
-                <td>SK Biopharm의 워크스페이스 입니다</td>
                 <td>2025-09-12 15:28:04</td>
+                <td>SK Biopharm의 워크스페이스 입니다</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -440,8 +440,8 @@
                     </div>
                   </div>
                 </td>
-                <td>SK E&S의 워크스페이스 입니다</td>
                 <td>2025-05-25 12:55:41</td>
+                <td>SK E&S의 워크스페이스 입니다</td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -470,8 +470,8 @@
                     </div>
                   </div>
                 </td>
-                <td>SK Shieldus의 워크스페이스 입니다</td>
                 <td>2025-09-18 17:33:26</td>
+                <td>SK Shieldus의 워크스페이스 입니다</td>
               </tr>
               <!-- No Data Row - 데이터가 없을 때만 표시 -->
               <tr class="no-data-row">
@@ -660,7 +660,7 @@
           const selectedRow = checkedBoxes[0].closest('tr');
           const workspaceNameElement = selectedRow.querySelector('.workspace-name span');
           const workspaceDomainElement = selectedRow.querySelector('td:nth-child(3)');
-          const workspaceNoteElement = selectedRow.querySelector('td:nth-last-child(2)');
+          const workspaceNoteElement = selectedRow.querySelector('td:nth-last-child(1)');
           const workspaceIconElement = selectedRow.querySelector('.workspace-icon');
 
           const workspaceData = {
@@ -725,7 +725,7 @@
               // 테이블의 워크스페이스 정보 업데이트
               const workspaceNameElement = currentEditRow.querySelector('.workspace-name span');
               const workspaceDomainElement = currentEditRow.querySelector('td:nth-child(3)');
-              const workspaceNoteElement = currentEditRow.querySelector('td:nth-last-child(2)');
+              const workspaceNoteElement = currentEditRow.querySelector('td:nth-last-child(1)');
 
               workspaceNameElement.textContent = name;
               workspaceDomainElement.textContent = domain;
