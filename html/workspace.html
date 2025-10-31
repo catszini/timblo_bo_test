@@ -165,8 +165,9 @@
                 <th>도메인명</th>
                 <th>생성자</th>
                 <th style="width: 120px;">구성원</th>
-                <th>사용자 현황</th>
-                <th>생성시간</th>
+                <th style="width: 150px;">사용자 현황</th>
+                <th>비고</th>
+                <th style="width: 170px;">생성시간</th>
               </tr>
             </thead>
             <tbody>
@@ -197,6 +198,7 @@
                     </div>
                   </div>
                 </td>
+                <td>SK Telecom의 워크스페이스 입니다</td>
                 <td>2025-09-01 14:30:15</td>
               </tr>
               <tr>
@@ -227,6 +229,7 @@
                     </div>
                   </div>
                 </td>
+                <td>SK Hynix의 워크스페이스 입니다</td>
                 <td>2025-08-15 09:22:43</td>
               </tr>
               <tr>
@@ -256,6 +259,7 @@
                     </div>
                   </div>
                 </td>
+                <td>SK On의 워크스페이스 입니다</td>
                 <td>2025-07-20 16:45:28</td>
               </tr>
               <tr>
@@ -286,6 +290,7 @@
                     </div>
                   </div>
                 </td>
+                <td>SK C&C의 워크스페이스 입니다</td>
                 <td>2025-09-05 11:18:52</td>
               </tr>
               <tr>
@@ -315,6 +320,7 @@
                     </div>
                   </div>
                 </td>
+                <td>SK Innovation의 워크스페이스 입니다</td>
                 <td>2025-08-30 13:07:19</td>
               </tr>
               <tr>
@@ -344,6 +350,7 @@
                     </div>
                   </div>
                 </td>
+                <td>SK Networks의 워크스페이스 입니다</td>
                 <td>2025-06-10 08:42:17</td>
               </tr>
               <tr>
@@ -373,6 +380,7 @@
                     </div>
                   </div>
                 </td>
+                <td>SK Materials의 워크스페이스 입니다</td>
                 <td>2025-09-01 10:15:33</td>
               </tr>
               <tr>
@@ -402,6 +410,7 @@
                     </div>
                   </div>
                 </td>
+                <td>SK Biopharm의 워크스페이스 입니다</td>
                 <td>2025-09-12 15:28:04</td>
               </tr>
               <tr>
@@ -431,6 +440,7 @@
                     </div>
                   </div>
                 </td>
+                <td>SK E&S의 워크스페이스 입니다</td>
                 <td>2025-05-25 12:55:41</td>
               </tr>
               <tr>
@@ -460,11 +470,12 @@
                     </div>
                   </div>
                 </td>
+                <td>SK Shieldus의 워크스페이스 입니다</td>
                 <td>2025-09-18 17:33:26</td>
               </tr>
               <!-- No Data Row - 데이터가 없을 때만 표시 -->
               <tr class="no-data-row">
-                <td class="no-data-cell" colspan="7">
+                <td class="no-data-cell" colspan="8">
                   <svg class="no-data-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M9 2C7.89543 2 7 2.89543 7 4V5H6C4.89543 5 4 5.89543 4 7V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V7C20 5.89543 19.1046 5 18 5H17V4C17 2.89543 16.1046 2 15 2H9ZM9 4H15V6H9V4ZM6 7H18V20H6V7ZM8 10V12H16V10H8ZM8 14V16H13V14H8Z"
@@ -649,12 +660,13 @@
           const selectedRow = checkedBoxes[0].closest('tr');
           const workspaceNameElement = selectedRow.querySelector('.workspace-name span');
           const workspaceDomainElement = selectedRow.querySelector('td:nth-child(3)');
+          const workspaceNoteElement = selectedRow.querySelector('td:nth-last-child(2)');
           const workspaceIconElement = selectedRow.querySelector('.workspace-icon');
 
           const workspaceData = {
             name: workspaceNameElement.textContent.trim(),
             domain: workspaceDomainElement.textContent.trim(),
-            note: '워크스페이스 설명입니다.', // 실제로는 서버에서 가져와야 함
+            note: workspaceNoteElement.textContent.trim(),
             iconText: workspaceIconElement.textContent.trim(),
             iconColor: window.getComputedStyle(workspaceIconElement).backgroundColor,
             row: selectedRow
@@ -713,9 +725,11 @@
               // 테이블의 워크스페이스 정보 업데이트
               const workspaceNameElement = currentEditRow.querySelector('.workspace-name span');
               const workspaceDomainElement = currentEditRow.querySelector('td:nth-child(3)');
+              const workspaceNoteElement = currentEditRow.querySelector('td:nth-last-child(2)');
 
               workspaceNameElement.textContent = name;
               workspaceDomainElement.textContent = domain;
+              workspaceNoteElement.textContent = note;
             }
             alert(`워크스페이스 "${name}"이 수정되었습니다.`);
           }
