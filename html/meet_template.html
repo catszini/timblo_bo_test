@@ -369,12 +369,6 @@
 
           <!-- 오른쪽: 입력 폼 영역 -->
           <div class="modal-right">
-            <div class="form-group">
-              <div class="category-header">
-                <label>ID</label>
-              </div>
-              <div class="form-value"></div>
-            </div>
 
             <div class="form-group">
               <div class="category-header">
@@ -646,14 +640,14 @@
       // 모달 닫기
       document.addEventListener('click', (e) => {
         // 카테고리 모달 닫기 - 먼저 체크 (우선순위 높음)
-        if (e.target.matches('.category-modal .btn-cancel') || 
-            e.target.matches('.category-modal .btn-submit')) {
+        if (e.target.matches('.category-modal .btn-cancel') ||
+          e.target.matches('.category-modal .btn-submit')) {
           e.stopPropagation(); // 이벤트 전파 중지
           const overlay = e.target.closest('.category-modal-overlay');
           if (overlay) overlay.style.display = 'none';
           return;
         }
-        
+
         // 카테고리 모달 배경 클릭 시
         if (e.target.matches('.category-modal-overlay')) {
           e.target.style.display = 'none';
@@ -661,11 +655,11 @@
         }
 
         // 메인 모달의 취소 버튼 클릭 (카테고리 모달이 아닌 경우만)
-        if ((e.target.matches('.modal-overlay .btn-cancel') || 
-             e.target.matches('.modal-overlay .btn-submit') || 
-             e.target.matches('#modal-close') || 
-             e.target.closest('#modal-close')) &&
-            !e.target.closest('.category-modal')) {
+        if ((e.target.matches('.modal-overlay .btn-cancel') ||
+          e.target.matches('.modal-overlay .btn-submit') ||
+          e.target.matches('#modal-close') ||
+          e.target.closest('#modal-close')) &&
+          !e.target.closest('.category-modal')) {
           document.querySelector('.modal-overlay').style.display = 'none';
           return;
         }
