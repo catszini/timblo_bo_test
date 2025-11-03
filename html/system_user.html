@@ -490,7 +490,7 @@
 
           <div class="modal-buttons">
             <button class="btn-cancel" id="user-cancel-btn">취소</button>
-            <button class="btn-confirm" id="user-create-btn">생성</button>
+            <button class="btn-confirm" id="user-create-btn">저장</button>
           </div>
         </div>
       </div>
@@ -513,7 +513,7 @@
         </div>
         <div class="modal-buttons">
           <button type="button" class="btn-cancel" id="passwordResetCancel">취소</button>
-          <button type="button" class="btn-confirm" id="passwordResetConfirm">초기화</button>
+          <button type="button" class="btn-confirm" id="passwordResetConfirm">저장</button>
         </div>
       </div>
     </div>
@@ -533,7 +533,7 @@
 
           <div class="simple-buttons">
             <button class="btn-cancel" id="deleteUserCancel">취소</button>
-            <button class="btn-confirm" id="deleteUserConfirm">확인</button>
+            <button class="btn-confirm" id="deleteUserConfirm">저장</button>
           </div>
         </div>
       </div>
@@ -553,7 +553,7 @@
 
           <div class="simple-buttons">
             <button class="btn-cancel" id="deleteSingleUserCancel">취소</button>
-            <button class="btn-confirm" id="deleteSingleUserConfirm">확인</button>
+            <button class="btn-confirm" id="deleteSingleUserConfirm">저장</button>
           </div>
         </div>
       </div>
@@ -639,7 +639,7 @@
           permissionSelect.value = '';
           // 모달 타이틀 및 버튼 텍스트 변경
           document.querySelector('#userCreateModal .modal-title').textContent = '사용자 생성';
-          confirmBtn.textContent = '생성';
+          confirmBtn.textContent = '저장';
           // 비밀번호 필드 표시
           passwordInput.closest('.form-group').style.display = 'block';
           modal.classList.remove('modal-overlay-hidden');
@@ -656,7 +656,7 @@
           permissionSelect.value = userData.permissionValue;
           // 모달 타이틀 및 버튼 텍스트 변경
           document.querySelector('#userCreateModal .modal-title').textContent = '사용자 수정';
-          confirmBtn.textContent = '수정';
+          confirmBtn.textContent = '저장';
           // 비밀번호 필드 숨기기 (수정 시에는 비밀번호 변경 불가)
           passwordInput.closest('.form-group').style.display = 'none';
           modal.classList.remove('modal-overlay-hidden');

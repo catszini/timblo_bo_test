@@ -530,7 +530,7 @@
 
         <div class="modal-buttons">
           <button class="btn-cancel" id="workspace-cancel-btn">취소</button>
-          <button class="btn-confirm" id="workspace-confirm-btn">확인</button>
+          <button class="btn-confirm" id="workspace-confirm-btn">저장</button>
         </div>
       </div>
     </div>
@@ -610,7 +610,7 @@
         noteTextarea.value = '';
         // 모달 타이틀 변경
         document.querySelector('#workspaceModal .modal-title').textContent = '워크스페이스 생성';
-        confirmBtn.textContent = '확인';
+        confirmBtn.textContent = '저장';
         modal.classList.remove('modal-overlay-hidden');
       }
 
@@ -625,7 +625,7 @@
         iconPreview.style.background = workspaceData.iconColor;
         // 모달 타이틀 변경
         document.querySelector('#workspaceModal .modal-title').textContent = '워크스페이스 수정';
-        confirmBtn.textContent = '수정';
+        confirmBtn.textContent = '저장';
         modal.classList.remove('modal-overlay-hidden');
       }
 
