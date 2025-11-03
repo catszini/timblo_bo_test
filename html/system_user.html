@@ -476,14 +476,13 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label">메뉴권한</label>
+              <label class="form-label">역할</label>
               <select class="form-select" id="userPermission" required>
-                <option value="">메뉴권한을 선택하세요</option>
                 <option value="system-admin">시스템관리자</option>
                 <option value="workspace-admin">워크스페이스관리자</option>
                 <option value="menu-admin">메뉴관리자</option>
                 <option value="stats-admin">통계관리자</option>
-                <option value="member">구성원</option>
+                <option value="member" selected>구성원</option>
               </select>
             </div>
           </div>
@@ -636,7 +635,7 @@
           nameInput.value = '';
           emailInput.value = '';
           passwordInput.value = '';
-          permissionSelect.value = '';
+          permissionSelect.value = 'member';
           // 모달 타이틀 및 버튼 텍스트 변경
           document.querySelector('#userCreateModal .modal-title').textContent = '사용자 생성';
           confirmBtn.textContent = '저장';
