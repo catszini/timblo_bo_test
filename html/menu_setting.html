@@ -739,24 +739,6 @@
           </div>
         </div>
 
-        <div class="form-row" style="margin-bottom: 20px;" id="group-section">
-          <div class="form-group full-width">
-            <label style="display: block; margin-bottom: 8px; font-weight: 600;">그룹 설정</label>
-            <div class="combo-select" style="width: 100%;">
-              <div>
-                <select id="groupSelect"
-                  style="width: 100%; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; background-color: white;">
-                  <option value="">그룹을 선택하세요</option>
-                  <option value="workspace-setting">워크스페이스 설정</option>
-                  <option value="feature-management">세부 기능 관리</option>
-                  <option value="history-stats">이력/통계 관리</option>
-                </select>
-                <img src="../asset/select-arrow.svg" alt="선택 화살표" class="select-arrow">
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div class="form-row">
           <div class="form-group full-width">
             <label style="display: block; margin-bottom: 8px; font-weight: 600;">사용 여부</label>
@@ -824,7 +806,6 @@
       const workspaceNewBtn = document.querySelector('#workspace-menu .new-button');
       const modal = document.getElementById('newMenuModal');
       const modalTitle = document.getElementById('modal-title');
-      const groupSection = document.getElementById('group-section');
 
       let currentMenuType = 'system'; // 'system' 또는 'workspace'
 
@@ -833,7 +814,6 @@
         systemNewBtn.addEventListener('click', function () {
           currentMenuType = 'system';
           modalTitle.textContent = '시스템 메뉴 생성';
-          groupSection.style.display = 'none';  // 그룹 필드 숨기기
           clearModalForm();
           modal.classList.remove('modal-overlay-hidden');
         });
@@ -844,7 +824,6 @@
         workspaceNewBtn.addEventListener('click', function () {
           currentMenuType = 'workspace';
           modalTitle.textContent = '워크스페이스 메뉴 생성';
-          groupSection.style.display = 'block'; // 그룹 필드 보이기
           clearModalForm();
           modal.classList.remove('modal-overlay-hidden');
         });
@@ -854,9 +833,6 @@
       function clearModalForm() {
         document.getElementById('menu-name-input').value = '';
         document.getElementById('menu-url-input').value = '';
-        if (document.getElementById('groupSelect')) {
-          document.getElementById('groupSelect').value = '';
-        }
         // 라디오 버튼 초기화 (사용으로 설정)
         document.querySelector('input[name="menuStatus"][value="active"]').checked = true;
       }
@@ -894,12 +870,7 @@
           if (currentMenuType === 'system') {
             alert(`시스템 메뉴가 생성되었습니다.\n메뉴명: ${menuName}\nURL: ${menuUrl}\n상태: ${menuStatus === 'active' ? '사용' : '미사용'}`);
           } else {
-            const selectedGroup = document.getElementById('groupSelect').value;
-            if (!selectedGroup) {
-              alert('그룹을 선택해주세요.');
-              return;
-            }
-            alert(`워크스페이스 메뉴가 생성되었습니다.\n메뉴명: ${menuName}\nURL: ${menuUrl}\n그룹: ${selectedGroup}\n상태: ${menuStatus === 'active' ? '사용' : '미사용'}`);
+            alert(`워크스페이스 메뉴가 생성되었습니다.\n메뉴명: ${menuName}\nURL: ${menuUrl}\n상태: ${menuStatus === 'active' ? '사용' : '미사용'}`);
           }
 
           closeModal();
@@ -1124,7 +1095,6 @@
       const kebabMenuBtns = document.querySelectorAll('.kebab-menu-btn');
       const modal = document.getElementById('newMenuModal');
       const modalTitle = document.getElementById('modal-title');
-      const groupSection = document.getElementById('group-section');
       let currentEditRow = null;
       let isEditMode = false;
 
@@ -1173,9 +1143,6 @@
             document.querySelector('input[name="menuStatus"][value="inactive"]').checked = true;
           }
 
-          // 그룹 섹션 숨기기 (시스템 메뉴이므로)
-          groupSection.style.display = 'none';
-
           // 드롭다운 닫기
           this.closest('.kebab-dropdown').style.display = 'none';
 
@@ -1210,9 +1177,6 @@
           } else {
             document.querySelector('input[name="menuStatus"][value="inactive"]').checked = true;
           }
-
-          // 그룹 섹션 표시 (워크스페이스 메뉴이므로)
-          groupSection.style.display = 'block';
 
           // 드롭다운 닫기
           this.closest('.kebab-dropdown').style.display = 'none';
