@@ -159,7 +159,7 @@
                 <th><input type="checkbox" class="select-all"></th>
                 <th>이름</th>
                 <th>이메일</th>
-                <th>권한</th>
+                <th>역할</th>
                 <th>비밀번호 초기화</th>
                 <th>삭제</th>
                 <th>생성시간</th>
@@ -182,7 +182,8 @@
                       <option>로고관리자</option>
                       <option>사용자관리자</option>
                       <option>통계관리자</option>
-                      <option selected>컨텐츠관리자</option>
+                      <option>컨텐츠관리자</option>
+                      <option selected>구성원</option>
                     </select>
                   </div>
                 </td>
@@ -207,6 +208,7 @@
                       <option>사용자관리자</option>
                       <option>통계관리자</option>
                       <option selected>컨텐츠관리자</option>
+                      <option>구성원</option>
                     </select>
                   </div>
                 </td>
@@ -230,7 +232,8 @@
                       <option>로고관리자</option>
                       <option>사용자관리자</option>
                       <option>통계관리자</option>
-                      <option selected>컨텐츠관리자</option>
+                      <option>컨텐츠관리자</option>
+                      <option selected>구성원</option>
                     </select>
                   </div>
                 </td>
@@ -255,6 +258,7 @@
                       <option>사용자관리자</option>
                       <option>통계관리자</option>
                       <option>컨텐츠관리자</option>
+                      <option>구성원</option>
                     </select>
                   </div>
                 </td>
@@ -278,7 +282,8 @@
                       <option>로고관리자</option>
                       <option>사용자관리자</option>
                       <option>통계관리자</option>
-                      <option selected>컨텐츠관리자</option>
+                      <option>컨텐츠관리자</option>
+                      <option selected>구성원</option>
                     </select>
                   </div>
                 </td>
@@ -303,6 +308,7 @@
                       <option>사용자관리자</option>
                       <option selected>통계관리자</option>
                       <option>컨텐츠관리자</option>
+                      <option>구성원</option>
                     </select>
                   </div>
                 </td>
@@ -327,6 +333,7 @@
                       <option selected>사용자관리자</option>
                       <option>통계관리자</option>
                       <option>컨텐츠관리자</option>
+                      <option>구성원</option>
                     </select>
                   </div>
                 </td>
@@ -351,6 +358,7 @@
                       <option>사용자관리자</option>
                       <option>통계관리자</option>
                       <option>컨텐츠관리자</option>
+                      <option>구성원</option>
                     </select>
                   </div>
                 </td>
@@ -375,6 +383,7 @@
                       <option>사용자관리자</option>
                       <option>통계관리자</option>
                       <option>컨텐츠관리자</option>
+                      <option selected>구성원</option>
                     </select>
                   </div>
                 </td>
@@ -419,14 +428,14 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label">권한</label>
+              <label class="form-label">역할</label>
               <select class="form-select" id="userPermission" required>
-                <option value="">권한을 선택하세요</option>
                 <option value="meeting-admin">회의관리자</option>
                 <option value="logo-admin">로고관리자</option>
                 <option value="user-admin">사용자관리자</option>
                 <option value="stats-admin">통계관리자</option>
                 <option value="content-admin">컨텐츠관리자</option>
+                <option value="member" selected>구성원</option>
               </select>
             </div>
           </div>
@@ -528,7 +537,7 @@
           nameInput.value = '';
           emailInput.value = '';
           passwordInput.value = '';
-          permissionSelect.value = '';
+          permissionSelect.value = 'member'; // 구성원을 기본값으로 설정
           // 모달 타이틀 및 버튼 텍스트 변경
           document.querySelector('#userCreateModal .modal-title').textContent = '사용자 생성';
           confirmBtn.textContent = '저장';
