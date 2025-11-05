@@ -422,6 +422,30 @@
 
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
+  <style>
+    /* 비활성화된 스위치 스타일 */
+    .switch input[type="checkbox"]:disabled~.slider {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .switch input[type="checkbox"]:disabled {
+      cursor: not-allowed;
+    }
+
+    .switch-label:has(input[type="checkbox"]:disabled) {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    /* 비활성화된 input, textarea, select 스타일 */
+    input:disabled,
+    textarea:disabled,
+    select:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  </style>
   <script>
     // 수정/저장 버튼 토글 기능
     document.addEventListener('DOMContentLoaded', function () {
