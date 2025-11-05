@@ -113,7 +113,7 @@
         <div class="template-detail-actions">
           <button class="btn-delete">삭제</button>
           <button class="btn-cancel" onclick="history.back()">취소</button>
-          <button class="btn-submit">저장</button>
+          <button class="btn-submit">수정</button>
         </div>
       </div>
 
@@ -273,7 +273,7 @@
                 <div class="form-group">
                   <div class="category-header">
                     <label>카테고리</label>
-                    <div class="edit-wrapper">
+                    <div class="edit-wrapper" style="display: none;">
                       <button type="button" class="btn-edit">편집</button>
                       <div class="dropdown-menu">
                         <ul>
@@ -304,7 +304,7 @@
                     </div>
                   </div>
                   <div class="category-select-group">
-                    <select class="form-select">
+                    <select class="form-select" disabled>
                       <option>일반회의</option>
                       <option>세미나</option>
                       <option>상담진료</option>
@@ -326,15 +326,15 @@
                   <div class="switch-group">
                     <div class="switches">
                       <div class="switch-label">
-                        <div class="switch-text">참석자</div><label class="switch"><input type="checkbox"><span
+                        <div class="switch-text">참석자</div><label class="switch"><input type="checkbox" disabled><span
                             class="slider"></span></label>
                       </div>
                       <div class="switch-label">
-                        <div class="switch-text">키워드</div><label class="switch"><input type="checkbox"><span
+                        <div class="switch-text">키워드</div><label class="switch"><input type="checkbox" disabled><span
                             class="slider"></span></label>
                       </div>
                       <div class="switch-label">
-                        <div class="switch-text">핵심요약</div><label class="switch"><input type="checkbox"><span
+                        <div class="switch-text">핵심요약</div><label class="switch"><input type="checkbox" disabled><span
                             class="slider"></span></label>
                       </div>
                     </div>
@@ -342,12 +342,12 @@
                 </div>
                 <div class="form-group">
                   <div class="category-header"><label>템플릿명</label></div>
-                  <input type="text" class="form-input" placeholder="템플릿 이름을 입력하세요">
+                  <input type="text" class="form-input" placeholder="템플릿 이름을 입력하세요" disabled>
                   <div class="input-counter">8/10자</div>
                 </div>
                 <div class="form-group">
                   <div class="category-header"><label>템플릿 설명</label></div>
-                  <textarea class="form-textarea" placeholder="사용자에게 템플릿을 소개할 수 있는 설명을 입력하세요"></textarea>
+                  <textarea class="form-textarea" placeholder="사용자에게 템플릿을 소개할 수 있는 설명을 입력하세요" disabled></textarea>
                   <div class="input-counter">56/100자</div>
                 </div>
 
@@ -422,6 +422,59 @@
 
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
+  <script>
+    // 수정/저장 버튼 토글 기능
+    document.addEventListener('DOMContentLoaded', function () {
+      const saveBtn = document.querySelector('.btn-submit');
+      const categorySelect = document.querySelector('.category-select-group select');
+      const templateNameInput = document.querySelector('input[placeholder="템플릿 이름을 입력하세요"]');
+      const templateDescTextarea = document.querySelector('textarea[placeholder="사용자에게 템플릿을 소개할 수 있는 설명을 입력하세요"]');
+      const switchCheckboxes = document.querySelectorAll('.switch-group input[type="checkbox"]');
+      const editWrapper = document.querySelector('.edit-wrapper');
+
+      let isEditMode = false;
+
+      saveBtn.addEventListener('click', function () {
+        if (!isEditMode) {
+          // 수정 → 저장 모드로 전환 (편집 가능 상태)
+          saveBtn.textContent = '저장';
+
+          // 모든 요소 활성화
+          categorySelect.disabled = false;
+          templateNameInput.disabled = false;
+          templateDescTextarea.disabled = false;
+          switchCheckboxes.forEach(checkbox => {
+            checkbox.disabled = false;
+          });
+
+          // 카테고리 편집 버튼 보이기
+          if (editWrapper) {
+            editWrapper.style.display = 'block';
+          }
+
+          isEditMode = true;
+        } else {
+          // 저장 → 수정 모드로 전환 (읽기 전용 상태)
+          saveBtn.textContent = '수정';
+
+          // 모든 요소 비활성화
+          categorySelect.disabled = true;
+          templateNameInput.disabled = true;
+          templateDescTextarea.disabled = true;
+          switchCheckboxes.forEach(checkbox => {
+            checkbox.disabled = true;
+          });
+
+          // 카테고리 편집 버튼 숨기기
+          if (editWrapper) {
+            editWrapper.style.display = 'none';
+          }
+
+          isEditMode = false;
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
