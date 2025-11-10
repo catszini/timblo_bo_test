@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>공지사항 생성</title>
+  <link rel="stylesheet" href="../asset/style.css">
+  <link rel="stylesheet" href="../asset/modal.css">
+</head>
+
+<body class="notice-create-page">
+  <div class="container">
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <div class="logo-title">홍길동</div>
+          <div class="logo-url">
+            <select class="condition-select" id="workspace-filter">
+              <option value="Timbel" selected>Timbel</option>
+              <option value="sk-telecom">SK Telecom</option>
+              <option value="sk-hynix">SK Hynix</option>
+              <option value="sk-es">SK E&S</option>
+              <option value="sk-cc">SK C&C</option>
+              <option value="sk-innovation">SK Innovation</option>
+              <option value="sk-networks">SK Networks</option>
+            </select>
+          </div>
+        </div>
+        <button class="logout-btn" title="로그아웃">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_logout)">
+              <path
+                d="M12 3H6.66667C5.95942 3 5.28115 3.27092 4.78105 3.75315C4.28095 4.23539 4 4.88944 4 5.57143V18.4286C4 19.1106 4.28095 19.7646 4.78105 20.2468C5.28115 20.7291 5.95942 21 6.66667 21H12"
+                stroke="#4D5256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15.75 8.25L19.5 12M19.5 12L15.75 15.75M19.5 12H8" stroke="#4D5256" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_logout">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-section">
+        <h3>전체 시스템 관리</h3>
+        <ul>
+          <li><a href="workspace.html">워크스페이스 관리</a></li>
+          <li><a href="menu_setting.html">전체 메뉴 관리</a></li>
+          <li><a href="system_user.html">사용자 관리</a></li>
+          <li><a href="group_setting.html">역할 관리</a></li>
+          <li><a href="terms_of_service.html">이용약관 관리</a></li>
+          <li><a href="terms_consent_history.html">이용약관 동의 이력</a></li>
+          <li><a href="system_setting_history.html">설정변경 이력</a></li>
+          <li><a href="system_stats_usage.html">전체 시스템 사용 통계</a></li>
+          <li><a href="system_stats_user.html">사용자별 사용 통계</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-header">
+          <h3>워크스페이스 설정</h3>
+        </div>
+        <ul>
+          <li><a href="workspace_permission.html">기능 권한 관리</a></li>
+          <li><a href="content_retention.html">콘텐츠 보존 관리</a></li>
+          <li><a href="workspace_group_setting.html">역할 관리</a></li>
+          <li><a href="user.html">사용자 관리</a></li>
+          <li><a href="logo.html">로고 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-header">
+          <h3>세부 기능 관리</h3>
+        </div>
+        <ul>
+          <li><a href="meet_template.html">템플릿 관리 (회의록, 공통 템플릿)</a></li>
+          <li><a href="prompt.html">프롬프트 관리</a></li>
+          <li><a href="consent.html">동의서 관리</a></li>
+          <li><a href="calendar.html">캘린더 관리/설정</a></li>
+          <li><a href="dictionary.html">사전 관리</a></li>
+          <li><a href="notice.html" class="active">공지사항 관리</a></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-header">
+          <h3>이력/통계 관리</h3>
+        </div>
+        <ul>
+          <li><a href="login_history.html">사용자 접속 이력</a></li>
+          <li><a href="download_history.html">다운로드 이력</a></li>
+          <li><a href="user_consent_history.html">사용자 동의 이력</a></li>
+          <li><a href="setting_change_history.html">설정 변경 이력</a></li>
+          <li><a href="meeting.html">회의록 이력</a></li>
+          <li><a href="stats_usage.html">워크스페이스 사용 통계</a></li>
+          <li><a href="stats_user.html">사용자별 사용 통계</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="content-header">
+        <h1 class="breadcrumb">공지사항 관리 > 공지사항 생성</h1>
+        <div class="template-detail-actions">
+          <button class="btn-cancel" onclick="history.back()">취소</button>
+          <button class="btn-outline" id="save-draft-btn">임시저장</button>
+          <button class="btn-submit" id="publish-btn">게시</button>
+        </div>
+      </div>
+
+      <div class="content-body">
+        <div class="modal-container">
+          <div class="modal-content">
+            <form id="notice-form">
+              <!-- 제목 -->
+              <div class="form-group">
+                <div class="category-header">
+                  <label>제목 <span style="color: #ff4444;">*</span></label>
+                </div>
+                <input type="text" class="form-input" id="notice-title" placeholder="공지사항 제목을 입력하세요" required>
+                <div class="input-counter"><span id="title-count">0</span>/100자</div>
+              </div>
+
+              <!-- 작성자 -->
+              <div class="form-group">
+                <div class="category-header">
+                  <label>작성자</label>
+                </div>
+                <div class="form-value">홍길동 (관리자)</div>
+              </div>
+
+              <!-- 게시 기간 -->
+              <div class="form-group">
+                <div class="category-header">
+                  <label>게시 기간 <span style="color: #ff4444;">*</span></label>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                  <div class="date-range-wrap" style="flex: 1;">
+                    <span class="calendar-icon">📅</span>
+                    <input type="text" id="notice-date-range" class="date-range" placeholder="시작일 ~ 종료일" readonly
+                      required />
+                    <div class="range-panel" id="notice-date-panel">
+                      <div class="calendar-range">
+                        <div class="calendar" id="notice-cal-start"></div>
+                        <div class="calendar" id="notice-cal-end"></div>
+                      </div>
+                      <div class="range-panel-info">
+                        <span id="notice-picked">-</span>
+                        <div class="range-actions">
+                          <button type="button" class="btn-outline" id="notice-cancel">취소</button>
+                          <button type="button" class="btn-submit" id="notice-apply">적용</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 팝업 설정 -->
+              <div class="form-group">
+                <div class="category-header">
+                  <label>팝업 노출</label>
+                </div>
+                <div class="switch-group">
+                  <div class="switches">
+                    <div class="switch-label">
+                      <div class="switch-text">팝업으로 표시</div>
+                      <label class="switch">
+                        <input type="checkbox" id="popup-enabled">
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div id="popup-settings"
+                  style="display: none; margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                  <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">팝업 크기</label>
+                    <div style="display: flex; gap: 10px;">
+                      <input type="number" class="form-input" id="popup-width" placeholder="너비" value="600"
+                        style="flex: 1;">
+                      <span style="line-height: 40px;">×</span>
+                      <input type="number" class="form-input" id="popup-height" placeholder="높이" value="400"
+                        style="flex: 1;">
+                      <span style="line-height: 40px;">px</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">팝업 위치</label>
+                    <div style="display: flex; gap: 10px;">
+                      <select class="form-select" id="popup-position" style="flex: 1;">
+                        <option value="center">중앙</option>
+                        <option value="top">상단</option>
+                        <option value="bottom">하단</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 중요도 -->
+              <div class="form-group">
+                <div class="category-header">
+                  <label>중요도</label>
+                </div>
+                <div class="category-select-group">
+                  <select class="form-select" id="notice-priority">
+                    <option value="normal">일반</option>
+                    <option value="important">중요</option>
+                    <option value="urgent">긴급</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- 공지 대상 -->
+              <div class="form-group">
+                <div class="category-header">
+                  <label>공지 대상 <span style="color: #ff4444;">*</span></label>
+                </div>
+                <div class="category-select-group">
+                  <select class="form-select" id="notice-target" required>
+                    <option value="all">전체</option>
+                    <option value="workspace">특정 워크스페이스</option>
+                    <option value="role">특정 역할</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- 내용 -->
+              <div class="form-group">
+                <div class="category-header">
+                  <label>내용 <span style="color: #ff4444;">*</span></label>
+                </div>
+                <textarea class="form-textarea" id="notice-content" placeholder="공지사항 내용을 입력하세요"
+                  style="min-height: 300px;" required></textarea>
+                <div class="input-counter"><span id="content-count">0</span>/5000자</div>
+              </div>
+
+              <!-- 첨부파일 -->
+              <div class="form-group">
+                <div class="category-header">
+                  <label>첨부파일</label>
+                </div>
+                <div class="upload-box" style="min-height: 100px;">
+                  <input type="file" id="notice-file" multiple style="display: none;">
+                  <div class="upload-placeholder" onclick="document.getElementById('notice-file').click()">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="17 8 12 3 7 8"></polyline>
+                      <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <p style="margin: 10px 0 0 0; color: #999;">파일을 드래그하거나 클릭하여 업로드</p>
+                  </div>
+                  <div id="file-list" style="margin-top: 10px;"></div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../asset/menu.js"></script>
+  <script src="../asset/main.js"></script>
+  <style>
+    /* 버튼 간격 조정 */
+    .template-detail-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    /* 임시저장 버튼 텍스트 크기 조정 */
+    .template-detail-actions .btn-outline {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // 제목 글자 수 카운터
+      const titleInput = document.getElementById('notice-title');
+      const titleCount = document.getElementById('title-count');
+
+      titleInput.addEventListener('input', function () {
+        const length = this.value.length;
+        titleCount.textContent = length;
+        if (length > 100) {
+          this.value = this.value.substring(0, 100);
+          titleCount.textContent = 100;
+        }
+      });
+
+      // 내용 글자 수 카운터
+      const contentTextarea = document.getElementById('notice-content');
+      const contentCount = document.getElementById('content-count');
+
+      contentTextarea.addEventListener('input', function () {
+        const length = this.value.length;
+        contentCount.textContent = length;
+        if (length > 5000) {
+          this.value = this.value.substring(0, 5000);
+          contentCount.textContent = 5000;
+        }
+      });
+
+      // 팝업 설정 토글
+      const popupEnabled = document.getElementById('popup-enabled');
+      const popupSettings = document.getElementById('popup-settings');
+
+      popupEnabled.addEventListener('change', function () {
+        popupSettings.style.display = this.checked ? 'block' : 'none';
+      });
+
+      // 파일 업로드
+      const fileInput = document.getElementById('notice-file');
+      const fileList = document.getElementById('file-list');
+
+      fileInput.addEventListener('change', function () {
+        fileList.innerHTML = '';
+        Array.from(this.files).forEach((file, index) => {
+          const fileItem = document.createElement('div');
+          fileItem.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 8px; background: #f8f9fa; border-radius: 4px; margin-bottom: 5px;';
+          fileItem.innerHTML = `
+            <span style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${file.name}</span>
+            <span style="color: #999; margin: 0 10px;">${(file.size / 1024).toFixed(1)} KB</span>
+            <button type="button" class="btn-icon" onclick="this.parentElement.remove()" title="삭제">
+              <img src="../asset/delete-icon.svg" alt="삭제">
+            </button>
+          `;
+          fileList.appendChild(fileItem);
+        });
+      });
+
+      // 임시저장 버튼
+      const saveDraftBtn = document.getElementById('save-draft-btn');
+      saveDraftBtn.addEventListener('click', function () {
+        if (!validateForm(false)) return;
+
+        console.log('임시저장:', getFormData());
+        alert('임시저장되었습니다.');
+        window.location.href = 'notice.html';
+      });
+
+      // 게시 버튼
+      const publishBtn = document.getElementById('publish-btn');
+      publishBtn.addEventListener('click', function () {
+        if (!validateForm(true)) return;
+
+        console.log('게시:', getFormData());
+        alert('공지사항이 게시되었습니다.');
+        window.location.href = 'notice.html';
+      });
+
+      // 폼 유효성 검사
+      function validateForm(isPublish) {
+        const title = document.getElementById('notice-title').value.trim();
+        const dateRange = document.getElementById('notice-date-range').value.trim();
+        const target = document.getElementById('notice-target').value;
+        const content = document.getElementById('notice-content').value.trim();
+
+        if (isPublish) {
+          if (!title) {
+            alert('제목을 입력해주세요.');
+            return false;
+          }
+          if (!dateRange) {
+            alert('게시 기간을 선택해주세요.');
+            return false;
+          }
+          if (!target) {
+            alert('공지 대상을 선택해주세요.');
+            return false;
+          }
+          if (!content) {
+            alert('내용을 입력해주세요.');
+            return false;
+          }
+        }
+
+        return true;
+      }
+
+      // 폼 데이터 가져오기
+      function getFormData() {
+        return {
+          title: document.getElementById('notice-title').value,
+          dateRange: document.getElementById('notice-date-range').value,
+          popupEnabled: document.getElementById('popup-enabled').checked,
+          popupWidth: document.getElementById('popup-width').value,
+          popupHeight: document.getElementById('popup-height').value,
+          popupPosition: document.getElementById('popup-position').value,
+          priority: document.getElementById('notice-priority').value,
+          target: document.getElementById('notice-target').value,
+          content: document.getElementById('notice-content').value,
+          files: Array.from(document.getElementById('notice-file').files).map(f => f.name)
+        };
+      }
+    });
+  </script>
+</body>
+
+</html>
