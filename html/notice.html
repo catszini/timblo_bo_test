@@ -172,7 +172,6 @@
                 <th width="50">
                   <input type="checkbox" id="notice-select-all">
                 </th>
-                <th width="60">번호</th>
                 <th width="300">제목</th>
                 <th width="100">작성자</th>
                 <th width="140">게시기간</th>
@@ -185,7 +184,6 @@
             <tbody>
               <tr>
                 <td><input type="checkbox" class="notice-checkbox"></td>
-                <td>5</td>
                 <td>
                   <a href="notice_detail.html?id=5" class="notice-title-link">
                     [긴급] 시스템 점검 안내 (2024.09.20 02:00~06:00)
@@ -209,7 +207,6 @@
               </tr>
               <tr>
                 <td><input type="checkbox" class="notice-checkbox"></td>
-                <td>4</td>
                 <td>
                   <a href="notice_detail.html?id=4" class="notice-title-link">
                     AI 회의록 기능 업데이트 안내
@@ -233,7 +230,6 @@
               </tr>
               <tr>
                 <td><input type="checkbox" class="notice-checkbox"></td>
-                <td>3</td>
                 <td>
                   <a href="notice_detail.html?id=3" class="notice-title-link">
                     워크스페이스 사용 가이드 안내
@@ -257,7 +253,6 @@
               </tr>
               <tr>
                 <td><input type="checkbox" class="notice-checkbox"></td>
-                <td>2</td>
                 <td>
                   <a href="notice_detail.html?id=2" class="notice-title-link">
                     개인정보 처리방침 변경 안내
@@ -281,7 +276,6 @@
               </tr>
               <tr>
                 <td><input type="checkbox" class="notice-checkbox"></td>
-                <td>1</td>
                 <td>
                   <a href="notice_detail.html?id=1" class="notice-title-link">
                     Timbel 서비스 오픈 안내
@@ -445,6 +439,13 @@
   </script>
   <script src="../asset/menu.js"></script>
   <script src="../asset/main.js"></script>
+  <style>
+    /* 공지사항 관리 페이지 테이블 왼쪽 정렬 */
+    .notice-page .table-container table thead th,
+    .notice-page .table-container table tbody td {
+      text-align: left;
+    }
+  </style>
 </body>
 
 </html>
