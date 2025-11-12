@@ -6,10 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>공지사항 생성</title>
   <link rel="stylesheet" href="../asset/style.css">
-  <link rel="stylesheet" href="../asset/modal.css">
 </head>
 
-<body class="notice-create-page">
+<body class="notice-detail-page">
   <div class="container">
     <div class="sidebar">
       <div class="logo">
@@ -106,313 +105,433 @@
 
     <div class="content">
       <div class="content-header">
-        <h1 class="breadcrumb">공지사항 관리 > 공지사항 생성</h1>
-        <div class="template-detail-actions">
-          <button class="btn-cancel" onclick="history.back()">취소</button>
-          <button class="btn-outline" id="save-draft-btn">임시저장</button>
-          <button class="btn-submit" id="publish-btn">게시</button>
-        </div>
+        <h1 class="breadcrumb">
+          <a href="notice.html" class="breadcrumb-link">공지사항 관리</a> >
+          <span>새 공지사항</span>
+        </h1>
       </div>
 
       <div class="content-body">
-        <div class="modal-container">
-          <div class="modal-content">
-            <form id="notice-form">
-              <!-- 제목 -->
-              <div class="form-group">
-                <div class="category-header">
-                  <label>제목 <span style="color: #ff4444;">*</span></label>
+        <!-- 공지사항 작성 폼 -->
+        <div class="notice-detail-form">
+          <form id="notice-form">
+            <div class="form-section">
+              <h3>기본 정보</h3>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="notice-title">제목 <span class="required">*</span></label>
+                  <input type="text" id="notice-title" class="form-input" placeholder="공지사항 제목을 입력하세요" required>
                 </div>
-                <input type="text" class="form-input" id="notice-title" placeholder="공지사항 제목을 입력하세요" required>
-                <div class="input-counter"><span id="title-count">0</span>/100자</div>
               </div>
 
-              <!-- 작성자 -->
-              <div class="form-group">
-                <div class="category-header">
-                  <label>작성자</label>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="notice-status">상태</label>
+                  <div class="combo-select">
+                    <select id="notice-status" class="form-select">
+                      <option value="draft">임시저장</option>
+                      <option value="published">게시중</option>
+                      <option value="scheduled">예약게시</option>
+                    </select>
+                  </div>
                 </div>
-                <div class="form-value">홍길동 (관리자)</div>
               </div>
 
-              <!-- 게시 기간 -->
-              <div class="form-group">
-                <div class="category-header">
-                  <label>게시 기간 <span style="color: #ff4444;">*</span></label>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="notice-start-date">게시 시작일</label>
+                  <input type="datetime-local" id="notice-start-date" class="form-input">
                 </div>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                  <div class="date-range-wrap" style="flex: 1;">
-                    <span class="calendar-icon">📅</span>
-                    <input type="text" id="notice-date-range" class="date-range" placeholder="시작일 ~ 종료일" readonly
-                      required />
-                    <div class="range-panel" id="notice-date-panel">
-                      <div class="calendar-range">
-                        <div class="calendar" id="notice-cal-start"></div>
-                        <div class="calendar" id="notice-cal-end"></div>
-                      </div>
-                      <div class="range-panel-info">
-                        <span id="notice-picked">-</span>
-                        <div class="range-actions">
-                          <button type="button" class="btn-outline" id="notice-cancel">취소</button>
-                          <button type="button" class="btn-submit" id="notice-apply">적용</button>
+                <div class="form-group">
+                  <label for="notice-end-date">게시 종료일</label>
+                  <input type="datetime-local" id="notice-end-date" class="form-input">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group checkbox-group">
+                  <input type="checkbox" id="notice-popup" class="form-checkbox">
+                  <label for="notice-popup">팝업으로 표시</label>
+                </div>
+                <div class="form-group checkbox-group">
+                  <input type="checkbox" id="notice-top-fixed" class="form-checkbox">
+                  <label for="notice-top-fixed">상단 고정</label>
+                </div>
+              </div>
+
+              <!-- 팝업 설정 옵션 -->
+              <div class="form-row popup-settings" id="popup-settings-row" style="display: none;">
+                <div class="form-group full-width">
+                  <label>팝업 설정</label>
+                  <div class="popup-options">
+                    <div class="checkbox-group">
+                      <input type="checkbox" id="popup-dismiss-option" class="form-checkbox">
+                      <label for="popup-dismiss-option">"다시 보지 않기" 옵션 제공</label>
+                    </div>
+
+                    <div class="dismiss-options" id="dismiss-options"
+                      style="display: none; margin-top: 12px; margin-left: 24px;">
+                      <div class="dismiss-option-title">사용자 선택지:</div>
+                      <div class="dismiss-choices">
+                        <div class="checkbox-group">
+                          <input type="checkbox" id="dismiss-today" class="dismiss-checkbox" checked>
+                          <label for="dismiss-today">오늘 하루 보지 않기</label>
+                        </div>
+                        <div class="checkbox-group">
+                          <input type="checkbox" id="dismiss-3days" class="dismiss-checkbox" checked>
+                          <label for="dismiss-3days">3일동안 보지 않기</label>
+                        </div>
+                        <div class="checkbox-group">
+                          <input type="checkbox" id="dismiss-week" class="dismiss-checkbox" checked>
+                          <label for="dismiss-week">일주일 동안 보지 않기</label>
+                        </div>
+                        <div class="checkbox-group">
+                          <input type="checkbox" id="dismiss-forever" class="dismiss-checkbox">
+                          <label for="dismiss-forever">다시 보지 않기</label>
                         </div>
                       </div>
+                      <div class="dismiss-note">
+                        <small>⚠️ 참고: "다시 보지 않기"는 영구적으로 숨겨지므로 신중하게 선택하세요.</small>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <!-- 팝업 설정 -->
-              <div class="form-group">
-                <div class="category-header">
-                  <label>팝업 노출</label>
+            <div class="form-section">
+              <h3>내용 작성</h3>
+
+              <div class="form-row">
+                <div class="form-group full-width">
+                  <label for="notice-content">내용 <span class="required">*</span></label>
+                  <div class="editor-toolbar">
+                    <button type="button" class="editor-btn" data-command="bold" title="굵게">
+                      <strong>B</strong>
+                    </button>
+                    <button type="button" class="editor-btn" data-command="italic" title="기울임">
+                      <em>I</em>
+                    </button>
+                    <button type="button" class="editor-btn" data-command="underline" title="밑줄">
+                      <u>U</u>
+                    </button>
+                    <div class="editor-divider"></div>
+                    <button type="button" class="editor-btn" data-command="insertOrderedList" title="번호 목록">
+                      1.
+                    </button>
+                    <button type="button" class="editor-btn" data-command="insertUnorderedList" title="글머리 목록">
+                      •
+                    </button>
+                    <div class="editor-divider"></div>
+                    <button type="button" class="editor-btn" data-command="createLink" title="링크">
+                      🔗
+                    </button>
+                    <button type="button" class="editor-btn" id="insert-image-btn" title="이미지">
+                      🖼️
+                    </button>
+                  </div>
+                  <div id="notice-content" class="form-editor" contenteditable="true" placeholder="공지사항 내용을 입력하세요...">
+                  </div>
+                  <input type="file" id="image-upload" accept="image/*" style="display: none;">
                 </div>
-                <div class="switch-group">
-                  <div class="switches">
-                    <div class="switch-label">
-                      <div class="switch-text">팝업으로 표시</div>
-                      <label class="switch">
-                        <input type="checkbox" id="popup-enabled">
-                        <span class="slider"></span>
-                      </label>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3>첨부파일</h3>
+
+              <div class="form-row">
+                <div class="form-group full-width">
+                  <div class="file-upload-area" id="file-upload-area">
+                    <div class="file-upload-placeholder">
+                      <span class="upload-icon">📎</span>
+                      <p>파일을 드래그하거나 클릭하여 업로드하세요</p>
+                      <p class="file-info">최대 10MB, jpg, png, pdf, doc, docx, xls, xlsx 파일만 업로드 가능</p>
                     </div>
+                    <input type="file" id="file-upload" multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx">
                   </div>
-                </div>
-                <div id="popup-settings"
-                  style="display: none; margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-                  <div class="form-group" style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">팝업 크기</label>
-                    <div style="display: flex; gap: 10px;">
-                      <input type="number" class="form-input" id="popup-width" placeholder="너비" value="600"
-                        style="flex: 1;">
-                      <span style="line-height: 40px;">×</span>
-                      <input type="number" class="form-input" id="popup-height" placeholder="높이" value="400"
-                        style="flex: 1;">
-                      <span style="line-height: 40px;">px</span>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">팝업 위치</label>
-                    <div style="display: flex; gap: 10px;">
-                      <select class="form-select" id="popup-position" style="flex: 1;">
-                        <option value="center">중앙</option>
-                        <option value="top">상단</option>
-                        <option value="bottom">하단</option>
-                      </select>
-                    </div>
+                  <div class="uploaded-files" id="uploaded-files">
+                    <!-- 업로드된 파일 목록이 여기에 표시됩니다 -->
                   </div>
                 </div>
               </div>
+            </div>
 
-              <!-- 중요도 -->
-              <div class="form-group">
-                <div class="category-header">
-                  <label>중요도</label>
-                </div>
-                <div class="category-select-group">
-                  <select class="form-select" id="notice-priority">
-                    <option value="normal">일반</option>
-                    <option value="important">중요</option>
-                    <option value="urgent">긴급</option>
-                  </select>
-                </div>
-              </div>
+          </form>
+        </div>
 
-              <!-- 공지 대상 -->
-              <div class="form-group">
-                <div class="category-header">
-                  <label>공지 대상 <span style="color: #ff4444;">*</span></label>
-                </div>
-                <div class="category-select-group">
-                  <select class="form-select" id="notice-target" required>
-                    <option value="all">전체</option>
-                    <option value="workspace">특정 워크스페이스</option>
-                    <option value="role">특정 역할</option>
-                  </select>
-                </div>
-              </div>
-
-              <!-- 내용 -->
-              <div class="form-group">
-                <div class="category-header">
-                  <label>내용 <span style="color: #ff4444;">*</span></label>
-                </div>
-                <textarea class="form-textarea" id="notice-content" placeholder="공지사항 내용을 입력하세요"
-                  style="min-height: 300px;" required></textarea>
-                <div class="input-counter"><span id="content-count">0</span>/5000자</div>
-              </div>
-
-              <!-- 첨부파일 -->
-              <div class="form-group">
-                <div class="category-header">
-                  <label>첨부파일</label>
-                </div>
-                <div class="upload-box" style="min-height: 100px;">
-                  <input type="file" id="notice-file" multiple style="display: none;">
-                  <div class="upload-placeholder" onclick="document.getElementById('notice-file').click()">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2">
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                      <polyline points="17 8 12 3 7 8"></polyline>
-                      <line x1="12" y1="3" x2="12" y2="15"></line>
-                    </svg>
-                    <p style="margin: 10px 0 0 0; color: #999;">파일을 드래그하거나 클릭하여 업로드</p>
-                  </div>
-                  <div id="file-list" style="margin-top: 10px;"></div>
-                </div>
-              </div>
-            </form>
+        <!-- 하단 액션 버튼 -->
+        <div class="form-actions">
+          <div class="actions-left">
+            <button type="button" class="btn btn-outline" id="preview-btn">미리보기</button>
+          </div>
+          <div class="actions-right">
+            <button type="button" class="btn btn-outline" id="cancel-btn">취소</button>
+            <button type="button" class="btn btn-secondary" id="save-draft-btn">임시저장</button>
+            <button type="button" class="btn btn-primary" id="save-publish-btn">저장 및 게시</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <script src="../asset/menu.js"></script>
-  <script src="../asset/main.js"></script>
-  <style>
-    /* 버튼 간격 조정 */
-    .template-detail-actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
+  <!-- 미리보기 모달 -->
+  <div class="modal-overlay modal-overlay-hidden" id="preview-modal">
+    <div class="modal modal-large">
+      <div class="modal-header">
+        <h3>공지사항 미리보기</h3>
+        <button class="modal-close" id="preview-modal-close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="notice-preview">
+          <div class="preview-header">
+            <h2 id="preview-title"></h2>
+            <div class="preview-meta">
+              <span class="preview-date"></span>
+              <span class="preview-author">관리자</span>
+            </div>
+          </div>
+          <div class="preview-content" id="preview-content">
+          </div>
+          <div class="preview-files" id="preview-files">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="preview-close-btn">닫기</button>
+      </div>
+    </div>
+  </div>
 
-    /* 임시저장 버튼 텍스트 크기 조정 */
-    .template-detail-actions .btn-outline {
-      font-size: 14px;
-      padding: 8px 16px;
-    }
-
-    .upload-placeholder {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-  </style>
   <script>
+    // 공지사항 생성 페이지 스크립트
     document.addEventListener('DOMContentLoaded', function () {
-      // 제목 글자 수 카운터
-      const titleInput = document.getElementById('notice-title');
-      const titleCount = document.getElementById('title-count');
+      // 에디터 툴바 기능
+      document.querySelectorAll('.editor-btn').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          const command = this.dataset.command;
 
-      titleInput.addEventListener('input', function () {
-        const length = this.value.length;
-        titleCount.textContent = length;
-        if (length > 100) {
-          this.value = this.value.substring(0, 100);
-          titleCount.textContent = 100;
-        }
-      });
-
-      // 내용 글자 수 카운터
-      const contentTextarea = document.getElementById('notice-content');
-      const contentCount = document.getElementById('content-count');
-
-      contentTextarea.addEventListener('input', function () {
-        const length = this.value.length;
-        contentCount.textContent = length;
-        if (length > 5000) {
-          this.value = this.value.substring(0, 5000);
-          contentCount.textContent = 5000;
-        }
-      });
-
-      // 팝업 설정 토글
-      const popupEnabled = document.getElementById('popup-enabled');
-      const popupSettings = document.getElementById('popup-settings');
-
-      popupEnabled.addEventListener('change', function () {
-        popupSettings.style.display = this.checked ? 'block' : 'none';
-      });
-
-      // 파일 업로드
-      const fileInput = document.getElementById('notice-file');
-      const fileList = document.getElementById('file-list');
-
-      fileInput.addEventListener('change', function () {
-        fileList.innerHTML = '';
-        Array.from(this.files).forEach((file, index) => {
-          const fileItem = document.createElement('div');
-          fileItem.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 8px; background: #f8f9fa; border-radius: 4px; margin-bottom: 5px;';
-          fileItem.innerHTML = `
-            <span style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${file.name}</span>
-            <span style="color: #999; margin: 0 10px;">${(file.size / 1024).toFixed(1)} KB</span>
-            <button type="button" class="btn-icon" onclick="this.parentElement.remove()" title="삭제">
-              <img src="../asset/delete-icon.svg" alt="삭제">
-            </button>
-          `;
-          fileList.appendChild(fileItem);
+          if (command === 'createLink') {
+            const url = prompt('링크 URL을 입력하세요:');
+            if (url) {
+              document.execCommand(command, false, url);
+            }
+          } else {
+            document.execCommand(command, false, null);
+          }
         });
       });
 
-      // 임시저장 버튼
+      // 이미지 업로드
+      const insertImageBtn = document.getElementById('insert-image-btn');
+      const imageUpload = document.getElementById('image-upload');
+
+      insertImageBtn?.addEventListener('click', function (e) {
+        e.preventDefault();
+        imageUpload.click();
+      });
+
+      imageUpload?.addEventListener('change', function (e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const img = `<img src="${e.target.result}" alt="업로드된 이미지" style="max-width: 100%; height: auto;">`;
+            document.execCommand('insertHTML', false, img);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // 파일 업로드 드래그앤드롭
+      const fileUploadArea = document.getElementById('file-upload-area');
+      const fileUpload = document.getElementById('file-upload');
+      const uploadedFiles = document.getElementById('uploaded-files');
+
+      fileUploadArea?.addEventListener('click', () => fileUpload.click());
+
+      fileUploadArea?.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        this.classList.add('drag-over');
+      });
+
+      fileUploadArea?.addEventListener('dragleave', function (e) {
+        e.preventDefault();
+        this.classList.remove('drag-over');
+      });
+
+      fileUploadArea?.addEventListener('drop', function (e) {
+        e.preventDefault();
+        this.classList.remove('drag-over');
+        const files = e.dataTransfer.files;
+        handleFileUpload(files);
+      });
+
+      fileUpload?.addEventListener('change', function (e) {
+        handleFileUpload(e.target.files);
+      });
+
+
+      // 팝업 설정 기능
+      const popupCheckbox = document.getElementById('notice-popup');
+      const popupSettingsRow = document.getElementById('popup-settings-row');
+      const dismissOptionCheckbox = document.getElementById('popup-dismiss-option');
+      const dismissOptions = document.getElementById('dismiss-options');
+
+      popupCheckbox?.addEventListener('change', function () {
+        popupSettingsRow.style.display = this.checked ? 'block' : 'none';
+        if (!this.checked) {
+          dismissOptionCheckbox.checked = false;
+          dismissOptions.style.display = 'none';
+        }
+      });
+
+      dismissOptionCheckbox?.addEventListener('change', function () {
+        dismissOptions.style.display = this.checked ? 'block' : 'none';
+      });
+
+      // 액션 버튼들
+      const cancelBtn = document.getElementById('cancel-btn');
       const saveDraftBtn = document.getElementById('save-draft-btn');
-      saveDraftBtn.addEventListener('click', function () {
-        if (!validateForm(false)) return;
+      const savePublishBtn = document.getElementById('save-publish-btn');
+      const previewBtn = document.getElementById('preview-btn');
 
-        console.log('임시저장:', getFormData());
-        alert('임시저장되었습니다.');
-        window.location.href = 'notice.html';
+      cancelBtn?.addEventListener('click', function () {
+        if (confirm('변경사항이 저장되지 않습니다. 정말 취소하시겠습니까?')) {
+          window.location.href = 'notice.html';
+        }
       });
 
-      // 게시 버튼
-      const publishBtn = document.getElementById('publish-btn');
-      publishBtn.addEventListener('click', function () {
-        if (!validateForm(true)) return;
-
-        console.log('게시:', getFormData());
-        alert('공지사항이 게시되었습니다.');
-        window.location.href = 'notice.html';
+      saveDraftBtn?.addEventListener('click', function () {
+        saveNotice('draft');
       });
 
-      // 폼 유효성 검사
-      function validateForm(isPublish) {
-        const title = document.getElementById('notice-title').value.trim();
-        const dateRange = document.getElementById('notice-date-range').value.trim();
-        const target = document.getElementById('notice-target').value;
-        const content = document.getElementById('notice-content').value.trim();
+      savePublishBtn?.addEventListener('click', function () {
+        if (validateForm()) {
+          saveNotice('published');
+        }
+      });
 
-        if (isPublish) {
-          if (!title) {
-            alert('제목을 입력해주세요.');
-            return false;
-          }
-          if (!dateRange) {
-            alert('게시 기간을 선택해주세요.');
-            return false;
-          }
-          if (!target) {
-            alert('공지 대상을 선택해주세요.');
-            return false;
-          }
-          if (!content) {
-            alert('내용을 입력해주세요.');
-            return false;
-          }
+      previewBtn?.addEventListener('click', function () {
+        showPreview();
+      });
+
+      // 미리보기 모달
+      const previewModal = document.getElementById('preview-modal');
+      const previewModalClose = document.getElementById('preview-modal-close');
+      const previewCloseBtn = document.getElementById('preview-close-btn');
+
+      previewModalClose?.addEventListener('click', () => {
+        previewModal.classList.add('modal-overlay-hidden');
+      });
+
+      previewCloseBtn?.addEventListener('click', () => {
+        previewModal.classList.add('modal-overlay-hidden');
+      });
+
+      previewModal?.addEventListener('click', function (e) {
+        if (e.target === previewModal) {
+          previewModal.classList.add('modal-overlay-hidden');
+        }
+      });
+    });
+
+    function handleFileUpload(files) {
+      const uploadedFiles = document.getElementById('uploaded-files');
+
+      Array.from(files).forEach(file => {
+        if (file.size > 10 * 1024 * 1024) { // 10MB 제한
+          alert(`${file.name} 파일이 너무 큽니다. (최대 10MB)`);
+          return;
         }
 
-        return true;
+        const fileItem = document.createElement('div');
+        fileItem.className = 'file-item';
+        fileItem.innerHTML = `
+          <span class="file-name">${file.name}</span>
+          <span class="file-size">(${formatFileSize(file.size)})</span>
+          <button type="button" class="file-remove" onclick="removeFile(this)">×</button>
+        `;
+
+        uploadedFiles.appendChild(fileItem);
+      });
+    }
+
+    function removeFile(button) {
+      button.parentElement.remove();
+    }
+
+    function formatFileSize(bytes) {
+      if (bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    function validateForm() {
+      const title = document.getElementById('notice-title').value.trim();
+      const content = document.getElementById('notice-content').textContent.trim();
+
+      if (!title) {
+        alert('제목을 입력해주세요.');
+        document.getElementById('notice-title').focus();
+        return false;
       }
 
-      // 폼 데이터 가져오기
-      function getFormData() {
-        return {
-          title: document.getElementById('notice-title').value,
-          dateRange: document.getElementById('notice-date-range').value,
-          popupEnabled: document.getElementById('popup-enabled').checked,
-          popupWidth: document.getElementById('popup-width').value,
-          popupHeight: document.getElementById('popup-height').value,
-          popupPosition: document.getElementById('popup-position').value,
-          priority: document.getElementById('notice-priority').value,
-          target: document.getElementById('notice-target').value,
-          content: document.getElementById('notice-content').value,
-          files: Array.from(document.getElementById('notice-file').files).map(f => f.name)
-        };
+      if (!content) {
+        alert('내용을 입력해주세요.');
+        document.getElementById('notice-content').focus();
+        return false;
       }
-    });
+
+      return true;
+    }
+
+    function saveNotice(status) {
+      const formData = {
+        title: document.getElementById('notice-title').value,
+        status: status,
+        startDate: document.getElementById('notice-start-date').value,
+        endDate: document.getElementById('notice-end-date').value,
+        popup: document.getElementById('notice-popup').checked,
+        topFixed: document.getElementById('notice-top-fixed').checked,
+        content: document.getElementById('notice-content').innerHTML,
+        // 팝업 설정
+        popupDismissOption: document.getElementById('popup-dismiss-option')?.checked || false,
+        dismissOptions: {
+          today: document.getElementById('dismiss-today')?.checked || false,
+          threeDays: document.getElementById('dismiss-3days')?.checked || false,
+          week: document.getElementById('dismiss-week')?.checked || false,
+          forever: document.getElementById('dismiss-forever')?.checked || false
+        }
+      };
+
+      console.log('저장할 데이터:', formData);
+
+      // 실제로는 서버에 저장 요청
+      alert(`공지사항이 ${status === 'draft' ? '임시저장' : '저장 및 게시'}되었습니다.`);
+
+      // 목록으로 이동
+      window.location.href = 'notice.html';
+    }
+
+    function showPreview() {
+      const title = document.getElementById('notice-title').value;
+      const content = document.getElementById('notice-content').innerHTML;
+
+      document.getElementById('preview-title').textContent = title || '제목 없음';
+      document.getElementById('preview-content').innerHTML = content || '내용 없음';
+
+      document.querySelector('.preview-date').textContent = new Date().toLocaleDateString('ko-KR');
+
+      document.getElementById('preview-modal').classList.remove('modal-overlay-hidden');
+    }
   </script>
+  <script src="../asset/menu.js"></script>
+  <script src="../asset/main.js"></script>
 </body>
 
 </html>
