@@ -1300,8 +1300,10 @@
       let currentMode = 'create'; // 'create' 또는 'edit'
       let currentEditRow = null;
 
-      // 관리자 유형 변경 시 전체 시스템 관리 섹션 비활성화/활성화
+      // 관리자 유형 변경 시 전체 시스템 관리 섹션 비활성화/활성화 및 워크스페이스 선택 박스 표시/숨김
       const adminTypeRadios = document.querySelectorAll('input[name="adminType"]');
+      const workspaceSelectGroup = document.getElementById('workspaceSelectGroup');
+
       adminTypeRadios.forEach(radio => {
         radio.addEventListener('change', function () {
           const systemSection = document.querySelector('#전체시스템관리');
@@ -1313,11 +1315,19 @@
               cb.disabled = true;
               cb.checked = false;
             });
+            // 워크스페이스 선택 박스 표시
+            if (workspaceSelectGroup) {
+              workspaceSelectGroup.style.display = 'block';
+            }
           } else {
             // 시스템 관리자: 전체 시스템 관리 섹션 활성화
             systemChildren.forEach(cb => {
               cb.disabled = false;
             });
+            // 워크스페이스 선택 박스 숨김
+            if (workspaceSelectGroup) {
+              workspaceSelectGroup.style.display = 'none';
+            }
           }
         });
       });
@@ -1332,8 +1342,13 @@
           // 폼 초기화
           document.getElementById('permissionName').value = '';
           document.getElementById('permissionType').value = '';
+          document.getElementById('workspaceSelectModal').value = 'timbel'; // 기본값으로 Timbel 설정
           // 시스템 관리자로 초기화
           document.querySelector('input[name="adminType"][value="system"]').checked = true;
+          // 워크스페이스 선택 박스 숨김
+          if (workspaceSelectGroup) {
+            workspaceSelectGroup.style.display = 'none';
+          }
           // 전체 시스템 관리 섹션 활성화
           const systemSection = document.querySelector('#전체시스템관리');
           if (systemSection) {
@@ -1383,6 +1398,39 @@
           if (adminTypeIcon) {
             const isSystemAdmin = adminTypeIcon.classList.contains('system');
             document.querySelector(`input[name="adminType"][value="${isSystemAdmin ? 'system' : 'workspace'}"]`).checked = true;
+
+            // 워크스페이스 관리자인 경우 워크스페이스 선택 박스 표시 및 값 설정
+            if (!isSystemAdmin) {
+              if (workspaceSelectGroup) {
+                workspaceSelectGroup.style.display = 'block';
+              }
+              // 워크스페이스 정보 가져오기 (테이블의 워크스페이스 컬럼에서)
+              const workspaceCell = selectedRow.querySelector('td:nth-child(2) .workspace-name span');
+              if (workspaceCell) {
+                const workspaceName = workspaceCell.textContent.trim();
+                // 워크스페이스 이름을 value로 매핑
+                const workspaceMapping = {
+                  'SK Telecom': 'sk-telecom',
+                  'SK Hynix': 'sk-hynix',
+                  'SK On': 'sk-on',
+                  'SK C&C': 'sk-cc',
+                  'SK Innovation': 'sk-innovation',
+                  'SK Networks': 'sk-networks',
+                  'SK Materials': 'sk-materials',
+                  'SK Biopharm': 'sk-biopharm',
+                  'SK E&S': 'sk-es',
+                  'SK Shieldus': 'sk-shieldus'
+                };
+                const workspaceValue = workspaceMapping[workspaceName];
+                if (workspaceValue) {
+                  document.getElementById('workspaceSelectModal').value = workspaceValue;
+                }
+              }
+            } else {
+              if (workspaceSelectGroup) {
+                workspaceSelectGroup.style.display = 'none';
+              }
+            }
           }
 
           permissionModal.classList.remove('modal-overlay-hidden');
@@ -1405,13 +1453,15 @@
         });
       }
 
-      // 생성/수정 버튼 클릭
+      // 
+      // /수정 버튼 클릭
       if (permissionCreate) {
         permissionCreate.addEventListener('click', function () {
           const adminType = document.querySelector('input[name="adminType"]:checked').value;
           const adminTypeText = adminType === 'system' ? '시스템 관리자' : '워크스페이스 관리자';
           const permissionName = document.getElementById('permissionName').value.trim();
           const permissionType = document.getElementById('permissionType').value.trim();
+          const workspaceValue = document.getElementById('workspaceSelectModal').value;
 
           if (!permissionName) {
             alert('역할명을 입력해주세요.');
@@ -1422,6 +1472,8 @@
             alert('역할 설명을 입력해주세요.');
             return;
           }
+
+          // 워크스페이스 관리자인 경우 워크스페이스 선택 확인 (기본값 timbel이 있으므로 항상 선택되어 있음)
 
           if (currentMode === 'create') {
             // 역할 생성 로직
@@ -1464,7 +1516,12 @@
           // 폼 초기화
           document.getElementById('permissionName').value = '';
           document.getElementById('permissionType').value = '';
+          document.getElementById('workspaceSelectModal').value = 'timbel'; // 기본값으로 Timbel 설정
           document.querySelector('input[name="adminType"][value="system"]').checked = true;
+          // 워크스페이스 선택 박스 숨김
+          if (workspaceSelectGroup) {
+            workspaceSelectGroup.style.display = 'none';
+          }
         });
       }
     });
@@ -1490,6 +1547,25 @@
               <input type="radio" name="adminType" value="workspace">
               <span>워크스페이스 관리자</span>
             </label>
+          </div>
+        </div>
+
+        <div class="form-group" id="workspaceSelectGroup" style="display: none;">
+          <label for="workspaceSelectModal">워크스페이스 선택</label>
+          <div class="combo-select">
+            <select id="workspaceSelectModal" class="form-select">
+              <option value="timbel" selected>Timbel</option>
+              <option value="sk-telecom">SK Telecom</option>
+              <option value="sk-hynix">SK Hynix</option>
+              <option value="sk-on">SK On</option>
+              <option value="sk-cc">SK C&C</option>
+              <option value="sk-innovation">SK Innovation</option>
+              <option value="sk-networks">SK Networks</option>
+              <option value="sk-materials">SK Materials</option>
+              <option value="sk-biopharm">SK Biopharm</option>
+              <option value="sk-es">SK E&S</option>
+              <option value="sk-shieldus">SK Shieldus</option>
+            </select>
           </div>
         </div>
 
