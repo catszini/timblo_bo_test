@@ -6,10 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>이용약관 동의 이력</title>
   <link rel="stylesheet" href="../asset/style.css" />
+  <style>
+    .terms-consent-history-page .table-container td {
+      padding: 6px 16px;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="container terms-consent-history-page">
     <!-- 사이드바 -->
     <div class="sidebar">
       <div class="logo">
@@ -143,9 +148,9 @@
                   <div class="combo-field">
                     <select class="combo-select">
                       <option>전체</option>
-                      <option>구분</option>
                       <option>이름</option>
                       <option>이메일</option>
+                      <option>유형</option>
                       <option>제목</option>
                       <option>버전</option>
                     </select>
@@ -172,113 +177,163 @@
           <table>
             <thead>
               <tr>
-                <th>구분</th>
                 <th>이름</th>
                 <th>이메일</th>
+                <th>유형</th>
                 <th>제목</th>
                 <th>버전</th>
-                <th>동의 일시</th>
+                <th>동의일시</th>
               </tr>
             </thead>
             <tbody>
+              <!-- 김철수 -->
               <tr>
-                <td>개인정보</td>
-                <td>
-                  김철수
-                </td>
-                <td>kim.cheolsu@timbel.net</td>
-                <td>개인정보 수집 및 이용 동의</td>
-                <td>v1.2</td>
+                <td rowspan="2">김철수</td>
+                <td rowspan="2">kim.cheolsu@timbel.net</td>
+                <td>이용약관</td>
+                <td>서비스 이용 약관 동의</td>
+                <td>v1.6</td>
                 <td>2024-03-15 14:30:25</td>
               </tr>
               <tr>
+                <td>개인정보</td>
+                <td>개인정보 수집 및 이용 동의</td>
+                <td>v1.5</td>
+                <td>2024-03-15 14:30:25</td>
+              </tr>
+              <!-- 이영희 -->
+              <tr>
+                <td rowspan="2">이영희</td>
+                <td rowspan="2">lee.younghee@timbel.net</td>
                 <td>이용약관</td>
-                <td>
-                  이영희
-                </td>
-                <td>lee.younghee@timbel.net</td>
                 <td>서비스 이용 약관 동의</td>
-                <td>v2.1</td>
+                <td>v1.5</td>
                 <td>2024-03-15 13:45:12</td>
               </tr>
               <tr>
+                <td>개인정보</td>
+                <td>개인정보 수집 및 이용 동의</td>
+                <td>v1.4</td>
+                <td>2024-03-15 13:45:12</td>
+              </tr>
+              <!-- 박지민 -->
+              <tr>
+                <td rowspan="2">박지민</td>
+                <td rowspan="2">park.jimin@timbel.net</td>
                 <td>이용약관</td>
-                <td>
-                  박지민
-                </td>
-                <td>park.jimin@timbel.net</td>
                 <td>마케팅 정보 수신 동의</td>
-                <td>v1.0</td>
+                <td>v1.4</td>
                 <td>2024-03-15 12:20:45</td>
               </tr>
               <tr>
                 <td>개인정보</td>
-                <td>
-                  최동훈
-                </td>
-                <td>choi.donghun@timbel.net</td>
+                <td>개인정보 수집 및 이용 동의</td>
+                <td>v1.3</td>
+                <td>2024-03-15 13:45:12</td>
+              </tr>
+              <!-- 최동훈 -->
+              <tr>
+                <td rowspan="2">최동훈</td>
+                <td rowspan="2">choi.donghun@timbel.net</td>
+                <td>이용약관</td>
                 <td>개인정보 제3자 제공 동의</td>
-                <td>v1.5</td>
+                <td>v1.4</td>
                 <td>2024-03-15 11:15:30</td>
               </tr>
               <tr>
                 <td>개인정보</td>
-                <td>
-                  정미경
-                </td>
-                <td>jung.mikyung@timbel.net</td>
+                <td>개인정보 수집 및 이용 동의</td>
+                <td>v1.3</td>
+                <td>2024-03-15 13:45:12</td>
+              </tr>
+              <!-- 정미경 -->
+              <tr>
+                <td rowspan="2">정미경</td>
+                <td rowspan="2">jung.mikyung@timbel.net</td>
+                <td>이용약관</td>
                 <td>위치정보 이용 동의</td>
-                <td>v1.1</td>
+                <td>v1.4</td>
                 <td>2024-03-15 10:30:18</td>
               </tr>
               <tr>
+                <td>개인정보</td>
+                <td>개인정보 수집 및 이용 동의</td>
+                <td>v1.2</td>
+                <td>2024-03-15 13:45:12</td>
+              </tr>
+              <!-- 강민수 -->
+              <tr>
+                <td rowspan="2">강민수</td>
+                <td rowspan="2">kang.minsu@timbel.net</td>
                 <td>이용약관</td>
-                <td>
-                  강민수
-                </td>
-                <td>kang.minsu@timbel.net</td>
                 <td>쿠키 사용 동의</td>
-                <td>v2.0</td>
+                <td>v1.3</td>
                 <td>2024-03-15 09:45:33</td>
               </tr>
               <tr>
+                <td>개인정보</td>
+                <td>개인정보 수집 및 이용 동의</td>
+                <td>v1.2</td>
+                <td>2024-03-15 13:45:12</td>
+              </tr>
+              <!-- 윤서연 -->
+              <tr>
+                <td rowspan="2">윤서연</td>
+                <td rowspan="2">yoon.seoyeon@timbel.net</td>
                 <td>이용약관</td>
-                <td>
-                  윤서연
-                </td>
-                <td>yoon.seoyeon@timbel.net</td>
                 <td>알림 수신 동의</td>
-                <td>v1.3</td>
+                <td>v1.2</td>
                 <td>2024-03-15 08:20:15</td>
               </tr>
               <tr>
                 <td>개인정보</td>
-                <td>
-                  조현우
-                </td>
-                <td>jo.hyunwoo@timbel.net</td>
+                <td>개인정보 수집 및 이용 동의</td>
+                <td>v1.1</td>
+                <td>2024-03-15 13:45:12</td>
+              </tr>
+              <!-- 조현우 -->
+              <tr>
+                <td rowspan="2">조현우</td>
+                <td rowspan="2">jo.hyunwoo@timbel.net</td>
+                <td>이용약관</td>
                 <td>데이터 분석 활용 동의</td>
-                <td>v1.4</td>
+                <td>v1.1</td>
                 <td>2024-03-15 07:15:42</td>
               </tr>
               <tr>
+                <td>개인정보</td>
+                <td>개인정보 수집 및 이용 동의</td>
+                <td>v1.1</td>
+                <td>2024-03-15 13:45:12</td>
+              </tr>
+              <!-- 한지원 -->
+              <tr>
+                <td rowspan="2">한지원</td>
+                <td rowspan="2">han.jiwon@timbel.net</td>
                 <td>이용약관</td>
-                <td>
-                  한지원
-                </td>
-                <td>han.jiwon@timbel.net</td>
                 <td>광고성 정보 수신 동의</td>
                 <td>v1.0</td>
                 <td>2024-03-15 06:30:28</td>
               </tr>
               <tr>
                 <td>개인정보</td>
-                <td>
-                  임수진
-                </td>
-                <td>lim.sujin@timbel.net</td>
+                <td>개인정보 수집 및 이용 동의</td>
+                <td>v1.1</td>
+                <td>2024-03-15 13:45:12</td>
+              </tr>
+              <!-- 임수진 -->
+              <tr>
+                <td rowspan="2">임수진</td>
+                <td rowspan="2">lim.sujin@timbel.net</td>
+                <td>이용약관</td>
+                <td>광고성 정보 수신 동의</td>
+                <td>v1.0</td>
+                <td>2024-03-15 13:45:12</td>
+              </tr>
+              <tr>
+                <td>개인정보</td>
                 <td>회의록 데이터 활용 동의</td>
-                <td>v2.2</td>
+                <td>v1.0</td>
                 <td>2024-03-15 05:45:55</td>
               </tr>
             </tbody>

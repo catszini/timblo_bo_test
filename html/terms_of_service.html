@@ -6,10 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>이용약관 관리</title>
   <link rel="stylesheet" href="../asset/style.css">
+  <link rel="stylesheet" href="../asset/modal.css">
 </head>
 
 <body>
-  <div class="container">
+  <div class="container terms-page">
     <!-- 사이드바 -->
     <div class="sidebar">
       <div class="logo">
@@ -169,195 +170,164 @@
             <thead>
               <tr>
                 <th>구분</th>
+                <th>상태</th>
                 <th>제목</th>
+                <th>버전</th>
                 <th>생성일</th>
                 <th>생성자</th>
-                <th>약관 실행일</th>
-                <th>최종 수정일</th>
-                <th>수정자</th>
-                <th>사용 여부</th>
-                <th>삭제</th>
+                <th>약관실행일</th>
+                <th>사용여부</th>
               </tr>
             </thead>
             <tbody>
               <tr onclick="location.href='terms_of_service_detail.html'" style="cursor: pointer;">
                 <td>개인정보</td>
+                <td><span class="status-badge published">게시됨</span></td>
                 <td>스타트스</td>
+                <td>v1.0</td>
                 <td>25-09-16 14:49:14</td>
                 <td>심승준1</td>
                 <td>25-09-18 02:15:00</td>
-                <td>25-10-23 14:37:19</td>
-                <td>심승준1</td>
                 <td onclick="event.stopPropagation();">
                   <label class="switch">
                     <input type="checkbox" checked>
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td onclick="event.stopPropagation();">
-                  <button class="btn-danger btn-sm">삭제</button>
-                </td>
               </tr>
               <tr>
                 <td>이용약관</td>
+                <td><span class="status-badge draft">초안</span></td>
                 <td>da</td>
+                <td>v1.0</td>
                 <td>25-09-04 12:36:36</td>
                 <td>김재광</td>
                 <td>25-09-05 11:15:00</td>
-                <td>25-09-04 13:29:25</td>
-                <td>김재광</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox">
                     <span class="slider"></span>
                   </label>
-                </td>
-                <td>
-                  <button class="btn-danger btn-sm">삭제</button>
                 </td>
               </tr>
               <tr>
                 <td>개인정보</td>
+                <td><span class="status-badge archived">보관됨</span></td>
                 <td>~~test</td>
+                <td>v1.1</td>
                 <td>25-09-04 10:14:10</td>
                 <td>Timblo</td>
                 <td>25-09-15 20:15:00</td>
-                <td>25-09-04 13:47:38</td>
-                <td>Timblo</td>
                 <td>
                   <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" disabled>
                     <span class="slider"></span>
                   </label>
-                </td>
-                <td>
-                  <button class="btn-danger btn-sm">삭제</button>
                 </td>
               </tr>
               <tr>
                 <td>이용약관</td>
+                <td><span class="status-badge published">게시됨</span></td>
                 <td>약관생성</td>
+                <td>v1.0</td>
                 <td>25-09-04 09:52:17</td>
                 <td>Timblo</td>
                 <td>25-09-03 17:50:00</td>
-                <td>25-09-04 10:11:39</td>
-                <td>Timblo</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox">
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>
-                  <button class="btn-danger btn-sm">삭제</button>
-                </td>
               </tr>
               <tr>
                 <td>개인정보</td>
+                <td><span class="status-badge draft">초안</span></td>
                 <td>asdasdasdasdasd</td>
+                <td>v2.0</td>
                 <td>25-08-08 15:47:04</td>
                 <td>김재광</td>
                 <td>25-08-08 08:00:00</td>
-                <td>25-08-08 15:47:57</td>
-                <td>김재광</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox" checked>
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>
-                  <button class="btn-danger btn-sm">삭제</button>
-                </td>
               </tr>
               <tr>
                 <td>개인정보</td>
+                <td><span class="status-badge archived">보관됨</span></td>
                 <td>가나다라</td>
+                <td>v1.2</td>
                 <td>25-08-08 15:46:43</td>
                 <td>김재광</td>
                 <td>25-08-08 12:00:00</td>
-                <td>25-08-08 15:46:43</td>
-                <td>김재광</td>
                 <td>
                   <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" disabled>
                     <span class="slider"></span>
                   </label>
-                </td>
-                <td>
-                  <button class="btn-danger btn-sm">삭제</button>
                 </td>
               </tr>
               <tr>
                 <td>개인정보</td>
+                <td><span class="status-badge published">게시됨</span></td>
                 <td>qweqweqweqweqweq</td>
+                <td>v1.0</td>
                 <td>25-08-08 15:35:11</td>
                 <td>김재광</td>
                 <td>25-08-08 20:00:00</td>
-                <td>25-08-08 15:35:11</td>
-                <td>김재광</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox">
                     <span class="slider"></span>
                   </label>
-                </td>
-                <td>
-                  <button class="btn-danger btn-sm">삭제</button>
                 </td>
               </tr>
               <tr>
                 <td>개인정보</td>
+                <td><span class="status-badge draft">초안</span></td>
                 <td>ㅁㄴㅇㅁㄴㅇ</td>
+                <td>v1.0</td>
                 <td>25-08-08 14:37:57</td>
                 <td>김재광</td>
                 <td>25-08-08 19:00:00</td>
-                <td>25-08-08 14:37:57</td>
-                <td>김재광</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox">
                     <span class="slider"></span>
                   </label>
                 </td>
-                <td>
-                  <button class="btn-danger btn-sm">삭제</button>
-                </td>
               </tr>
               <tr>
                 <td>이용약관</td>
+                <td><span class="status-badge archived">보관됨</span></td>
                 <td>테스트 약관</td>
+                <td>v1.0</td>
                 <td>25-07-24 02:29:56</td>
                 <td>전찬호</td>
                 <td>25-07-24 18:00:00</td>
-                <td>25-07-24 02:29:56</td>
-                <td>전찬호</td>
                 <td>
                   <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" disabled>
                     <span class="slider"></span>
                   </label>
-                </td>
-                <td>
-                  <button class="btn-danger btn-sm">삭제</button>
                 </td>
               </tr>
               <tr>
                 <td>이용약관</td>
+                <td><span class="status-badge published">게시됨</span></td>
                 <td>약관 예시</td>
+                <td>v1.0</td>
                 <td>25-07-24 02:27:24</td>
                 <td>전찬호</td>
                 <td>25-07-22 09:00:00</td>
-                <td>25-07-24 02:27:24</td>
-                <td>전찬호</td>
                 <td>
                   <label class="switch">
                     <input type="checkbox">
                     <span class="slider"></span>
                   </label>
-                </td>
-                <td>
-                  <button class="btn-danger btn-sm">삭제</button>
                 </td>
               </tr>
             </tbody>
@@ -381,6 +351,42 @@
   </div>
 
   <script src="../asset/menu.js"></script>
+  <script>
+    // 이용약관 관리 - 토글 스위치와 상태 배지 연동 (모달 없이)
+    document.addEventListener('DOMContentLoaded', function () {
+      const tableBody = document.querySelector('.table-container tbody');
+
+      if (tableBody) {
+        // 모든 토글 스위치에 이벤트 리스너 추가
+        const switches = tableBody.querySelectorAll('.switch input[type="checkbox"]');
+
+        switches.forEach(function (switchInput) {
+          // disabled가 아닌 경우에만 이벤트 리스너 추가
+          if (!switchInput.disabled) {
+            switchInput.addEventListener('change', function (e) {
+              // 클릭 이벤트 전파 방지 (행 클릭 방지)
+              e.stopPropagation();
+
+              const row = this.closest('tr');
+              const statusBadge = row.querySelector('.status-badge');
+
+              if (this.checked) {
+                // 토글이 켜지면 -> 게시됨
+                statusBadge.className = 'status-badge published';
+                statusBadge.textContent = '게시됨';
+                this.disabled = false;
+              } else {
+                // 토글이 꺼지면 -> 보관됨 (비활성화)
+                statusBadge.className = 'status-badge archived';
+                statusBadge.textContent = '보관됨';
+                this.disabled = true;
+              }
+            });
+          }
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>

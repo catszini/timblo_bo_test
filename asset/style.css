@@ -2492,6 +2492,16 @@ input:checked + .slider:before {
     transform: translateX(20px);
 }
 
+input:disabled + .slider {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+input:disabled:checked + .slider {
+    background-color: #ccc;
+    opacity: 0.5;
+}
+
 .delete-btn {
     background: none;
     border: none;
@@ -4212,6 +4222,10 @@ input:checked + .slider:before {
 .status-pill.draft { /* 초안 */
     background: #FFD84D; /* 밝은 노랑 */
     color: #292A2B;
+}
+.status-pill.published { /* 게시됨 */
+    background: #10B981; /* 초록색 */
+    color: #FFFFFF;
 }
 .status-pill.archived { /* 보관됨 */
     background: #E5E7EB; /* 회색 */
@@ -10774,4 +10788,31 @@ input:checked+.prompt-slider:before {
   pointer-events: none;
   width: 16px;
   height: 16px;
+}
+
+/* 이용약관 페이지 - 상태 배지 */
+.terms-page .status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  min-height: 26px;
+}
+
+.terms-page .status-badge.draft {
+  background: #FFD84D;
+  color: #292A2B;
+}
+
+.terms-page .status-badge.published {
+  background: #10B981;
+  color: #FFFFFF;
+}
+
+.terms-page .status-badge.archived {
+  background: #E5E7EB;
+  color: #4B5563;
 }
