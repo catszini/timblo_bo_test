@@ -357,10 +357,11 @@
       <div class="modal-content">
         <div style="text-align: center; margin-bottom: 20px;">
           <h2 style="font-size: 20px; font-weight: 600; color: #292A2B; margin-bottom: 12px;">
-            게시하시겠습니까?
+            동의서를 게시하시겠습니까?
           </h2>
           <p style="font-size: 14px; color: #6B7280; line-height: 1.6;">
-            "게시됨" 상태로 변경되며,<br>이후 수정 및 삭제가 불가능합니다.
+            동의서가 “게시됨” 상태로 변경되며, <br>
+            이후 수정 및 삭제가 불가합니다.
           </p>
         </div>
         <div style="display: flex; gap: 10px; margin-top: 30px;">
@@ -506,13 +507,13 @@
         if (pendingSwitch) {
           const row = pendingSwitch.closest('tr');
           const statusPill = row.querySelector('.status-pill');
-          
+
           // 보관됨으로 변경
           pendingSwitch.checked = false;
           pendingSwitch.disabled = true;
           statusPill.className = 'status-pill archived';
           statusPill.textContent = '보관됨';
-          
+
           pendingSwitch = null;
         }
         deactivateModal.classList.add('modal-overlay-hidden');
@@ -529,12 +530,12 @@
         if (pendingSwitch) {
           const row = pendingSwitch.closest('tr');
           const statusPill = row.querySelector('.status-pill');
-          
+
           // 게시됨으로 변경
           pendingSwitch.checked = true;
           statusPill.className = 'status-pill published';
           statusPill.textContent = '게시됨';
-          
+
           pendingSwitch = null;
         }
         publishModal.classList.add('modal-overlay-hidden');
