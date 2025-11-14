@@ -204,50 +204,50 @@
               </tr>
               <tr>
                 <td>유의사항</td>
-                <td><span class="status-pill published">게시됨</span></td>
-                <td><a href="consent_detail.html" class="consent-title-link">서비스 이용 유의사항</a></td>
+                <td><span class="status-pill draft">초안</span></td>
+                <td><a href="consent_detail2.html" class="consent-title-link">서비스 이용 유의사항</a></td>
                 <td>v1.8</td>
                 <td>2025-09-10 09:20:15</td>
                 <td>김민수</td>
-                <td>2025-09-10 15:30:00</td>
+                <td>-</td>
                 <td>
-                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                  <label class="switch"><input type="checkbox"><span class="slider"></span></label>
                 </td>
               </tr>
               <tr>
                 <td>개인정보</td>
-                <td><span class="status-pill draft">초안</span></td>
-                <td><a href="consent_detail.html" class="consent-title-link">위치정보 수집 및 이용 동의</a></td>
+                <td><span class="status-pill archived">보관됨</span></td>
+                <td><a href="consent_detail3.html" class="consent-title-link">위치정보 수집 및 이용 동의</a></td>
                 <td>v1.3</td>
                 <td>2025-09-05 14:25:40</td>
                 <td>이영희</td>
-                <td>-</td>
+                <td>2025-09-05 16:00:00</td>
                 <td>
-                  <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                  <label class="switch"><input type="checkbox" disabled><span class="slider"></span></label>
                 </td>
               </tr>
               <tr>
                 <td>유의사항</td>
-                <td><span class="status-pill draft">초안</span></td>
+                <td><span class="status-pill published">게시됨</span></td>
                 <td><a href="consent_detail.html" class="consent-title-link">마케팅 정보 수신 동의</a></td>
                 <td>v2.1</td>
                 <td>2025-09-03 11:15:22</td>
                 <td>박지훈</td>
-                <td>-</td>
+                <td>2025-09-03 14:00:00</td>
                 <td>
-                  <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
                 </td>
               </tr>
               <tr>
                 <td>개인정보</td>
-                <td><span class="status-pill published">게시됨</span></td>
+                <td><span class="status-pill draft">초안</span></td>
                 <td><a href="consent_detail.html" class="consent-title-link">제3자 정보 제공 동의서</a></td>
                 <td>v3.0</td>
                 <td>2025-08-28 16:45:30</td>
                 <td>최서연</td>
-                <td>2025-08-29 09:00:00</td>
+                <td>-</td>
                 <td>
-                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                  <label class="switch"><input type="checkbox"><span class="slider"></span></label>
                 </td>
               </tr>
               <tr>
@@ -288,14 +288,14 @@
               </tr>
               <tr>
                 <td>개인정보</td>
-                <td><span class="status-pill published">게시됨</span></td>
+                <td><span class="status-pill archived">보관됨</span></td>
                 <td><a href="consent_detail.html" class="consent-title-link">회원가입 약관 동의</a></td>
                 <td>v4.2</td>
                 <td>2025-08-05 09:15:20</td>
                 <td>윤서진</td>
                 <td>2025-08-05 12:00:00</td>
                 <td>
-                  <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                  <label class="switch"><input type="checkbox" disabled><span class="slider"></span></label>
                 </td>
               </tr>
               <tr>
@@ -338,11 +338,37 @@
           </p>
         </div>
         <div style="display: flex; gap: 10px; margin-top: 30px;">
-          <button id="modalCancel"
+          <button id="modalCancelDeactivate"
             style="flex: 1; padding:20px 12px; border: 1px solid #E5E5E5; background: white; color: #292A2B; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer;">
             취소
           </button>
-          <button id="modalConfirm"
+          <button id="modalConfirmDeactivate"
+            style="flex: 1; padding:20px 12px; border: none; background: #0066FF; color: white; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer;">
+            확인
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 게시 확인 모달 -->
+  <div id="publishModal" class="modal-overlay modal-overlay-hidden">
+    <div class="modal-container" style="width: 400px; max-width: 90%;">
+      <div class="modal-content">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <h2 style="font-size: 20px; font-weight: 600; color: #292A2B; margin-bottom: 12px;">
+            게시하시겠습니까?
+          </h2>
+          <p style="font-size: 14px; color: #6B7280; line-height: 1.6;">
+            "게시됨" 상태로 변경되며,<br>이후 수정 및 삭제가 불가능합니다.
+          </p>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 30px;">
+          <button id="modalCancelPublish"
+            style="flex: 1; padding:20px 12px; border: 1px solid #E5E5E5; background: white; color: #292A2B; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer;">
+            취소
+          </button>
+          <button id="modalConfirmPublish"
             style="flex: 1; padding:20px 12px; border: none; background: #0066FF; color: white; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer;">
             확인
           </button>
@@ -414,26 +440,13 @@
     // 동의서 관리 - 토글 스위치와 상태 배지 연동
     document.addEventListener('DOMContentLoaded', function () {
       const tableBody = document.querySelector('.table-container tbody');
-      const modal = document.getElementById('deactivateModal');
-      const modalCancel = document.getElementById('modalCancel');
-      const modalConfirm = document.getElementById('modalConfirm');
-
-      let currentSwitch = null;
-      let currentRow = null;
-      let currentStatusPill = null;
-
-      // 모달 닫기 함수
-      function closeModal() {
-        modal.classList.add('modal-overlay-hidden');
-        currentSwitch = null;
-        currentRow = null;
-        currentStatusPill = null;
-      }
-
-      // 모달 열기 함수
-      function openModal() {
-        modal.classList.remove('modal-overlay-hidden');
-      }
+      const deactivateModal = document.getElementById('deactivateModal');
+      const publishModal = document.getElementById('publishModal');
+      const modalCancelDeactivate = document.getElementById('modalCancelDeactivate');
+      const modalConfirmDeactivate = document.getElementById('modalConfirmDeactivate');
+      const modalCancelPublish = document.getElementById('modalCancelPublish');
+      const modalConfirmPublish = document.getElementById('modalConfirmPublish');
+      let pendingSwitch = null;
 
       if (tableBody) {
         // 모든 토글 스위치에 이벤트 리스너 추가
@@ -448,51 +461,97 @@
 
               const row = this.closest('tr');
               const statusPill = row.querySelector('.status-pill');
+              const currentStatus = statusPill.textContent.trim();
 
               if (this.checked) {
-                // 토글이 켜지면 -> 게시됨
-                statusPill.className = 'status-pill published';
-                statusPill.textContent = '게시됨';
-                this.disabled = false;
+                // 초안에서 게시됨으로 변경할 때 모달 표시
+                if (currentStatus === '초안') {
+                  e.preventDefault();
+                  this.checked = false; // 일단 체크 해제 상태 유지
+                  pendingSwitch = this;
+                  publishModal.classList.remove('modal-overlay-hidden');
+                } else {
+                  // 보관됨에서는 직접 게시됨으로 변경 (이 경우는 발생하지 않음)
+                  statusPill.className = 'status-pill published';
+                  statusPill.textContent = '게시됨';
+                  this.disabled = false;
+                }
               } else {
-                // 토글이 꺼지려고 할 때 -> 모달 표시
-                // 현재 상태 저장
-                currentSwitch = this;
-                currentRow = row;
-                currentStatusPill = statusPill;
-
-                // 토글을 다시 켜놓기 (모달에서 확인할 때까지)
-                this.checked = true;
-
-                // 모달 열기
-                openModal();
+                // 게시됨 상태에서 끄려고 할 때 모달 표시
+                if (currentStatus === '게시됨') {
+                  e.preventDefault();
+                  this.checked = true; // 일단 체크 상태 유지
+                  pendingSwitch = this;
+                  deactivateModal.classList.remove('modal-overlay-hidden');
+                } else {
+                  // 초안 상태에서는 모달 없이 바로 보관됨으로 변경
+                  statusPill.className = 'status-pill archived';
+                  statusPill.textContent = '보관됨';
+                  this.disabled = true;
+                }
               }
             });
           }
         });
       }
 
-      // 취소 버튼 클릭
-      modalCancel.addEventListener('click', function () {
-        closeModal();
+      // 비활성화 모달 취소 버튼
+      modalCancelDeactivate.addEventListener('click', function () {
+        deactivateModal.classList.add('modal-overlay-hidden');
+        pendingSwitch = null;
       });
 
-      // 확인 버튼 클릭
-      modalConfirm.addEventListener('click', function () {
-        if (currentSwitch && currentStatusPill) {
-          // 토글을 끄고 보관됨으로 변경
-          currentSwitch.checked = false;
-          currentStatusPill.className = 'status-pill archived';
-          currentStatusPill.textContent = '보관됨';
-          currentSwitch.disabled = true;
+      // 비활성화 모달 확인 버튼
+      modalConfirmDeactivate.addEventListener('click', function () {
+        if (pendingSwitch) {
+          const row = pendingSwitch.closest('tr');
+          const statusPill = row.querySelector('.status-pill');
+          
+          // 보관됨으로 변경
+          pendingSwitch.checked = false;
+          pendingSwitch.disabled = true;
+          statusPill.className = 'status-pill archived';
+          statusPill.textContent = '보관됨';
+          
+          pendingSwitch = null;
         }
-        closeModal();
+        deactivateModal.classList.add('modal-overlay-hidden');
       });
 
-      // 모달 배경 클릭 시 닫기
-      modal.addEventListener('click', function (e) {
-        if (e.target === modal) {
-          closeModal();
+      // 게시 모달 취소 버튼
+      modalCancelPublish.addEventListener('click', function () {
+        publishModal.classList.add('modal-overlay-hidden');
+        pendingSwitch = null;
+      });
+
+      // 게시 모달 확인 버튼
+      modalConfirmPublish.addEventListener('click', function () {
+        if (pendingSwitch) {
+          const row = pendingSwitch.closest('tr');
+          const statusPill = row.querySelector('.status-pill');
+          
+          // 게시됨으로 변경
+          pendingSwitch.checked = true;
+          statusPill.className = 'status-pill published';
+          statusPill.textContent = '게시됨';
+          
+          pendingSwitch = null;
+        }
+        publishModal.classList.add('modal-overlay-hidden');
+      });
+
+      // 모달 오버레이 클릭 시 닫기
+      deactivateModal.addEventListener('click', function (e) {
+        if (e.target === deactivateModal) {
+          deactivateModal.classList.add('modal-overlay-hidden');
+          pendingSwitch = null;
+        }
+      });
+
+      publishModal.addEventListener('click', function (e) {
+        if (e.target === publishModal) {
+          publishModal.classList.add('modal-overlay-hidden');
+          pendingSwitch = null;
         }
       });
     });

@@ -4,21 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>이용약관 신규 등록</title>
+  <title>동의서 상세 - 보관됨</title>
   <link rel="stylesheet" href="../asset/style.css">
   <link rel="stylesheet" href="../asset/modal.css">
 </head>
 
-<body class="consent-new-page">
+<body class="consent-detail-page">
   <div class="container">
-    <!-- 사이드바 -->
+    <!-- 왼쪽 메뉴바 -->
     <div class="sidebar">
       <div class="logo">
         <div class="logo-icon">T</div>
         <div class="logo-text">
           <div class="logo-title">홍길동</div>
           <div class="logo-url">
-            <select class="condition-select" id="workspaceSelect">
+            <select class="condition-select" id="workspace-filter">
               <option value="Timbel" selected>Timbel</option>
               <option value="sk-telecom">SK Telecom</option>
               <option value="sk-hynix">SK Hynix</option>
@@ -54,7 +54,7 @@
           <li><a href="menu_setting.html">전체 메뉴 관리</a></li>
           <li><a href="system_user.html">사용자 관리</a></li>
           <li><a href="group_setting.html">역할 관리</a></li>
-          <li><a href="terms_of_service.html" class="active">이용약관 관리</a></li>
+          <li><a href="terms_of_service.html">이용약관 관리</a></li>
           <li><a href="terms_consent_history.html">이용약관 동의 이력</a></li>
           <li><a href="system_setting_history.html">설정변경 이력</a></li>
           <li><a href="system_stats_usage.html">전체 시스템 사용 통계</a></li>
@@ -68,7 +68,7 @@
         </div>
         <ul>
           <li><a href="workspace_permission.html">기능 권한 관리</a></li>
-          <li><a href="content_retention.html">컨텐츠 보존 관리</a></li>
+          <li><a href="content_retention.html">콘텐츠 보존 관리</a></li>
           <li><a href="workspace_group_setting.html">역할 관리</a></li>
           <li><a href="user.html">사용자 관리</a></li>
           <li><a href="logo.html">로고 관리</a></li>
@@ -82,7 +82,7 @@
         <ul>
           <li><a href="meet_template.html">템플릿 관리 (회의록, 공통 템플릿)</a></li>
           <li><a href="prompt.html">프롬프트 관리</a></li>
-          <li><a href="consent.html">동의서 관리</a></li>
+          <li><a href="consent.html" class="active">동의서 관리</a></li>
           <li><a href="calendar.html">캘린더 관리/설정</a></li>
           <li><a href="dictionary.html">사전 관리</a></li>
           <li><a href="notice.html">공지사항 관리</a></li>
@@ -105,24 +105,24 @@
       </div>
     </div>
 
-    <!-- 메인 콘텐츠 -->
+    <!-- 오른쪽 콘텐츠 영역 -->
     <div class="content">
       <div class="content-header">
         <h1 class="breadcrumb">
-          <a href="terms_of_service.html" class="breadcrumb-link">이용약관 관리</a> > 신규 등록
+          <a href="consent.html" class="breadcrumb-link">동의서 관리</a> > 상세
         </h1>
       </div>
 
       <div class="content-body">
-        <!-- 이용약관 등록 폼 -->
+        <!-- 동의서 상세 폼 -->
         <div class="consent-detail-form">
           <div class="form-row">
             <div class="form-group">
-              <label for="consentType">구분 <span class="required">*</span></label>
+              <label for="consentType">구분</label>
               <div class="combo-select">
-                <select id="consentType" class="condition-select" required>
-                  <option value="">구분을 선택하세요</option>
-                  <option value="privacy">개인정보</option>
+                <select id="consentType" class="condition-select" disabled>
+                  <option value="personal" selected>개인정보</option>
+                  <option value="notice">유의사항</option>
                   <option value="terms">이용약관</option>
                 </select>
                 <img src="../asset/select-arrow.svg" alt="화살표" class="select-arrow">
@@ -132,32 +132,66 @@
 
           <div class="form-row">
             <div class="form-group flex-grow">
-              <label for="consentTitle">제목 <span class="required">*</span></label>
-              <input type="text" id="consentTitle" class="form-input" placeholder="제목을 입력하세요" required>
+              <label for="consentTitle">동의서명</label>
+              <input type="text" id="consentTitle" class="form-input" value="위치정보 수집 및 이용 동의" placeholder="동의서명을 입력하세요" readonly>
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="form-group flex-grow">
-              <label for="executeDate">약관 실행일 <span class="required">*</span></label>
-              <input type="datetime-local" id="executeDate" class="form-input" required>
+          <div class="form-row info-row">
+            <div class="info-item">
+              <span class="info-label">생성일</span>
+              <span class="info-value">2025-09-05 14:25:40</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">생성자</span>
+              <span class="info-value">이영희</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">최종수정일</span>
+              <span class="info-value">2025-09-05 16:00:00</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">수정자</span>
+              <span class="info-value">이영희</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">현재상태</span>
+              <span class="status-pill archived">보관됨</span>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="consentContent">내용 <span class="required">*</span></label>
-            <textarea id="consentContent" class="form-textarea" rows="15" placeholder="약관 내용을 입력하세요"
-              required></textarea>
-          </div>
+            <label for="consentContent">동의서 내용</label>
+            <textarea id="consentContent" class="form-textarea" rows="15" placeholder="동의서 내용을 입력하세요" readonly>【위치정보 수집 및 이용 동의】
 
+제1조 (위치정보의 수집 목적)
+회사는 다음의 목적을 위하여 이용자의 위치정보를 수집합니다:
+1. 위치 기반 서비스 제공
+2. 맞춤형 콘텐츠 제공
+3. 서비스 이용 통계 분석
+
+제2조 (수집하는 위치정보의 항목)
+① 회사는 다음의 위치정보를 수집합니다:
+- GPS 정보
+- IP 주소 기반 위치 정보
+- Wi-Fi 접속 지점(AP) 정보
+
+제3조 (위치정보의 보유 및 이용 기간)
+회사는 위치정보를 수집한 시점으로부터 최대 1년간 보유하며, 해당 기간 경과 시 지체 없이 파기합니다.
+
+제4조 (위치정보의 제3자 제공)
+회사는 이용자의 동의 없이 위치정보를 제3자에게 제공하지 않습니다.
+
+제5조 (위치정보 수집 거부)
+이용자는 위치정보 수집을 거부할 수 있으며, 거부 시 위치 기반 서비스 이용이 제한될 수 있습니다.</textarea>
+          </div>
 
           <div class="form-actions-bottom">
             <div class="left-actions">
-              <a href="terms_of_service.html" class="btn btn-outline">목록으로</a>
+              <a href="consent.html" class="btn btn-outline">목록으로</a>
             </div>
             <div class="right-actions">
-              <button type="button" class="btn btn-outline" id="resetBtn">초기화</button>
-              <button type="button" class="btn btn-primary" id="saveBtn">저장</button>
+              <button type="button" class="btn btn-danger" id="deleteBtn">삭제</button>
             </div>
           </div>
         </div>
@@ -167,56 +201,14 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const consentType = document.getElementById('consentType');
-      const consentTitle = document.getElementById('consentTitle');
-      const executeDate = document.getElementById('executeDate');
-      const consentContent = document.getElementById('consentContent');
-      const activateConsent = document.getElementById('activateConsent');
-      const saveBtn = document.getElementById('saveBtn');
-      const resetBtn = document.getElementById('resetBtn');
+      const deleteBtn = document.getElementById('deleteBtn');
 
-      // 초기화 버튼 클릭
-      resetBtn.addEventListener('click', function () {
-        if (confirm('입력된 모든 내용이 초기화됩니다. 계속하시겠습니까?')) {
-          consentType.value = '';
-          consentTitle.value = '';
-          executeDate.value = '';
-          consentContent.value = '';
-          activateConsent.checked = true;
-          consentType.focus();
+      // 삭제 버튼 클릭
+      deleteBtn.addEventListener('click', function () {
+        if (confirm('보관된 동의서를 삭제하시겠습니까?\n삭제 후에는 복구할 수 없습니다.')) {
+          alert('동의서가 삭제되었습니다.');
+          location.href = 'consent.html';
         }
-      });
-
-      // 저장 버튼 클릭
-      saveBtn.addEventListener('click', function () {
-        // 필수 필드 검증
-        if (!consentType.value.trim()) {
-          alert('구분을 선택해주세요.');
-          consentType.focus();
-          return;
-        }
-
-        if (!consentTitle.value.trim()) {
-          alert('제목을 입력해주세요.');
-          consentTitle.focus();
-          return;
-        }
-
-        if (!executeDate.value.trim()) {
-          alert('약관 실행일을 입력해주세요.');
-          executeDate.focus();
-          return;
-        }
-
-        if (!consentContent.value.trim()) {
-          alert('내용을 입력해주세요.');
-          consentContent.focus();
-          return;
-        }
-
-        // 여기에 실제 등록 로직 추가
-        alert('이용약관이 등록되었습니다.');
-        location.href = 'terms_of_service.html';
       });
     });
   </script>
@@ -225,3 +217,4 @@
 </body>
 
 </html>
+
